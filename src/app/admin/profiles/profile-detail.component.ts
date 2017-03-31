@@ -1,16 +1,3 @@
-
-
-    /*ngOnInit() {
-        this.route.params
-            .switchMap((params: Params) => this.profileService.getRecord(+params['id']))
-            .subscribe(
-                profile     => this.profile = profile,
-                error       => this.errorMessage = <any>error
-            );
-     }*/
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -53,10 +40,6 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
             id: ['', Validators.required ],
             name: ''
         });
-    }
-
-    onSubmit() {
-        super.onSubmit(this.formDetail, this.object, '/pulsar/admin/profiles');
     }
 
 }

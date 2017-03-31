@@ -12,9 +12,16 @@ export class CoreListComponent {
         this.parentService.getRecords().subscribe(data => f(data));
     }
 
-    deleteRecord(object: any, f: Function): void {
+    deleteRecord(f: Function, object: any): void {
+
+        let lang: string;
+
+        if (object.lang_id) {   // check if has languages
+            lang = object.lang_id;
+        }
+
         this.parentService
-            .deleteRecord(object.id)
+            .deleteRecord(object.id, lang)
             .subscribe(data => this.getRecords(f));
     }
 

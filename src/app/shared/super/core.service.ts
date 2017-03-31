@@ -18,13 +18,7 @@ export class CoreService {
             .map((response: Response) => response.json().data as any[]);
     }
 
-    getRecord(id: any): Observable<any> {
-        return this.parentHttp
-            .get(this.getUrl(id))
-            .map((response: Response) => response.json().data as any);
-    }
-
-    getLangRecord(id: any, lang: string): Observable<any> {
+    getRecord(id: any, lang: string = undefined): Observable<any> {
         return this.parentHttp
             .get(this.getUrl(id, lang))
             .map((response: Response) => response.json().data as any);
@@ -39,23 +33,23 @@ export class CoreService {
             .map(response => response.json());
     }
 
-    updateRecord(id: any, object: any) {
+    updateRecord(object: any, id: any, lang: string = undefined) {
         const headers   = new Headers({ 'Content-Type': 'application/json' });
         const options   = new RequestOptions({ headers: headers });
 
         return this.parentHttp
-            .put(this.getUrl(id), object, options)
+            .put(this.getUrl(id, lang), object, options)
             .map(response => response.json());
     }
 
-    deleteRecord(id: any) {
+    deleteRecord(id: any, lang: string = undefined) {
         return this.parentHttp
-            .delete(this.getUrl(id))
+            .delete(this.getUrl(id, lang))
             .map(response => response.json());
     }
 
     private getUrl(id: any, lang?: string) {
-        if(lang === undefined) {
+        if (lang === undefined) {   // check is object has language
             return `${this.parentUrl}/${id}`;
         }
         return `${this.parentUrl}/${id}/${lang}`;

@@ -43,8 +43,4 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
         });
     }
 
-    onSubmit() {
-        super.onSubmit(this.formDetail, this.object, this.baseUri);
-    }
-
 }

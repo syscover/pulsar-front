@@ -25,8 +25,4 @@ export class LangListComponent extends CoreListComponent implements OnInit {
     ngOnInit() {
         this.getRecords(this.f);
     }
-
-    deleteRecord(object: Lang): void {
-        super.deleteRecord(object, this.f);
-    }
 }

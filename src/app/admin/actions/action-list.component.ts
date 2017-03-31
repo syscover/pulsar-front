@@ -25,9 +25,4 @@ export class ActionListComponent extends CoreListComponent implements OnInit {
     ngOnInit() {
         this.getRecords(this.f);
     }
-
-    deleteRecord(object: Action): void {
-        super.deleteRecord(object, this.f);
-    }
-
 }

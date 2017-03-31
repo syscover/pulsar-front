@@ -25,8 +25,4 @@ export class ProfileListComponent extends CoreListComponent implements OnInit {
     ngOnInit() {
         this.getRecords(this.f);
     }
-
-    deleteRecord(object: Profile): void {
-        super.deleteRecord(object, this.f);
-    }
 }

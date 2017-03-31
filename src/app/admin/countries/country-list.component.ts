@@ -25,9 +25,4 @@ export class CountryListComponent extends CoreListComponent implements OnInit {
     ngOnInit() {
         this.getRecords(this.f);
     }
-
-    deleteRecord(object: Country): void {
-        super.deleteRecord(object, this.f);
-    }
-
 }

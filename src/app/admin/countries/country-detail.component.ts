@@ -15,11 +15,11 @@ import { LangService } from './../langs/lang.service';
 })
 export class CountryDetailComponent extends CoreDetailComponent implements OnInit {
 
+    private langs: Lang[] = [];
+
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
     private f: Function = data => this.object = data; // function to set custom data
-
-    private langs: Lang[] = [];
 
     constructor(
         private fb: FormBuilder,
@@ -37,7 +37,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     ngOnInit() {
-        this.langService.getRecords().subscribe(data => this.langs = data);
+        this.langService.getRecords().subscribe(data => this.langs = data); // get langs
         super.getRecordHasIdParamenter(this.f);
     }
 
@@ -45,12 +45,13 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
         this.formDetail = this.fb.group({
             id: ['', Validators.required ],
             name: '',
-            lang_id: ''
+            lang_id: '',
+            prefix: '',
+            sort: '',
+            territorial_area_1: '',
+            territorial_area_2: '',
+            territorial_area_3: ''
         });
-    }
-
-    onSubmit() {
-        super.onSubmit(this.formDetail, this.object, this.objectService.baseUri);
     }
 
 }

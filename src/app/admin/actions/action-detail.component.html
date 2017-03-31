@@ -1,6 +1,6 @@
 <h1>Action</h1>
 
-<form [formGroup]="formDetail" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object, this.objectService.baseUri)" novalidate>
 
   <div class="form-group">
     <label for="inputId">ID</label>

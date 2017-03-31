@@ -23,7 +23,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
                 <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Editar</a>
-                <a class="dropdown-item" (click)="deleteRecord(object)">Borrar</a>
+                <a class="dropdown-item" (click)="deleteRecord(this.f, object)">Borrar</a>
             </div>
         </div>
       </td>

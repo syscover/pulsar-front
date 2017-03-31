@@ -1,3 +1,4 @@
+import { Lang } from './../../admin/admin.models';
 import { OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -18,30 +19,26 @@ export class CoreDetailComponent {
         this.parentRoute.params.subscribe(params => {
             const id    = params['id'];
             const lang  = params['lang'];
-            if (! id) { return; } // check if route has id param
 
-            if (! lang) {
-                this.getRecord(id, f);
-            }else {
-                this.getLangRecord(id, lang, f);
-            }
+            if (! id) { return; } // check if route has id param
+            this.getRecord(f, id, lang);
         });
     }
 
-    getRecord(id: any, f: Function) {
-        this.parentService.getRecord(id).subscribe(data => f(data));
-    }
-
-    getLangRecord(id: any, lang: string, f: Function) {
-        this.parentService.getLangRecord(id, lang).subscribe(data => f(data));
+    getRecord(f: Function, id: any, lang: string = undefined) {
+        this.parentService.getRecord(id, lang).subscribe(data => f(data));
     }
 
     onSubmit(fg: FormGroup, object: any, routeRedirect: string) {
 
         let obs: Observable<any>; // Observable
+        let lang: string;
 
         if (object.id) {
-            obs = this.parentService.updateRecord(object.id, fg.value);
+            if (object.lang_id) { // check if has languages
+                lang = object.lang_id;
+            }
+            obs = this.parentService.updateRecord(fg.value, object.id, lang);
         } else {
             obs = this.parentService.storeRecord(fg.value);
         }

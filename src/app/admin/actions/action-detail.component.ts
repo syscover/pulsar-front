@@ -42,8 +42,4 @@ export class ActionDetailComponent extends CoreDetailComponent implements OnInit
         });
     }
 
-    onSubmit() {
-        super.onSubmit(this.formDetail, this.object, this.objectService.baseUri);
-    }
-
 }
