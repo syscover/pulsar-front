@@ -1,0 +1,30 @@
+<h1>Profiles {{ objects.length }}</h1>
+
+<a class="btn btn-outline-primary" [routerLink]="[this.objectService.baseUri + '/create']">Nuevo elemeto</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>@</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let object of objects">
+      <th scope="row">{{ object.id }}</th>
+      <td>{{ object.name }}</td>
+      <td>
+        <div class="dropdown">
+            <a class="rounded-circle" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-primary" role="button"> <i class="fa fa-ellipsis-v"></i></button>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
+                <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id]">Editar</a>
+                <a class="dropdown-item" (click)="deleteRecord(lang)">Borrar</a>
+            </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
