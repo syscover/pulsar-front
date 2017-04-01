@@ -24,7 +24,7 @@
         "styles.css"
       ],
       "scripts": [
-        "assets/vendor/jquery/jquery.slim.min.js",
+        "assets/vendor/jquery/jquery-3.2.0.min.js",
         "assets/vendor/tether/tether.min.js",
         "assets/vendor/bootstrap/js/bootstrap.min.js"
       ],
