@@ -19,14 +19,18 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ps",
       "styles": [
-        "assets/vendor/bootstrap/css/bootstrap.min.css",
-        "assets/vendor/font-awesome/css/font-awesome.min.css",
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+        "assets/vendor/mdb/css/mdb.min.css",
         "styles.css"
       ],
       "scripts": [
-        "assets/vendor/jquery/jquery-3.2.0.min.js",
-        "assets/vendor/tether/tether.min.js",
-        "assets/vendor/bootstrap/js/bootstrap.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/tether/dist/js/tether.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+        "assets/vendor/mdb/js/mdb.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

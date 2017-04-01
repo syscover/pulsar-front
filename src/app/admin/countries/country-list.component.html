@@ -18,8 +18,8 @@
       <td>{{ object.name }}</td>
       <td>
         <div class="dropdown">
-            <a class="rounded-circle" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <button class="btn btn-outline-primary" role="button"> <i class="fa fa-ellipsis-v"></i></button>
+            <a class="btn-floating btn-large" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-v"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
                 <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Editar</a>
