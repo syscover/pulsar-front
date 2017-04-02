@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 /*
- * Thme material
+ * Theme material
  */
+
+ .btn-floating i.pl-sm {
+    font-size: 1.0rem !important;
+}
