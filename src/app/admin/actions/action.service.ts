@@ -14,6 +14,6 @@ export class ActionService extends CoreService {
         super(
             http
         );
-        this.parentUrl = this.parentUrl + '/api/v1/actions'; // set api URL
+        this.parentUrl = this.parentUrl + '/api/v1/admin/actions'; // set api URL
     }
 }

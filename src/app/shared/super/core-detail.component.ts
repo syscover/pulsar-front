@@ -9,6 +9,8 @@ import { CoreService } from './core.service';
 
 export class CoreDetailComponent {
 
+    public action: string;
+
     constructor(
         private parentRouter: Router,
         private parentRoute: ActivatedRoute,
@@ -20,7 +22,11 @@ export class CoreDetailComponent {
             const id    = params['id'];
             const lang  = params['lang'];
 
-            if (! id) { return; } // check if route has id param
+            if (! id) { // check if route has id param
+                this.action = 'create';
+                return;
+            }
+            this.action = 'edit';
             this.getRecord(f, id, lang);
         });
     }

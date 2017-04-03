@@ -14,6 +14,6 @@ export class LangService extends CoreService {
         super(
             http
         );
-        this.parentUrl = this.parentUrl + '/api/v1/langs'; // set api URL
+        this.parentUrl = this.parentUrl + '/api/v1/admin/langs'; // set api URL
     }
 }

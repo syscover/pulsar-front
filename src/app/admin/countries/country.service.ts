@@ -14,6 +14,6 @@ export class CountryService extends CoreService {
         super(
             http
         );
-        this.parentUrl = this.parentUrl + '/api/v1/countries'; // set api URL
+        this.parentUrl = this.parentUrl + '/api/v1/admin/countries'; // set api URL
     }
 }

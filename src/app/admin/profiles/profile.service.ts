@@ -14,6 +14,6 @@ export class ProfileService extends CoreService {
         super(
             http
         );
-        this.parentUrl = this.parentUrl + '/api/v1/profiles'; // set api URL
+        this.parentUrl = this.parentUrl + '/api/v1/admin/profiles'; // set api URL
     }
 }

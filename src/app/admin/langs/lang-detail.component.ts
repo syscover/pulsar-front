@@ -39,7 +39,11 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
     createForm() {
         this.formDetail = this.fb.group({
             id: ['', Validators.required ],
-            name: ''
+            name: '',
+            ico: '',
+            sort: '',
+            base: '',
+            active: ''
         });
     }
 

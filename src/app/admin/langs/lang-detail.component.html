@@ -2,18 +2,44 @@
 
 <form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object, this.baseUri)" novalidate>
 
-  <div class="form-group">
-    <label for="inputId">ID</label>
-    <input  formControlName="id" [ngModel]="object.id"
-            type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
-  </div>
+    <div class="form-group">
+        <label for="inputId">ID</label>
+        <input  formControlName="id" [ngModel]="object.id"
+                type="text" class="form-control col-2" id="inputId">
+    </div>
 
-  <div class="form-group">
-    <label for="inputName">Name</label>
-    <input  formControlName="name" [ngModel]="object.name"
-            type="text" class="form-control" id="inputName" placeholder="Enter name">
-  </div>
+    <div class="form-group">
+        <label  for="inputName">Name</label>
+        <input  formControlName="name" [ngModel]="object.name"
+                type="text" class="form-control" id="inputName">
+    </div>
+
+    <div class="form-group">
+        <label for="inputIco">Ico</label>
+        <input  formControlName="ico" [ngModel]="object.ico"
+                type="text" class="form-control" id="inputIco">
+    </div>
+
+    <div class="form-group">
+        <label for="inputSort">Sort</label>
+        <input  formControlName="sort" [ngModel]="object.sort"
+                type="number" class="form-control col-2" id="inputSort">
+    </div>
+
+    <fieldset class="form-group">
+        <input  formControlName="base" [ngModel]="object.base"
+                type="checkbox" id="inputBase">
+        <label for="inputBase">Base</label>
+    </fieldset>
+
+    {{ this.action }}
+
+    <fieldset class="form-group">
+        <input  formControlName="active" [ngModel]="object.active"
+                type="checkbox" id="inputActive">
+        <label for="inputActive">Active</label>
+    </fieldset>
 
   <button type="submit" class="btn btn-primary">Save</button>
-  <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri + '/langs']">Cancel</button>
+  <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri]">Cancel</button>
 </form>
