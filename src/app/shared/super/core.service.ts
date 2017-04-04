@@ -14,13 +14,13 @@ export class CoreService {
 
     getRecords(): Observable<any[]> {
         return this.parentHttp
-            .get(this.parentUrl)
+            .get(this.getUrl('get'), this.parentUrl)
             .map((response: Response) => response.json().data as any[]);
     }
 
     getRecord(id: any, lang: string = undefined): Observable<any> {
         return this.parentHttp
-            .get(this.getUrl(id, lang))
+            .get(this.getUrl('find', id, lang))
             .map((response: Response) => response.json().data as any);
     }
 
@@ -29,7 +29,7 @@ export class CoreService {
         const options   = new RequestOptions({ headers: headers });
 
         return this.parentHttp
-            .post(this.parentUrl, object, options)
+            .post(this.getUrl('store'), object, options)
             .map(response => response.json());
     }
 
@@ -38,21 +38,56 @@ export class CoreService {
         const options   = new RequestOptions({ headers: headers });
 
         return this.parentHttp
-            .put(this.getUrl(id, lang), object, options)
+            .put(this.getUrl('update', id, lang), object, options)
             .map(response => response.json());
     }
 
     deleteRecord(id: any, lang: string = undefined) {
         return this.parentHttp
-            .delete(this.getUrl(id, lang))
+            .delete(this.getUrl('delete', id, lang))
             .map(response => response.json());
     }
 
-    private getUrl(id: any, lang?: string) {
-        if (lang === undefined) {   // check is object has language
-            return `${this.parentUrl}/${id}`;
+    protected getUrl(action: string, id: any = undefined, lang: string = undefined) {
+        if (action === 'get') {
+            if (lang === undefined) {   // check is object has language
+                return `${this.parentUrl}`;
+            } else {
+                return `${this.parentUrl}/${lang}`;
+            }
         }
-        return `${this.parentUrl}/${id}/${lang}`;
+
+        if (action === 'find') {
+            if (lang === undefined) {   // check is object has language
+                return `${this.parentUrl}/${id}`;
+            } else {
+                return `${this.parentUrl}/${id}/${lang}`;
+            }
+        }
+
+        if (action === 'store') {
+            return `${this.parentUrl}`;
+        }
+
+        if (action === 'search') {
+            return `${this.parentUrl}/search`;
+        }
+
+        if (action === 'update') {
+            if (lang === undefined) {   // check is object has language
+                return `${this.parentUrl}/${id}`;
+            } else {
+                return `${this.parentUrl}/${id}/${lang}`;
+            }
+        }
+
+        if (action === 'delete') {
+            if (lang === undefined) {   // check is object has language
+                return `${this.parentUrl}/${id}`;
+            } else {
+                return `${this.parentUrl}/${id}/${lang}`;
+            }
+        }
     }
 
 }

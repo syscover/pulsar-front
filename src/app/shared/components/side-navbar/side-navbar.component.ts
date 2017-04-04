@@ -16,6 +16,7 @@ export class SideNavbarComponent implements OnInit {
         Ps.initialize(<HTMLElement>el);
         $('.button-collapse').sideNav();
         $('.collapsible').collapsible();
+        $.initPlMenu(); // init pulsar menu
     }
 
 }

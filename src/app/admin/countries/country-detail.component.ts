@@ -1,4 +1,3 @@
-import { Lang } from './../admin.models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +6,7 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 
 import { Country } from '../admin.models';
 import { CountryService } from './country.service';
+import { Lang } from './../admin.models';
 import { LangService } from './../langs/lang.service';
 
 @Component({
@@ -19,7 +19,12 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
-    private f: Function = data => this.object = data; // function to set custom data
+    private f: Function = (data) => {
+        this.object = data; // function to set custom data
+        $(document).ready(function() {
+            $('.mdb-select').material_select();
+        });
+    }
 
     constructor(
         private fb: FormBuilder,
@@ -37,8 +42,10 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     ngOnInit() {
-        this.langService.getRecords().subscribe(data => this.langs = data); // get langs
-        super.getRecordHasIdParamenter(this.f);
+        this.langService.getRecords().subscribe((data) => {
+            this.langs = data; // get langs
+            super.getRecordHasIdParamenter(this.f);
+        });
     }
 
     createForm() {

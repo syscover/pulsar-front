@@ -25,4 +25,9 @@ export class ActionListComponent extends CoreListComponent implements OnInit {
     ngOnInit() {
         this.getRecords(this.f);
     }
+
+    private hasAllLang(object) {
+        console.log(object);
+        return true;
+    }
 }

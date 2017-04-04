@@ -3,6 +3,18 @@
 /*
  * Theme material
  */
- .btn-floating i.pl-sm {
+.btn-floating i.pl-sm {
     font-size: 1.0rem !important;
 }
+
+div[class^="col-"] > .mdb-select {
+    margin-left: -15px !important;
+    margin-top: 45px;
+
+}
+div[class^="col-"] > .mdb-select+label {
+    margin-left: -15px !important;
+    margin-top: -12px;
+}
+
+    

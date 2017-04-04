@@ -2,57 +2,60 @@
 
 <form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object, this.objectService.baseUri)" novalidate>
 
-  <div class="form-group">
-    <label for="inputId">ID</label>
-    <input formControlName="id" [ngModel]="object.id"
-            type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
-  </div>
+    <div class="form-group">
+        <label for="inputId">ID</label>
+        <input formControlName="id" [ngModel]="object.id"
+                type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
+    </div>
 
-  <div class="form-group">
-    <label for="inputName">Name</label>
-    <input formControlName="name" [ngModel]="object.name"
-            type="text" class="form-control" id="inputName" placeholder="Enter name">
-  </div>
+    <div class="form-group">
+        <label for="inputName">Name</label>
+        <input formControlName="name" [ngModel]="object.name"
+                type="text" class="form-control" id="inputName" placeholder="Enter name">
+    </div>
 
-  <div class="form-group">
-    <label for="inputPrefix">Prefix</label>
-    <input formControlName="prefix" [ngModel]="object.prefix"
-            type="text" class="form-control" id="inputPrefix" placeholder="Enter prefix">
-  </div>
+    <div class="form-group">
+        <label for="inputPrefix">Prefix</label>
+        <input formControlName="prefix" [ngModel]="object.prefix"
+                type="text" class="form-control" id="inputPrefix" placeholder="Enter prefix">
+    </div>
 
-  <div class="form-group">
-    <label for="inputSorting">Sorting</label>
-    <input formControlName="sort" [ngModel]="object.sort"
-            type="text" class="form-control" id="inputSorting" placeholder="Enter sorting">
-  </div>
+    <div class="form-group">
+        <label for="inputSorting">Sorting</label>
+        <input formControlName="sort" [ngModel]="object.sort"
+                type="text" class="form-control" id="inputSorting" placeholder="Enter sorting">
+    </div>
 
-  <div class="form-group">
-    <label for="inputLang">Select a language</label>
-    <select formControlName="lang_id" [ngModel]="object.lang_id"
-            class="form-control col-6" id="inputLang">
-            <option>Select a language</option>
-            <option *ngFor="let lang of langs" [value]="lang.id">{{ lang.name }}</option>
-    </select>
-  </div>
+    
+    <div class="form-group">
+        <div class="col-sm-6 col-xs-12">
+            <select formControlName="lang_id" [ngModel]="object.lang_id" class="mdb-select">
+                <option disabled selected>Select a language</option>
+                <option *ngFor="let lang of langs" [value]="lang.id">{{ lang.name }}</option>
+            </select>
+            <label>Select a language</label>
+        </div>
+    </div>   
+    
 
-  <div class="form-group">
-    <label for="inputTerritorialArea1">Territorial Area 1</label>
-    <input formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
-            type="text" class="form-control" id="inputTerritorialArea1" placeholder="Enter Territorial Area 1">
-  </div>
+    <div class="form-group">
+        <label for="inputTerritorialArea1">Territorial Area 1</label>
+        <input formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
+                type="text" class="form-control" id="inputTerritorialArea1" placeholder="Enter Territorial Area 1">
+    </div>
 
-  <div class="form-group">
-    <label for="inputTerritorialArea2">Territorial Area 2</label>
-    <input formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
-            type="text" class="form-control" id="inputTerritorialArea2" placeholder="Enter Territorial Area 2">
-  </div>
+    <div class="form-group">
+        <label for="inputTerritorialArea2">Territorial Area 2</label>
+        <input formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
+                type="text" class="form-control" id="inputTerritorialArea2" placeholder="Enter Territorial Area 2">
+    </div>
 
-  <div class="form-group">
-    <label for="inputTerritorialArea3">Territorial Area 3</label>
-    <input formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
-            type="text" class="form-control" id="inputTerritorialArea3" placeholder="Enter Territorial Area 3">
-  </div>
+    <div class="form-group">
+        <label for="inputTerritorialArea3">Territorial Area 3</label>
+        <input formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
+                type="text" class="form-control" id="inputTerritorialArea3" placeholder="Enter Territorial Area 3">
+    </div>
 
-  <button type="submit" class="btn btn-primary">Save</button>
-  <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri]">Cancel</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri]">Cancel</button>
 </form>

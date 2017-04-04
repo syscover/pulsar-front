@@ -24,6 +24,7 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "froala-editor": "^2.5.1",
+    "lodash": "^4.17.4",
     "perfect-scrollbar": "^0.6.16",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"

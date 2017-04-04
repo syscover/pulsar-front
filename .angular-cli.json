@@ -24,6 +24,7 @@
         "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
         "assets/vendor/mdb/css/mdb.min.css",
         "assets/vendor/pace/pace.min.css",
+        "assets/vendor/pl-menu/pl-menu.css",
         "styles.css"
       ],
       "scripts": [
@@ -32,7 +33,8 @@
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
         "assets/vendor/mdb/js/mdb.min.js",
-        "assets/vendor/pace/pace.min.js"
+        "assets/vendor/pace/pace.min.js",
+        "assets/vendor/pl-menu/pl-menu.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
