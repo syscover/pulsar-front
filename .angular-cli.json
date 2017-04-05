@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/scss/bootstrap.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+        "../node_modules/flag-icon-css/css/flag-icon.min.css",
         "assets/vendor/mdb/css/mdb.min.css",
         "assets/vendor/pace/pace.min.css",
         "assets/vendor/pl-menu/pl-menu.css",
