@@ -32,7 +32,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
      * @returns boolean indicating that we want to (true) or do not want to (false) store that route
      */
     shouldDetach(route: ActivatedRouteSnapshot): boolean {
-        let detach: boolean = true;
+        const detach: boolean = true;
         console.log("detaching", route, "return: ", detach);
         return detach;
     }

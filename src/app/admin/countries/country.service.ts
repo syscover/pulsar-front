@@ -6,14 +6,13 @@ import { CoreService } from './../../shared/super/core.service';
 @Injectable()
 export class CountryService extends CoreService {
 
-    public baseUri = '/pulsar/admin/countries';
-
     constructor(
-        private http: Http
+        private http: Http,
     ) {
         super(
             http
         );
-        this.parentUrl = this.parentUrl + '/api/v1/admin/countries'; // set api URL
+        this.setBaseUri('/pulsar/admin/countries');
+        this.setApiUrl('/api/v1/admin/countries');
     }
 }

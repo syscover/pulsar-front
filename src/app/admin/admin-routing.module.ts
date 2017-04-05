@@ -27,23 +27,27 @@ const routes: Routes = [
 
             // Actions
             { path: 'actions',                          component: ActionListComponent },
-            { path: 'actions/create',                   component: ActionDetailComponent },
-            { path: 'actions/show/:id',                 component: ActionDetailComponent },
+            { path: 'actions/create',                   component: ActionDetailComponent,       data: { action: 'create' }},
+            { path: 'actions/show/:id',                 component: ActionDetailComponent,       data: { action: 'edit' }},
 
             // Langs
             { path: 'langs',                            component: LangListComponent },
-            { path: 'langs/create',                     component: LangDetailComponent },
-            { path: 'langs/show/:id',                   component: LangDetailComponent },
+            { path: 'langs/create',                     component: LangDetailComponent,         data: { action: 'create' }},
+            { path: 'langs/show/:id',                   component: LangDetailComponent,         data: { action: 'edit' }},
 
             // Profiles
             { path: 'profiles',                         component: ProfileListComponent },
-            { path: 'profiles/create',                  component: ProfileDetailComponent },
-            { path: 'profiles/show/:id',                component: ProfileDetailComponent },
+            { path: 'profiles/create',                  component: ProfileDetailComponent,      data: { action: 'create' }},
+            { path: 'profiles/show/:id',                component: ProfileDetailComponent,      data: { action: 'edit' }},
 
             // Countries
             { path: 'countries',                        component: CountryListComponent },
-            { path: 'countries/create',                 component: CountryDetailComponent },
-            { path: 'countries/show/:id/:lang',         component: CountryDetailComponent },
+            { path: 'countries/create',                 component: CountryDetailComponent,      data: { action: 'create' }},
+            { path: 'countries/create/:id/:lang/:newLang',
+                component: CountryDetailComponent,
+                data: { action: 'create-lang' }
+            },
+            { path: 'countries/show/:id/:lang',         component: CountryDetailComponent,      data: { action: 'edit' }},
 
             // Wildcard route
             { path: '**',                               redirectTo: 'dashboard' }

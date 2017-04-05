@@ -1,6 +1,7 @@
+import { DataRoute } from './../classes/data-route';
 import { Lang } from './../../admin/admin.models';
 import { OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -9,25 +10,29 @@ import { CoreService } from './core.service';
 
 export class CoreDetailComponent {
 
-    public action: string; // action executed, edit or create
+    public dataRoute: DataRoute; // Static dataRoute Object pass from route module
+    public params: Params;
 
     constructor(
         private parentRouter: Router,
         private parentRoute: ActivatedRoute,
         private parentService: CoreService
-    ) { }
+    ) {
+        this.dataRoute = <DataRoute>this.parentRoute.snapshot.data;
+    }
 
     getRecordHasIdParamenter(f: Function) {
         this.parentRoute.params.subscribe(params => {
-            const id    = params['id'];
-            const lang  = params['lang'];
+            this.params     = params;
+            const id        = params['id'];
+            const lang      = params['lang'];
 
-            if (! id) { // check if route has id param
-                this.action = 'create';
+            if (this.dataRoute.action === 'create') {
                 f();
                 return;
             }
-            this.action = 'edit';
+
+            // edit action and create lang
             this.getRecord(f, id, lang);
         });
     }
@@ -36,20 +41,52 @@ export class CoreDetailComponent {
         this.parentService.getRecord(id, lang).subscribe(data => f(data));
     }
 
-    onSubmit(fg: FormGroup, object: any, routeRedirect: string) {
+    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined) {
 
         let obs: Observable<any>; // Observable
         let lang: string;
 
-        if (object.id) {
+        if (this.dataRoute.action === 'create') {
+            obs = this.parentService.storeRecord(fg.value);
+        }
+        if (this.dataRoute.action === 'create-lang') {
+            let values = fg.value;
+            values.lang_id = this.params['newLang'];
+
+            obs = this.parentService.storeRecord(values);
+        }
+        if (this.dataRoute.action === 'edit') {
             if (object.lang_id) { // check if has languages
                 lang = object.lang_id;
             }
             obs = this.parentService.updateRecord(fg.value, object.id, lang);
-        } else {
-            obs = this.parentService.storeRecord(fg.value);
         }
 
-        obs.subscribe(data => this.parentRouter.navigate([routeRedirect]));
+        obs.subscribe(data => {
+            if (! routeRedirect) {
+                this.parentRouter.navigate([this.parentService.baseUri]);
+            } else {
+                this.parentRouter.navigate([routeRedirect]);
+            }
+        });
+    }
+
+    deleteRecord2(object: any, routeRedirect: string = undefined): void {
+
+        let lang: string;
+
+        if (object.lang_id) {   // check if has languages
+            lang = object.lang_id;
+        }
+
+        this.parentService
+            .deleteRecord(object.id, lang)
+            .subscribe(data => {
+                if (! routeRedirect) {
+                    this.parentRouter.navigate([this.parentService.baseUri]);
+                } else {
+                    this.parentRouter.navigate([routeRedirect]);
+                }
+            });
     }
 }

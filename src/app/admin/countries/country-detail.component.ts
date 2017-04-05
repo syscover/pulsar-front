@@ -20,12 +20,20 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
     private f: Function = (data = undefined) => {
-        if (this.action === 'edit') {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = data; // function to set custom data
+
+            // set new lang
+            if (this.dataRoute.action === 'create-lang') {
+                this.formDetail.patchValue({
+                    lang_id: this.params['newLang']
+                });
+            } else {
+                this.formDetail.patchValue({
+                    lang_id: this.params['lang']
+                });
+            }
         }
-        //$(document).ready(function() {
-            //$('.mdb-select').material_select();
-        //});
     }
 
     constructor(
@@ -51,10 +59,11 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     createForm() {
+
         this.formDetail = this.fb.group({
             id: ['', Validators.required ],
             name: '',
-            lang_id: '',
+            lang_id: {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'},
             prefix: '',
             sort: '',
             territorial_area_1: '',

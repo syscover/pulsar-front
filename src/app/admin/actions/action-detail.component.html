@@ -1,19 +1,20 @@
 <h1>Action</h1>
 
-<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object, this.objectService.baseUri)" novalidate>
+<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
 
-  <div class="form-group">
-    <label for="inputId">ID</label>
-    <input  formControlName="id" [ngModel]="object.id"
-            type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
-  </div>
+    <div class="form-group">
+        <label for="inputId">ID</label>
+        <input  formControlName="id" [ngModel]="object.id"
+                type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
+    </div>
 
-  <div class="form-group">
-    <label for="inputName">Name</label>
-    <input  formControlName="name" [ngModel]="object.name"
-            type="text" class="form-control" id="inputName" placeholder="Enter name">
-  </div>
+    <div class="form-group">
+        <label for="inputName">Name</label>
+        <input  formControlName="name" [ngModel]="object.name"
+                type="text" class="form-control" id="inputName" placeholder="Enter name">
+    </div>
 
-  <button type="submit" class="btn btn-primary">Save</button>
-  <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri]">Cancel</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button [routerLink]="[this.objectService.baseUri]"
+            type="button" class="btn btn-primary">Cancel</button>
 </form>

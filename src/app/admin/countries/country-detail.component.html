@@ -1,6 +1,6 @@
 <h1>Country</h1>
 
-<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object, this.objectService.baseUri)" novalidate>
+<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
 
     <div class="form-group">
         <label for="inputId">ID</label>
@@ -26,14 +26,12 @@
                 type="text" class="form-control" id="inputSorting" placeholder="Enter sorting">
     </div>
 
-    <div class="form-group">
-        <div class="col-sm-6 col-xs-12">
-            <select formControlName="lang_id" [ngModel]="object.lang_id" class="browser-default">
-                <option disabled selected>Select a language</option>
-                <option *ngFor="let lang of langs" [value]="lang.id">{{ lang.name }}</option>
-            </select>
-            <label>Select a language</label>
-        </div>
+    <div class="form-group">   
+        <label>Select a language</label>
+        <select formControlName="lang_id" class="form-control col-sm-6 col-xs-12 browser-default">
+            <option disabled selected>Select a language</option>
+            <option *ngFor="let lang of langs" [value]="lang.id">{{ lang.name }}</option>
+        </select>
     </div>   
 
     <div class="form-group">
@@ -55,5 +53,8 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
-    <button type="button" class="btn btn-primary" [routerLink]="[this.objectService.baseUri]">Cancel</button>
+    <a [routerLink]="[this.objectService.baseUri]"
+            type="button" class="btn btn-primary">Cancel</a>
+    <a (click)="deleteRecord2(object)"
+            type="button" class="btn btn-danger" >Delete</a>
 </form>

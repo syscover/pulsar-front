@@ -17,4 +17,8 @@ div[class^="col-"] > .mdb-select+label {
     margin-top: -12px;
 }
 
+button[type="submit"] {
+    cursor: pointer;
+}
+
     

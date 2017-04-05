@@ -6,7 +6,8 @@ import * as config from '../app-globals';
 
 export class CoreService {
 
-    protected parentUrl: string = config.apiUrlPrefix;
+    private parentApiUrl: string = config.apiUrlPrefix;
+    private parentBaseUri: string;
 
     constructor(
         protected parentHttp: Http
@@ -14,13 +15,13 @@ export class CoreService {
 
     getRecords(): Observable<any[]> {
         return this.parentHttp
-            .get(this.getUrl('get'), this.parentUrl)
+            .get(this.getApiUrl('get'), this.parentApiUrl)
             .map((response: Response) => response.json().data as any[]);
     }
 
     getRecord(id: any, lang: string = undefined): Observable<any> {
         return this.parentHttp
-            .get(this.getUrl('find', id, lang))
+            .get(this.getApiUrl('find', id, lang))
             .map((response: Response) => response.json().data as any);
     }
 
@@ -29,7 +30,7 @@ export class CoreService {
         const options   = new RequestOptions({ headers: headers });
 
         return this.parentHttp
-            .post(this.getUrl('store'), object, options)
+            .post(this.getApiUrl('store'), object, options)
             .map(response => response.json());
     }
 
@@ -38,54 +39,66 @@ export class CoreService {
         const options   = new RequestOptions({ headers: headers });
 
         return this.parentHttp
-            .put(this.getUrl('update', id, lang), object, options)
+            .put(this.getApiUrl('update', id, lang), object, options)
             .map(response => response.json());
     }
 
     deleteRecord(id: any, lang: string = undefined) {
         return this.parentHttp
-            .delete(this.getUrl('delete', id, lang))
+            .delete(this.getApiUrl('delete', id, lang))
             .map(response => response.json());
     }
 
-    protected getUrl(action: string, id: any = undefined, lang: string = undefined) {
+    protected setBaseUri(baseUri: string) {
+        this.parentBaseUri = baseUri; // set base uri
+    }
+
+    get baseUri(): string {
+        return this.parentBaseUri; // get base uri
+    }
+
+    protected setApiUrl(urlAddons: string) {
+        this.parentApiUrl = this.parentApiUrl + urlAddons; // set api URL
+    }
+
+    protected getApiUrl(action: string, id: any = undefined, lang: string = undefined) {
         if (action === 'get') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentUrl}`;
+                return `${this.parentApiUrl}`;
             } else {
-                return `${this.parentUrl}/${lang}`;
+                return `${this.parentApiUrl}/${lang}`;
             }
         }
 
         if (action === 'find') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentUrl}/${id}`;
+                return `${this.parentApiUrl}/${id}`;
             } else {
-                return `${this.parentUrl}/${id}/${lang}`;
+                return `${this.parentApiUrl}/${id}/${lang}`;
             }
         }
 
         if (action === 'store') {
-            return `${this.parentUrl}`;
+            return `${this.parentApiUrl}`;
         }
 
         if (action === 'search') {
-            return `${this.parentUrl}/search`;
+            return `${this.parentApiUrl}/search`;
         }
 
         if (action === 'update') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentUrl}/${id}`;
+                return `${this.parentApiUrl}/${id}`;
             } else {
-                return `${this.parentUrl}/${id}/${lang}`;
+                return `${this.parentApiUrl}/${id}/${lang}`;
             }
         }
 
         if (action === 'delete') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentUrl}/${id}`;
+                return `${this.parentApiUrl}/${id}`;
             } else {
-                return `${this.parentUrl}/${id}/${lang}`;
+                return `${this.parentApiUrl}/${id}/${lang}`;
             }
         }
     }

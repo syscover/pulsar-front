@@ -15,7 +15,12 @@ export class ActionDetailComponent extends CoreDetailComponent implements OnInit
 
     private formDetail: FormGroup;
     private object: Action = new Action(); // set empty object
-    private f: Function = data => this.object = data; // function to set custom data
+    private f: Function = (data = undefined) => {
+        if (this.dataRoute.action === 'edit') {
+            this.object = data; // function to set custom data
+        }
+        // with other action
+    }
 
     constructor(
         private fb: FormBuilder,

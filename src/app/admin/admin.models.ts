@@ -2,7 +2,7 @@
 export class Lang {
     id: string;
     name: string;
-    ico: string;
+    icon: string;
     sort: number;
     base: boolean;
     active: boolean;
