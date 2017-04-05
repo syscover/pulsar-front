@@ -26,10 +26,10 @@
                     <div *ngFor="let lang of activatedLangs">
                         <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
                             [routerLink]="[this.objectService.baseUri + '/show', object.id, lang.id]"
-                            class="dropdown-item">Edit</a>
+                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
                             
                         <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
-                            class="dropdown-item">Create</a>
+                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
                     </div>
                 </div>
             </div>

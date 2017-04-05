@@ -19,11 +19,13 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
-    private f: Function = (data) => {
-        this.object = data; // function to set custom data
-        $(document).ready(function() {
-            $('.mdb-select').material_select();
-        });
+    private f: Function = (data = undefined) => {
+        if (this.action === 'edit') {
+            this.object = data; // function to set custom data
+        }
+        //$(document).ready(function() {
+            //$('.mdb-select').material_select();
+        //});
     }
 
     constructor(

@@ -9,7 +9,7 @@ import { CoreService } from './core.service';
 
 export class CoreDetailComponent {
 
-    public action: string;
+    public action: string; // action executed, edit or create
 
     constructor(
         private parentRouter: Router,
@@ -24,6 +24,7 @@ export class CoreDetailComponent {
 
             if (! id) { // check if route has id param
                 this.action = 'create';
+                f();
                 return;
             }
             this.action = 'edit';
