@@ -21,12 +21,16 @@
 #sideNavMenu li > a.active{
     background-color: rgba(51, 181, 229, 0.75) !important;
 }
+
 #sideNavMenu > li > .collapsible-body li > a{
     height: 36px;
     line-height: 36px;
+    font-size: 13px;
+    letter-spacing: 0.045rem;
 }
 #sideNavMenu > li > .collapsible-body li > a .fa{
     top:10px;
+    font-size: 0.9rem;
 }
 
 /*Barra*/
