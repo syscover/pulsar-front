@@ -19,23 +19,26 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ps",
       "styles": [
-        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/primeng/resources/primeng.min.css",
+        "../node_modules/fullcalendar/dist/fullcalendar.min.css",
+        "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/nanoscroller/bin/css/nanoscroller.css",
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
         "../node_modules/flag-icon-css/css/flag-icon.min.css",
-        "assets/vendor/mdb/css/mdb.min.css",
         "assets/vendor/pace/pace.min.css",
-        "assets/vendor/pl-menu/pl-menu.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/tether/dist/js/tether.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/nanoscroller/bin/javascripts/jquery.nanoscroller.js",
         "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
-        "assets/vendor/mdb/js/mdb.min.js",
-        "assets/vendor/pace/pace.min.js",
-        "assets/vendor/pl-menu/pl-menu.js"
+        "../node_modules/moment/moment.js",
+        "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/fullcalendar/dist/fullcalendar.js",
+        "../node_modules/quill/dist/quill.js",
+        "assets/layout/js/ripple.js",
+        "assets/vendor/pace/pace.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
