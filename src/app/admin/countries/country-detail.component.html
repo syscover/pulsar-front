@@ -5,25 +5,25 @@
     <div class="form-group">
         <label for="inputId">ID</label>
         <input formControlName="id" [ngModel]="object.id"
-                type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
+                type="text" class="form-control col-2" id="inputId">
     </div>
 
-    <div class="form-group">
-        <label for="inputName">Name</label>
+    <div class="md-form">
+        <label for="inputName" [class.active]="object.name">Name</label>
         <input formControlName="name" [ngModel]="object.name"
-                type="text" class="form-control" id="inputName" placeholder="Enter name">
+                type="text" class="form-control" id="inputName">
     </div>
 
     <div class="form-group">
         <label for="inputPrefix">Prefix</label>
         <input formControlName="prefix" [ngModel]="object.prefix"
-                type="text" class="form-control" id="inputPrefix" placeholder="Enter prefix">
+                type="text" class="form-control" id="inputPrefix">
     </div>
 
     <div class="form-group">
         <label for="inputSorting">Sorting</label>
         <input formControlName="sort" [ngModel]="object.sort"
-                type="text" class="form-control" id="inputSorting" placeholder="Enter sorting">
+                type="text" class="form-control" id="inputSorting">
     </div>
 
     <div class="form-group">   
@@ -37,24 +37,24 @@
     <div class="form-group">
         <label for="inputTerritorialArea1">Territorial Area 1</label>
         <input formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
-                type="text" class="form-control" id="inputTerritorialArea1" placeholder="Enter Territorial Area 1">
+                type="text" class="form-control" id="inputTerritorialArea1">
     </div>
 
     <div class="form-group">
         <label for="inputTerritorialArea2">Territorial Area 2</label>
         <input formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
-                type="text" class="form-control" id="inputTerritorialArea2" placeholder="Enter Territorial Area 2">
+                type="text" class="form-control" id="inputTerritorialArea2">
     </div>
 
     <div class="form-group">
         <label for="inputTerritorialArea3">Territorial Area 3</label>
         <input formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
-                type="text" class="form-control" id="inputTerritorialArea3" placeholder="Enter Territorial Area 3">
+                type="text" class="form-control" id="inputTerritorialArea3">
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a [routerLink]="[this.objectService.baseUri]"
             type="button" class="btn btn-primary">Cancel</a>
-    <a (click)="deleteRecord2(object)"
+    <a *ngIf="this.dataRoute.action === 'edit'" (click)="deleteRecord2(object)"
             type="button" class="btn btn-danger" >Delete</a>
 </form>
