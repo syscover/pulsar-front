@@ -1,45 +1,60 @@
-<h1>Lang</h1>
+<div class="container form-group">
+    <h1>Lang</h1>
 
-<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
+    <form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <span class="md-inputfield">
+                    <input  formControlName="id" [ngModel]="object.id"
+                            type="text" pInputText>
+                    <label>ID</label>
+                </span>
+            </div>
 
-    <div class="form-group">
-        <label for="inputId">ID</label>
-        <input  formControlName="id" [ngModel]="object.id"
-                type="text" class="form-control col-2" id="inputId">
-    </div>
+            <div class="col-12">
+                <span class="md-inputfield">
+                    <input  formControlName="name" [ngModel]="object.name"
+                            type="text" pInputText>
+                    <label>Name</label>
+                </span>
+            </div>
+        </div>
 
-    <div class="form-group">
-        <label  for="inputName">Name</label>
-        <input  formControlName="name" [ngModel]="object.name"
-                type="text" class="form-control" id="inputName">
-    </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <span class="md-inputfield">
+                    <input  formControlName="icon" [ngModel]="object.icon"
+                            type="text" pInputText>
+                    <label>Icon</label>
+                </span>
+            </div>
 
-    <div class="form-group">
-        <label for="inputIco">Ico</label>
-        <input  formControlName="icon" [ngModel]="object.icon"
-                type="text" class="form-control" id="inputIco">
-    </div>
+            <div class="col-sm-12 col-md-4 offset-md-1">
+                <span class="md-inputfield">
+                    <input  formControlName="sort" [ngModel]="object.sort"
+                            type="number" pInputText>
+                    <label>Sort</label>
+                </span>
+            </div>
+        </div>
 
-    <div class="form-group">
-        <label for="inputSort">Sort</label>
-        <input  formControlName="sort" [ngModel]="object.sort"
-                type="number" class="form-control col-2" id="inputSort">
-    </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <p-checkbox formControlName="base" label="Base" [ngModel]="object.base" binary="true"></p-checkbox>
+            </div>
+            <div class="col-sm-12 col-md-4 offset-md-1">
+                <p-checkbox formControlName="active" label="Active" [ngModel]="object.active" binary="true"></p-checkbox>
+            </div>
+        </div>
+        
 
-    <fieldset class="form-group">
-        <input  formControlName="base" [ngModel]="object.base"
-                type="checkbox" id="inputBase">
-        <label for="inputBase">Base</label>
-    </fieldset>
-
-    {{ this.action }}
-
-    <fieldset class="form-group">
-        <input  formControlName="active" [ngModel]="object.active"
-                type="checkbox" id="inputActive">
-        <label for="inputActive">Active</label>
-    </fieldset>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a [routerLink]="[this.objectService.baseUri]" class="btn btn-primary">Cancel</a>
-</form>
+        <div class="row justify-content-sm-center justify-content-md-start">
+            <div class="col-sm-10 col-md-3">
+                <button pButton type="submit" icon="fa-check" label="Save"></button>
+            </div>
+            <div class="col-sm-10 col-md-3">
+                <button pButton type="button" [routerLink]="[this.objectService.baseUri]" icon="ui-icon-clear" label="Cancel"></button>
+            </div>
+        </div>
+    </form>
+</div>

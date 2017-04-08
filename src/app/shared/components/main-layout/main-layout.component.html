@@ -1,26 +1,32 @@
-<header>
-    <!--<ps-top-navbar></ps-top-navbar>-->
-    <ps-side-navbar></ps-side-navbar>
-</header>
+<div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}">
 
-<main>
-    <div class="container-fluid">
-        <router-outlet></router-outlet>
+    <div #layoutContainer class="layout-container" 
+            [ngClass]="{'menu-layout-static': ! isOverlay(),
+            'menu-layout-overlay': isOverlay(),
+            'layout-menu-overlay-active': overlayMenuActive,
+            'menu-layout-horizontal': isHorizontal(),
+            'layout-menu-static-inactive': staticMenuDesktopInactive,
+            'layout-menu-static-active': staticMenuMobileActive}">
+
+        <ps-topbar></ps-topbar>
+
+        <div class="layout-menu" [ngClass]="{'layout-menu-dark':darkMenu}" (click)="onMenuClick($event)">
+            <div #layoutMenuScroller class="nano">
+                <div class="nano-content menu-scroll-content">
+                    <ps-profile *ngIf="profileMode=='inline' && ! isHorizontal()"></ps-profile>
+                    <ps-menu [reset]="resetMenu"></ps-menu>
+                </div>
+            </div>
+        </div>
+        
+        <div class="layout-main">
+            
+            <router-outlet></router-outlet>
+            
+            <ps-footer></ps-footer>
+        </div>
+        
+        <div class="layout-mask"></div>
     </div>
-</main>
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red">
-            <i class="fa fa-pencil"></i>
-        </a>
-
-        <ul>
-            <li><a class="btn-floating red"><i class="fa fa-star"></i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="fa fa-user"></i></a></li>
-            <li><a class="btn-floating green"><i class="fa fa-envelope"></i></a></li>
-            <li><a class="btn-floating blue"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-    </div>
-
-<footer>
-</footer>
+</div>

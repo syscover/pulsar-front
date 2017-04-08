@@ -4,30 +4,41 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
-import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { DataContainerComponent } from './components/data-container/data-container.component';
 import { CheckLangsObjectPipe } from './pipes/check-langs-object.pipe';
 import { ActionLangObjectPipe } from './pipes/action-lang-object.pipe';
+import { PrimeNgModule } from './modules/prime-ng.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { MenuComponent, SubMenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PrimeNgModule
     ],
     declarations: [
         MainLayoutComponent,
-        SideNavbarComponent,
-        TopNavbarComponent,
+        DataContainerComponent,
+        TopbarComponent,
         CheckLangsObjectPipe,
-        ActionLangObjectPipe
+        ActionLangObjectPipe,
+        MenuComponent,
+        SubMenuComponent,
+        ProfileComponent,
+        FooterComponent
     ],
     providers: [
     ],
     exports: [
         CommonModule,
         ReactiveFormsModule,
+        PrimeNgModule,
         MainLayoutComponent,
+        DataContainerComponent,
         CheckLangsObjectPipe,
         ActionLangObjectPipe
     ]

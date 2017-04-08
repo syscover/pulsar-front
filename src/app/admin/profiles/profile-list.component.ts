@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -17,9 +17,13 @@ export class ProfileListComponent extends CoreListComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private objectService: ProfileService
     ) {
-        super(objectService);
+        super(
+            objectService,
+            route
+        );
     }
 
     ngOnInit() {

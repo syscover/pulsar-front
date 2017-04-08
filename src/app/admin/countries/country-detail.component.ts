@@ -8,6 +8,9 @@ import { Country } from '../admin.models';
 import { CountryService } from './country.service';
 import { Lang } from './../admin.models';
 import { LangService } from './../langs/lang.service';
+import { SelectItem } from 'primeng/primeng';
+
+import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-country-detail',
@@ -15,7 +18,7 @@ import { LangService } from './../langs/lang.service';
 })
 export class CountryDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private langs: Lang[] = [];
+    private langs: SelectItem[] = [];
 
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
@@ -53,7 +56,12 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     ngOnInit() {
         this.langService.getRecords().subscribe((data) => {
-            this.langs = data; // get langs
+
+            this.langs = _.map(data, obj => {
+                return { label: obj.name, value: obj.id };
+            }); // get langs
+            this.langs.unshift({ label: 'Select a language', value: 0 });
+
             super.getRecordHasIdParamenter(this.f);
         });
     }

@@ -71,7 +71,7 @@ export class CoreDetailComponent {
         });
     }
 
-    deleteRecord2(object: any, routeRedirect: string = undefined): void {
+    deleteRecord(object: any, routeRedirect: string = undefined): void {
 
         let lang: string;
 

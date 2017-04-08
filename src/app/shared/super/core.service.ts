@@ -8,10 +8,48 @@ export class CoreService {
 
     private parentApiUrl: string = config.apiUrlPrefix;
     private parentBaseUri: string;
+    protected headers: Headers;
+    protected options: RequestOptions;
 
     constructor(
         protected parentHttp: Http
-    ) { }
+    ) {
+        this.headers = new Headers({ 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({ headers: this.headers });
+    }
+
+    searchRecords() {
+        
+        // build query
+        const object = {
+            'type': 'query',
+            'parameters': [
+                {
+                    'command': 'where',
+                    'field': 'active',
+                    'operator': '=',
+                    'value': true
+                },
+                {
+                    'command': 'limit',
+                    'value': 10
+                },
+                {
+                    'command': 'offset',
+                    'value': 0
+                },
+                {
+                    'command': 'orderBy',
+                    'operator': 'asc', // asc | desc
+                    'value': 'column'
+                }
+            ]
+        };
+
+        return this.parentHttp
+            .post(this.getApiUrl('search'), object, this.options)
+            .map((response: Response) => response.json().data);
+    }
 
     getRecords(): Observable<any[]> {
         return this.parentHttp
@@ -26,20 +64,14 @@ export class CoreService {
     }
 
     storeRecord(object: any) {
-        const headers   = new Headers({ 'Content-Type': 'application/json' });
-        const options   = new RequestOptions({ headers: headers });
-
         return this.parentHttp
-            .post(this.getApiUrl('store'), object, options)
+            .post(this.getApiUrl('store'), object, this.options)
             .map(response => response.json());
     }
 
     updateRecord(object: any, id: any, lang: string = undefined) {
-        const headers   = new Headers({ 'Content-Type': 'application/json' });
-        const options   = new RequestOptions({ headers: headers });
-
         return this.parentHttp
-            .put(this.getApiUrl('update', id, lang), object, options)
+            .put(this.getApiUrl('update', id, lang), object, this.options)
             .map(response => response.json());
     }
 

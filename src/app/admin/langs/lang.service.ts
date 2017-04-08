@@ -19,9 +19,6 @@ export class LangService extends CoreService {
     }
 
     getActivatedLangs(): Observable<any[]> {
-        const headers   = new Headers({ 'Content-Type': 'application/json' });
-        const options   = new RequestOptions({ headers: headers });
-
         // build query
         const object = {
             'type': 'query',
@@ -36,7 +33,7 @@ export class LangService extends CoreService {
         };
 
         return this.parentHttp
-            .post(this.getApiUrl('search'), object, options)
+            .post(this.getApiUrl('search'), object, this.options)
             .map((response: Response) => response.json().data);
     }
 }

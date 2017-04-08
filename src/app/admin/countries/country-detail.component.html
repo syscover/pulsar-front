@@ -2,59 +2,79 @@
 
 <form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
 
-    <div class="form-group">
-        <label for="inputId">ID</label>
-        <input formControlName="id" [ngModel]="object.id"
-                type="text" class="form-control col-2" id="inputId">
+    <div class="ui-g form-group">
+
+        <div class="ui-g-12 ui-md-4">
+            <span class="md-inputfield">
+                <input  formControlName="id" [ngModel]="object.id"
+                        type="text" pInputText>
+                <label>ID</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input  formControlName="name" [ngModel]="object.name"
+                        type="text" pInputText>
+                <label>Name</label>
+            </span>
+        </div>
+
+        <div class="ui-g-3 ui-sm-12">
+            <span class="md-inputfield">
+                <input  formControlName="prefix" [ngModel]="object.prefix"
+                        type="text" pInputText>
+                <label>Prefix</label>
+            </span>
+        </div>
+
+        <div class="ui-g-3 ui-sm-6">
+            <span class="md-inputfield">
+                <input  formControlName="sort" [ngModel]="object.sort"
+                        type="number" pInputText>
+                <label>Sort</label>
+            </span>
+        </div>
+
+        <div class="ui-g-3 ui-sm-3 ui-sm-offset-2">
+            <p-dropdown formControlName="lang_id" [options]="langs" [(ngModel)]="object.lang_id" [autoWidth]="false"></p-dropdown>
+        </div>
+
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input  formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
+                        type="text" pInputText>
+                <label>Territorial Area 1</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input  formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
+                        type="text" pInputText>
+                <label>Territorial Area 2</label>
+            </span>
+        </div>
+
+        <div class="ui-g-12">
+            <span class="md-inputfield">
+                <input  formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
+                        type="text" pInputText>
+                <label>Territorial Area 3</label>
+            </span>
+        </div>
+
+        <div class="ui-g-3 ui-sm-12">
+            <button pButton type="submit" label="Save"></button>
+        </div>
+        <div class="ui-g-3 ui-sm-12">
+            <button pButton [routerLink]="[this.objectService.baseUri]" 
+                    type="button" label="Cancel"></button>
+        </div>
+        <div class="ui-g-3 ui-sm-12">
+            <button pButton *ngIf="this.dataRoute.action === 'edit'" (click)="deleteRecord(object)" 
+                    type="button" label="Delete" class="red-btn"></button>
+        </div>
+
     </div>
-
-    <div class="md-form">
-        <label for="inputName" [class.active]="object.name">Name</label>
-        <input formControlName="name" [ngModel]="object.name"
-                type="text" class="form-control" id="inputName">
-    </div>
-
-    <div class="form-group">
-        <label for="inputPrefix">Prefix</label>
-        <input formControlName="prefix" [ngModel]="object.prefix"
-                type="text" class="form-control" id="inputPrefix">
-    </div>
-
-    <div class="form-group">
-        <label for="inputSorting">Sorting</label>
-        <input formControlName="sort" [ngModel]="object.sort"
-                type="text" class="form-control" id="inputSorting">
-    </div>
-
-    <div class="form-group">   
-        <label>Select a language</label>
-        <select formControlName="lang_id" class="form-control col-sm-6 col-xs-12 browser-default">
-            <option disabled selected>Select a language</option>
-            <option *ngFor="let lang of langs" [value]="lang.id">{{ lang.name }}</option>
-        </select>
-    </div>   
-
-    <div class="form-group">
-        <label for="inputTerritorialArea1">Territorial Area 1</label>
-        <input formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
-                type="text" class="form-control" id="inputTerritorialArea1">
-    </div>
-
-    <div class="form-group">
-        <label for="inputTerritorialArea2">Territorial Area 2</label>
-        <input formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
-                type="text" class="form-control" id="inputTerritorialArea2">
-    </div>
-
-    <div class="form-group">
-        <label for="inputTerritorialArea3">Territorial Area 3</label>
-        <input formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
-                type="text" class="form-control" id="inputTerritorialArea3">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a [routerLink]="[this.objectService.baseUri]"
-            type="button" class="btn btn-primary">Cancel</a>
-    <a *ngIf="this.dataRoute.action === 'edit'" (click)="deleteRecord2(object)"
-            type="button" class="btn btn-danger" >Delete</a>
-</form>
+ </form>

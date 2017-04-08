@@ -1,24 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
 
 /*
- * Theme material
+ * Helpers
  */
-.btn-floating i.pl-sm {
-    font-size: 1.0rem !important;
+.center{
+    text-align: center;
+}
+.bt-nopad{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
 }
 
-div[class^="col-"] > .mdb-select {
-    margin-left: -15px !important;
-    margin-top: 45px;
-
-}
-div[class^="col-"] > .mdb-select+label {
-    margin-left: -15px !important;
-    margin-top: -12px;
-}
-
-button[type="submit"] {
-    cursor: pointer;
+/*
+ * custom primeng
+ */
+.datatable-search label span {
+    position: absolute;
+    color: #ffffff !important;
+    top: 0;
+    left: 30px
 }
 
-    
+.datatable-search label i {
+    top: -4px;
+    position: absolute;
+}
+
+.datatable-search input {
+    color: #ffffff;
+}
+
+.new-button{
+    margin: 1em 0;
+}
+
+.content-input-search {
+    padding:18px 10px 0 0;
+    border-bottom: 0 none;
+    margin-top: 10px;
+}
+
+.content-input-search div[class^="col-"] {
+    padding-top: 5px;
+    margin-bottom: 8px;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+    overflow: visible !important;
+}
+
+/*
+ * custom bootstrap
+ */
+ /* grid for forms */
+.form-group div[class^="col-"] {
+    padding: .5em;
+    margin-bottom: 17px;
+}
+
+.ui-fluid .ui-button-text-icon-left .ui-button-text, .ui-fluid .ui-button-text-icon-right .ui-button-text {
+    padding: 0 1em; /*vertical align text button*/
+}
+
+ /* miscellaneous bootstrap */
+ body {
+    background-color: #f7f7f7;
+}
+
+a:focus, a:hover {
+  color: #014c8c;
+  text-decoration: none;
+}
+
+.card {
+    border: none !important;
+    border-radius: 2px;   
+}
