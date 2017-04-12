@@ -2,6 +2,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
+import { JsonResponse } from './../classes/json-respose';
 import * as config from '../app-globals';
 
 export class CoreService {
@@ -18,49 +19,22 @@ export class CoreService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    searchRecords() {
-        
-        // build query
-        const object = {
-            'type': 'query',
-            'parameters': [
-                {
-                    'command': 'where',
-                    'field': 'active',
-                    'operator': '=',
-                    'value': true
-                },
-                {
-                    'command': 'limit',
-                    'value': 10
-                },
-                {
-                    'command': 'offset',
-                    'value': 0
-                },
-                {
-                    'command': 'orderBy',
-                    'operator': 'asc', // asc | desc
-                    'value': 'column'
-                }
-            ]
-        };
-
+    searchRecords(object: any): Observable<JsonResponse> {
         return this.parentHttp
             .post(this.getApiUrl('search'), object, this.options)
-            .map((response: Response) => response.json().data);
+            .map((response: Response) => response.json());
     }
 
-    getRecords(): Observable<any[]> {
+    getRecords(): Observable<JsonResponse> {
         return this.parentHttp
             .get(this.getApiUrl('get'), this.parentApiUrl)
-            .map((response: Response) => response.json().data as any[]);
+            .map((response: Response) => response.json());
     }
 
-    getRecord(id: any, lang: string = undefined): Observable<any> {
+    getRecord(id: any, lang: string = undefined): Observable<JsonResponse> {
         return this.parentHttp
             .get(this.getApiUrl('find', id, lang))
-            .map((response: Response) => response.json().data as any);
+            .map((response: Response) => response.json());
     }
 
     storeRecord(object: any) {

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -30,15 +31,18 @@ export class CountryListComponent extends CoreListComponent implements OnInit {
         );
     }
 
-    ngOnInit() {
-        this.langService.getActivatedLangs().subscribe(data => {
-            this.activatedLangs = data;
-            this.getRecords(this.f);
-        });
-    }
+    ngOnInit() { }
 
-    private hasAllLang(object) {
-        console.log(JSON.parse(object.data_lang));
-        return true;
+    // overwritte method
+    loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
+        // only get activated langs when activatedLangs is not instantiated
+        if (this.activatedLangs) {
+            super.loadDadaTableLazy(event, f);
+        } else {
+            this.langService.getActivatedLangs().subscribe(response => {
+                this.activatedLangs = <Lang[]>response.data;
+                super.loadDadaTableLazy(event, f);
+            });
+        }
     }
 }

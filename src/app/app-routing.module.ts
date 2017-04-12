@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 
-//import { LoginComponent } from './login.component';
-
 //import config = require('./shared/app-globals');
 
 export const routes: Routes = [

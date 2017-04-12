@@ -15,9 +15,9 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
 
     private formDetail: FormGroup;
     private object: Profile = new Profile(); // set empty object
-    private f: Function = (data = undefined) => {
+    private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
-            this.object = data; // function to set custom data
+            this.object = response.data; // function to set custom data
         }
         // with other action
     }

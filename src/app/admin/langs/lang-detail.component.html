@@ -1,15 +1,16 @@
-<div class="container form-group">
+<div class="container-fluid form-group">
     <h1>Lang</h1>
 
-    <form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
         <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <span class="md-inputfield">
-                    <input  formControlName="id" [ngModel]="object.id"
-                            type="text" pInputText>
-                    <label>ID</label>
-                </span>
-            </div>
+            
+            <ps-input   [form]="fg" 
+                        label="ID."
+                        [error]="formErrors.id" 
+                        name="id"  className="col-sm-6 col-md-3"></ps-input>
+
+                        
+           
 
             <div class="col-12">
                 <span class="md-inputfield">

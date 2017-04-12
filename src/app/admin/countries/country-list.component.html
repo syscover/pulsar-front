@@ -1,33 +1,22 @@
-<h1>Countries {{ objects.length }}</h1>
+<ps-datatable-header title="Countries {{ objects.length }}" [routerLink]="[this.objectService.baseUri + '/create']"></ps-datatable-header>
+<ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
-<div class="col-sm-10 col-md-3 justify-content-md-start">
-    <button [routerLink]="[this.objectService.baseUri + '/create']" pButton
-            type="button" icon="fa ui-icon-flip" label="New"></button>
-</div>
-
-<div class="ui-widget-header content-input-search">
-    <div class="col-12">
-        <span class="md-inputfield datatable-search">
-            <input type="text" pInputText>
-            <label><i class="fa fa-search" style="margin:4px 4px 0 0"></i> <span>Search</span></label>
-        </span>
-    </div>
-</div>
-
-<p-dataTable    [value]="objects"
+<p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
-                (onLazyLoad)="loadDadaTableLazy($event)">
+                (onLazyLoad)="loadDadaTableLazy($event, f)"
+                [immutable]="true">
 
-    <p-column field="id" header="#"></p-column>
-    <p-column field="lang_id" header="Lang"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>  
+    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="lang_name" header="Lang" [sortable]="true"></p-column>
+    <p-column field="country_name" header="Name" [sortable]="true"></p-column>  
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle {{ object | checkLangsObject:activatedLangs }}-btn flat" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle {{ object | checkLangsObject:activatedLangs }}-btn" 
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
                     <div *ngFor="let lang of activatedLangs">
@@ -49,7 +38,8 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" 
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
@@ -59,51 +49,3 @@
         </ng-template>
     </p-column>
 </p-dataTable>
-
-<!--<table class="table table-striped">
-    <thead>
-        <tr>
-        <th>#</th>
-        <th>Lang</th>
-        <th>Name</th>
-        <th class="text-center">@</th>
-        <th class="text-center">@</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let object of objects">
-        <th scope="row">{{ object.id }}</th>
-        <td>{{ object.lang_id }}</td>
-        <td>{{ object.name }}</td>
-        <td class="text-center">
-            <div class="dropdown">
-                <a class="btn-floating btn-sm" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa fa-flag pl-sm {{ object | checkLangsObject:activatedLangs }}"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
-                    <div *ngFor="let lang of activatedLangs">
-                        <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
-                            [routerLink]="[this.objectService.baseUri + '/show', object.id, lang.id]"
-                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
-                            
-                        <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
-                            [routerLink]="[this.objectService.baseUri + '/create', object.id, object.lang_id, lang.id]"
-                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
-                    </div>
-                </div>
-            </div>
-        </td>
-        <td class="text-center">
-            <div class="dropdown">
-                <a class="btn-floating btn-sm" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-ellipsis-v pl-sm"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
-                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
-                    <a class="dropdown-item" (click)="deleteRecord(this.f, object)">Delete</a>
-                </div>
-            </div>
-        </td>
-        </tr>
-    </tbody>
-</table>-->

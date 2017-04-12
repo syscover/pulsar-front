@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ShareModule } from './../shared/share.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -20,7 +20,7 @@ import { ActionDetailComponent } from './actions/action-detail.component';
 
 @NgModule({
     imports: [
-        ShareModule,
+        SharedModule,
         AdminRoutingModule
     ],
     declarations: [

@@ -1,3 +1,4 @@
+import { JsonResponse } from './../../shared/classes/json-respose';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,9 +23,9 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
-    private f: Function = (data = undefined) => {
+    private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = data; // function to set custom data
+            this.object = response.data; // function to set custom data
 
             // set new lang
             if (this.dataRoute.action === 'create-lang') {
@@ -55,13 +56,14 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     ngOnInit() {
-        this.langService.getRecords().subscribe((data) => {
+        this.langService.getRecords()
+            .subscribe((response) => {
 
-            this.langs = _.map(data, obj => {
+            this.langs = _.map(<Lang[]>response.data, obj => {
                 return { label: obj.name, value: obj.id };
             }); // get langs
-            this.langs.unshift({ label: 'Select a language', value: 0 });
 
+            this.langs.unshift({ label: 'Select a language', value: 0 });
             super.getRecordHasIdParamenter(this.f);
         });
     }

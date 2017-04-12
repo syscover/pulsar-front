@@ -13,7 +13,7 @@ enum MenuOrientation {
 })
 export class MainLayoutComponent implements AfterViewInit {
 
-    layoutCompact: boolean = false;
+    layoutCompact: boolean = true;
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
     darkMenu: boolean = false;
     profileMode: string = 'inline';

@@ -13,7 +13,7 @@ import { Action } from '../admin.models';
 export class ActionListComponent extends CoreListComponent implements OnInit {
 
     objects: Action[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // fucntion to set custom data
+    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         private router: Router,

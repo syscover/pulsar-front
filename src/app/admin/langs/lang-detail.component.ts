@@ -6,6 +6,8 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 
 import { LangService } from './lang.service';
 import { Lang } from '../admin.models';
+import { onValueChanged } from './../../shared/super/core-validation';
+import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 @Component({
     selector: 'ps-lang-detail',
@@ -14,11 +16,12 @@ import { Lang } from '../admin.models';
 export class LangDetailComponent extends CoreDetailComponent implements OnInit {
 
     private baseUri = '/pulsar/admin/langs';
-    private formDetail: FormGroup;
+    private fg: FormGroup;
     private object: Lang = new Lang(); // set empty object
-    private f: Function = (data = undefined) => {
+    private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
-            this.object = data; // function to set custom data
+            this.object = response.data; // function to set custom data
+            this.fg.setValue(this.object); // set values of form
         }
         // with other action
     }
@@ -28,28 +31,41 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private objectService: LangService,
+        private validationMessageService: ValidationMessageService
     ) {
         super(
             router,
             route,
             objectService
         );
-        this.createForm(); // create form
     }
 
     ngOnInit() {
         super.getRecordHasIdParamenter(this.f);
+        this.createForm(); // create form
     }
 
     createForm() {
-        this.formDetail = this.fb.group({
-            id: ['', Validators.required ],
-            name: '',
-            icon: '',
+        this.fg = this.fb.group({
+            id: ['', [ Validators.required, Validators.email ]],
+            name: ['', Validators.required],
+            icon: ['', Validators.required],
             sort: '',
             base: '',
             active: ''
         });
+
+        this.fg
+            .valueChanges
+            .subscribe(data => this.formErrors = onValueChanged(this.fg, data, this.validationMessageService));
+
+        /*this.formDetail
+            .valueChanges
+            .subscribe(data => this.onValueChanged(data));*/
+
+        this.formErrors = onValueChanged(this.fg);
+
+        //this.onValueChanged(); // (re)set validation messages now
     }
 
 }

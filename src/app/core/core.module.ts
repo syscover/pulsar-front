@@ -1,11 +1,15 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
+import { ValidationMessageService } from './../core/services/validation-message.service';
+
 import './rxjs-extensions';
 
 @NgModule({
     imports: [ ],
     declarations:   [],
-    providers:      [],
+    providers:      [
+        ValidationMessageService
+    ],
     exports:        [],
     bootstrap:      []
 })

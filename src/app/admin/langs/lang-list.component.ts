@@ -14,9 +14,9 @@ import { MenuItem } from 'primeng/primeng';
 })
 export class LangListComponent extends CoreListComponent implements OnInit {
 
-    objects: Lang[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // fucntion to set custom data
     items: MenuItem;
+    objects: Lang[] = []; // initializes the component to has any data for view
+    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         private router: Router,

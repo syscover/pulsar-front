@@ -1,0 +1,11 @@
+<div class="ui-widget-header content-input-search">
+    <div class="col-sm-12 col-md-4">
+        <span class="md-inputfield datatable-search">
+            <input  [(ngModel)]="term" pInputText (keyup)="searchData($event)"
+                    type="text">
+            <label>
+                <i class="fa fa-search"></i> <span>{{ label }}</span>
+            </label>
+        </span>
+    </div>
+</div>

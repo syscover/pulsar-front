@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
+import { JsonResponse } from './../../shared/classes/json-respose';
 import { CoreService } from './../../shared/super/core.service';
 
 @Injectable()
@@ -18,14 +19,14 @@ export class LangService extends CoreService {
         this.setApiUrl('/api/v1/admin/langs');
     }
 
-    getActivatedLangs(): Observable<any[]> {
+    getActivatedLangs(): Observable<JsonResponse> {
         // build query
         const object = {
             'type': 'query',
             'parameters': [
                 {
                     'command': 'where',
-                    'field': 'active',
+                    'column': 'active',
                     'operator': '=',
                     'value': true
                 }
@@ -34,6 +35,6 @@ export class LangService extends CoreService {
 
         return this.parentHttp
             .post(this.getApiUrl('search'), object, this.options)
-            .map((response: Response) => response.json().data);
+            .map((response: Response) => response.json());
     }
 }

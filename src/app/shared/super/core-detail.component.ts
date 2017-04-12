@@ -1,5 +1,3 @@
-import { DataRoute } from './../classes/data-route';
-import { Lang } from './../../admin/admin.models';
 import { OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -7,11 +5,14 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 import { CoreService } from './core.service';
+import { Lang } from './../../admin/admin.models';
+import { DataRoute } from './../classes/data-route';
 
 export class CoreDetailComponent {
 
     public dataRoute: DataRoute; // Static dataRoute Object pass from route module
     public params: Params;
+    public formErrors: Object;
 
     constructor(
         private parentRouter: Router,

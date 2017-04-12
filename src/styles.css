@@ -6,6 +6,9 @@
 .center{
     text-align: center;
 }
+.right{
+    float: right
+}
 .bt-nopad{
     padding-right: 0px !important;
     padding-left: 0px !important;
@@ -47,6 +50,10 @@
 
 .ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
     overflow: visible !important;
+}
+
+.dropdown button.datatable-actions {
+    font-size: 11px;
 }
 
 /*
