@@ -3,59 +3,51 @@
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
         <div class="row">
-            
             <ps-input   [form]="fg" 
                         label="ID."
-                        [error]="formErrors.id" 
-                        name="id"  className="col-sm-6 col-md-3"></ps-input>
+                        type="text"
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
 
-                        
-           
-
-            <div class="col-12">
-                <span class="md-inputfield">
-                    <input  formControlName="name" [ngModel]="object.name"
-                            type="text" pInputText>
-                    <label>Name</label>
-                </span>
-            </div>
+            <ps-input   [form]="fg" 
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
         </div>
 
         <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <span class="md-inputfield">
-                    <input  formControlName="icon" [ngModel]="object.icon"
-                            type="text" pInputText>
-                    <label>Icon</label>
-                </span>
-            </div>
+            <ps-input   [form]="fg" 
+                        label="Icon"
+                        name="icon" class="col-sm-12 col-md-4"></ps-input>
 
-            <div class="col-sm-12 col-md-4 offset-md-1">
-                <span class="md-inputfield">
-                    <input  formControlName="sort" [ngModel]="object.sort"
-                            type="number" pInputText>
-                    <label>Sort</label>
-                </span>
-            </div>
+            <ps-input   [form]="fg" 
+                        label="Icon"
+                        type="number"
+                        name="sort" class="col-sm-12 col-md-4 offset-md-1"></ps-input>
         </div>
 
         <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <p-checkbox formControlName="base" label="Base" [ngModel]="object.base" binary="true"></p-checkbox>
-            </div>
-            <div class="col-sm-12 col-md-4 offset-md-1">
-                <p-checkbox formControlName="active" label="Active" [ngModel]="object.active" binary="true"></p-checkbox>
-            </div>
+            <ps-checkbox    [form]="fg"
+                            name="base"
+                            label="Base" class="col-sm-12 col-md-4"></ps-checkbox>
+
+            <ps-checkbox    [form]="fg"
+                            name="active"
+                            label="Active" class="col-sm-12 col-md-4"></ps-checkbox>
         </div>
         
 
         <div class="row justify-content-sm-center justify-content-md-start">
-            <div class="col-sm-10 col-md-3">
-                <button pButton type="submit" icon="fa-check" label="Save"></button>
-            </div>
-            <div class="col-sm-10 col-md-3">
-                <button pButton type="button" [routerLink]="[this.objectService.baseUri]" icon="ui-icon-clear" label="Cancel"></button>
-            </div>
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[this.objectService.baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
         </div>
+
     </form>
 </div>

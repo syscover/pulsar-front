@@ -6,7 +6,7 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 
 import { LangService } from './lang.service';
 import { Lang } from '../admin.models';
-import { onValueChanged } from './../../shared/super/core-validation';
+import { onValueChangedFormGroup } from './../../shared/super/core-validation';
 import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 @Component({
@@ -47,7 +47,7 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
 
     createForm() {
         this.fg = this.fb.group({
-            id: ['', [ Validators.required, Validators.email ]],
+            id: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
             name: ['', Validators.required],
             icon: ['', Validators.required],
             sort: '',
@@ -55,17 +55,11 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
             active: ''
         });
 
-        this.fg
+        /*this.fg
             .valueChanges
-            .subscribe(data => this.formErrors = onValueChanged(this.fg, data, this.validationMessageService));
+            .subscribe(data => this.formErrors = onValueChanged(this.fg, data, this.validationMessageService));*/
 
-        /*this.formDetail
-            .valueChanges
-            .subscribe(data => this.onValueChanged(data));*/
-
-        this.formErrors = onValueChanged(this.fg);
-
-        //this.onValueChanged(); // (re)set validation messages now
+        //this.formErrors = onValueChanged(this.fg);
     }
 
 }

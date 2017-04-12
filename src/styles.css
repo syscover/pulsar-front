@@ -61,8 +61,11 @@
  */
  /* grid for forms */
 .form-group div[class^="col-"] {
-    padding: .5em;
     margin-bottom: 17px;
+}
+
+label {
+    margin-bottom: 0px;
 }
 
 .ui-fluid .ui-button-text-icon-left .ui-button-text, .ui-fluid .ui-button-text-icon-right .ui-button-text {

@@ -5,18 +5,14 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 
 @Component({
-    selector: 'ps-input',
+    selector: 'ps-checkbox',
     template: `
         <div [formGroup]="form">
-            <span class="md-inputfield">
-                <input  [formControlName]="name"
-                        type="{{ type }}" 
-                        pInputText>
-                <label>{{ label }}</label>
-                <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
-                    {{ error }}
-                </div>
-            </span>
+            <p-checkbox 
+                [formControlName]="name" 
+                [label]="label" 
+                binary="true">
+            </p-checkbox>
         <div>
     `,
     styles: [`
@@ -30,10 +26,9 @@ import { ValidationMessageService } from './../../../core/services/validation-me
             border-bottom-color: #e62a10; 
         }`]
 })
-export class InputComponent implements OnInit {
+export class CheckboxComponent implements OnInit {
 
     @Input() private form: FormGroup;
-    @Input() private type: string;
     @Input() private label: string;
     @Input() private name: string;
 

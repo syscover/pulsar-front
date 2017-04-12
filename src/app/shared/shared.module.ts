@@ -15,6 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
 import { InputComponent } from './components/forms/input.component';
+import { CheckboxComponent } from './components/forms/checkbox.component';
+import { ButtonComponent } from './components/forms/button.component';
 
 @NgModule({
     imports: [
@@ -36,7 +38,9 @@ import { InputComponent } from './components/forms/input.component';
         FooterComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
-        InputComponent
+        InputComponent,
+        CheckboxComponent,
+        ButtonComponent
     ],
     providers: [
     ],
@@ -50,6 +54,8 @@ import { InputComponent } from './components/forms/input.component';
         DatatableSearchComponent,
         DatatableHeaderComponent,
         InputComponent,
+        CheckboxComponent,
+        ButtonComponent,
         CheckLangsObjectPipe,
         ActionLangObjectPipe
     ]
