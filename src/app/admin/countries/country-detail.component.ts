@@ -1,4 +1,3 @@
-import { JsonResponse } from './../../shared/classes/json-respose';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +6,8 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 
 import { Country } from '../admin.models';
 import { CountryService } from './country.service';
+
+// custom imports
 import { Lang } from './../admin.models';
 import { LangService } from './../langs/lang.service';
 import { SelectItem } from 'primeng/primeng';
@@ -21,6 +22,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     private langs: SelectItem[] = [];
 
+    // paramenters for parent class
     private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
     private f: Function = (response = undefined) => {
@@ -69,7 +71,6 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     createForm() {
-
         this.formDetail = this.fb.group({
             id: ['', Validators.required ],
             name: '',

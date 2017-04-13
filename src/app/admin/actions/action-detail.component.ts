@@ -13,13 +13,14 @@ import { Action } from '../admin.models';
 })
 export class ActionDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private formDetail: FormGroup;
+    // paramenters for parent class
+    private fg: FormGroup;
     private object: Action = new Action(); // set empty object
-    private f: Function = (data = undefined) => {
+    private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
-            this.object = data; // function to set custom data
+            this.object = response.data; // function to set custom data
+            this.fg.setValue(this.object); // set values of form
         }
-        // with other action
     }
 
     constructor(
@@ -38,12 +39,13 @@ export class ActionDetailComponent extends CoreDetailComponent implements OnInit
 
     ngOnInit() {
         super.getRecordHasIdParamenter(this.f);
+        this.createForm(); // create form
     }
 
     createForm() {
-        this.formDetail = this.fb.group({
+        this.fg = this.fb.group({
             id: ['', Validators.required ],
-            name: ''
+            name: ['', Validators.required ]
         });
     }
 

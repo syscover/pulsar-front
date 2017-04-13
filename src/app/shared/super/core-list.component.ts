@@ -1,16 +1,16 @@
+import { Lang } from './../../admin/admin.models';
 import { ViewChild } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { LazyLoadEvent, DataTable } from 'primeng/primeng';
+import { LazyLoadEvent } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
 
 export class CoreListComponent {
 
-    protected totalRecords: number;
-    private columnsSearch: string[] = [
-        'name'
-    ];
+    protected totalRecords: number;     // total records in datatable
+    protected filteredRecords: number;     // filtered records over total
+    protected columnsSearch: string[];  // columns where will be used for global searchs
 
     constructor(
         private parentService: CoreService,
@@ -25,7 +25,14 @@ export class CoreListComponent {
             });
     }
 
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
+    /**
+     * loadDadaTableLazy method
+     *
+     * @param event
+     * @param f
+     * @param lang      if need all results must be filtered by lang
+     */
+    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined) {
 
         let parameters: Object[] = [
             {
@@ -38,6 +45,7 @@ export class CoreListComponent {
             }
         ];
 
+        // set commands to orderBy
         if (event.sortField) {
             parameters.push({
                     'command': 'orderBy',
@@ -46,10 +54,11 @@ export class CoreListComponent {
                 });
         }
 
+        // set commands to filter
         if (event.globalFilter) {
             for (const column of this.columnsSearch) {
                 parameters.push({
-                    'command': 'where',
+                    'command': 'orWhere',
                     'column': column,
                     'operator': 'like',
                     'value': `%${event.globalFilter}%`
@@ -59,6 +68,7 @@ export class CoreListComponent {
 
         const object = {
             'type': 'query',
+            'lang': lang,
             'parameters': parameters
         };
 
@@ -66,6 +76,7 @@ export class CoreListComponent {
             .searchRecords(object)
             .subscribe((response) => {
                 this.totalRecords = response.total;
+                this.filteredRecords = response.filtered;
                 f(response.data);
             });
     }

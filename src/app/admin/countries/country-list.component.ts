@@ -16,14 +16,22 @@ import { Lang } from './../admin.models';
 export class CountryListComponent extends CoreListComponent implements OnInit {
 
     activatedLangs: Lang[];
+
+    // paramenters for parent class
+    // columns where will be used for global searchs
+    columnsSearch: string[] = [
+        'country.id', 'country.name', 'lang.name'
+    ];
     objects: Country[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
+        private langService: LangService,
+
+        // service for parent class
         private router: Router,
         private route: ActivatedRoute,
-        private objectService: CountryService,
-        private langService: LangService
+        private objectService: CountryService
     ) {
         super(
             objectService,
@@ -37,11 +45,11 @@ export class CountryListComponent extends CoreListComponent implements OnInit {
     loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
         // only get activated langs when activatedLangs is not instantiated
         if (this.activatedLangs) {
-            super.loadDadaTableLazy(event, f);
+            super.loadDadaTableLazy(event, f, 'es');
         } else {
             this.langService.getActivatedLangs().subscribe(response => {
                 this.activatedLangs = <Lang[]>response.data;
-                super.loadDadaTableLazy(event, f);
+                super.loadDadaTableLazy(event, f, 'es');
             });
         }
     }

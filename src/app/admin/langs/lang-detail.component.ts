@@ -6,8 +6,6 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 
 import { LangService } from './lang.service';
 import { Lang } from '../admin.models';
-import { onValueChangedFormGroup } from './../../shared/super/core-validation';
-import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 @Component({
     selector: 'ps-lang-detail',
@@ -15,7 +13,7 @@ import { ValidationMessageService } from './../../core/services/validation-messa
 })
 export class LangDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private baseUri = '/pulsar/admin/langs';
+    // paramenters for parent class
     private fg: FormGroup;
     private object: Lang = new Lang(); // set empty object
     private f: Function = (response = undefined) => {
@@ -23,15 +21,13 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
             this.object = response.data; // function to set custom data
             this.fg.setValue(this.object); // set values of form
         }
-        // with other action
     }
 
     constructor(
         private fb: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private objectService: LangService,
-        private validationMessageService: ValidationMessageService
+        private objectService: LangService
     ) {
         super(
             router,
@@ -50,16 +46,10 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
             id: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
             name: ['', Validators.required],
             icon: ['', Validators.required],
-            sort: '',
+            sort: [''],
             base: '',
             active: ''
         });
-
-        /*this.fg
-            .valueChanges
-            .subscribe(data => this.formErrors = onValueChanged(this.fg, data, this.validationMessageService));*/
-
-        //this.formErrors = onValueChanged(this.fg);
     }
 
 }

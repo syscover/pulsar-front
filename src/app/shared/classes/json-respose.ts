@@ -1,5 +1,6 @@
 export interface JsonResponse {
     status: string;
-    data:  Object | Object[];
     total: number;
+    filtered: number;
+    data:  Object | Object[];
 }

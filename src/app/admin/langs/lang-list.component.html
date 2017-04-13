@@ -1,11 +1,12 @@
-<ps-datatable-header title="Langs {{ objects.length }}" [routerLink]="[this.objectService.baseUri + '/create']"></ps-datatable-header>
+<ps-datatable-header title="Langs {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
-                (onLazyLoad)="loadDadaTableLazy($event, f)">
+                (onLazyLoad)="loadDadaTableLazy($event, f)"
+                [immutable]="true">
 
-    <p-column field="id" header="#"></p-column>
+    <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>  
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">

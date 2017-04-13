@@ -1,12 +1,12 @@
-<ps-datatable-header title="Countries {{ objects.length }}" [routerLink]="[this.objectService.baseUri + '/create']"></ps-datatable-header>
+<ps-datatable-header title="Countries {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
-                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
+                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="filteredRecords" 
                 (onLazyLoad)="loadDadaTableLazy($event, f)"
                 [immutable]="true">
 
-    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="country_id" header="#" [sortable]="true"></p-column>
     <p-column field="lang_name" header="Lang" [sortable]="true"></p-column>
     <p-column field="country_name" header="Name" [sortable]="true"></p-column>  
     <p-column styleClass="col-button center">

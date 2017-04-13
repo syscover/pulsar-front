@@ -1,20 +1,30 @@
-<h1>Action</h1>
+<div class="container-fluid form-group">
+    <h1>Action</h1>
 
-<form [formGroup]="formDetail" (ngSubmit)="onSubmit(this.formDetail, this.object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        label="ID."
+                        type="text"
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
+        </div>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
+        </div>
+        <div class="row justify-content-sm-center justify-content-md-start">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
 
-    <div class="form-group">
-        <label for="inputId">ID</label>
-        <input  formControlName="id" [ngModel]="object.id"
-                type="text" class="form-control col-2" id="inputId" placeholder="Enter a ID">
-    </div>
-
-    <div class="form-group">
-        <label for="inputName">Name</label>
-        <input  formControlName="name" [ngModel]="object.name"
-                type="text" class="form-control" id="inputName" placeholder="Enter name">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button [routerLink]="[this.objectService.baseUri]"
-            type="button" class="btn btn-primary">Cancel</button>
-</form>
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[this.objectService.baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>

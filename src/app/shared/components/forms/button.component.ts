@@ -10,9 +10,7 @@ import { ValidationMessageService } from './../../../core/services/validation-me
         <button pButton 
             [type]="type" 
             [icon]="icon" 
-            [label]="label"
-            [routerLink]="routerLink"
-            ></button>
+            [label]="label"></button>
     `,
     styles: [`
         :host{
@@ -27,7 +25,6 @@ export class ButtonComponent implements OnInit {
     @Input() private type: string;
     @Input() private label: string;
     @Input() private icon: string;
-    @Input() private routerLink: string;
 
     constructor( ) { }
 

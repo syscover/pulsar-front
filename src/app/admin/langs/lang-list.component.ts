@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -14,11 +15,16 @@ import { MenuItem } from 'primeng/primeng';
 })
 export class LangListComponent extends CoreListComponent implements OnInit {
 
-    items: MenuItem;
+    // paramenters for parent class
+    // columns where will be used for global searchs
+    columnsSearch: string[] = [
+        'id', 'name'
+    ];
     objects: Lang[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
+        // service for parent class
         private router: Router,
         private route: ActivatedRoute,
         private objectService: LangService
@@ -29,18 +35,6 @@ export class LangListComponent extends CoreListComponent implements OnInit {
         );
     }
 
-    ngOnInit() {
-        this.getRecords(this.f);
+    ngOnInit() { }
 
-        this.items = [
-            {
-                label: 'Next',
-                icon: 'fa-chevron-right'
-            },
-            {
-                label: 'Prev',
-                icon: 'fa-chevron-left'
-            }
-        ];
-    }
 }
