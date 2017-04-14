@@ -1,30 +1,26 @@
-<h1>Profiles {{ objects.length }}</h1>
+<ps-datatable-header title="Profiles {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
-<a class="btn btn-outline-primary" [routerLink]="[this.objectService.baseUri + '/create']">Nuevo elemeto</a>
+<p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
+                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
+                (onLazyLoad)="loadDadaTableLazy($event, f)"
+                [immutable]="true">
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th class="text-center">@</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let object of objects">
-      <th scope="row">{{ object.id }}</th>
-      <td>{{ object.name }}</td>
-      <td class="text-center">
-        <div class="dropdown">
-            <a class="btn-floating btn-sm" aria-hidden="true" id="dropdownMenuData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-ellipsis-v pl-sm"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
-                <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id]">Editar</a>
-                <a class="dropdown-item" (click)="deleteRecord(this.f, object)">Borrar</a>
+    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>  
+    <p-column styleClass="col-button center">
+        <ng-template pTemplate="header">
+            @
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+            <div class="dropdown">
+                <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id]">Edit</a>
+                    <a class="dropdown-item" (click)="deleteRecord(this.f, object)">Delete</a>
+                </div>
             </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        </ng-template>
+    </p-column>
+</p-dataTable>

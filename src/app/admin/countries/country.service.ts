@@ -13,6 +13,6 @@ export class CountryService extends CoreService {
             http
         );
         this.setBaseUri('/pulsar/admin/countries');
-        this.setApiUrl('/api/v1/admin/countries');
+        this.setApiUrl('/api/v1/admin/countries'); // set api URL
     }
 }

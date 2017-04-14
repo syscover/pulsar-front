@@ -12,6 +12,11 @@ import { Profile } from '../admin.models';
 })
 export class ProfileListComponent extends CoreListComponent implements OnInit {
 
+    // paramenters for parent class
+    // columns where will be used for global searchs
+    columnsSearch: string[] = [
+        'id', 'name'
+    ];
     objects: Profile[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
 

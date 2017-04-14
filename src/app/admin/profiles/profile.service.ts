@@ -13,6 +13,6 @@ export class ProfileService extends CoreService {
             http
         );
         this.setBaseUri('/pulsar/admin/profiles');
-        this.setApiUrl('/api/v1/admin/profiles');
+        this.setApiUrl('/api/v1/admin/profiles'); // set api URL
     }
 }

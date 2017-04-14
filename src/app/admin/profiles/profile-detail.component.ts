@@ -13,13 +13,14 @@ import { Profile } from '../admin.models';
 })
 export class ProfileDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private formDetail: FormGroup;
+    // paramenters for parent class
+    private fg: FormGroup;
     private object: Profile = new Profile(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
+            this.fg.setValue(this.object); // set values of form
         }
-        // with other action
     }
 
     constructor(
@@ -38,12 +39,13 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
 
     ngOnInit() {
         super.getRecordHasIdParamenter(this.f);
+        this.createForm(); // create form
     }
 
     createForm() {
-        this.formDetail = this.fb.group({
+        this.fg = this.fb.group({
             id: ['', Validators.required ],
-            name: ''
+            name: ['', Validators.required ]
         });
     }
 

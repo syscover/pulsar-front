@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
                     {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/langs']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/countries']},
                     {label: 'Actions', icon: 'grid_on', routerLink: ['/pulsar/admin/actions']},
-                    {label: 'Panels', icon: 'content_paste', routerLink: ['/panels']},
+                    {label: 'Profiles', icon: 'content_paste', routerLink: ['/pulsar/admin/profiles']},
                     {label: 'Overlays', icon: 'content_copy', routerLink: ['/overlays']},
                     {label: 'Menus', icon: 'menu', routerLink: ['/menus']},
                     {label: 'Messages', icon: 'message', routerLink: ['/messages']},

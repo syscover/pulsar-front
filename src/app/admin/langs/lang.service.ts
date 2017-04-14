@@ -16,7 +16,7 @@ export class LangService extends CoreService {
             http
         );
         this.setBaseUri('/pulsar/admin/langs');
-        this.setApiUrl('/api/v1/admin/langs');
+        this.setApiUrl('/api/v1/admin/langs'); // set api URL
     }
 
     getActivatedLangs(): Observable<JsonResponse> {
