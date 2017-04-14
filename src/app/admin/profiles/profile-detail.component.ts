@@ -42,7 +42,7 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
 
     createForm() {
         this.fg = this.fb.group({
-            id: ['', Validators.required ],
+            id: [{value: '', disabled: true}],
             name: ['', Validators.required ]
         });
     }
