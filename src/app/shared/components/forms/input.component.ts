@@ -10,7 +10,7 @@ import { ValidationMessageService } from './../../../core/services/validation-me
         <div [formGroup]="form">
             <span class="md-inputfield">
                 <input  [formControlName]="name"
-                        type="{{ type }}" 
+                        type="{{ type }}"
                         pInputText>
                 <label>{{ label }}</label>
                 <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">

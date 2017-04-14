@@ -23,6 +23,13 @@ export class MenuComponent implements OnInit {
         this.model = [
             {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
             {
+                label: 'CRM', icon: 'settings',
+                items: [
+                    {label: 'Customers', icon: 'flag', routerLink: ['/pulsar/crm/customers']},
+                    {label: 'Groups', icon: 'public', routerLink: ['/pulsar/crm/groups']}
+                ]
+            },
+            {
                 label: 'Administration', icon: 'settings',
                 items: [
                     {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/langs']},
