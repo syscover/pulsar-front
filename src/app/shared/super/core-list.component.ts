@@ -1,20 +1,21 @@
 import { Lang } from './../../admin/admin.models';
 import { ViewChild } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
 
 export class CoreListComponent {
 
+    public router: Router;
+    public route: ActivatedRoute;
     protected totalRecords: number;     // total records in datatable
     protected filteredRecords: number;     // filtered records over total
     protected columnsSearch: string[];  // columns where will be used for global searchs
 
     constructor(
-        private parentService: CoreService,
-        private parentRoute: ActivatedRoute
+        private parentService: CoreService
     ) { }
 
     getRecords(f: Function): void {

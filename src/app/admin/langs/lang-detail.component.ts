@@ -14,7 +14,6 @@ import { Lang } from '../admin.models';
 export class LangDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private fg: FormGroup;
     private object: Lang = new Lang(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
@@ -24,9 +23,9 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
     }
 
     constructor(
+        router: Router,
+        route: ActivatedRoute,
         private fb: FormBuilder,
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: LangService
     ) {
         super(
@@ -37,8 +36,8 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        super.getRecordHasIdParamenter(this.f);
         this.createForm(); // create form
+        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
@@ -13,7 +12,7 @@ import { MenuItem } from 'primeng/primeng';
     selector: 'app-lang-list',
     templateUrl: './lang-list.component.html'
 })
-export class LangListComponent extends CoreListComponent implements OnInit {
+export class LangListComponent extends CoreListComponent {
 
     // paramenters for parent class
     // columns where will be used for global searchs
@@ -25,16 +24,11 @@ export class LangListComponent extends CoreListComponent implements OnInit {
 
     constructor(
         // service for parent class
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: LangService
     ) {
         super(
-            objectService,
-            route
+            objectService
         );
     }
-
-    ngOnInit() { }
 
 }

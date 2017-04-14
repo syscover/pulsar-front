@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
@@ -23,7 +23,6 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     private langs: SelectItem[] = [];
 
     // paramenters for parent class
-    private formDetail: FormGroup;
     private object: Country = new Country(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
@@ -31,11 +30,11 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
             // set new lang
             if (this.dataRoute.action === 'create-lang') {
-                this.formDetail.patchValue({
+                this.fg.patchValue({
                     lang_id: this.params['newLang']
                 });
             } else {
-                this.formDetail.patchValue({
+                this.fg.patchValue({
                     lang_id: this.params['lang']
                 });
             }
@@ -43,9 +42,9 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     constructor(
+        public router: Router,
+        public route: ActivatedRoute,
         private fb: FormBuilder,
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: CountryService,
         private langService: LangService
     ) {
@@ -54,10 +53,11 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
             route,
             objectService
         );
-        this.createForm(); // create form
     }
 
     ngOnInit() {
+        this.createForm(); // create form
+
         this.langService.getRecords()
             .subscribe((response) => {
 
@@ -71,7 +71,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     createForm() {
-        this.formDetail = this.fb.group({
+        this.fg = this.fb.group({
             id: ['', Validators.required ],
             name: '',
             lang_id: {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'},

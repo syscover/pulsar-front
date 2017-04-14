@@ -7,12 +7,13 @@ import { CoreService } from './../../shared/super/core.service';
 export class GroupService extends CoreService {
 
     constructor(
-        private http: Http
+        public http: Http
     ) {
         super(
             http
-        );
-        this.setBaseUri('/pulsar/crm/groups');
+        )
+
+        this.setBaseUri('/pulsar/crm/groups'); // set application URL
         this.setApiUrl('/api/v1/crm/groups'); // set api URL
     }
 }

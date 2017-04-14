@@ -4,7 +4,7 @@ import { AbstractControl } from '@angular/forms';
 @Injectable()
 export class ValidationMessageService {
 
-    getMessage(error: string, formControl: AbstractControl): string {
+    getMessage(error: string, formControl?: AbstractControl): string {
         switch (error) {
             case 'required':
                 return 'This field is required.';

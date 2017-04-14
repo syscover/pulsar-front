@@ -14,7 +14,6 @@ import { Profile } from '../admin.models';
 export class ProfileDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private fg: FormGroup;
     private object: Profile = new Profile(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
@@ -24,9 +23,9 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     constructor(
+        router: Router,
+        route: ActivatedRoute,
         private fb: FormBuilder,
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: ProfileService,
     ) {
         super(
@@ -34,12 +33,11 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
             route,
             objectService
         );
-        this.createForm(); // create form
     }
 
     ngOnInit() {
-        super.getRecordHasIdParamenter(this.f);
         this.createForm(); // create form
+        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {

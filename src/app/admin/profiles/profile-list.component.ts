@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -10,7 +10,7 @@ import { Profile } from '../admin.models';
     selector: 'app-profile-list',
     templateUrl: './profile-list.component.html'
 })
-export class ProfileListComponent extends CoreListComponent implements OnInit {
+export class ProfileListComponent extends CoreListComponent {
 
     // paramenters for parent class
     // columns where will be used for global searchs
@@ -21,17 +21,11 @@ export class ProfileListComponent extends CoreListComponent implements OnInit {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: ProfileService
     ) {
         super(
-            objectService,
-            route
+            objectService
         );
     }
 
-    ngOnInit() {
-        this.getRecords(this.f);
-    }
 }

@@ -4,11 +4,13 @@ import { ValidationMessageService } from './../../core/services/validation-messa
 
 import * as _ from 'lodash';
 
-export const onValueChangedFormGroup = (formGroup: FormGroup, data?: any, validationMessageService?: ValidationMessageService): Object => {
+export const onValueChangedFormGroup = (formGroup: FormGroup, validationMessageService: ValidationMessageService, data?: any, ): Object => {
 
     if (! formGroup) { return; }
     let formErrors = {};
     let fields = _.keysIn(formGroup.controls);
+
+    console.log(fields);
 
     for (let field of fields){
         const formControl = formGroup.get(field);
@@ -24,7 +26,7 @@ export const onValueChangedFormGroup = (formGroup: FormGroup, data?: any, valida
 };
 
 export const onValueChangedFormControl =
-    (formControl: AbstractControl, data?: any, validationMessageService?: ValidationMessageService): string => {
+    (formControl: AbstractControl, validationMessageService?: ValidationMessageService, data?: any): string => {
 
     if (! formControl) { return; }
     let formError = undefined;
@@ -37,6 +39,3 @@ export const onValueChangedFormControl =
 
     return formError;
 };
-
-
-

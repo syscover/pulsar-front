@@ -7,12 +7,13 @@ import { CoreService } from './../../shared/super/core.service';
 export class ProfileService extends CoreService {
 
     constructor(
-        http: Http
+        public http: Http
     ) {
         super(
             http
-        );
-        this.setBaseUri('/pulsar/admin/profiles');
+        )
+
+        this.setBaseUri('/pulsar/admin/profiles'); // set application URL
         this.setApiUrl('/api/v1/admin/profiles'); // set api URL
     }
 }

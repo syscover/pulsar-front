@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
@@ -11,7 +10,7 @@ import { Action } from '../admin.models';
     selector: 'ps-action-list',
     templateUrl: './action-list.component.html'
 })
-export class ActionListComponent extends CoreListComponent implements OnInit {
+export class ActionListComponent extends CoreListComponent {
 
     // paramenters for parent class
     // columns where will be used for global searchs
@@ -23,15 +22,11 @@ export class ActionListComponent extends CoreListComponent implements OnInit {
 
     constructor(
         // service for parent class
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: ActionService
     ) {
         super(
-            objectService,
-            route
+            objectService
         );
     }
 
-    ngOnInit() { }
 }

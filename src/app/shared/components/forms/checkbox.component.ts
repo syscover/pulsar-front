@@ -44,7 +44,7 @@ export class CheckboxComponent implements OnInit {
         this.form
             .controls[this.name]
             .valueChanges
-            .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data, this.validationMessageService));
+            .subscribe(data => this.error = onValueChangedFormControl(this.formControl, this.validationMessageService, data));
     }
 
 }

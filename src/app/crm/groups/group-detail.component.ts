@@ -14,7 +14,6 @@ import { Group } from '../crm.models';
 export class GroupDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private fg: FormGroup;
     private object: Group = new Group(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
@@ -24,9 +23,9 @@ export class GroupDetailComponent extends CoreDetailComponent implements OnInit 
     }
 
     constructor(
+        router: Router,
+        route: ActivatedRoute,
         private fb: FormBuilder,
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: GroupService
     ) {
         super(
@@ -34,12 +33,11 @@ export class GroupDetailComponent extends CoreDetailComponent implements OnInit 
             route,
             objectService
         );
-        this.createForm(); // create form
     }
 
     ngOnInit() {
-        super.getRecordHasIdParamenter(this.f);
         this.createForm(); // create form
+        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {

@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { OnInit, ReflectiveInjector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
@@ -7,23 +7,32 @@ import { Observable } from 'rxjs/Observable';
 import { CoreService } from './core.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
+import { onValueChangedFormGroup } from './../super/core-validation';
+import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 export class CoreDetailComponent {
 
     public dataRoute: DataRoute; // Static dataRoute Object pass from route module
     public params: Params;
     public formErrors: Object;
+    public fg: FormGroup;
+    //private validationMessageService: ValidationMessageService
 
     constructor(
-        private parentRouter: Router,
-        private parentRoute: ActivatedRoute,
+        public router: Router,
+        public route: ActivatedRoute,
         private parentService: CoreService
     ) {
-        this.dataRoute = <DataRoute>this.parentRoute.snapshot.data;
+        /*const injector = ReflectiveInjector.resolveAndCreate([
+                ValidationMessageService
+            ]);*/
+
+        //this.validationMessageService = injector.get(ValidationMessageService);
+        this.dataRoute = <DataRoute>this.route.snapshot.data;
     }
 
     getRecordHasIdParamenter(f: Function) {
-        this.parentRoute.params.subscribe(params => {
+        this.route.params.subscribe(params => {
             this.params     = params;
             const id        = params['id'];
             const lang      = params['lang'];
@@ -47,6 +56,10 @@ export class CoreDetailComponent {
         let obs: Observable<any>; // Observable
         let lang: string;
 
+        //console.log('service', this.validationMessageService.getMessage('required'));
+        /*this.formErrors = onValueChangedFormGroup(this.fg, this.validationMessageService);
+        console.log(this.formErrors);*/
+
         if (this.dataRoute.action === 'create') {
             obs = this.parentService.storeRecord(fg.value);
         }
@@ -65,9 +78,9 @@ export class CoreDetailComponent {
 
         obs.subscribe(data => {
             if (! routeRedirect) {
-                this.parentRouter.navigate([this.parentService.baseUri]);
+                this.router.navigate([this.parentService.baseUri]);
             } else {
-                this.parentRouter.navigate([routeRedirect]);
+                this.router.navigate([routeRedirect]);
             }
         });
     }
@@ -84,9 +97,9 @@ export class CoreDetailComponent {
             .deleteRecord(object.id, lang)
             .subscribe(data => {
                 if (! routeRedirect) {
-                    this.parentRouter.navigate([this.parentService.baseUri]);
+                    this.router.navigate([this.parentService.baseUri]);
                 } else {
-                    this.parentRouter.navigate([routeRedirect]);
+                    this.router.navigate([routeRedirect]);
                 }
             });
     }

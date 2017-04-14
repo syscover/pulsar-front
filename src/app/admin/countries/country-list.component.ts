@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
@@ -13,7 +12,7 @@ import { Lang } from './../admin.models';
     selector: 'ps-country-list',
     templateUrl: './country-list.component.html'
 })
-export class CountryListComponent extends CoreListComponent implements OnInit {
+export class CountryListComponent extends CoreListComponent {
 
     activatedLangs: Lang[];
 
@@ -29,17 +28,12 @@ export class CountryListComponent extends CoreListComponent implements OnInit {
         private langService: LangService,
 
         // service for parent class
-        private router: Router,
-        private route: ActivatedRoute,
         private objectService: CountryService
     ) {
         super(
-            objectService,
-            route
+            objectService
         );
     }
-
-    ngOnInit() { }
 
     // overwritte method
     loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
