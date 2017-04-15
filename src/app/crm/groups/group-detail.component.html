@@ -3,13 +3,15 @@
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
         <div class="row">
-            <ps-input   [form]="fg" 
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
                         label="ID."
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
         </div>
         <div class="row">
             <ps-input   [form]="fg" 
+                        [errors]="formErrors"
                         label="Name"
                         type="text"
                         name="name" class="col-12"></ps-input>

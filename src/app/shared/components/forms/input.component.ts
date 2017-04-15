@@ -52,4 +52,11 @@ export class InputComponent implements OnInit {
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, this.validationMessageService, data));
     }
 
+    @Input()
+    set errors(errors: Object){
+        if (this.name && errors && errors[this.name]) {
+            this.error = errors[this.name];
+        }
+    }
+
 }

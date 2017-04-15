@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { OnInit, ReflectiveInjector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { CoreService } from './core.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
-import { onValueChangedFormGroup } from './../super/core-validation';
+import { onSubmitFormGroup } from './../super/core-validation';
 import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 export class CoreDetailComponent {
@@ -16,18 +16,19 @@ export class CoreDetailComponent {
     public params: Params;
     public formErrors: Object;
     public fg: FormGroup;
-    //private validationMessageService: ValidationMessageService
+
+    private validationMessageService: ValidationMessageService
 
     constructor(
         public router: Router,
         public route: ActivatedRoute,
         private parentService: CoreService
     ) {
-        /*const injector = ReflectiveInjector.resolveAndCreate([
+        const injector = ReflectiveInjector.resolveAndCreate([
                 ValidationMessageService
-            ]);*/
+            ]);
 
-        //this.validationMessageService = injector.get(ValidationMessageService);
+        this.validationMessageService = injector.get(ValidationMessageService);
         this.dataRoute = <DataRoute>this.route.snapshot.data;
     }
 
@@ -56,9 +57,11 @@ export class CoreDetailComponent {
         let obs: Observable<any>; // Observable
         let lang: string;
 
-        //console.log('service', this.validationMessageService.getMessage('required'));
-        /*this.formErrors = onValueChangedFormGroup(this.fg, this.validationMessageService);
-        console.log(this.formErrors);*/
+        this.formErrors = onSubmitFormGroup(this.fg, this.validationMessageService);
+
+        if (this.fg.invalid) {
+            return; // has any validation error when emit submit event
+        }
 
         if (this.dataRoute.action === 'create') {
             obs = this.parentService.storeRecord(fg.value);
