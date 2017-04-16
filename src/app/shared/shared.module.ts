@@ -3,11 +3,13 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { PrimeNgModule } from './modules/prime-ng.module';
+import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { DataContainerComponent } from './components/data-container/data-container.component';
 import { CheckLangsObjectPipe } from './pipes/check-langs-object.pipe';
 import { ActionLangObjectPipe } from './pipes/action-lang-object.pipe';
-import { PrimeNgModule } from './modules/prime-ng.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { MenuComponent, SubMenuComponent } from './components/menu/menu.component';
@@ -24,7 +26,8 @@ import { ButtonComponent } from './components/forms/button.component';
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        PrimeNgModule
+        PrimeNgModule,
+        ConfirmDialogModule
     ],
     declarations: [
         MainLayoutComponent,
@@ -43,12 +46,14 @@ import { ButtonComponent } from './components/forms/button.component';
         ButtonComponent
     ],
     providers: [
+        ConfirmationService
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         PrimeNgModule,
+        ConfirmDialogModule,
         MainLayoutComponent,
         DataContainerComponent,
         DatatableSearchComponent,

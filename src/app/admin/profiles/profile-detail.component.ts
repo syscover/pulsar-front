@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -23,16 +23,10 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     constructor(
-        router: Router,
-        route: ActivatedRoute,
-        private fb: FormBuilder,
-        private objectService: ProfileService,
+        protected injector: Injector,
+        protected objectService: ProfileService,
     ) {
-        super(
-            router,
-            route,
-            objectService
-        );
+        super(injector);
     }
 
     ngOnInit() {

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Injectable, Injector } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -10,11 +10,9 @@ import { CoreService } from './../../shared/super/core.service';
 export class LangService extends CoreService {
 
     constructor(
-        public http: Http
+        protected injector: Injector
     ) {
-        super(
-            http
-        )
+        super(injector);
 
         this.setBaseUri('/pulsar/admin/langs'); // set application URL
         this.setApiUrl('/api/v1/admin/langs'); // set api URL

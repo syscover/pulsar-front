@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 import { onValueChangedFormControl } from './../../super/core-validation';
-import { ValidationMessageService } from './../../../core/services/validation-message.service';
 
 @Component({
     selector: 'ps-input',
@@ -40,16 +39,14 @@ export class InputComponent implements OnInit {
     private formControl: AbstractControl;
     private error: string;
 
-    constructor(
-        private validationMessageService: ValidationMessageService
-    ) { }
+    constructor() { }
 
     ngOnInit() {
         this.formControl = this.form.controls[this.name];
         this.form
             .controls[this.name]
             .valueChanges
-            .subscribe(data => this.error = onValueChangedFormControl(this.formControl, this.validationMessageService, data));
+            .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
     }
 
     @Input()

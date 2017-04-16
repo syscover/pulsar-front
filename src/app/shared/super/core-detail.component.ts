@@ -1,6 +1,7 @@
-import { OnInit, ReflectiveInjector } from '@angular/core';
+import { Injector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -8,27 +9,28 @@ import { CoreService } from './core.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { onSubmitFormGroup } from './../super/core-validation';
-import { ValidationMessageService } from './../../core/services/validation-message.service';
 
 export class CoreDetailComponent {
 
-    public dataRoute: DataRoute; // Static dataRoute Object pass from route module
-    public params: Params;
-    public formErrors: Object;
-    public fg: FormGroup;
+    protected dataRoute: DataRoute; // Static dataRoute Object pass from route module
+    protected params: Params;
+    protected formErrors: Object;
+    protected fg: FormGroup;
+    protected fb: FormBuilder;
+    protected router: Router;
+    protected route: ActivatedRoute;
+    protected confirmationService;
 
-    private validationMessageService: ValidationMessageService
+    // services superclass
+    protected objectService: CoreService;
 
     constructor(
-        public router: Router,
-        public route: ActivatedRoute,
-        private parentService: CoreService
+        protected injector: Injector
     ) {
-        const injector = ReflectiveInjector.resolveAndCreate([
-                ValidationMessageService
-            ]);
+        this.router = injector.get(Router);
+        this.route = injector.get(ActivatedRoute);
+        this.fb = injector.get(FormBuilder);
 
-        this.validationMessageService = injector.get(ValidationMessageService);
         this.dataRoute = <DataRoute>this.route.snapshot.data;
     }
 
@@ -49,7 +51,7 @@ export class CoreDetailComponent {
     }
 
     getRecord(f: Function, id: any, lang: string = undefined) {
-        this.parentService.getRecord(id, lang).subscribe(data => f(data));
+        this.objectService.getRecord(id, lang).subscribe(data => f(data));
     }
 
     onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined) {
@@ -57,31 +59,32 @@ export class CoreDetailComponent {
         let obs: Observable<any>; // Observable
         let lang: string;
 
-        this.formErrors = onSubmitFormGroup(this.fg, this.validationMessageService);
+        // set errors, this variable is binded to all form elements
+        this.formErrors = onSubmitFormGroup(this.fg);
 
         if (this.fg.invalid) {
             return; // has any validation error when emit submit event
         }
 
         if (this.dataRoute.action === 'create') {
-            obs = this.parentService.storeRecord(fg.value);
+            obs = this.objectService.storeRecord(fg.value);
         }
         if (this.dataRoute.action === 'create-lang') {
             let values = fg.value;
             values.lang_id = this.params['newLang'];
 
-            obs = this.parentService.storeRecord(values);
+            obs = this.objectService.storeRecord(values);
         }
         if (this.dataRoute.action === 'edit') {
             if (object.lang_id) { // check if has languages
                 lang = object.lang_id;
             }
-            obs = this.parentService.updateRecord(fg.value, object.id, lang);
+            obs = this.objectService.updateRecord(fg.value, object.id, lang);
         }
 
         obs.subscribe(data => {
             if (! routeRedirect) {
-                this.router.navigate([this.parentService.baseUri]);
+                this.router.navigate([this.objectService.baseUri]);
             } else {
                 this.router.navigate([routeRedirect]);
             }
@@ -96,14 +99,20 @@ export class CoreDetailComponent {
             lang = object.lang_id;
         }
 
-        this.parentService
-            .deleteRecord(object.id, lang)
-            .subscribe(data => {
-                if (! routeRedirect) {
-                    this.router.navigate([this.parentService.baseUri]);
-                } else {
-                    this.router.navigate([routeRedirect]);
-                }
-            });
+        // confirm to delete object
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want delete this object?',
+            accept: () => {
+                this.objectService
+                    .deleteRecord(object.id, lang)
+                    .subscribe(data => {
+                        if (! routeRedirect) {
+                            this.router.navigate([this.objectService.baseUri]);
+                        } else {
+                            this.router.navigate([routeRedirect]);
+                        }
+                    });
+            }
+        });
     }
 }

@@ -1,25 +1,30 @@
-import { Lang } from './../../admin/admin.models';
-import { ViewChild } from '@angular/core';
+import { Injector, ViewChild } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LazyLoadEvent } from 'primeng/primeng';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
 
 export class CoreListComponent {
 
-    public router: Router;
-    public route: ActivatedRoute;
+    protected router: Router;
+    protected route: ActivatedRoute;
     protected totalRecords: number;     // total records in datatable
     protected filteredRecords: number;     // filtered records over total
     protected columnsSearch: string[];  // columns where will be used for global searchs
 
+    // services superclass
+    protected objectService: CoreService;
+    protected confirmationService: ConfirmationService;
+
     constructor(
-        private parentService: CoreService
-    ) { }
+        protected injector: Injector
+    ) {
+        this.confirmationService = injector.get(ConfirmationService);
+    }
 
     getRecords(f: Function): void {
-        this.parentService
+        this.objectService
             .getRecords()
             .subscribe((response: any) => {
                 f(response.data);
@@ -73,7 +78,7 @@ export class CoreListComponent {
             'parameters': parameters
         };
 
-        this.parentService
+        this.objectService
             .searchRecords(object)
             .subscribe((response) => {
                 this.totalRecords = response.total;
@@ -90,11 +95,17 @@ export class CoreListComponent {
             lang = object.lang_id;
         }
 
-        this.parentService
-            .deleteRecord(object.id, lang)
-            .subscribe((response) => {
-                this.getRecords(f);
-            });
+        // confirm to delete object
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want delete this object?',
+            accept: () => {
+                this.objectService
+                    .deleteRecord(object.id, lang)
+                    .subscribe((response) => {
+                    this.getRecords(f);
+                });
+            }
+        });
     }
 
 }

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Injectable, Injector } from '@angular/core';
 
 import { CoreService } from './../../shared/super/core.service';
 
@@ -7,11 +6,9 @@ import { CoreService } from './../../shared/super/core.service';
 export class ProfileService extends CoreService {
 
     constructor(
-        public http: Http
+        protected injector: Injector
     ) {
-        super(
-            http
-        )
+        super(injector);
 
         this.setBaseUri('/pulsar/admin/profiles'); // set application URL
         this.setApiUrl('/api/v1/admin/profiles'); // set api URL

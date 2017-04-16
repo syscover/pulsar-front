@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LazyLoadEvent, DataTable } from 'primeng/primeng';
+import { Component, Injector } from '@angular/core';
+import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -21,12 +21,10 @@ export class GroupListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        // service for parent class
-        private objectService: GroupService
+        protected injector: Injector,
+        protected objectService: GroupService
     ) {
-        super(
-            objectService
-        );
+        super(injector);
     }
 
 }

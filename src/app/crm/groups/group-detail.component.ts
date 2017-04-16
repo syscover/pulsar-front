@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -23,16 +23,10 @@ export class GroupDetailComponent extends CoreDetailComponent implements OnInit 
     }
 
     constructor(
-        router: Router,
-        route: ActivatedRoute,
-        private fb: FormBuilder,
-        private objectService: GroupService
+        protected injector: Injector,
+        protected objectService: GroupService
     ) {
-        super(
-            router,
-            route,
-            objectService
-        );
+        super(injector);
     }
 
     ngOnInit() {

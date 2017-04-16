@@ -1,4 +1,4 @@
-import { ReflectiveInjector } from '@angular/core';
+import { Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,22 +8,17 @@ import * as config from '../app-globals';
 
 export class CoreService {
 
-   //public http: Http;
-    private parentApiUrl: string = config.apiUrlPrefix;
-    private parentBaseUri: string;
     protected headers: Headers;
     protected options: RequestOptions;
+    protected http: Http;
+
+    private parentApiUrl: string = config.apiUrlPrefix;
+    private parentBaseUri: string;
 
     constructor(
-        public http: Http
+        protected injector: Injector
     ) {
-        /*let aa = ReflectiveInjector.resolve([Http]);
-        const injector = ReflectiveInjector.fromResolvedProviders(aa);
-            console.log('XX');
         this.http = injector.get(Http);
-        console.log('XX2');
-
-        console.log(this.http);*/
 
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });

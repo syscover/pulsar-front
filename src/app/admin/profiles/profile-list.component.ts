@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LazyLoadEvent, DataTable } from 'primeng/primeng';
+import { Component, Injector } from '@angular/core';
+import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
@@ -21,11 +21,10 @@ export class ProfileListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        private objectService: ProfileService
+        protected injector: Injector,
+        protected objectService: ProfileService
     ) {
-        super(
-            objectService
-        );
+        super(injector);
     }
 
 }
