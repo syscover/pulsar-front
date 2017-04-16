@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ps",
       "styles": [
+        "../node_modules/animate.css/animate.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/flag-icon-css/css/flag-icon.min.css",
         "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",

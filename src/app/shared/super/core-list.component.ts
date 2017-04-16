@@ -1,4 +1,4 @@
-import { Injector, ViewChild } from '@angular/core';
+import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/primeng';
@@ -6,6 +6,8 @@ import { LazyLoadEvent, ConfirmationService } from 'primeng/primeng';
 import { CoreService } from './core.service';
 
 export class CoreListComponent {
+
+    @HostBinding('class') classes = 'animated fadeIn';
 
     protected router: Router;
     protected route: ActivatedRoute;

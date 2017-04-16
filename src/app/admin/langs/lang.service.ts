@@ -14,7 +14,7 @@ export class LangService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri('/pulsar/admin/langs'); // set application URL
+        this.setBaseUri(`/${this.appRootPrefix}/admin/langs`); // set application URL
         this.setApiUrl('/api/v1/admin/langs'); // set api URL
     }
 

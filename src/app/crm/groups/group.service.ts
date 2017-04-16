@@ -10,7 +10,7 @@ export class GroupService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri('/pulsar/crm/groups'); // set application URL
+        this.setBaseUri(`/${this.appRootPrefix}/crm/groups`); // set application URL
         this.setApiUrl('/api/v1/crm/groups'); // set api URL
     }
 }

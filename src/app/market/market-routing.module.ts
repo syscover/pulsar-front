@@ -5,8 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './../shared/components/main-layout/main-layout.component';
 
 //import { DashboardComponent } from './dashboard/dashboard.component';
-import { GroupListComponent } from './groups/group-list.component';
-import { GroupDetailComponent } from './groups/group-detail.component';
+//import { GroupListComponent } from './groups/group-list.component';
+//import { GroupDetailComponent } from './groups/group-detail.component';
 
 const routes: Routes = [
     {
@@ -16,7 +16,7 @@ const routes: Routes = [
             {
                 path: '',                                       component: DataContainerComponent,
                 children: [
-                    //{ path: '',                                 redirectTo: '/pulsar/admin/dashboard' },
+                    { path: '',                                 redirectTo: 'groups' },
 
                      // Dashboard
                     //{ path: 'dashboard',                        component: DashboardComponent },
@@ -39,4 +39,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class CrmRoutingModule {}
+export class MarketRoutingModule {}

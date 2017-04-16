@@ -4,16 +4,17 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { JsonResponse } from './../classes/json-respose';
-import * as config from '../app-globals';
+
+import * as config from './../../core/app-globals';
 
 export class CoreService {
 
     protected headers: Headers;
     protected options: RequestOptions;
     protected http: Http;
-
-    private parentApiUrl: string = config.apiUrlPrefix;
-    private parentBaseUri: string;
+    protected appRootPrefix: string = config.appRootPrefix;
+    protected apiUrlPrefix: string = config.apiUrlPrefix;
+    private _baseUri: string;
 
     constructor(
         protected injector: Injector
@@ -32,7 +33,7 @@ export class CoreService {
 
     getRecords(): Observable<JsonResponse> {
         return this.http
-            .get(this.getApiUrl('get'), this.parentApiUrl)
+            .get(this.getApiUrl('get'), this.apiUrlPrefix)
             .map((response: Response) => response.json());
     }
 
@@ -61,55 +62,55 @@ export class CoreService {
     }
 
     protected setBaseUri(baseUri: string) {
-        this.parentBaseUri = baseUri; // set base uri
+        this._baseUri = baseUri; // set base uri
     }
 
     get baseUri(): string {
-        return this.parentBaseUri; // get base uri
+        return this._baseUri; // get base uri
     }
 
     protected setApiUrl(urlAddons: string) {
-        this.parentApiUrl = this.parentApiUrl + urlAddons; // set api URL
+        this.apiUrlPrefix = this.apiUrlPrefix + urlAddons; // set api URL
     }
 
     protected getApiUrl(action: string, id: any = undefined, lang: string = undefined) {
         if (action === 'get') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentApiUrl}`;
+                return `${this.apiUrlPrefix}`;
             } else {
-                return `${this.parentApiUrl}/${lang}`;
+                return `${this.apiUrlPrefix}/${lang}`;
             }
         }
 
         if (action === 'find') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentApiUrl}/${id}`;
+                return `${this.apiUrlPrefix}/${id}`;
             } else {
-                return `${this.parentApiUrl}/${id}/${lang}`;
+                return `${this.apiUrlPrefix}/${id}/${lang}`;
             }
         }
 
         if (action === 'store') {
-            return `${this.parentApiUrl}`;
+            return `${this.apiUrlPrefix}`;
         }
 
         if (action === 'search') {
-            return `${this.parentApiUrl}/search`;
+            return `${this.apiUrlPrefix}/search`;
         }
 
         if (action === 'update') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentApiUrl}/${id}`;
+                return `${this.apiUrlPrefix}/${id}`;
             } else {
-                return `${this.parentApiUrl}/${id}/${lang}`;
+                return `${this.apiUrlPrefix}/${id}/${lang}`;
             }
         }
 
         if (action === 'delete') {
             if (lang === undefined) {   // check is object has language
-                return `${this.parentApiUrl}/${id}`;
+                return `${this.apiUrlPrefix}/${id}`;
             } else {
-                return `${this.parentApiUrl}/${id}/${lang}`;
+                return `${this.apiUrlPrefix}/${id}/${lang}`;
             }
         }
     }

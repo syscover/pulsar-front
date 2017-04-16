@@ -10,7 +10,7 @@ export class CountryService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri('/pulsar/admin/countries'); // set application URL
+        this.setBaseUri(`/${this.appRootPrefix}/admin/countries`); // set application URL
         this.setApiUrl('/api/v1/admin/countries'); // set api URL
     }
 }

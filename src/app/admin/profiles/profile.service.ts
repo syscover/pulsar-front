@@ -10,7 +10,7 @@ export class ProfileService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri('/pulsar/admin/profiles'); // set application URL
+        this.setBaseUri(`/${this.appRootPrefix}/admin/profiles`); // set application URL
         this.setApiUrl('/api/v1/admin/profiles'); // set api URL
     }
 }

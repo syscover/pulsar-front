@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmationService } from 'primeng/primeng';
@@ -11,6 +11,8 @@ import { DataRoute } from './../classes/data-route';
 import { onSubmitFormGroup } from './../super/core-validation';
 
 export class CoreDetailComponent {
+
+    @HostBinding('class') classes = 'animated fadeIn';
 
     protected dataRoute: DataRoute; // Static dataRoute Object pass from route module
     protected params: Params;

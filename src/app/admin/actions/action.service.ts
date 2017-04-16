@@ -10,7 +10,7 @@ export class ActionService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri('/pulsar/admin/actions'); // set application URL
+        this.setBaseUri(`/${this.appRootPrefix}/admin/actions`); // set application URL
         this.setApiUrl('/api/v1/admin/actions'); // set api URL
     }
 }
