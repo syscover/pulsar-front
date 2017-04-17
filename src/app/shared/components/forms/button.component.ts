@@ -9,7 +9,8 @@ import { onValueChangedFormControl } from './../../super/core-validation';
         <button pButton 
             [type]="type" 
             [icon]="icon" 
-            [label]="label"></button>
+            [label]="label"
+            [class]="className"></button>
     `,
     styles: [`
         :host{
@@ -24,6 +25,7 @@ export class ButtonComponent implements OnInit {
     @Input() private type: string;
     @Input() private label: string;
     @Input() private icon: string;
+    @Input() private className: string;
 
     constructor( ) { }
 

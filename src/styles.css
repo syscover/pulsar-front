@@ -70,6 +70,13 @@
 .dropdown button.datatable-actions {
     font-size: 11px;
 }
+.ui-dropdown-message.ui-message.ui-messages-error {
+    background-color: transparent;
+    border: 0 none;
+    margin: 0px;
+    color: #e62a10;
+    font-size: .75em;
+}
 
 /*
  * custom bootstrap

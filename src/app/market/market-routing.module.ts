@@ -20,13 +20,14 @@ const routes: Routes = [
                 children: [
                     { path: '',                                 redirectTo: '/' + config.appRootPrefix + '/admin/dashboard' },
 
-                     // Dashboard
-                    //{ path: 'dashboard',                        component: DashboardComponent },
-
-                    // Groups
-                    //{ path: 'groups',                           component: GroupListComponent },
-                    //{ path: 'groups/create',                    component: GroupDetailComponent,       data: { action: 'create' }},
-                    //{ path: 'groups/show/:id',                  component: GroupDetailComponent,       data: { action: 'edit' }},
+                    // Categories
+                    //{ path: 'categories',                        component: CountryListComponent },
+                    //{ path: 'categories/create',                 component: CountryDetailComponent,      data: { action: 'create' }},
+                    /*{ path: 'categories/create/:id/:lang/:newLang',
+                        component: CountryDetailComponent,
+                        data: { action: 'create-lang' }
+                    },
+                    { path: 'categories/show/:id/:lang',         component: CountryDetailComponent,      data: { action: 'edit' }},*/
 
                     // Wildcard route
                     { path: '**',                               redirectTo: 'dashboard' }

@@ -61,7 +61,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
                 return { label: obj.name, value: obj.id };
             }); // get langs
 
-            this.langs.unshift({ label: 'Select a language', value: 0 });
+            this.langs.unshift({ label: 'Select a language', value: '' });
             super.getRecordHasIdParamenter(this.f);
         });
     }
@@ -69,9 +69,11 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     createForm() {
         this.fg = this.fb.group({
             id: ['', Validators.required ],
-            name: '',
-            lang_id: {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'},
-            prefix: '',
+            name: ['', Validators.required],
+            lang_id: [
+                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
+            ],
+            prefix: ['', Validators.required],
             sort: '',
             territorial_area_1: '',
             territorial_area_2: '',

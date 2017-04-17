@@ -1,80 +1,90 @@
-<h1>Country</h1>
+<div class="container-fluid form-group">
+    <h1>Country</h1>
 
-<form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
-
-    <div class="ui-g form-group">
-
-        <div class="ui-g-12 ui-md-4">
-            <span class="md-inputfield">
-                <input  formControlName="id" [ngModel]="object.id"
-                        type="text" pInputText>
-                <label>ID</label>
-            </span>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
         </div>
 
-        <div class="ui-g-12">
-            <span class="md-inputfield">
-                <input  formControlName="name" [ngModel]="object.name"
-                        type="text" pInputText>
-                <label>Name</label>
-            </span>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
         </div>
 
-        <div class="ui-g-3 ui-sm-12">
-            <span class="md-inputfield">
-                <input  formControlName="prefix" [ngModel]="object.prefix"
-                        type="text" pInputText>
-                <label>Prefix</label>
-            </span>
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="prefix"
+                        type="text"
+                        label="Prefix" class="col-sm-12 col-md-4"></ps-input>
+
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="sort"
+                        type="number"
+                        label="Sort" class="col-sm-12 col-md-4"></ps-input>
         </div>
 
-        <div class="ui-g-3 ui-sm-6">
-            <span class="md-inputfield">
-                <input  formControlName="sort" [ngModel]="object.sort"
-                        type="number" pInputText>
-                <label>Sort</label>
-            </span>
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="langs"
+                            name="lang_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
         </div>
 
-        <div class="ui-g-3 ui-sm-3 ui-sm-offset-2">
-            <p-dropdown formControlName="lang_id" [options]="langs" [(ngModel)]="object.lang_id" [autoWidth]="false"></p-dropdown>
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_1"
+                        type="text"
+                        label="Territorial Area 1" class="col-sm-12 col-md-6"></ps-input>
         </div>
 
-        <div class="ui-g-12">
-            <span class="md-inputfield">
-                <input  formControlName="territorial_area_1" [ngModel]="object.territorial_area_1"
-                        type="text" pInputText>
-                <label>Territorial Area 1</label>
-            </span>
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_2"
+                        type="text"
+                        label="Territorial Area 2" class="col-sm-12 col-md-6"></ps-input>
         </div>
 
-        <div class="ui-g-12">
-            <span class="md-inputfield">
-                <input  formControlName="territorial_area_2" [ngModel]="object.territorial_area_2"
-                        type="text" pInputText>
-                <label>Territorial Area 2</label>
-            </span>
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_3"
+                        type="text"
+                        label="Territorial Area 3" class="col-sm-12 col-md-6"></ps-input>
         </div>
 
-        <div class="ui-g-12">
-            <span class="md-inputfield">
-                <input  formControlName="territorial_area_3" [ngModel]="object.territorial_area_3"
-                        type="text" pInputText>
-                <label>Territorial Area 3</label>
-            </span>
-        </div>
+        <div class="row justify-content-sm-center justify-content-md-start">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
 
-        <div class="ui-g-3 ui-sm-12">
-            <button pButton type="submit" label="Save"></button>
-        </div>
-        <div class="ui-g-3 ui-sm-12">
-            <button pButton [routerLink]="[this.objectService.baseUri]" 
-                    type="button" label="Cancel"></button>
-        </div>
-        <div class="ui-g-3 ui-sm-12">
-            <button pButton *ngIf="this.dataRoute.action === 'edit'" (click)="deleteRecord(object)" 
-                    type="button" label="Delete" class="red-btn"></button>
-        </div>
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[this.objectService.baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
 
-    </div>
- </form>
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        *ngIf="this.dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object)" 
+                        className="red-btn"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+ </div>

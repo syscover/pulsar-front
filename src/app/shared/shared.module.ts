@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
 import { InputComponent } from './components/forms/input.component';
+import { DropdownComponent } from './components/forms/dropdown.component';
 import { CheckboxComponent } from './components/forms/checkbox.component';
 import { ButtonComponent } from './components/forms/button.component';
 
@@ -42,6 +43,7 @@ import { ButtonComponent } from './components/forms/button.component';
         DatatableSearchComponent,
         DatatableHeaderComponent,
         InputComponent,
+        DropdownComponent,
         CheckboxComponent,
         ButtonComponent
     ],
@@ -59,6 +61,7 @@ import { ButtonComponent } from './components/forms/button.component';
         DatatableSearchComponent,
         DatatableHeaderComponent,
         InputComponent,
+        DropdownComponent,
         CheckboxComponent,
         ButtonComponent,
         CheckLangsObjectPipe,
