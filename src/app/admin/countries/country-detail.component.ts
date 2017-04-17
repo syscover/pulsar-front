@@ -28,6 +28,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
+            this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
 
             // set new lang
             if (this.dataRoute.action === 'create-lang') {
@@ -74,7 +75,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
                 {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
             ],
             prefix: ['', Validators.required],
-            sort: '',
+            sort: ['', Validators.required],
             territorial_area_1: '',
             territorial_area_2: '',
             territorial_area_3: ''
