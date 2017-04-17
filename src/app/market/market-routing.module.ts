@@ -8,6 +8,8 @@ import { MainLayoutComponent } from './../shared/components/main-layout/main-lay
 //import { GroupListComponent } from './groups/group-list.component';
 //import { GroupDetailComponent } from './groups/group-detail.component';
 
+import * as config from './../core/app-globals';
+
 const routes: Routes = [
     {
         path: '', component: MainLayoutComponent,
@@ -16,15 +18,15 @@ const routes: Routes = [
             {
                 path: '',                                       component: DataContainerComponent,
                 children: [
-                    { path: '',                                 redirectTo: 'groups' },
+                    { path: '',                                 redirectTo: '/' + config.appRootPrefix + '/admin/dashboard' },
 
                      // Dashboard
                     //{ path: 'dashboard',                        component: DashboardComponent },
 
                     // Groups
-                    { path: 'groups',                           component: GroupListComponent },
-                    { path: 'groups/create',                    component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'groups/show/:id',                  component: GroupDetailComponent,       data: { action: 'edit' }},
+                    //{ path: 'groups',                           component: GroupListComponent },
+                    //{ path: 'groups/create',                    component: GroupDetailComponent,       data: { action: 'create' }},
+                    //{ path: 'groups/show/:id',                  component: GroupDetailComponent,       data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                               redirectTo: 'dashboard' }

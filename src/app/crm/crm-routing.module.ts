@@ -8,6 +8,8 @@ import { MainLayoutComponent } from './../shared/components/main-layout/main-lay
 import { GroupListComponent } from './groups/group-list.component';
 import { GroupDetailComponent } from './groups/group-detail.component';
 
+import * as config from './../core/app-globals';
+
 const routes: Routes = [
     {
         path: '', component: MainLayoutComponent,
@@ -16,7 +18,7 @@ const routes: Routes = [
             {
                 path: '',                                       component: DataContainerComponent,
                 children: [
-                    //{ path: '',                                 redirectTo: '/pulsar/admin/dashboard' },
+                    { path: '',                                 redirectTo: '/' + config.appRootPrefix + '/admin/dashboard' },
 
                      // Dashboard
                     //{ path: 'dashboard',                        component: DashboardComponent },

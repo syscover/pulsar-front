@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
-import { CrmRoutingModule } from './crm-routing.module';
+import { MarketRoutingModule } from './market-routing.module';
 
-import { GroupListComponent } from './groups/group-list.component';
-import { GroupDetailComponent } from './groups/group-detail.component';
+//import { GroupListComponent } from './groups/group-list.component';
+//import { GroupDetailComponent } from './groups/group-detail.component';
 
-import { GroupService } from './groups/group.service';
+//import { GroupService } from './groups/group.service';
 
 @NgModule({
     imports: [
         SharedModule,
-        CrmRoutingModule
+        MarketRoutingModule
     ],
     declarations: [
-        GroupListComponent,
-        GroupDetailComponent
+       // GroupListComponent,
+       // GroupDetailComponent
     ],
     providers: [
-       GroupService
+       //GroupService
     ]
 })
 
