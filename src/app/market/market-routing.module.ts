@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from './../shared/components/main-layout/main-layout.component';
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
+import { ErrorComponent } from './../shared/components/errors/error.component';
 
-//import { DashboardComponent } from './dashboard/dashboard.component';
-//import { GroupListComponent } from './groups/group-list.component';
-//import { GroupDetailComponent } from './groups/group-detail.component';
+import { CategoryListComponent } from './categories/category-list.component';
+import { CategoryDetailComponent } from './categories/category-detail.component';
 
 import * as config from './../core/app-globals';
 
@@ -16,21 +16,18 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         children: [
             {
-                path: '',                                       component: DataContainerComponent,
+                path: '',                                           component: DataContainerComponent,
                 children: [
-                    { path: '',                                 redirectTo: '/' + config.appRootPrefix + '/admin/dashboard' },
+                    { path: '',                                     redirectTo: 'dashboard' },
 
                     // Categories
-                    //{ path: 'categories',                        component: CountryListComponent },
-                    //{ path: 'categories/create',                 component: CountryDetailComponent,      data: { action: 'create' }},
-                    /*{ path: 'categories/create/:id/:lang/:newLang',
-                        component: CountryDetailComponent,
-                        data: { action: 'create-lang' }
-                    },
-                    { path: 'categories/show/:id/:lang',         component: CountryDetailComponent,      data: { action: 'edit' }},*/
+                    { path: 'categories',                           component: CategoryListComponent },
+                    { path: 'categories/create',                    component: CategoryDetailComponent,     data: { action: 'create' }},
+                    { path: 'categories/create/:id/:lang/:newLang', component: CategoryDetailComponent,     data: { action: 'create-lang' }},
+                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,     data: { action: 'edit' }}, 
 
                     // Wildcard route
-                    { path: '**',                               redirectTo: 'dashboard' }
+                    { path: '**',                                   component: ErrorComponent,              data: { error: '404' }}
                 ]
             }
         ]

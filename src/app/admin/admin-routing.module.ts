@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from './../shared/components/main-layout/main-layout.component';
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
+import { ErrorComponent } from './../shared/components/errors/error.component';
 
 //import { AuthGuard }                    from '../shared/auth/auth-guard.service';
 
@@ -22,39 +23,37 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         children: [
             {
-                path: '',                                       component: DataContainerComponent,
+                path: '',                                           component: DataContainerComponent,
                 children: [
-                    { path: '',                                 redirectTo: 'dashboard' },
+                    { path: '',                                     redirectTo: 'dashboard' },
 
                      // Dashboard
-                    { path: 'dashboard',                        component: DashboardComponent },
+                    { path: 'dashboard',                            component: DashboardComponent },
 
                     // Actions
-                    { path: 'actions',                          component: ActionListComponent },
-                    { path: 'actions/create',                   component: ActionDetailComponent,       data: { action: 'create' }},
-                    { path: 'actions/show/:id',                 component: ActionDetailComponent,       data: { action: 'edit' }},
+                    { path: 'actions',                              component: ActionListComponent },
+                    { path: 'actions/create',                       component: ActionDetailComponent,       data: { action: 'create' }},
+                    { path: 'actions/show/:id',                     component: ActionDetailComponent,       data: { action: 'edit' }},
 
                     // Langs
-                    { path: 'langs',                            component: LangListComponent },
-                    { path: 'langs/create',                     component: LangDetailComponent,         data: { action: 'create' }},
-                    { path: 'langs/show/:id',                   component: LangDetailComponent,         data: { action: 'edit' }},
+                    { path: 'langs',                                component: LangListComponent },
+                    { path: 'langs/create',                         component: LangDetailComponent,         data: { action: 'create' }},
+                    { path: 'langs/show/:id',                       component: LangDetailComponent,         data: { action: 'edit' }},
 
                     // Profiles
-                    { path: 'profiles',                         component: ProfileListComponent },
-                    { path: 'profiles/create',                  component: ProfileDetailComponent,      data: { action: 'create' }},
-                    { path: 'profiles/show/:id',                component: ProfileDetailComponent,      data: { action: 'edit' }},
+                    { path: 'profiles',                             component: ProfileListComponent },
+                    { path: 'profiles/create',                      component: ProfileDetailComponent,      data: { action: 'create' }},
+                    { path: 'profiles/show/:id',                    component: ProfileDetailComponent,      data: { action: 'edit' }},
 
                     // Countries
-                    { path: 'countries',                        component: CountryListComponent },
-                    { path: 'countries/create',                 component: CountryDetailComponent,      data: { action: 'create' }},
-                    { path: 'countries/create/:id/:lang/:newLang',
-                        component: CountryDetailComponent,
-                        data: { action: 'create-lang' }
+                    { path: 'countries',                            component: CountryListComponent },
+                    { path: 'countries/create',                     component: CountryDetailComponent,      data: { action: 'create' }},
+                    { path: 'countries/create/:id/:lang/:newLang',  component: CountryDetailComponent,      data: { action: 'create-lang' }
                     },
-                    { path: 'countries/show/:id/:lang',         component: CountryDetailComponent,      data: { action: 'edit' }},
+                    { path: 'countries/show/:id/:lang',             component: CountryDetailComponent,      data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '**',                               redirectTo: 'dashboard' }
+                    { path: '**',                                   component: ErrorComponent,             data: { error: '404' }}
                 ]
             }
         ]

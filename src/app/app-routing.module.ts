@@ -12,13 +12,8 @@ export const routes: Routes = [
     { path: config.appRootPrefix + '/login', component: LoginComponent },
     { path: config.appRootPrefix + '/admin', loadChildren: 'app/admin/admin.module#AdminModule' },
     { path: config.appRootPrefix + '/crm', loadChildren: 'app/crm/crm.module#CrmModule' },
-    { path: config.appRootPrefix + '/market', loadChildren: 'app/market/market.module#MarketModule' },
+    { path: config.appRootPrefix + '/market', loadChildren: 'app/market/market.module#MarketModule' }
 
-    //{ path: config.appUrlPrefix + 'cms', loadChildren: 'app/cms/cms.module#CmsModule' },
-    
-    //{ path: config.appUrlPrefix + 'material', loadChildren: 'app/dev-material/dev-material.module#DevMaterialModule' },
-    //{ path: config.appUrlPrefix + 'polymer', loadChildren: 'app/dev-polymer/dev-polymer.module#DevPolymerModule' },
-    //{ path: config.appUrlPrefix + 'vaadin', loadChildren: 'app/dev-vaadin/dev-vaadin.module#DevVaadinModule' }
 ];
 
 @NgModule({

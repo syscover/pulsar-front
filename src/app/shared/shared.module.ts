@@ -14,6 +14,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { MenuComponent, SubMenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ErrorComponent } from './components/errors/error.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
 import { InputComponent } from './components/forms/input.component';
@@ -40,6 +41,7 @@ import { ButtonComponent } from './components/forms/button.component';
         SubMenuComponent,
         ProfileComponent,
         FooterComponent,
+        ErrorComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
         InputComponent,
@@ -57,6 +59,7 @@ import { ButtonComponent } from './components/forms/button.component';
         PrimeNgModule,
         ConfirmDialogModule,
         MainLayoutComponent,
+        ErrorComponent,
         DataContainerComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,

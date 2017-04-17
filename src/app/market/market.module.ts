@@ -3,10 +3,10 @@ import { SharedModule } from './../shared/shared.module';
 
 import { MarketRoutingModule } from './market-routing.module';
 
-//import { GroupListComponent } from './groups/group-list.component';
-//import { GroupDetailComponent } from './groups/group-detail.component';
+import { CategoryListComponent } from './categories/category-list.component';
+import { CategoryDetailComponent } from './categories/category-detail.component';
 
-//import { GroupService } from './groups/group.service';
+import { CategoryService } from './categories/category.service';
 
 @NgModule({
     imports: [
@@ -14,11 +14,11 @@ import { MarketRoutingModule } from './market-routing.module';
         MarketRoutingModule
     ],
     declarations: [
-       // GroupListComponent,
-       // GroupDetailComponent
+        CategoryListComponent,
+        CategoryDetailComponent
     ],
     providers: [
-       //GroupService
+        CategoryService
     ]
 })
 
