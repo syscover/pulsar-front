@@ -17,16 +17,36 @@ export class MenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(@Inject(forwardRef(() => MainLayoutComponent)) public app:MainLayoutComponent) {}
+    constructor(@Inject(forwardRef(() => MainLayoutComponent)) public app: MainLayoutComponent) {}
 
     ngOnInit() {
         this.model = [
             {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
             {
-                label: 'CRM', icon: 'settings',
+                label: 'Market', icon: 'shopping_cart',
                 items: [
-                    {label: 'Customers', icon: 'flag', routerLink: ['/pulsar/crm/customers']},
-                    {label: 'Groups', icon: 'public', routerLink: ['/pulsar/crm/groups']}
+                    {
+                        label: 'Catalog', icon: 'layers',
+                        items: [
+                            {label: 'Products', icon: 'view_day', routerLink: ['/pulsar/market/products']},
+                            {label: 'Categories', icon: 'folder_open', routerLink: ['/pulsar/market/categories']},
+                        ]
+                    },
+                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/groups']},
+                    {
+                        label: 'Preferences', icon: 'settings',
+                        items: [
+                            {label: 'Payment methods', icon: 'credit_card', routerLink: ['/pulsar/admin/actions']},
+                            {label: 'Order status', icon: 'cached', routerLink: ['/pulsar/admin/profiles']},
+                        ]
+                    }
+                ]
+            },
+            {
+                label: 'CRM', icon: 'supervisor_account',
+                items: [
+                    {label: 'Customers', icon: 'face', routerLink: ['/pulsar/crm/customers']},
+                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/groups']}
                 ]
             },
             {
@@ -34,120 +54,15 @@ export class MenuComponent implements OnInit {
                 items: [
                     {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/langs']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/countries']},
-                    {label: 'Actions', icon: 'grid_on', routerLink: ['/pulsar/admin/actions']},
-                    {label: 'Profiles', icon: 'content_paste', routerLink: ['/pulsar/admin/profiles']},
-                    {label: 'Overlays', icon: 'content_copy', routerLink: ['/overlays']},
-                    {label: 'Menus', icon: 'menu', routerLink: ['/menus']},
-                    {label: 'Messages', icon: 'message', routerLink: ['/messages']},
-                    {label: 'Charts', icon: 'insert_chart', routerLink: ['/charts']},
-                    {label: 'File', icon: 'attach_file', routerLink: ['/file']},
-                    {label: 'Misc', icon: 'toys', routerLink: ['/misc']}
-                ]
-            },
-            {
-                label: 'Themes', icon: 'palette',
-                items: [
-                    {label: 'Indigo - Pink', icon: 'brush', command: (event) => {this.changeTheme('indigo')}},
-                    {label: 'Brown - Green', icon: 'brush', command: (event) => {this.changeTheme('brown')}},
-                    {label: 'Blue - Amber', icon: 'brush', command: (event) => {this.changeTheme('blue')}},
-                    {label: 'Blue Grey - Green', icon: 'brush', command: (event) => {this.changeTheme('blue-grey')}},
-                    {label: 'Dark - Blue', icon: 'brush', command: (event) => {this.changeTheme('dark-blue')}},
-                    {label: 'Dark - Green', icon: 'brush', command: (event) => {this.changeTheme('dark-green')}},
-                    {label: 'Green - Yellow', icon: 'brush', command: (event) => {this.changeTheme('green')}},
-                    {label: 'Purple - Cyan', icon: 'brush', command: (event) => {this.changeTheme('purple-cyan')}},
-                    {label: 'Purple - Amber', icon: 'brush', command: (event) => {this.changeTheme('purple-amber')}},
-                    {label: 'Teal - Lime', icon: 'brush', command: (event) => {this.changeTheme('teal')}},
-                    {label: 'Cyan - Amber', icon: 'brush', command: (event) => {this.changeTheme('cyan')}},
-                    {label: 'Grey - Deep Orange', icon: 'brush', command: (event) => {this.changeTheme('grey')}}
-                ]
-            },
-            {
-                label: 'Customization', icon: 'settings_application',
-                items: [
-                    {label: 'Compact Size', icon: 'fiber_manual_record', command: () => this.app.layoutCompact = true},
-                    {label: 'Material Size', icon: 'fiber_smart_record',  command: () => this.app.layoutCompact = false},
-                    {label: 'Static Menu', icon: 'menu',  command: () => this.app.changeToStaticMenu()},
-                    {label: 'Overlay Menu', icon: 'exit_to_app',  command: () => this.app.changeToOverlayMenu()},
-                    {label: 'Horizontal Menu', icon: 'border_horizontal',  command: () => this.app.changeToHorizontalMenu()},
-                    {label: 'Light Menu', icon: 'label_outline',  command: () => this.app.darkMenu = false},
-                    {label: 'Dark Menu', icon: 'label',  command: () => this.app.darkMenu = true},
-                    {label: 'Inline Profile', icon: 'contacts',  command: () => this.app.profileMode = 'inline'},
-                    {label: 'Top Profile', icon: 'person_pin',  command: () => this.app.profileMode = 'top'},
-                ]
-            },
-            {
-                label: 'Components', icon: 'list',
-                items: [
-                    {label: 'Sample Page', icon: 'desktop_mac', routerLink: ['/sample']},
-                    {label: 'Forms', icon: 'input', routerLink: ['/forms']},
-                    {label: 'Data', icon: 'grid_on', routerLink: ['/data']},
-                    {label: 'Panels', icon: 'content_paste', routerLink: ['/panels']},
-                    {label: 'Overlays', icon: 'content_copy', routerLink: ['/overlays']},
-                    {label: 'Menus', icon: 'menu', routerLink: ['/menus']},
-                    {label: 'Messages', icon: 'message', routerLink: ['/messages']},
-                    {label: 'Charts', icon: 'insert_chart', routerLink: ['/charts']},
-                    {label: 'File', icon: 'attach_file', routerLink: ['/file']},
-                    {label: 'Misc', icon: 'toys', routerLink: ['/misc']}
-                ]
-            },
-            {
-                label: 'Template Pages', icon: 'get_app',
-                items: [
-                    {label: 'Empty Page', icon: 'hourglass_empty', routerLink: ['/empty']},
-                    {label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login Page', icon: 'verified_user', url: 'assets/pages/login.html', target: '_blank'},
-                    {label: 'Error Page', icon: 'error', url: 'assets/pages/error.html', target: '_blank'},
-                    {label: '404 Page', icon: 'error_outline', url: 'assets/pages/404.html', target: '_blank'},
-                    {label: 'Access Denied Page', icon: 'security', url: 'assets/pages/access.html', target: '_blank'}
-                ]
-            },
-            {
-                label: 'Menu Hierarchy', icon: 'menu',
-                items: [
                     {
-                        label: 'Submenu 1', icon: 'subject',
+                        label: 'Permissions', icon: 'fingerprint',
                         items: [
-                            {
-                                label: 'Submenu 1.1', icon: 'subject',
-                                items: [
-                                    {label: 'Submenu 1.1.1', icon: 'subject'},
-                                    {label: 'Submenu 1.1.2', icon: 'subject'},
-                                    {label: 'Submenu 1.1.3', icon: 'subject'},
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2', icon: 'subject',
-                                items: [
-                                    {label: 'Submenu 1.2.1', icon: 'subject'},
-                                    {label: 'Submenu 1.2.2', icon: 'subject'}
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2', icon: 'subject',
-                        items: [
-                            {
-                                label: 'Submenu 2.1', icon: 'subject',
-                                items: [
-                                    {label: 'Submenu 2.1.1', icon: 'subject'},
-                                    {label: 'Submenu 2.1.2', icon: 'subject'},
-                                    {label: 'Submenu 2.1.3', icon: 'subject'},
-                                ]
-                            },
-                            {
-                                label: 'Submenu 2.2', icon: 'subject',
-                                items: [
-                                    {label: 'Submenu 2.2.1', icon: 'subject'},
-                                    {label: 'Submenu 2.2.2', icon: 'subject'}
-                                ]
-                            },
+                            {label: 'Actions', icon: 'flash_on', routerLink: ['/pulsar/admin/actions']},
+                            {label: 'Profiles', icon: 'supervisor_account', routerLink: ['/pulsar/admin/profiles']},
                         ]
                     }
                 ]
-            },
-            {label: 'Utils', icon: 'build', routerLink: ['/utils']},
-            {label: 'Documentation', icon: 'find_in_page', routerLink: ['/documentation']}
+            }
         ];
     }
 
@@ -266,5 +181,5 @@ export class SubMenuComponent {
             this.activeIndex = null;
         }
     }
-    
+
 }

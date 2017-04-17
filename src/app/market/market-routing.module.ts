@@ -1,8 +1,8 @@
-import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from './../shared/components/main-layout/main-layout.component';
+import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 
 //import { DashboardComponent } from './dashboard/dashboard.component';
 //import { GroupListComponent } from './groups/group-list.component';
