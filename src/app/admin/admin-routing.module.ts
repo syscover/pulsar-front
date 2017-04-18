@@ -25,8 +25,6 @@ const routes: Routes = [
             {
                 path: '',                                           component: DataContainerComponent,
                 children: [
-                    { path: '',                                     redirectTo: 'dashboard' },
-
                      // Dashboard
                     { path: 'dashboard',                            component: DashboardComponent },
 
@@ -48,11 +46,11 @@ const routes: Routes = [
                     // Countries
                     { path: 'countries',                            component: CountryListComponent },
                     { path: 'countries/create',                     component: CountryDetailComponent,      data: { action: 'create' }},
-                    { path: 'countries/create/:id/:lang/:newLang',  component: CountryDetailComponent,      data: { action: 'create-lang' }
-                    },
+                    { path: 'countries/create/:id/:lang/:newLang',  component: CountryDetailComponent,      data: { action: 'create-lang' }},
                     { path: 'countries/show/:id/:lang',             component: CountryDetailComponent,      data: { action: 'edit' }},
 
                     // Wildcard route
+                    { path: '',                                     redirectTo: 'dashboard' },
                     { path: '**',                                   component: ErrorComponent,             data: { error: '404' }}
                 ]
             }

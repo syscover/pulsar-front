@@ -18,13 +18,16 @@ const routes: Routes = [
             {
                 path: '',                                           component: DataContainerComponent,
                 children: [
-                    { path: '',                                     redirectTo: 'dashboard' },
-
                     // Categories
                     { path: 'categories',                           component: CategoryListComponent },
                     { path: 'categories/create',                    component: CategoryDetailComponent,     data: { action: 'create' }},
                     { path: 'categories/create/:id/:lang/:newLang', component: CategoryDetailComponent,     data: { action: 'create-lang' }},
-                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,     data: { action: 'edit' }}, 
+                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,     data: { action: 'edit' }},
+
+                    // Customer Class
+                    { path: 'customer/class',                       component: CategoryListComponent },
+                    { path: 'customer/class/create',                component: CategoryDetailComponent,      data: { action: 'create' }},
+                    { path: 'customer/class/show/:id',              component: CategoryDetailComponent,      data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                   component: ErrorComponent,              data: { error: '404' }}

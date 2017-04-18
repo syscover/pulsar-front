@@ -10,3 +10,8 @@ export class Category {
     data_lang: string;
     data: string;
 }
+
+export class CustomerClass {
+    id: number;
+    name: string;
+}
