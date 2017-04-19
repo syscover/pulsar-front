@@ -5,8 +5,12 @@ import { MarketRoutingModule } from './market-routing.module';
 
 import { CategoryListComponent } from './categories/category-list.component';
 import { CategoryDetailComponent } from './categories/category-detail.component';
+import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
+import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 
+import { LangService } from './../admin/langs/lang.service';
 import { CategoryService } from './categories/category.service';
+import { CustomerClassTaxService } from './customer-class-tax/customer-class-tax.service';
 
 @NgModule({
     imports: [
@@ -15,10 +19,14 @@ import { CategoryService } from './categories/category.service';
     ],
     declarations: [
         CategoryListComponent,
-        CategoryDetailComponent
+        CategoryDetailComponent,
+        CustomerClassTaxListComponent,
+        CustomerClassTaxDetailComponent
     ],
     providers: [
-        CategoryService
+        LangService,
+        CategoryService,
+        CustomerClassTaxService
     ]
 })
 

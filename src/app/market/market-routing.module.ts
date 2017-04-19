@@ -7,6 +7,8 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 
 import { CategoryListComponent } from './categories/category-list.component';
 import { CategoryDetailComponent } from './categories/category-detail.component';
+import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
+import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 
 import * as config from './../core/app-globals';
 
@@ -20,17 +22,17 @@ const routes: Routes = [
                 children: [
                     // Categories
                     { path: 'categories',                           component: CategoryListComponent },
-                    { path: 'categories/create',                    component: CategoryDetailComponent,     data: { action: 'create' }},
-                    { path: 'categories/create/:id/:lang/:newLang', component: CategoryDetailComponent,     data: { action: 'create-lang' }},
-                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,     data: { action: 'edit' }},
+                    { path: 'categories/create',                    component: CategoryDetailComponent,             data: { action: 'create' }},
+                    { path: 'categories/create/:id/:lang/:newLang', component: CategoryDetailComponent,             data: { action: 'create-lang' }},
+                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,             data: { action: 'edit' }},
 
                     // Customer Class
-                    { path: 'customer/class',                       component: CategoryListComponent },
-                    { path: 'customer/class/create',                component: CategoryDetailComponent,      data: { action: 'create' }},
-                    { path: 'customer/class/show/:id',              component: CategoryDetailComponent,      data: { action: 'edit' }},
+                    { path: 'customer-class-tax',                   component: CustomerClassTaxListComponent },
+                    { path: 'customer-class-tax/create',            component: CustomerClassTaxDetailComponent,      data: { action: 'create' }},
+                    { path: 'customer-class-tax/show/:id',          component: CustomerClassTaxDetailComponent,      data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '**',                                   component: ErrorComponent,              data: { error: '404' }}
+                    { path: '**',                                   component: ErrorComponent,                      data: { error: '404' }}
                 ]
             }
         ]

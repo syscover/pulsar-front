@@ -32,7 +32,13 @@ export class MenuComponent implements OnInit {
                             {label: 'Categories', icon: 'folder_open', routerLink: ['/pulsar/market/categories']},
                         ]
                     },
-                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/groups']},
+                    {
+                        label: 'Taxes', icon: 'keyboard_hide',
+                        items: [
+                            {label: 'Customer class taxes', icon: 'group', routerLink: ['/pulsar/market/customer-class-tax']},
+                            {label: 'Order status', icon: 'cached', routerLink: ['/pulsar/admin/profiles']},
+                        ]
+                    },
                     {
                         label: 'Preferences', icon: 'settings',
                         items: [

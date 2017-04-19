@@ -11,7 +11,7 @@ export class Category {
     data: string;
 }
 
-export class CustomerClass {
+export class CustomerClassTax {
     id: number;
     name: string;
 }
