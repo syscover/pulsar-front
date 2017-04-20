@@ -40,7 +40,7 @@
                 <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id]">Edit</a>
+                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(this.f, object)">Delete</a>
                 </div>
             </div>

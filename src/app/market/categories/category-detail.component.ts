@@ -75,7 +75,8 @@ export class CategoryDetailComponent extends CoreDetailComponent implements OnIn
             ],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],
-            active: ''
+            active: '',
+            description: ''
         });
     }
 

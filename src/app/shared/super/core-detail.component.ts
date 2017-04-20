@@ -72,8 +72,13 @@ export class CoreDetailComponent {
             obs = this.objectService.storeRecord(fg.value);
         }
         if (this.dataRoute.action === 'create-lang') {
-            let values = fg.value;
+            // Usually the id is disabled, we enable it if you are going to create a new language
+            fg.get('id').enable(); // enable is a method from AbstractControl
+
+            let values = fg.value; // get values from form
             values.lang_id = this.params['newLang'];
+
+
 
             obs = this.objectService.storeRecord(values);
         }

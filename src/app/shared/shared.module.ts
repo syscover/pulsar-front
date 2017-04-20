@@ -20,6 +20,7 @@ import { DatatableHeaderComponent } from './components/datatable-header/datatabl
 import { InputComponent } from './components/forms/input.component';
 import { DropdownComponent } from './components/forms/dropdown.component';
 import { CheckboxComponent } from './components/forms/checkbox.component';
+import { TextareaComponent } from './components/forms/textarea.component';
 import { ButtonComponent } from './components/forms/button.component';
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ButtonComponent } from './components/forms/button.component';
         InputComponent,
         DropdownComponent,
         CheckboxComponent,
+        TextareaComponent,
         ButtonComponent
     ],
     providers: [
@@ -66,6 +68,7 @@ import { ButtonComponent } from './components/forms/button.component';
         InputComponent,
         DropdownComponent,
         CheckboxComponent,
+        TextareaComponent,
         ButtonComponent,
         CheckLangsObjectPipe,
         ActionLangObjectPipe
