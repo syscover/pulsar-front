@@ -38,11 +38,11 @@ export class CountryListComponent extends CoreListComponent {
     loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
         // only get activated langs when activatedLangs is not instantiated
         if (this.activatedLangs) {
-            super.loadDadaTableLazy(event, f, 'es');
+            super.loadDadaTableLazy(event, f, this.configService.getConfig('base_lang').id);
         } else {
             this.langService.getActivatedLangs().subscribe(response => {
                 this.activatedLangs = <Lang[]>response.data;
-                super.loadDadaTableLazy(event, f, 'es');
+                super.loadDadaTableLazy(event, f, this.configService.getConfig('base_lang').id);
             });
         }
     }

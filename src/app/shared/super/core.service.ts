@@ -5,15 +5,15 @@ import { Observable } from 'rxjs/Observable';
 
 import { JsonResponse } from './../classes/json-respose';
 
-import * as config from './../../core/app-globals';
+import * as appGlobals from './../../core/app-globals';
 
 export class CoreService {
 
     protected headers: Headers;
     protected options: RequestOptions;
     protected http: Http;
-    protected appRootPrefix: string = config.appRootPrefix;
-    protected apiUrlPrefix: string = config.apiUrlPrefix;
+    protected appRootPrefix: string = appGlobals.appRootPrefix;
+    protected apiUrlPrefix: string = appGlobals.apiUrlPrefix;
     private _baseUri: string;
 
     constructor(

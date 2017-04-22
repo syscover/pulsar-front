@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
+import { ConfigService } from './../../core/services/config.service';
 
 export class CoreListComponent {
 
@@ -18,11 +19,13 @@ export class CoreListComponent {
     // services superclass
     protected objectService: CoreService;
     protected confirmationService: ConfirmationService;
+    protected configService: ConfigService;
 
     constructor(
         protected injector: Injector
     ) {
         this.confirmationService = injector.get(ConfirmationService);
+        this.configService = injector.get(ConfigService);
     }
 
     getRecords(f: Function): void {
