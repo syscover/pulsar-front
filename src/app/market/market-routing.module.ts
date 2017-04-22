@@ -12,7 +12,11 @@ import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-c
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { OrderStatusListComponent } from './order-status/order-status-list.component';
+import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+import { ProductListComponent } from './product/product-list.component';
+
 
 import * as config from './../core/app-globals';
 
@@ -44,6 +48,18 @@ const routes: Routes = [
                     { path: 'product-class-tax',                    component: ProductClassTaxListComponent },
                     { path: 'product-class-tax/create',             component: ProductClassTaxDetailComponent,          data: { action: 'create' }},
                     { path: 'product-class-tax/show/:id',           component: ProductClassTaxDetailComponent,          data: { action: 'edit' }},
+
+                    // Order Status
+                    { path: 'order-status',                             component: OrderStatusListComponent },
+                    { path: 'order-status/create',                      component: OrderStatusDetailComponent,      data: { action: 'create' }},
+                    { path: 'order-status/create/:id/:lang/:newLang',   component: OrderStatusDetailComponent,      data: { action: 'create-lang' }},
+                    { path: 'order-status/show/:id/:lang',              component: OrderStatusDetailComponent,      data: { action: 'edit' }},
+
+                    // Products
+                    { path: 'products',                             component: ProductListComponent },
+                    { path: 'products/create',                      component: CategoryDetailComponent,                 data: { action: 'create' }},
+                    { path: 'products/create/:id/:lang/:newLang',   component: CategoryDetailComponent,                 data: { action: 'create-lang' }},
+                    { path: 'products/show/:id/:lang',              component: CategoryDetailComponent,                 data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                   component: ErrorComponent,                          data: { error: '404' }}

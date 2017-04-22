@@ -43,8 +43,8 @@ export class MenuComponent implements OnInit {
                     {
                         label: 'Preferences', icon: 'settings',
                         items: [
-                            {label: 'Payment methods', icon: 'credit_card', routerLink: ['/pulsar/admin/actions']},
-                            {label: 'Order status', icon: 'cached', routerLink: ['/pulsar/admin/profiles']},
+                            {label: 'Payment methods', icon: 'credit_card', routerLink: ['/pulsar/market/payment-method']},
+                            {label: 'Order status', icon: 'cached', routerLink: ['/pulsar/market/order-status']},
                         ]
                     }
                 ]

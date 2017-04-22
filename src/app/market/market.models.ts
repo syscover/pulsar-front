@@ -46,3 +46,22 @@ export class PaymentMethod {
     active: boolean;
     data_lang: string;
 }
+
+export class Product {
+    id: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+    description: string;
+    field_group_id: number;
+    type_id: number;
+    parent_product_id; number;
+    weight: number;
+    active: boolean;
+    sort: number;
+    price_type_id: number;
+    subtotal: number;
+    product_class_tax_id: number;
+    data_lang: string;
+    data: string;
+}

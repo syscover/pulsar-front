@@ -1,0 +1,54 @@
+<div class="container-fluid form-group">
+    <h1>Order Status</h1>
+
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
+        </div>
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="langs"
+                            name="lang_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
+        </div>
+        <div class="row">
+            <ps-checkbox    [form]="fg"
+                            name="active"
+                            label="Active" class="col-sm-12 col-md-4"></ps-checkbox>
+        </div>
+        <div class="row justify-content-sm-center justify-content-md-start">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[this.objectService.baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        *ngIf="this.dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object)" 
+                        className="red-btn"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>
