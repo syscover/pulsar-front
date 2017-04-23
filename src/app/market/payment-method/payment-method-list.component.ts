@@ -3,25 +3,25 @@ import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
-import { OrderStatusService } from './order-status.service';
-import { OrderStatus } from '../market.models';
+import { PaymentMethodService } from './payment-method.service';
+import { PaymentMethod } from './../market.models';
 import { LangService } from './../../admin/langs/lang.service';
 import { Lang } from './../../admin/admin.models';
 
 @Component({
-    selector: 'ps-order-status-list',
-    templateUrl: './order-status-list.component.html'
+    selector: 'ps-payment-method-list',
+    templateUrl: './payment-method-list.component.html'
 })
-export class OrderStatusListComponent extends CoreListComponent {
+export class PaymentMethodListComponent extends CoreListComponent {
 
     activatedLangs: Lang[];
 
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'order_status.id', 'order_status.name'
+        'payment_method.id', 'payment_method.name'
     ];
-    objects: OrderStatus[] = []; // initializes the component to has any data for view
+    objects: PaymentMethod[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
@@ -29,7 +29,7 @@ export class OrderStatusListComponent extends CoreListComponent {
 
         // service for parent class
         protected injector: Injector,
-        protected objectService: OrderStatusService,
+        protected objectService: PaymentMethodService,
     ) {
         super(injector);
     }

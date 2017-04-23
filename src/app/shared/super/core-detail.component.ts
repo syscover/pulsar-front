@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/primeng';
 import { Observable } from 'rxjs/Observable';
 
 import { CoreService } from './core.service';
+import { ConfigService } from './../../core/services/config.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { onSubmitFormGroup } from './../super/core-validation';
@@ -24,6 +25,7 @@ export class CoreDetailComponent {
     protected confirmationService;
 
     // services superclass
+    protected configService: ConfigService;
     protected objectService: CoreService;
 
     constructor(
@@ -32,6 +34,7 @@ export class CoreDetailComponent {
         this.router = injector.get(Router);
         this.route = injector.get(ActivatedRoute);
         this.fb = injector.get(FormBuilder);
+        this.configService = injector.get(ConfigService);
 
         this.dataRoute = <DataRoute>this.route.snapshot.data;
     }

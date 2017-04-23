@@ -1,5 +1,5 @@
 <div class="container-fluid form-group">
-    <h1>Category</h1>
+    <h1>Paymnent Method</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
         <div class="row">
@@ -9,7 +9,6 @@
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
         </div>
-
         <div class="row">
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
@@ -19,7 +18,15 @@
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
         </div>
-
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="orderStatuses"
+                            name="order_status_successful_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -27,25 +34,32 @@
                         type="text"
                         name="name" class="col-12"></ps-input>
         </div>
-
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
-                        label="Slug"
-                        type="text"
-                        name="slug" class="col-12"></ps-input>
+                        label="Minimum price"
+                        type="number"
+                        name="minimum_price" class="col-sm-12 col-md-4"></ps-input>
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Maximum price"
+                        type="number"
+                        name="maximum_price" class="col-sm-12 col-md-4"></ps-input>
         </div>
-
         <div class="row">
             <ps-checkbox    [form]="fg"
                             name="active"
                             label="Active" class="col-sm-12 col-md-4"></ps-checkbox>
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="sort"
+                        type="number"
+                        label="Sort" class="col-sm-12 col-md-4"></ps-input>
         </div>
-
         <div class="row">
             <ps-textarea    [form]="fg"
-                            name="description"
-                            placeholder="Description"
+                            name="instructions"
+                            placeholder="Instructions"
                             class="col-12"></ps-textarea>
         
         </div>

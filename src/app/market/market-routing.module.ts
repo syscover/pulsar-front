@@ -11,12 +11,13 @@ import { CustomerClassTaxListComponent } from './customer-class-tax/customer-cla
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
-import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
+import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
+import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductListComponent } from './product/product-list.component';
-
 
 import * as config from './../core/app-globals';
 
@@ -54,6 +55,12 @@ const routes: Routes = [
                     { path: 'order-status/create',                      component: OrderStatusDetailComponent,      data: { action: 'create' }},
                     { path: 'order-status/create/:id/:lang/:newLang',   component: OrderStatusDetailComponent,      data: { action: 'create-lang' }},
                     { path: 'order-status/show/:id/:lang',              component: OrderStatusDetailComponent,      data: { action: 'edit' }},
+
+                    // Payment Method
+                    { path: 'payment-method',                             component: PaymentMethodListComponent },
+                    { path: 'payment-method/create',                      component: PaymentMethodDetailComponent,      data: { action: 'create' }},
+                    { path: 'payment-method/create/:id/:lang/:newLang',   component: PaymentMethodDetailComponent,      data: { action: 'create-lang' }},
+                    { path: 'payment-method/show/:id/:lang',              component: PaymentMethodDetailComponent,      data: { action: 'edit' }},
 
                     // Products
                     { path: 'products',                             component: ProductListComponent },
