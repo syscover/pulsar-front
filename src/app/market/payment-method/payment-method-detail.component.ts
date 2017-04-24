@@ -66,35 +66,36 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
                 }); // get langs
 
                 this.langs.unshift({ label: 'Select a language', value: '' });
-                super.getRecordHasIdParamenter(this.f);
-            });
 
-        const querySearchOrderStatus = {
-            'type': 'query',
-            'lang': this.configService.getConfig('base_lang').id,
-            'parameters': [
-                {
-                    'command': 'where',
-                    'column': 'order_status.active',
-                    'operator': '=',
-                    'value': true
-                },
-                {
-                    'command': 'orderBy',
-                    'operator': 'asc',
-                    'column': 'order_status.name'
-                }
-            ]
-        };
+                const querySearchOrderStatus = {
+                    'type': 'query',
+                    'lang': this.configService.getConfig('base_lang').id,
+                    'parameters': [
+                        {
+                            'command': 'where',
+                            'column': 'order_status.active',
+                            'operator': '=',
+                            'value': true
+                        },
+                        {
+                            'command': 'orderBy',
+                            'operator': 'asc',
+                            'column': 'order_status.name'
+                        }
+                    ]
+                };
 
-        this.orderStatusService.searchRecords(querySearchOrderStatus)
-            .subscribe((response) => {
+                this.orderStatusService.searchRecords(querySearchOrderStatus)
+                    .subscribe((response) => {
 
-                this.orderStatuses = _.map(<OrderStatus[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
-                }); // get order status
+                        this.orderStatuses = _.map(<OrderStatus[]>response.data, obj => {
+                            return { label: obj.name, value: obj.id };
+                        }); // get order status
 
-                this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
+                        this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
+
+                        super.getRecordHasIdParamenter(this.f);
+                    });
             });
     }
 
@@ -105,7 +106,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
                 {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
             ],
             order_status_successful_id: [
-                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
+                {value: '', disabled: this.dataRoute.action === 'create-lang'}, Validators.required
             ],
             name: ['', Validators.required ],
             minimum_price: '',
