@@ -1,6 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -45,6 +46,7 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     constructor(
         protected injector: Injector,
         protected objectService: CountryService,
+        protected confirmationService: ConfirmationService,
         protected langService: LangService
     ) {
         super(injector);

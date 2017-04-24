@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import * as appGlobals from './../../core/app-globals';
@@ -7,12 +7,17 @@ import * as appGlobals from './../../core/app-globals';
 @Injectable()
 export class ConfigService {
 
+    protected headers: Headers;
+    protected options: RequestOptions;
     private config: Object = null;
     private env:    Object = null;
 
     constructor(
         private http: Http
-    ) { }
+    ) {
+        this.headers = new Headers({ 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({ headers: this.headers });
+    }
 
     /**
      * Use to get the data found in the second file (config file)
@@ -26,6 +31,12 @@ export class ConfigService {
      */
     public getEnv(key: any) {
         return this.env[key];
+    }
+
+    public getValue(object: any) {
+        return this.http
+            .post(`${appGlobals.apiUrlPrefix}/api/v1/admin/config/values`, object, this.options)
+            .map((response: Response) => response.json());
     }
 
     /**
@@ -45,11 +56,11 @@ export class ConfigService {
 
                 switch (envResponse.env) {
                     case 'production': {
-                        request = this.http.get(`${appGlobals.apiUrlPrefix}/api/v1/admin/config/values/${envResponse.env }`);
+                        request = this.http.get(`${appGlobals.apiUrlPrefix}/api/v1/admin/config/bootstrap/${envResponse.env }`);
                     } break;
 
                     case 'development': {
-                        request = this.http.get(`${appGlobals.apiUrlPrefix}/api/v1/admin/config/values/${envResponse.env }`);
+                        request = this.http.get(`${appGlobals.apiUrlPrefix}/api/v1/admin/config/bootstrap/${envResponse.env }`);
                     } break;
 
                     case 'default': {

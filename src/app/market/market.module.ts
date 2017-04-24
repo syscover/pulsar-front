@@ -16,6 +16,8 @@ import { OrderStatusDetailComponent } from './order-status/order-status-detail.c
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductListComponent } from './product/product-list.component';
+import { ProductDetailComponent } from './product/product-detail.component';
+
 
 import { LangService } from './../admin/langs/lang.service';
 import { CategoryService } from './categories/category.service';
@@ -44,7 +46,8 @@ import { ProductService } from './product/product.service';
         OrderStatusDetailComponent,
         ProductClassTaxListComponent,
         ProductClassTaxDetailComponent,
-        ProductListComponent
+        ProductListComponent,
+        ProductDetailComponent
     ],
     providers: [
         LangService,

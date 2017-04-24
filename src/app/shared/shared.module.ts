@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { PrimeNgModule } from './modules/prime-ng.module';
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
@@ -17,8 +18,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ErrorComponent } from './components/errors/error.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
+import { FormHeaderComponent } from './components/form-header/form-header.component';
 import { InputComponent } from './components/forms/input.component';
+import { EditorComponent } from './components/forms/editor.component';
+import { SpinnerComponent } from './components/forms/spinner.component';
 import { DropdownComponent } from './components/forms/dropdown.component';
+import { MultiSelectComponent } from './components/forms/multi-select.component';
 import { CheckboxComponent } from './components/forms/checkbox.component';
 import { TextareaComponent } from './components/forms/textarea.component';
 import { ButtonComponent } from './components/forms/button.component';
@@ -30,7 +35,9 @@ import { ButtonComponent } from './components/forms/button.component';
         FormsModule,
         ReactiveFormsModule,
         PrimeNgModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        FroalaEditorModule.forRoot(),
+        FroalaViewModule.forRoot()
     ],
     declarations: [
         MainLayoutComponent,
@@ -45,8 +52,12 @@ import { ButtonComponent } from './components/forms/button.component';
         ErrorComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
+        FormHeaderComponent,
         InputComponent,
+        EditorComponent,
+        SpinnerComponent,
         DropdownComponent,
+        MultiSelectComponent,
         CheckboxComponent,
         TextareaComponent,
         ButtonComponent
@@ -60,13 +71,19 @@ import { ButtonComponent } from './components/forms/button.component';
         ReactiveFormsModule,
         PrimeNgModule,
         ConfirmDialogModule,
+        FroalaEditorModule,
+        FroalaViewModule,
         MainLayoutComponent,
         ErrorComponent,
         DataContainerComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
+        FormHeaderComponent,
         InputComponent,
+        EditorComponent,
+        SpinnerComponent,
         DropdownComponent,
+        MultiSelectComponent,
         CheckboxComponent,
         TextareaComponent,
         ButtonComponent,

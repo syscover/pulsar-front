@@ -2,6 +2,7 @@
     <h1>Order Status</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+        
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -9,6 +10,7 @@
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
         </div>
+
         <div class="row">
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
@@ -18,6 +20,7 @@
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
         </div>
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -25,11 +28,14 @@
                         type="text"
                         name="name" class="col-12"></ps-input>
         </div>
+
         <div class="row">
             <ps-checkbox    [form]="fg"
                             name="active"
                             label="Active" class="col-sm-12 col-md-4"></ps-checkbox>
         </div>
+
+        <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start">
             <ps-button  type="submit" 
                         icon="fa-check" 

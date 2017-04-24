@@ -8,7 +8,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
     template: `
         <div [formGroup]="form">
             <p-checkbox 
-                [formControlName]="name" 
+                [formControlName]="name"
                 [label]="label" 
                 binary="true">
             </p-checkbox>
@@ -38,6 +38,8 @@ export class CheckboxComponent implements OnInit {
 
     ngOnInit() {
         this.formControl = this.form.controls[this.name];
+
+        // Error validation
         this.form
             .controls[this.name]
             .valueChanges

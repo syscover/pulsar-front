@@ -18,6 +18,7 @@ import { OrderStatusDetailComponent } from './order-status/order-status-detail.c
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductListComponent } from './product/product-list.component';
+import { ProductDetailComponent } from './product/product-detail.component';
 
 import * as config from './../core/app-globals';
 
@@ -64,9 +65,9 @@ const routes: Routes = [
 
                     // Products
                     { path: 'products',                             component: ProductListComponent },
-                    { path: 'products/create',                      component: CategoryDetailComponent,                 data: { action: 'create' }},
-                    { path: 'products/create/:id/:lang/:newLang',   component: CategoryDetailComponent,                 data: { action: 'create-lang' }},
-                    { path: 'products/show/:id/:lang',              component: CategoryDetailComponent,                 data: { action: 'edit' }},
+                    { path: 'products/create',                      component: ProductDetailComponent,                 data: { action: 'create' }},
+                    { path: 'products/create/:id/:lang/:newLang',   component: ProductDetailComponent,                 data: { action: 'create-lang' }},
+                    { path: 'products/show/:id/:lang',              component: ProductDetailComponent,                 data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                   component: ErrorComponent,                          data: { error: '404' }}

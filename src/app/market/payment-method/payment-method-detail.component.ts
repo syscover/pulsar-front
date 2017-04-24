@@ -62,44 +62,44 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         this.langService.getRecords()
             .subscribe((response) => {
 
+                // get langs
                 this.langs = _.map(<Lang[]>response.data, obj => {
                     return { label: obj.name, value: obj.id };
-                }); // get langs
-
+                });
                 this.langs.unshift({ label: 'Select a language', value: '' });
-
-                 // load order status
-                const querySearchOrderStatus = {
-                    'type': 'query',
-                    'lang': this.configService.getConfig('base_lang').id,
-                    'parameters': [
-                        {
-                            'command': 'where',
-                            'column': 'order_status.active',
-                            'operator': '=',
-                            'value': true
-                        },
-                        {
-                            'command': 'orderBy',
-                            'operator': 'asc',
-                            'column': 'order_status.name'
-                        }
-                    ]
-                };
-
-                this.orderStatusService.searchRecords(querySearchOrderStatus)
-                    .subscribe((response) => {
-
-                        this.orderStatuses = _.map(<OrderStatus[]>response.data, obj => {
-                            return { label: obj.name, value: obj.id };
-                        }); // get order status
-
-                        this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
-                    });
-
-                // get object
-                super.getRecordHasIdParamenter(this.f);
             });
+
+        // load order status
+        const querySearchOrderStatus = {
+            'type': 'query',
+            'lang': this.configService.getConfig('base_lang').id,
+            'parameters': [
+                {
+                    'command': 'where',
+                    'column': 'order_status.active',
+                    'operator': '=',
+                    'value': true
+                },
+                {
+                    'command': 'orderBy',
+                    'operator': 'asc',
+                    'column': 'order_status.name'
+                }
+            ]
+        };
+
+        this.orderStatusService.searchRecords(querySearchOrderStatus)
+            .subscribe((response) => {
+
+                this.orderStatuses = _.map(<OrderStatus[]>response.data, obj => {
+                    return { label: obj.name, value: obj.id };
+                }); // get order status
+
+                this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
+            });
+
+        // get object
+        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {

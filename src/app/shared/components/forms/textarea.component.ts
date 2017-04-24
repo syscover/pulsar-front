@@ -48,6 +48,8 @@ export class TextareaComponent implements OnInit {
 
     ngOnInit() {
         this.formControl = this.form.controls[this.name];
+
+        // Error validation
         this.form
             .controls[this.name]
             .valueChanges

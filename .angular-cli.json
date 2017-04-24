@@ -27,7 +27,9 @@
         "../node_modules/quill/dist/quill.snow.css",
         "../node_modules/nanoscroller/bin/css/nanoscroller.css",
         "../node_modules/primeng/resources/primeng.min.css",
+        "assets/vendor/font-awesome/scss/font-awesome.scss",
         "assets/vendor/pace/pace.min.css",
+        "assets/helpers/helpers.css",
         "styles.css"
       ],
       "scripts": [

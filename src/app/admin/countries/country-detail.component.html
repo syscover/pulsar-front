@@ -25,11 +25,11 @@
                         type="text"
                         label="Prefix" class="col-sm-12 col-md-4"></ps-input>
 
-            <ps-input   [form]="fg"
+            <ps-spinner [form]="fg" 
                         [errors]="formErrors"
-                        name="sort"
-                        type="number"
-                        label="Sort" class="col-sm-12 col-md-4"></ps-input>
+                        label="Sort"
+                        [min]="0"
+                        name="sort" class="col-sm-12 col-md-4"></ps-spinner>
         </div>
 
         <div class="row">

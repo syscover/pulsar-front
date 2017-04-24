@@ -21,6 +21,16 @@ export class ProductClassTax {
     name: string;
 }
 
+export class ProductType {
+    id: number;
+    name: string;
+}
+
+export class PriceType {
+    id: number;
+    name: string;
+}
+
 export class GroupCustomerClassTax {
     group_id: number;
     customer_class_tax_id: number;
@@ -54,7 +64,7 @@ export class Product {
     slug: string;
     description: string;
     field_group_id: number;
-    type_id: number;
+    product_type_id: number;
     parent_product_id; number;
     weight: number;
     active: boolean;
