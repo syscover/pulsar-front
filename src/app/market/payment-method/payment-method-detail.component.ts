@@ -58,6 +58,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
     ngOnInit() {
         this.createForm(); // create form
 
+        // load langs
         this.langService.getRecords()
             .subscribe((response) => {
 
@@ -67,6 +68,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
 
                 this.langs.unshift({ label: 'Select a language', value: '' });
 
+                 // load order status
                 const querySearchOrderStatus = {
                     'type': 'query',
                     'lang': this.configService.getConfig('base_lang').id,
@@ -93,9 +95,10 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
                         }); // get order status
 
                         this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
-
-                        super.getRecordHasIdParamenter(this.f);
                     });
+
+                // get object
+                super.getRecordHasIdParamenter(this.f);
             });
     }
 
