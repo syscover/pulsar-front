@@ -7,6 +7,12 @@ import { MainLayoutComponent } from './../main-layout/main-layout.component';
 
 @Component({
     selector: 'ps-menu',
+    styles: [`
+        :host{
+            font-size: 16px;
+            line-height: 1.5em;
+        }
+    `],
     template: `
         <ul ps-submenu [item]="model" root="true" class="ultima-menu ultima-main-menu clearfix" [reset]="reset" visible="true"></ul>
     `
