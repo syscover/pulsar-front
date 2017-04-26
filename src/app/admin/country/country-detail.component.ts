@@ -10,7 +10,7 @@ import { CountryService } from './country.service';
 
 // custom imports
 import { Lang } from './../admin.models';
-import { LangService } from './../langs/lang.service';
+import { LangService } from './../lang/lang.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';

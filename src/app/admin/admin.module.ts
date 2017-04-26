@@ -4,19 +4,19 @@ import { SharedModule } from './../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LangListComponent } from './langs/lang-list.component';
-import { LangDetailComponent } from './langs/lang-detail.component';
-import { CountryListComponent } from './countries/country-list.component';
-import { CountryDetailComponent } from './countries/country-detail.component';
-import { ProfileListComponent } from './profiles/profile-list.component';
-import { ProfileDetailComponent } from './profiles/profile-detail.component';
-import { ActionListComponent } from './actions/action-list.component';
-import { ActionDetailComponent } from './actions/action-detail.component';
+import { LangListComponent } from './lang/lang-list.component';
+import { LangDetailComponent } from './lang/lang-detail.component';
+import { CountryListComponent } from './country/country-list.component';
+import { CountryDetailComponent } from './country/country-detail.component';
+import { ProfileListComponent } from './profile/profile-list.component';
+import { ProfileDetailComponent } from './profile/profile-detail.component';
+import { ActionListComponent } from './action/action-list.component';
+import { ActionDetailComponent } from './action/action-detail.component';
 
-import { LangService } from './langs/lang.service';
-import { CountryService } from './countries/country.service';
-import { ProfileService } from './profiles/profile.service';
-import { ActionService } from './actions/action.service';
+import { LangService } from './lang/lang.service';
+import { CountryService } from './country/country.service';
+import { ProfileService } from './profile/profile.service';
+import { ActionService } from './action/action.service';
 
 @NgModule({
     imports: [

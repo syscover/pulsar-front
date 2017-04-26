@@ -1,27 +1,27 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, HostBinding } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
-import { CountryService } from './country.service';
-import { Country } from '../admin.models';
-import { LangService } from './../langs/lang.service';
-import { Lang } from './../admin.models';
+import { CategoryService } from './category.service';
+import { Category } from '../market.models';
+import { LangService } from './../../admin/lang/lang.service';
+import { Lang } from './../../admin/admin.models';
 
 @Component({
-    selector: 'ps-country-list',
-    templateUrl: './country-list.component.html'
+    selector: 'ps-category-list',
+    templateUrl: './category-list.component.html'
 })
-export class CountryListComponent extends CoreListComponent {
+export class CategoryListComponent extends CoreListComponent {
 
     activatedLangs: Lang[];
 
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'country.id', 'country.name', 'lang.name'
+        'category.id', 'category.name', 'lang.name'
     ];
-    objects: Country[] = []; // initializes the component to has any data for view
+    objects: Category[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
@@ -29,7 +29,7 @@ export class CountryListComponent extends CoreListComponent {
 
         // service for parent class
         protected injector: Injector,
-        protected objectService: CountryService
+        protected objectService: CategoryService,
     ) {
         super(injector);
     }
@@ -46,4 +46,5 @@ export class CountryListComponent extends CoreListComponent {
             });
         }
     }
+
 }

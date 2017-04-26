@@ -5,8 +5,8 @@ import { MainLayoutComponent } from './../shared/components/main-layout/main-lay
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
 
-import { CategoryListComponent } from './categories/category-list.component';
-import { CategoryDetailComponent } from './categories/category-detail.component';
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
@@ -30,54 +30,54 @@ const routes: Routes = [
         //canActivate: [AuthGuard],
         children: [
             {
-                path: '',                                           component: DataContainerComponent,
+                path: '',                                                   component: DataContainerComponent,
                 children: [
                     // Categories
-                    { path: 'categories',                           component: CategoryListComponent },
-                    { path: 'categories/create',                    component: CategoryDetailComponent,                 data: { action: 'create' }},
-                    { path: 'categories/create/:id/:lang/:newLang', component: CategoryDetailComponent,                 data: { action: 'create-lang' }},
-                    { path: 'categories/show/:id/:lang',            component: CategoryDetailComponent,                 data: { action: 'edit' }},
+                    { path: 'category',                                     component: CategoryListComponent },
+                    { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
+                    { path: 'category/create/:id/:lang/:newLang',           component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+                    { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
                     // Customer Class Tax
-                    { path: 'customer-class-tax',                   component: CustomerClassTaxListComponent },
-                    { path: 'customer-class-tax/create',            component: CustomerClassTaxDetailComponent,         data: { action: 'create' }},
-                    { path: 'customer-class-tax/show/:id',          component: CustomerClassTaxDetailComponent,         data: { action: 'edit' }},
+                    { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
+                    { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
+                    { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
 
                     // Group Customer Class Tax
-                    { path: 'group-customer-class-tax',             component: GroupCustomerClassTaxListComponent },
-                    { path: 'group-customer-class-tax/create',      component: GroupCustomerClassTaxDetailComponent,    data: { action: 'create' }},
-                    { path: 'group-customer-class-tax/show/:id',    component: GroupCustomerClassTaxDetailComponent,    data: { action: 'edit' }},
+                    { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
+                    { path: 'group-customer-class-tax/create',              component: GroupCustomerClassTaxDetailComponent,        data: { action: 'create' }},
+                    { path: 'group-customer-class-tax/show/:id',            component: GroupCustomerClassTaxDetailComponent,        data: { action: 'edit' }},
 
                     // Product Class Tax
-                    { path: 'product-class-tax',                    component: ProductClassTaxListComponent },
-                    { path: 'product-class-tax/create',             component: ProductClassTaxDetailComponent,          data: { action: 'create' }},
-                    { path: 'product-class-tax/show/:id',           component: ProductClassTaxDetailComponent,          data: { action: 'edit' }},
+                    { path: 'product-class-tax',                            component: ProductClassTaxListComponent },
+                    { path: 'product-class-tax/create',                     component: ProductClassTaxDetailComponent,              data: { action: 'create' }},
+                    { path: 'product-class-tax/show/:id',                   component: ProductClassTaxDetailComponent,              data: { action: 'edit' }},
 
                     // Tax Rate Zone
-                    { path: 'tax-rate-zone',                        component: TaxRateZoneListComponent },
-                    { path: 'tax-rate-zone/create',                 component: TaxRateZoneDetailComponent,              data: { action: 'create' }},
-                    { path: 'tax-rate-zone/show/:id',               component: TaxRateZoneDetailComponent,              data: { action: 'edit' }},
+                    { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
+                    { path: 'tax-rate-zone/create',                         component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
+                    { path: 'tax-rate-zone/show/:id',                       component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
 
                     // Order Status
-                    { path: 'order-status',                             component: OrderStatusListComponent },
-                    { path: 'order-status/create',                      component: OrderStatusDetailComponent,      data: { action: 'create' }},
-                    { path: 'order-status/create/:id/:lang/:newLang',   component: OrderStatusDetailComponent,      data: { action: 'create-lang' }},
-                    { path: 'order-status/show/:id/:lang',              component: OrderStatusDetailComponent,      data: { action: 'edit' }},
+                    { path: 'order-status',                                 component: OrderStatusListComponent },
+                    { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
+                    { path: 'order-status/create/:id/:lang/:newLang',       component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+                    { path: 'order-status/show/:id/:lang',                  component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
-                    { path: 'payment-method',                             component: PaymentMethodListComponent },
-                    { path: 'payment-method/create',                      component: PaymentMethodDetailComponent,      data: { action: 'create' }},
-                    { path: 'payment-method/create/:id/:lang/:newLang',   component: PaymentMethodDetailComponent,      data: { action: 'create-lang' }},
-                    { path: 'payment-method/show/:id/:lang',              component: PaymentMethodDetailComponent,      data: { action: 'edit' }},
+                    { path: 'payment-method',                               component: PaymentMethodListComponent },
+                    { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
+                    { path: 'payment-method/create/:id/:lang/:newLang',     component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
                     // Products
-                    { path: 'products',                             component: ProductListComponent },
-                    { path: 'products/create',                      component: ProductDetailComponent,                 data: { action: 'create' }},
-                    { path: 'products/create/:id/:lang/:newLang',   component: ProductDetailComponent,                 data: { action: 'create-lang' }},
-                    { path: 'products/show/:id/:lang',              component: ProductDetailComponent,                 data: { action: 'edit' }},
+                    { path: 'product',                                      component: ProductListComponent },
+                    { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
+                    { path: 'product/create/:id/:lang/:newLang',            component: ProductDetailComponent,                      data: { action: 'create-lang' }},
+                    { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '**',                                   component: ErrorComponent,                          data: { error: '404' }}
+                    { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}
                 ]
             }
         ]

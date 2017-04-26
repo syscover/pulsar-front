@@ -5,8 +5,8 @@ import { MainLayoutComponent } from './../shared/components/main-layout/main-lay
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
 
-import { GroupListComponent } from './groups/group-list.component';
-import { GroupDetailComponent } from './groups/group-detail.component';
+import { GroupListComponent } from './group/group-list.component';
+import { GroupDetailComponent } from './group/group-detail.component';
 
 import * as config from './../core/app-globals';
 
@@ -20,9 +20,9 @@ const routes: Routes = [
                 children: [
 
                     // Groups
-                    { path: 'groups',                           component: GroupListComponent },
-                    { path: 'groups/create',                    component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'groups/show/:id',                  component: GroupDetailComponent,       data: { action: 'edit' }},
+                    { path: 'group',                            component: GroupListComponent },
+                    { path: 'group/create',                     component: GroupDetailComponent,       data: { action: 'create' }},
+                    { path: 'group/show/:id',                   component: GroupDetailComponent,       data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                               component: ErrorComponent,             data: { error: '404' }}

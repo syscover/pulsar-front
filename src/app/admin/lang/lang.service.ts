@@ -14,8 +14,8 @@ export class LangService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/langs`); // set application URL
-        this.setApiUrl('/api/v1/admin/langs'); // set api URL
+        this.setBaseUri(`/${this.appRootPrefix}/admin/lang`); // set application URL
+        this.setApiUrl('/api/v1/admin/lang'); // set api URL
     }
 
     getActivatedLangs(): Observable<JsonResponse> {

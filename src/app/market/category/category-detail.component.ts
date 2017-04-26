@@ -10,7 +10,7 @@ import { Category } from '../market.models';
 
 // custom imports
 import { Lang } from './../../admin/admin.models';
-import { LangService } from './../../admin/langs/lang.service';
+import { LangService } from './../../admin/lang/lang.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
