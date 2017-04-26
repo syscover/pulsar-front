@@ -34,8 +34,8 @@ export class MenuComponent implements OnInit {
                     {
                         label: 'Catalog', icon: 'layers',
                         items: [
-                            {label: 'Products', icon: 'view_day', routerLink: ['/pulsar/market/products']},
-                            {label: 'Categories', icon: 'folder_open', routerLink: ['/pulsar/market/categories']},
+                            {label: 'Products', icon: 'view_day', routerLink: ['/pulsar/market/product']},
+                            {label: 'Categories', icon: 'folder_open', routerLink: ['/pulsar/market/category']},
                         ]
                     },
                     {
@@ -59,20 +59,20 @@ export class MenuComponent implements OnInit {
             {
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
-                    {label: 'Customers', icon: 'face', routerLink: ['/pulsar/crm/customers']},
-                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/groups']}
+                    {label: 'Customers', icon: 'face', routerLink: ['/pulsar/crm/customer']},
+                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/group']}
                 ]
             },
             {
                 label: 'Administration', icon: 'settings',
                 items: [
-                    {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/langs']},
-                    {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/countries']},
+                    {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/lang']},
+                    {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/country']},
                     {
                         label: 'Permissions', icon: 'fingerprint',
                         items: [
-                            {label: 'Actions', icon: 'flash_on', routerLink: ['/pulsar/admin/actions']},
-                            {label: 'Profiles', icon: 'supervisor_account', routerLink: ['/pulsar/admin/profiles']},
+                            {label: 'Actions', icon: 'flash_on', routerLink: ['/pulsar/admin/action']},
+                            {label: 'Profiles', icon: 'supervisor_account', routerLink: ['/pulsar/admin/profile']},
                         ]
                     }
                 ]

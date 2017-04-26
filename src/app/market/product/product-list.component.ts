@@ -5,7 +5,7 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { ProductService } from './product.service';
 import { Product } from '../market.models';
-import { LangService } from './../../admin/langs/lang.service';
+import { LangService } from './../../admin/lang/lang.service';
 import { Lang } from './../../admin/admin.models';
 
 @Component({

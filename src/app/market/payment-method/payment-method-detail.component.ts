@@ -10,7 +10,7 @@ import { PaymentMethod, OrderStatus } from './../market.models';
 
 // custom imports
 import { Lang } from './../../admin/admin.models';
-import { LangService } from './../../admin/langs/lang.service';
+import { LangService } from './../../admin/lang/lang.service';
 import { OrderStatusService } from './../order-status/order-status.service';
 import { SelectItem } from 'primeng/primeng';
 

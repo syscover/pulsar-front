@@ -10,8 +10,8 @@ import { Product, Category, ProductType, PriceType, ProductClassTax } from './..
 
 // custom imports
 import { Lang } from './../../admin/admin.models';
-import { LangService } from './../../admin/langs/lang.service';
-import { CategoryService } from './../categories/category.service';
+import { LangService } from './../../admin/lang/lang.service';
+import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { SelectItem } from 'primeng/primeng';
 
