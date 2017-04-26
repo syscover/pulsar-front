@@ -45,6 +45,7 @@ export class MenuComponent implements OnInit {
                             {label: 'Groups customer', icon: 'group_work', routerLink: ['/pulsar/market/group-customer-class-tax']},
                             {label: 'Product class taxes', icon: 'view_agenda', routerLink: ['/pulsar/market/product-class-tax']},
                             {label: 'Tax rate zone', icon: 'blur_circular', routerLink: ['/pulsar/market/tax-rate-zone']},
+                            {label: 'Tax rule', icon: 'traffic', routerLink: ['/pulsar/market/tax-rule']},
                         ]
                     },
                     {
@@ -66,7 +67,7 @@ export class MenuComponent implements OnInit {
             {
                 label: 'Administration', icon: 'settings',
                 items: [
-                    {label: 'Languages', icon: 'flag', routerLink: ['/pulsar/admin/lang']},
+                    {label: 'Languages', icon: 'translate', routerLink: ['/pulsar/admin/lang']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/country']},
                     {
                         label: 'Permissions', icon: 'fingerprint',

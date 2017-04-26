@@ -11,7 +11,7 @@ import { GroupCustomerClassTax } from '../market.models';
 import { CustomerClassTax } from './../market.models';
 import { CustomerClassTaxService } from './../customer-class-tax/customer-class-tax.service';
 import { Group } from './../../crm/crm.models';
-import { GroupService } from './../../crm/groups/group.service';
+import { GroupService } from './../../crm/group/group.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';

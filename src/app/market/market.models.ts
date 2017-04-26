@@ -40,6 +40,17 @@ export class TaxRateZone {
     tax_rate: string;
 }
 
+export class TaxRule {
+    id: number;
+    name: string;
+    translation: string;
+    priority: number;
+    sort: number;
+    customer_class_taxes: CustomerClassTax[];
+    product_class_taxes: ProductClassTax[];
+    tax_rate_zones: TaxRateZone[];
+}
+
 export class ProductType {
     id: number;
     name: string;

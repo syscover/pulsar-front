@@ -11,6 +11,8 @@ import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/g
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -27,6 +29,7 @@ import { CategoryService } from './category/category.service';
 import { CustomerClassTaxService } from './customer-class-tax/customer-class-tax.service';
 import { GroupCustomerClassTaxService } from './group-customer-class-tax/group-customer-class-tax.service';
 import { TaxRateZoneService } from './tax-rate-zone/tax-rate-zone.service';
+import { TaxRuleService } from './tax-rule/tax-rule.service';
 import { PaymentMethodService } from './payment-method/payment-method.service';
 import { OrderStatusService } from './order-status/order-status.service';
 import { ProductClassTaxService } from './product-class-tax/product-class-tax.service';
@@ -44,6 +47,8 @@ import { ProductService } from './product/product.service';
         CustomerClassTaxDetailComponent,
         TaxRateZoneListComponent,
         TaxRateZoneDetailComponent,
+        TaxRuleListComponent,
+        TaxRuleDetailComponent,
         GroupCustomerClassTaxListComponent,
         GroupCustomerClassTaxDetailComponent,
         PaymentMethodListComponent,
@@ -62,6 +67,7 @@ import { ProductService } from './product/product.service';
         CustomerClassTaxService,
         GroupCustomerClassTaxService,
         TaxRateZoneService,
+        TaxRuleService,
         PaymentMethodService,
         OrderStatusService,
         ProductClassTaxService,

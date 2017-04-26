@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { CoreService } from './../../shared/super/core.service';
 
 @Injectable()
-export class TaxRulesService extends CoreService {
+export class TaxRuleService extends CoreService {
 
     constructor(
         protected injector: Injector

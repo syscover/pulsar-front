@@ -13,6 +13,8 @@ import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/g
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -57,6 +59,11 @@ const routes: Routes = [
                     { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
                     { path: 'tax-rate-zone/create',                         component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
                     { path: 'tax-rate-zone/show/:id',                       component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
+
+                    // Tax Rule
+                    { path: 'tax-rule',                                     component: TaxRuleListComponent },
+                    { path: 'tax-rule/create',                              component: TaxRuleDetailComponent,                      data: { action: 'create' }},
+                    { path: 'tax-rule/show/:id',                            component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
 
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
