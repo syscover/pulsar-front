@@ -21,6 +21,22 @@ export class ProductClassTax {
     name: string;
 }
 
+export class GroupCustomerClassTax {
+    group_id: number;
+    customer_class_tax_id: number;
+}
+
+export class TaxRateZone {
+    id: number;
+    name: string;
+    country_id: string;
+    territorial_area_1_id: string;
+    territorial_area_2_id: string;
+    territorial_area_3_id: string;
+    cp: string;
+    tax_rate: string;
+}
+
 export class ProductType {
     id: number;
     name: string;
@@ -29,11 +45,6 @@ export class ProductType {
 export class PriceType {
     id: number;
     name: string;
-}
-
-export class GroupCustomerClassTax {
-    group_id: number;
-    customer_class_tax_id: number;
 }
 
 export class OrderStatus {

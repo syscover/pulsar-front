@@ -19,7 +19,7 @@ export class ProductListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'product.id', 'product.name', 'lang.name'
+        'product.id', 'product_lang.name', 'lang.name'
     ];
     objects: Product[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data

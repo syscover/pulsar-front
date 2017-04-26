@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit {
                             {label: 'Customer class taxes', icon: 'group', routerLink: ['/pulsar/market/customer-class-tax']},
                             {label: 'Groups customer', icon: 'group_work', routerLink: ['/pulsar/market/group-customer-class-tax']},
                             {label: 'Product class taxes', icon: 'view_agenda', routerLink: ['/pulsar/market/product-class-tax']},
+                            {label: 'Tax rate zone', icon: 'blur_circular', routerLink: ['/pulsar/market/tax-rate-zone']},
                         ]
                     },
                     {

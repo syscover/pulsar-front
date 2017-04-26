@@ -15,7 +15,7 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'id', 'name'
+        'group.name', 'customer_class_tax.name'
     ];
     objects: GroupCustomerClassTax[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data

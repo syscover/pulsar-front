@@ -80,7 +80,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             });
 
         // get categories
-        this.categoryService.getRecords()
+        this.categoryService.getRecords(this.configService.getConfig('base_lang').id)
             .subscribe((response) => {
 
             this.categories = _.map(<Category[]>response.data, obj => {

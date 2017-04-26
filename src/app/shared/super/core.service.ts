@@ -31,9 +31,9 @@ export class CoreService {
             .map((response: Response) => response.json());
     }
 
-    getRecords(): Observable<JsonResponse> {
+    getRecords(lang: string = undefined): Observable<JsonResponse> {
         return this.http
-            .get(this.getApiUrl('get'), this.apiUrlPrefix)
+            .get(this.getApiUrl('get', undefined, lang), this.apiUrlPrefix)
             .map((response: Response) => response.json());
     }
 

@@ -111,7 +111,10 @@
             </p-tabPanel>
 
             <p-tabPanel header="Descripton" leftIcon="ui-icon-edit">
-                <ps-editor [form]="fg" name="description"></ps-editor>
+                <ps-editor  [form]="fg" 
+                            name="description"
+                            placeholder="Enter here your text"
+                            [heightMin]="400"></ps-editor>
             </p-tabPanel>
 
         </p-tabView>

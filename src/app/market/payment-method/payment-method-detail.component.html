@@ -35,16 +35,16 @@
                         name="name" class="col-12"></ps-input>
         </div>
         <div class="row">
-            <ps-input   [form]="fg" 
+            <ps-spinner [form]="fg" 
                         [errors]="formErrors"
                         label="Minimum price"
-                        type="number"
-                        name="minimum_price" class="col-sm-12 col-md-4"></ps-input>
-            <ps-input   [form]="fg" 
+                        [min]="0"
+                        name="minimum_price" class="col-sm-12 col-md-4"></ps-spinner>
+            <ps-spinner [form]="fg" 
                         [errors]="formErrors"
                         label="Maximum price"
-                        type="number"
-                        name="maximum_price" class="col-sm-12 col-md-4"></ps-input>
+                        [min]="0"
+                        name="maximum_price" class="col-sm-12 col-md-4"></ps-spinner>
         </div>
         <div class="row">
             <ps-checkbox    [form]="fg"

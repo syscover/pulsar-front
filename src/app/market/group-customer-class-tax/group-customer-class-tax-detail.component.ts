@@ -8,8 +8,13 @@ import { GroupCustomerClassTaxService } from './group-customer-class-tax.service
 import { GroupCustomerClassTax } from '../market.models';
 
 // custom imports
+import { CustomerClassTax } from './../market.models';
 import { CustomerClassTaxService } from './../customer-class-tax/customer-class-tax.service';
+import { Group } from './../../crm/crm.models';
 import { GroupService } from './../../crm/groups/group.service';
+import { SelectItem } from 'primeng/primeng';
+
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-group-customer-class-tax-detail',
@@ -17,12 +22,17 @@ import { GroupService } from './../../crm/groups/group.service';
 })
 export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
 
+    private groups: SelectItem[] = [];
+    private customerClassTaxes: SelectItem[] = [];
+
     // paramenters for parent class
     private object: GroupCustomerClassTax = new GroupCustomerClassTax(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
-            this.fg.setValue(this.object); // set values of form
+
+            // data retuned has more data that fields form
+            this.fg.patchValue(this.object); // patch values of form
         }
     }
 
@@ -38,7 +48,25 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
     ngOnInit() {
         this.createForm(); // create form
 
+        // load groups
+        this.groupService.getRecords()
+            .subscribe((response) => {
 
+                this.groups = _.map(<Group[]>response.data, obj => {
+                    return { label: obj.name, value: obj.id };
+                });
+                this.groups.unshift({ label: 'Select a group', value: '' });
+            });
+
+        // load customer class tax
+        this.customerClassTaxService.getRecords()
+            .subscribe((response) => {
+
+                this.customerClassTaxes = _.map(<CustomerClassTax[]>response.data, obj => {
+                    return { label: obj.name, value: obj.id };
+                });
+                this.customerClassTaxes.unshift({ label: 'Select a customer class tax', value: '' });
+            });
 
 
         super.getRecordHasIdParamenter(this.f);
@@ -46,8 +74,8 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
 
     createForm() {
         this.fg = this.fb.group({
-            id: [{value: '', disabled: true}],
-            name: ['', Validators.required ]
+            group_id: ['', Validators.required ],
+            customer_class_tax_id: ['', Validators.required ]
         });
     }
 

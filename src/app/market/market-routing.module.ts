@@ -11,6 +11,8 @@ import { CustomerClassTaxListComponent } from './customer-class-tax/customer-cla
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
+import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
+import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -50,6 +52,11 @@ const routes: Routes = [
                     { path: 'product-class-tax',                    component: ProductClassTaxListComponent },
                     { path: 'product-class-tax/create',             component: ProductClassTaxDetailComponent,          data: { action: 'create' }},
                     { path: 'product-class-tax/show/:id',           component: ProductClassTaxDetailComponent,          data: { action: 'edit' }},
+
+                    // Tax Rate Zone
+                    { path: 'tax-rate-zone',                        component: TaxRateZoneListComponent },
+                    { path: 'tax-rate-zone/create',                 component: TaxRateZoneDetailComponent,              data: { action: 'create' }},
+                    { path: 'tax-rate-zone/show/:id',               component: TaxRateZoneDetailComponent,              data: { action: 'edit' }},
 
                     // Order Status
                     { path: 'order-status',                             component: OrderStatusListComponent },

@@ -33,11 +33,11 @@ export class EditorComponent implements OnInit {
     @Input() private type: string;
     @Input() private label: string;
     @Input() private name: string;
-    @Input() private froalaOptions: Object = {
-        placeholderText: 'Edit Your Content Here!',
-        //pluginsEnabled: ['image', 'link'],
-        charCounterCount: false
-    };
+    @Input() private placeholder: string;
+    @Input() private heightMin: number;
+    @Input() private heightMax: number;
+
+    private froalaOptions: FroalaOptions = new FroalaOptions();
 
     private formControl: AbstractControl;
     private error: string;
@@ -53,10 +53,46 @@ export class EditorComponent implements OnInit {
             .valueChanges
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
 
-            // config FroalaEditor
+            // config custom FroalaEditor
             $.FroalaEditor.ICON_TEMPLATES = {
                 font_awesome: '<i class="faa faa-[NAME]"></i>'
             };
+
+            // set froala option properties
+            this.froalaOptions.placeholderText = this.placeholder;
+            this.froalaOptions.heightMin = this.heightMin;
+            this.froalaOptions.heightMax = this.heightMax;
+            this.froalaOptions.enter = $.FroalaEditor.ENTER_BR;
+            this.froalaOptions.tabSpaces = 4;
+            this.froalaOptions.pluginsEnabled = [
+                'align',
+                'charCounter',
+                'codeBeautifier',
+                'codeView',
+                'colors',
+                'draggable',
+                'emoticons',
+                'entities',
+                'file',
+                'fontFamily',
+                'fontSize',
+                'fullscreen',
+                'image',
+                'imageManager',
+                'inlineStyle',
+                'lineBreaker',
+                'link',
+                'lists',
+                'paragraphFormat',
+                'paragraphStyle',
+                //'quickInsert',
+                'quote',
+                'save',
+                'table',
+                'url',
+                'video',
+                'wordPaste'
+            ];
     }
 
     @Input()
@@ -66,4 +102,14 @@ export class EditorComponent implements OnInit {
         }
     }
 
+}
+
+class FroalaOptions {
+    public placeholderText: string;
+    public charCounterCount: boolean;
+    public pluginsEnabled: string[];
+    public heightMin: number;
+    public heightMax: number;
+    public enter: number;
+    public tabSpaces: number;
 }

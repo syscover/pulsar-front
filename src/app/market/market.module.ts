@@ -9,6 +9,8 @@ import { CustomerClassTaxListComponent } from './customer-class-tax/customer-cla
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
+import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
+import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -18,11 +20,13 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 
-
+import { GroupService } from './../crm/groups/group.service';
 import { LangService } from './../admin/langs/lang.service';
+import { CountryService } from './../admin/countries/country.service';
 import { CategoryService } from './categories/category.service';
 import { CustomerClassTaxService } from './customer-class-tax/customer-class-tax.service';
 import { GroupCustomerClassTaxService } from './group-customer-class-tax/group-customer-class-tax.service';
+import { TaxRateZoneService } from './tax-rate-zone/tax-rate-zone.service';
 import { PaymentMethodService } from './payment-method/payment-method.service';
 import { OrderStatusService } from './order-status/order-status.service';
 import { ProductClassTaxService } from './product-class-tax/product-class-tax.service';
@@ -38,6 +42,8 @@ import { ProductService } from './product/product.service';
         CategoryDetailComponent,
         CustomerClassTaxListComponent,
         CustomerClassTaxDetailComponent,
+        TaxRateZoneListComponent,
+        TaxRateZoneDetailComponent,
         GroupCustomerClassTaxListComponent,
         GroupCustomerClassTaxDetailComponent,
         PaymentMethodListComponent,
@@ -51,14 +57,17 @@ import { ProductService } from './product/product.service';
     ],
     providers: [
         LangService,
+        CountryService,
         CategoryService,
         CustomerClassTaxService,
         GroupCustomerClassTaxService,
+        TaxRateZoneService,
         PaymentMethodService,
         OrderStatusService,
         ProductClassTaxService,
         OrderStatusService,
-        ProductService
+        ProductService,
+        GroupService
     ]
 })
 

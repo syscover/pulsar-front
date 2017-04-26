@@ -1,4 +1,4 @@
-<ps-datatable-header title="Group Customer Class Tax {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Tax rate zone {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
@@ -6,8 +6,9 @@
                 (onLazyLoad)="loadDadaTableLazy($event, f)"
                 [immutable]="true">
 
-    <p-column field="group_name" header="Group" [sortable]="true"></p-column>
-    <p-column field="customer_class_tax_name" header="Customer class tax" [sortable]="true"></p-column>
+    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>
+    <p-column field="tax_rate" header="Tax rate" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @
