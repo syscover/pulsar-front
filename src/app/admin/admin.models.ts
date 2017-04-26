@@ -16,6 +16,7 @@ export class Action {
 export class Country {
     id: string;
     lang_id: string;
+    lang: Lang;
     name: string;
     sort: number;
     prefix: string;

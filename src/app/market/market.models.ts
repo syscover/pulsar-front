@@ -1,7 +1,9 @@
+import { Lang, Country } from './../admin/admin.models';
 
 export class Category {
     id: number;
     lang_id: string;
+    lang: Lang;
     parent: number;
     name: string;
     slug: string;
@@ -30,6 +32,7 @@ export class TaxRateZone {
     id: number;
     name: string;
     country_id: string;
+    country: Country;
     territorial_area_1_id: string;
     territorial_area_2_id: string;
     territorial_area_3_id: string;
@@ -50,6 +53,7 @@ export class PriceType {
 export class OrderStatus {
     id: number;
     lang_id: string;
+    lang: Lang;
     name: string;
     active: boolean;
     data_lang: string;
@@ -58,6 +62,7 @@ export class OrderStatus {
 export class PaymentMethod {
     id: number;
     lang_id: string;
+    lang: Lang;
     name: string;
     order_status_successful_id: number;
     minimum_price: number;
@@ -71,6 +76,7 @@ export class PaymentMethod {
 export class Product {
     id: number;
     lang_id: string;
+    lang: Lang;
     name: string;
     slug: string;
     description: string;

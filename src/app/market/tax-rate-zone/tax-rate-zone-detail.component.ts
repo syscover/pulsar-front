@@ -10,7 +10,7 @@ import { CountryService } from './../../admin/countries/country.service';
 import { Country } from './../../admin/admin.models';
 import { SelectItem } from 'primeng/primeng';
 
-import * as _ from 'lodash';
+//import * as _ from 'lodash';
 
 @Component({
     selector: 'app-tax-rate-zone-detail',
@@ -18,16 +18,19 @@ import * as _ from 'lodash';
 })
 export class TaxRateZoneDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private countries: SelectItem[] = [];
+    private countries: Country[] = [];
 
     // paramenters for parent class
     private object: TaxRateZone = new TaxRateZone(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
+
             this.fg.patchValue(this.object); // set values of form
 
-            //this.fg.controls['country_id'].setValue({ label: 'España', value: 'ES' });
+            // TODO, apaño para establecer un valor por defecto
+            this.fg.controls['country_id'].setValue(this.object.country);
+            this.fg.controls['country_id'].setValue(this.object.country.id, { emitModelToViewChange: false });
         }
     }
 
@@ -42,13 +45,10 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
     ngOnInit() {
         this.createForm(); // create form
 
+        // get countries
         this.countryService.getRecords(this.configService.getConfig('base_lang').id)
             .subscribe((response) => {
-
-                this.countries = _.map(<Country[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-                //this.countries.unshift({ value: '', label: 'Select a country' });
+                this.countries = <Country[]>response.data;
 
                 super.getRecordHasIdParamenter(this.f);
             });

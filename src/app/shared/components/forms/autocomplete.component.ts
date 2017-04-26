@@ -100,8 +100,6 @@ export class AutocompleteComponent implements OnInit {
     }
 
     handleSelect(event) {
-        // rewrite formcontrol value with key property
         this.formControl.setValue(event[this.key], { emitModelToViewChange: false });
     }
-
 }
