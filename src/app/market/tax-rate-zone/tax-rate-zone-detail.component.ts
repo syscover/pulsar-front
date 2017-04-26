@@ -26,6 +26,8 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
+
+            //this.fg.controls['country_id'].setValue({ label: 'España', value: 'ES' });
         }
     }
 
@@ -44,13 +46,12 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
             .subscribe((response) => {
 
                 this.countries = _.map(<Country[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 });
-                this.countries.unshift({ label: 'Select a country', value: '' });
+                //this.countries.unshift({ value: '', label: 'Select a country' });
+
+                super.getRecordHasIdParamenter(this.f);
             });
-
-
-        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {

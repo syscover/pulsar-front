@@ -23,6 +23,7 @@ import { InputComponent } from './components/forms/input.component';
 import { EditorComponent } from './components/forms/editor.component';
 import { SpinnerComponent } from './components/forms/spinner.component';
 import { DropdownComponent } from './components/forms/dropdown.component';
+import { AutocompleteComponent } from './components/forms/autocomplete.component';
 import { MultiSelectComponent } from './components/forms/multi-select.component';
 import { CheckboxComponent } from './components/forms/checkbox.component';
 import { TextareaComponent } from './components/forms/textarea.component';
@@ -57,6 +58,7 @@ import { ButtonComponent } from './components/forms/button.component';
         EditorComponent,
         SpinnerComponent,
         DropdownComponent,
+        AutocompleteComponent,
         MultiSelectComponent,
         CheckboxComponent,
         TextareaComponent,
@@ -83,6 +85,7 @@ import { ButtonComponent } from './components/forms/button.component';
         EditorComponent,
         SpinnerComponent,
         DropdownComponent,
+        AutocompleteComponent,
         MultiSelectComponent,
         CheckboxComponent,
         TextareaComponent,

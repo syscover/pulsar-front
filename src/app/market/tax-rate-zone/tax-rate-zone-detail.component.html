@@ -18,7 +18,7 @@
                         name="name" class="col-12"></ps-input>
         </div>
 
-        <div class="row">
+        <!--<div class="row">
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
                             [autoWidth]="false"
@@ -26,6 +26,18 @@
                             name="country_id"
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
+        </div>-->
+
+        <div class="row">
+            <ps-autocomplete    [form]="fg"
+                                [errors]="formErrors"
+                                key="value"
+                                field="label"
+                                placeholder="Search a country"
+                                [options]="countries"
+                                name="country_id"
+                                class="col-sm-12 col-md-5">
+            </ps-autocomplete>
         </div>
 
         <div class="row">

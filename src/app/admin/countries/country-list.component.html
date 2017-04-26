@@ -6,9 +6,9 @@
                 (onLazyLoad)="loadDadaTableLazy($event, f)"
                 [immutable]="true">
 
-    <p-column field="country_id" header="#" [sortable]="true"></p-column>
-    <p-column field="lang_name" header="Lang" [sortable]="true"></p-column>
-    <p-column field="country_name" header="Name" [sortable]="true"></p-column>  
+    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="lang.name" header="Lang" [sortable]="true"></p-column>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>  
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @
