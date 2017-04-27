@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 import { onValueChangedFormControl } from './../../super/core-validation';
@@ -9,7 +9,8 @@ import { onValueChangedFormControl } from './../../super/core-validation';
         <div [formGroup]="form">
             <span class="md-inputfield">
                 <input  [formControlName]="name"
-                        type="{{ type }}"
+                        [type]="type"
+                        (change)="handleChange($event)"
                         pInputText>
                 <label>{{ label }}</label>
                 <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
@@ -39,6 +40,8 @@ export class InputComponent implements OnInit {
     private formControl: AbstractControl;
     private error: string;
 
+    @Output() private onChange = new EventEmitter<any>();
+
     constructor() { }
 
     ngOnInit() {
@@ -56,6 +59,10 @@ export class InputComponent implements OnInit {
         if (this.name && errors && errors[this.name]) {
             this.error = errors[this.name];
         }
+    }
+
+    handleChange($event) {
+        this.onChange.emit($event);
     }
 
 }

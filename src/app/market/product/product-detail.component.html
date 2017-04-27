@@ -91,23 +91,43 @@
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
 
-                    <ps-spinner     [form]="fg" 
-                                    [errors]="formErrors"
-                                    label="Price"
-                                    [min]="0"
-                                    name="price" class="col-sm-12 col-md-4"></ps-spinner>
+                    <ps-input   [form]="fg" 
+                                type="number"
+                                [errors]="formErrors"
+                                label="Price"
+                                (onChange)="handleChangePrice($event)"
+                                name="price" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
+
                 <div class="row">
                     <ps-dropdown    [form]="fg"
                                     [errors]="formErrors"
                                     [autoWidth]="false"
                                     [options]="productClassTaxes"
                                     name="product_class_tax_id"
+                                    (onChange)="handleChangeProductClassTax($event)"
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
-                </div>
-                
 
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Subtotal"
+                                name="subtotal" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Tax"
+                                name="tax" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Total"
+                                name="total" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
+                </div>
             </p-tabPanel>
 
             <p-tabPanel header="Descripton" leftIcon="ui-icon-edit">

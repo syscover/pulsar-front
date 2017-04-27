@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
@@ -10,7 +10,8 @@ import { onValueChangedFormControl } from './../../super/core-validation';
         <div [formGroup]="form">
             <p-dropdown [formControlName]="name" 
                         [options]="options" 
-                        [autoWidth]="autoWidth">
+                        [autoWidth]="autoWidth"
+                        (onChange)="handleChange($event)">
                         </p-dropdown>
             <div *ngIf="error" class="ui-dropdown-message ui-message ui-messages-error ui-corner-all">
                 {{ error }}
@@ -38,6 +39,8 @@ export class DropdownComponent implements OnInit {
     private formControl: AbstractControl;
     private error: string;
 
+    @Output() private onChange = new EventEmitter<any>();
+
     constructor() { }
 
     ngOnInit() {
@@ -55,6 +58,10 @@ export class DropdownComponent implements OnInit {
         if (this.name && errors && errors[this.name]) {
             this.error = errors[this.name];
         }
+    }
+
+    handleChange($event) {
+        this.onChange.emit($event);
     }
 
 }

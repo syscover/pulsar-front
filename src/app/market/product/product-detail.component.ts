@@ -148,9 +148,18 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             sort: ['', Validators.required],
             price_type_id: ['', Validators.required],
             product_class_tax_id: ['', Validators.required],
+            description: '',
             price: null,
-            description: ''
+            subtotal: [{value: null, disabled: true}, Validators.required ],
+            tax: [{value: null, disabled: true}, Validators.required ],
+            total: [{value: null, disabled: true}, Validators.required ]
         });
     }
 
+    handleChangeProductClassTax($event) {
+        console.log($event);
+    }
+    handleChangePrice($event) {
+        console.log($event);
+    }
 }
