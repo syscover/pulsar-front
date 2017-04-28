@@ -8,7 +8,16 @@
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column field="tax_rate" header="Tax rate" [sortable]="true"></p-column>
+    
+    <p-column styleClass="col-button center">
+        <ng-template pTemplate="header">
+            Tax rate
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+             {{ _.map(object.tax_rate_zones, 'tax_rate') }}
+        </ng-template>
+    </p-column>
+
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

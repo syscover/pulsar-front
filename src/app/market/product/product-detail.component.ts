@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
@@ -13,6 +13,7 @@ import { Lang } from './../../admin/admin.models';
 import { LangService } from './../../admin/lang/lang.service';
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
+import { TaxRuleService } from './../tax-rule/tax-rule.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -34,6 +35,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private productTypes: SelectItem[] = [];
     private priceTypes: SelectItem[] = [];
     private productClassTaxes: SelectItem[] = [];
+
+    @ViewChild('productClassTax') private productClassTax;
 
     // paramenters for parent class
     private object: Product = new Product(); // set empty object
@@ -61,7 +64,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         protected confirmationService: ConfirmationService,
         protected langService: LangService,
         protected categoryService: CategoryService,
-        protected productClassTaxService: ProductClassTaxService
+        protected productClassTaxService: ProductClassTaxService,
+        protected taxRuleService: TaxRuleService
     ) {
         super(injector);
     }
@@ -156,10 +160,21 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    handleChangeProductClassTax($event) {
-        console.log($event);
-    }
-    handleChangePrice($event) {
-        console.log($event);
+    handleGetProductTaxes() {
+        const object = {
+            'type': 'query',
+            'parameters': {
+                'price': this.fg.controls['price'].value,
+                'productClassTax': this.fg.controls['product_class_tax_id'].value
+            }
+        };
+
+        this.taxRuleService.getProductTaxes(object)
+            .subscribe(data => {
+                this.fg.controls['subtotal'].setValue(data.data.subtotal);
+                this.fg.controls['tax'].setValue(_.sumBy(data.data.taxes, 'taxAmount'));
+                this.fg.controls['total'].setValue(data.data.total);
+            });
+
     }
 }
