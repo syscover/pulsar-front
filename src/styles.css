@@ -32,6 +32,10 @@
 /*
  * custom primeng
  */
+.main-card{
+    z-index: 2 !important;
+}
+
 .datatable-search label span {
     position: absolute;
     color: #ffffff !important;

@@ -40,7 +40,7 @@ export class PackageDetailComponent extends CoreDetailComponent implements OnIni
             name: ['', Validators.required ],
             root: ['', Validators.required ],
             active: '',
-            sort: ['', Validators.required ]
+            sort: [null, Validators.required ]
         });
     }
 

@@ -41,6 +41,12 @@ export class Action {
     name: string;
 }
 
+export class Resource {
+    id: string;
+    name: string;
+    package_id: number;
+}
+
 export class Profile {
     id: number;
     name: string;

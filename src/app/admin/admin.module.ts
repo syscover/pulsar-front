@@ -1,3 +1,6 @@
+import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
+import { FieldGroupListComponent } from './field-group/field-group-list.component';
+import { FieldGroupService } from './field-group/field-group.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -34,6 +37,8 @@ import { ActionService } from './action/action.service';
         CountryDetailComponent,
         PackageListComponent,
         PackageDetailComponent,
+        FieldGroupListComponent,
+        FieldGroupDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ActionListComponent,
@@ -43,6 +48,7 @@ import { ActionService } from './action/action.service';
         LangService,
         CountryService,
         PackageService,
+        FieldGroupService,
         ProfileService,
         ActionService
     ],

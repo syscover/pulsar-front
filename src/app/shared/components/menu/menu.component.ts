@@ -102,15 +102,27 @@ export class MenuComponent implements OnInit {
     selector: '[ps-submenu]',
     template: `
         <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
-            <li [ngClass]="{'active-menuitem': isActive(i)}" *ngIf="child.visible === false ? false : true">
-                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" class="ripplelink" *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
+            <li *ngIf="child.visible === false ? false : true" 
+                [ngClass]="{'active-menuitem': isActive(i)}">
+                <a  *ngIf="!child.routerLink"
+                    [href]="child.url||'#'"  
+                    (click)="itemClick($event,child,i)" 
+                    class="ripplelink" 
+                    [attr.tabindex]="!visible ? '-1' : null" 
+                    [attr.target]="child.target">
                     <i class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
                     <i class="material-icons" *ngIf="child.items">keyboard_arrow_down</i>
                 </a>
 
-                <a (click)="itemClick($event,child,i)" class="ripplelink" *ngIf="child.routerLink"
-                    [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink" [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
+                <a  *ngIf="child.routerLink"
+                    (click)="itemClick($event,child,i)" 
+                    class="ripplelink" 
+                    [routerLink]="child.routerLink" 
+                    routerLinkActive="active-menuitem-routerlink" 
+                    [routerLinkActiveOptions]="{exact: true}" 
+                    [attr.tabindex]="!visible ? '-1' : null" 
+                    [attr.target]="child.target">
                     <i class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
                     <i class="material-icons" *ngIf="child.items">keyboard_arrow_down</i>
@@ -159,8 +171,8 @@ export class SubMenuComponent {
         this.activeIndex = (this.activeIndex === index) ? null : index;
 
         //execute command
-        if(item.command) {
-            if(!item.eventEmitter) {
+        if (item.command) {
+            if (!item.eventEmitter) {
                 item.eventEmitter = new EventEmitter();
                 item.eventEmitter.subscribe(item.command);
             }
@@ -172,7 +184,7 @@ export class SubMenuComponent {
         }
 
         //prevent hash change
-        if(item.items || (!item.url && !item.routerLink)) {
+        if (item.items || (!item.url && !item.routerLink)) {
             event.preventDefault();
         }
 
@@ -200,7 +212,7 @@ export class SubMenuComponent {
     set reset(val:boolean) {
         this._reset = val;
 
-        if(this._reset && this.app.isHorizontal()) {
+        if (this._reset && this.app.isHorizontal()) {
             this.activeIndex = null;
         }
     }

@@ -14,6 +14,8 @@ import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { FieldGroupListComponent } from './field-group/field-group-list.component';
+import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ActionListComponent } from './action/action-list.component';
@@ -52,9 +54,9 @@ const routes: Routes = [
                     { path: 'field/show/:id',                       component: ProfileDetailComponent,      data: { action: 'edit' }},
 
                     // Field groups
-                    { path: 'field-group',                          component: ProfileListComponent },
-                    { path: 'field-group/create',                   component: ProfileDetailComponent,      data: { action: 'create' }},
-                    { path: 'field-group/show/:id',                 component: ProfileDetailComponent,      data: { action: 'edit' }},
+                    { path: 'field-group',                          component: FieldGroupListComponent },
+                    { path: 'field-group/create',                   component: FieldGroupDetailComponent,   data: { action: 'create' }},
+                    { path: 'field-group/show/:id',                 component: FieldGroupDetailComponent,   data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                               component: ActionListComponent },

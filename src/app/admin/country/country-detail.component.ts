@@ -5,11 +5,10 @@ import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
-import { Country } from '../admin.models';
+import { Country, Lang } from './../admin.models';
 import { CountryService } from './country.service';
 
 // custom imports
-import { Lang } from './../admin.models';
 import { LangService } from './../lang/lang.service';
 import { SelectItem } from 'primeng/primeng';
 
