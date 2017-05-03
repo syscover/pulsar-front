@@ -88,6 +88,7 @@ export class Product {
     id: number;
     lang_id: string;
     lang: Lang;
+    categories: Category[];
     name: string;
     slug: string;
     description: string;

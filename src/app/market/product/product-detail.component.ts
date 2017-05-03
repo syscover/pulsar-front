@@ -44,6 +44,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
+            this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
 
             // set new lang
             if (this.dataRoute.action === 'create-lang') {
@@ -154,17 +156,18 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             product_class_tax_id: ['', Validators.required],
             description: '',
             price: null,
-            subtotal: [{value: null, disabled: true}, Validators.required ],
-            tax: [{value: null, disabled: true}, Validators.required ],
-            total: [{value: null, disabled: true}, Validators.required ]
+            subtotal: null,
+            subtotal_format: [{value: null, disabled: true}, Validators.required ],
+            tax_format: [{value: null, disabled: true}, Validators.required ],
+            total_format: [{value: null, disabled: true}, Validators.required ]
         });
     }
 
-    handleGetProductTaxes() {
+    handleGetProductTaxes(price = null) {
         const object = {
             'type': 'query',
             'parameters': {
-                'price': this.fg.controls['price'].value,
+                'price': price,
                 'productClassTax': this.fg.controls['product_class_tax_id'].value
             }
         };
@@ -172,8 +175,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.taxRuleService.getProductTaxes(object)
             .subscribe(data => {
                 this.fg.controls['subtotal'].setValue(data.data.subtotal);
-                this.fg.controls['tax'].setValue(_.sumBy(data.data.taxes, 'taxAmount'));
-                this.fg.controls['total'].setValue(data.data.total);
+                this.fg.controls['subtotal_format'].setValue(data.data.subtotalFormat);
+                this.fg.controls['tax_format'].setValue(data.data.taxAmountFormat);
+                this.fg.controls['total_format'].setValue(data.data.totalFormat);
             });
 
     }

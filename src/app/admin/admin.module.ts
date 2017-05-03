@@ -8,6 +8,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { PackageListComponent } from './package/package-list.component';
+import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ActionListComponent } from './action/action-list.component';
@@ -15,6 +17,7 @@ import { ActionDetailComponent } from './action/action-detail.component';
 
 import { LangService } from './lang/lang.service';
 import { CountryService } from './country/country.service';
+import { PackageService } from './package/package.service';
 import { ProfileService } from './profile/profile.service';
 import { ActionService } from './action/action.service';
 
@@ -29,6 +32,8 @@ import { ActionService } from './action/action.service';
         LangDetailComponent,
         CountryListComponent,
         CountryDetailComponent,
+        PackageListComponent,
+        PackageDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ActionListComponent,
@@ -37,6 +42,7 @@ import { ActionService } from './action/action.service';
     providers: [
         LangService,
         CountryService,
+        PackageService,
         ProfileService,
         ActionService
     ],

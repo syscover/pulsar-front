@@ -81,8 +81,6 @@ export class CoreDetailComponent {
             let values = fg.value; // get values from form
             values.lang_id = this.params['newLang'];
 
-
-
             obs = this.objectService.storeRecord(values);
         }
         if (this.dataRoute.action === 'edit') {

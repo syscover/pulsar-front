@@ -2,6 +2,9 @@
     <h1>Product</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+
+        <input type="hidden" formControlName="subtotal">
+
         <p-tabView>
             <p-tabPanel header="Product" leftIcon="ui-icon-check" class="padding-top-20">
                 <div class="row">
@@ -95,7 +98,7 @@
                                 type="number"
                                 [errors]="formErrors"
                                 label="Price"
-                                (onChange)="handleGetProductTaxes()"
+                                (onChange)="handleGetProductTaxes(this.fg.controls['price'].value)"
                                 name="price" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
 
@@ -105,28 +108,28 @@
                                     [autoWidth]="false"
                                     [options]="productClassTaxes"
                                     name="product_class_tax_id"
-                                    (onChange)="handleGetProductTaxes()"
+                                    (onChange)="handleGetProductTaxes(this.fg.controls['price'].value)"
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
 
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Subtotal"
-                                name="subtotal" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
+                                name="subtotal_format" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
 
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Tax"
-                                name="tax" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
+                                name="tax_format" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
                 </div>
 
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Total"
-                                name="total" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
+                                name="total_format" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
                 </div>
             </p-tabPanel>
 

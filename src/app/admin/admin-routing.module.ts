@@ -12,6 +12,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { PackageListComponent } from './package/package-list.component';
+import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ActionListComponent } from './action/action-list.component';
@@ -28,26 +30,41 @@ const routes: Routes = [
                      // Dashboard
                     { path: 'dashboard',                            component: DashboardComponent },
 
-                    // Actions
-                    { path: 'action',                               component: ActionListComponent },
-                    { path: 'action/create',                        component: ActionDetailComponent,       data: { action: 'create' }},
-                    { path: 'action/show/:id',                      component: ActionDetailComponent,       data: { action: 'edit' }},
-
                     // Langs
                     { path: 'lang',                                 component: LangListComponent },
                     { path: 'lang/create',                          component: LangDetailComponent,         data: { action: 'create' }},
                     { path: 'lang/show/:id',                        component: LangDetailComponent,         data: { action: 'edit' }},
-
-                    // Profiles
-                    { path: 'profile',                              component: ProfileListComponent },
-                    { path: 'profile/create',                       component: ProfileDetailComponent,      data: { action: 'create' }},
-                    { path: 'profile/show/:id',                     component: ProfileDetailComponent,      data: { action: 'edit' }},
 
                     // Countries
                     { path: 'country',                              component: CountryListComponent },
                     { path: 'country/create',                       component: CountryDetailComponent,      data: { action: 'create' }},
                     { path: 'country/create/:id/:lang/:newLang',    component: CountryDetailComponent,      data: { action: 'create-lang' }},
                     { path: 'country/show/:id/:lang',               component: CountryDetailComponent,      data: { action: 'edit' }},
+
+                    // Packages
+                    { path: 'package',                              component: PackageListComponent },
+                    { path: 'package/create',                       component: PackageDetailComponent,      data: { action: 'create' }},
+                    { path: 'package/show/:id',                     component: PackageDetailComponent,      data: { action: 'edit' }},
+
+                    // Fields
+                    { path: 'field',                                component: ProfileListComponent },
+                    { path: 'field/create',                         component: ProfileDetailComponent,      data: { action: 'create' }},
+                    { path: 'field/show/:id',                       component: ProfileDetailComponent,      data: { action: 'edit' }},
+
+                    // Field groups
+                    { path: 'field-group',                          component: ProfileListComponent },
+                    { path: 'field-group/create',                   component: ProfileDetailComponent,      data: { action: 'create' }},
+                    { path: 'field-group/show/:id',                 component: ProfileDetailComponent,      data: { action: 'edit' }},
+
+                    // Actions
+                    { path: 'action',                               component: ActionListComponent },
+                    { path: 'action/create',                        component: ActionDetailComponent,       data: { action: 'create' }},
+                    { path: 'action/show/:id',                      component: ActionDetailComponent,       data: { action: 'edit' }},
+
+                    // Profiles
+                    { path: 'profile',                              component: ProfileListComponent },
+                    { path: 'profile/create',                       component: ProfileDetailComponent,      data: { action: 'create' }},
+                    { path: 'profile/show/:id',                     component: ProfileDetailComponent,      data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '',                                     redirectTo: 'dashboard' },

@@ -8,11 +8,6 @@ export class Lang {
     active: boolean;
 }
 
-export class Action {
-    id: string;
-    name: string;
-}
-
 export class Country {
     id: string;
     lang_id: string;
@@ -25,6 +20,25 @@ export class Country {
     territorial_area_3: string;
     data_lang: string;
     data: string;
+}
+
+export class Package {
+    id: number;
+    name: string;
+    root: string;
+    active: boolean;
+    sort: number;
+}
+
+export class FieldGroup {
+    id: number;
+    name: string;
+    resource_id: string;
+}
+
+export class Action {
+    id: string;
+    name: string;
 }
 
 export class Profile {

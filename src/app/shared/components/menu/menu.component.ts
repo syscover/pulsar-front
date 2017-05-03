@@ -69,6 +69,14 @@ export class MenuComponent implements OnInit {
                 items: [
                     {label: 'Languages', icon: 'translate', routerLink: ['/pulsar/admin/lang']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/country']},
+                    {label: 'Packages', icon: 'view_comfy', routerLink: ['/pulsar/admin/package']},
+                    {
+                        label: 'Custom Fields', icon: 'flip_to_front',
+                        items: [
+                            {label: 'Fields', icon: 'list', routerLink: ['/pulsar/admin/field']},
+                            {label: 'Field groups', icon: 'library_books', routerLink: ['/pulsar/admin/field-group']},
+                        ]
+                    },
                     {
                         label: 'Permissions', icon: 'fingerprint',
                         items: [
