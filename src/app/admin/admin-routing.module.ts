@@ -18,6 +18,8 @@ import { FieldGroupListComponent } from './field-group/field-group-list.componen
 import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
+import { ResourceListComponent } from './resource/resource-list.component';
+import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
@@ -62,6 +64,11 @@ const routes: Routes = [
                     { path: 'action',                               component: ActionListComponent },
                     { path: 'action/create',                        component: ActionDetailComponent,       data: { action: 'create' }},
                     { path: 'action/show/:id',                      component: ActionDetailComponent,       data: { action: 'edit' }},
+
+                    // Resources
+                    { path: 'resource',                             component: ResourceListComponent },
+                    { path: 'resource/create',                      component: ResourceDetailComponent,     data: { action: 'create' }},
+                    { path: 'resource/show/:id',                    component: ResourceDetailComponent,     data: { action: 'edit' }},
 
                     // Profiles
                     { path: 'profile',                              component: ProfileListComponent },

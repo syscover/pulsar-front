@@ -15,6 +15,8 @@ import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
+import { ResourceListComponent } from './resource/resource-list.component';
+import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
@@ -22,6 +24,7 @@ import { LangService } from './lang/lang.service';
 import { CountryService } from './country/country.service';
 import { PackageService } from './package/package.service';
 import { ProfileService } from './profile/profile.service';
+import { ResourceService } from './resource/resource.service';
 import { ActionService } from './action/action.service';
 
 @NgModule({
@@ -41,6 +44,8 @@ import { ActionService } from './action/action.service';
         FieldGroupDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
+        ResourceListComponent,
+        ResourceDetailComponent,
         ActionListComponent,
         ActionDetailComponent
     ],
@@ -50,6 +55,7 @@ import { ActionService } from './action/action.service';
         PackageService,
         FieldGroupService,
         ProfileService,
+        ResourceService,
         ActionService
     ],
     bootstrap: []

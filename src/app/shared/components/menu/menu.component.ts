@@ -81,6 +81,7 @@ export class MenuComponent implements OnInit {
                         label: 'Permissions', icon: 'fingerprint',
                         items: [
                             {label: 'Actions', icon: 'flash_on', routerLink: ['/pulsar/admin/action']},
+                            {label: 'Resources', icon: 'settings_input_component', routerLink: ['/pulsar/admin/resource']},
                             {label: 'Profiles', icon: 'supervisor_account', routerLink: ['/pulsar/admin/profile']},
                         ]
                     }
