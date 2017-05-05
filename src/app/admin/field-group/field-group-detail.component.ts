@@ -5,10 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { FieldGroupService } from './field-group.service';
-import { FieldGroup, Package } from './../admin.models';
+import { FieldGroup, Resource } from './../admin.models';
 
 // custom imports
-import { PackageService } from './../package/package.service';
+import { ResourceService } from './../resource/resource.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -19,21 +19,21 @@ import * as _ from 'lodash';
 })
 export class FieldGroupDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private packages: SelectItem[] = [];
+    private resources: SelectItem[] = [];
 
     // paramenters for parent class
     private object: FieldGroup = new FieldGroup(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
-            this.fg.setValue(this.object); // set values of form
+            this.fg.patchValue(this.object); // set values of form
         }
     }
 
     constructor(
         protected injector: Injector,
         protected objectService: FieldGroupService,
-        protected packageService: PackageService
+        protected resourceService: ResourceService
     ) {
         super(injector);
     }
@@ -41,23 +41,37 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
     ngOnInit() {
         this.createForm(); // create form
 
-        this.packageService.getRecords()
-            .subscribe((response) => {
+        // get product types
+        this.configService.getValue({
+                key: 'pulsar.admin.resources_custom_fields'
+            }).subscribe((response) => {
+                const resourcesAllowed = <string[]>response.data; // get resources ids from config
 
-            this.packages = _.map(<Package[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
-            }); // get packages
+                this.resourceService.getRecords()
+                    .subscribe((response2) => {
 
-            this.packages.unshift({ label: 'Select a package', value: '' });
-            super.getRecordHasIdParamenter(this.f);
-        });
+                    // filter response to discard resources
+                    let resources = _.filter(<Resource[]>response2.data, obj => {
+                        return (resourcesAllowed.indexOf(obj.id) !==  -1);
+                    });
+
+                    // map resources to create SelectItem
+                    this.resources = _.map(resources, obj => { // get resources
+                        return { label: obj.name, value: obj.id };
+                    });
+
+                    this.resources.unshift({ label: 'Select a resource', value: '' });
+
+                    super.getRecordHasIdParamenter(this.f);
+                });
+            });
     }
 
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             name: ['', Validators.required ],
-            package_id: ''
+            resource_id: ''
         });
     }
 

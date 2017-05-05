@@ -1,6 +1,6 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, AfterContentInit, EventEmitter, ViewChild, ContentChildren, QueryList } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, Dropdown, PrimeTemplate } from 'primeng/primeng';
 
 import { onValueChangedFormControl } from './../../super/core-validation';
 
@@ -11,8 +11,9 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             <p-dropdown [formControlName]="name" 
                         [options]="options" 
                         [autoWidth]="autoWidth"
+                        [filter]=filter
                         (onChange)="handleChange($event)">
-                        </p-dropdown>
+            </p-dropdown>
             <div *ngIf="error" class="ui-dropdown-message ui-message ui-messages-error ui-corner-all">
                 {{ error }}
             </div>
@@ -29,12 +30,16 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             border-bottom-color: #e62a10; 
         }`]
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements OnInit, AfterContentInit {
 
     @Input() private form: FormGroup;
     @Input() private options: SelectItem[] = [];
     @Input() private name: string;
     @Input() private autoWidth: boolean;
+    @Input() private filter: string;
+
+    @ViewChild(Dropdown) pDropdown: Dropdown;
+    @ContentChildren(PrimeTemplate) templates: QueryList<any>;
 
     private formControl: AbstractControl;
     private error: string;
@@ -42,6 +47,11 @@ export class DropdownComponent implements OnInit {
     @Output() private onChange = new EventEmitter<any>();
 
     constructor() { }
+
+    ngAfterContentInit() {
+        this.pDropdown.templates = this.templates; // set tamplates in dropdown
+        this.pDropdown.ngAfterContentInit();
+    }
 
     ngOnInit() {
         this.formControl = this.form.controls[this.name];

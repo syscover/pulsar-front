@@ -41,6 +41,10 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
                 });
             }
         }
+
+        if (this.dataRoute.action === 'create') {
+            this.fg.controls['lang_id'].setValue(this.configService.getConfig('base_lang').id);
+        }
     }
 
     constructor(
@@ -59,7 +63,7 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
             .subscribe((response) => {
 
             this.langs = _.map(<Lang[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { label: obj.name, value: obj.id, icon: obj.icon };
             }); // get langs
 
             this.langs.unshift({ label: 'Select a language', value: '' });
@@ -70,11 +74,9 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
-            lang_id: [
-                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
-            ],
+            lang_id: ['', Validators.required],
             name: ['', Validators.required ],
-            active: ''
+            active: null
         });
     }
 

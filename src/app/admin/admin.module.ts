@@ -1,6 +1,3 @@
-import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
-import { FieldGroupListComponent } from './field-group/field-group-list.component';
-import { FieldGroupService } from './field-group/field-group.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -13,6 +10,10 @@ import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { FieldGroupListComponent } from './field-group/field-group-list.component';
+import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
+import { FieldListComponent } from './field/field-list.component';
+import { FieldDetailComponent } from './field/field-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -23,6 +24,8 @@ import { ActionDetailComponent } from './action/action-detail.component';
 import { LangService } from './lang/lang.service';
 import { CountryService } from './country/country.service';
 import { PackageService } from './package/package.service';
+import { FieldGroupService } from './field-group/field-group.service';
+import { FieldService } from './field/field.service';
 import { ProfileService } from './profile/profile.service';
 import { ResourceService } from './resource/resource.service';
 import { ActionService } from './action/action.service';
@@ -42,6 +45,8 @@ import { ActionService } from './action/action.service';
         PackageDetailComponent,
         FieldGroupListComponent,
         FieldGroupDetailComponent,
+        FieldListComponent,
+        FieldDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ResourceListComponent,
@@ -54,6 +59,7 @@ import { ActionService } from './action/action.service';
         CountryService,
         PackageService,
         FieldGroupService,
+        FieldService,
         ProfileService,
         ResourceService,
         ActionService

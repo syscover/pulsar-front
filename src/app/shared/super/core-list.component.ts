@@ -1,7 +1,7 @@
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/primeng';
+import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
 import { ConfigService } from './../../core/services/config.service';
@@ -9,6 +9,7 @@ import { ConfigService } from './../../core/services/config.service';
 export class CoreListComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
+    @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
     protected router: Router;
     protected route: ActivatedRoute;
@@ -107,8 +108,11 @@ export class CoreListComponent {
                 this.objectService
                     .deleteRecord(object.id, lang)
                     .subscribe((response) => {
-                    this.getRecords(f);
-                });
+                        //delete object and call onLazyLoad event on datatable
+                        this.dataTable.onLazyLoad.emit(
+                            this.dataTable.createLazyLoadMetadata()
+                        );
+                    });
             }
         });
     }

@@ -34,6 +34,36 @@ export class FieldGroup {
     id: number;
     name: string;
     resource_id: string;
+    field_type_id: number;
+    field_type_name: string;
+    data_type_id: number;
+    required: boolean;
+    sort: number;
+    max_length: number;
+    pattern: string;
+    label_size: number;
+    field_size: number;
+    data_lang: string;
+    data: string;
+}
+
+export class Field {
+    id: number;
+    field_group_id: number;
+    name: string;
+    labels: string;
+    field_type_id: number;
+    field_type_name: string;
+    data_type_id: number;
+    data_type_name: string;
+    required: boolean;
+    sort: number;
+    max_length: number;
+    pattern: string;
+    label_size: number;
+    field_size: number;
+    data_lang: string;
+    data: string;
 }
 
 export class Action {

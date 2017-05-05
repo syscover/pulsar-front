@@ -10,7 +10,8 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             <p-checkbox 
                 [formControlName]="name"
                 [label]="label" 
-                binary="true">
+                binary="true"
+                (onChange)="handleChange($event)">
             </p-checkbox>
         <div>
     `,
@@ -44,6 +45,14 @@ export class CheckboxComponent implements OnInit {
             .controls[this.name]
             .valueChanges
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
+
+        if (this.formControl.value === null || this.formControl.value === undefined || this.formControl.value === '') {
+            this.formControl.setValue(false);
+        }
+    }
+
+    handleChange($event) {
+        this.formControl.setValue($event); //
     }
 
 }

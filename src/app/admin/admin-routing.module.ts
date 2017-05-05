@@ -16,6 +16,8 @@ import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
 import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
+import { FieldListComponent } from './field/field-list.component';
+import { FieldDetailComponent } from './field/field-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -50,15 +52,15 @@ const routes: Routes = [
                     { path: 'package/create',                       component: PackageDetailComponent,      data: { action: 'create' }},
                     { path: 'package/show/:id',                     component: PackageDetailComponent,      data: { action: 'edit' }},
 
-                    // Fields
-                    { path: 'field',                                component: ProfileListComponent },
-                    { path: 'field/create',                         component: ProfileDetailComponent,      data: { action: 'create' }},
-                    { path: 'field/show/:id',                       component: ProfileDetailComponent,      data: { action: 'edit' }},
-
                     // Field groups
                     { path: 'field-group',                          component: FieldGroupListComponent },
                     { path: 'field-group/create',                   component: FieldGroupDetailComponent,   data: { action: 'create' }},
                     { path: 'field-group/show/:id',                 component: FieldGroupDetailComponent,   data: { action: 'edit' }},
+
+                    // Fields
+                    { path: 'field',                                component: FieldListComponent },
+                    { path: 'field/create',                         component: FieldDetailComponent,        data: { action: 'create' }},
+                    { path: 'field/show/:id',                       component: FieldDetailComponent,        data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                               component: ActionListComponent },
