@@ -8,7 +8,6 @@ import { onValueChangedFormControl } from './../../super/core-validation';
     selector: 'ps-multi-select',
     template: `
         <div [formGroup]="form">
-        
             <p-multiSelect  [formControlName]="name"
                             [defaultLabel]="label"
                             [options]="options">

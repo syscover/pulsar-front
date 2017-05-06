@@ -1,12 +1,13 @@
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { PrimeNgModule } from './modules/prime-ng.module';
-import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
+import { PulsarFormsModule } from './components/forms/pulsar-forms.module';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { DataContainerComponent } from './components/data-container/data-container.component';
 import { CheckLangsObjectPipe } from './pipes/check-langs-object.pipe';
@@ -19,26 +20,16 @@ import { ErrorComponent } from './components/errors/error.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
 import { FormHeaderComponent } from './components/form-header/form-header.component';
-import { InputComponent } from './components/forms/input.component';
-import { EditorComponent } from './components/forms/editor.component';
-import { SpinnerComponent } from './components/forms/spinner.component';
-import { DropdownComponent } from './components/forms/dropdown.component';
-import { AutocompleteComponent } from './components/forms/autocomplete.component';
-import { MultiSelectComponent } from './components/forms/multi-select.component';
-import { CheckboxComponent } from './components/forms/checkbox.component';
-import { TextareaComponent } from './components/forms/textarea.component';
-import { ButtonComponent } from './components/forms/button.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         FormsModule,
+        PulsarFormsModule,
         ReactiveFormsModule,
         PrimeNgModule,
-        ConfirmDialogModule,
-        FroalaEditorModule.forRoot(),
-        FroalaViewModule.forRoot()
+        ConfirmDialogModule
     ],
     declarations: [
         MainLayoutComponent,
@@ -53,16 +44,8 @@ import { ButtonComponent } from './components/forms/button.component';
         ErrorComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
-        FormHeaderComponent,
-        InputComponent,
-        EditorComponent,
-        SpinnerComponent,
-        DropdownComponent,
-        AutocompleteComponent,
-        MultiSelectComponent,
-        CheckboxComponent,
-        TextareaComponent,
-        ButtonComponent
+        ProgressSpinnerComponent,
+        FormHeaderComponent
     ],
     providers: [
         ConfirmationService
@@ -70,26 +53,17 @@ import { ButtonComponent } from './components/forms/button.component';
     exports: [
         CommonModule,
         FormsModule,
+        PulsarFormsModule,
         ReactiveFormsModule,
         PrimeNgModule,
         ConfirmDialogModule,
-        FroalaEditorModule,
-        FroalaViewModule,
         MainLayoutComponent,
         ErrorComponent,
         DataContainerComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
+        ProgressSpinnerComponent,
         FormHeaderComponent,
-        InputComponent,
-        EditorComponent,
-        SpinnerComponent,
-        DropdownComponent,
-        AutocompleteComponent,
-        MultiSelectComponent,
-        CheckboxComponent,
-        TextareaComponent,
-        ButtonComponent,
         CheckLangsObjectPipe,
         ActionLangObjectPipe
     ]

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { CoreService } from './core.service';
 import { ConfigService } from './../../core/services/config.service';
+import { LangService } from './../../admin/lang/lang.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { onSubmitFormGroup } from './../super/core-validation';
@@ -23,10 +24,12 @@ export class CoreDetailComponent {
     protected router: Router;
     protected route: ActivatedRoute;
     protected confirmationService;
+    protected lang: Lang; // Current lang for objects that has multiple language
 
     // services superclass
     protected configService: ConfigService;
     protected objectService: CoreService;
+    protected langService: LangService;
 
     constructor(
         protected injector: Injector
@@ -35,6 +38,7 @@ export class CoreDetailComponent {
         this.route = injector.get(ActivatedRoute);
         this.fb = injector.get(FormBuilder);
         this.configService = injector.get(ConfigService);
+        this.langService = injector.get(LangService);
 
         this.dataRoute = <DataRoute>this.route.snapshot.data;
     }
@@ -46,12 +50,44 @@ export class CoreDetailComponent {
             const lang      = params['lang'];
 
             if (this.dataRoute.action === 'create') {
+                this.lang = this.configService.getConfig('base_lang');  // for objets with multiple languages
                 f();
+
+                // set lang_id if form has this field
+                // call after f() to overwrite lang_id field with correct value
+                if(this.fg.contains('lang_id')) {
+                    this.fg.patchValue({
+                        lang_id: this.lang.id // set lang id in form from object with multiple language
+                    });
+                }
+
                 return;
             }
 
-            // edit action and create lang
-            this.getRecord(f, id, lang);
+            // Actions to lang objects
+            const langId = this.dataRoute.action === 'create-lang' ? this.params['newLang'] : this.params['lang'];
+            if( langId !== undefined) {
+                this.langService.getRecord(langId)
+                    .subscribe(response2 => {
+                        this.lang = response2.data;
+                    });
+
+                // edit action and create lang
+                this.getRecord(f, id, lang);
+
+                // set lang_id if form has this field
+                // call after f() to overwrite lang_id field with correct value
+                if(this.fg.contains('lang_id')) {
+                    this.fg.patchValue({
+                        lang_id: langId // set lang id in form from object with multiple language
+                    });
+                }
+            }
+            else
+            {
+                // edit action and create lang
+                this.getRecord(f, id, lang);
+            }
         });
     }
 
@@ -68,6 +104,7 @@ export class CoreDetailComponent {
         this.formErrors = onSubmitFormGroup(this.fg);
 
         if (this.fg.invalid) {
+            // TODO, show general error
             return; // has any validation error when emit submit event
         }
 

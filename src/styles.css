@@ -32,6 +32,19 @@
 /*
  * custom primeng
  */
+@media (min-width: 768px) {
+    .action-buttons ps-button {
+        margin-top: 0 !important;
+    }
+}
+
+.action-buttons ps-button {
+    margin-top: 20px;
+}
+.action-buttons ps-button:first-of-type {
+    margin-top: 0;
+}
+
 .main-card{
     z-index: 2 !important;
 }
@@ -50,6 +63,10 @@
 
 .datatable-search input {
     color: #ffffff;
+}
+
+body .ui-datatable .ui-datatable-data tr td {
+    padding: .5em .6em;
 }
 
 .new-button{

@@ -20,8 +20,6 @@ import * as _ from 'lodash';
 })
 export class CountryDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private langs: SelectItem[] = [];
-
     // paramenters for parent class
     private object: Country = new Country(); // set empty object
     private f: Function = (response = undefined) => {
@@ -53,26 +51,14 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     ngOnInit() {
         this.createForm(); // create form
-
-        this.langService.getRecords()
-            .subscribe((response) => {
-
-            this.langs = _.map(<Lang[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
-            }); // get langs
-
-            this.langs.unshift({ label: 'Select a language', value: '' });
-            super.getRecordHasIdParamenter(this.f);
-        });
+        super.getRecordHasIdParamenter(this.f);
     }
 
     createForm() {
         this.fg = this.fb.group({
             id: ['', Validators.required ],
             name: ['', Validators.required],
-            lang_id: [
-                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
-            ],
+            lang_id: ['', Validators.required],
             prefix: ['', Validators.required],
             sort: ['', Validators.required],
             territorial_area_1: '',
@@ -80,5 +66,4 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
             territorial_area_3: ''
         });
     }
-
 }

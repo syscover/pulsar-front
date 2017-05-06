@@ -11,6 +11,8 @@
                         label="ID."
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
+
+            <ps-lang-label [lang]="lang" class="offset-1 col-sm-6 col-md-3"></ps-lang-label>
         </div>
        
         <div class="row">
@@ -28,7 +30,7 @@
         </div>
 
         <!-- buttons -->
-        <div class="row justify-content-sm-center justify-content-md-start">
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 
                         icon="fa-check" 
                         label="Save" 
@@ -47,6 +49,8 @@
                         (click)="deleteRecord(object)" 
                         className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
+
+            <!--<ps-progress-spinner class="offset-1"></ps-progress-spinner>-->
         </div>
     </form>
 </div>

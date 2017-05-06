@@ -2,6 +2,9 @@
     <h1>Country</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+
+        <input type="hidden" formControlName="lang_id">
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -33,16 +36,6 @@
         </div>
 
         <div class="row">
-            <ps-dropdown    [form]="fg"
-                            [errors]="formErrors"
-                            [autoWidth]="false"
-                            [options]="langs"
-                            name="lang_id"
-                            class="col-sm-12 col-md-5">
-            </ps-dropdown>
-        </div>
-
-        <div class="row">
             <ps-input   [form]="fg"
                         [errors]="formErrors"
                         name="territorial_area_1"
@@ -67,7 +60,7 @@
         </div>
 
         <!-- buttons -->
-        <div class="row justify-content-sm-center justify-content-md-start">
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 
                         icon="fa-check" 
                         label="Save" 
