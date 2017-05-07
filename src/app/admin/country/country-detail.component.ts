@@ -5,14 +5,8 @@ import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
-import { Country, Lang } from './../admin.models';
+import { Country } from './../admin.models';
 import { CountryService } from './country.service';
-
-// custom imports
-import { LangService } from './../lang/lang.service';
-import { SelectItem } from 'primeng/primeng';
-
-import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-country-detail',
@@ -26,25 +20,13 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-
-            // set new lang
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    lang_id: this.params['newLang']
-                });
-            } else {
-                this.fg.patchValue({
-                    lang_id: this.params['lang']
-                });
-            }
         }
     }
 
     constructor(
         protected injector: Injector,
         protected objectService: CountryService,
-        protected confirmationService: ConfirmationService,
-        protected langService: LangService
+        protected confirmationService: ConfirmationService
     ) {
         super(injector);
     }

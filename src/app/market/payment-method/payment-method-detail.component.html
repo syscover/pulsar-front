@@ -2,22 +2,19 @@
     <h1>Paymnent Method</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+
+        <input type="hidden" formControlName="lang_id">
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
                         label="ID."
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
+
+            <ps-lang-label  [lang]="lang" class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
         </div>
-        <div class="row">
-            <ps-dropdown    [form]="fg"
-                            [errors]="formErrors"
-                            [autoWidth]="false"
-                            [options]="langs"
-                            name="lang_id"
-                            class="col-sm-12 col-md-5">
-            </ps-dropdown>
-        </div>
+        
         <div class="row">
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
@@ -27,6 +24,7 @@
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
         </div>
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -34,6 +32,7 @@
                         type="text"
                         name="name" class="col-12"></ps-input>
         </div>
+
         <div class="row">
             <ps-spinner [form]="fg" 
                         [errors]="formErrors"
@@ -46,6 +45,7 @@
                         [min]="0"
                         name="maximum_price" class="col-sm-12 col-md-4"></ps-spinner>
         </div>
+
         <div class="row">
             <ps-checkbox    [form]="fg"
                             name="active"
@@ -56,6 +56,7 @@
                         type="number"
                         label="Sort" class="col-sm-12 col-md-4"></ps-input>
         </div>
+
         <div class="row">
             <ps-textarea    [form]="fg"
                             name="instructions"

@@ -55,18 +55,17 @@ export class CoreDetailComponent {
 
                 // set lang_id if form has this field
                 // call after f() to overwrite lang_id field with correct value
-                if(this.fg.contains('lang_id')) {
+                if (this.fg.contains('lang_id')) {
                     this.fg.patchValue({
                         lang_id: this.lang.id // set lang id in form from object with multiple language
                     });
                 }
-
                 return;
             }
 
             // Actions to lang objects
             const langId = this.dataRoute.action === 'create-lang' ? this.params['newLang'] : this.params['lang'];
-            if( langId !== undefined) {
+            if (langId !== undefined) {
                 this.langService.getRecord(langId)
                     .subscribe(response2 => {
                         this.lang = response2.data;
@@ -77,14 +76,12 @@ export class CoreDetailComponent {
 
                 // set lang_id if form has this field
                 // call after f() to overwrite lang_id field with correct value
-                if(this.fg.contains('lang_id')) {
+                if (this.fg.contains('lang_id')) {
                     this.fg.patchValue({
                         lang_id: langId // set lang id in form from object with multiple language
                     });
                 }
-            }
-            else
-            {
+            } else {
                 // edit action and create lang
                 this.getRecord(f, id, lang);
             }

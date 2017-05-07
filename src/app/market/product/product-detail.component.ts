@@ -9,8 +9,6 @@ import { ProductService } from './product.service';
 import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
 
 // custom imports
-import { Lang } from './../../admin/admin.models';
-import { LangService } from './../../admin/lang/lang.service';
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
@@ -30,7 +28,6 @@ import * as _ from 'lodash';
 })
 export class ProductDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private langs: SelectItem[] = [];
     private categories: SelectItem[] = [];
     private productTypes: SelectItem[] = [];
     private priceTypes: SelectItem[] = [];
@@ -46,17 +43,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
             this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
-
-            // set new lang
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    lang_id: this.params['newLang']
-                });
-            } else {
-                this.fg.patchValue({
-                    lang_id: this.params['lang']
-                });
-            }
         }
     }
 
@@ -64,7 +50,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         protected injector: Injector,
         protected objectService: ProductService,
         protected confirmationService: ConfirmationService,
-        protected langService: LangService,
         protected categoryService: CategoryService,
         protected productClassTaxService: ProductClassTaxService,
         protected taxRuleService: TaxRuleService
@@ -74,16 +59,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     ngOnInit() {
         this.createForm(); // create form
-
-        // get langs
-        this.langService.getRecords()
-            .subscribe((response) => {
-
-                this.langs = _.map(<Lang[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
-                });
-                this.langs.unshift({ label: 'Select a language', value: '' });
-            });
 
         // get categories
         this.categoryService.getRecords(this.configService.getConfig('base_lang').id)
@@ -142,9 +117,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
-            lang_id: [
-                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
-            ],
+            lang_id: ['', Validators.required],
             categories_id: [[], Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],

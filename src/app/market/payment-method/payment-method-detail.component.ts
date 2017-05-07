@@ -9,8 +9,6 @@ import { PaymentMethodService } from './payment-method.service';
 import { PaymentMethod, OrderStatus } from './../market.models';
 
 // custom imports
-import { Lang } from './../../admin/admin.models';
-import { LangService } from './../../admin/lang/lang.service';
 import { OrderStatusService } from './../order-status/order-status.service';
 import { SelectItem } from 'primeng/primeng';
 
@@ -22,7 +20,6 @@ import * as _ from 'lodash';
 })
 export class PaymentMethodDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private langs: SelectItem[] = [];
     private orderStatuses: SelectItem[] = [];
 
     // paramenters for parent class
@@ -31,17 +28,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-
-            // set new lang
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    lang_id: this.params['newLang']
-                });
-            } else {
-                this.fg.patchValue({
-                    lang_id: this.params['lang']
-                });
-            }
         }
     }
 
@@ -49,7 +35,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         protected injector: Injector,
         protected objectService: PaymentMethodService,
         protected confirmationService: ConfirmationService,
-        protected langService: LangService,
         protected orderStatusService: OrderStatusService
     ) {
         super(injector);
@@ -57,17 +42,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
 
     ngOnInit() {
         this.createForm(); // create form
-
-        // load langs
-        this.langService.getRecords()
-            .subscribe((response) => {
-
-                // get langs
-                this.langs = _.map(<Lang[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
-                });
-                this.langs.unshift({ label: 'Select a language', value: '' });
-            });
 
         // load order status
         const querySearchOrderStatus = {
@@ -105,9 +79,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
-            lang_id: [
-                {value: '', disabled: this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang'}, Validators.required
-            ],
+            lang_id: ['', Validators.required],
             order_status_successful_id: [
                 {value: '', disabled: this.dataRoute.action === 'create-lang'}, Validators.required
             ],

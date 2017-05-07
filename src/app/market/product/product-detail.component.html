@@ -3,6 +3,7 @@
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
 
+        <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="subtotal">
 
         <p-tabView>
@@ -13,16 +14,8 @@
                                 label="ID."
                                 type="text"
                                 name="id" class="col-sm-6 col-md-3"></ps-input>
-                </div>
 
-                <div class="row">
-                    <ps-dropdown    [form]="fg"
-                                    [errors]="formErrors"
-                                    [autoWidth]="false"
-                                    [options]="langs"
-                                    name="lang_id"
-                                    class="col-sm-12 col-md-5">
-                    </ps-dropdown>
+                    <ps-lang-label  [lang]="lang" class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
                 </div>
 
                 <div class="row">
