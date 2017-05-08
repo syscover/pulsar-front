@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { FieldService } from './field.service';
-import { Field, FieldGroup } from './../admin.models';
+import { Field, FieldGroup, FieldType, DataType } from './../admin.models';
 
 // custom imports
 import { FieldGroupService } from './../field-group/field-group.service';
@@ -20,6 +20,8 @@ import * as _ from 'lodash';
 export class FieldDetailComponent extends CoreDetailComponent implements OnInit {
 
     private fieldGroups: SelectItem[] = [];
+    private fieldTypes: SelectItem[] = [];
+    private dataTypes: SelectItem[] = [];
 
     // paramenters for parent class
     private object: Field = new Field(); // set empty object
@@ -50,6 +52,28 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
                 this.fieldGroups.unshift({ label: 'Select a group', value: '' });
             });
 
+        // get field types
+        this.configService.getValue({
+                key: 'pulsar.admin.field_types'
+            }).subscribe((response) => {
+                this.fieldTypes = _.map(<FieldType[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
+
+                this.fieldTypes.unshift({ label: 'Select a field type', value: '' });
+            });
+
+        // get data types
+        this.configService.getValue({
+                key: 'pulsar.admin.data_types'
+            }).subscribe((response) => {
+                this.dataTypes = _.map(<DataType[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
+
+                this.dataTypes.unshift({ label: 'Select a data type', value: '' });
+            });
+
         super.getRecordHasIdParamenter(this.f);
     }
 
@@ -60,6 +84,15 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
             lang_id: ['', Validators.required],
             label: ['', Validators.required ],
             name: ['', Validators.required ],
+            field_type_id: ['', Validators.required ],
+            data_type_id: ['', Validators.required ],
+            required: '',
+            sort: '',
+            max_length: '',
+            pattern: '',
+            label_size: '',
+            field_size: '',
+
         });
     }
 

@@ -4,9 +4,8 @@ import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { CountryService } from './country.service';
-import { Country } from '../admin.models';
+import { Country, Lang } from '../admin.models';
 import { LangService } from './../lang/lang.service';
-import { Lang } from './../admin.models';
 
 @Component({
     selector: 'ps-country-list',

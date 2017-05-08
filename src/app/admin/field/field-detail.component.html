@@ -24,6 +24,14 @@
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
         </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        label="Label"
+                        type="text"
+                        name="label" class="col-12"></ps-input>
+        </div>
         
         <div class="row">
             <ps-input   [form]="fg"
@@ -34,12 +42,68 @@
         </div>
 
         <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="fieldTypes"
+                            name="field_type_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="dataTypes"
+                            name="data_type_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Sort"
+                        type="number"
+                        name="sort" class="col-sm-12 col-md-4"></ps-input>
+
+            <ps-checkbox    [form]="fg"
+                            name="required"
+                            label="Required" class="offset-md-1 col-sm-12 col-md-4"></ps-checkbox>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Maximum length"
+                        type="number"
+                        name="max_length" class="col-sm-12 col-md-4"></ps-input>
+        </div>
+
+        <div class="row">
             <ps-input   [form]="fg"
                         [errors]="formErrors"
-                        label="Label"
+                        label="Pattern"
                         type="text"
-                        name="label" class="col-12"></ps-input>
+                        name="pattern" class="col-sm-12 col-md-6"></ps-input>
         </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Label size"
+                        type="number"
+                        name="label_size" class="col-sm-12 col-md-4"></ps-input>
+
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Field size"
+                        type="number"
+                        name="field_size" class="offset-md-1 col-sm-12 col-md-4"></ps-input>
+        </div>
+
+        
 
         
         

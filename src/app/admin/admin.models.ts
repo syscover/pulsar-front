@@ -47,6 +47,19 @@ export class FieldGroup {
     data: string;
 }
 
+export class FieldType {
+    id: number;
+    key: string;
+    name: string;
+    component: string;
+}
+
+export class DataType {
+    id: number;
+    name: string;
+    type: string;
+}
+
 export class Field {
     id: number;
     field_group_id: number;

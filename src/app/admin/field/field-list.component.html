@@ -14,6 +14,29 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
+                <button pButton type="button" icon="ui-icon-translate" class="datatable-actions dropdown-toggle {{ object | checkLangsObject:activatedLangs }}-btn" 
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
+                    <div *ngFor="let lang of activatedLangs">
+                        <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
+                            [routerLink]="[this.objectService.baseUri + '/show', object.id, lang.id]"
+                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
+                            
+                        <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
+                            [routerLink]="[this.objectService.baseUri + '/create', object.id, object.lang_id, lang.id]"
+                            class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-column>
+    <p-column styleClass="col-button center">
+        <ng-template pTemplate="header">
+            @
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+            <div class="dropdown">
                 <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
