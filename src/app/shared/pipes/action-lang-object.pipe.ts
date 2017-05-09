@@ -10,7 +10,7 @@ export class ActionLangObjectPipe implements PipeTransform {
 
     transform(object: Translated, lang: Lang): string {
 
-        const langs: string[] = JSON.parse(object.data_lang).langs; // get langs from object
+        const langs: string[] = object.data_lang; // get langs from object
 
         if (langs.indexOf(lang.id) === -1) {
             return 'create';

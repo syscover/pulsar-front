@@ -60,7 +60,8 @@ const routes: Routes = [
                     // Fields
                     { path: 'field',                                component: FieldListComponent },
                     { path: 'field/create',                         component: FieldDetailComponent,        data: { action: 'create' }},
-                    { path: 'field/show/:id',                       component: FieldDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field/create/:id/:lang/:newLang',      component: FieldDetailComponent,        data: { action: 'create-lang' }},
+                    { path: 'field/show/:id/:lang',                 component: FieldDetailComponent,        data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                               component: ActionListComponent },

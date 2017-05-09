@@ -10,7 +10,7 @@ export class CheckLangsObjectPipe implements PipeTransform {
 
   transform(object: Translated, activatedLangs: Lang[], completedClass: string = 'green', uncompletedClass: string = 'red'): string {
 
-    const langs: string[] = JSON.parse(object.data_lang).langs; // get langs from object
+    const langs: string[] = object.data_lang; // get langs from object
 
     for (const lang of activatedLangs) {
         if (langs.indexOf(lang.id) === -1) {
