@@ -91,8 +91,8 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
             tax_rate_zones_id: [[], Validators.required],
             customer_class_taxes_id: [[], Validators.required],
             product_class_taxes_id: [[], Validators.required],
-            priority: null,
-            sort: null
+            priority: [null, Validators.required ],
+            sort: [null, Validators.required ]
         });
     }
 }

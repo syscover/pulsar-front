@@ -23,7 +23,9 @@ export class MenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(@Inject(forwardRef(() => MainLayoutComponent)) public app: MainLayoutComponent) {}
+    constructor(
+        @Inject(forwardRef(() => MainLayoutComponent)) public app: MainLayoutComponent
+    ) {}
 
     ngOnInit() {
         this.model = [
@@ -107,7 +109,7 @@ export class MenuComponent implements OnInit {
                 [ngClass]="{'active-menuitem': isActive(i)}">
                 <a  *ngIf="!child.routerLink"
                     [href]="child.url||'#'"  
-                    (click)="itemClick($event,child,i)" 
+                    (click)="itemClick($event, child, i)" 
                     class="ripplelink" 
                     [attr.tabindex]="!visible ? '-1' : null" 
                     [attr.target]="child.target">
@@ -117,7 +119,7 @@ export class MenuComponent implements OnInit {
                 </a>
 
                 <a  *ngIf="child.routerLink"
-                    (click)="itemClick($event,child,i)" 
+                    (click)="itemClick($event, child, i)" 
                     class="ripplelink" 
                     [routerLink]="child.routerLink" 
                     routerLinkActive="active-menuitem-routerlink" 
@@ -217,5 +219,4 @@ export class SubMenuComponent {
             this.activeIndex = null;
         }
     }
-
 }

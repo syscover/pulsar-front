@@ -71,7 +71,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             name: ['', Validators.required ],
-            resource_id: ''
+            resource_id: ['', Validators.required ]
         });
     }
 }
