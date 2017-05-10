@@ -26,5 +26,4 @@ export class ResourceListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

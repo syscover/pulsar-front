@@ -78,5 +78,4 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
             customer_class_tax_id: ['', Validators.required ]
         });
     }
-
 }

@@ -1,4 +1,4 @@
-<ps-datatable-header title="Actions {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Actions {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="objectService.baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
@@ -17,8 +17,8 @@
                 <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id]">Edit</a>
-                    <a class="dropdown-item pointer" (click)="deleteRecord(this.f, object)">Delete</a>
+                    <a class="dropdown-item" [routerLink]="[objectService.baseUri + '/show', object.id]">Edit</a>
+                    <a class="dropdown-item pointer" (click)="deleteRecord(f, object)">Delete</a>
                 </div>
             </div>
         </ng-template>

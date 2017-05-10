@@ -40,5 +40,4 @@ export class CustomerClassTaxDetailComponent extends CoreDetailComponent impleme
             name: ['', Validators.required ]
         });
     }
-
 }

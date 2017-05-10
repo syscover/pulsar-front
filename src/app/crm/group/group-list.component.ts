@@ -26,5 +26,4 @@ export class GroupListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

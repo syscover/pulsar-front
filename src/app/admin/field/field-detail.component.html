@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Field</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
 
         <input type="hidden" formControlName="lang_id">
 
@@ -103,10 +103,6 @@
                         name="field_size" class="offset-md-1 col-sm-12 col-md-4"></ps-input>
         </div>
 
-        
-
-        
-        
         <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 
@@ -117,7 +113,15 @@
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         label="Cancel" 
-                        [routerLink]="[this.objectService.baseUri]"
+                        [routerLink]="[objectService.baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        *ngIf="dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object, undefined, lang.id)" 
+                        className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>
     </form>

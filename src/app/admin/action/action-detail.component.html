@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Action</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
@@ -27,7 +27,7 @@
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         label="Cancel" 
-                        [routerLink]="[this.objectService.baseUri]"
+                        [routerLink]="[objectService.baseUri]"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>
     </form>

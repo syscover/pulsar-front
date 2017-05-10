@@ -26,5 +26,4 @@ export class PackageListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

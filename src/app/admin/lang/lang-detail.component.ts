@@ -40,9 +40,7 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
             name: ['', Validators.required],
             icon: ['', Validators.required],
             sort: '',
-            base: '',
             active: ''
         });
     }
-
 }

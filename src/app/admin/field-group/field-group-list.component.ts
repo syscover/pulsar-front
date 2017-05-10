@@ -26,5 +26,4 @@ export class FieldGroupListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

@@ -95,5 +95,4 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
             sort: null
         });
     }
-
 }

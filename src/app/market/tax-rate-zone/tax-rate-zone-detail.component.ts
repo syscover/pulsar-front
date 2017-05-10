@@ -44,7 +44,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
         this.createForm(); // create form
 
         // get countries
-        this.countryService.getRecords(this.configService.getConfig('base_lang').id)
+        this.countryService.getRecords(this.configService.getConfig('base_lang'))
             .subscribe((response) => {
                 this.countries = <Country[]>response.data;
 
@@ -61,5 +61,4 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
             tax_rate: [null, Validators.required ]
         });
     }
-
 }

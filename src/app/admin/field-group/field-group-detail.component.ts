@@ -74,5 +74,4 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
             resource_id: ''
         });
     }
-
 }

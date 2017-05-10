@@ -61,7 +61,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.createForm(); // create form
 
         // get categories
-        this.categoryService.getRecords(this.configService.getConfig('base_lang').id)
+        this.categoryService.getRecords(this.configService.getConfig('base_lang'))
             .subscribe((response) => {
 
             this.categories = _.map(<Category[]>response.data, obj => {
@@ -73,7 +73,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.configService.getValue({
                 key: 'pulsar.market.productTypes',
                 translate: {
-                    lang: this.configService.getConfig('base_lang').id,
+                    lang: this.configService.getConfig('base_lang'),
                     property: 'name'
                 }
             }).subscribe((response) => {
@@ -89,7 +89,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.configService.getValue({
                 key: 'pulsar.market.priceTypes',
                 translate: {
-                    lang: this.configService.getConfig('base_lang').id,
+                    lang: this.configService.getConfig('base_lang'),
                     property: 'name'
                 }
             }).subscribe((response) => {
@@ -152,6 +152,5 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.fg.controls['tax_format'].setValue(data.data.taxAmountFormat);
                 this.fg.controls['total_format'].setValue(data.data.totalFormat);
             });
-
     }
 }

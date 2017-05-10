@@ -14,8 +14,6 @@ import { Lang } from './../../admin/admin.models';
 })
 export class OrderStatusListComponent extends CoreListComponent {
 
-    activatedLangs: Lang[];
-
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
@@ -33,18 +31,4 @@ export class OrderStatusListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
-    // overwritte method
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function) {
-        // only get activated langs when activatedLangs is not instantiated
-        if (this.activatedLangs) {
-            super.loadDadaTableLazy(event, f, this.configService.getConfig('base_lang').id);
-        } else {
-            this.langService.getActivatedLangs().subscribe(response => {
-                this.activatedLangs = <Lang[]>response.data;
-                super.loadDadaTableLazy(event, f, this.configService.getConfig('base_lang').id);
-            });
-        }
-    }
-
 }

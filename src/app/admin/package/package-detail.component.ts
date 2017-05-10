@@ -43,5 +43,4 @@ export class PackageDetailComponent extends CoreDetailComponent implements OnIni
             sort: [null, Validators.required ]
         });
     }
-
 }

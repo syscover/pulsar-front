@@ -40,5 +40,4 @@ export class ActionDetailComponent extends CoreDetailComponent implements OnInit
             name: ['', Validators.required ]
         });
     }
-
 }

@@ -26,5 +26,4 @@ export class ActionListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

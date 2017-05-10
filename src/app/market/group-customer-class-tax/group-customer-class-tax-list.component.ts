@@ -26,5 +26,4 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }

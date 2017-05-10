@@ -1,4 +1,4 @@
-<ps-datatable-header title="Countries {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="this.objectService.baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Countries {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="objectService.baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
@@ -15,17 +15,17 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-translate" class="datatable-actions dropdown-toggle {{ object | checkLangsObject:activatedLangs }}-btn" 
+                <button pButton type="button" icon="ui-icon-translate" class="datatable-actions dropdown-toggle {{ object | checkLangsObject:langs }}-btn" 
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
-                    <div *ngFor="let lang of activatedLangs">
+                    <div *ngFor="let lang of langs">
                         <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
-                            [routerLink]="[this.objectService.baseUri + '/show', object.id, lang.id]"
+                            [routerLink]="[objectService.baseUri + '/show', object.id, lang.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
                             
                         <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
-                            [routerLink]="[this.objectService.baseUri + '/create', object.id, object.lang_id, lang.id]"
+                            [routerLink]="[objectService.baseUri + '/create', object.id, object.lang_id, lang.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
                     </div>
                 </div>
@@ -42,8 +42,8 @@
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[this.objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
-                    <a class="dropdown-item pointer" (click)="deleteRecord(this.f, object)">Delete</a>
+                    <a class="dropdown-item" [routerLink]="[objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
+                    <a class="dropdown-item pointer" (click)="deleteRecord(f, object)">Delete</a>
                 </div>
             </div>
         </ng-template>

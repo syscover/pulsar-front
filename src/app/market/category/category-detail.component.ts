@@ -46,5 +46,4 @@ export class CategoryDetailComponent extends CoreDetailComponent implements OnIn
             description: ''
         });
     }
-
 }

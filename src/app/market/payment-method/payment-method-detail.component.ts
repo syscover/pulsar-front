@@ -46,7 +46,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         // load order status
         const querySearchOrderStatus = {
             'type': 'query',
-            'lang': this.configService.getConfig('base_lang').id,
+            'lang': this.configService.getConfig('base_lang'),
             'parameters': [
                 {
                     'command': 'where',
@@ -91,5 +91,4 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
             instructions: ''
         });
     }
-
 }

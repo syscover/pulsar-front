@@ -60,5 +60,4 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
             package_id: ['', Validators.required ]
         });
     }
-
 }

@@ -7,10 +7,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { CoreService } from './core.service';
 import { ConfigService } from './../../core/services/config.service';
-import { LangService } from './../../admin/lang/lang.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { onSubmitFormGroup } from './../super/core-validation';
+
+import * as _ from 'lodash';
 
 export class CoreDetailComponent {
 
@@ -24,12 +25,12 @@ export class CoreDetailComponent {
     protected router: Router;
     protected route: ActivatedRoute;
     protected confirmationService;
+    protected langs: Lang[]; // Activated application lang
     protected lang: Lang; // Current lang for objects that has multiple language
 
     // services superclass
     protected configService: ConfigService;
     protected objectService: CoreService;
-    protected langService: LangService;
 
     constructor(
         protected injector: Injector
@@ -38,9 +39,10 @@ export class CoreDetailComponent {
         this.route = injector.get(ActivatedRoute);
         this.fb = injector.get(FormBuilder);
         this.configService = injector.get(ConfigService);
-        this.langService = injector.get(LangService);
 
+        // set object properties
         this.dataRoute = <DataRoute>this.route.snapshot.data;
+        this.langs = this.configService.getConfig('langs');
     }
 
     getRecordHasIdParamenter(f: Function) {
@@ -50,7 +52,7 @@ export class CoreDetailComponent {
             const lang      = params['lang'];
 
             if (this.dataRoute.action === 'create') {
-                this.lang = this.configService.getConfig('base_lang');  // for objets with multiple languages
+                this.lang  = <Lang>_.find(this.langs, {'id': this.configService.getConfig('base_lang')}); // get base_lang object
                 f();
 
                 // set lang_id if form has this field
@@ -66,10 +68,7 @@ export class CoreDetailComponent {
             // Actions to lang objects
             const langId = this.dataRoute.action === 'create-lang' ? this.params['newLang'] : this.params['lang'];
             if (langId !== undefined) {
-                this.langService.getRecord(langId)
-                    .subscribe(response2 => {
-                        this.lang = response2.data;
-                    });
+                this.lang = <Lang>_.find(this.langs, {'id': langId}); // get lang object
 
                 // edit action and create lang
                 this.getRecord(f, id, lang);
@@ -133,12 +132,18 @@ export class CoreDetailComponent {
         });
     }
 
-    deleteRecord(object: any, routeRedirect: string = undefined): void {
+    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined): void {
 
         let lang: string;
 
         if (object.lang_id) {   // check if has languages
             lang = object.lang_id;
+        } else {
+            // chek if has force lang, this options is used in object with multiple lang in json
+            // for example table field
+            if (langAux !== undefined) {
+                lang = langAux;
+            }
         }
 
         // confirm to delete object

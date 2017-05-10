@@ -4,7 +4,6 @@ export class Lang {
     name: string;
     icon: string;
     sort: number;
-    base: boolean;
     active: boolean;
 }
 
@@ -64,7 +63,7 @@ export class Field {
     id: number;
     field_group_id: number;
     name: string;
-    labels: string;
+    labels: string[];
     field_type_id: number;
     field_type_name: string;
     data_type_id: number;

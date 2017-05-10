@@ -5,6 +5,7 @@ import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
 import { ConfigService } from './../../core/services/config.service';
+import { Lang } from './../../admin/admin.models';
 
 export class CoreListComponent {
 
@@ -16,6 +17,7 @@ export class CoreListComponent {
     protected totalRecords: number;     // total records in datatable
     protected filteredRecords: number;     // filtered records over total
     protected columnsSearch: string[];  // columns where will be used for global searchs
+    protected langs: Lang[]; // Activated application lang
 
     // services superclass
     protected objectService: CoreService;
@@ -27,6 +29,9 @@ export class CoreListComponent {
     ) {
         this.confirmationService = injector.get(ConfirmationService);
         this.configService = injector.get(ConfigService);
+
+        // set object properties
+        this.langs = this.configService.getConfig('langs');
     }
 
     getRecords(f: Function): void {

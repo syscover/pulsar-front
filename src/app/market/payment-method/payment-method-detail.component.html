@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Paymnent Method</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(this.fg, this.object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
 
         <input type="hidden" formControlName="lang_id">
 
@@ -75,12 +75,12 @@
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         label="Cancel" 
-                        [routerLink]="[this.objectService.baseUri]"
+                        [routerLink]="[objectService.baseUri]"
                         class="col-sm-10 col-md-3"></ps-button>
 
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
-                        *ngIf="this.dataRoute.action === 'edit'"
+                        *ngIf="dataRoute.action === 'edit'"
                         label="Delete translation" 
                         (click)="deleteRecord(object)" 
                         className="red-btn"

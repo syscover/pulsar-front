@@ -22,5 +22,4 @@ export class ValidationMessageService {
                 return 'Error not contemplated';
         }
     }
-
 }

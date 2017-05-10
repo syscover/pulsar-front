@@ -40,5 +40,4 @@ export class GroupDetailComponent extends CoreDetailComponent implements OnInit 
             name: ['', Validators.required ]
         });
     }
-
 }

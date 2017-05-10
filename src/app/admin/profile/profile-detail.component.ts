@@ -40,5 +40,4 @@ export class ProfileDetailComponent extends CoreDetailComponent implements OnIni
             name: ['', Validators.required ]
         });
     }
-
 }

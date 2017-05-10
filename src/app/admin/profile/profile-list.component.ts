@@ -26,5 +26,4 @@ export class ProfileListComponent extends CoreListComponent {
     ) {
         super(injector);
     }
-
 }
