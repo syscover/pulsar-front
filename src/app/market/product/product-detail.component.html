@@ -9,7 +9,7 @@
         <p-tabView>
             <p-tabPanel header="Product" leftIcon="ui-icon-check" class="padding-top-20">
                 <div class="row">
-                    <ps-input   [form]="fg" 
+                    <ps-input   [form]="fg"
                                 [errors]="formErrors"
                                 label="ID."
                                 type="text"
@@ -74,6 +74,17 @@
                                     name="sort" class="col-sm-12 col-md-4"></ps-spinner>
                 </div>
 
+                <div class="row">
+                    <ps-dropdown    [form]="fg"
+                                    [errors]="formErrors"
+                                    [autoWidth]="false"
+                                    [options]="fieldGroups"
+                                    (onChange)="handleGetFields(fg.controls['field_group_id'].value)"
+                                    name="field_group_id"
+                                    class="col-sm-12 col-md-6">
+                    </ps-dropdown>
+                </div>
+
                 <ps-form-header 
                                 title="Prices and taxes"
                                 icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
@@ -124,6 +135,18 @@
                                 label="Total"
                                 name="total_format" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
                 </div>
+
+                <ps-form-header *ngIf="fields"
+                                class="animated fadeIn"
+                                title="Custom fields"
+                                icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
+
+                <ng-container class="animated fadeIn" *ngFor="let field of fields">
+                    <ps-dynamic-form    [field]="field"
+                                        [errors]="formErrors"></ps-dynamic-form>
+                </ng-container>
+
+
             </p-tabPanel>
 
             <p-tabPanel header="Descripton" leftIcon="ui-icon-edit">

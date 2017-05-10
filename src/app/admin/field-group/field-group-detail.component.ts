@@ -57,7 +57,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
 
                     // map resources to create SelectItem
                     this.resources = _.map(resources, obj => { // get resources
-                        return { label: obj.name, value: obj.id };
+                        return { value: obj.id, label: obj.name };
                     });
 
                     this.resources.unshift({ label: 'Select a resource', value: '' });

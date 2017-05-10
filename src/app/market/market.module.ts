@@ -25,6 +25,8 @@ import { ProductDetailComponent } from './product/product-detail.component';
 import { GroupService } from './../crm/group/group.service';
 import { LangService } from './../admin/lang/lang.service';
 import { CountryService } from './../admin/country/country.service';
+import { FieldGroupService } from './../admin/field-group/field-group.service';
+import { FieldService } from './../admin/field/field.service';
 import { CategoryService } from './category/category.service';
 import { CustomerClassTaxService } from './customer-class-tax/customer-class-tax.service';
 import { GroupCustomerClassTaxService } from './group-customer-class-tax/group-customer-class-tax.service';
@@ -63,6 +65,8 @@ import { ProductService } from './product/product.service';
     providers: [
         LangService,
         CountryService,
+        FieldGroupService,
+        FieldService,
         CategoryService,
         CustomerClassTaxService,
         GroupCustomerClassTaxService,

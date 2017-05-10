@@ -20,6 +20,8 @@ import { ErrorComponent } from './components/errors/error.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
 import { FormHeaderComponent } from './components/form-header/form-header.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormService } from './components/dynamic-form/dynamic-form.service';
 
 @NgModule({
     imports: [
@@ -45,10 +47,12 @@ import { FormHeaderComponent } from './components/form-header/form-header.compon
         DatatableSearchComponent,
         DatatableHeaderComponent,
         ProgressSpinnerComponent,
-        FormHeaderComponent
+        FormHeaderComponent,
+        DynamicFormComponent
     ],
     providers: [
-        ConfirmationService
+        ConfirmationService,
+        DynamicFormService
     ],
     exports: [
         CommonModule,
@@ -64,6 +68,7 @@ import { FormHeaderComponent } from './components/form-header/form-header.compon
         DatatableHeaderComponent,
         ProgressSpinnerComponent,
         FormHeaderComponent,
+        DynamicFormComponent,
         CheckLangsObjectPipe,
         ActionLangObjectPipe
     ]

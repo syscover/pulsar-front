@@ -47,10 +47,8 @@ export class FieldGroup {
 }
 
 export class FieldType {
-    id: number;
-    key: string;
+    id: string;
     name: string;
-    component: string;
 }
 
 export class DataType {

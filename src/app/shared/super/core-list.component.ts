@@ -83,14 +83,13 @@ export class CoreListComponent {
             }
         }
 
-        const object = {
-            'type': 'query',
-            'lang': lang,
-            'parameters': parameters
-        };
-
+        // search elements by paramenters
         this.objectService
-            .searchRecords(object)
+                .searchRecords({
+                'type': 'query',
+                'lang': lang,
+                'parameters': parameters
+            })
             .subscribe((response) => {
                 this.totalRecords = response.total;
                 this.filteredRecords = response.filtered;

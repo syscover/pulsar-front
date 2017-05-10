@@ -53,7 +53,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
             .subscribe((response) => {
 
                 this.groups = _.map(<Group[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 });
                 this.groups.unshift({ label: 'Select a group', value: '' });
             });
@@ -63,7 +63,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
             .subscribe((response) => {
 
                 this.customerClassTaxes = _.map(<CustomerClassTax[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 });
                 this.customerClassTaxes.unshift({ label: 'Select a customer class tax', value: '' });
             });

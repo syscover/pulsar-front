@@ -44,29 +44,27 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         this.createForm(); // create form
 
         // load order status
-        const querySearchOrderStatus = {
-            'type': 'query',
-            'lang': this.configService.getConfig('base_lang'),
-            'parameters': [
-                {
-                    'command': 'where',
-                    'column': 'order_status.active',
-                    'operator': '=',
-                    'value': true
-                },
-                {
-                    'command': 'orderBy',
-                    'operator': 'asc',
-                    'column': 'order_status.name'
-                }
-            ]
-        };
-
-        this.orderStatusService.searchRecords(querySearchOrderStatus)
+        this.orderStatusService.searchRecords({
+                'type': 'query',
+                'lang': this.configService.getConfig('base_lang'),
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'order_status.active',
+                        'operator': '=',
+                        'value': true
+                    },
+                    {
+                        'command': 'orderBy',
+                        'operator': 'asc',
+                        'column': 'order_status.name'
+                    }
+                ]
+            })
             .subscribe((response) => {
 
                 this.orderStatuses = _.map(<OrderStatus[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 }); // get order status
 
                 this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });

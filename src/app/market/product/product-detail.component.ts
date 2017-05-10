@@ -1,3 +1,4 @@
+import { DynamicFormService } from './../../shared/components/dynamic-form/dynamic-form.service';
 import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,6 +13,11 @@ import { Product, Category, ProductType, PriceType, ProductClassTax } from './..
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
+
+import { FieldGroupService } from './../../admin/field-group/field-group.service';
+import { FieldService } from './../../admin/field/field.service';
+import { FieldGroup } from './../../admin/admin.models';
+
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -33,6 +39,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private priceTypes: SelectItem[] = [];
     private productClassTaxes: SelectItem[] = [];
 
+    private fieldGroups: SelectItem[] = [];
+    private fields: any;
+
     @ViewChild('productClassTax') private productClassTax;
 
     // paramenters for parent class
@@ -52,7 +61,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         protected confirmationService: ConfirmationService,
         protected categoryService: CategoryService,
         protected productClassTaxService: ProductClassTaxService,
-        protected taxRuleService: TaxRuleService
+        protected taxRuleService: TaxRuleService,
+
+        protected fieldGroupService: FieldGroupService,
+        protected fieldService: FieldService,
+        private dynamicFormService: DynamicFormService
     ) {
         super(injector);
     }
@@ -65,7 +78,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             .subscribe((response) => {
 
             this.categories = _.map(<Category[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             });
         });
 
@@ -79,7 +92,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }).subscribe((response) => {
 
                 this.productTypes = _.map(<ProductType[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 }); // get types
                 this.productTypes.unshift({ label: 'Select a product type', value: '' });
             });
@@ -95,7 +108,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }).subscribe((response) => {
 
                 this.priceTypes = _.map(<PriceType[]>response.data, obj => {
-                    return { label: obj.name, value: obj.id };
+                    return { value: obj.id, label: obj.name };
                 });
                 this.priceTypes.unshift({ label: 'Select a price type', value: '' });
             });
@@ -105,10 +118,31 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             .subscribe((response) => {
 
             this.productClassTaxes = _.map(<ProductClassTax[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             });
             this.productClassTaxes.unshift({ label: 'Select a tax', value: '' });
         });
+
+        // get field groups
+        this.fieldGroupService.searchRecords({
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'field_group.resource_id',
+                        'operator': '=',
+                        'value': 'market-product'
+                    }
+                ]
+            })
+            .subscribe((response) => {
+
+                this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get order status
+
+                this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
+            });
 
         // get object
         super.getRecordHasIdParamenter(this.f);
@@ -121,8 +155,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             categories_id: [[], Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],
+            field_group_id: '',
             product_type_id: ['', Validators.required],
-            weight: null,
+            weight: [null, Validators.required],
             active: '',
             sort: ['', Validators.required],
             price_type_id: ['', Validators.required],
@@ -134,23 +169,47 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             tax_format: [{value: null, disabled: true}, Validators.required ],
             total_format: [{value: null, disabled: true}, Validators.required ]
         });
+
+        // Save formGroup in service to use for dynamic form
+        this.dynamicFormService.form = this.fg;
     }
 
     handleGetProductTaxes(price = null) {
-        const object = {
-            'type': 'query',
-            'parameters': {
-                'price': price,
-                'productClassTax': this.fg.controls['product_class_tax_id'].value
-            }
-        };
 
-        this.taxRuleService.getProductTaxes(object)
+        this.taxRuleService.getProductTaxes({
+                'type': 'query',
+                'parameters': {
+                    'price': price,
+                    'productClassTax': this.fg.controls['product_class_tax_id'].value
+                }
+            })
             .subscribe(data => {
                 this.fg.controls['subtotal'].setValue(data.data.subtotal);
                 this.fg.controls['subtotal_format'].setValue(data.data.subtotalFormat);
                 this.fg.controls['tax_format'].setValue(data.data.taxAmountFormat);
                 this.fg.controls['total_format'].setValue(data.data.totalFormat);
+            });
+    }
+
+    handleGetFields(field_group_id = null) {
+
+        this.fieldService.searchRecords({
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'field.field_group_id',
+                        'operator': '=',
+                        'value': field_group_id
+                    },
+                    {
+                        'command': 'orderBy',
+                        'operator': 'asc',
+                        'column': 'field.sort'
+                    }
+                ]
+            }).subscribe(data => {
+                this.fields = data.data;
             });
     }
 }

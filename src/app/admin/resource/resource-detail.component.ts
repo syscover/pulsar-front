@@ -45,7 +45,7 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
             .subscribe((response) => {
 
             this.packages = _.map(<Package[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             }); // get packages
 
             this.packages.unshift({ label: 'Select a package', value: '' });

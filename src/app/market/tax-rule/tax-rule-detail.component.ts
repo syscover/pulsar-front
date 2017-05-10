@@ -57,7 +57,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
             .subscribe((response) => {
 
             this.taxRateZones = _.map(<TaxRateZone[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             });
         });
 
@@ -66,7 +66,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
             .subscribe((response) => {
 
             this.customerClassTaxes = _.map(<CustomerClassTax[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             });
         });
 
@@ -75,7 +75,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
             .subscribe((response) => {
 
             this.productClassTaxes = _.map(<ProductClassTax[]>response.data, obj => {
-                return { label: obj.name, value: obj.id };
+                return { value: obj.id, label: obj.name };
             });
         });
 
