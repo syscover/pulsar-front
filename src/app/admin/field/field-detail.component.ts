@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService, SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -10,7 +10,6 @@ import { Field, FieldGroup, FieldType, DataType } from './../admin.models';
 
 // custom imports
 import { FieldGroupService } from './../field-group/field-group.service';
-import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
 
@@ -99,8 +98,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
             max_length: '',
             pattern: '',
             label_size: '',
-            field_size: '',
-
+            field_size: ''
         });
     }
 
