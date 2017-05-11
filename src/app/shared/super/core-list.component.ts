@@ -50,7 +50,7 @@ export class CoreListComponent {
      * @param lang      if need all results must be filtered by lang
      */
     loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined) {
-
+console.log(lang);
         let parameters: Object[] = [
             {
                 'command': 'limit',

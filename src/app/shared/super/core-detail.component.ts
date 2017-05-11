@@ -117,8 +117,8 @@ export class CoreDetailComponent {
             obs = this.objectService.storeRecord(values);
         }
         if (this.dataRoute.action === 'edit') {
-            if (object.lang_id) { // check if has languages
-                lang = object.lang_id;
+            if (fg.contains('lang_id')) { // check if has languages
+                lang = fg.controls['lang_id'].value;
             }
             obs = this.objectService.updateRecord(fg.value, object.id, lang);
         }
