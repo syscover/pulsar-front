@@ -2,7 +2,7 @@ import { DynamicFormService } from './../../shared/components/dynamic-form/dynam
 import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService, SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -17,8 +17,6 @@ import { TaxRuleService } from './../tax-rule/tax-rule.service';
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
 import { FieldGroup } from './../../admin/admin.models';
-
-import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
 
@@ -63,6 +61,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         protected productClassTaxService: ProductClassTaxService,
         protected taxRuleService: TaxRuleService,
 
+        // Custom fields
         protected fieldGroupService: FieldGroupService,
         protected fieldService: FieldService,
         private dynamicFormService: DynamicFormService
@@ -170,7 +169,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             total_format: [{value: null, disabled: true}, Validators.required ]
         });
 
-        // Save formGroup in service to use for dynamic form
+        // Save formGroup in service to use for dynamic form, custom fields
         this.dynamicFormService.form = this.fg;
     }
 
