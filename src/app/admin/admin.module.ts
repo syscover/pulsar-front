@@ -15,6 +15,7 @@ import { FieldGroupDetailComponent } from './field-group/field-group-detail.comp
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
 import { FieldValueListComponent } from './field-value/field-value-list.component';
+import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -50,6 +51,7 @@ import { ActionService } from './action/action.service';
         FieldListComponent,
         FieldDetailComponent,
         FieldValueListComponent,
+        FieldValueDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ResourceListComponent,

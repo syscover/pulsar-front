@@ -76,6 +76,18 @@ export class Field {
     data: string;
 }
 
+export class FieldValue {
+    id: string;
+    counter: number;
+    lang_id: string;
+    field_id: number;
+    name: string;
+    sort: string;
+    featured: string;
+    data_lang: string;
+    data: string;
+}
+
 export class Action {
     id: string;
     name: string;

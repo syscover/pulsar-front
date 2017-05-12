@@ -19,6 +19,7 @@ import { FieldGroupDetailComponent } from './field-group/field-group-detail.comp
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
 import { FieldValueListComponent } from './field-value/field-value-list.component';
+import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -65,10 +66,10 @@ const routes: Routes = [
                     { path: 'field/show/:id/:lang',                     component: FieldDetailComponent,        data: { action: 'edit' }},
 
                     // Field Values
-                    { path: 'field-value/:field',                       component: FieldValueListComponent },
-                    { path: 'field-value/create',                       component: FieldDetailComponent,        data: { action: 'create' }},
-                    { path: 'field-value/create/:id/:lang/:newLang',    component: FieldDetailComponent,        data: { action: 'create-lang' }},
-                    { path: 'field-value/show/:id/:lang',               component: FieldDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field-value/:field',                           component: FieldValueListComponent },
+                    { path: 'field-value/create/:field',                    component: FieldValueDetailComponent,        data: { action: 'create' }},
+                    { path: 'field-value/create/:field/:id/:lang/:newLang', component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
+                    { path: 'field-value/show/:field/:id/:lang',            component: FieldValueDetailComponent,        data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                                   component: ActionListComponent },

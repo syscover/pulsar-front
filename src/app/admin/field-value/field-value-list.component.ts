@@ -12,6 +12,8 @@ import { Field} from '../admin.models';
 })
 export class FieldValueListComponent extends CoreListComponent {
 
+    private field_id: number;
+
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
@@ -26,5 +28,17 @@ export class FieldValueListComponent extends CoreListComponent {
         protected objectService: FieldValueService,
     ) {
         super(injector);
+        this.field_id = this.route.snapshot.params['field'];
+    }
+
+    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined) {
+
+        // add parameters before call loadDadaTableLazy to filter records
+        super.loadDadaTableLazy(event, f, lang, [{
+            'command': 'where',
+            'column': 'field_id',
+            'operator': '=',
+            'value': this.field_id
+        }]);
     }
 }

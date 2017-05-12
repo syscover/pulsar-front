@@ -27,6 +27,7 @@ export class CoreListComponent {
     constructor(
         protected injector: Injector
     ) {
+        this.route = injector.get(ActivatedRoute);
         this.confirmationService = injector.get(ConfirmationService);
         this.configService = injector.get(ConfigService);
 
@@ -47,20 +48,24 @@ export class CoreListComponent {
      *
      * @param event
      * @param f
-     * @param lang      if need all results must be filtered by lang
+     * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
+     * @param parameters    when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined) {
+    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined, parameters: Object[] = undefined) {
 
-        let parameters: Object[] = [
-            {
+        if (parameters === undefined) {
+            parameters = []; // create empty array
+        }
+
+        parameters.push({
                 'command': 'limit',
                 'value': event.rows
-            },
-            {
+            });
+
+        parameters.push({
                 'command': 'offset',
                 'value': event.first
-            }
-        ];
+            });
 
         // set commands to orderBy
         if (event.sortField) {
