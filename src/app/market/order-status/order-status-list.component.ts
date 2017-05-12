@@ -5,8 +5,6 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { OrderStatusService } from './order-status.service';
 import { OrderStatus } from '../market.models';
-import { LangService } from './../../admin/lang/lang.service';
-import { Lang } from './../../admin/admin.models';
 
 @Component({
     selector: 'ps-order-status-list',
@@ -23,8 +21,6 @@ export class OrderStatusListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        protected langService: LangService,
-
         // service for parent class
         protected injector: Injector,
         protected objectService: OrderStatusService,

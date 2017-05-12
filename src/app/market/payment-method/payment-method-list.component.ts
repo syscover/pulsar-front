@@ -5,8 +5,6 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { PaymentMethodService } from './payment-method.service';
 import { PaymentMethod } from './../market.models';
-import { LangService } from './../../admin/lang/lang.service';
-import { Lang } from './../../admin/admin.models';
 
 @Component({
     selector: 'ps-payment-method-list',
@@ -23,8 +21,6 @@ export class PaymentMethodListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        protected langService: LangService,
-
         // service for parent class
         protected injector: Injector,
         protected objectService: PaymentMethodService,

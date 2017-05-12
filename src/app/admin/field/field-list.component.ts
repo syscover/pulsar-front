@@ -4,8 +4,9 @@ import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { FieldService } from './field.service';
-import { Field, Lang } from '../admin.models';
-import { LangService } from './../lang/lang.service';
+import { Field } from '../admin.models';
+
+import * as appGlobals from './../../core/app-globals';
 
 @Component({
     selector: 'ps-field-list',
@@ -13,7 +14,7 @@ import { LangService } from './../lang/lang.service';
 })
 export class FieldListComponent extends CoreListComponent {
 
-    activatedLangs: Lang[];
+    appGlobals: any = appGlobals; // get appGlobasl
 
     // paramenters for parent class
     // columns where will be used for global searchs
@@ -24,8 +25,6 @@ export class FieldListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        protected langService: LangService,
-
         // service for parent class
         protected injector: Injector,
         protected objectService: FieldService,

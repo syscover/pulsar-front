@@ -48,11 +48,6 @@ export class DropdownComponent implements OnInit, AfterContentInit {
 
     constructor() { }
 
-    ngAfterContentInit() {
-        this.pDropdown.templates = this.templates; // set tamplates in dropdown
-        this.pDropdown.ngAfterContentInit();
-    }
-
     ngOnInit() {
         this.formControl = this.form.controls[this.name];
 
@@ -61,6 +56,11 @@ export class DropdownComponent implements OnInit, AfterContentInit {
             .controls[this.name]
             .valueChanges
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
+    }
+
+    ngAfterContentInit() {
+        this.pDropdown.templates = this.templates; // set custom tamplates in dropdown
+        this.pDropdown.ngAfterContentInit();
     }
 
     @Input()

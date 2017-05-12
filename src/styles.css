@@ -44,6 +44,10 @@
 .action-buttons ps-button:first-of-type {
     margin-top: 0;
 }
+.datatable-dropdown-actions .material-icons{
+    font-size: 25px; 
+    margin-right: 12px;
+}
 
 .main-card{
     z-index: 2 !important;

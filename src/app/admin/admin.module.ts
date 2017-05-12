@@ -14,6 +14,7 @@ import { FieldGroupListComponent } from './field-group/field-group-list.componen
 import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
+import { FieldValueListComponent } from './field-value/field-value-list.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -26,6 +27,7 @@ import { CountryService } from './country/country.service';
 import { PackageService } from './package/package.service';
 import { FieldGroupService } from './field-group/field-group.service';
 import { FieldService } from './field/field.service';
+import { FieldValueService } from './field-value/field-value.service';
 import { ProfileService } from './profile/profile.service';
 import { ResourceService } from './resource/resource.service';
 import { ActionService } from './action/action.service';
@@ -47,6 +49,7 @@ import { ActionService } from './action/action.service';
         FieldGroupDetailComponent,
         FieldListComponent,
         FieldDetailComponent,
+        FieldValueListComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ResourceListComponent,
@@ -60,6 +63,7 @@ import { ActionService } from './action/action.service';
         PackageService,
         FieldGroupService,
         FieldService,
+        FieldValueService,
         ProfileService,
         ResourceService,
         ActionService

@@ -62,7 +62,7 @@ export class Field {
     field_group_id: number;
     name: string;
     labels: string[];
-    field_type_id: number;
+    field_type_id: string;
     field_type_name: string;
     data_type_id: number;
     data_type_name: string;

@@ -5,8 +5,6 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 
 import { CategoryService } from './category.service';
 import { Category } from '../market.models';
-import { LangService } from './../../admin/lang/lang.service';
-import { Lang } from './../../admin/admin.models';
 
 @Component({
     selector: 'ps-category-list',
@@ -23,8 +21,6 @@ export class CategoryListComponent extends CoreListComponent {
     f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
-        protected langService: LangService,
-
         // service for parent class
         protected injector: Injector,
         protected objectService: CategoryService,

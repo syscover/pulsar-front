@@ -23,7 +23,6 @@ import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 
 import { GroupService } from './../crm/group/group.service';
-import { LangService } from './../admin/lang/lang.service';
 import { CountryService } from './../admin/country/country.service';
 import { FieldGroupService } from './../admin/field-group/field-group.service';
 import { FieldService } from './../admin/field/field.service';
@@ -63,7 +62,6 @@ import { ProductService } from './product/product.service';
         ProductDetailComponent
     ],
     providers: [
-        LangService,
         CountryService,
         FieldGroupService,
         FieldService,
