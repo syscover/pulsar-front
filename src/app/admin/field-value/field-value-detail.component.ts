@@ -26,12 +26,6 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
-
-            if (this.dataRoute.action === 'create-lang') {
-                //this.fg.controls['label'].setValue(this.object.labels[this.configService.getConfig('base_lang')]);
-            } else if (this.dataRoute.action === 'edit') {
-                //this.fg.controls['label'].setValue(this.object.labels[this.lang.id]); // set labels with base lang data
-            }
         }
     }
 
@@ -42,7 +36,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
         protected fieldGroupService: FieldGroupService
     ) {
         super(injector);
-        this.field_id = this.route.snapshot.params['field'];
+        this.field_id = this.params['field'];
     }
 
     ngOnInit() {
@@ -54,7 +48,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             lang_id: ['', Validators.required ],
-            field_id: ['', Validators.required ],
+            field_id: [this.field_id, Validators.required ],
             name: ['', Validators.required ],
             sort: '',
             featured: ''
@@ -62,7 +56,11 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
     }
 
     handleEnableId($event) {
-
+        // enable or disable id input
+        if (this.fg.controls['id'].disabled) {
+            this.fg.controls['id'].enable();
+        } else {
+            this.fg.controls['id'].disable();
+        }
     }
-
 }

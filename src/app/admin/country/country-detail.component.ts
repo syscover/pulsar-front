@@ -20,6 +20,16 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+
+            if (this.dataRoute.action === 'create-lang') {
+                // call after set object to overwrite lang_id field with correct value
+                if (this.fg.contains('lang_id')) {
+                    this.fg.patchValue({
+                        // set lang id in form from object with multiple language
+                        lang_id: this.lang.id
+                    });
+                }
+            }
         }
     }
 

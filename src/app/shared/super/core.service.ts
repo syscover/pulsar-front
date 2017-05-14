@@ -1,11 +1,13 @@
 import { Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
 import { JsonResponse } from './../classes/json-respose';
 
 import * as appGlobals from './../../core/app-globals';
+import * as _ from 'lodash';
 
 export class CoreService {
 
@@ -25,39 +27,39 @@ export class CoreService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    searchRecords(object: any): Observable<JsonResponse> {
+    searchRecords(object: any, params: Params = undefined): Observable<JsonResponse> {
         return this.http
-            .post(this.getApiUrl('search'), object, this.options)
+            .post(this.getApiUrl('search', params), object, this.options)
             .map((response: Response) => response.json());
     }
 
-    getRecords(lang: string = undefined): Observable<JsonResponse> {
+    getRecords(params: Params = undefined): Observable<JsonResponse> {
         return this.http
-            .get(this.getApiUrl('get', undefined, lang), this.apiUrlPrefix)
+            .get(this.getApiUrl('get', params), this.apiUrlPrefix)
             .map((response: Response) => response.json());
     }
 
-    getRecord(id: any, lang: string = undefined): Observable<JsonResponse> {
+    getRecord(params: Params): Observable<JsonResponse> {
         return this.http
-            .get(this.getApiUrl('find', id, lang))
+            .get(this.getApiUrl('find', params))
             .map((response: Response) => response.json());
     }
 
-    storeRecord(object: any) {
+    storeRecord(object: any, params: Params = undefined) {
         return this.http
-            .post(this.getApiUrl('store'), object, this.options)
+            .post(this.getApiUrl('store', params), object, this.options)
             .map(response => response.json());
     }
 
-    updateRecord(object: any, id: any, lang: string = undefined) {
+    updateRecord(object: any, params: Params) {
         return this.http
-            .put(this.getApiUrl('update', id, lang), object, this.options)
+            .put(this.getApiUrl('update', params), object, this.options)
             .map(response => response.json());
     }
 
-    deleteRecord(id: any, lang: string = undefined) {
+    deleteRecord(params: Params) {
         return this.http
-            .delete(this.getApiUrl('delete', id, lang))
+            .delete(this.getApiUrl('delete', params))
             .map(response => response.json());
     }
 
@@ -73,46 +75,24 @@ export class CoreService {
         this.apiUrlPrefix = this.apiUrlPrefix + urlAddons; // set api URL
     }
 
-    protected getApiUrl(action: string, id: any = undefined, lang: string = undefined) {
-        if (action === 'get') {
-            if (lang === undefined) {   // check is object has language
-                return `${this.apiUrlPrefix}`;
-            } else {
-                return `${this.apiUrlPrefix}/${lang}`;
-            }
-        }
+    protected getApiUrl(action: string, params: Params = undefined) {
 
-        if (action === 'find') {
-            if (lang === undefined) {   // check is object has language
-                return `${this.apiUrlPrefix}/${id}`;
-            } else {
-                return `${this.apiUrlPrefix}/${id}/${lang}`;
-            }
-        }
-
-        if (action === 'store') {
-            return `${this.apiUrlPrefix}`;
+        let urlParams = '';
+        /**
+         * If you have any parameters the url is composed 
+         * according to the order of parameters
+         */
+        if (params !== undefined) {
+            urlParams = '/' + _.values(params).join('/');
         }
 
         if (action === 'search') {
-            return `${this.apiUrlPrefix}/search`;
+            return `${this.apiUrlPrefix}/search${urlParams}`;
         }
 
-        if (action === 'update') {
-            if (lang === undefined) {   // check is object has language
-                return `${this.apiUrlPrefix}/${id}`;
-            } else {
-                return `${this.apiUrlPrefix}/${id}/${lang}`;
-            }
-        }
-
-        if (action === 'delete') {
-            if (lang === undefined) {   // check is object has language
-                return `${this.apiUrlPrefix}/${id}`;
-            } else {
-                return `${this.apiUrlPrefix}/${id}/${lang}`;
-            }
-        }
+        /**
+         * For actions get, find, store, update and delete
+        */
+        return `${this.apiUrlPrefix}${urlParams}`;
     }
-
 }

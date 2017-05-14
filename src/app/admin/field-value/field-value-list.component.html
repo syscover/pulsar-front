@@ -20,11 +20,11 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
                     <div *ngFor="let lang of langs">
                         <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
-                            [routerLink]="[objectService.baseUri + '/show', object.id, lang.id]"
+                            [routerLink]="[objectService.baseUri + '/show', field_id, object.id, lang.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
                             
                         <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
-                            [routerLink]="[objectService.baseUri + '/create', object.id, configService.getConfig('base_lang'), lang.id]"
+                            [routerLink]="[objectService.baseUri + '/create', field_id, object.id, configService.getConfig('base_lang'), lang.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
                     </div>
                 </div>

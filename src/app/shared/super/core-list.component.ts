@@ -1,6 +1,6 @@
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
 import { CoreService } from './core.service';
@@ -12,6 +12,7 @@ export class CoreListComponent {
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
+    protected params: Params;
     protected router: Router;
     protected route: ActivatedRoute;
     protected totalRecords: number;     // total records in datatable
@@ -32,6 +33,7 @@ export class CoreListComponent {
         this.configService = injector.get(ConfigService);
 
         // set object properties
+        this.params = this.route.snapshot.params;
         this.langs = this.configService.getConfig('langs');
     }
 
@@ -104,10 +106,10 @@ export class CoreListComponent {
 
     deleteRecord(f: Function, object: any): void {
 
-        let lang: string;
+        let params = [object.id];
 
         if (object.lang_id) {   // check if has languages
-            lang = object.lang_id;
+            params.push(object.lang_id);
         }
 
         // confirm to delete object
@@ -115,7 +117,7 @@ export class CoreListComponent {
             message: 'Are you sure that you want delete this object?',
             accept: () => {
                 this.objectService
-                    .deleteRecord(object.id, lang)
+                    .deleteRecord(params)
                     .subscribe((response) => {
                         //delete object and call onLazyLoad event on datatable
                         this.dataTable.onLazyLoad.emit(

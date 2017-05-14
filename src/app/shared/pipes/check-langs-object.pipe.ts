@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Translated } from './../shared.models';
+import { Translated } from './../classes/translated';
 
 import { Lang } from './../../admin/admin.models';
 

@@ -37,7 +37,7 @@ const routes: Routes = [
                     // Categories
                     { path: 'category',                                     component: CategoryListComponent },
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
-                    { path: 'category/create/:id/:lang/:newLang',           component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+                    { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
                     // Customer Class Tax

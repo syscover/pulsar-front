@@ -28,10 +28,10 @@ export class FieldValueListComponent extends CoreListComponent {
         protected objectService: FieldValueService,
     ) {
         super(injector);
-        this.field_id = this.route.snapshot.params['field'];
+        this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined) {
+    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string) {
 
         // add parameters before call loadDadaTableLazy to filter records
         super.loadDadaTableLazy(event, f, lang, [{

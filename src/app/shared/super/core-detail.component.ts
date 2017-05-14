@@ -1,3 +1,4 @@
+import { DatatableSearchComponent } from './../components/datatable-search/datatable-search.component';
 import { Injector, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -42,59 +43,54 @@ export class CoreDetailComponent {
 
         // set object properties
         this.dataRoute = <DataRoute>this.route.snapshot.data;
+        this.params = this.route.snapshot.params;
         this.langs = this.configService.getConfig('langs');
     }
 
     getRecordHasIdParamenter(f: Function) {
-        this.route.params.subscribe(params => {
-            this.params     = params;
-            const id        = params['id'];
-            const lang      = params['lang'];
 
-            if (this.dataRoute.action === 'create') {
-                this.lang  = <Lang>_.find(this.langs, {'id': this.configService.getConfig('base_lang')}); // get base_lang object
-                f();
+        if (this.dataRoute.action === 'create') {
+            this.lang  = <Lang>_.find(this.langs, {'id': this.configService.getConfig('base_lang')}); // get base_lang object
+            f();
 
-                // set lang_id if form has this field
-                // call after f() to overwrite lang_id field with correct value
-                if (this.fg.contains('lang_id')) {
-                    this.fg.patchValue({
-                        lang_id: this.lang.id // set lang id in form from object with multiple language
-                    });
-                }
-                return;
+            // set lang_id if form has this field
+            // call after f() to overwrite lang_id field with correct value
+            if (this.fg.contains('lang_id')) {
+                this.fg.patchValue({
+                    lang_id: this.lang.id // set lang id in form from object with multiple language
+                });
+            }
+            return;
+        }
+
+        // Create lang or edit object for objects with multi language
+        if (this.params['lang'] !== undefined) {
+            this.lang = <Lang>_.find(this.langs, {'id': this.params['lang']}); // get lang object
+
+            // get baseLang record
+            if (this.dataRoute.action === 'create-lang') {
+                let baseParams = _.clone(this.params); // clone objet because params properties are read-only
+                baseParams['lang'] = this.configService.getConfig('base_lang'); // set baseLang to get object
+
+                this.getRecord(f, baseParams); // get base_lang object
+
+            } else if (this.dataRoute.action === 'edit') {
+                this.getRecord(f, this.params);
             }
 
-            // Actions to lang objects
-            const langId = this.dataRoute.action === 'create-lang' ? this.params['newLang'] : this.params['lang'];
-            if (langId !== undefined) {
-                this.lang = <Lang>_.find(this.langs, {'id': langId}); // get lang object
-
-                // edit action and create lang
-                this.getRecord(f, id, lang);
-
-                // set lang_id if form has this field
-                // call after f() to overwrite lang_id field with correct value
-                if (this.fg.contains('lang_id')) {
-                    this.fg.patchValue({
-                        lang_id: langId // set lang id in form from object with multiple language
-                    });
-                }
-            } else {
-                // edit action and create lang
-                this.getRecord(f, id, lang);
-            }
-        });
+        } else {
+            // edit action and create lang
+            this.getRecord(f, this.params);
+        }
     }
 
-    getRecord(f: Function, id: any, lang: string = undefined) {
-        this.objectService.getRecord(id, lang).subscribe(data => f(data));
+    getRecord(f: Function, params: Params) {
+        this.objectService.getRecord(params).subscribe(data => f(data));
     }
 
-    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined) {
+    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined, params = []) {
 
         let obs: Observable<any>; // Observable
-        let lang: string;
 
         // set errors, this variable is binded to all form elements
         this.formErrors = onSubmitFormGroup(this.fg);
@@ -111,16 +107,16 @@ export class CoreDetailComponent {
             // Usually the id is disabled, we enable it if you are going to create a new language
             fg.get('id').enable(); // enable is a method from AbstractControl
 
-            let values = fg.value; // get values from form
-            values.lang_id = this.params['newLang'];
-
-            obs = this.objectService.storeRecord(values);
+            obs = this.objectService.storeRecord(fg.value);
         }
         if (this.dataRoute.action === 'edit') {
+
+            params.push(object.id);
             if (fg.contains('lang_id')) { // check if has languages
-                lang = fg.controls['lang_id'].value;
+                params.push(fg.controls['lang_id'].value);
             }
-            obs = this.objectService.updateRecord(fg.value, object.id, lang);
+
+            obs = this.objectService.updateRecord(fg.value, params);
         }
 
         obs.subscribe(data => {
@@ -134,15 +130,15 @@ export class CoreDetailComponent {
 
     deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined): void {
 
-        let lang: string;
+        let params = [object.id];
 
         if (object.lang_id) {   // check if has languages
-            lang = object.lang_id;
+            params.push(object.lang_id);
         } else {
             // chek if has force lang, this options is used in object with multiple lang in json
             // for example table field
             if (langAux !== undefined) {
-                lang = langAux;
+                params.push(langAux);
             }
         }
 
@@ -151,7 +147,7 @@ export class CoreDetailComponent {
             message: 'Are you sure that you want delete this object?',
             accept: () => {
                 this.objectService
-                    .deleteRecord(object.id, lang)
+                    .deleteRecord(params)
                     .subscribe(data => {
                         if (! routeRedirect) {
                             this.router.navigate([this.objectService.baseUri]);
