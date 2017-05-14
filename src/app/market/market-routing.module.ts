@@ -68,13 +68,13 @@ const routes: Routes = [
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
                     { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-                    { path: 'order-status/create/:id/:lang/:newLang',       component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+                    { path: 'order-status/create/:id/:lang',                component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
                     { path: 'order-status/show/:id/:lang',                  component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
                     { path: 'payment-method',                               component: PaymentMethodListComponent },
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
-                    { path: 'payment-method/create/:id/:lang/:newLang',     component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'payment-method/create/:id/:lang',              component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
                     { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
                     // Products

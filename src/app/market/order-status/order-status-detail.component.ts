@@ -20,6 +20,13 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
         }
     }
 

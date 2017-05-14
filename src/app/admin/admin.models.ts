@@ -70,8 +70,8 @@ export class Field {
     sort: number;
     max_length: number;
     pattern: string;
-    label_size: number;
-    field_size: number;
+    label_class: string;
+    component_class: string;
     data_lang: string;
     data: string;
 }

@@ -22,13 +22,10 @@ export class CategoryDetailComponent extends CoreDetailComponent implements OnIn
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
 
             if (this.dataRoute.action === 'create-lang') {
-                // call after set object to overwrite lang_id field with correct value
-                if (this.fg.contains('lang_id')) {
-                    this.fg.patchValue({
-                        // set lang id in form from object with multiple language
-                        lang_id: this.lang.id
-                    });
-                }
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
             }
         }
     }

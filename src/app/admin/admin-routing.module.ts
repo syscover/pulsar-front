@@ -62,14 +62,14 @@ const routes: Routes = [
                     // Fields
                     { path: 'field',                                    component: FieldListComponent },
                     { path: 'field/create',                             component: FieldDetailComponent,        data: { action: 'create' }},
-                    { path: 'field/create/:id/:lang/:newLang',          component: FieldDetailComponent,        data: { action: 'create-lang' }},
+                    { path: 'field/create/:id/:lang',                   component: FieldDetailComponent,        data: { action: 'create-lang' }},
                     { path: 'field/show/:id/:lang',                     component: FieldDetailComponent,        data: { action: 'edit' }},
 
                     // Field Values
-                    { path: 'field-value/:field',                           component: FieldValueListComponent },
-                    { path: 'field-value/create/:field',                    component: FieldValueDetailComponent,        data: { action: 'create' }},
-                    { path: 'field-value/create/:field/:id/:lang/:newLang', component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
-                    { path: 'field-value/show/:field/:id/:lang',            component: FieldValueDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field-value/:field',                       component: FieldValueListComponent },
+                    { path: 'field-value/create/:field',                component: FieldValueDetailComponent,        data: { action: 'create' }},
+                    { path: 'field-value/create/:field/:id/:lang',      component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
+                    { path: 'field-value/show/:field/:id/:lang',        component: FieldValueDetailComponent,        data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                                   component: ActionListComponent },

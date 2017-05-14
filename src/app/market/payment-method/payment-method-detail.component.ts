@@ -28,6 +28,13 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
         }
     }
 
@@ -78,9 +85,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
-            order_status_successful_id: [
-                {value: '', disabled: this.dataRoute.action === 'create-lang'}, Validators.required
-            ],
+            order_status_successful_id: ['', Validators.required],
             name: ['', Validators.required ],
             minimum_price: '',
             maximum_price: '',
