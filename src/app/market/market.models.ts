@@ -1,3 +1,4 @@
+import { DataJson } from './../shared/classes/properties';
 import { Lang, Country } from './../admin/admin.models';
 
 export class Category {
@@ -102,5 +103,5 @@ export class Product {
     subtotal: number;
     product_class_tax_id: number;
     data_lang: string;
-    data: string;
+    data: DataJson;
 }

@@ -50,6 +50,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
             this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
+            if (this.object.field_group_id) { // get fields if object has field group
+                this.handleGetFields(this.object.field_group_id);
+                this.fg.patchValue(this.object.data.properties); // set values of custom fields
+            }
         }
     }
 
@@ -190,9 +194,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             });
     }
 
-    handleGetFields(field_group_id = null) {
+    handleGetFields(field_group_id) {
 
-        this.fieldService.searchRecords({
+        if (field_group_id !== '') {
+            this.fieldService.searchRecords({
                 'type': 'query',
                 'parameters': [
                     {
@@ -210,5 +215,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }).subscribe(data => {
                 this.fields = data.data;
             });
+        } else {
+            this.fields = undefined;
+        }
     }
 }

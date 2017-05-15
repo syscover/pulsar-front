@@ -14,7 +14,7 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-translate" class="datatable-actions datatable-actions dropdown-toggle {{ object | checkLangsObject:langs }}-btn" 
+                <button pButton type="button" icon="ui-icon-translate" class="datatable-actions dropdown-toggle {{ object | checkLangsObject:langs }}-btn" 
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
@@ -37,7 +37,7 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-more-vert" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" [routerLink]="[objectService.baseUri + '/show', object.id, object.lang_id]">Edit</a>
