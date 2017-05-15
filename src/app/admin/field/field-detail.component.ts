@@ -2,7 +2,6 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService, SelectItem } from 'primeng/primeng';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { FieldService } from './field.service';

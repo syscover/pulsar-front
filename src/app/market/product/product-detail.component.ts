@@ -73,9 +73,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.createForm(); // create form
 
         // get categories
-        this.categoryService.getRecords(this.configService.getConfig('base_lang'))
+        this.categoryService.getRecords([this.configService.getConfig('base_lang')])
             .subscribe((response) => {
-
             this.categories = _.map(<Category[]>response.data, obj => {
                 return { value: obj.id, label: obj.name };
             });

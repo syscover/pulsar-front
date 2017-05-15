@@ -22,6 +22,7 @@ import { DatatableHeaderComponent } from './components/datatable-header/datatabl
 import { FormHeaderComponent } from './components/form-header/form-header.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from './components/dynamic-form/dynamic-form.service';
+import { FieldValueService } from './../admin/field-value/field-value.service';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { DynamicFormService } from './components/dynamic-form/dynamic-form.servi
     ],
     providers: [
         ConfirmationService,
-        DynamicFormService
+        DynamicFormService,
+        FieldValueService
     ],
     exports: [
         CommonModule,

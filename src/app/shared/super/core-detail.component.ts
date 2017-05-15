@@ -128,9 +128,9 @@ export class CoreDetailComponent {
         });
     }
 
-    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined): void {
+    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, params = []): void {
 
-        let params = [object.id];
+        params.push(object.id);
 
         if (object.lang_id) {   // check if has languages
             params.push(object.lang_id);

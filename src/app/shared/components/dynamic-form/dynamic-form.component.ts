@@ -3,7 +3,10 @@ import { Component, OnInit, Input, ComponentFactoryResolver } from '@angular/cor
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
-import { Field, Lang } from './../../../admin/admin.models';
+import { Field, Lang, FieldValue } from './../../../admin/admin.models';
+import { FieldValueService } from './../../../admin/field-value/field-value.service';
+
+import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-dynamic-form',
@@ -34,21 +37,49 @@ export class DynamicFormComponent implements OnInit {
 
     @Input() private field: Field;
     @Input() private errors: Object;
+    @Input() private lang: string;
     public options: SelectItem[] = [];
-
-    private lang = 'es';
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
-        private dynamicFormService: DynamicFormService
+        private dynamicFormService: DynamicFormService,
+        private fieldValueService: FieldValueService
     ) {}
 
     ngOnInit() {
         this.dynamicFormService.form.addControl(this.field.name, new FormControl('', Validators.required));
 
         if (this.field.field_type_id === 'select') {
-            
+            // load options from table values
+            this.fieldValueService.searchRecords({
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'field_value.field_id',
+                        'operator': '=',
+                        'value': this.field.id
+                    },
+                    {
+                        'command': 'where',
+                        'column': 'field_value.lang_id',
+                        'operator': '=',
+                        'value': this.lang
+                    },
+                    {
+                        'command': 'orderBy',
+                        'operator': 'asc',
+                        'column': 'field_value.sort'
+                    }
+                ]
+            })
+            .subscribe((response) => {
+
+                this.options = _.map(<FieldValue[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get order status
+                this.options.unshift({ label: this.field.labels[this.lang], value: '' });
+            });
         }
-        // load options from table values
      }
 }
