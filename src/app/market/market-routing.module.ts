@@ -80,7 +80,7 @@ const routes: Routes = [
                     // Products
                     { path: 'product',                                      component: ProductListComponent },
                     { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
-                    { path: 'product/create/:id/:lang/:newLang',            component: ProductDetailComponent,                      data: { action: 'create-lang' }},
+                    { path: 'product/create/:id/:lang',                     component: ProductDetailComponent,                      data: { action: 'create-lang' }},
                     { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
 
                     // Wildcard route

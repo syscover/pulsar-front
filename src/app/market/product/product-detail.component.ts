@@ -54,6 +54,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.handleGetFields(this.object.field_group_id);
                 this.fg.patchValue(this.object.data.properties); // set values of custom fields
             }
+
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
         }
     }
 
