@@ -64,5 +64,4 @@ export class InputComponent implements OnInit {
     handleChange($event) {
         this.onChange.emit($event);
     }
-
 }

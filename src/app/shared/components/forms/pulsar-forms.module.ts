@@ -14,6 +14,8 @@ import { LangLabelComponent } from './lang-label.component';
 import { MultiSelectComponent } from './multi-select.component';
 import { SpinnerComponent } from './spinner.component';
 import { TextareaComponent } from './textarea.component';
+import { AttachmentFilesLibraryComponent } from './attachment-files-library/attachment-files-library/attachment-files-library.component';
+import { AttachmentItemComponent } from './attachment-files-library/attachment-item/attachment-item.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +28,9 @@ import { TextareaComponent } from './textarea.component';
         LangLabelComponent,
         MultiSelectComponent,
         SpinnerComponent,
-        TextareaComponent
+        TextareaComponent,
+        AttachmentFilesLibraryComponent,
+        AttachmentItemComponent
     ],
     imports: [
         CommonModule,
@@ -47,7 +51,9 @@ import { TextareaComponent } from './textarea.component';
         LangLabelComponent,
         MultiSelectComponent,
         SpinnerComponent,
-        TextareaComponent
+        TextareaComponent,
+        AttachmentFilesLibraryComponent,
+        AttachmentItemComponent
     ],
     providers: [],
 })
