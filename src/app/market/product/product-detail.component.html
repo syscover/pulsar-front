@@ -8,7 +8,7 @@
 
         <p-tabView>
             <p-tabPanel header="Product" leftIcon="ui-icon-check" class="padding-top-20">
-                <div class="row">
+                <div class="row margin-top-30">
                     <ps-input   [form]="fg"
                                 [errors]="formErrors"
                                 label="ID."
@@ -155,6 +155,10 @@
                             name="description"
                             placeholder="Enter here your text"
                             [heightMin]="400"></ps-editor>
+            </p-tabPanel>
+
+            <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
+                <ps-attachment-files-library></ps-attachment-files-library>
             </p-tabPanel>
 
         </p-tabView>

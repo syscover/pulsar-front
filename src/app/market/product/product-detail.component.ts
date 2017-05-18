@@ -23,11 +23,6 @@ import * as _ from 'lodash';
 @Component({
     encapsulation: ViewEncapsulation.None,
     selector: 'ps-product-detail',
-    styles: [`
-        .ui-tabview-panel{
-            padding-top: 30px !important
-        }
-    `],
     templateUrl: './product-detail.component.html'
 })
 export class ProductDetailComponent extends CoreDetailComponent implements OnInit {
