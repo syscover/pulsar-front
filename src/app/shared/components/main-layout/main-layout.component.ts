@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, Renderer2 } from '@angular/core';
+declare const jQuery: any; // jQuery definition
 
 enum MenuOrientation {
     STATIC,
@@ -33,14 +34,16 @@ export class MainLayoutComponent implements AfterViewInit {
     @ViewChild('layoutContainer') layourContainerViewChild: ElementRef;
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
-    constructor(public renderer: Renderer2) { }
+    constructor(
+        private _renderer: Renderer2
+    ) { }
 
     ngAfterViewInit() {
         this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
         this.layoutMenuScroller = <HTMLDivElement> this.layoutMenuScrollerViewChild.nativeElement;
 
         //hides the horizontal submenus or top menu if outside is clicked
-        this.documentClickListener = this.renderer.listen('body', 'click', (event) => {
+        this.documentClickListener = this._renderer.listen('body', 'click', (event) => {
             if(!this.topbarItemClick) {
                 this.activeTopbarItem = null;
                 this.topbarMenuActive = false;
@@ -55,7 +58,7 @@ export class MainLayoutComponent implements AfterViewInit {
         });
 
         setTimeout(() => {
-            jQuery(this.layoutMenuScroller).nanoScroller({flash:true});
+            jQuery(this.layoutMenuScroller).nanoScroller({flash: true});
         }, 10);
     }
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+declare const jQuery: any; // jQuery definition
 
 import { onValueChangedFormControl } from './../../super/core-validation';
 
@@ -54,7 +55,7 @@ export class EditorComponent implements OnInit {
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
 
             // config custom FroalaEditor
-            $.FroalaEditor.ICON_TEMPLATES = {
+            jQuery.FroalaEditor.ICON_TEMPLATES = {
                 font_awesome: '<i class="faa faa-[NAME]"></i>'
             };
 
@@ -62,7 +63,7 @@ export class EditorComponent implements OnInit {
             this.froalaOptions.placeholderText = this.placeholder;
             this.froalaOptions.heightMin = this.heightMin;
             this.froalaOptions.heightMax = this.heightMax;
-            this.froalaOptions.enter = $.FroalaEditor.ENTER_BR;
+            this.froalaOptions.enter = jQuery.FroalaEditor.ENTER_BR;
             this.froalaOptions.tabSpaces = 4;
             this.froalaOptions.pluginsEnabled = [
                 'align',
