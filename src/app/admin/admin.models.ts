@@ -103,3 +103,18 @@ export class Profile {
     id: number;
     name: string;
 }
+
+export class AttachmentMime {
+    id: number;
+    resource_id: number;
+    mime: string;
+}
+
+export class AttachmentFamily {
+    id: number;
+    resource_id: number;
+    name: string;
+    width: number;
+    height: number;
+    data: string;
+}

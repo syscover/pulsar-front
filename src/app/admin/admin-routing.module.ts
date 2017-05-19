@@ -20,6 +20,8 @@ import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
 import { FieldValueListComponent } from './field-value/field-value-list.component';
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
+import { AttachmentMimeListComponent } from './attachment-mime/attachment-mime-list.component';
+import { AttachmentMimeDetailComponent } from './attachment-mime/attachment-mime-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -70,6 +72,11 @@ const routes: Routes = [
                     { path: 'field-value/create/:field',                component: FieldValueDetailComponent,        data: { action: 'create' }},
                     { path: 'field-value/create/:field/:id/:lang',      component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
                     { path: 'field-value/show/:field/:id/:lang',        component: FieldValueDetailComponent,        data: { action: 'edit' }},
+
+                    // Attachment mimes
+                    { path: 'attachment-mime',                          component: AttachmentMimeListComponent },
+                    { path: 'attachment-mime/create',                   component: AttachmentMimeDetailComponent,      data: { action: 'create' }},
+                    { path: 'attachment-mime/show/:id',                 component: AttachmentMimeDetailComponent,      data: { action: 'edit' }},
 
                     // Actions
                     { path: 'action',                                   component: ActionListComponent },
