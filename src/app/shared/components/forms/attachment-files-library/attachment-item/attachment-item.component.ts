@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'ps-attachment-item',
@@ -9,5 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class AttachmentItemComponent implements OnInit {
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        jQuery('.open-over').on('click', function(){
+            jQuery(this).closest('.attachment-item').addClass('covered');
+        });
+
+        jQuery('.close-over').on('click', function(){
+            jQuery(this).closest('.attachment-item').removeClass('covered');
+        });
+
+        jQuery('.remove-item').on('click', function(){
+            jQuery(this).closest('.sortable-item').fadeOut(300, function (){
+                jQuery(this).remove();
+            });
+        });
+    }
 }

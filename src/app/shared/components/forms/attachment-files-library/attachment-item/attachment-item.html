@@ -1,45 +1,44 @@
-<li>
+<div class="sortable-item col-md-4 col-sm-6 col-xs-12">
     <div class="attachment-item">
         <div class="attachment-img">
-            <img data-src="image" data-class="isImage" />
+            <img src="">
         </div>
         <div class="attachment-over">
-
-            <div class="col-md-10 col-sm-10 col-xs-10 uncovered">
-                <h4 class="attachment-title family-name"></h4>
-                <p class="attachment-sub file-name" data-content="fileName"></p>
+            <div class="attachment-over-uncovered">
+                <h4 class="attachment-title">Familia Imagen 1</h4>
+                <p class="attachment-sub">Nombre del archivo</p>
+                <a class="attachment-edit-open open-over">
+                    <i class="material-icons">mode_edit</i>
+                </a>
             </div>
-
-            <div class="col-md-2 col-sm-2 col-xs-2 uncovered">
-                <h4 class="attachment-action"><span class="glyphicon glyphicon-pencil"></span></h4>
-            </div>
-
-            <div>
-                <div class="close-icon covered"><span class="glyphicon glyphicon-remove"></span></div>
-                <div class="col-md-12 col-sm-12 col-xs-12 covered">
+            <div class="attachment-over-covered">
+                <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
+                <!--<form>-->
                     <div class="form-group">
-                        <input type="text" class="form-control image-name" placeholder="name" data-previous="">
+                        <input type="text" class="form-control" placeholder="Nombre de la Imagen">
                     </div>
                     <div class="form-group">
-                        <select class="form-control attachment-family" name="attachmentFamily" data-previous="">
-                            <!--<option value="" selected>{{ trans('pulsar::pulsar.select_family') }}</option>
-                            @foreach($attachmentFamilies as $attachmentFamily)
-                                <option value="{{ $attachmentFamily->id_015 }}">{{ $attachmentFamily->name_015 }}</option>
-                            @endforeach-->
+                        <select class="form-control">
+                            <option selected disabled>Seleccione una familia</option>
+                            <option>Familia 1</option>
+                            <option>Familia 2</option>
+                            <option>Familia 3</option>
+                            <option>Familia 4</option>
+                            <option>Familia 5</option>
+                            <option>Familia 6</option>
                         </select>
+                        <div class="select-back">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12 covered">
                     <div class="form-group">
-                        <button type="button" class="close-ov form-control save-attachment">Save</button>
+                        <button type="button" class="close-over form-control">GUARDAR</button>
                     </div>
-                </div>
+                <!--</form>-->
             </div>
         </div>
-
-        <div class="remove-img">
-            <span class="glyphicon glyphicon-remove"></span>
-        </div>
-        
     </div>
-</li>
+    <a class="remove-item">
+        <i class="material-icons">clear</i>
+    </a>
+</div>

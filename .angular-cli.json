@@ -28,6 +28,8 @@
         "../node_modules/nanoscroller/bin/css/nanoscroller.css",
         "../node_modules/primeng/resources/primeng.min.css",
         "assets/vendor/font-awesome/scss/font-awesome.scss",
+        "assets/vendor/jquery-ui/jquery-ui.min.css",
+        "assets/vendor/jquery-ui/jquery-ui.structure.min.css",
         "assets/vendor/pace/pace.min.css",
         "assets/helpers/helpers.css",
         "styles.css"
@@ -43,6 +45,7 @@
         "../node_modules/fullcalendar/dist/fullcalendar.js",
         "../node_modules/quill/dist/quill.js",
         "assets/layout/js/ripple.js",
+        "assets/vendor/jquery-ui/jquery-ui.min.js",
         "assets/vendor/pace/pace.min.js"
       ],
       "environmentSource": "environments/environment.ts",

@@ -1,127 +1,75 @@
-:host{
-    margin: 0;
+#attachment-library{
+    display:block;
+    position: relative;
+    margin-top:20px;
+    padding:15px 15px 0;
+    width:100%;
+    /*background-color: lightgrey;*/
+}
+#attachment-library a:hover,
+#attachment-library a:focus,
+#attachment-library a:active,
+#attachment-library a:visited,
+#attachment-library a{
+    outline:none !important;
+    text-decoration: none !important;
 }
 
-/* placeholder drag drop elements*/
-#attachment-library{
-    min-height: 242px;
-    position: relative;
-}
-#library-placeholder {
-    height: 200px;
-    width: 95%;
+#library-placeholder{
+    display: block;
+    height: 250px;
+    width: 100%;
     border: 2px dashed grey;
-    border-radius: 5px;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -webkit-transition: opacity 0.3s;
-    -moz-transition: opacity 0.3s;
-    -ms-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
+    border-radius: 2px;
+    margin: 0 0 15px;
 }
-#library-placeholder p {
+#library-placeholder p{
     color: grey;
     text-align: center;
-    font-size: 18px;
-    padding-top: 80px;
+    font-size: 20px;
+    line-height: 250px;
 }
 
-/* overlay drag drop */
-#attachment-library-mask {
-    position: absolute;
-    height:100%;
-    width:100%;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color: rgba(0, 37, 147,0.9);
-    color:white;
-    font-size:20px;
-    z-index:-1;
-    opacity: 0;
-    text-align: center;
-    -webkit-transition: opacity 0.3s;
-    -moz-transition: opacity 0.3s;
-    -ms-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-}
-#attachment-library-content {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 3px dashed #fff;
-    border-radius:5px;
-    font-size: 18px;
-    color: white;
-    padding-top:20%;
-}
-
-.sortable{
-    list-style: none;
-    -webkit-padding-start: 0px;
-    -moz-padding-start: 0px;
-    -ms-padding-start: 0px;
-    -o-padding-start: 0px;
-    margin-bottom: 0px;
-}
-
-.sortable li {
-    background-color: #ffffff;
-    display: inline-block;
-    position: relative;
-    height:200px;
-    width:300px;
-    margin:20px;
-    cursor: move;
-}
-
-/* progress bar */
-#attachment-library-progress-bar
-{
-    position: absolute;
-    height:100%;
-    width:100%;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color: rgba(255, 255, 255,0.9);
-    color:black;
-    font-size:20px;
-    text-align: center;
-    display: none;
-    z-index: 9999;
-}
-
-#attachment-library-progress-bar > div {
-    height: 100%;
-    min-height: 100%;
-}
-
-.progress-bar {
-    -webkit-transition: width .3s ease;
-    -o-transition: width .3s ease;
-    transition: width .3s ease;
-}
-
-.valign-wrapper {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-.valign-wrapper .valign {
+#library-sortable{
     display: block;
+    position: relative;
+    margin: 0 -15px;
+    list-style: none;
+    padding:0;
+}
+
+#attachment-library-mask{
+    position: absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(96, 125, 139, 0.85);
+    color:rgb(255,255,255);
+    font-size:20px;
+    line-height: 20px;
+    text-align: center;
+    padding-top: 20%;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+    -moz-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+    -ms-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+    -o-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+    transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+}
+
+#attachment-library-mask::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top:15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    background-color: transparent;
+    border: 2px dashed rgb(255,255,255);
 }
