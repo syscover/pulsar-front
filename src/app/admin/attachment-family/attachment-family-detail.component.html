@@ -1,22 +1,14 @@
 <div class="container-fluid form-group">
-    <h1>Resource</h1>
+    <h1>Attachment family</h1>
 
     <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
-        
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
                         label="ID."
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
-        </div>
-
-        <div class="row">
-            <ps-input   [form]="fg" 
-                        [errors]="formErrors"
-                        label="Mime"
-                        type="text"
-                        name="mime" class="col-12"></ps-input>
         </div>
 
         <div class="row">
@@ -28,6 +20,28 @@
                             name="resource_id"
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Width"
+                            [min]="0"
+                            name="width" class="col-sm-12 col-md-4"></ps-spinner>
+                            
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Height"
+                            [min]="0"
+                            name="height" class="col-sm-12 offset-md-1 col-md-4"></ps-spinner>
         </div>
 
         <!-- buttons -->

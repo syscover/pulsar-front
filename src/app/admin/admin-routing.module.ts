@@ -22,6 +22,8 @@ import { FieldValueListComponent } from './field-value/field-value-list.componen
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { AttachmentMimeListComponent } from './attachment-mime/attachment-mime-list.component';
 import { AttachmentMimeDetailComponent } from './attachment-mime/attachment-mime-detail.component';
+import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
+import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -72,6 +74,11 @@ const routes: Routes = [
                     { path: 'field-value/create/:field',                component: FieldValueDetailComponent,        data: { action: 'create' }},
                     { path: 'field-value/create/:field/:id/:lang',      component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
                     { path: 'field-value/show/:field/:id/:lang',        component: FieldValueDetailComponent,        data: { action: 'edit' }},
+
+                    // Attachment families
+                    { path: 'attachment-family',                        component: AttachmentFamilyListComponent },
+                    { path: 'attachment-family/create',                 component: AttachmentFamilyDetailComponent,      data: { action: 'create' }},
+                    { path: 'attachment-family/show/:id',               component: AttachmentFamilyDetailComponent,      data: { action: 'edit' }},
 
                     // Attachment mimes
                     { path: 'attachment-mime',                          component: AttachmentMimeListComponent },

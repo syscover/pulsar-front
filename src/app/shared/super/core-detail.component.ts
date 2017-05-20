@@ -10,7 +10,7 @@ import { CoreService } from './core.service';
 import { ConfigService } from './../../core/services/config.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
-import { onSubmitFormGroup } from './../super/core-validation';
+import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
 
 import * as _ from 'lodash';
 
@@ -92,8 +92,8 @@ export class CoreDetailComponent {
 
         let obs: Observable<any>; // Observable
 
-        // set errors, this variable is binded to all form elements
-        this.formErrors = onSubmitFormGroup(this.fg);
+        // set errors from current form, this variable is binded to all form elements
+        this.formErrors = setErrorsOnSubmitFormGroup(this.fg);
 
         if (this.fg.invalid) {
             // TODO, show general error

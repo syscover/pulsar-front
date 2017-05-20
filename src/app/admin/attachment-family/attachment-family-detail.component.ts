@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { AttachmentFamilyService } from './attachment-family.service';
-import { Resource, AttachmentMime } from './../admin.models';
+import { Resource, AttachmentFamily } from './../admin.models';
 
 // custom imports
 import { ResourceService } from './../resource/resource.service';
@@ -14,15 +14,15 @@ import { SelectItem } from 'primeng/primeng';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'ps-attachment-mime-detail',
-    templateUrl: './attachment-mime-detail.component.html'
+    selector: 'ps-attachment-family-detail',
+    templateUrl: './attachment-family-detail.component.html'
 })
-export class AttachmentMimeDetailComponent extends CoreDetailComponent implements OnInit {
+export class AttachmentFamilyDetailComponent extends CoreDetailComponent implements OnInit {
 
     private resources: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: AttachmentMime = new AttachmentMime(); // set empty object
+    private object: AttachmentFamily = new AttachmentFamily(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -55,9 +55,11 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent implement
 
     createForm() {
         this.fg = this.fb.group({
-            id: ['', Validators.required ],
+            id: [{value: '', disabled: true}],
             resource_id: ['', Validators.required ],
-            mime: ['', Validators.required ]
+            name: ['', Validators.required ],
+            width: null,
+            height: null
         });
     }
 }

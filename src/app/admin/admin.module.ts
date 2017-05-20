@@ -18,6 +18,8 @@ import { FieldValueListComponent } from './field-value/field-value-list.componen
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { AttachmentMimeListComponent } from './attachment-mime/attachment-mime-list.component';
 import { AttachmentMimeDetailComponent } from './attachment-mime/attachment-mime-detail.component';
+import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
+import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -32,6 +34,7 @@ import { FieldGroupService } from './field-group/field-group.service';
 import { FieldService } from './field/field.service';
 import { FieldValueService } from './field-value/field-value.service';
 import { AttachmentMimeService } from './attachment-mime/attachment-mime.service';
+import { AttachmentFamilyService } from './attachment-family/attachment-family.service';
 import { ProfileService } from './profile/profile.service';
 import { ResourceService } from './resource/resource.service';
 import { ActionService } from './action/action.service';
@@ -57,6 +60,8 @@ import { ActionService } from './action/action.service';
         FieldValueDetailComponent,
         AttachmentMimeListComponent,
         AttachmentMimeDetailComponent,
+        AttachmentFamilyListComponent,
+        AttachmentFamilyDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ResourceListComponent,
@@ -72,6 +77,7 @@ import { ActionService } from './action/action.service';
         FieldService,
         FieldValueService,
         AttachmentMimeService,
+        AttachmentFamilyService,
         ProfileService,
         ResourceService,
         ActionService

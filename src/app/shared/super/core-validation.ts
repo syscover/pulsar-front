@@ -5,22 +5,21 @@ import { ValidationMessageService } from './../../core/services/validation-messa
 
 import * as _ from 'lodash';
 
-export const onSubmitFormGroup = (formGroup: FormGroup, data?: any): Object => {
+export const setErrorsOnSubmitFormGroup = (formGroup: FormGroup, data?: any): Object => {
 
     if (! formGroup) { return; }
     let formErrors = {};
-    let fields = _.keysIn(formGroup.controls);
+    let fields = _.keysIn(formGroup.controls); // get fields array
 
     // set validator service message to get message
-    const injector = ReflectiveInjector.resolveAndCreate([
+    const validationMessageService = ReflectiveInjector.resolveAndCreate([
                 ValidationMessageService
-            ]);
-    const validationMessageService = injector.get(ValidationMessageService);
+            ]).get(ValidationMessageService);
 
     for (let field of fields){
         const formControl = formGroup.get(field);
 
-        if (formControl && ! formControl.valid) {
+        if (formControl && formControl.invalid) {
             for (const error in formControl.errors) {
                 formErrors[field] = validationMessageService.getMessage(error, formControl);
             }

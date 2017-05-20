@@ -82,7 +82,7 @@ export class MenuComponent implements OnInit {
                     {
                         label: 'Attachments', icon: 'attachment',
                         items: [
-                            {label: 'Attachment families', icon: 'list', routerLink: ['/pulsar/admin/field']},
+                            {label: 'Attachment families', icon: 'list', routerLink: ['/pulsar/admin/attachment-family']},
                             {label: 'Attachment mimes', icon: 'description', routerLink: ['/pulsar/admin/attachment-mime']},
                             {label: 'Attachment library', icon: 'library_books', routerLink: ['/pulsar/admin/field-group']},
                         ]
