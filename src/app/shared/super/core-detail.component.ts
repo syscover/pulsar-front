@@ -1,50 +1,38 @@
-import { DatatableSearchComponent } from './../components/datatable-search/datatable-search.component';
+import { CoreComponent } from './core.component';
 import { Injector, HostBinding } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmationService } from 'primeng/primeng';
 
 import { Observable } from 'rxjs/Observable';
 
-import { CoreService } from './core.service';
-import { ConfigService } from './../../core/services/config.service';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
+import { DatatableSearchComponent } from './../components/datatable-search/datatable-search.component';
 import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
 
 import * as _ from 'lodash';
 
-export class CoreDetailComponent {
+export class CoreDetailComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
 
     protected dataRoute: DataRoute; // Static dataRoute Object pass from route module
-    protected params: Params;
     protected formErrors: Object;
     protected fg: FormGroup;
     protected fb: FormBuilder;
-    protected router: Router;
-    protected route: ActivatedRoute;
     protected confirmationService;
-    protected langs: Lang[]; // Activated application lang
     protected lang: Lang; // Current lang for objects that has multiple language
-
-    // services superclass
-    protected configService: ConfigService;
-    protected objectService: CoreService;
 
     constructor(
         protected injector: Injector
     ) {
-        this.router = injector.get(Router);
-        this.route = injector.get(ActivatedRoute);
+        super(injector);
+
         this.fb = injector.get(FormBuilder);
-        this.configService = injector.get(ConfigService);
 
         // set object properties
         this.dataRoute = <DataRoute>this.route.snapshot.data;
-        this.params = this.route.snapshot.params;
-        this.langs = this.configService.getConfig('langs');
     }
 
     getRecordHasIdParamenter(f: Function) {

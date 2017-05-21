@@ -1,3 +1,4 @@
+import { Core } from './core';
 import { Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Params } from '@angular/router';
@@ -9,18 +10,18 @@ import { JsonResponse } from './../classes/json-respose';
 import * as appGlobals from './../../core/app-globals';
 import * as _ from 'lodash';
 
-export class CoreService {
+export class CoreService extends Core {
 
     protected headers: Headers;
     protected options: RequestOptions;
     protected http: Http;
-    protected appRootPrefix: string = appGlobals.appRootPrefix;
-    protected apiUrlPrefix: string = appGlobals.apiUrlPrefix;
     private _baseUri: string;
 
     constructor(
         protected injector: Injector
     ) {
+        super();
+
         this.http = injector.get(Http);
 
         this.headers = new Headers({ 'Content-Type': 'application/json' });

@@ -1,40 +1,26 @@
+import { CoreComponent } from './core.component';
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
-import { CoreService } from './core.service';
-import { ConfigService } from './../../core/services/config.service';
-import { Lang } from './../../admin/admin.models';
-
-export class CoreListComponent {
+export class CoreListComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
-    protected params: Params;
-    protected router: Router;
-    protected route: ActivatedRoute;
     protected totalRecords: number;     // total records in datatable
     protected filteredRecords: number;     // filtered records over total
     protected columnsSearch: string[];  // columns where will be used for global searchs
-    protected langs: Lang[]; // Activated application lang
 
     // services superclass
-    protected objectService: CoreService;
     protected confirmationService: ConfirmationService;
-    protected configService: ConfigService;
 
     constructor(
         protected injector: Injector
     ) {
-        this.route = injector.get(ActivatedRoute);
-        this.confirmationService = injector.get(ConfirmationService);
-        this.configService = injector.get(ConfigService);
+        super(injector);
 
-        // set object properties
-        this.params = this.route.snapshot.params;
-        this.langs = this.configService.getConfig('langs');
+        this.confirmationService = injector.get(ConfirmationService);
     }
 
     getRecords(f: Function): void {
