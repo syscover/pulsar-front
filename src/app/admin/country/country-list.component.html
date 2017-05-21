@@ -3,8 +3,7 @@
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="filteredRecords" 
-                (onLazyLoad)="loadDadaTableLazy($event, f, configService.getConfig('base_lang'))"
-                [immutable]="true">
+                (onLazyLoad)="loadDadaTableLazy($event, f, configService.getConfig('base_lang'))">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="lang.name" header="Lang" [sortable]="true"></p-column>

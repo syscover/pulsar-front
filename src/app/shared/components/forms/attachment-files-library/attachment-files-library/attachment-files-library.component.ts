@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, AfterContentInit, AfterViewInit, OnChanges, ViewChild, HostListener, Renderer2 } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 declare const jQuery: any; // jQuery definition
 
 @Component({
@@ -9,9 +10,21 @@ declare const jQuery: any; // jQuery definition
 })
 export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit, AfterViewInit {
 
-    @ViewChild('attachmentLibrary')  private _attachmentLibrary;
-    @ViewChild('attachmentLibraryMask') private _attachmentLibraryMask;
-    @ViewChild('libraryPlaceholder') private _libraryPlaceholder;
+    // Input elements
+    @Input() name: string;
+    @Input() folder: string; // folder where will be stored the files
+    @Input() multiple: boolean;
+    @Input() url: string;
+    @Input() withCredentials: boolean;
+
+    // View elements
+    @ViewChild('attachmentLibrary')  attachmentLibrary;
+    @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
+    @ViewChild('libraryPlaceholder') libraryPlaceholder;
+
+    // properties
+    public files: File[];
+    public progress: number = 0;
 
    /* @Input() private form: FormGroup;
     @Input() private name: string;
@@ -19,23 +32,21 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
     @Input('attachments') private attachments;*/
 
     constructor(
-        private _renderer: Renderer2
+        private renderer: Renderer2,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit() {
-
-        
-
-        this._renderer.listen(this._attachmentLibrary.nativeElement, 'dragenter', ($event) => {
+        this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragenter', ($event) => {
             this.dragEnterHandler($event);
         });
-        this._renderer.listen(this._attachmentLibrary.nativeElement, 'dragover', ($event) => {
+        this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragover', ($event) => {
             this.dragOverHandler($event);
         });
-        this._renderer.listen(this._attachmentLibrary.nativeElement, 'dragleave', ($event) => {
+        this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragleave', ($event) => {
             this.dragLeaveHandler($event);
         });
-        this._renderer.listen(this._attachmentLibraryMask.nativeElement, 'drop', ($event) => {
+        this.renderer.listen(this.attachmentLibraryMask.nativeElement, 'drop', ($event) => {
             this.dropHandler($event);
         });
 
@@ -50,70 +61,164 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
     ngAfterViewInit() {
         console.log('ngAfterViewInit');
-        
     }
 
     private dragEnterHandler($event) {
+        console.log('dragEnterHandler');
         $event.preventDefault();
-        if ($event.currentTarget.id === 'attachment-library' || this._attachmentLibrary.nativeElement.contains($event.currentTarget)) {
-            if (! this._attachmentLibraryMask.nativeElement.classList.contains('active')) {
+        if ($event.currentTarget.id === 'attachment-library' || this.attachmentLibrary.nativeElement.contains($event.currentTarget)) {
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
                 this.showMask();
             }
         }
     }
 
     private dragOverHandler($event) {
+        console.log('dragOverHandler');
         $event.preventDefault();
-        if ($event.currentTarget.id === 'attachment-library' || this._attachmentLibrary.nativeElement.contains($event.currentTarget)) {
-            if (! this._attachmentLibraryMask.nativeElement.classList.contains('active')) {
+        if ($event.currentTarget.id === 'attachment-library' || this.attachmentLibrary.nativeElement.contains($event.currentTarget)) {
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
                 this.showMask();
             }
         } else {
-            if (this._attachmentLibraryMask.nativeElement.classList.contains('active')) {
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
                 this.hideMask();
             }
         }
     }
 
     private dragLeaveHandler($event) {
+        console.log('dragLeaveHandler');
         $event.preventDefault();
         if ($event.currentTarget.id === 'attachment-library' || $event.currentTarget.id === 'attachment-library-mask') {
-            if (this._attachmentLibraryMask.nativeElement.classList.contains('active')) {
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
                 this.hideMask();
             }
         }
     }
 
     private dropHandler($event) {
+        console.log('dropHandler');
+
         $event.preventDefault();
-        if (this._attachmentLibraryMask.nativeElement.classList.contains('active')) {
+        if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
             this.hideMask();
         }
+
+        this.onFileSelect($event);
     }
 
     private showMask() {
-        this._renderer.setStyle(this._attachmentLibraryMask.nativeElement, 'opacity', 1);
-        this._renderer.setStyle(this._attachmentLibraryMask.nativeElement, 'visibility', 'visible');
-        this._renderer.addClass(this._attachmentLibraryMask.nativeElement, 'active');
+        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 1);
+        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'visible');
+        this.renderer.addClass(this.attachmentLibraryMask.nativeElement, 'active');
 
-        this.hidePlaceholder();
+        //this.hidePlaceholder();
     }
 
     private hideMask() {
-        this._renderer.setStyle(this._attachmentLibraryMask.nativeElement, 'opacity', 0);
-        this._renderer.setStyle(this._attachmentLibraryMask.nativeElement, 'visibility', 'hidden');
-        this._renderer.removeClass(this._attachmentLibraryMask.nativeElement, 'active');
+        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 0);
+        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'hidden');
+        this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active');
 
-        this.showPlaceholder();
+        //this.showPlaceholder();
     }
 
     private showPlaceholder() {
-        this._renderer.setStyle(this._libraryPlaceholder.nativeElement, 'opacity', 1);
-        this._renderer.setStyle(this._libraryPlaceholder.nativeElement, 'visibility', 'visible');
+        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'opacity', 1);
+        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'visibility', 'visible');
     }
 
     private hidePlaceholder() {
-        this._renderer.setStyle(this._libraryPlaceholder.nativeElement, 'opacity', 0);
-        this._renderer.setStyle(this._libraryPlaceholder.nativeElement, 'visibility', 'hidden');
+        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'opacity', 0);
+        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'visibility', 'hidden');
+    }
+
+    /**
+     * Methods to upload files
+     */
+
+    onFileSelect($event) {
+        //this.msgs = [];
+        if (! this.multiple) {
+            this.files = [];
+        }
+
+        let files = $event.dataTransfer ? $event.dataTransfer.files : $event.target.files;
+
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            //if (this.validate(file)) {
+              //  if (this.isImage(file)) {
+                    file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+              //  }
+                
+                this.files.push(files[i]);
+            //}
+        }
+        
+        //this.onSelect.emit({originalEvent: event, files: files});
+        
+        if (this.hasFiles()) {
+            this.upload();
+        }
+    }
+
+    upload() {
+        //this.msgs = [];
+        let xhr = new XMLHttpRequest();
+        let formData = new FormData(); // create forma data to add files and inputs
+
+		/*this.onBeforeUpload.emit({
+            'xhr': xhr,
+            'formData': formData 
+        });*/
+
+        // append data for server
+        formData.append('folder', this.folder);
+
+        for (let file of this.files) {
+            formData.append(this.name, file, file.name);
+        }
+
+        /*for (let i = 0; i < this.files.length; i++) {
+            formData.append(this.name, this.files[i], this.files[i].name);
+        }*/
+
+// progress var
+        /*xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
+            if (e.lengthComputable) {
+              this.progress = Math.round((e.loaded * 100) / e.total);
+            }
+          }, false);*/
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                this.progress = 0;
+
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    //this.onUpload.emit({xhr: xhr, files: this.files});
+                    let obj = JSON.parse(xhr.response);
+                    console.log(obj);
+
+                } else {
+                    //this.onError.emit({xhr: xhr, files: this.files});
+                }
+                this.clearFiles();
+            }
+        };
+
+        xhr.open('POST', this.url, true);
+        xhr.withCredentials = this.withCredentials;
+        xhr.send(formData);
+    }
+
+    hasFiles(): boolean {
+        return this.files && this.files.length > 0;
+    }
+
+    clearFiles() {
+        this.files = [];
+        //this.onClear.emit();
     }
 }

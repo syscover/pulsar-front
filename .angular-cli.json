@@ -25,6 +25,7 @@
         "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
         "../node_modules/fullcalendar/dist/fullcalendar.min.css",
         "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/cropperjs/dist/cropper.min.css",
         "../node_modules/nanoscroller/bin/css/nanoscroller.css",
         "../node_modules/primeng/resources/primeng.min.css",
         "assets/vendor/font-awesome/scss/font-awesome.scss",
@@ -44,6 +45,7 @@
         "../node_modules/chart.js/dist/Chart.js",
         "../node_modules/fullcalendar/dist/fullcalendar.js",
         "../node_modules/quill/dist/quill.js",
+        "../node_modules/cropperjs/dist/cropper.min.js",
         "assets/layout/js/ripple.js",
         "assets/vendor/jquery-ui/jquery-ui.min.js",
         "assets/vendor/pace/pace.min.js"
