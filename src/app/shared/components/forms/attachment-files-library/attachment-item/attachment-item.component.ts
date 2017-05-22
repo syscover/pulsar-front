@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Attachment } from './../attachment.models';
+import { Component, Input, OnInit } from '@angular/core';
 declare const jQuery: any; // jQuery definition
 
 @Component({
@@ -8,6 +9,9 @@ declare const jQuery: any; // jQuery definition
 })
 
 export class AttachmentItemComponent implements OnInit {
+
+    @Input() attachment: Attachment;
+
     constructor() { }
 
     ngOnInit() {

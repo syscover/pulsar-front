@@ -13,13 +13,8 @@
             <!-- if number of attachments > 0 -->
             <div id="library-sortable" class="sortable">
                 <!-- attachment item -->
-                <!--<ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>
-                <ps-attachment-item></ps-attachment-item>-->
+                <ps-attachment-item *ngFor="let attachment of attachments"
+                                    [attachment]="attachment"></ps-attachment-item>
                 <!-- / attachment item -->
             </div>
         </div>

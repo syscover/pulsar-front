@@ -159,6 +159,7 @@
 
             <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
                 <ps-attachment-files-library    name="files[]"
+                                                [base]="apiUrlPrefix"
                                                 [url]="apiUrlPrefix + '/api/v1/admin/attachment-upload'"
                                                 folder="public/market/products">
 

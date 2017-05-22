@@ -3,6 +3,10 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 declare const jQuery: any; // jQuery definition
 
+import { JsonResponse } from './../../../../classes/json-respose';
+import { Attachment, AttachmentLibrary } from './../attachment.models';
+import * as _ from 'lodash';
+
 @Component({
     selector: 'ps-attachment-files-library',
     templateUrl: './attachment-files-library.html',
@@ -11,9 +15,11 @@ declare const jQuery: any; // jQuery definition
 export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     // Input elements
+    @Input() attachments: Attachment[] = [];
     @Input() name: string;
     @Input() folder: string; // folder where will be stored the files
     @Input() multiple: boolean;
+    @Input() base: string;
     @Input() url: string;
     @Input() withCredentials: boolean;
 
@@ -112,16 +118,12 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
         this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 1);
         this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'visible');
         this.renderer.addClass(this.attachmentLibraryMask.nativeElement, 'active');
-
-        //this.hidePlaceholder();
     }
 
     private hideMask() {
         this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 0);
         this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'hidden');
         this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active');
-
-        //this.showPlaceholder();
     }
 
     private showPlaceholder() {
@@ -197,9 +199,13 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
                 this.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    //this.onUpload.emit({xhr: xhr, files: this.files});
-                    let obj = JSON.parse(xhr.response);
-                    console.log(obj);
+
+                    const response = <JsonResponse>JSON.parse(xhr.response);
+
+                    // set attachments from file uploded
+                    for (const attachment of response.data.library) {
+                        this.attachments.push(attachment);
+                    }
 
                 } else {
                     //this.onError.emit({xhr: xhr, files: this.files});

@@ -1,12 +1,12 @@
 <div class="sortable-item col-md-4 col-sm-6 col-xs-12">
     <div class="attachment-item">
         <div class="attachment-img">
-            <img src="">
+            <img [src]="attachment.url">
         </div>
         <div class="attachment-over">
             <div class="attachment-over-uncovered">
                 <h4 class="attachment-title">Familia Imagen 1</h4>
-                <p class="attachment-sub">Nombre del archivo</p>
+                <p class="attachment-sub">{{ attachment.name }}</p>
                 <a class="attachment-edit-open open-over">
                     <i class="material-icons">mode_edit</i>
                 </a>
