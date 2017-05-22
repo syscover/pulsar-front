@@ -1,11 +1,16 @@
 import { Component, Input, OnInit, AfterContentInit, AfterViewInit, OnChanges, ViewChild, HostListener, Renderer2 } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SelectItem } from 'primeng/primeng';
+
 declare const jQuery: any; // jQuery definition
 
 import { JsonResponse } from './../../../../classes/json-respose';
 import { Attachment, AttachmentLibrary } from './../attachment.models';
+import { AttachmentFamily } from './../../../../../admin/admin.models';
 import * as _ from 'lodash';
+
+import { AttachmentFamilyService } from './../../../../../admin/attachment-family/attachment-family.service';
 
 @Component({
     selector: 'ps-attachment-files-library',
@@ -16,6 +21,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
     // Input elements
     @Input() attachments: Attachment[] = [];
+    @Input() resource_id: string;
     @Input() name: string;
     @Input() folder: string; // folder where will be stored the files
     @Input() multiple: boolean;
@@ -30,8 +36,9 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
     // properties
     public files: File[];
-    public progress: number = 0;
+    public attachmentFamilies: SelectItem[];
 
+    public progress: number = 0;
    /* @Input() private form: FormGroup;
     @Input() private name: string;
     private items: any[] = [1,2,3,4,5];
@@ -39,7 +46,8 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
     constructor(
         private renderer: Renderer2,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private attachmentFamilyService: AttachmentFamilyService
     ) { }
 
     ngOnInit() {
@@ -59,6 +67,32 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
         const $sortable = jQuery('.sortable');
         $sortable.sortable();
         $sortable.disableSelection();
+
+         // load order status
+        this.attachmentFamilyService.searchRecords({
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'attachment_family.resource_id',
+                        'operator': '=',
+                        'value': this.resource_id
+                    },
+                    {
+                        'command': 'orderBy',
+                        'operator': 'asc',
+                        'column': 'attachment_family.name'
+                    }
+                ]
+            })
+            .subscribe((response) => {
+
+                this.attachmentFamilies = _.map(<AttachmentFamily[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get order
+
+                this.attachmentFamilies.unshift({ label: 'Select a family', value: '' });
+            });
     }
 
     ngAfterContentInit() {

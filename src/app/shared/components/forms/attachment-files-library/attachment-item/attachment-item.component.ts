@@ -11,6 +11,7 @@ declare const jQuery: any; // jQuery definition
 export class AttachmentItemComponent implements OnInit {
 
     @Input() attachment: Attachment;
+    @Input() attachmentFamilies: any[];
 
     constructor() { }
 

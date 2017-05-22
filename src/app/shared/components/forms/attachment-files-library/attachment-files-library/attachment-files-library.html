@@ -14,7 +14,8 @@
             <div id="library-sortable" class="sortable">
                 <!-- attachment item -->
                 <ps-attachment-item *ngFor="let attachment of attachments"
-                                    [attachment]="attachment"></ps-attachment-item>
+                                    [attachment]="attachment"
+                                    [attachmentFamilies]="attachmentFamilies"></ps-attachment-item>
                 <!-- / attachment item -->
             </div>
         </div>

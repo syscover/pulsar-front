@@ -20,20 +20,18 @@ export class LangService extends CoreService {
 
     getActivatedLangs(): Observable<JsonResponse> {
         // build query
-        const object = {
-            'type': 'query',
-            'parameters': [
-                {
-                    'command': 'where',
-                    'column': 'active',
-                    'operator': '=',
-                    'value': true
-                }
-            ]
-        };
-
         return this.http
-            .post(this.getApiUrl('search'), object, this.options)
+            .post(this.getApiUrl('search'), {
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'active',
+                        'operator': '=',
+                        'value': true
+                    }
+                ]
+            }, this.options)
             .map((response: Response) => response.json());
     }
 }
