@@ -35,6 +35,7 @@ import { PaymentMethodService } from './payment-method/payment-method.service';
 import { OrderStatusService } from './order-status/order-status.service';
 import { ProductClassTaxService } from './product-class-tax/product-class-tax.service';
 import { ProductService } from './product/product.service';
+import { AttachmentFamilyService } from './../admin/attachment-family/attachment-family.service';
 
 @NgModule({
     imports: [
@@ -75,7 +76,8 @@ import { ProductService } from './product/product.service';
         ProductClassTaxService,
         OrderStatusService,
         ProductService,
-        GroupService
+        GroupService,
+        AttachmentFamilyService
     ]
 })
 
