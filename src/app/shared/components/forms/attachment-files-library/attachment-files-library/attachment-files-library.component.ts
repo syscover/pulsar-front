@@ -1,26 +1,24 @@
-import { Component, Input, OnInit, AfterContentInit, AfterViewInit, OnChanges, ViewChild, HostListener, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SelectItem } from 'primeng/primeng';
 
 declare const jQuery: any; // jQuery definition
 
 import { JsonResponse } from './../../../../classes/json-respose';
-import { Attachment, AttachmentLibrary } from './../attachment.models';
-import { AttachmentFamily } from './../../../../../admin/admin.models';
+import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../admin/admin.models';
 import * as _ from 'lodash';
-
-import { AttachmentFamilyService } from './../../../../../admin/attachment-family/attachment-family.service';
+import * as Cropper from 'cropperjs';
 
 @Component({
     selector: 'ps-attachment-files-library',
     templateUrl: './attachment-files-library.html',
     styleUrls: ['./attachment-files-library.scss']
 })
-export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class AttachmentFilesLibraryComponent implements OnInit {
 
     // Input elements
     @Input() attachments: Attachment[] = [];
+    @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() resource_id: string;
     @Input() name: string;
     @Input() folder: string; // folder where will be stored the files
@@ -32,11 +30,13 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
     // View elements
     @ViewChild('attachmentLibrary')  attachmentLibrary;
     @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
-    @ViewChild('libraryPlaceholder') libraryPlaceholder;
+    @ViewChild('cropperImage') cropperImage;
+    @ViewChild('cropperPreview') cropperPreview;
 
     // properties
-    public files: File[];
-    public attachmentFamilies: SelectItem[];
+    files: File[];
+    displayDialog: boolean = false;
+    cropper;
 
     public progress: number = 0;
    /* @Input() private form: FormGroup;
@@ -46,8 +46,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
     constructor(
         private renderer: Renderer2,
-        private sanitizer: DomSanitizer,
-        private attachmentFamilyService: AttachmentFamilyService
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit() {
@@ -60,55 +59,17 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragleave', ($event) => {
             this.dragLeaveHandler($event);
         });
-        this.renderer.listen(this.attachmentLibraryMask.nativeElement, 'drop', ($event) => {
+        this.renderer.listen(this.attachmentLibrary.nativeElement, 'drop', ($event) => {
             this.dropHandler($event);
         });
-
-        const $sortable = jQuery('.sortable');
-        $sortable.sortable();
-        $sortable.disableSelection();
-
-         // load order status
-        this.attachmentFamilyService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'attachment_family.resource_id',
-                        'operator': '=',
-                        'value': this.resource_id
-                    },
-                    {
-                        'command': 'orderBy',
-                        'operator': 'asc',
-                        'column': 'attachment_family.name'
-                    }
-                ]
-            })
-            .subscribe((response) => {
-
-                this.attachmentFamilies = _.map(<AttachmentFamily[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get order
-
-                this.attachmentFamilies.unshift({ label: 'Select a family', value: '' });
-            });
-    }
-
-    ngAfterContentInit() {
-        console.log('ngAfterContentInit');
-    }
-
-    ngAfterViewInit() {
-        console.log('ngAfterViewInit');
     }
 
     private dragEnterHandler($event) {
         console.log('dragEnterHandler');
         $event.preventDefault();
-        if ($event.currentTarget.id === 'attachment-library' || this.attachmentLibrary.nativeElement.contains($event.currentTarget)) {
-            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
-                this.showMask();
+        if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
+                this.activateMask();
             }
         }
     }
@@ -116,13 +77,13 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
     private dragOverHandler($event) {
         console.log('dragOverHandler');
         $event.preventDefault();
-        if ($event.currentTarget.id === 'attachment-library' || this.attachmentLibrary.nativeElement.contains($event.currentTarget)) {
-            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
-                this.showMask();
+        if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
+                this.activateMask();
             }
         } else {
-            if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
-                this.hideMask();
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
+                this.deactivateMask();
             }
         }
     }
@@ -130,9 +91,9 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
     private dragLeaveHandler($event) {
         console.log('dragLeaveHandler');
         $event.preventDefault();
-        if ($event.currentTarget.id === 'attachment-library' || $event.currentTarget.id === 'attachment-library-mask') {
-            if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
-                this.hideMask();
+        if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
+                this.deactivateMask();
             }
         }
     }
@@ -141,33 +102,20 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
         console.log('dropHandler');
 
         $event.preventDefault();
-        if (this.attachmentLibraryMask.nativeElement.classList.contains('active')) {
-            this.hideMask();
+        if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
+            this.deactivateMask();
+            this.renderer.addClass(this.attachmentLibrary.nativeElement, 'has-attachment');
         }
 
         this.onFileSelect($event);
     }
 
-    private showMask() {
-        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 1);
-        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'visible');
-        this.renderer.addClass(this.attachmentLibraryMask.nativeElement, 'active');
+    private activateMask() {
+        this.renderer.addClass(this.attachmentLibraryMask.nativeElement, 'active-mask');
     }
 
-    private hideMask() {
-        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'opacity', 0);
-        this.renderer.setStyle(this.attachmentLibraryMask.nativeElement, 'visibility', 'hidden');
-        this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active');
-    }
-
-    private showPlaceholder() {
-        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'opacity', 1);
-        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'visibility', 'visible');
-    }
-
-    private hidePlaceholder() {
-        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'opacity', 0);
-        this.renderer.setStyle(this.libraryPlaceholder.nativeElement, 'visibility', 'hidden');
+    private deactivateMask() {
+        this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active-mask');
     }
 
     /**
@@ -207,7 +155,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
 
 		/*this.onBeforeUpload.emit({
             'xhr': xhr,
-            'formData': formData 
+            'formData': formData
         });*/
 
         // append data for server
@@ -221,7 +169,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
             formData.append(this.name, this.files[i], this.files[i].name);
         }*/
 
-// progress var
+        // progress var
         /*xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
             if (e.lengthComputable) {
               this.progress = Math.round((e.loaded * 100) / e.total);
@@ -251,6 +199,10 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
         xhr.open('POST', this.url, true);
         xhr.withCredentials = this.withCredentials;
         xhr.send(formData);
+
+        /*const $sortable = jQuery('.sortable');
+        $sortable.sortable();
+        $sortable.disableSelection();*/
     }
 
     hasFiles(): boolean {
@@ -260,5 +212,42 @@ export class AttachmentFilesLibraryComponent implements OnInit, AfterContentInit
     clearFiles() {
         this.files = [];
         //this.onClear.emit();
+    }
+
+    /**
+     * Methods to upload files
+     */
+    familyChangeHandler($event) {
+
+        // get attachment family
+        const attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.attachmentFamily]);
+
+        // get image from item changed and instance dialog image
+        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.image.nativeElement.src);
+
+        // set crop on dialog image
+        this.cropper = new Cropper(this.cropperImage.nativeElement, {
+            aspectRatio: attachmentFamily.width / attachmentFamily.height,
+            viewMode: 1,
+            preview: this.cropperPreview.nativeElement,
+            crop: function(e) {
+                console.log(e.detail.x);
+                console.log(e.detail.y);
+                console.log(e.detail.width);
+                console.log(e.detail.height);
+                console.log(e.detail.rotate);
+                console.log(e.detail.scaleX);
+                console.log(e.detail.scaleY);
+            }
+        });
+        console.log('dd3');
+
+        // show dialog image
+        this.displayDialog = true;
+    }
+
+    onHideDialogHandler($event) {
+        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
+        this.cropper.destroy();
     }
 }

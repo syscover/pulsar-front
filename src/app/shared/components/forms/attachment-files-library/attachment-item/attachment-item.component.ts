@@ -1,6 +1,7 @@
-import { Attachment } from './../attachment.models';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
 declare const jQuery: any; // jQuery definition
+
+import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
 
 @Component({
     selector: 'ps-attachment-item',
@@ -11,7 +12,11 @@ declare const jQuery: any; // jQuery definition
 export class AttachmentItemComponent implements OnInit {
 
     @Input() attachment: Attachment;
-    @Input() attachmentFamilies: any[];
+    @Input() attachmentFamilies: AttachmentFamily[] = [];
+
+    @Output() familyChange: EventEmitter<any> = new EventEmitter();
+
+    @ViewChild('imageItem') imageItem;
 
     constructor() { }
 
@@ -29,5 +34,15 @@ export class AttachmentItemComponent implements OnInit {
                 jQuery(this).remove();
             });
         });
+    }
+
+    private changeHandler($event) {
+        // check that value is selected
+        if ($event.target.value !== '') {
+            this.familyChange.emit({
+                image: this.imageItem,
+                attachmentFamily: parseInt($event.target.value)
+            });
+        }
     }
 }

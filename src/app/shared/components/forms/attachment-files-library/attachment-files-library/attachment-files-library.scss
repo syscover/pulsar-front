@@ -1,10 +1,12 @@
 #attachment-library{
     display:block;
     position: relative;
-    margin-top:20px;
+    min-height: 280px;
+    width: 100%;
+    margin:20px 0 0;
     padding:15px 15px 0;
-    width:100%;
-    /*background-color: lightgrey;*/
+    background-color: transparent;
+    /*border: 1px solid rgba(0,0,0,0.1);*/
 }
 #attachment-library a:hover,
 #attachment-library a:focus,
@@ -15,24 +17,10 @@
     text-decoration: none !important;
 }
 
-#library-placeholder{
-    display: block;
-    height: 250px;
-    width: 100%;
-    border: 2px dashed grey;
-    border-radius: 2px;
-    margin: 0 0 15px;
-}
-#library-placeholder p{
-    color: grey;
-    text-align: center;
-    font-size: 20px;
-    line-height: 250px;
-}
-
 #library-sortable{
     display: block;
     position: relative;
+    height: 100%;
     margin: 0 -15px;
     list-style: none;
     padding:0;
@@ -40,28 +28,27 @@
 
 #attachment-library-mask{
     position: absolute;
-    height:100%;
-    width:100%;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color: rgba(96, 125, 139, 0.85);
-    color:rgb(255,255,255);
-    font-size:20px;
-    line-height: 20px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255,255,255);
+    color: rgb(120,120,120);
     text-align: center;
-    padding-top: 20%;
+    font-size: 20px;
+    line-height: 280px;
+    opacity: 1;
+    visibility: visible;
     z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
-    -moz-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
-    -ms-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
-    -o-transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
-    transition: opacity 0.3s ease-out 0s, visibility 0.3s ease-out 0s;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
 }
-
 #attachment-library-mask::before{
     content: '';
     display: block;
@@ -71,15 +58,28 @@
     right: 15px;
     bottom: 15px;
     background-color: transparent;
-    border: 2px dashed rgb(255,255,255);
+    border: 2px dashed  rgb(120,120,120);
+}
+#attachment-library.has-attachment #attachment-library-mask{
+    background-color: rgba(96, 125, 139, 0.85);
+    color: rgb(255,255,255);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+}
+#attachment-library.has-attachment #attachment-library-mask::before{
+    border-color: rgb(255,255,255);
 }
 
-/*#attachment-library-mask.active{
-   opacity: 1 !important;
-   visibility: visible !important;
+#attachment-library:not(.has-attachment) #attachment-library-mask.active-mask{
+    background-color: rgba(96, 125, 139, 0.85);
+    color: rgb(255,255,255);
+}
+#attachment-library:not(.has-attachment) #attachment-library-mask.active-mask::before{
+    border-color: rgb(255,255,255);
 }
 
-#attachment-library-mask.active ~ div #library-placeholder{
-   opacity: 0 !important;
-   visibility: hidden !important;
-}*/
+#attachment-library.has-attachment #attachment-library-mask.active-mask{
+    opacity: 1 !important;
+    visibility: visible !important;
+}

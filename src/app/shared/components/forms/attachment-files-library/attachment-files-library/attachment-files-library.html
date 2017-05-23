@@ -2,22 +2,33 @@
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
-    <div class="row">
-        <div class="col-md-12">
+    <div id="library-sortable" class="sortable">
+        <!-- attachment item -->
+        <ps-attachment-item *ngFor="let attachment of attachments"
+                            [attachmentFamilies]="attachmentFamilies"
+                            [attachment]="attachment"
+                            (familyChange)="familyChangeHandler($event)"
 
-            <!-- if number of attachments == 0 -->
-            <div #libraryPlaceholder id="library-placeholder">
-                <p>Arrastre aqui sus archivos</p>
-            </div>
-
-            <!-- if number of attachments > 0 -->
-            <div id="library-sortable" class="sortable">
-                <!-- attachment item -->
-                <ps-attachment-item *ngFor="let attachment of attachments"
-                                    [attachment]="attachment"
-                                    [attachmentFamilies]="attachmentFamilies"></ps-attachment-item>
-                <!-- / attachment item -->
-            </div>
-        </div>
+                            ></ps-attachment-item>
+        <!-- / attachment item -->
     </div>
 </div>
+
+<!-- cropper -->
+<p-dialog   header="Cropper" 
+            appendTo="body"
+            [(visible)]="displayDialog" 
+            [modal]="true" 
+            [closable]="true"
+            [width]="800"
+            (onHide)="onHideDialogHandler($event)">
+    <div class="row">
+        <div class="col-md-9">
+            <img #cropperImage class="img-fluid">
+        </div>
+        <div class="col-md-3">
+            <div #cropperPreview></div>
+        </div>
+    </div>
+</p-dialog>
+<!-- /cropper -->

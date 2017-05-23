@@ -13,10 +13,11 @@ import { Product, Category, ProductType, PriceType, ProductClassTax } from './..
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
+import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
 
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
-import { FieldGroup } from './../../admin/admin.models';
+import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 
 import * as _ from 'lodash';
 
@@ -31,6 +32,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private productTypes: SelectItem[] = [];
     private priceTypes: SelectItem[] = [];
     private productClassTaxes: SelectItem[] = [];
+    private attachmentFamilies: AttachmentFamily[] = [];
 
     private fieldGroups: SelectItem[] = [];
     private fields: any;
@@ -70,7 +72,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         // Custom fields
         protected fieldGroupService: FieldGroupService,
         protected fieldService: FieldService,
-        private dynamicFormService: DynamicFormService
+        private dynamicFormService: DynamicFormService,
+        private attachmentFamilyService: AttachmentFamilyService
     ) {
         super(injector);
     }
@@ -146,6 +149,28 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 }); // get order status
 
                 this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
+            });
+
+        // load attachment families
+        this.attachmentFamilyService.searchRecords({
+                'type': 'query',
+                'parameters': [
+                    {
+                        'command': 'where',
+                        'column': 'attachment_family.resource_id',
+                        'operator': '=',
+                        'value': 'market-product'
+                    },
+                    {
+                        'command': 'orderBy',
+                        'operator': 'asc',
+                        'column': 'attachment_family.name'
+                    }
+                ]
+            })
+            .subscribe((response) => {
+                this.attachmentFamilies = <AttachmentFamily[]>response.data;
+                console.log(this.attachmentFamilies);
             });
 
         // get object
