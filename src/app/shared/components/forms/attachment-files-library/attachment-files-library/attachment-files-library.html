@@ -1,4 +1,5 @@
 <div #attachmentLibrary id="attachment-library">
+    <input type="hidden">
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
@@ -7,9 +8,7 @@
         <ps-attachment-item *ngFor="let attachment of attachments"
                             [attachmentFamilies]="attachmentFamilies"
                             [attachment]="attachment"
-                            (familyChange)="familyChangeHandler($event)"
-
-                            ></ps-attachment-item>
+                            (familyChange)="familyChangeHandler($event)"></ps-attachment-item>
         <!-- / attachment item -->
     </div>
 </div>
@@ -20,15 +19,31 @@
             [(visible)]="displayDialog" 
             [modal]="true" 
             [closable]="true"
-            [width]="800"
+            [width]="900"
             (onHide)="onHideDialogHandler($event)">
-    <div class="row">
-        <div class="col-md-9">
-            <img #cropperImage class="img-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="cropper-col-8 margin-right-20">
+                <img #cropperImage class="cropper-img">
+            </div>
+            <div class="cropper-col-3">
+                <div #cropperPreview style="width:400px;height:100px;overflow:hidden;">
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
-            <div #cropperPreview></div>
+        <div class="row margin-top-25 margin-top-25">
+            <ps-button  type="button" 
+                        icon="fa-check" 
+                        label="Crop" 
+                        class="col-2"
+                        (click)="onCropHandler($event)"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        class="col-2"></ps-button>
         </div>
+
     </div>
 </p-dialog>
 <!-- /cropper -->

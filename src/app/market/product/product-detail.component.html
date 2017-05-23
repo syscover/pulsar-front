@@ -116,7 +116,7 @@
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
 
-                    <ps-input   [form]="fg" 
+                    <ps-input   [form]="fg"
                                 [errors]="formErrors"
                                 label="Subtotal"
                                 name="subtotal_format" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
@@ -158,7 +158,8 @@
             </p-tabPanel>
 
             <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
-                <ps-attachment-files-library    name="files[]"
+                <ps-attachment-files-library    [form]="fg"
+                                                name="files[]"
                                                 [base]="apiUrlPrefix"
                                                 [url]="apiUrlPrefix + '/api/v1/admin/attachment-upload'"
                                                 folder="public/market/products"

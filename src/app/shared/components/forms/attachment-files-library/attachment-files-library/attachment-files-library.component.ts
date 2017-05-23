@@ -17,6 +17,7 @@ import * as Cropper from 'cropperjs';
 export class AttachmentFilesLibraryComponent implements OnInit {
 
     // Input elements
+    @Input() form: FormGroup;
     @Input() attachments: Attachment[] = [];
     @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() resource_id: string;
@@ -240,7 +241,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 console.log(e.detail.scaleY);
             }
         });
-        console.log('dd3');
 
         // show dialog image
         this.displayDialog = true;
@@ -249,5 +249,11 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     onHideDialogHandler($event) {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
         this.cropper.destroy();
+    }
+
+    onCropHandler($event) {
+        let cropperData = this.cropper.getData('rounded');
+
+        // send server
     }
 }
