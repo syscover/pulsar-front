@@ -170,7 +170,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             })
             .subscribe((response) => {
                 this.attachmentFamilies = <AttachmentFamily[]>response.data;
-                console.log(this.attachmentFamilies);
             });
 
         // get object
@@ -197,7 +196,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             subtotal: null,
             subtotal_format: [{value: null, disabled: true}, Validators.required ],
             tax_format: [{value: null, disabled: true}, Validators.required ],
-            total_format: [{value: null, disabled: true}, Validators.required ]
+            total_format: [{value: null, disabled: true}, Validators.required ],
+            attachments: ''
         });
 
         // Save formGroup in service to use for dynamic form, custom fields

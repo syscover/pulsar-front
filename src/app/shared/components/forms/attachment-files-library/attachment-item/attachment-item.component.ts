@@ -14,9 +14,11 @@ export class AttachmentItemComponent implements OnInit {
     @Input() attachment: Attachment;
     @Input() attachmentFamilies: AttachmentFamily[] = [];
 
-    @Output() familyChange: EventEmitter<any> = new EventEmitter();
+    @Output() activeCrop: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('imageItem') imageItem;
+    @ViewChild('family') family;
+    @ViewChild('fileName') public fileName;
 
     constructor() { }
 
@@ -36,12 +38,12 @@ export class AttachmentItemComponent implements OnInit {
         });
     }
 
-    private changeHandler($event) {
-        // check that value is selected
-        if ($event.target.value !== '') {
-            this.familyChange.emit({
+    private clickHandler($event) {
+        // click to active cropper
+        if (this.family.nativeElement.value !== '') {
+            this.activeCrop.emit({
                 image: this.imageItem,
-                attachmentFamily: parseInt($event.target.value)
+                attachmentFamily: parseInt(this.family.nativeElement.value)
             });
         }
     }

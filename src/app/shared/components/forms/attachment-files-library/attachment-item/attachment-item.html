@@ -1,38 +1,40 @@
-<div class="sortable-item col-md-4 col-sm-6 col-xs-12">
-    <div class="attachment-item">
-        <div class="attachment-img">
-            <img #imageItem [src]="attachment.url">
+<div class="attachment-item">
+    <div class="attachment-img">
+        <img #imageItem [src]="attachment.url">
+        <input class="file-name" type="hidden" [value]="attachment.file_name">
+    </div>
+    <div class="attachment-over">
+        <div class="attachment-over-uncovered">
+            <h4 class="attachment-title">Familia Imagen 1</h4>
+            <p class="attachment-sub">{{ attachment.name }}</p>
+            <a class="attachment-edit-open open-over">
+                <i class="material-icons">mode_edit</i>
+            </a>
         </div>
-        <div class="attachment-over">
-            <div class="attachment-over-uncovered">
-                <h4 class="attachment-title">Familia Imagen 1</h4>
-                <p class="attachment-sub">{{ attachment.name }}</p>
-                <a class="attachment-edit-open open-over">
-                    <i class="material-icons">mode_edit</i>
-                </a>
+        <div class="attachment-over-covered">
+            <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Image name" value="{{ attachment.name }}">
             </div>
-            <div class="attachment-over-covered">
-                <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Image name" value="{{ attachment.name }}">
+            <div class="form-group">
+                <select #family class="form-control">
+                    <option value="">Select a family</option>
+                    <option *ngFor="let attachmentFamily of attachmentFamilies"
+                            [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
+                </select>
+                <div class="select-back">
+                    <i class="material-icons">keyboard_arrow_down</i>
                 </div>
-                <div class="form-group">
-                    <select class="form-control" (change)="changeHandler($event)">
-                        <option value="">Select a family</option>
-                        <option *ngFor="let attachmentFamily of attachmentFamilies"
-                                [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
-                    </select>
-                    <div class="select-back">
-                        <i class="material-icons">keyboard_arrow_down</i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" class="close-over form-control">GUARDAR</button>
-                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" 
+                    (click)="clickHandler($event)"
+                    class="close-over form-control">GUARDAR</button>
             </div>
         </div>
     </div>
-    <a class="remove-item">
-        <i class="material-icons">clear</i>
-    </a>
 </div>
+
+<a class="remove-item">
+    <i class="material-icons">clear</i>
+</a>

@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
 declare const jQuery: any; // jQuery definition
 
+import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { JsonResponse } from './../../../../classes/json-respose';
 import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../admin/admin.models';
 import * as _ from 'lodash';
@@ -18,21 +19,20 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     // Input elements
     @Input() form: FormGroup;
-    @Input() attachments: Attachment[] = [];
-    @Input() attachmentFamilies: AttachmentFamily[] = [];
-    @Input() resource_id: string;
-    @Input() name: string;
-    @Input() folder: string; // folder where will be stored the files
-    @Input() multiple: boolean;
-    @Input() base: string;
-    @Input() url: string;
-    @Input() withCredentials: boolean;
+    @Input() attachments: Attachment[] = [];                // elements uploaded
+    @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
+    @Input() name: string;                                  // name of input that contain attachmens data json
+    @Input() folder: string;                                // folder where will be stored the files
+    @Input() apiUrl: string;                                // API url where call once drop elements
+    @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
     // View elements
     @ViewChild('attachmentLibrary')  attachmentLibrary;
     @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
     @ViewChild('cropperImage') cropperImage;
     @ViewChild('cropperPreview') cropperPreview;
+    @ViewChild('myModal') myModal;
+    @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     // properties
     files: File[];
@@ -40,10 +40,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     cropper;
 
     public progress: number = 0;
-   /* @Input() private form: FormGroup;
-    @Input() private name: string;
-    private items: any[] = [1,2,3,4,5];
-    @Input('attachments') private attachments;*/
+
 
     constructor(
         private renderer: Renderer2,
@@ -125,9 +122,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     onFileSelect($event) {
         //this.msgs = [];
-        if (! this.multiple) {
-            this.files = [];
-        }
+        this.files = [];
 
         let files = $event.dataTransfer ? $event.dataTransfer.files : $event.target.files;
 
@@ -162,13 +157,10 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // append data for server
         formData.append('folder', this.folder);
 
+        // add files to formData to send to server
         for (let file of this.files) {
-            formData.append(this.name, file, file.name);
+            formData.append('files[]', file, file.name);
         }
-
-        /*for (let i = 0; i < this.files.length; i++) {
-            formData.append(this.name, this.files[i], this.files[i].name);
-        }*/
 
         // progress var
         /*xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
@@ -177,18 +169,29 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             }
           }, false);*/
 
+        // set function  onreadystatechange that will be called
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
-                this.progress = 0;
+                //this.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-
                     const response = <JsonResponse>JSON.parse(xhr.response);
 
-                    // set attachments from file uploded
-                    for (const attachment of response.data.library) {
+                    // save attachments from file uploded
+                    for (const attachment of response.data.tmp) {
                         this.attachments.push(attachment);
                     }
+
+                    // sort elements when attach new element
+                    this.onSortHandler();
+
+                    // set sortable attachments
+                    jQuery('.sortable').sortable({
+                        stop: ($event, ui) => {
+                            this.onSortHandler();
+                        }
+                    });
+                    jQuery('.sortable').disableSelection();
 
                 } else {
                     //this.onError.emit({xhr: xhr, files: this.files});
@@ -197,13 +200,9 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             }
         };
 
-        xhr.open('POST', this.url, true);
+        xhr.open('POST', this.apiUrl, true);
         xhr.withCredentials = this.withCredentials;
         xhr.send(formData);
-
-        /*const $sortable = jQuery('.sortable');
-        $sortable.sortable();
-        $sortable.disableSelection();*/
     }
 
     hasFiles(): boolean {
@@ -215,11 +214,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         //this.onClear.emit();
     }
 
-    /**
-     * Methods to upload files
-     */
-    familyChangeHandler($event) {
-
+    activeCropHandler($event) {
         // get attachment family
         const attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.attachmentFamily]);
 
@@ -229,17 +224,9 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // set crop on dialog image
         this.cropper = new Cropper(this.cropperImage.nativeElement, {
             aspectRatio: attachmentFamily.width / attachmentFamily.height,
-            viewMode: 1,
-            preview: this.cropperPreview.nativeElement,
-            crop: function(e) {
-                console.log(e.detail.x);
-                console.log(e.detail.y);
-                console.log(e.detail.width);
-                console.log(e.detail.height);
-                console.log(e.detail.rotate);
-                console.log(e.detail.scaleX);
-                console.log(e.detail.scaleY);
-            }
+            viewMode: 2,
+            minContainerWidth: 0,
+            preview: this.cropperPreview.nativeElement
         });
 
         // show dialog image
@@ -253,7 +240,19 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     onCropHandler($event) {
         let cropperData = this.cropper.getData('rounded');
-
+        this.displayDialog = false;
         // send server
+        //this.form.controls[this.name]
+    }
+
+    onSortHandler() {
+        // get elements from dom and set attachment sort
+        jQuery('ps-attachment-item').each((i, item) => {
+            this.attachments.map((attachment: Attachment) => {
+                if (attachment.file_name === jQuery(item).find('.file-name').val()) {
+                    attachment.sort = i;
+                }
+            });
+        });
     }
 }

@@ -128,6 +128,7 @@ export class AttachmentLibrary {
     size: number;
     width: number;
     height: number;
+    sort: number;
     data: string;
 }
 
@@ -136,7 +137,6 @@ export class Attachment extends AttachmentLibrary {
     resource_id: number;
     object_id: number;
     family_id: number;
-    sort: number;
     library_id: number;
     library_file_name: string;
     data_lang: string;

@@ -18,7 +18,9 @@
 }
 
 #library-sortable{
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     position: relative;
     height: 100%;
     margin: 0 -15px;
@@ -82,24 +84,4 @@
 #attachment-library.has-attachment #attachment-library-mask.active-mask{
     opacity: 1 !important;
     visibility: visible !important;
-}
-
-
-.cropper {
-    float: left;
-}
-.cropper-col-3{
-    width: 25%
-}
-.cropper-col-4{
-    width: 33.33%
-}
-.cropper-col-7{
-    width: 58.33%
-}
-.cropper-col-8{
-    width: 66.66%
-}
-.cropper-img{
-    max-width: 100%
 }

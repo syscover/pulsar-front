@@ -1,5 +1,7 @@
 <div #attachmentLibrary id="attachment-library">
-    <input type="hidden">
+    <div [formGroup]="form">
+        <input type="hidden" [formControlName]="name">
+    </div>
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
@@ -8,40 +10,45 @@
         <ps-attachment-item *ngFor="let attachment of attachments"
                             [attachmentFamilies]="attachmentFamilies"
                             [attachment]="attachment"
-                            (familyChange)="familyChangeHandler($event)"></ps-attachment-item>
+                            (activeCrop)="activeCropHandler($event)"
+                            class="col-lg-4 col-md-6 col-sm-12"></ps-attachment-item>
         <!-- / attachment item -->
     </div>
 </div>
 
-<!-- cropper -->
+<!-- cropper dialog -->
 <p-dialog   header="Cropper" 
             appendTo="body"
             [(visible)]="displayDialog" 
             [modal]="true" 
+            [draggable]="false"
             [closable]="true"
-            [width]="900"
+            [responsive]="true"
+            styleClass="cropper-dialog"
             (onHide)="onHideDialogHandler($event)">
     <div class="container-fluid">
-        <div class="row">
-            <div class="cropper-col-8 margin-right-20">
+
+        <div class="row no-gutters">
+            <div class="img-container col-md-12 col-lg-8">
                 <img #cropperImage class="cropper-img">
             </div>
-            <div class="cropper-col-3">
-                <div #cropperPreview style="width:400px;height:100px;overflow:hidden;">
-                </div>
+            <div class="col-md-12 offset-lg-1 col-lg-3">
+                <div #cropperPreview class="img-preview preview-lg"></div>
             </div>
         </div>
-        <div class="row margin-top-25 margin-top-25">
+
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons margin-top-30">
             <ps-button  type="button" 
                         icon="fa-check" 
                         label="Crop" 
-                        class="col-2"
+                        class="col-sm-10 col-md-3"
                         (click)="onCropHandler($event)"></ps-button>
 
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         label="Cancel" 
-                        class="col-2"></ps-button>
+                        class="col-sm-10 col-md-3"
+                        (click)="displayDialog = false"></ps-button>
         </div>
 
     </div>
