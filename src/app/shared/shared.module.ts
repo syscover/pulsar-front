@@ -23,6 +23,7 @@ import { FormHeaderComponent } from './components/form-header/form-header.compon
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from './components/dynamic-form/dynamic-form.service';
 import { FieldValueService } from './../admin/field-value/field-value.service';
+import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
 
 @NgModule({
     imports: [
@@ -54,7 +55,8 @@ import { FieldValueService } from './../admin/field-value/field-value.service';
     providers: [
         ConfirmationService,
         DynamicFormService,
-        FieldValueService
+        FieldValueService,
+        AttachmentService
     ],
     exports: [
         CommonModule,

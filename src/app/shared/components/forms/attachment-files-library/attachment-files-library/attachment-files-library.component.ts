@@ -1,9 +1,10 @@
-import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, NgZone } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
 declare const jQuery: any; // jQuery definition
 
+import { AttachmentService } from './../attachment.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { JsonResponse } from './../../../../classes/json-respose';
 import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../admin/admin.models';
@@ -20,7 +21,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     // Input elements
     @Input() form: FormGroup;
     @Input() attachments: Attachment[] = [];                // attachements uploaded or attachemets
-    @Input() attachmentsLibrary: AttachmentLibrary[] = [];  // attachements library from current attachments
     @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
     @Input() name: string;                                  // name of input that contain attachmens data json
     @Input() folder: string;                                // folder where will be stored the files
@@ -36,16 +36,19 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     // properties
-    files: File[];
-    displayDialog: boolean = false;
-    cropper;
+    files: File[];                      // files uploaded across XMLHttpRequest
+    displayDialog: boolean = false;     // to show dialog, variable with double data binding
+    cropper: Cropper;                   // varible to contain copper object
+    attachment: Attachment;             // variable to contain attachment that will be crop
 
     public progress: number = 0;
 
 
     constructor(
         private renderer: Renderer2,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private attachmentService: AttachmentService,
+        private ngZone: NgZone
     ) { }
 
     ngOnInit() {
@@ -133,13 +136,12 @@ export class AttachmentFilesLibraryComponent implements OnInit {
               //  if (this.isImage(file)) {
                     file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
               //  }
-                
                 this.files.push(files[i]);
             //}
         }
-        
+
         //this.onSelect.emit({originalEvent: event, files: files});
-        
+
         if (this.hasFiles()) {
             this.upload();
         }
@@ -182,10 +184,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                     for (const attachment of response.data.attachmentsTmp) {
                         this.attachments.push(attachment);
                     }
-                    // save attachments library from file uploded
-                    for (const attachment of response.data.attachmentsLibraryTmp) {
-                        this.attachmentsLibrary.push(attachment);
-                    }
 
                     // sort elements when attach new element
                     this.onSortHandler();
@@ -201,6 +199,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 } else {
                     //this.onError.emit({xhr: xhr, files: this.files});
                 }
+
                 this.clearFiles();
             }
         };
@@ -219,12 +218,16 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         //this.onClear.emit();
     }
 
-    activeCropHandler($event) {
+    enableCropHandler($event) {
+
+        // instance attachment to be sent in cropHandler
+        this.attachment = $event.attachment;
+
         // get attachment family
         const attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.attachmentFamily]);
 
         // get image from item changed and instance dialog image
-        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.image.nativeElement.src);
+        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.attachment_library.url);
 
         // set crop on dialog image
         this.cropper = new Cropper(this.cropperImage.nativeElement, {
@@ -238,16 +241,28 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.displayDialog = true;
     }
 
-    onHideDialogHandler($event) {
+    disableCropHandler($event) {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
         this.cropper.destroy();
     }
 
-    onCropHandler($event) {
-        let cropperData = this.cropper.getData('rounded');
-        this.displayDialog = false;
-        // send server
-        //this.form.controls[this.name]
+    cropHandler($event) {
+        this.attachmentService
+            .setCropImage({
+                crop: this.cropper.getData('rounded'),
+                attachment: this.attachment
+            })
+            .subscribe(data => {
+
+                this.attachments.map((attachment: Attachment) => {
+                    if (attachment.file_name === data.data.attachment.file_name) {
+                        // add random to force refresh image src
+                        attachment.url = data.data.attachment.url + '?' + Math.random();
+                    }
+                });
+
+                this.displayDialog = false; // hide crop dialog
+            });
     }
 
     removeItemHandler($event) {
@@ -255,12 +270,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         _.remove(this.attachments, (attachment) => {
             return attachment.file_name === $event.attachment.file_name;
         });
-        // remove attachment library from array
-        _.remove(this.attachmentsLibrary, (attachment) => {
-            return attachment.file_name === $event.attachment.library_file_name;
-        });
 
-        // show placeholder
+        // show placeholder if has not any item
         if (this.attachments.length === 0) {
             this.renderer.removeClass(this.attachmentLibrary.nativeElement, 'has-attachment');
         }

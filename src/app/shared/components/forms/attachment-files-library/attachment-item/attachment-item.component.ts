@@ -14,7 +14,7 @@ export class AttachmentItemComponent implements OnInit {
     @Input() attachment: Attachment;
     @Input() attachmentFamilies: AttachmentFamily[] = [];
 
-    @Output() activeCrop: EventEmitter<any> = new EventEmitter();
+    @Output() enableCrop: EventEmitter<any> = new EventEmitter();
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('imageItem') imageItem;
@@ -43,11 +43,11 @@ export class AttachmentItemComponent implements OnInit {
         });
     }
 
-    private clickHandler($event) {
+    private activeCropHandler($event) {
         // click to active cropper
         if (this.family.nativeElement.value !== '') {
-            this.activeCrop.emit({
-                image: this.imageItem,
+            this.enableCrop.emit({
+                attachment: this.attachment,
                 attachmentFamily: parseInt(this.family.nativeElement.value)
             });
         }

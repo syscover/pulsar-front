@@ -140,6 +140,6 @@ export class Attachment extends AttachmentLibrary {
     object_id: number;
     family_id: number;
     library_id: number;
-    library_file_name: string;
+    attachment_library: AttachmentLibrary;
     data_lang: string;
 }

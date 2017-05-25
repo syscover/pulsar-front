@@ -1,8 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { Response } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
-
 import { CoreService } from './../../shared/super/core.service';
 
 @Injectable()

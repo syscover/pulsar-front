@@ -10,7 +10,7 @@
         <ps-attachment-item *ngFor="let attachment of attachments"
                             [attachmentFamilies]="attachmentFamilies"
                             [attachment]="attachment"
-                            (activeCrop)="activeCropHandler($event)"
+                            (enableCrop)="enableCropHandler($event)"
                             (removeItem)="removeItemHandler($event)"
                             class="col-lg-4 col-md-6 col-sm-12"></ps-attachment-item>
         <!-- / attachment item -->
@@ -26,9 +26,9 @@
             [closable]="true"
             [responsive]="true"
             styleClass="cropper-dialog"
-            (onHide)="onHideDialogHandler($event)">
-    <div class="container-fluid">
+            (onHide)="disableCropHandler($event)">
 
+    <div class="container-fluid">
         <div class="row no-gutters">
             <div class="img-container col-md-12 col-lg-8">
                 <img #cropperImage class="cropper-img">
@@ -43,7 +43,7 @@
                         icon="fa-check" 
                         label="Crop" 
                         class="col-sm-10 col-md-3"
-                        (click)="onCropHandler($event)"></ps-button>
+                        (click)="cropHandler($event)"></ps-button>
 
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
@@ -51,7 +51,7 @@
                         class="col-sm-10 col-md-3"
                         (click)="displayDialog = false"></ps-button>
         </div>
-
     </div>
+
 </p-dialog>
 <!-- /cropper -->
