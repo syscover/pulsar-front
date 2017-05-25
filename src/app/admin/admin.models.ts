@@ -123,6 +123,8 @@ export class AttachmentLibrary {
     id: number;
     name: string;
     file_name: string;
+    extension: string;
+    base_path: string;
     url: string;
     mime: string;
     size: number;

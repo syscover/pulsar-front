@@ -19,7 +19,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     // Input elements
     @Input() form: FormGroup;
-    @Input() attachments: Attachment[] = [];                // elements uploaded
+    @Input() attachments: Attachment[] = [];                // attachements uploaded or attachemets
+    @Input() attachmentsLibrary: AttachmentLibrary[] = [];  // attachements library from current attachments
     @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
     @Input() name: string;                                  // name of input that contain attachmens data json
     @Input() folder: string;                                // folder where will be stored the files
@@ -178,8 +179,12 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                     const response = <JsonResponse>JSON.parse(xhr.response);
 
                     // save attachments from file uploded
-                    for (const attachment of response.data.tmp) {
+                    for (const attachment of response.data.attachmentsTmp) {
                         this.attachments.push(attachment);
+                    }
+                    // save attachments library from file uploded
+                    for (const attachment of response.data.attachmentsLibraryTmp) {
+                        this.attachmentsLibrary.push(attachment);
                     }
 
                     // sort elements when attach new element
@@ -243,6 +248,22 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.displayDialog = false;
         // send server
         //this.form.controls[this.name]
+    }
+
+    removeItemHandler($event) {
+        // remove attachment from array
+        _.remove(this.attachments, (attachment) => {
+            return attachment.file_name === $event.attachment.file_name;
+        });
+        // remove attachment library from array
+        _.remove(this.attachmentsLibrary, (attachment) => {
+            return attachment.file_name === $event.attachment.library_file_name;
+        });
+
+        // show placeholder
+        if (this.attachments.length === 0) {
+            this.renderer.removeClass(this.attachmentLibrary.nativeElement, 'has-attachment');
+        }
     }
 
     onSortHandler() {

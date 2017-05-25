@@ -15,6 +15,7 @@ export class AttachmentItemComponent implements OnInit {
     @Input() attachmentFamilies: AttachmentFamily[] = [];
 
     @Output() activeCrop: EventEmitter<any> = new EventEmitter();
+    @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('imageItem') imageItem;
     @ViewChild('family') family;
@@ -23,18 +24,22 @@ export class AttachmentItemComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        jQuery('.open-over').on('click', function(){
-            jQuery(this).closest('.attachment-item').addClass('covered');
+        jQuery('.open-over').on('click', ($event) => {
+            jQuery($event.target).closest('.attachment-item').addClass('covered');
         });
 
-        jQuery('.close-over').on('click', function(){
-            jQuery(this).closest('.attachment-item').removeClass('covered');
+        jQuery('.close-over').on('click', ($event) => {
+            jQuery($event.target).closest('.attachment-item').removeClass('covered');
+        });
+    }
+
+    private removeItemHandler($event) {
+        this.removeItem.emit({
+            attachment: this.attachment
         });
 
-        jQuery('.remove-item').on('click', function(){
-            jQuery(this).closest('.sortable-item').fadeOut(300, function (){
-                jQuery(this).remove();
-            });
+        jQuery($event.target).closest('ps-attachment-item').fadeOut(300, function (){
+            jQuery($event.target).remove();
         });
     }
 
