@@ -55,15 +55,15 @@ export class AttachmentItemComponent implements OnInit {
     private activeCropHandler($event) {
         // click to active cropper
 
-        console.log('xx',this.attachment.get('family_id').value);
+        console.log(this.attachment.controls['family_id'].value);
 
-/*
-        if (this.family.nativeElement.value !== '') {
+
+        if (this.attachment.controls['family_id'].value !== '') {
             this.enableCrop.emit({
                 image: this.imageItem, // add to event image to be updated if crop image
-                //attachment: this.attachment,
-                family_id: parseInt(this.family.nativeElement.value)
+                attachment: this.attachment,
+                family_id: parseInt(this.attachment.controls['family_id'].value)
             });
-        }*/
+        }
     }
 }

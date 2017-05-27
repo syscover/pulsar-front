@@ -7,7 +7,7 @@
 
         <input type="hidden" formControlName="extension">
         <input type="hidden" formControlName="base_path">
-        
+        <input type="hidden" formControlName="url">
         <input type="hidden" formControlName="size">
         <input type="hidden" formControlName="width">
         <input type="hidden" formControlName="height">
@@ -15,8 +15,8 @@
         <input type="hidden" formControlName="data">
 
         <div class="attachment-img">
-            <ps-image formControlName="url"></ps-image>
-            <!--<img #imageItem [src]="attachment.url">-->
+            <!--<ps-image formControlName="url"></ps-image>-->
+            <img #imageItem [src]="attachment.controls['url'].value">
         </div>
         <div class="attachment-over">
             <div class="attachment-over-uncovered">
@@ -32,7 +32,7 @@
                     <input type="text" class="form-control" placeholder="Image name" formControlName="name">
                 </div>
                 <div class="form-group">
-                    <select formControlName="family_id" #family class="form-control">
+                    <select formControlName="family_id" class="form-control">
                         <option value="">Select a family</option>
                         <option *ngFor="let attachmentFamily of attachmentFamilies"
                                 [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>

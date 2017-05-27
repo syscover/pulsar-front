@@ -40,7 +40,7 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     files: File[];                          // files uploaded across XMLHttpRequest
     displayDialog: boolean = false;         // to show dialog, variable with double data binding
     cropper: Cropper;                       // varible to contain copper object
-    attachment: Attachment;                 // variable to contain attachment that will be crop
+    attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
     image: ElementRef;                      // image where will be load new image cropped
 
@@ -135,15 +135,7 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         this.attachments.push(attachmentFg);
     }
 
-
-
-
-
-
-
-
     private dragEnterHandler($event) {
-        //console.log('dragEnterHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -153,7 +145,6 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     private dragOverHandler($event) {
-        //console.log('dragOverHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -167,7 +158,6 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     private dragLeaveHandler($event) {
-        //console.log('dragLeaveHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -177,7 +167,6 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     private dropHandler($event) {
-        //console.log('dropHandler');
         $event.preventDefault();
         if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
             this.deactivateMask();
@@ -294,11 +283,13 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         this.attachment = $event.attachment;
         this.image = $event.image;
 
+        console.log(this.attachment);
+
         // get attachment family
         this.attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.family_id]);
 
         // get image from item changed and instance dialog image
-        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.attachment_library.url);
+        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.controls['attachment_library'].value.url);
 
         // set crop on dialog image
         this.cropper = new Cropper(this.cropperImage.nativeElement, {
@@ -321,22 +312,17 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         this.attachmentService
             .setCropImage({
                 crop: this.cropper.getData('rounded'),
-                attachment: this.attachment
+                attachment: this.attachment.value       // get values from formGroup
             })
             .subscribe(data => {
-                /*// set attachemnt family id
+                // set attachemnt family id
                 data.data.attachment.family_id = this.attachmentFamily.id;
-                // get index of attachment
-                const index = _.findIndex(this.attachments, {file_name: data.data.attachment.file_name});
-                // merge attachments, if replace object from array, create a attachment losing binding
-                Object.assign(this.attachments[index], data.data.attachment);
+                this.attachment.patchValue(data.data.attachment);
 
                 // add random to force refresh image src
                 this.renderer.setProperty(this.image.nativeElement, 'src', data.data.attachment.url + '?' + Math.random());
 
                 this.displayDialog = false; // hide crop dialog
-
-                //this.setInputValue();*/
             });
     }
 
@@ -354,10 +340,8 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     onChangeAttachmentHandler($event) {
-
         console.log($event);
         console.log(this.form);
-
     }
 
     onSortHandler() {
