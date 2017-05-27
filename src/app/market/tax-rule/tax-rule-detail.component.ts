@@ -50,8 +50,6 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // get tax rate zones
         this.taxRateZoneService.getRecords()
             .subscribe((response) => {

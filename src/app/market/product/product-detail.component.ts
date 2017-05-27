@@ -1,6 +1,5 @@
-import { DynamicFormService } from './../../shared/components/dynamic-form/dynamic-form.service';
 import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService, SelectItem } from 'primeng/primeng';
 
@@ -10,10 +9,12 @@ import { ProductService } from './product.service';
 import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
 
 // custom imports
+import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
 import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
+import { DynamicFormService } from './../../shared/components/dynamic-form/dynamic-form.service';
 
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
@@ -38,6 +39,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private fields: any;
 
     @ViewChild('productClassTax') private productClassTax;
+    @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
 
     // paramenters for parent class
     private object: Product = new Product(); // set empty object
@@ -45,6 +47,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+            this.attachments.setValue(this.object.attachments)
+
+            console.log(this.fg.controls['attachments']);
+
+
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
             this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
             if (this.object.field_group_id) { // get fields if object has field group
@@ -76,11 +83,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         private attachmentFamilyService: AttachmentFamilyService
     ) {
         super(injector);
+
+        // save formGroup in service to use for dynamic form,
+        // custom fields, afte create form from parent
+        this.dynamicFormService.form = this.fg;
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // get categories
         this.categoryService.getRecords([this.configService.getConfig('base_lang')])
             .subscribe((response) => {
@@ -176,6 +185,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         super.getRecordHasIdParamenter(this.f);
     }
 
+    // function call from parent
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
@@ -197,11 +207,12 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             subtotal_format: [{value: null, disabled: true}, Validators.required ],
             tax_format: [{value: null, disabled: true}, Validators.required ],
             total_format: [{value: null, disabled: true}, Validators.required ],
-            attachments: ''
+            attachments: this.fb.array([])
         });
+    }
 
-        // Save formGroup in service to use for dynamic form, custom fields
-        this.dynamicFormService.form = this.fg;
+    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined, params = []) {
+        super.onSubmit(fg, object, routeRedirect, params);
     }
 
     handleGetProductTaxes(price = null) {

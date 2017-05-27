@@ -30,7 +30,6 @@ export class ProductClassTaxDetailComponent extends CoreDetailComponent implemen
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 

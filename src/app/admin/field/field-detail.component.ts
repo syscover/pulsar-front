@@ -58,8 +58,6 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         this.fieldGroupService.getRecords() // get fieldGroups
             .subscribe(response => {
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {

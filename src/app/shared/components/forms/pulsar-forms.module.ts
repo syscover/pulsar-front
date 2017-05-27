@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../../modules/prime-ng.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
@@ -16,6 +16,7 @@ import { SpinnerComponent } from './spinner.component';
 import { TextareaComponent } from './textarea.component';
 import { AttachmentFilesLibraryComponent } from './attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { AttachmentItemComponent } from './attachment-files-library/attachment-item/attachment-item.component';
+import { ImageComponent } from './image.component';
 
 @NgModule({
     declarations: [
@@ -30,10 +31,12 @@ import { AttachmentItemComponent } from './attachment-files-library/attachment-i
         SpinnerComponent,
         TextareaComponent,
         AttachmentFilesLibraryComponent,
-        AttachmentItemComponent
+        AttachmentItemComponent,
+        ImageComponent
     ],
     imports: [
         CommonModule,
+        FormsModule,
         ReactiveFormsModule,
         PrimeNgModule,
         FroalaEditorModule.forRoot(),
@@ -53,7 +56,8 @@ import { AttachmentItemComponent } from './attachment-files-library/attachment-i
         SpinnerComponent,
         TextareaComponent,
         AttachmentFilesLibraryComponent,
-        AttachmentItemComponent
+        AttachmentItemComponent,
+        ImageComponent
     ],
     providers: [],
 })

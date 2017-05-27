@@ -39,8 +39,6 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent implement
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         this.resourceService.getRecords()
             .subscribe((response) => {
 

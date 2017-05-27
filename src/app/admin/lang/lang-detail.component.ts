@@ -30,7 +30,6 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 

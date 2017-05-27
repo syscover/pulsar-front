@@ -41,8 +41,6 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // get countries
         this.countryService.getRecords(this.configService.getConfig('base_lang'))
             .subscribe((response) => {

@@ -47,7 +47,6 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 

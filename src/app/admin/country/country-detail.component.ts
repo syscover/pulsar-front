@@ -39,7 +39,6 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 

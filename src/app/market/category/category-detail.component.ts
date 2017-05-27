@@ -39,7 +39,6 @@ export class CategoryDetailComponent extends CoreDetailComponent implements OnIn
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 

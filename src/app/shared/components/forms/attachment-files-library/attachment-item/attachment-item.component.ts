@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 declare const jQuery: any; // jQuery definition
 
 import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
@@ -11,9 +12,15 @@ import { AttachmentFamily, Attachment } from './../../../../../admin/admin.model
 
 export class AttachmentItemComponent implements OnInit {
 
-    @Input() attachment: Attachment;
+    @Input() form: FormGroup;
+    @Input() name: string;
+    @Input() index: number;
     @Input() attachmentFamilies: AttachmentFamily[] = [];
+    @Input() attachment: FormGroup;
 
+
+
+    @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() enableCrop: EventEmitter<any> = new EventEmitter();
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
@@ -21,7 +28,9 @@ export class AttachmentItemComponent implements OnInit {
     @ViewChild('family') family;
     @ViewChild('fileName') public fileName;
 
-    constructor() { }
+    constructor(
+        private fb: FormBuilder
+    ) { }
 
     ngOnInit() {
         jQuery('.open-over').on('click', ($event) => {
@@ -34,9 +43,9 @@ export class AttachmentItemComponent implements OnInit {
     }
 
     private removeItemHandler($event) {
-        this.removeItem.emit({
+        /*this.removeItem.emit({
             attachment: this.attachment
-        });
+        });*/
 
         jQuery($event.target).closest('ps-attachment-item').fadeOut(300, function (){
             jQuery($event.target).remove();
@@ -45,11 +54,16 @@ export class AttachmentItemComponent implements OnInit {
 
     private activeCropHandler($event) {
         // click to active cropper
+
+        console.log('xx',this.attachment.get('family_id').value);
+
+/*
         if (this.family.nativeElement.value !== '') {
             this.enableCrop.emit({
-                attachment: this.attachment,
-                attachmentFamily: parseInt(this.family.nativeElement.value)
+                image: this.imageItem, // add to event image to be updated if crop image
+                //attachment: this.attachment,
+                family_id: parseInt(this.family.nativeElement.value)
             });
-        }
+        }*/
     }
 }

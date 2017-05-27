@@ -1,5 +1,5 @@
 import { DataJson } from './../shared/classes/properties';
-import { Lang, Country } from './../admin/admin.models';
+import { Lang, Country, Attachment } from './../admin/admin.models';
 
 export class Category {
     id: number;
@@ -102,6 +102,7 @@ export class Product {
     price_type_id: number;
     subtotal: number;
     product_class_tax_id: number;
+    attachments: Attachment[]
     data_lang: string;
     data: DataJson;
 }

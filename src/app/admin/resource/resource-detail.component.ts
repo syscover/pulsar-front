@@ -39,8 +39,6 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         this.packageService.getRecords()
             .subscribe((response) => {
 

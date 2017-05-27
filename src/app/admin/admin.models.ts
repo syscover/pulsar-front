@@ -136,8 +136,8 @@ export class AttachmentLibrary {
 
 export class Attachment extends AttachmentLibrary {
     lang_id: string;
-    resource_id: number;
     object_id: number;
+    object_type: string;
     family_id: number;
     library_id: number;
     attachment_library: AttachmentLibrary;

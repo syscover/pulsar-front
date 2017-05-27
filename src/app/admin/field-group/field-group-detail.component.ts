@@ -39,8 +39,6 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // get product types
         this.configService.getValue({
                 key: 'pulsar.admin.resources_custom_fields'

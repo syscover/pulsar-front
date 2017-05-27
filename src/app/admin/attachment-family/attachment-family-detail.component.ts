@@ -39,8 +39,6 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         this.resourceService.getRecords()
             .subscribe((response) => {
 

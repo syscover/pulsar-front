@@ -46,8 +46,6 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // load groups
         this.groupService.getRecords()
             .subscribe((response) => {

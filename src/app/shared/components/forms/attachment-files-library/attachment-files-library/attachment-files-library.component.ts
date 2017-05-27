@@ -1,5 +1,5 @@
-import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, NgZone } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { Component, ViewChildren, QueryList, Input, OnChanges, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
 declare const jQuery: any; // jQuery definition
@@ -16,13 +16,14 @@ import * as Cropper from 'cropperjs';
     templateUrl: './attachment-files-library.html',
     styleUrls: ['./attachment-files-library.scss']
 })
-export class AttachmentFilesLibraryComponent implements OnInit {
+export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
 
     // Input elements
     @Input() form: FormGroup;
-    @Input() attachments: Attachment[] = [];                // attachements uploaded or attachemets
+    @Input() name: string;                                  // name of input that contain attachmens FormArray
     @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
-    @Input() name: string;                                  // name of input that contain attachmens data json
+
+   // @Input() attachments: Attachment[] = [];                // attachements uploaded or attachemets
     @Input() folder: string;                                // folder where will be stored the files
     @Input() apiUrl: string;                                // API url where call once drop elements
     @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
@@ -36,20 +37,32 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     // properties
-    files: File[];                      // files uploaded across XMLHttpRequest
-    displayDialog: boolean = false;     // to show dialog, variable with double data binding
-    cropper: Cropper;                   // varible to contain copper object
-    attachment: Attachment;             // variable to contain attachment that will be crop
+    files: File[];                          // files uploaded across XMLHttpRequest
+    displayDialog: boolean = false;         // to show dialog, variable with double data binding
+    cropper: Cropper;                       // varible to contain copper object
+    attachment: Attachment;                 // variable to contain attachment that will be crop
+    attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
+    image: ElementRef;                      // image where will be load new image cropped
+
 
     public progress: number = 0;
 
-
     constructor(
+        private fb: FormBuilder,
         private renderer: Renderer2,
         private sanitizer: DomSanitizer,
-        private attachmentService: AttachmentService,
-        private ngZone: NgZone
+        private attachmentService: AttachmentService
     ) { }
+
+    ngOnChanges() {
+        /*console.log(this.form.controls[this.name]);
+        if (this.form.controls[this.name].value) {
+            this.attachments = this.form.controls[this.name].value;
+            this.deactivateMask();
+            this.renderer.addClass(this.attachmentLibrary.nativeElement, 'has-attachment');
+            this.setSortable(); // set sortable attachments
+        }*/
+    }
 
     ngOnInit() {
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragenter', ($event) => {
@@ -66,8 +79,71 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         });
     }
 
+    setValue(attachments: Attachment[]) {
+
+        const attachmentFGs = attachments.map(attachment => this.fb.group(attachment));
+        const attachmentsFormArray = this.fb.array(attachmentFGs);
+        this.form.setControl(this.name, attachmentsFormArray);
+
+
+        console.log(this.form);
+
+
+        //if (attachments.length > 0) {
+            // this.deactivateMask();
+        //}
+
+       /* for (const attachment of attachments) {
+            // this.createAttachment();
+        }*/
+
+        //console.log(this.form.get(this.name));
+    }
+
+    get attachments(): FormArray {
+        return this.form.get(this.name) as FormArray;
+    }
+
+    createAttachment(attachment = undefined) {
+        // add attachment FormGroup to attachments FormArray
+        // call function get attachments()
+        let attachmentFg = this.fb.group({
+            id: null,
+            lang_id: '',
+            object_id: '',
+            object_type: '',
+            family_id: '',
+            name: ['', Validators.required ],
+            file_name: ['', Validators.required ],
+            extension: ['', Validators.required ],
+            base_path: ['', Validators.required ],
+            url: ['', Validators.required ],
+            mime: ['', Validators.required ],
+            size: [null, Validators.required ],
+            width: null,
+            height: null,
+            sort: [null, Validators.required ],
+            library_id: '',
+            attachment_library: '',
+            data: ''
+        });
+
+        if (attachment !== undefined) {
+            attachmentFg.patchValue(attachment);
+        }
+
+        this.attachments.push(attachmentFg);
+    }
+
+
+
+
+
+
+
+
     private dragEnterHandler($event) {
-        console.log('dragEnterHandler');
+        //console.log('dragEnterHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -77,7 +153,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     }
 
     private dragOverHandler($event) {
-        console.log('dragOverHandler');
+        //console.log('dragOverHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -91,7 +167,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     }
 
     private dragLeaveHandler($event) {
-        console.log('dragLeaveHandler');
+        //console.log('dragLeaveHandler');
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) {
             if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
@@ -101,8 +177,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     }
 
     private dropHandler($event) {
-        console.log('dropHandler');
-
+        //console.log('dropHandler');
         $event.preventDefault();
         if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
             this.deactivateMask();
@@ -123,7 +198,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     /**
      * Methods to upload files
      */
-
     onFileSelect($event) {
         //this.msgs = [];
         this.files = [];
@@ -149,7 +223,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     upload() {
         //this.msgs = [];
-        let xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         let formData = new FormData(); // create forma data to add files and inputs
 
 		/*this.onBeforeUpload.emit({
@@ -161,7 +235,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         formData.append('folder', this.folder);
 
         // add files to formData to send to server
-        for (let file of this.files) {
+        for (const file of this.files) {
             formData.append('files[]', file, file.name);
         }
 
@@ -175,29 +249,25 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // set function  onreadystatechange that will be called
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
-                //this.progress = 0;
+                // this.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
                     const response = <JsonResponse>JSON.parse(xhr.response);
 
                     // save attachments from file uploded
                     for (const attachment of response.data.attachmentsTmp) {
-                        this.attachments.push(attachment);
+                        attachment.uploaded  = true;        // mark all attachments that have been loaded
+                        this.createAttachment(attachment);  // create formgroup and patch value
                     }
 
                     // sort elements when attach new element
                     this.onSortHandler();
 
                     // set sortable attachments
-                    jQuery('.sortable').sortable({
-                        stop: ($event, ui) => {
-                            this.onSortHandler();
-                        }
-                    });
-                    jQuery('.sortable').disableSelection();
+                    this.setSortable();
 
                 } else {
-                    //this.onError.emit({xhr: xhr, files: this.files});
+                    // this.onError.emit({xhr: xhr, files: this.files});
                 }
 
                 this.clearFiles();
@@ -222,16 +292,17 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
         // instance attachment to be sent in cropHandler
         this.attachment = $event.attachment;
+        this.image = $event.image;
 
         // get attachment family
-        const attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.attachmentFamily]);
+        this.attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.family_id]);
 
         // get image from item changed and instance dialog image
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.attachment_library.url);
 
         // set crop on dialog image
         this.cropper = new Cropper(this.cropperImage.nativeElement, {
-            aspectRatio: attachmentFamily.width / attachmentFamily.height,
+            aspectRatio: this.attachmentFamily.width / this.attachmentFamily.height,
             viewMode: 2,
             minContainerWidth: 0,
             preview: this.cropperPreview.nativeElement
@@ -253,38 +324,66 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 attachment: this.attachment
             })
             .subscribe(data => {
+                /*// set attachemnt family id
+                data.data.attachment.family_id = this.attachmentFamily.id;
+                // get index of attachment
+                const index = _.findIndex(this.attachments, {file_name: data.data.attachment.file_name});
+                // merge attachments, if replace object from array, create a attachment losing binding
+                Object.assign(this.attachments[index], data.data.attachment);
 
-                this.attachments.map((attachment: Attachment) => {
-                    if (attachment.file_name === data.data.attachment.file_name) {
-                        // add random to force refresh image src
-                        attachment.url = data.data.attachment.url + '?' + Math.random();
-                    }
-                });
+                // add random to force refresh image src
+                this.renderer.setProperty(this.image.nativeElement, 'src', data.data.attachment.url + '?' + Math.random());
 
                 this.displayDialog = false; // hide crop dialog
+
+                //this.setInputValue();*/
             });
     }
 
     removeItemHandler($event) {
-        // remove attachment from array
+        /*// remove attachment from array
         _.remove(this.attachments, (attachment) => {
             return attachment.file_name === $event.attachment.file_name;
         });
+        this.setInputValue();
 
         // show placeholder if has not any item
         if (this.attachments.length === 0) {
             this.renderer.removeClass(this.attachmentLibrary.nativeElement, 'has-attachment');
-        }
+        }*/
+    }
+
+    onChangeAttachmentHandler($event) {
+
+        console.log($event);
+        console.log(this.form);
+
     }
 
     onSortHandler() {
         // get elements from dom and set attachment sort
         jQuery('ps-attachment-item').each((i, item) => {
-            this.attachments.map((attachment: Attachment) => {
+            /*this.attachments.map((attachment: Attachment) => {
                 if (attachment.file_name === jQuery(item).find('.file-name').val()) {
                     attachment.sort = i;
                 }
-            });
+            });*/
         });
+    }
+
+    /*
+    TO DELETE
+    setInputValue() {
+        this.form.controls[this.name].setValue(JSON.stringify(this.attachments));
+    }*/
+
+    setSortable () {
+        // set sortable attachments
+        jQuery('.sortable').sortable({
+            stop: ($event, ui) => {
+                this.onSortHandler();
+            }
+        });
+        jQuery('.sortable').disableSelection();
     }
 }

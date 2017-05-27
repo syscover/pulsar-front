@@ -48,8 +48,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
     }
 
     ngOnInit() {
-        this.createForm(); // create form
-
         // load order status
         this.orderStatusService.searchRecords({
                 'type': 'query',

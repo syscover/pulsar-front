@@ -33,7 +33,12 @@ export class CoreDetailComponent extends CoreComponent {
 
         // set object properties
         this.dataRoute = <DataRoute>this.route.snapshot.data;
+
+        // create form, this method will be overwrite by child class
+        this.createForm();
     }
+
+    createForm() {}
 
     getRecordHasIdParamenter(f: Function) {
 

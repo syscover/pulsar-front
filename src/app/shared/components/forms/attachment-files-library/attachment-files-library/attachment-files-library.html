@@ -1,19 +1,24 @@
-<div #attachmentLibrary id="attachment-library">
-    <div [formGroup]="form">
+<div #attachmentLibrary id="attachment-library" [formGroup]="form">
+    <!--<div [formGroup]="form">
         <input type="hidden" [formControlName]="name">
-    </div>
+    </div>-->
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
     <div id="library-sortable" class="sortable">
-        <!-- attachment item -->
-        <ps-attachment-item *ngFor="let attachment of attachments"
-                            [attachmentFamilies]="attachmentFamilies"
-                            [attachment]="attachment"
-                            (enableCrop)="enableCropHandler($event)"
-                            (removeItem)="removeItemHandler($event)"
-                            class="col-lg-4 col-md-6 col-sm-12"></ps-attachment-item>
-        <!-- / attachment item -->
+            <!-- attachment item -->
+            <ps-attachment-item *ngFor="let attachment of form.controls[name].controls; let i=index"
+                                [attachment]="attachment"
+                                [index]="i"
+                                [form]="form"
+                                [name]="name"
+                                [attachmentFamilies]="attachmentFamilies"
+
+                                (enableCrop)="enableCropHandler($event)"
+                                (removeItem)="removeItemHandler($event)"
+
+                                class="col-lg-4 col-md-6 col-sm-12"></ps-attachment-item>
+            <!-- / attachment item -->
     </div>
 </div>
 

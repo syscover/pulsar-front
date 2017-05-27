@@ -39,7 +39,6 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
     }
 
     ngOnInit() {
-        this.createForm(); // create form
         super.getRecordHasIdParamenter(this.f);
     }
 
