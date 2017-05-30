@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, Input, OnChanges, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -16,15 +16,12 @@ import * as Cropper from 'cropperjs';
     templateUrl: './attachment-files-library.html',
     styleUrls: ['./attachment-files-library.scss']
 })
-export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
+export class AttachmentFilesLibraryComponent implements OnInit {
 
     // Input elements
     @Input() form: FormGroup;
     @Input() name: string;                                  // name of input that contain attachmens FormArray
     @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
-
-   // @Input() attachments: Attachment[] = [];                // attachements uploaded or attachemets
-    @Input() folder: string;                                // folder where will be stored the files
     @Input() apiUrl: string;                                // API url where call once drop elements
     @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
@@ -54,16 +51,6 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         private attachmentService: AttachmentService
     ) { }
 
-    ngOnChanges() {
-        /*console.log(this.form.controls[this.name]);
-        if (this.form.controls[this.name].value) {
-            this.attachments = this.form.controls[this.name].value;
-            this.deactivateMask();
-            this.renderer.addClass(this.attachmentLibrary.nativeElement, 'has-attachment');
-            this.setSortable(); // set sortable attachments
-        }*/
-    }
-
     ngOnInit() {
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragenter', ($event) => {
             this.dragEnterHandler($event);
@@ -80,24 +67,14 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     setValue(attachments: Attachment[]) {
+        // create and set attachments FormGroup
+        for (const attachment of attachments) {
+            this.createAttachment(attachment);
+        }
 
-        const attachmentFGs = attachments.map(attachment => this.fb.group(attachment));
-        const attachmentsFormArray = this.fb.array(attachmentFGs);
-        this.form.setControl(this.name, attachmentsFormArray);
-
-
-        console.log(this.form);
-
-
-        //if (attachments.length > 0) {
-            // this.deactivateMask();
-        //}
-
-       /* for (const attachment of attachments) {
-            // this.createAttachment();
-        }*/
-
-        //console.log(this.form.get(this.name));
+        if (this.attachments.length > 0) {
+            this.disablePlaceholder();
+        }
     }
 
     get attachments(): FormArray {
@@ -106,7 +83,7 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
 
     createAttachment(attachment = undefined) {
         // add attachment FormGroup to attachments FormArray
-        // call function get attachments()
+        // with function attachments get FormArray
         let attachmentFg = this.fb.group({
             id: null,
             lang_id: '',
@@ -125,7 +102,8 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
             sort: [null, Validators.required ],
             library_id: '',
             attachment_library: '',
-            data: ''
+            data: '',
+            uploaded: null
         });
 
         if (attachment !== undefined) {
@@ -170,10 +148,18 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         $event.preventDefault();
         if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) {
             this.deactivateMask();
-            this.renderer.addClass(this.attachmentLibrary.nativeElement, 'has-attachment');
+            this.disablePlaceholder();
         }
 
         this.onFileSelect($event);
+    }
+
+    private enablePlaceholder() {
+        this.renderer.removeClass(this.attachmentLibrary.nativeElement, 'has-attachment');
+    }
+
+    private disablePlaceholder() {
+        this.renderer.addClass(this.attachmentLibrary.nativeElement, 'has-attachment');
     }
 
     private activateMask() {
@@ -188,30 +174,24 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
      * Methods to upload files
      */
     onFileSelect($event) {
-        //this.msgs = [];
         this.files = [];
 
+        // get files after drop files on active area
         let files = $event.dataTransfer ? $event.dataTransfer.files : $event.target.files;
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
-            //if (this.validate(file)) {
-              //  if (this.isImage(file)) {
-                    file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
-              //  }
-                this.files.push(files[i]);
-            //}
+            // get urls across sanitizer to avoid security cross domain
+            file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+            this.files.push(files[i]);
         }
 
-        //this.onSelect.emit({originalEvent: event, files: files});
-
-        if (this.hasFiles()) {
+        if (this.files && this.files.length > 0) {
             this.upload();
         }
     }
 
     upload() {
-        //this.msgs = [];
         const xhr = new XMLHttpRequest();
         let formData = new FormData(); // create forma data to add files and inputs
 
@@ -219,9 +199,6 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
             'xhr': xhr,
             'formData': formData
         });*/
-
-        // append data for server
-        formData.append('folder', this.folder);
 
         // add files to formData to send to server
         for (const file of this.files) {
@@ -245,21 +222,17 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
 
                     // save attachments from file uploded
                     for (const attachment of response.data.attachmentsTmp) {
-                        attachment.uploaded  = true;        // mark all attachments that have been loaded
+                        attachment.uploaded     = true;        // mark all attachments that have been loaded
+                        attachment.sort         = this.attachments.controls.length + 1; // set sort value
                         this.createAttachment(attachment);  // create formgroup and patch value
                     }
-
-                    // sort elements when attach new element
-                    this.onSortHandler();
-
-                    // set sortable attachments
-                    this.setSortable();
 
                 } else {
                     // this.onError.emit({xhr: xhr, files: this.files});
                 }
 
-                this.clearFiles();
+                // when finish xhr request, empty files array for the following uploads
+                this.files = [];
             }
         };
 
@@ -268,22 +241,10 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
         xhr.send(formData);
     }
 
-    hasFiles(): boolean {
-        return this.files && this.files.length > 0;
-    }
-
-    clearFiles() {
-        this.files = [];
-        //this.onClear.emit();
-    }
-
     enableCropHandler($event) {
-
         // instance attachment to be sent in cropHandler
         this.attachment = $event.attachment;
         this.image = $event.image;
-
-        console.log(this.attachment);
 
         // get attachment family
         this.attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.family_id]);
@@ -327,47 +288,25 @@ export class AttachmentFilesLibraryComponent implements OnChanges, OnInit {
     }
 
     removeItemHandler($event) {
-        /*// remove attachment from array
-        _.remove(this.attachments, (attachment) => {
-            return attachment.file_name === $event.attachment.file_name;
-        });
-        this.setInputValue();
+        const attachment = $event.attachment as FormGroup;
 
-        // show placeholder if has not any item
-        if (this.attachments.length === 0) {
-            this.renderer.removeClass(this.attachmentLibrary.nativeElement, 'has-attachment');
-        }*/
-    }
+        this.attachmentService.
+            deleteAttachment(attachment.value)
+            .subscribe(data => {
+                // file deleted
+                for (let i = 0; this.attachments.length; i++) {
+                    let formGroup = this.attachments.at(i) as FormGroup;
 
-    onChangeAttachmentHandler($event) {
-        console.log($event);
-        console.log(this.form);
-    }
-
-    onSortHandler() {
-        // get elements from dom and set attachment sort
-        jQuery('ps-attachment-item').each((i, item) => {
-            /*this.attachments.map((attachment: Attachment) => {
-                if (attachment.file_name === jQuery(item).find('.file-name').val()) {
-                    attachment.sort = i;
+                    if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) {
+                        // delete attachment from FormArray
+                        this.attachments.removeAt(i);
+                    }
                 }
-            });*/
-        });
-    }
 
-    /*
-    TO DELETE
-    setInputValue() {
-        this.form.controls[this.name].setValue(JSON.stringify(this.attachments));
-    }*/
-
-    setSortable () {
-        // set sortable attachments
-        jQuery('.sortable').sortable({
-            stop: ($event, ui) => {
-                this.onSortHandler();
-            }
-        });
-        jQuery('.sortable').disableSelection();
+                // show placeholder if has not any item
+                if (this.attachments.length === 0) {
+                    this.enablePlaceholder();
+                }
+            });
     }
 }

@@ -1,50 +1,49 @@
-<div class="attachment-item" [formGroup]="form" >
-<div [formArrayName]="name">
-    <div [formGroupName]="index">
+<div class="attachment-item" [formGroup]="form">
+    <div [formArrayName]="name">
+        <div [formGroupName]="index">
+            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="file_name">
+            <input type="hidden" formControlName="extension">
+            <input type="hidden" formControlName="base_path">
+            <input type="hidden" formControlName="size">
+            <input type="hidden" formControlName="width">
+            <input type="hidden" formControlName="height">
+            <input type="hidden" formControlName="sort">
+            <input type="hidden" formControlName="data">
 
-        <input type="hidden" formControlName="id">
-        <input class="file-name" type="hidden" formControlName="file_name">
-
-        <input type="hidden" formControlName="extension">
-        <input type="hidden" formControlName="base_path">
-        <input type="hidden" formControlName="url">
-        <input type="hidden" formControlName="size">
-        <input type="hidden" formControlName="width">
-        <input type="hidden" formControlName="height">
-        <input type="hidden" formControlName="sort">
-        <input type="hidden" formControlName="data">
-
-        <div class="attachment-img">
-            <!--<ps-image formControlName="url"></ps-image>-->
-            <img #imageItem [src]="attachment.controls['url'].value">
-        </div>
-        <div class="attachment-over">
-            <div class="attachment-over-uncovered">
-                <h4 class="attachment-title">Familia Imagen 1 {{formGroupName}}</h4>
-                <p class="attachment-sub"></p>
-                <a class="attachment-edit-open open-over">
-                    <i class="material-icons">mode_edit</i>
-                </a>
+            <div class="attachment-img">
+                <!--<ps-image formControlName="url"></ps-image>-->
+                <input type="hidden" formControlName="url">
+                <img #imageItem [src]="attachment.controls['url'].value">
             </div>
-            <div class="attachment-over-covered">
-                <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Image name" formControlName="name">
+            <div class="attachment-over">
+                <div class="attachment-over-uncovered">
+                    <h4 class="attachment-title">Familia Imagen 1 {{formGroupName}}</h4>
+                    <p class="attachment-sub"></p>
+                    <a class="attachment-edit-open open-over">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <select formControlName="family_id" class="form-control">
-                        <option value="">Select a family</option>
-                        <option *ngFor="let attachmentFamily of attachmentFamilies"
-                                [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
-                    </select>
-                    <div class="select-back">
-                        <i class="material-icons">keyboard_arrow_down</i>
+                <div class="attachment-over-covered">
+                    <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Image name" formControlName="name">
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" 
-                        (click)="activeCropHandler($event)"
-                        class="close-over form-control">GUARDAR</button>
+                    <div class="form-group">
+                        <select formControlName="family_id" class="form-control">
+                            <option value="">Select a family</option>
+                            <option *ngFor="let attachmentFamily of attachmentFamilies"
+                                    [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
+                        </select>
+                        <div class="select-back">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" 
+                            (click)="activeCropHandler($event)"
+                            class="close-over form-control">GUARDAR</button>
+                    </div>
                 </div>
             </div>
         </div>

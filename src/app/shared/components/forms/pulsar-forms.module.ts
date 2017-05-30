@@ -17,6 +17,7 @@ import { TextareaComponent } from './textarea.component';
 import { AttachmentFilesLibraryComponent } from './attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { AttachmentItemComponent } from './attachment-files-library/attachment-item/attachment-item.component';
 import { ImageComponent } from './image.component';
+import { SortableDirective } from './sortable.directive';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { ImageComponent } from './image.component';
         TextareaComponent,
         AttachmentFilesLibraryComponent,
         AttachmentItemComponent,
-        ImageComponent
+        ImageComponent,
+        SortableDirective
     ],
     imports: [
         CommonModule,
@@ -57,7 +59,8 @@ import { ImageComponent } from './image.component';
         TextareaComponent,
         AttachmentFilesLibraryComponent,
         AttachmentItemComponent,
-        ImageComponent
+        ImageComponent,
+        SortableDirective
     ],
     providers: [],
 })

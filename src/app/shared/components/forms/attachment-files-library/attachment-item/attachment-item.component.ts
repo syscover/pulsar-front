@@ -17,10 +17,6 @@ export class AttachmentItemComponent implements OnInit {
     @Input() index: number;
     @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() attachment: FormGroup;
-
-
-
-    @Output() change: EventEmitter<any> = new EventEmitter();
     @Output() enableCrop: EventEmitter<any> = new EventEmitter();
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
@@ -43,9 +39,9 @@ export class AttachmentItemComponent implements OnInit {
     }
 
     private removeItemHandler($event) {
-        /*this.removeItem.emit({
+        this.removeItem.emit({
             attachment: this.attachment
-        });*/
+        });
 
         jQuery($event.target).closest('ps-attachment-item').fadeOut(300, function (){
             jQuery($event.target).remove();
@@ -54,10 +50,6 @@ export class AttachmentItemComponent implements OnInit {
 
     private activeCropHandler($event) {
         // click to active cropper
-
-        console.log(this.attachment.controls['family_id'].value);
-
-
         if (this.attachment.controls['family_id'].value !== '') {
             this.enableCrop.emit({
                 image: this.imageItem, // add to event image to be updated if crop image

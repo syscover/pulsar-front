@@ -26,4 +26,13 @@ export class AttachmentService extends CoreService {
             }, this.options)
             .map((response: Response) => response.json());
     }
+
+    deleteAttachment(attachment): Observable<any> {
+        return this.http
+            .post(this.getApiUrl('delete', ['delete']), {
+                'type': 'delete',
+                'attachment': attachment
+            }, this.options)
+            .map((response: Response) => response.json());
+    }
 }

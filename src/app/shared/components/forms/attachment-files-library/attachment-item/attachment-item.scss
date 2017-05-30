@@ -267,13 +267,14 @@
     opacity: 0;
     visibility: hidden;
 }
+
 .remove-item i{
     font-size: 25px;
     line-height: 25px;
     color: rgb(255,255,255);
 }
 
-:host:hover .attachment-item:not(.covered) ~ .remove-item{
+:host:hover .attachment-item:not(.covered) ~ .remove-item {
     opacity: 1;
     visibility: visible;
 }
