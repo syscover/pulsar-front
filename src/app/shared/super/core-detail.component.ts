@@ -90,6 +90,7 @@ export class CoreDetailComponent extends CoreComponent {
 
         if (this.fg.invalid) {
             // TODO, show general error
+            console.log(this.fg);
             return; // has any validation error when emit submit event
         }
 

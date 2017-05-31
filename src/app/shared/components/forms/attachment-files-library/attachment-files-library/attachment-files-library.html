@@ -5,7 +5,7 @@
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
-    <div id="library-sortable" psSortable [sortable]="form.controls[name].controls" class="sortable">
+    <div id="library-sortable" psSortable [sortable]="form.controls[name].controls" (onSort)="onSortHandler($event)" class="sortable">
             <!-- attachment item -->
             <ps-attachment-item *ngFor="let attachment of form.controls[name].controls; let i=index"
                                 [attachment]="attachment"
