@@ -12,9 +12,9 @@
             <input type="hidden" formControlName="data">
 
             <div class="attachment-img">
-                <!--<ps-image formControlName="url"></ps-image>-->
-                <input type="hidden" formControlName="url">
-                <img #imageItem [src]="attachment.controls['url'].value">
+                <ps-image #imageItem formControlName="url"></ps-image>
+                <!--<input type="hidden" formControlName="url">
+                <img #imageItem [src]="attachment.controls['url'].value">-->
             </div>
             <div class="attachment-over">
                 <div class="attachment-over-uncovered">

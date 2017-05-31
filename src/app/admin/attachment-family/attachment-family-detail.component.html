@@ -44,6 +44,16 @@
                             name="height" class="col-sm-12 offset-md-1 col-md-4"></ps-spinner>
         </div>
 
+        <div class="row">
+            <ps-multi-select    [form]="fg"
+                                [errors]="formErrors"
+                                label="Responsive sizes"
+                                [options]="sizes"
+                                name="sizes"
+                                class="col-sm-12 col-md-6">
+            </ps-multi-select>
+        </div>
+
         <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 

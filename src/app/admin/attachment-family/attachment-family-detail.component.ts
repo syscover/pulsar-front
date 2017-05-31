@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 export class AttachmentFamilyDetailComponent extends CoreDetailComponent implements OnInit {
 
     private resources: SelectItem[] = [];
+    private sizes: SelectItem[] = [];
 
     // paramenters for parent class
     private object: AttachmentFamily = new AttachmentFamily(); // set empty object
@@ -49,6 +50,15 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
             this.resources.unshift({ label: 'Select a resource', value: '' });
             super.getRecordHasIdParamenter(this.f);
         });
+
+        // get data types
+        this.configService.getValue({
+                key: 'pulsar.admin.sizes'
+            }).subscribe((response) => {
+                this.sizes = _.map(<any[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
+            });
     }
 
     createForm() {
@@ -57,7 +67,8 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
             resource_id: ['', Validators.required ],
             name: ['', Validators.required ],
             width: null,
-            height: null
+            height: null,
+            sizes: null
         });
     }
 }

@@ -1,3 +1,4 @@
+import { ImageComponent } from './../../image.component';
 import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -39,7 +40,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-    image: ElementRef;                      // image where will be load new image cropped
+    image: ImageComponent;                      // image where will be load new image cropped
 
 
     public progress: number = 0;
@@ -280,10 +281,11 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 data.data.attachment.family_id = this.attachmentFamily.id;
                 this.attachment.patchValue(data.data.attachment);
 
-                // add random to force refresh image src
-                this.renderer.setProperty(this.image.nativeElement, 'src', data.data.attachment.url + '?' + Math.random());
+                // refresh image src
+                this.image.refresh();
 
-                this.displayDialog = false; // hide crop dialog
+                // hide crop dialog
+                this.displayDialog = false;
             });
     }
 

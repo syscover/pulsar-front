@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'ps-image',
     template: `
-        <img #image [src]="src">
+        <img #image [src]="src" [class]="class" [style]="style">
     `,
     providers: [
         {
@@ -18,6 +18,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class ImageComponent implements ControlValueAccessor, OnInit {
 
     @Input('src') public src;
+    @Input('class') public class;
+    @Input('style') public style;
 
     propagateChange = (_: any) => {};
 
@@ -34,6 +36,12 @@ export class ImageComponent implements ControlValueAccessor, OnInit {
     }
 
     registerOnTouched() {}
+
+    refresh() {
+        let originSrc = this.src;
+
+        this.src = this.src + '?' + Math.random();
+    }
 
     ngOnInit() { }
 }

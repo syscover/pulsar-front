@@ -116,6 +116,7 @@ export class AttachmentFamily {
     name: string;
     width: number;
     height: number;
+    sizes: number[];
     data: string;
 }
 
