@@ -295,13 +295,17 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.attachmentService.
             deleteAttachment(attachment.value)
             .subscribe(data => {
+
                 // file deleted
                 for (let i = 0; this.attachments.length; i++) {
+
                     let formGroup = this.attachments.at(i) as FormGroup;
 
                     if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) {
                         // delete attachment from FormArray
                         this.attachments.removeAt(i);
+                        // break to not continue with for, beacuse lenght attachments has changed
+                        break;
                     }
                 }
 
