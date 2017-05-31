@@ -43,10 +43,14 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
         protected fieldGroupService: FieldGroupService
     ) {
         super(injector);
-        this.field_id = this.params['field'];
     }
 
     ngOnInit() {
+        // set fieldId to be used in template
+        this.field_id = this.params['field'];
+        // set field_id in reactive form
+        this.fg.controls['field_id'].setValue(this.field_id);
+
         super.getRecordHasIdParamenter(this.f);
     }
 
