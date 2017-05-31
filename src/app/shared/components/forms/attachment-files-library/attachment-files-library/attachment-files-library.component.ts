@@ -171,6 +171,14 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active-mask');
     }
 
+    onSortHandler($event) {
+        // set new sort
+        for (let i = 0; this.attachments.controls.length > i; i++) {
+            let formGroup = this.attachments.at(i) as FormGroup;
+            formGroup.controls['sort'].setValue(i);
+        }
+    }
+
     /**
      * Methods to upload files
      */
