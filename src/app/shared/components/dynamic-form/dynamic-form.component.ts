@@ -1,8 +1,8 @@
-import { DynamicFormService } from './dynamic-form.service';
-import { Component, OnInit, Input, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
+import { DynamicFormService } from './dynamic-form.service';
 import { Field, Lang, FieldValue } from './../../../admin/admin.models';
 import { FieldValueService } from './../../../admin/field-value/field-value.service';
 
@@ -27,7 +27,7 @@ import * as _ from 'lodash';
                         [options]="options"
                         [name]="field.name"
                         class="col-sm-12 col-md-5"></ps-dropdown>
-            
+
             <div *ngSwitchDefault>Error</div>
         </div>
     `
@@ -38,16 +38,17 @@ export class DynamicFormComponent implements OnInit {
     @Input() private field: Field;
     @Input() private errors: Object;
     @Input() private lang: string;
+
     public options: SelectItem[] = [];
 
     constructor(
-        private componentFactoryResolver: ComponentFactoryResolver,
+        private changeDetectorRef: ChangeDetectorRef,
+        private applicationRef: ApplicationRef,
         private dynamicFormService: DynamicFormService,
         private fieldValueService: FieldValueService
-    ) {}
+    ) { }
 
     ngOnInit() {
-        this.dynamicFormService.form.addControl(this.field.name, new FormControl('', Validators.required));
 
         if (this.field.field_type_id === 'select') {
             // load options from table values
@@ -74,12 +75,11 @@ export class DynamicFormComponent implements OnInit {
                 ]
             })
             .subscribe((response) => {
-
                 this.options = _.map(<FieldValue[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
-                }); // get order status
+                }); // get options
                 this.options.unshift({ label: this.field.labels[this.lang], value: '' });
             });
         }
-     }
+    }
 }

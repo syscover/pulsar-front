@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService, SelectItem } from 'primeng/primeng';
 
@@ -34,6 +34,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private priceTypes: SelectItem[] = [];
     private productClassTaxes: SelectItem[] = [];
     private attachmentFamilies: AttachmentFamily[] = [];
+    private products: SelectItem[] = [];
 
     private fieldGroups: SelectItem[] = [];
     private fields: any;
@@ -46,15 +47,16 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
-
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-            this.attachments.setValue(this.object.attachments); // set attachments in FormArray from ps-attachment-files-library component
-
+            // set attachments in FormArray from ps-attachment-files-library component
+            this.attachments.setValue(this.object.attachments);
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
             this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
-            if (this.object.field_group_id) { // get fields if object has field group
-                this.handleGetFields(this.object.field_group_id);
-                this.fg.patchValue(this.object.data.properties); // set values of custom fields
+
+            // get fields if object has field group
+            if (this.object.field_group_id) {
+                // set FormGroup with custom FormControls
+                this.handleGetFields(this.object.data.properties);
             }
 
             if (this.dataRoute.action === 'create-lang') {
@@ -75,16 +77,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         protected taxRuleService: TaxRuleService,
 
         // Custom fields
+        private dynamicFormService: DynamicFormService,
         protected fieldGroupService: FieldGroupService,
         protected fieldService: FieldService,
-        private dynamicFormService: DynamicFormService,
-        private attachmentFamilyService: AttachmentFamilyService
+        private attachmentFamilyService: AttachmentFamilyService,
+        private productService: ProductService
     ) {
         super(injector);
-
-        // save formGroup in service to use for dynamic form,
-        // custom fields, afte create form from parent
-        this.dynamicFormService.form = this.fg;
     }
 
     ngOnInit() {
@@ -179,6 +178,43 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.attachmentFamilies = <AttachmentFamily[]>response.data;
             });
 
+        // load parent products
+        let query = {
+            'type': 'query',
+            'parameters': [
+                {
+                    'command': 'where',
+                    'column': 'product_lang.lang_id',
+                    'operator': '=',
+                    'value': this.params['lang'] ? this.params['lang'] : this.configService.getConfig('base_lang')
+                },
+                {
+                    'command': 'orderBy',
+                    'operator': 'asc',
+                    'column': 'product.sort'
+                }
+            ]
+        };
+
+        // set id of product if action is edit
+        if (this.params['id']) {
+            query.parameters.push({
+                'command': 'where',
+                'column': 'product.id',
+                'operator': '<>',
+                'value': this.params['id']
+            });
+        }
+
+        this.productService.searchRecords(query)
+            .subscribe((response) => {
+                this.products = _.map(<Product[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get order status
+
+                this.products.unshift({ label: 'Select a product', value: '' });
+            });
+
         // get object
         super.getRecordHasIdParamenter(this.f);
     }
@@ -193,6 +229,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             slug: ['', Validators.required ],
             field_group_id: '',
             product_type_id: ['', Validators.required],
+            parent_product_id: '',
             weight: [null, Validators.required],
             active: '',
             sort: [null, Validators.required],
@@ -230,29 +267,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             });
     }
 
-    handleGetFields(field_group_id) {
-
-        if (field_group_id !== '') {
-            this.fieldService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'field.field_group_id',
-                        'operator': '=',
-                        'value': field_group_id
-                    },
-                    {
-                        'command': 'orderBy',
-                        'operator': 'asc',
-                        'column': 'field.sort'
-                    }
-                ]
-            }).subscribe(data => {
-                this.fields = data.data;
+    // get custom fields that has this object
+    handleGetFields(properties = undefined) {
+        this.dynamicFormService.instance(
+            this.fg,
+            properties,
+            (fields) => {
+                this.fields = fields;
             });
-        } else {
-            this.fields = undefined;
-        }
     }
 }
