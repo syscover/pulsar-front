@@ -31,16 +31,16 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
     @ViewChild('cropperImage') cropperImage;
     @ViewChild('cropperPreview') cropperPreview;
-    @ViewChild('myModal') myModal;
+    //@ViewChild('dialog') dialog; // may be replace displayDialog
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     // properties
     files: File[];                          // files uploaded across XMLHttpRequest
-    displayDialog: boolean = false;         // to show dialog, variable with double data binding
     cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
     image: ImageComponent;                      // image where will be load new image cropped
+    displayDialog: boolean = false;
 
 
     public progress: number = 0;
@@ -276,6 +276,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     disableCropHandler($event) {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
         this.cropper.destroy();
+        //this.dialog.visible = false;
+        //this.display = false;
     }
 
     cropHandler($event) {

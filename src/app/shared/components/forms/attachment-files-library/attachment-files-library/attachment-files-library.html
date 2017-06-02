@@ -23,14 +23,13 @@
 <!-- cropper dialog -->
 <p-dialog   header="Cropper" 
             appendTo="body"
-            [(visible)]="displayDialog" 
             [modal]="true" 
             [draggable]="false"
             [closable]="true"
             [responsive]="true"
+            [(visible)]="displayDialog"
             styleClass="cropper-dialog"
             (onHide)="disableCropHandler($event)">
-
     <div class="container-fluid">
         <div class="row no-gutters">
             <div class="img-container col-md-12 col-lg-8">
@@ -52,9 +51,8 @@
                         icon="ui-icon-clear" 
                         label="Cancel" 
                         class="col-sm-10 col-md-3"
-                        (click)="displayDialog = false"></ps-button>
+                        (click)="dialog.visible = false"></ps-button>
         </div>
     </div>
-
 </p-dialog>
 <!-- /cropper -->
