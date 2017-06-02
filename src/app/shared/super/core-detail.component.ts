@@ -38,6 +38,7 @@ export class CoreDetailComponent extends CoreComponent {
         this.createForm();
     }
 
+    // method that will be overwrite
     createForm() {}
 
     getRecordHasIdParamenter(f: Function) {
