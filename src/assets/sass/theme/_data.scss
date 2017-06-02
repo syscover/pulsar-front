@@ -427,6 +427,16 @@ body {
                 }
             }
         }
+        
+        .ui-datatable-loading-content {
+            top: 30%;
+            
+            .fa {
+                @include material-icon('refresh');
+                font-size: 2em;
+                @include animation(0, 1000ms, spin);
+            }
+        }
     }
     
     .ui-carousel {

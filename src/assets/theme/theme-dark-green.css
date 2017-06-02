@@ -4897,6 +4897,50 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
 body .ui-datatable.ui-datatable-scrollable tfoot tr td {
   color: #212121;
   font-size: 16px; }
+body .ui-datatable .ui-datatable-loading-content {
+  top: 30%; }
+  body .ui-datatable .ui-datatable-loading-content .fa {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5em;
+    /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    text-indent: 0;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+    font-size: 2em;
+    -webkit-animation-delay: 0;
+    -webkit-animation-duration: 1000ms;
+    -webkit-animation-name: spin;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-delay: 0;
+    -moz-animation-duration: 1000ms;
+    -moz-animation-name: spin;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-delay: 0;
+    animation-duration: 1000ms;
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; }
+    body .ui-datatable .ui-datatable-loading-content .fa:before {
+      content: "refresh"; }
 body .ui-carousel {
   padding: 0; }
   body .ui-carousel .ui-carousel-header {

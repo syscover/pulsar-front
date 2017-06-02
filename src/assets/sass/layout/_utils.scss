@@ -105,6 +105,29 @@
   }
 }
 
+@-webkit-keyframes spin {
+    from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(359deg);
+	}
+}
+
+@keyframes spin {
+    from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.ui-icon-spin {
+    -webkit-animation-name: spin;
+    animation-name: spin;
+}
+
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;

@@ -106,6 +106,20 @@
     opacity: 0;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0); } }
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg); } }
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(359deg); } }
+.ui-icon-spin {
+  -webkit-animation-name: spin;
+  animation-name: spin; }
+
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown; }
@@ -1085,6 +1099,11 @@ body {
     .layout-container .layout-menu.layout-menu-dark ul.ultima-menu li.active-menuitem > a {
       color: #ffffff;
       background-color: #5180ce; }
+      .layout-container .layout-menu.layout-menu-dark ul.ultima-menu li.active-menuitem > a.active-menuitem-routerlink {
+        color: #ffffff;
+        background-color: #5180ce; }
+        .layout-container .layout-menu.layout-menu-dark ul.ultima-menu li.active-menuitem > a.active-menuitem-routerlink i {
+          color: #ffffff; }
 .layout-container.menu-layout-overlay .layout-menu {
   margin-left: -250px; }
 .layout-container.menu-layout-overlay .layout-main {
@@ -1165,6 +1184,8 @@ body {
   .layout-container .ultima-menu li.active-menuitem > a {
     color: #3e464c;
     background-color: #e8e8e8; }
+    .layout-container .ultima-menu li.active-menuitem > a i {
+      color: #3e464c; }
     .layout-container .ultima-menu li.active-menuitem > a i:last-child {
       -webkit-transform: rotate(-180deg);
       -moz-transform: rotate(-180deg);

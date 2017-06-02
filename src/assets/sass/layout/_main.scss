@@ -295,6 +295,15 @@ body {
                         > a {
                             color: $accentTextColor;
                             background-color: $accentColor;
+                            
+                            &.active-menuitem-routerlink {
+                                color: $accentTextColor;
+                                background-color: $accentColor;
+                                
+                                i {
+                                    color: $accentTextColor;
+                                }
+                            }
                         }
                     }
                 }
@@ -421,6 +430,10 @@ body {
                 > a {
                     color: $primaryColor;
                     background-color: #e8e8e8;
+                    
+                    i {
+                        color: $primaryColor;
+                    }
                     
                     i:last-child {
                         @include rotate(-180deg);
