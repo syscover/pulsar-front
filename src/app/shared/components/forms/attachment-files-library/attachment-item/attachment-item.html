@@ -12,13 +12,11 @@
             <input type="hidden" formControlName="data">
 
             <div class="attachment-img">
-                <ps-image #imageItem formControlName="url"></ps-image>
-                <!--<input type="hidden" formControlName="url">
-                <img #imageItem [src]="attachment.controls['url'].value">-->
+                <ps-image #imageItem formControlName="url" styleClass="img-fluid"></ps-image>
             </div>
             <div class="attachment-over">
                 <div class="attachment-over-uncovered">
-                    <h4 class="attachment-title">Familia Imagen 1 {{formGroupName}}</h4>
+                    <h4 class="attachment-title">Familia Imagen 1</h4>
                     <p class="attachment-sub"></p>
                     <a class="attachment-edit-open open-over">
                         <i class="material-icons">mode_edit</i>
