@@ -78,7 +78,7 @@ export class CoreListComponent extends CoreComponent {
 
         // search elements by paramenters
         this.objectService
-                .searchRecords({
+            .searchRecords({
                 'type': 'query',
                 'lang': lang,
                 'parameters': params
