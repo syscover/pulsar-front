@@ -40,7 +40,10 @@ export class DynamicFormService {
 
                 // add FormControl to FormGroup
                 for (const field of this.fields) {
-                    fg.addControl(field.name, new FormControl('', Validators.required));
+
+                    fg.addControl(field.name, new FormControl(
+                        '',
+                        field.required ? Validators.required : undefined));
                 }
 
                 if (properties) { // check that have properties
