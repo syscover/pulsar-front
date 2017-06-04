@@ -1,10 +1,9 @@
-import { Core } from './core';
 import { Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Params } from '@angular/router';
-
 import { Observable } from 'rxjs/Observable';
 
+import { Core } from './core';
 import { JsonResponse } from './../classes/json-respose';
 
 import * as appGlobals from './../../core/app-globals';
@@ -28,39 +27,53 @@ export class CoreService extends Core {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    searchRecords(object: any, params: Params = undefined): Observable<JsonResponse> {
+    proxyGet(action: string, params: Params = undefined) {
         return this.http
-            .post(this.getApiUrl('search', params), object, this.options)
+            .get(this.getApiUrl(action, params), this.apiUrlPrefix);
+    }
+
+    proxyPost(action: string, object: any, params: Params = undefined) {
+        return this.http
+            .post(this.getApiUrl(action, params), object, this.options);
+    }
+
+    proxyPut(action: string, object: any, params: Params) {
+        return this.http
+            .put(this.getApiUrl(action, params), object, this.options);
+    }
+
+    proxyDelete(action: string, params: Params) {
+        return this.http
+            .delete(this.getApiUrl(action, params));
+    }
+
+    searchRecords(object: any, params: Params = undefined): Observable<JsonResponse> {
+        return this.proxyPost('search', object, params)
             .map((response: Response) => response.json());
     }
 
     getRecords(params: Params = undefined): Observable<JsonResponse> {
-        return this.http
-            .get(this.getApiUrl('get', params), this.apiUrlPrefix)
+        return this.proxyGet('get', params)
             .map((response: Response) => response.json());
     }
 
     getRecord(params: Params): Observable<JsonResponse> {
-        return this.http
-            .get(this.getApiUrl('find', params))
+        return this.proxyGet('find', params)
             .map((response: Response) => response.json());
     }
 
     storeRecord(object: any, params: Params = undefined) {
-        return this.http
-            .post(this.getApiUrl('store', params), object, this.options)
+        return this.proxyPost('store', object, params)
             .map(response => response.json());
     }
 
     updateRecord(object: any, params: Params) {
-        return this.http
-            .put(this.getApiUrl('update', params), object, this.options)
+        return this.proxyPut('put', object, params)
             .map(response => response.json());
     }
 
     deleteRecord(params: Params) {
-        return this.http
-            .delete(this.getApiUrl('delete', params))
+        return this.proxyDelete('delete', params)
             .map(response => response.json());
     }
 
