@@ -79,7 +79,9 @@ export class CoreDetailComponent extends CoreComponent {
     }
 
     getRecord(f: Function, params: Params) {
-        this.objectService.getRecord(params).subscribe(data => f(data));
+        this.objectService
+            .getRecord(params)
+            .subscribe(data => f(data));
     }
 
     onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined, params = []) {
