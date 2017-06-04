@@ -16,7 +16,7 @@
             </div>
             <div class="attachment-over">
                 <div class="attachment-over-uncovered">
-                    <h4 class="attachment-title">Familia Imagen 1</h4>
+                    <h4 class="attachment-title">{{ familyName }}</h4>
                     <p class="attachment-sub"></p>
                     <a class="attachment-edit-open open-over">
                         <i class="material-icons">mode_edit</i>
@@ -28,7 +28,7 @@
                         <input type="text" class="form-control" placeholder="Image name" formControlName="name">
                     </div>
                     <div class="form-group">
-                        <select formControlName="family_id" class="form-control">
+                        <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
                             <option value="">Select a family</option>
                             <option *ngFor="let attachmentFamily of attachmentFamilies"
                                     [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <button type="button" 
                             (click)="activeCropHandler($event)"
-                            class="close-over form-control">GUARDAR</button>
+                            class="close-over form-control">Crop</button>
                     </div>
                 </div>
             </div>

@@ -83,6 +83,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     }
 
     createAttachment(attachment = undefined) {
+
         // add attachment FormGroup to attachments FormArray
         // with function attachments get FormArray
         let attachmentFg = this.fb.group({
@@ -91,6 +92,14 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             object_id: '',
             object_type: '',
             family_id: '',
+            family: this.fb.group({
+                id: null,
+                name: '',
+                resource_id: null,
+                sizes: '',
+                width: null,
+                height: null
+            }),
             name: ['', Validators.required ],
             file_name: ['', Validators.required ],
             extension: ['', Validators.required ],
@@ -106,6 +115,18 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             data: '',
             uploaded: null
         });
+
+        // if famyly is null create a empty family object
+        if (attachment.family === null) {
+            attachment.family = {
+                id: null,
+                name: '',
+                resource_id: null,
+                sizes: '',
+                width: null,
+                height: null
+            };
+        }
 
         if (attachment !== undefined) {
             attachmentFg.patchValue(attachment);

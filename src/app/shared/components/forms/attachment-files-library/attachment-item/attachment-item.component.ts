@@ -1,6 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
-declare const jQuery: any; // jQuery definition
+import * as _ from 'lodash';
+declare var jQuery: any; // jQuery definition
 
 import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
 
@@ -24,6 +25,8 @@ export class AttachmentItemComponent implements OnInit {
     @ViewChild('family') family;
     @ViewChild('fileName') public fileName;
 
+    familyName: string;
+
     constructor(
         private fb: FormBuilder
     ) { }
@@ -36,6 +39,10 @@ export class AttachmentItemComponent implements OnInit {
         jQuery('.close-over').on('click', ($event) => {
             jQuery($event.target).closest('.attachment-item').removeClass('covered');
         });
+
+        if (this.attachment.get('family.name') !== undefined) {
+            this.familyName = this.attachment.get('family.name').value;
+        }
     }
 
     private removeItemHandler($event) {
@@ -46,6 +53,11 @@ export class AttachmentItemComponent implements OnInit {
         jQuery($event.target).closest('ps-attachment-item').fadeOut(300, function (){
             jQuery($event.target).remove();
         });
+    }
+
+    private changeFamilyHandler($event) {
+        const family =  _.find(this.attachmentFamilies, {'id': Number($event.target.value)});
+        this.familyName = family !== undefined ? family.name : '';
     }
 
     private activeCropHandler($event) {
