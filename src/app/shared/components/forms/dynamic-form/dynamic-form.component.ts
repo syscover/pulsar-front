@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
 import { DynamicFormService } from './dynamic-form.service';
-import { Field, Lang, FieldValue } from './../../../admin/admin.models';
-import { FieldValueService } from './../../../admin/field-value/field-value.service';
+import { Field, Lang, FieldValue } from './../../../../admin/admin.models';
+import { FieldValueService } from './../../../../admin/field-value/field-value.service';
 
 import * as _ from 'lodash';
 

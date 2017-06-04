@@ -14,7 +14,7 @@ import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
 import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
-import { DynamicFormService } from './../../shared/components/dynamic-form/dynamic-form.service';
+import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
@@ -35,7 +35,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     private productClassTaxes: SelectItem[] = [];
     private attachmentFamilies: AttachmentFamily[] = [];
     private products: SelectItem[] = [];
-
+    // Custom fields
     private fieldGroups: SelectItem[] = [];
     private fields: any;
 
@@ -56,7 +56,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             // get fields if object has field group
             if (this.object.field_group_id) {
                 // set FormGroup with custom FormControls
-                this.handleGetFields(this.object.data.properties);
+                this.handleGetCustomFields(this.object.data.properties);
             }
 
             if (this.dataRoute.action === 'create-lang') {
@@ -251,7 +251,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     handleGetProductTaxes(price = null) {
-
         this.taxRuleService.getProductTaxes({
                 'type': 'query',
                 'parameters': {
@@ -268,7 +267,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     // get custom fields that has this object
-    handleGetFields(properties = undefined) {
+    handleGetCustomFields(properties = undefined) {
         this.dynamicFormService.instance(
             this.fg,
             properties,

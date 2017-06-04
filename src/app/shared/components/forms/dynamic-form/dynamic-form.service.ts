@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Field } from './../../../admin/admin.models';
+import { Field } from './../../../../admin/admin.models';
 
-import { FieldService } from './../../../admin/field/field.service';
+import { FieldService } from './../../../../admin/field/field.service';
 
 @Injectable()
 export class DynamicFormService {
