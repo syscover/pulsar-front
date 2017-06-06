@@ -18,7 +18,7 @@ export class DynamicFormService {
 
     instance(fg: FormGroup, properties: any, f: Function) {
 
-        if (fg.contains('field_group_id')) {
+        if (fg.contains('field_group_id') && fg.get('field_group_id').value !== '') {
             this.fieldService.searchRecords({
                 'type': 'query',
                 'parameters': [
@@ -41,8 +41,7 @@ export class DynamicFormService {
                 // add FormControl to FormGroup
                 for (const field of this.fields) {
 
-                    fg.addControl(field.name, new FormControl(
-                        '',
+                    fg.addControl(field.name, new FormControl('',
                         field.required ? Validators.required : undefined));
                 }
 

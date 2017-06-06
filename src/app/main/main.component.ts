@@ -8,11 +8,10 @@ enum MenuOrientation {
 };
 
 @Component({
-  selector: 'ps-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.css']
+  selector: 'ps-main',
+  templateUrl: './main.component.html'
 })
-export class MainLayoutComponent implements AfterViewInit {
+export class MainComponent implements AfterViewInit {
 
     layoutCompact: boolean = true;
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
@@ -44,12 +43,12 @@ export class MainLayoutComponent implements AfterViewInit {
 
         //hides the horizontal submenus or top menu if outside is clicked
         this.documentClickListener = this._renderer.listen('body', 'click', (event) => {
-            if(!this.topbarItemClick) {
+            if (!this.topbarItemClick) {
                 this.activeTopbarItem = null;
                 this.topbarMenuActive = false;
             }
 
-            if(!this.menuClick && this.isHorizontal()) {
+            if (!this.menuClick && this.isHorizontal()) {
                 this.resetMenu = true;
             }
 

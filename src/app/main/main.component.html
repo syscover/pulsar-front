@@ -14,7 +14,9 @@
             <div #layoutMenuScroller class="nano">
                 <div class="nano-content menu-scroll-content">
                     <ps-profile *ngIf="profileMode=='inline' && ! isHorizontal()"></ps-profile>
+
                     <ps-menu [reset]="resetMenu"></ps-menu>
+                    
                 </div>
             </div>
         </div>

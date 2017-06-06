@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouteReuseStrategy } from '@angular/router';
 
+import { MainModule } from './main/main.module';
 import { CustomReuseStrategy } from './shared/router/custom-reuse-srtrategy';
 
 import { ConfigLoader } from './core/services/config.loader';
@@ -26,7 +27,8 @@ import { LoginComponent } from './login/login.component';
         FormsModule,
         HttpModule,
         AppRoutingModule,
-        CoreModule
+        CoreModule,
+        MainModule
     ],
     providers: [
         //{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy }

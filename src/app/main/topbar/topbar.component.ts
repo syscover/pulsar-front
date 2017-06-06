@@ -1,6 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-
-import { MainLayoutComponent } from './../main-layout/main-layout.component';
+import { MainComponent } from './../main.component';
 
 @Component({
   selector: 'ps-topbar',
@@ -9,5 +8,5 @@ import { MainLayoutComponent } from './../main-layout/main-layout.component';
 })
 export class TopbarComponent {
 
-  constructor(@Inject(forwardRef(() => MainLayoutComponent)) public app: MainLayoutComponent) {}
+  constructor(@Inject(forwardRef(() => MainComponent)) public app: MainComponent) {}
 }

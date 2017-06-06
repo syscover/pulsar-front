@@ -1,7 +1,7 @@
-import { Core } from './core';
 import { Injector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { Core } from './core';
 import { ConfigService } from './../../core/services/config.service';
 import { CoreService } from './core.service';
 

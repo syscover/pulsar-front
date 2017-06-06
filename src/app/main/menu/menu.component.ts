@@ -3,7 +3,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/primeng';
-import { MainLayoutComponent } from './../main-layout/main-layout.component';
+
+import { MainComponent } from './../main.component';
 
 @Component({
     selector: 'ps-menu',
@@ -14,7 +15,12 @@ import { MainLayoutComponent } from './../main-layout/main-layout.component';
         }
     `],
     template: `
-        <ul ps-submenu [item]="model" root="true" class="ultima-menu ultima-main-menu clearfix" [reset]="reset" visible="true"></ul>
+        <ul ps-submenu 
+                        [item]="model" 
+                        root="true" 
+                        class="ultima-menu ultima-main-menu clearfix" 
+                        [reset]="reset" 
+                        visible="true"></ul>
     `
 })
 export class MenuComponent implements OnInit {
@@ -24,7 +30,8 @@ export class MenuComponent implements OnInit {
     model: any[];
 
     constructor(
-        @Inject(forwardRef(() => MainLayoutComponent)) public app: MainLayoutComponent
+        @Inject(forwardRef(() => MainComponent))
+        public app: MainComponent
     ) {}
 
     ngOnInit() {
@@ -99,14 +106,6 @@ export class MenuComponent implements OnInit {
             }
         ];
     }
-
-    changeTheme(theme) {
-        let themeLink: HTMLLinkElement = <HTMLLinkElement> document.getElementById('theme-css');
-        let layoutLink: HTMLLinkElement = <HTMLLinkElement> document.getElementById('layout-css');
-
-        themeLink.href = 'assets/theme/theme-' + theme + '.css';
-        layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
-    }
 }
 
 @Component({
@@ -165,15 +164,15 @@ export class SubMenuComponent {
     activeIndex: number;
 
     constructor(
-        @Inject(forwardRef(() => MainLayoutComponent))
-        public app: MainLayoutComponent,
+        @Inject(forwardRef(() => MainComponent))
+        public app: MainComponent,
         public router: Router,
         public location: Location
     ) {}
 
     itemClick(event: Event, item: MenuItem, index: number) {
         //avoid processing disabled items
-        if(item.disabled) {
+        if (item.disabled) {
             event.preventDefault();
             return true;
         }
@@ -220,7 +219,7 @@ export class SubMenuComponent {
         return this._reset;
     }
 
-    set reset(val:boolean) {
+    set reset(val: boolean) {
         this._reset = val;
 
         if (this._reset && this.app.isHorizontal()) {

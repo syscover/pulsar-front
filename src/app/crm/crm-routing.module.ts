@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { MainLayoutComponent } from './../shared/components/main-layout/main-layout.component';
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
 
@@ -12,7 +10,7 @@ import * as config from './../core/app-globals';
 
 const routes: Routes = [
     {
-        path: '', component: MainLayoutComponent,
+        path: '',
         //canActivate: [AuthGuard],
         children: [
             {

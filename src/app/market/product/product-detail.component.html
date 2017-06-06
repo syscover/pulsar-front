@@ -74,17 +74,6 @@
                                     name="sort" class="col-sm-12 col-md-4"></ps-spinner>
                 </div>
 
-                <div class="row">
-                    <ps-dropdown    [form]="fg"
-                                    [errors]="formErrors"
-                                    [autoWidth]="false"
-                                    [options]="fieldGroups"
-                                    (onChange)="handleGetCustomFields()"
-                                    name="field_group_id"
-                                    class="col-sm-12 col-md-6">
-                    </ps-dropdown>
-                </div>
-
                 <ps-form-header 
                                 title="Group product"
                                 icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
@@ -151,10 +140,19 @@
                                 name="total_format" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
                 </div>
 
-                <ps-form-header *ngIf="fields"
-                                class="animated fadeIn"
-                                title="Custom fields"
+                <ps-form-header title="Custom fields"
                                 icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
+
+                <div class="row">
+                    <ps-dropdown    [form]="fg"
+                                    [errors]="formErrors"
+                                    [autoWidth]="false"
+                                    [options]="fieldGroups"
+                                    (onChange)="handleGetCustomFields()"
+                                    name="field_group_id"
+                                    class="col-sm-12 col-md-6">
+                    </ps-dropdown>
+                </div>
 
                 <!-- dynamic form -->
                 <ng-container class="animated fadeIn" *ngFor="let field of fields">
