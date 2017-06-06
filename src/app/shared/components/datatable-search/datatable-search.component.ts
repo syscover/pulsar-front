@@ -16,7 +16,7 @@ export class DatatableSearchComponent implements OnInit {
     @Input() label: string;
     @Output() onSearch: EventEmitter<any> = new EventEmitter();
     protected delayInstance: any;
-    protected term = ''; // global term to search it
+    term = ''; // global term to search it
 
     constructor() { }
 

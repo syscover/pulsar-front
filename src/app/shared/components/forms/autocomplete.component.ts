@@ -41,19 +41,19 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class AutocompleteComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private name: string;
-    @Input() private key: string;
-    @Input() private field: string;
-    @Input() private options: any[];
-    @Input() private placeholder: string;
-    @Input() private multiple: boolean = false;
+    @Input() form: FormGroup;
+    @Input() name: string;
+    @Input() key: string;
+    @Input() field: string;
+    @Input() options: any[];
+    @Input() placeholder: string;
+    @Input() multiple: boolean = false;
 
     @ViewChild('autoComplete') private autoComplete;
 
-    private formControl: AbstractControl;
-    private error: string;
-    private filteredRecords: any[];   // suggestion to autocomplete
+    formControl: AbstractControl;
+    error: string;
+    filteredRecords: any[];   // suggestion to autocomplete
 
     constructor() { }
 

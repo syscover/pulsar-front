@@ -25,5 +25,6 @@ export class FieldGroupListComponent extends CoreListComponent {
         protected objectService: FieldGroupService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

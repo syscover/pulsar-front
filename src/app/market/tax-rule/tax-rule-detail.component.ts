@@ -19,12 +19,12 @@ import * as _ from 'lodash';
 })
 export class TaxRuleDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private taxRateZones: SelectItem[] = [];
-    private customerClassTaxes: SelectItem[] = [];
-    private productClassTaxes: SelectItem[] = [];
+    taxRateZones: SelectItem[] = [];
+    customerClassTaxes: SelectItem[] = [];
+    productClassTaxes: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: TaxRule = new TaxRule(); // set empty object
+    object: TaxRule = new TaxRule(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -47,6 +47,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         protected productClassTaxService: ProductClassTaxService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

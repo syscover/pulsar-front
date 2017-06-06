@@ -25,5 +25,6 @@ export class AttachmentFamilyListComponent extends CoreListComponent {
         protected objectService: AttachmentFamilyService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

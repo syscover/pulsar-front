@@ -32,15 +32,15 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class InputComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private type: string;
-    @Input() private label: string;
-    @Input() private name: string;
+    @Input() form: FormGroup;
+    @Input() type: string;
+    @Input() label: string;
+    @Input() name: string;
 
-    private formControl: AbstractControl;
-    private error: string;
+    @Output() onChange = new EventEmitter<any>();
 
-    @Output() private onChange = new EventEmitter<any>();
+    formControl: AbstractControl;
+    error: string;
 
     constructor() { }
 

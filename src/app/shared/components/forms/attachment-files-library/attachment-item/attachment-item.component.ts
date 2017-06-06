@@ -45,7 +45,7 @@ export class AttachmentItemComponent implements OnInit {
         }
     }
 
-    private removeItemHandler($event) {
+    removeItemHandler($event) {
         this.removeItem.emit({
             attachment: this.attachment
         });
@@ -55,12 +55,12 @@ export class AttachmentItemComponent implements OnInit {
         });
     }
 
-    private changeFamilyHandler($event) {
+    changeFamilyHandler($event) {
         const family =  _.find(this.attachmentFamilies, {'id': Number($event.target.value)});
         this.familyName = family !== undefined ? family.name : '';
     }
 
-    private activeCropHandler($event) {
+    activeCropHandler($event) {
         // click to active cropper
         if (this.attachment.controls['family_id'].value !== '') {
             this.enableCrop.emit({

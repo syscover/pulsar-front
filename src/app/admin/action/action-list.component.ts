@@ -25,5 +25,6 @@ export class ActionListComponent extends CoreListComponent {
         protected objectService: ActionService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

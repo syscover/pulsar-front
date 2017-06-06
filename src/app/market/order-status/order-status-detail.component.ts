@@ -1,7 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -15,7 +14,7 @@ import { OrderStatus } from '../market.models';
 export class OrderStatusDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: OrderStatus = new OrderStatus(); // set empty object
+    object: OrderStatus = new OrderStatus(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -32,10 +31,10 @@ export class OrderStatusDetailComponent extends CoreDetailComponent implements O
 
     constructor(
         protected injector: Injector,
-        protected objectService: OrderStatusService,
-        protected confirmationService: ConfirmationService
+        protected objectService: OrderStatusService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

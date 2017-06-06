@@ -26,5 +26,6 @@ export class TaxRateZoneListComponent extends CoreListComponent {
         protected objectService: TaxRateZoneService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

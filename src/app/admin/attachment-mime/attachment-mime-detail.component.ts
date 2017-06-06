@@ -19,10 +19,10 @@ import * as _ from 'lodash';
 })
 export class AttachmentMimeDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private resources: SelectItem[] = [];
+    resources: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: AttachmentMime = new AttachmentMime(); // set empty object
+    object: AttachmentMime = new AttachmentMime(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -36,6 +36,8 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent implement
         protected resourceService: ResourceService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
+
     }
 
     ngOnInit() {

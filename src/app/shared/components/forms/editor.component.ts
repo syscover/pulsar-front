@@ -30,18 +30,18 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class EditorComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private type: string;
-    @Input() private label: string;
-    @Input() private name: string;
-    @Input() private placeholder: string;
-    @Input() private heightMin: number;
-    @Input() private heightMax: number;
+    @Input() form: FormGroup;
+    @Input() type: string;
+    @Input() label: string;
+    @Input() name: string;
+    @Input() placeholder: string;
+    @Input() heightMin: number;
+    @Input() heightMax: number;
 
-    private froalaOptions: FroalaOptions = new FroalaOptions();
+    froalaOptions: FroalaOptions = new FroalaOptions();
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     constructor() { }
 

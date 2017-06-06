@@ -25,5 +25,6 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
         protected objectService: GroupCustomerClassTaxService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

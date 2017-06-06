@@ -30,13 +30,13 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class MultiSelectComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private options: SelectItem[] = [];
-    @Input() private name: string;
-    @Input() private label: string;
+    @Input() form: FormGroup;
+    @Input() options: SelectItem[] = [];
+    @Input() name: string;
+    @Input() label: string;
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     constructor() { }
 

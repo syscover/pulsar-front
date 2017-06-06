@@ -31,6 +31,7 @@ export class TaxRuleListComponent extends CoreListComponent {
         protected objectService: TaxRuleService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
         this._ = _;
     }
 }

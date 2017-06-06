@@ -19,11 +19,11 @@ import * as _ from 'lodash';
 })
 export class AttachmentFamilyDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private resources: SelectItem[] = [];
-    private sizes: SelectItem[] = [];
+    resources: SelectItem[] = [];
+    sizes: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: AttachmentFamily = new AttachmentFamily(); // set empty object
+    object: AttachmentFamily = new AttachmentFamily(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -37,6 +37,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
         protected resourceService: ResourceService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

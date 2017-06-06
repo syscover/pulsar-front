@@ -1,5 +1,6 @@
 import { Injector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { Core } from './core';
 import { ConfigService } from './../../core/services/config.service';
@@ -13,10 +14,13 @@ export class CoreComponent extends Core {
     protected route: ActivatedRoute;
     protected params: Params;
     protected langs: Lang[]; // Activated application lang
-
-    // services superclass
-    protected configService: ConfigService;
     protected objectService: CoreService;
+    protected configService: ConfigService;
+    protected confirmationService: ConfirmationService;
+
+    // baseUri to set component urls in templete, this property must to be public because is used in template
+    baseUri: string;
+    baseLang: string;
 
     constructor(
         protected injector: Injector
@@ -26,9 +30,11 @@ export class CoreComponent extends Core {
         this.router = injector.get(Router);
         this.route = injector.get(ActivatedRoute);
         this.configService = injector.get(ConfigService);
+        this.confirmationService = injector.get(ConfirmationService);
 
         // set object properties
         this.params = this.route.snapshot.params;
         this.langs = this.configService.getConfig('langs');
+        this.baseLang = this.configService.getConfig('base_lang');
     }
 }

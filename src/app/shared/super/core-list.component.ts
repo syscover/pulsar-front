@@ -8,19 +8,14 @@ export class CoreListComponent extends CoreComponent {
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
-    protected totalRecords: number;     // total records in datatable
-    protected filteredRecords: number;     // filtered records over total
-    protected columnsSearch: string[];  // columns where will be used for global searchs
-
-    // services superclass
-    protected confirmationService: ConfirmationService;
+    totalRecords: number;     // total records in datatable
+    filteredRecords: number;     // filtered records over total
+    columnsSearch: string[];  // columns where will be used for global searchs
 
     constructor(
         protected injector: Injector
     ) {
         super(injector);
-
-        this.confirmationService = injector.get(ConfirmationService);
     }
 
     getRecords(f: Function): void {

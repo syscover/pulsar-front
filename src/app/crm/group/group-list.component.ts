@@ -25,5 +25,6 @@ export class GroupListComponent extends CoreListComponent {
         protected objectService: GroupService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

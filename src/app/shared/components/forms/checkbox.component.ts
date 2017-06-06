@@ -28,12 +28,12 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class CheckboxComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private label: string;
-    @Input() private name: string;
+    @Input() form: FormGroup;
+    @Input() label: string;
+    @Input() name: string;
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     constructor() { }
 

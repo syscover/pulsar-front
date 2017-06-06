@@ -35,11 +35,11 @@ import * as _ from 'lodash';
 
 export class DynamicFormComponent implements OnInit {
 
-    @Input() private field: Field;
-    @Input() private errors: Object;
-    @Input() private lang: string;
+    @Input() field: Field;
+    @Input() errors: Object;
+    @Input() lang: string;
 
-    public options: SelectItem[] = [];
+    options: SelectItem[] = [];
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef,

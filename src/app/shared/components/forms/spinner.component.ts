@@ -33,14 +33,14 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class SpinnerComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private label: string;
-    @Input() private name: string;
-    @Input() private min: number;
-    @Input() private max: number;
+    @Input() form: FormGroup;
+    @Input() label: string;
+    @Input() name: string;
+    @Input() min: number;
+    @Input() max: number;
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     @Output() private onChange = new EventEmitter<any>();
 

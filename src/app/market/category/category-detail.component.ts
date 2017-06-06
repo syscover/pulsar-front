@@ -1,7 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -15,7 +14,7 @@ import { Category } from '../market.models';
 export class CategoryDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Category = new Category(); // set empty object
+    object: Category = new Category(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -32,10 +31,10 @@ export class CategoryDetailComponent extends CoreDetailComponent implements OnIn
 
     constructor(
         protected injector: Injector,
-        protected objectService: CategoryService,
-        protected confirmationService: ConfirmationService
+        protected objectService: CategoryService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

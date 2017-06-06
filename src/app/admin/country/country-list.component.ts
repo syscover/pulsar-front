@@ -28,5 +28,6 @@ export class CountryListComponent extends CoreListComponent {
         protected objectService: CountryService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

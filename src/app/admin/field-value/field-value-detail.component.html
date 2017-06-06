@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Field Value</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object, objectService.baseUri + '/' + field_id, [field_id])" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object, baseUri + '/' + field_id, [field_id])" novalidate>
 
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="field_id">
@@ -47,14 +47,14 @@
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         label="Cancel" 
-                        [routerLink]="[objectService.baseUri, field_id]"
+                        [routerLink]="[baseUri, field_id]"
                         class="col-sm-10 col-md-3"></ps-button>
 
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
                         *ngIf="dataRoute.action === 'edit'"
                         label="Delete translation" 
-                        (click)="deleteRecord(object, objectService.baseUri + '/' + field_id , lang.id, [field_id])" 
+                        (click)="deleteRecord(object, baseUri + '/' + field_id , lang.id, [field_id])" 
                         className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>

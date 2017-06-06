@@ -15,7 +15,7 @@ import { CountryService } from './country.service';
 export class CountryDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Country = new Country(); // set empty object
+    object: Country = new Country(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -32,10 +32,10 @@ export class CountryDetailComponent extends CoreDetailComponent implements OnIni
 
     constructor(
         protected injector: Injector,
-        protected objectService: CountryService,
-        protected confirmationService: ConfirmationService
+        protected objectService: CountryService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

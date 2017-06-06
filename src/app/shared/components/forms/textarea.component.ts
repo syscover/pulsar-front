@@ -34,15 +34,15 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class TextareaComponent implements OnInit {
 
-    @Input() private form: FormGroup;
-    @Input() private rows: number;
-    @Input() private cols: number;
-    @Input() private label: string;
-    @Input() private placeholder: string = '';
-    @Input() private name: string;
+    @Input() form: FormGroup;
+    @Input() rows: number;
+    @Input() cols: number;
+    @Input() label: string;
+    @Input() placeholder: string = '';
+    @Input() name: string;
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     constructor() { }
 

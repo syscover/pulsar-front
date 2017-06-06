@@ -2,8 +2,6 @@ import { CoreComponent } from './core.component';
 import { Injector, HostBinding } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ConfirmationService } from 'primeng/primeng';
-
 import { Observable } from 'rxjs/Observable';
 
 import { Lang } from './../../admin/admin.models';
@@ -17,12 +15,11 @@ export class CoreDetailComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
 
-    protected dataRoute: DataRoute; // Static dataRoute Object pass from route module
-    protected formErrors: Object;
-    protected fg: FormGroup;
-    protected fb: FormBuilder;
-    protected confirmationService;
-    protected lang: Lang; // Current lang for objects that has multiple language
+    dataRoute: DataRoute; // Static dataRoute Object pass from route module
+    formErrors: Object;
+    fg: FormGroup;
+    fb: FormBuilder;
+    lang: Lang; // Current lang for objects that has multiple language
 
     constructor(
         protected injector: Injector
@@ -44,7 +41,7 @@ export class CoreDetailComponent extends CoreComponent {
     getRecordHasIdParamenter(f: Function) {
 
         if (this.dataRoute.action === 'create') {
-            this.lang  = <Lang>_.find(this.langs, {'id': this.configService.getConfig('base_lang')}); // get base_lang object
+            this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
             f();
 
             // set lang_id if form has this field
@@ -64,9 +61,9 @@ export class CoreDetailComponent extends CoreComponent {
             // get baseLang record
             if (this.dataRoute.action === 'create-lang') {
                 let baseParams = _.clone(this.params); // clone objet because params properties are read-only
-                baseParams['lang'] = this.configService.getConfig('base_lang'); // set baseLang to get object
+                baseParams['lang'] = this.baseLang; // set baseLang to get object
 
-                this.getRecord(f, baseParams); // get base_lang object
+                this.getRecord(f, baseParams); // get baseLang object
 
             } else if (this.dataRoute.action === 'edit') {
                 this.getRecord(f, this.params);

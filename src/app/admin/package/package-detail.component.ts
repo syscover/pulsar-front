@@ -14,7 +14,7 @@ import { Profile } from '../admin.models';
 export class PackageDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Profile = new Profile(); // set empty object
+    object: Profile = new Profile(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -27,6 +27,7 @@ export class PackageDetailComponent extends CoreDetailComponent implements OnIni
         protected objectService: PackageService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

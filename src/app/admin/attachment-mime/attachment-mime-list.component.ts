@@ -25,5 +25,6 @@ export class AttachmentMimeListComponent extends CoreListComponent {
         protected objectService: AttachmentMimeService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

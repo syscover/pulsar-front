@@ -25,5 +25,6 @@ export class ResourceListComponent extends CoreListComponent {
         protected objectService: ResourceService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

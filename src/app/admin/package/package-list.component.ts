@@ -25,5 +25,6 @@ export class PackageListComponent extends CoreListComponent {
         protected objectService: PackageService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

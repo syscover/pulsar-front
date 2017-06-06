@@ -40,8 +40,8 @@ import { Component, Input } from '@angular/core';
 })
 export class FormHeaderComponent {
 
-    @Input() private title: string;
-    @Input() private icon: string;
+    @Input() title: string;
+    @Input() icon: string;
 
     constructor() { }
 

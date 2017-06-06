@@ -26,5 +26,6 @@ export class PaymentMethodListComponent extends CoreListComponent {
         protected objectService: PaymentMethodService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

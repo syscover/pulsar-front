@@ -19,10 +19,10 @@ import * as _ from 'lodash';
 })
 export class FieldGroupDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private resources: SelectItem[] = [];
+    resources: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: FieldGroup = new FieldGroup(); // set empty object
+    object: FieldGroup = new FieldGroup(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -36,6 +36,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
         protected resourceService: ResourceService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

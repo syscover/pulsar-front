@@ -6,8 +6,6 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 import { LangService } from './lang.service';
 import { Lang } from '../admin.models';
 
-import { MenuItem } from 'primeng/primeng';
-
 @Component({
     selector: 'app-lang-list',
     templateUrl: './lang-list.component.html'
@@ -27,6 +25,6 @@ export class LangListComponent extends CoreListComponent {
         protected objectService: LangService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
-
 }

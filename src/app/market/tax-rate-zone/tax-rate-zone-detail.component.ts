@@ -16,10 +16,10 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class TaxRateZoneDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private countries: Country[] = [];
+    countries: Country[] = [];
 
     // paramenters for parent class
-    private object: TaxRateZone = new TaxRateZone(); // set empty object
+    object: TaxRateZone = new TaxRateZone(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -38,11 +38,12 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
         protected countryService: CountryService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {
         // get countries
-        this.countryService.getRecords(this.configService.getConfig('base_lang'))
+        this.countryService.getRecords([this.baseLang])
             .subscribe((response) => {
                 this.countries = <Country[]>response.data;
 

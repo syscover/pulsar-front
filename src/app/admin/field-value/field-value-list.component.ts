@@ -12,7 +12,7 @@ import { Field} from '../admin.models';
 })
 export class FieldValueListComponent extends CoreListComponent {
 
-    private field_id: number;
+    field_id: number;
 
     // paramenters for parent class
     // columns where will be used for global searchs
@@ -28,6 +28,7 @@ export class FieldValueListComponent extends CoreListComponent {
         protected objectService: FieldValueService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 

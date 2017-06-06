@@ -14,7 +14,7 @@ import { Lang } from '../admin.models';
 export class LangDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Lang = new Lang(); // set empty object
+    object: Lang = new Lang(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -27,6 +27,7 @@ export class LangDetailComponent extends CoreDetailComponent implements OnInit {
         protected objectService: LangService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

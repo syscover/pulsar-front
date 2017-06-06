@@ -77,6 +77,7 @@ export class CoreService extends Core {
             .map(response => response.json());
     }
 
+    // use magick methods to keep the same format that setApiUrl method
     protected setBaseUri(baseUri: string) {
         this._baseUri = baseUri; // set base uri
     }

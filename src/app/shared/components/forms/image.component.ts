@@ -17,9 +17,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export class ImageComponent implements ControlValueAccessor, OnInit {
 
-    @Input('src') public src;
-    @Input('styleClass') public styleClass;
-    @Input('style') public style;
+    @Input('src') src;
+    @Input('styleClass') styleClass;
+    @Input('style') style;
 
     propagateChange = (_: any) => {};
 

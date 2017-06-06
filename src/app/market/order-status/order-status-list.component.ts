@@ -26,5 +26,6 @@ export class OrderStatusListComponent extends CoreListComponent {
         protected objectService: OrderStatusService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

@@ -14,7 +14,7 @@ import { Group } from '../crm.models';
 export class GroupDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Group = new Group(); // set empty object
+    object: Group = new Group(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -27,6 +27,7 @@ export class GroupDetailComponent extends CoreDetailComponent implements OnInit 
         protected objectService: GroupService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

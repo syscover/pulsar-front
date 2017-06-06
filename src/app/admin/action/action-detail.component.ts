@@ -14,7 +14,7 @@ import { Action } from '../admin.models';
 export class ActionDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: Action = new Action(); // set empty object
+    object: Action = new Action(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -27,6 +27,7 @@ export class ActionDetailComponent extends CoreDetailComponent implements OnInit
         protected objectService: ActionService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

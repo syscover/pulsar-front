@@ -18,7 +18,7 @@ import { Lang } from './../../../admin/admin.models';
 
 export class LangLabelComponent implements OnInit {
 
-    @Input() private lang: Lang;
+    @Input() lang: Lang;
 
     constructor() { }
 

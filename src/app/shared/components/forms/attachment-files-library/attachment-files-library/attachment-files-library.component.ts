@@ -31,19 +31,16 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
     @ViewChild('cropperImage') cropperImage;
     @ViewChild('cropperPreview') cropperPreview;
-    //@ViewChild('dialog') dialog; // may be replace displayDialog
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
-    // properties
+    items: FormArray;
     files: File[];                          // files uploaded across XMLHttpRequest
     cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-    image: ImageComponent;                      // image where will be load new image cropped
+    image: ImageComponent;                  // image where will be load new image cropped
     displayDialog: boolean = false;
-
-
-    public progress: number = 0;
+    progress: number = 0;
 
     constructor(
         private fb: FormBuilder,
@@ -80,6 +77,12 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
     get attachments(): FormArray {
         return this.form.get(this.name) as FormArray;
+    }
+
+    // casting as FormArray for avoid error in build proccess
+    getFormArrayControls(name: string) {
+        let fa = this.form.controls[name] as FormArray;
+        return fa.controls;
     }
 
     createAttachment(attachment = undefined) {

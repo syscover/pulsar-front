@@ -19,10 +19,10 @@ import * as _ from 'lodash';
 })
 export class ResourceDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private packages: SelectItem[] = [];
+    packages: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: Resource = new Resource(); // set empty object
+    object: Resource = new Resource(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -36,6 +36,7 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
         protected packageService: PackageService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

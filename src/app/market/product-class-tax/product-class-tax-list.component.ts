@@ -25,6 +25,6 @@ export class ProductClassTaxListComponent extends CoreListComponent {
         protected objectService: ProductClassTaxService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
-
 }

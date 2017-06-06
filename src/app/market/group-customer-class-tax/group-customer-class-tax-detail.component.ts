@@ -22,11 +22,11 @@ import * as _ from 'lodash';
 })
 export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private groups: SelectItem[] = [];
-    private customerClassTaxes: SelectItem[] = [];
+    groups: SelectItem[] = [];
+    customerClassTaxes: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: GroupCustomerClassTax = new GroupCustomerClassTax(); // set empty object
+    object: GroupCustomerClassTax = new GroupCustomerClassTax(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -43,6 +43,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
         protected groupService: GroupService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

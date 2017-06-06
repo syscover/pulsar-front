@@ -30,5 +30,6 @@ export class FieldListComponent extends CoreListComponent {
         protected objectService: FieldService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

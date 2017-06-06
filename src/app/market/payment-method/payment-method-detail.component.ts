@@ -1,7 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -20,10 +19,10 @@ import * as _ from 'lodash';
 })
 export class PaymentMethodDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private orderStatuses: SelectItem[] = [];
+    orderStatuses: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: PaymentMethod = new PaymentMethod(); // set empty object
+    object: PaymentMethod = new PaymentMethod(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -41,17 +40,17 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
     constructor(
         protected injector: Injector,
         protected objectService: PaymentMethodService,
-        protected confirmationService: ConfirmationService,
         protected orderStatusService: OrderStatusService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {
         // load order status
         this.orderStatusService.searchRecords({
                 'type': 'query',
-                'lang': this.configService.getConfig('base_lang'),
+                'lang': this.baseLang,
                 'parameters': [
                     {
                         'command': 'where',

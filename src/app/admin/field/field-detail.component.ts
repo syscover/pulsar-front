@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService, SelectItem } from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { FieldService } from './field.service';
@@ -18,12 +18,12 @@ import * as _ from 'lodash';
 })
 export class FieldDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private fieldGroups: SelectItem[] = [];
-    private fieldTypes: SelectItem[] = [];
-    private dataTypes: SelectItem[] = [];
+    fieldGroups: SelectItem[] = [];
+    fieldTypes: SelectItem[] = [];
+    dataTypes: SelectItem[] = [];
 
     // paramenters for parent class
-    private object: Field = new Field(); // set empty object
+    object: Field = new Field(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -33,7 +33,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
             this.fg.patchValue({lang_id: this.lang.id});
 
             if (this.dataRoute.action === 'create-lang') {
-                this.fg.controls['label'].setValue(this.object.labels[this.configService.getConfig('base_lang')]);
+                this.fg.controls['label'].setValue(this.object.labels[this.baseLang]);
                 // disabled inputs that hasn't caontaint multi language
                 this.disabledForm();
 
@@ -41,7 +41,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
                 this.fg.controls['label'].setValue(this.object.labels[this.lang.id]); // set labels with base lang data
 
                 // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.configService.getConfig('base_lang')) {
+                if (this.lang.id !== this.baseLang) {
                     this.disabledForm();
                 }
             }
@@ -51,10 +51,10 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
     constructor(
         protected injector: Injector,
         protected objectService: FieldService,
-        protected confirmationService: ConfirmationService,
         protected fieldGroupService: FieldGroupService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

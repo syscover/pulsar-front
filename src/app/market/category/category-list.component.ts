@@ -26,5 +26,6 @@ export class CategoryListComponent extends CoreListComponent {
         protected objectService: CategoryService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

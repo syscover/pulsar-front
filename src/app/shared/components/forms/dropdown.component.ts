@@ -32,17 +32,17 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class DropdownComponent implements OnInit, AfterContentInit {
 
-    @Input() private form: FormGroup;
-    @Input() private options: SelectItem[] = [];
-    @Input() private name: string;
-    @Input() private autoWidth: boolean;
-    @Input() private filter: string;
+    @Input() form: FormGroup;
+    @Input() options: SelectItem[] = [];
+    @Input() name: string;
+    @Input() autoWidth: boolean;
+    @Input() filter: string;
 
     @ViewChild(Dropdown) pDropdown: Dropdown;
     @ContentChildren(PrimeTemplate) templates: QueryList<any>;
 
-    private formControl: AbstractControl;
-    private error: string;
+    formControl: AbstractControl;
+    error: string;
 
     @Output() private onChange = new EventEmitter<any>();
 

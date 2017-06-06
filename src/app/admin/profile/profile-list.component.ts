@@ -25,5 +25,6 @@ export class ProfileListComponent extends CoreListComponent {
         protected objectService: ProfileService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 }

@@ -14,7 +14,7 @@ import { CustomerClassTax } from './../market.models';
 export class CustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
 
     // paramenters for parent class
-    private object: CustomerClassTax = new CustomerClassTax(); // set empty object
+    object: CustomerClassTax = new CustomerClassTax(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
@@ -27,6 +27,7 @@ export class CustomerClassTaxDetailComponent extends CoreDetailComponent impleme
         protected objectService: CustomerClassTaxService,
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {

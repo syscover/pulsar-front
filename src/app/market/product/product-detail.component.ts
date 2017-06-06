@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService, SelectItem } from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -29,21 +29,21 @@ import * as _ from 'lodash';
 })
 export class ProductDetailComponent extends CoreDetailComponent implements OnInit {
 
-    private categories: SelectItem[] = [];
-    private productTypes: SelectItem[] = [];
-    private priceTypes: SelectItem[] = [];
-    private productClassTaxes: SelectItem[] = [];
-    private attachmentFamilies: AttachmentFamily[] = [];
-    private products: SelectItem[] = [];
+    categories: SelectItem[] = [];
+    productTypes: SelectItem[] = [];
+    priceTypes: SelectItem[] = [];
+    productClassTaxes: SelectItem[] = [];
+    attachmentFamilies: AttachmentFamily[] = [];
+    products: SelectItem[] = [];
     // Custom fields
-    private fieldGroups: SelectItem[] = [];
-    private fields: any;
+    fieldGroups: SelectItem[] = [];
+    fields: any;
 
     @ViewChild('productClassTax') private productClassTax;
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
 
     // paramenters for parent class
-    private object: Product = new Product(); // set empty object
+    object: Product = new Product(); // set empty object
     private f: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
@@ -71,7 +71,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     constructor(
         protected injector: Injector,
         protected objectService: ProductService,
-        protected confirmationService: ConfirmationService,
         protected categoryService: CategoryService,
         protected productClassTaxService: ProductClassTaxService,
         protected taxRuleService: TaxRuleService,
@@ -84,11 +83,12 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         private productService: ProductService
     ) {
         super(injector);
+        this.baseUri = objectService.baseUri;
     }
 
     ngOnInit() {
         // get categories
-        this.categoryService.getRecords([this.configService.getConfig('base_lang')])
+        this.categoryService.getRecords([this.baseLang])
             .subscribe((response) => {
             this.categories = _.map(<Category[]>response.data, obj => {
                 return { value: obj.id, label: obj.name };
@@ -99,7 +99,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.configService.getValue({
                 key: 'pulsar.market.productTypes',
                 translate: {
-                    lang: this.configService.getConfig('base_lang'),
+                    lang: this.baseLang,
                     property: 'name'
                 }
             }).subscribe((response) => {
@@ -115,7 +115,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.configService.getValue({
                 key: 'pulsar.market.priceTypes',
                 translate: {
-                    lang: this.configService.getConfig('base_lang'),
+                    lang: this.baseLang,
                     property: 'name'
                 }
             }).subscribe((response) => {
@@ -186,7 +186,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                     'command': 'where',
                     'column': 'product_lang.lang_id',
                     'operator': '=',
-                    'value': this.params['lang'] ? this.params['lang'] : this.configService.getConfig('base_lang')
+                    'value': this.params['lang'] ? this.params['lang'] : this.baseLang
                 },
                 {
                     'command': 'orderBy',

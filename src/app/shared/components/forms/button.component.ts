@@ -22,10 +22,10 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 })
 export class ButtonComponent implements OnInit {
 
-    @Input() private type: string;
-    @Input() private label: string;
-    @Input() private icon: string;
-    @Input() private className: string;
+    @Input() type: string;
+    @Input() label: string;
+    @Input() icon: string;
+    @Input() className: string;
 
     constructor( ) { }
 

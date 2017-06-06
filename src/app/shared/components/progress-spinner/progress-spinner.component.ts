@@ -16,8 +16,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class ProgressSpinnerComponent implements OnInit {
 
-    @Input() private width = '30px';
-    @Input() private height = '30px';
+    @Input() width = '30px';
+    @Input() height = '30px';
 
     constructor() { }
 
