@@ -6,15 +6,11 @@ import { CoreListComponent } from './../../shared/super/core-list.component';
 import { FieldService } from './field.service';
 import { Field } from '../admin.models';
 
-import * as appGlobals from './../../core/app-globals';
-
 @Component({
     selector: 'ps-field-list',
     templateUrl: './field-list.component.html'
 })
 export class FieldListComponent extends CoreListComponent {
-
-    appGlobals: any = appGlobals; // get appGlobasl
 
     // paramenters for parent class
     // columns where will be used for global searchs

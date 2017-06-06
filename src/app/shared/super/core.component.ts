@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
 
 import { Core } from './core';
-import { ConfigService } from './../../core/services/config.service';
+//import { ConfigService } from './../../core/services/config.service';
 import { CoreService } from './core.service';
 
 import { Lang } from './../../admin/admin.models';
@@ -15,7 +15,7 @@ export class CoreComponent extends Core {
     protected params: Params;
     protected langs: Lang[]; // Activated application lang
     protected objectService: CoreService;
-    protected configService: ConfigService;
+    //protected configService: ConfigService;
     protected confirmationService: ConfirmationService;
 
     // baseUri to set component urls in templete, this property must to be public because is used in template
@@ -25,11 +25,11 @@ export class CoreComponent extends Core {
     constructor(
         protected injector: Injector
     ) {
-        super();
+        super(injector);
 
         this.router = injector.get(Router);
         this.route = injector.get(ActivatedRoute);
-        this.configService = injector.get(ConfigService);
+        //this.configService = injector.get(ConfigService);
         this.confirmationService = injector.get(ConfirmationService);
 
         // set object properties

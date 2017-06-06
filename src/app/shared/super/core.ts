@@ -1,9 +1,17 @@
-import * as appGlobals from './../../core/app-globals';
+import { Injector } from '@angular/core';
+import { ConfigService } from './../../core/services/config.service';
 
 export class Core {
-    protected appGlobals: any = appGlobals;
-    protected appRootPrefix: string = appGlobals.appRootPrefix;
-    apiUrlPrefix: string = appGlobals.apiUrlPrefix;
 
-    constructor() {}
+    protected configService: ConfigService;
+    appRootPrefix: string;
+    apiUrlPrefix: string;
+
+    constructor(
+        protected injector: Injector
+    ) {
+        this.configService = injector.get(ConfigService);
+        this.appRootPrefix = this.configService.appRootPrefix;
+        this.apiUrlPrefix = this.configService.apiUrlPrefix;
+    }
 }

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Core } from './core';
 import { JsonResponse } from './../classes/json-respose';
 
-import * as appGlobals from './../../core/app-globals';
 import * as _ from 'lodash';
 
 export class CoreService extends Core {
@@ -19,7 +18,7 @@ export class CoreService extends Core {
     constructor(
         protected injector: Injector
     ) {
-        super();
+        super(injector);
 
         this.http = injector.get(Http);
 

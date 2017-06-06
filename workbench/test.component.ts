@@ -7,6 +7,16 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
         <strong>
             <ng-content></ng-content>
         </strong>
+
+        <ps-autocomplete    [form]="fg"
+                            [errors]="formErrors"
+                            key="id"
+                            field="name"
+                            placeholder="Search a country"
+                            [options]="countries"
+                            name="country_id"
+                            class="col-sm-12 col-md-5">
+        </ps-autocomplete>
     `,
     styles: [`
         :host{

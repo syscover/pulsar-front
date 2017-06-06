@@ -6,8 +6,6 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 
-import * as config from './../core/app-globals';
-
 const routes: Routes = [
     {
         path: '',

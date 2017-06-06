@@ -21,8 +21,6 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 
-import * as config from './../core/app-globals';
-
 const routes: Routes = [
     {
         path: '',
