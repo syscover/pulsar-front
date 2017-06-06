@@ -1,6 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
@@ -8,7 +9,8 @@ import { TaxRateZoneService } from './tax-rate-zone.service';
 import { TaxRateZone } from './../market.models';
 import { CountryService } from './../../admin/country/country.service';
 import { Country } from './../../admin/admin.models';
-import { SelectItem } from 'primeng/primeng';
+
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-tax-rate-zone-detail',
@@ -16,7 +18,7 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class TaxRateZoneDetailComponent extends CoreDetailComponent implements OnInit {
 
-    countries: Country[] = [];
+    countries: SelectItem[] = [];
 
     // paramenters for parent class
     object: TaxRateZone = new TaxRateZone(); // set empty object
@@ -45,7 +47,12 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
         // get countries
         this.countryService.getRecords([this.baseLang])
             .subscribe((response) => {
-                this.countries = <Country[]>response.data;
+                //this.countries = <Country[]>response.data;
+
+                this.countries = _.map(<Country[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get types
+                this.countries.unshift({ label: 'Select a country', value: '' });
 
                 super.getRecordHasIdParamenter(this.f);
             });

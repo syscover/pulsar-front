@@ -19,15 +19,14 @@
         </div>
 
         <div class="row">
-            <ps-autocomplete    [form]="fg"
-                                [errors]="formErrors"
-                                key="id"
-                                field="name"
-                                placeholder="Search a country"
-                                [options]="countries"
-                                name="country_id"
-                                class="col-sm-12 col-md-5">
-            </ps-autocomplete>
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="countries"
+                            [filter]="true"
+                            name="country_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
         </div>
 
         <div class="row">
