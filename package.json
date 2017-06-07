@@ -24,6 +24,7 @@
     "@types/jquery": "^2.0.41",
     "@types/lodash": "^4.14.61",
     "angular2-froala-wysiwyg": "^2.5.1-2",
+    "angular2-jwt": "^0.2.3",
     "animate.css": "^3.5.2",
     "bootstrap": "^4.0.0-alpha.6",
     "chart.js": "2.1.3",
