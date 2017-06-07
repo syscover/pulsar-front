@@ -1,15 +1,16 @@
+import { InterceptorXHRBackend } from './core/services/interceptor.service';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, XHRBackend } from '@angular/http';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { MainModule } from './main/main.module';
 import { CustomReuseStrategy } from './shared/router/custom-reuse-srtrategy';
 
-import { ConfigLoader } from './core/services/config.loader';
-import { ConfigService } from './core/services/config.service';
+import { ConfigLoader } from './core/services/config/config.loader';
+import { ConfigService } from './core/services/config/config.service';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,12 @@ import { LoginComponent } from './login/login.component';
     ],
     providers: [
         //{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy }
+        {
+            // overwrite XHRBackend with custom interceptor
+            // to catch Authorization header form JWT
+            provide: XHRBackend,
+            useClass: InterceptorXHRBackend
+        },
         ConfigService,
         {
             provide: APP_INITIALIZER,
