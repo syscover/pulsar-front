@@ -1,32 +1,32 @@
-import { Component,
-        OnInit,
-        HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
-  selector: 'ps-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'ps-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
 
-  /*@HostBinding('@fadeInAnimation') get fadeInAnimation(){
-     return 'true';
-  };*/
+    /*@HostBinding('@fadeInAnimation') get fadeInAnimation(){
+        return 'true';
+    };*/
+    fg: FormGroup;
+    email: string;
+    password: string;
+    jwtHelper: JwtHelper;
 
-  email: string;
-  password: string;
+    constructor(
+        public router: Router
+    ) { }
 
-  constructor(
-    private router: Router
-  ) { }
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-  }
-
-  login() {
+    login() {
     this.router.navigate(['/pulsar/admin']);
-  }
-
+    }
 }
