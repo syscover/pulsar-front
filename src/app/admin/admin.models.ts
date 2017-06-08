@@ -1,4 +1,15 @@
 
+export class User {
+    id: string;
+    name: string;
+    surname: string;
+    lang_id: string;
+    email: string;
+    profile_id: number;
+    access: boolean;
+    user: string;
+}
+
 export class Lang {
     id: string;
     name: string;

@@ -7,6 +7,8 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 //import { AuthGuard }                    from '../shared/auth/auth-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserListComponent } from './user/user-list.component';
+import { UserDetailComponent } from './user/user-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
@@ -40,6 +42,11 @@ const routes: Routes = [
                 children: [
                      // Dashboard
                     { path: 'dashboard',                                component: DashboardComponent },
+
+                    // Langs
+                    { path: 'user',                                     component: UserListComponent },
+                    { path: 'user/create',                              component: UserDetailComponent,         data: { action: 'create' }},
+                    { path: 'user/show/:id',                            component: UserDetailComponent,         data: { action: 'edit' }},
 
                     // Langs
                     { path: 'lang',                                     component: LangListComponent },

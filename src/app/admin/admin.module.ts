@@ -4,6 +4,8 @@ import { SharedModule } from './../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserListComponent } from './user/user-list.component';
+import { UserDetailComponent } from './user/user-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
@@ -27,6 +29,7 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
+import { UserService } from './user/user.service';
 import { LangService } from './lang/lang.service';
 import { CountryService } from './country/country.service';
 import { PackageService } from './package/package.service';
@@ -46,6 +49,8 @@ import { ActionService } from './action/action.service';
     ],
     declarations: [
         DashboardComponent,
+        UserListComponent,
+        UserDetailComponent,
         LangListComponent,
         LangDetailComponent,
         CountryListComponent,
@@ -70,6 +75,7 @@ import { ActionService } from './action/action.service';
         ActionDetailComponent
     ],
     providers: [
+        UserService,
         LangService,
         CountryService,
         PackageService,

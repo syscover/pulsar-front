@@ -76,6 +76,7 @@ export class MenuComponent implements OnInit {
             {
                 label: 'Administration', icon: 'settings',
                 items: [
+                    {label: 'Users', icon: 'group', routerLink: ['/pulsar/admin/user']},
                     {label: 'Languages', icon: 'translate', routerLink: ['/pulsar/admin/lang']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/country']},
                     {label: 'Packages', icon: 'view_comfy', routerLink: ['/pulsar/admin/package']},
