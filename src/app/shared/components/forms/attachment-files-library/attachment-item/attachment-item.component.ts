@@ -47,15 +47,6 @@ export class AttachmentItemComponent implements OnInit {
         }
     }
 
-    setSize(sizeValue: number): string {
-        let size = Math.round(sizeValue / 1024); // convert bytes y kylobites
-        if (size > 1024) {
-            return Math.round((size / 1024) * 100) / 100 + ' Mb';
-        } else {
-            return size + ' Kb';
-        }
-    }
-
     removeItemHandler($event) {
         this.removeItem.emit({
             attachment: this.attachment

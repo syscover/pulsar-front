@@ -18,6 +18,7 @@ import { AttachmentFilesLibraryComponent } from './attachment-files-library/atta
 import { AttachmentItemComponent } from './attachment-files-library/attachment-item/attachment-item.component';
 import { ImageComponent } from './image.component';
 import { SortableDirective } from './sortable.directive';
+import { FormatSizePipe } from '../../pipes/format-size.pipe';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { SortableDirective } from './sortable.directive';
         AttachmentFilesLibraryComponent,
         AttachmentItemComponent,
         ImageComponent,
-        SortableDirective
+        SortableDirective,
+        FormatSizePipe
     ],
     imports: [
         CommonModule,
@@ -60,7 +62,8 @@ import { SortableDirective } from './sortable.directive';
         AttachmentFilesLibraryComponent,
         AttachmentItemComponent,
         ImageComponent,
-        SortableDirective
+        SortableDirective,
+        FormatSizePipe
     ],
     providers: [],
 })
