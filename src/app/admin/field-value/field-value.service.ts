@@ -9,7 +9,7 @@ export class FieldValueService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/field-value`); // set application URL
-        this.setApiUrl('/api/v1/admin/field-value'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/field-value`); // set application URL
+        this.setEndpoint('/api/v1/admin/field-value'); // set api URL
     }
 }

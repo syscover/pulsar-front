@@ -9,7 +9,7 @@ export class CustomerClassTaxService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/customer-class-tax`); // set application URL
-        this.setApiUrl('/api/v1/market/customer-class-tax'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/customer-class-tax`); // set application URL
+        this.setEndpoint('/api/v1/market/customer-class-tax'); // set api URL
     }
 }

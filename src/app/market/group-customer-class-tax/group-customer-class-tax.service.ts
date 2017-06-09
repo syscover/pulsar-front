@@ -9,7 +9,7 @@ export class GroupCustomerClassTaxService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/group-customer-class-tax`); // set application URL
-        this.setApiUrl('/api/v1/market/group-customer-class-tax'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/group-customer-class-tax`); // set application URL
+        this.setEndpoint('/api/v1/market/group-customer-class-tax'); // set api URL
     }
 }

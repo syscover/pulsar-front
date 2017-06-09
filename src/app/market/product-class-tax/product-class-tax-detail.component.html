@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Product class tax</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(object)" novalidate>
         <div class="row">
             <ps-input   [form]="fg"
                         [errors]="formErrors" 

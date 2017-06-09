@@ -8,6 +8,7 @@ export class User {
     profile_id: number;
     access: boolean;
     user: string;
+    password: string;
 }
 
 export class Lang {

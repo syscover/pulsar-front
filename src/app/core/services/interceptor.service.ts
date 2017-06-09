@@ -16,7 +16,7 @@ export class InterceptorXHRBackend extends XHRBackend {
 
         if (authorization) {
             let token = authorization.split(' ');
-            localStorage.setItem('id_token', token[1]);
+            localStorage.setItem('token', token[1]);
         }
 
         return Observable.of(response);

@@ -9,7 +9,7 @@ export class OrderStatusService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/order-status`); // set application URL
-        this.setApiUrl('/api/v1/market/order-status'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/order-status`); // set application URL
+        this.setEndpoint('/api/v1/market/order-status'); // set api URL
     }
 }

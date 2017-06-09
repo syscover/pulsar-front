@@ -9,7 +9,7 @@ export class FieldService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/field`); // set application URL
-        this.setApiUrl('/api/v1/admin/field'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/field`); // set application URL
+        this.setEndpoint('/api/v1/admin/field'); // set api URL
     }
 }

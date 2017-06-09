@@ -9,7 +9,7 @@ export class AttachmentMimeService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/attachment-mime`); // set application URL
-        this.setApiUrl('/api/v1/admin/attachment-mime'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/attachment-mime`); // set application URL
+        this.setEndpoint('/api/v1/admin/attachment-mime'); // set api URL
     }
 }

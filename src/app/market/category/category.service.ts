@@ -9,7 +9,7 @@ export class CategoryService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/category`); // set application URL
-        this.setApiUrl('/api/v1/market/category'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/category`); // set application URL
+        this.setEndpoint('/api/v1/market/category'); // set api URL
     }
 }

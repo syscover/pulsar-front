@@ -1,8 +1,7 @@
-import { InterceptorXHRBackend } from './core/services/interceptor.service';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -16,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
+import { InterceptorXHRBackend } from './core/services/interceptor.service';
 
 @NgModule({
     declarations: [
@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         AppRoutingModule,
         CoreModule,

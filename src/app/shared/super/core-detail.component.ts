@@ -81,7 +81,7 @@ export class CoreDetailComponent extends CoreComponent {
             .subscribe(data => f(data));
     }
 
-    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined, params = []) {
+    onSubmit(object: any, routeRedirect: string = undefined, params = []) {
 
         let obs: Observable<any>; // Observable
 
@@ -95,22 +95,24 @@ export class CoreDetailComponent extends CoreComponent {
         }
 
         if (this.dataRoute.action === 'create') {
-            obs = this.objectService.storeRecord(fg.value);
+            obs = this.objectService.storeRecord(this.fg.value);
         }
         if (this.dataRoute.action === 'create-lang') {
             // Usually the id is disabled, we enable it if you are going to create a new language
-            fg.get('id').enable(); // enable is a method from AbstractControl
+            this.fg.get('id').enable(); // enable is a method from AbstractControl
 
-            obs = this.objectService.storeRecord(fg.value);
+            obs = this.objectService.storeRecord(this.fg.value);
         }
         if (this.dataRoute.action === 'edit') {
 
             params.push(object.id);
-            if (fg.contains('lang_id')) { // check if has languages
-                params.push(fg.controls['lang_id'].value);
+            // check if has languages and lang_id is property lang.
+            // for example, in user lang_id is form determinate user lang, not property lang
+            if (this.fg.contains('lang_id') && (! this.fg.contains('check_lang_id') || this.fg.controls['check_lang_id'].value)) {
+                params.push(this.fg.controls['lang_id'].value);
             }
 
-            obs = this.objectService.updateRecord(fg.value, params);
+            obs = this.objectService.updateRecord(this.fg.value, params);
         }
 
         obs.subscribe(data => {

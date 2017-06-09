@@ -9,7 +9,7 @@ export class PaymentMethodService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/payment-method`); // set application URL
-        this.setApiUrl('/api/v1/market/payment-method'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/payment-method`); // set application URL
+        this.setEndpoint('/api/v1/market/payment-method'); // set api URL
     }
 }

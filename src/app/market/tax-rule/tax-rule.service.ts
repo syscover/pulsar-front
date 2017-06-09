@@ -14,13 +14,13 @@ export class TaxRuleService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/tax-rule`); // set application URL
-        this.setApiUrl('/api/v1/market/tax-rule'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/tax-rule`); // set application URL
+        this.setEndpoint('/api/v1/market/tax-rule'); // set api URL
     }
 
     getProductTaxes(object: any): Observable<JsonResponse> {
         return this.http
-            .post(`${this.apiUrlPrefix}/product-taxes`, object, this.options)
+            .post(`${this.apiUrl}/product-taxes`, object, this.options)
             .map((response: Response) => response.json());
     }
 }

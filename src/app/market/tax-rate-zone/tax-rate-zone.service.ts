@@ -9,7 +9,7 @@ export class TaxRateZoneService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/market/tax-rate-zone`); // set application URL
-        this.setApiUrl('/api/v1/market/tax-rate-zone'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/market/tax-rate-zone`); // set application URL
+        this.setEndpoint('/api/v1/market/tax-rate-zone'); // set api URL
     }
 }

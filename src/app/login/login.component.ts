@@ -1,15 +1,19 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AuthGuard } from '../core/auth/auth-guard.service';
+import { Component, HostBinding } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
+import { User } from './../admin/admin.models';
+import { ConfigService } from '../core/services/config/config.service';
+import { AuthService } from './../core/auth/auth.service';
+
 @Component({
     selector: 'ps-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    templateUrl: './login.component.html'
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
     /*@HostBinding('@fadeInAnimation') get fadeInAnimation(){
         return 'true';
@@ -18,15 +22,36 @@ export class LoginComponent implements OnInit {
     email: string;
     password: string;
     jwtHelper: JwtHelper;
+    user: User = new User();
 
     constructor(
-        public router: Router
-    ) { }
-
-    ngOnInit() {
+        private fb: FormBuilder,
+        private router: Router,
+        private configService: ConfigService,
+        private authService: AuthService,
+        private authGuard: AuthGuard
+    ) {
+        this.createForm();
     }
 
-    login() {
-    this.router.navigate(['/pulsar/admin']);
+    onSubmit() {
+        let auth$ = this.authService
+            .login(this.fg.value)
+            .subscribe(response => {
+                localStorage.setItem('token', response.token);
+                auth$.unsubscribe();
+                if (this.authService.redirectUrl) {
+                    this.router.navigate([this.authService.redirectUrl]);
+                } else {
+                    this.router.navigate([`/${this.configService.appPrefix}/admin`]);
+                }
+            });
+    }
+
+    createForm() {
+        this.fg = this.fb.group({
+            user: ['', Validators.required ],
+            password: ['', Validators.required ]
+        });
     }
 }

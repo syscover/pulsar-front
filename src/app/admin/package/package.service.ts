@@ -9,7 +9,7 @@ export class PackageService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/package`); // set application URL
-        this.setApiUrl('/api/v1/admin/package'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/package`); // set application URL
+        this.setEndpoint('/api/v1/admin/package'); // set api URL
     }
 }

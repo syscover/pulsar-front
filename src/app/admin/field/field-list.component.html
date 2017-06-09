@@ -38,7 +38,7 @@
             <div class="dropdown">
                 <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu datatable-dropdown-actions" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="['/' + appRootPrefix + '/admin/field-value', object.id]"><i class="material-icons">dehaze</i> Values</a>
+                    <a class="dropdown-item" [routerLink]="['/' + appPrefix + '/admin/field-value', object.id]"><i class="material-icons">dehaze</i> Values</a>
                     <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id, baseLang]" style="line-height: 20px"><i class="material-icons">edit</i> Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(f, object)"><i class="material-icons">delete</i> Delete</a>
                 </div>

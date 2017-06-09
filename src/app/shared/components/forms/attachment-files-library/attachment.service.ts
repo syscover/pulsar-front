@@ -14,13 +14,13 @@ export class AttachmentService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/attachment-upload`); // set application URL
-        this.setApiUrl('/api/v1/admin/attachment-upload'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/attachment-upload`); // set application URL
+        this.setEndpoint('/api/v1/admin/attachment-upload'); // set api URL
     }
 
     setCropImage(parameters): Observable<any> {
         return this.http
-            .post(this.getApiUrl('crop', ['crop']), {
+            .post(this.getEndpoint('crop', ['crop']), {
                 'type': 'crop',
                 'parameters': parameters
             }, this.options)
@@ -29,7 +29,7 @@ export class AttachmentService extends CoreService {
 
     deleteAttachment(attachment): Observable<any> {
         return this.http
-            .post(this.getApiUrl('delete', ['delete']), {
+            .post(this.getEndpoint('delete', ['delete']), {
                 'type': 'delete',
                 'attachment': attachment
             }, this.options)

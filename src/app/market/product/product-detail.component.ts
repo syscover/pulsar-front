@@ -152,7 +152,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
-                }); // get order status
+                });
 
                 this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
             });
@@ -246,8 +246,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    onSubmit(fg: FormGroup, object: any, routeRedirect: string = undefined, params = []) {
-        super.onSubmit(fg, object, routeRedirect, params);
+    onSubmit(object: any, routeRedirect: string = undefined, params = []) {
+        super.onSubmit(object, routeRedirect, params);
     }
 
     handleGetProductTaxes(price = null) {

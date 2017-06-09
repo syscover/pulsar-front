@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Product</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(object)" novalidate>
 
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="subtotal">
@@ -175,7 +175,7 @@
                 <ps-attachment-files-library    #attachments
                                                 [form]="fg"
                                                 name="attachments"
-                                                [apiUrl]="apiUrlPrefix + '/api/v1/admin/attachment-upload'"
+                                                [apiUrl]="apiUrl + '/api/v1/admin/attachment-upload'"
                                                 [attachmentFamilies]="attachmentFamilies">
                 </ps-attachment-files-library>
             </p-tabPanel>

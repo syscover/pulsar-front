@@ -9,7 +9,7 @@ export class UserService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/user`); // set application URL
-        this.setApiUrl('/api/v1/admin/user'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/user`); // set application URL
+        this.setEndpoint('/api/v1/admin/user'); // set api URL
     }
 }

@@ -9,7 +9,7 @@ export class ResourceService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/resource`); // set application URL
-        this.setApiUrl('/api/v1/admin/resource'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/resource`); // set application URL
+        this.setEndpoint('/api/v1/admin/resource'); // set api URL
     }
 }

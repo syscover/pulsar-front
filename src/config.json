@@ -1,4 +1,4 @@
 {
-    "apiUrlPrefix": "http://api.pulsar.local",
-    "appRootPrefix": "pulsar"
+    "apiUrl": "http://api.pulsar.local",
+    "appPrefix": "pulsar"
 }

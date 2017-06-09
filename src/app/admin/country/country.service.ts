@@ -9,7 +9,7 @@ export class CountryService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/country`); // set application URL
-        this.setApiUrl('/api/v1/admin/country'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/country`); // set application URL
+        this.setEndpoint('/api/v1/admin/country'); // set api URL
     }
 }

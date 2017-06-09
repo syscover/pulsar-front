@@ -14,14 +14,14 @@ export class LangService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/lang`); // set application URL
-        this.setApiUrl('/api/v1/admin/lang'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/lang`); // set application URL
+        this.setEndpoint('/api/v1/admin/lang'); // set api URL
     }
 
     getActivatedLangs(): Observable<JsonResponse> {
         // build query
         return this.http
-            .post(this.getApiUrl('search'), {
+            .post(this.getEndpoint('search'), {
                 'type': 'query',
                 'parameters': [
                     {

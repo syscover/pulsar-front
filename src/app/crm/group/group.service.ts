@@ -10,7 +10,7 @@ export class GroupService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/crm/group`); // set application URL
-        this.setApiUrl('/api/v1/crm/group'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/crm/group`); // set application URL
+        this.setEndpoint('/api/v1/crm/group'); // set api URL
     }
 }

@@ -9,7 +9,7 @@ export class ActionService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/action`); // set application URL
-        this.setApiUrl('/api/v1/admin/action'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/action`); // set application URL
+        this.setEndpoint('/api/v1/admin/action'); // set api URL
     }
 }

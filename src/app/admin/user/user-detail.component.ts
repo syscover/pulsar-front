@@ -64,6 +64,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit {
             surname: '',
             email: ['', Validators.required ],
             lang_id: ['', Validators.required ],
+            check_lang_id: false,
             profile_id: ['', Validators.required ],
             access: '',
             user: ['', Validators.required ],

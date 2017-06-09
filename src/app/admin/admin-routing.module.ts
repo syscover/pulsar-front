@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { CanActivateChild, RouterModule, Routes } from '@angular/router';
 
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
 
-//import { AuthGuard }                    from '../shared/auth/auth-guard.service';
+import { AuthGuard } from './../core/auth/auth-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './user/user-list.component';
@@ -35,10 +35,11 @@ import { ActionDetailComponent } from './action/action-detail.component';
 const routes: Routes = [
     {
         path: '',
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',                                               component: DataContainerComponent,
+                canActivateChild: [AuthGuard],
                 children: [
                      // Dashboard
                     { path: 'dashboard',                                component: DashboardComponent },

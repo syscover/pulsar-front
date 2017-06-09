@@ -9,7 +9,7 @@ export class ProfileService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/profile`); // set application URL
-        this.setApiUrl('/api/v1/admin/profile'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/profile`); // set application URL
+        this.setEndpoint('/api/v1/admin/profile'); // set api URL
     }
 }

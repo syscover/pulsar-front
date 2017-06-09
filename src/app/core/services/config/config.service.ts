@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class ConfigService {
 
-    apiUrlPrefix: string;
-    appRootPrefix: string;
+    apiUrl: string;
+    appPrefix: string;
 
     protected headers: Headers;
     protected options: RequestOptions;
@@ -36,7 +36,7 @@ export class ConfigService {
 
     public getValue(object: any) {
         return this.http
-            .post(`${this.apiUrlPrefix}/api/v1/admin/config/values`, object, this.options)
+            .post(`${this.apiUrl}/api/v1/admin/config/values`, object, this.options)
             .map((response: Response) => response.json());
     }
 
@@ -60,14 +60,14 @@ export class ConfigService {
                 }).subscribe( (response: Object) => {
 
                     // set global variables
-                    this.apiUrlPrefix = response['apiUrlPrefix'];
-                    this.appRootPrefix = response['appRootPrefix'];
+                    this.apiUrl = response['apiUrl'];
+                    this.appPrefix = response['appPrefix'];
 
                     /**
                      * Start config from server
                      */
-                    this.http.get(`${this.apiUrlPrefix}/api/v1/admin/config/env`).map( res => res.json() ).catch((error: any): any => {
-                            console.log(`Configuratio URL ${this.apiUrlPrefix}/api/v1/admin/config/env could not be read`);
+                    this.http.get(`${this.apiUrl}/api/v1/admin/config/env`).map( res => res.json() ).catch((error: any): any => {
+                            console.log(`Configuratio URL ${this.apiUrl}/api/v1/admin/config/env could not be read`);
                             resolve(true);
                             return Observable.throw(error.json().error || 'Server error');
                         }).subscribe( (envResponse) => {
@@ -76,11 +76,11 @@ export class ConfigService {
 
                             switch (envResponse.env) {
                                 case 'production': {
-                                    request = this.http.get(`${this.apiUrlPrefix}/api/v1/admin/config/bootstrap/${envResponse.env }`);
+                                    request = this.http.get(`${this.apiUrl}/api/v1/admin/config/bootstrap/${envResponse.env }`);
                                 } break;
 
                                 case 'development': {
-                                    request = this.http.get(`${this.apiUrlPrefix}/api/v1/admin/config/bootstrap/${envResponse.env }`);
+                                    request = this.http.get(`${this.apiUrl}/api/v1/admin/config/bootstrap/${envResponse.env }`);
                                 } break;
 
                                 case 'default': {

@@ -9,7 +9,7 @@ export class AttachmentFamilyService extends CoreService {
     ) {
         super(injector);
 
-        this.setBaseUri(`/${this.appRootPrefix}/admin/attachment-family`); // set application URL
-        this.setApiUrl('/api/v1/admin/attachment-family'); // set api URL
+        this.setBaseUri(`/${this.appPrefix}/admin/attachment-family`); // set application URL
+        this.setEndpoint('/api/v1/admin/attachment-family'); // set api URL
     }
 }

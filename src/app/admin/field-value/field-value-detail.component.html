@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Field Value</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg, object, baseUri + '/' + field_id, [field_id])" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(object, baseUri + '/' + field_id, [field_id])" novalidate>
 
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="field_id">
