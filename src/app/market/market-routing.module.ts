@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
+
+import { AuthGuard } from './../core/auth/auth-guard.service';
+
 import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
@@ -24,10 +28,11 @@ import { ProductDetailComponent } from './product/product-detail.component';
 const routes: Routes = [
     {
         path: '',
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',                                                   component: DataContainerComponent,
+                canActivateChild: [AuthGuard],
                 children: [
                     // Categories
                     { path: 'category',                                     component: CategoryListComponent },

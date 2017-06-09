@@ -21,6 +21,15 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
 
     resources: SelectItem[] = [];
     sizes: SelectItem[] = [];
+    formats: SelectItem[] = [
+        { label: 'Select a format image', value: '' },
+        { value: 'jpg', label: 'jpg' },
+        { value: 'png', label: 'png' },
+        { value: 'gif', label: 'gif' },
+        { value: 'tif', label: 'tif' },
+        { value: 'bmp', label: 'bmp' },
+        { value: 'data-url', label: 'data-url' }
+    ];
 
     // paramenters for parent class
     object: AttachmentFamily = new AttachmentFamily(); // set empty object
@@ -69,7 +78,9 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
             name: ['', Validators.required ],
             width: null,
             height: null,
-            sizes: null
+            sizes: null,
+            quality: null,
+            format: ''
         });
     }
 }

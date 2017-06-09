@@ -308,6 +308,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.attachmentService
             .setCropImage({
                 crop: this.cropper.getData('rounded'),
+                attachment_family: this.attachmentFamily,
                 attachment: this.attachment.value       // get values from formGroup
             })
             .subscribe(data => {

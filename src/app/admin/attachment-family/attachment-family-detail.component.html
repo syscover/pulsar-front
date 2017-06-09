@@ -52,6 +52,24 @@
                                 name="sizes"
                                 class="col-sm-12 col-md-6">
             </ps-multi-select>
+
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Quality"
+                            [min]="0"
+                            [max]="100"
+                            name="quality" class="col-sm-12 offset-md-1 col-md-4"></ps-spinner>
+        </div>
+
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="formats"
+                            [filter]="true"
+                            name="format"
+                            class="col-sm-12 col-md-4">
+            </ps-dropdown>
         </div>
 
         <!-- buttons -->

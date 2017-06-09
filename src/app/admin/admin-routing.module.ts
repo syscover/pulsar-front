@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CanActivateChild, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';

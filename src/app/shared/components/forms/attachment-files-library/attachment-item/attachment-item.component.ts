@@ -14,8 +14,8 @@ import { AttachmentFamily, Attachment } from './../../../../../admin/admin.model
 export class AttachmentItemComponent implements OnInit {
 
     @Input() form: FormGroup;
-    @Input() name: string;
-    @Input() index: number;
+    @Input() name: string; // name of form array attachment
+    @Input() index: number; // id to indentify attachement item
     @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() attachment: FormGroup;
     @Output() enableCrop: EventEmitter<any> = new EventEmitter();
@@ -26,6 +26,8 @@ export class AttachmentItemComponent implements OnInit {
     @ViewChild('fileName') public fileName;
 
     familyName: string;
+    imageName: string;
+    imageSize: string;
 
     constructor(
         private fb: FormBuilder
@@ -42,6 +44,15 @@ export class AttachmentItemComponent implements OnInit {
 
         if (this.attachment.get('family.name') !== undefined) {
             this.familyName = this.attachment.get('family.name').value;
+        }
+    }
+
+    setSize(sizeValue: number): string {
+        let size = Math.round(sizeValue / 1024); // convert bytes y kylobites
+        if (size > 1024) {
+            return Math.round((size / 1024) * 100) / 100 + ' Mb';
+        } else {
+            return size + ' Kb';
         }
     }
 
