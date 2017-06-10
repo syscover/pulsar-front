@@ -3,6 +3,8 @@ import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
+// plantear como servicio
+
 export class CoreListComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';

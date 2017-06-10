@@ -49,6 +49,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit {
             });
 
             this.profiles.unshift({ label: 'Select a profile', value: '' });
+
             super.getRecordHasIdParamenter(this.f);
         });
 
