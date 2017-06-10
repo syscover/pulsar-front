@@ -18,6 +18,7 @@ import { DynamicFormService } from './components/forms/dynamic-form/dynamic-form
 import { FieldValueService } from './../admin/field-value/field-value.service';
 import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -43,8 +44,7 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         ConfirmationService,
         DynamicFormService,
         FieldValueService,
-        AttachmentService
-    ],
+        AttachmentService    ],
     exports: [
         CommonModule,
         FormsModule,

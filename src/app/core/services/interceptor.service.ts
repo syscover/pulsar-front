@@ -14,7 +14,7 @@ export class InterceptorXHRBackend extends XHRBackend {
         return connection;
     }
 
-    private processResponse(response: Response) {
+    processResponse(response: Response) {
         let authorization = response.headers.get('Authorization');
 
         if (authorization) {

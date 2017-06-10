@@ -12,6 +12,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     providers: [
         AuthService,
         AuthGuard,
+        /**
+         * register provide AuthHttp and define authHttpServiceFactory to can create object.
+         * with AuthHttp attach one token to request http
+         */
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

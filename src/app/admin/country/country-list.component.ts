@@ -17,7 +17,7 @@ export class CountryListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'country.id', 'country.name', 'lang.name'
+        'country.id', 'country.name'
     ];
     objects: Country[] = []; // initializes the component to has any data for view
     f: Function = data => this.objects = data; // function to set custom data
