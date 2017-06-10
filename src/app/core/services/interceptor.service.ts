@@ -10,11 +10,10 @@ export class InterceptorXHRBackend extends XHRBackend {
 
         // pass callback to response to take toke from server and save in local storage
         connection.response = connection.response.do(this.processResponse);
-        
+
         return connection;
     }
 
-    // 
     private processResponse(response: Response) {
         let authorization = response.headers.get('Authorization');
 
