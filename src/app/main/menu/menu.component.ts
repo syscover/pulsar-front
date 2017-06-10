@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/primeng';
 
 import { MainComponent } from './../main.component';
+import { Package } from './../../admin/admin.models';
+import { PackageService } from './../../admin/package/package.service';
+
+import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-menu',
@@ -27,17 +31,34 @@ export class MenuComponent implements OnInit {
 
     @Input() reset: boolean;
 
-    model: any[];
+    model: any[] = [];
 
     constructor(
-        @Inject(forwardRef(() => MainComponent))
-        public app: MainComponent
+        @Inject(forwardRef(() => MainComponent)) public app: MainComponent,
+        private packageService: PackageService
     ) {}
 
     ngOnInit() {
-        this.model = [
-            {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
-            {
+
+        this.packageService
+            .getRecords()
+            .subscribe(response => {
+                console.log(response.data);
+                this.setMemu(response.data);
+            });
+    }
+
+    setMemu(packages: Package[]) {
+
+        let adminPackage    = _.find(packages, {root: 'admin'});
+        let crmPackage      = _.find(packages, {root: 'crm'});
+        let cmsPackage      = _.find(packages, {root: 'cms'});
+        let marketPackage   = _.find(packages, {root: 'market'});
+
+        this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] });
+
+        if (marketPackage.active) {
+            this.model.push({
                 label: 'Market', icon: 'shopping_cart',
                 items: [
                     {
@@ -65,15 +86,21 @@ export class MenuComponent implements OnInit {
                         ]
                     }
                 ]
-            },
-            {
+            });
+        }
+
+        if (crmPackage.active) {
+            this.model.push({
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
                     {label: 'Customers', icon: 'face', routerLink: ['/pulsar/crm/customer']},
                     {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/group']}
                 ]
-            },
-            {
+            });
+        }
+
+        if (adminPackage.active) {
+            this.model.push({
                 label: 'Administration', icon: 'settings',
                 items: [
                     {label: 'Users', icon: 'group', routerLink: ['/pulsar/admin/user']},
@@ -104,10 +131,11 @@ export class MenuComponent implements OnInit {
                         ]
                     }
                 ]
-            }
-        ];
+            });
+        }
     }
 }
+
 
 @Component({
     selector: '[ps-submenu]',
