@@ -43,7 +43,6 @@ export class MenuComponent implements OnInit {
         this.packageService
             .getRecords()
             .subscribe(response => {
-                console.log(response.data);
                 this.setMemu(response.data);
             });
     }
