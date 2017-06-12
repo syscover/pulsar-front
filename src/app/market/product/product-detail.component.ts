@@ -35,7 +35,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     productClassTaxes: SelectItem[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     products: SelectItem[] = [];
-    // Custom fields
+
+    // custom fields
     fieldGroups: SelectItem[] = [];
     fields: any;
 
@@ -222,6 +223,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
+            code: '',
             categories_id: [[], Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],

@@ -4,8 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { Country } from './../admin.models';
 import { CountryService } from './country.service';
 
 @Component({

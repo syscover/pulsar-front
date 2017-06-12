@@ -56,6 +56,18 @@ export class MenuComponent implements OnInit {
 
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] });
 
+        if (cmsPackage.active) {
+            this.model.push({
+                label: 'CMS', icon: 'art_track',
+                items: [
+                    {label: 'Articles', icon: 'art_track', routerLink: ['/pulsar/cms/user']},
+                    {label: 'Categories', icon: 'list', routerLink: ['/pulsar/cms/user']},
+                    {label: 'Sections', icon: 'power', routerLink: ['/pulsar/cms/user']},
+                    {label: 'Families', icon: 'apps', routerLink: ['/pulsar/cms/family']},
+                ]
+            });
+        }
+
         if (marketPackage.active) {
             this.model.push({
                 label: 'Market', icon: 'shopping_cart',

@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 
 import { AttachmentMimeService } from './attachment-mime.service';
-import { Resource, AttachmentMime } from './../admin.models';
+import { Resource } from './../admin.models';
 
 // custom imports
 import { ResourceService } from './../resource/resource.service';

@@ -88,6 +88,7 @@ export class PaymentMethod {
 export class Product {
     id: number;
     lang_id: string;
+    code: string;
     lang: Lang;
     categories: Category[];
     name: string;

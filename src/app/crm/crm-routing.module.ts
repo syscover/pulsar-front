@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
+
+import { AuthGuard } from './../core/auth/auth-guard.service';
 
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
@@ -9,10 +12,11 @@ import { GroupDetailComponent } from './group/group-detail.component';
 const routes: Routes = [
     {
         path: '',
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',                                       component: DataContainerComponent,
+                canActivateChild: [AuthGuard],
                 children: [
 
                     // Groups
