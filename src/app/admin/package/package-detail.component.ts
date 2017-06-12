@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,17 +11,13 @@ import { Profile } from '../admin.models';
     selector: 'ps-package-detail',
     templateUrl: 'package-detail.component.html'
 })
-export class PackageDetailComponent extends CoreDetailComponent implements OnInit {
+export class PackageDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
         protected objectService: PackageService,
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

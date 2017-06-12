@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,17 +11,13 @@ import { OrderStatus } from '../market.models';
     selector: 'ps-order-status-detail',
     templateUrl: './order-status-detail.component.html'
 })
-export class OrderStatusDetailComponent extends CoreDetailComponent implements OnInit {
+export class OrderStatusDetailComponent extends CoreDetailComponent {
     
     constructor(
         protected injector: Injector,
         protected objectService: OrderStatusService
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

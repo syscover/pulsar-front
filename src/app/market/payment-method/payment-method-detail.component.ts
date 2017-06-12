@@ -57,8 +57,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
                 this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
             });
 
-        // get object
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     createForm() {

@@ -42,14 +42,12 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
     ngOnInit() {
         this.resourceService.getRecords()
             .subscribe((response) => {
+                this.resources = _.map(<Resource[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get resources
 
-            this.resources = _.map(<Resource[]>response.data, obj => {
-                return { value: obj.id, label: obj.name };
-            }); // get resources
-
-            this.resources.unshift({ label: 'Select a resource', value: '' });
-            super.getRecordHasIdParamenter();
-        });
+                this.resources.unshift({ label: 'Select a resource', value: '' });
+            });
 
         // get data types
         this.configService.getValue({
@@ -59,6 +57,8 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
                     return { value: obj.id, label: obj.name };
                 });
             });
+
+        super.init();
     }
 
     createForm() {

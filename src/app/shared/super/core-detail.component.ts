@@ -1,6 +1,6 @@
 import { CoreComponent } from './core.component';
 import { CoreService } from './core.service';
-import { Injector, HostBinding } from '@angular/core';
+import { Injector, HostBinding, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
 
 import * as _ from 'lodash';
 
-export class CoreDetailComponent extends CoreComponent {
+export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     @HostBinding('class') classes = 'animated fadeIn';
 
@@ -55,8 +55,11 @@ export class CoreDetailComponent extends CoreComponent {
     // method that will be overwrite
     createForm() {}
 
-    getRecordHasIdParamenter() {
+    ngOnInit() {
+        this.init();
+    }
 
+    init() {
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
             this.customCallback();

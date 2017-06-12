@@ -31,15 +31,15 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
 
     ngOnInit() {
         this.packageService.getRecords()
-            .subscribe((response) => {
+                .subscribe((response) => {
 
-            this.packages = _.map(<Package[]>response.data, obj => {
-                return { value: obj.id, label: obj.name };
-            }); // get packages
+                this.packages = _.map(<Package[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                }); // get packages
 
-            this.packages.unshift({ label: 'Select a package', value: '' });
-            super.getRecordHasIdParamenter();
-        });
+                this.packages.unshift({ label: 'Select a package', value: '' });
+            });
+        super.init();
     }
 
     createForm() {

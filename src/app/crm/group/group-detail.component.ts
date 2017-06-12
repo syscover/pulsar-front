@@ -11,17 +11,13 @@ import { Group } from '../crm.models';
     selector: 'ps-group-detail',
     templateUrl: './group-detail.component.html'
 })
-export class GroupDetailComponent extends CoreDetailComponent implements OnInit {
+export class GroupDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
         protected objectService: GroupService
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

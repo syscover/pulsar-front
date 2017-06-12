@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,17 +11,13 @@ import { Lang } from '../admin.models';
     selector: 'ps-lang-detail',
     templateUrl: 'lang-detail.component.html'
 })
-export class LangDetailComponent extends CoreDetailComponent implements OnInit {
+export class LangDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
         public objectService: LangService
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

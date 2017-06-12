@@ -34,7 +34,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent implements On
         // set field_id in reactive form
         this.fg.controls['field_id'].setValue(this.field_id);
 
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     createForm() {

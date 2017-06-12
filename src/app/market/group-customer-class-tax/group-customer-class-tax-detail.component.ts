@@ -55,8 +55,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
                 this.customerClassTaxes.unshift({ label: 'Select a customer class tax', value: '' });
             });
 
-
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     createForm() {

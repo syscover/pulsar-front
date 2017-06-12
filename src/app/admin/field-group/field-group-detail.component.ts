@@ -51,9 +51,9 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
 
                     this.resources.unshift({ label: 'Select a resource', value: '' });
 
-                    super.getRecordHasIdParamenter();
                 });
             });
+        super.init();
     }
 
     createForm() {

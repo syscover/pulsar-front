@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,17 +11,13 @@ import { CustomerClassTax } from './../market.models';
     selector: 'app-customer-class-tax-detail',
     templateUrl: 'customer-class-tax-detail.component.html'
 })
-export class CustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
+export class CustomerClassTaxDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
         protected objectService: CustomerClassTaxService,
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

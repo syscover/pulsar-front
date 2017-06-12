@@ -32,20 +32,20 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit {
 
     ngOnInit() {
         this.profileService.getRecords()
-            .subscribe((response) => {
+                .subscribe((response) => {
 
-            this.profiles = _.map(<Profile[]>response.data, obj => {
-                return { value: obj.id, label: obj.name };
+                this.profiles = _.map(<Profile[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
+
+                this.profiles.unshift({ label: 'Select a profile', value: '' });
+
             });
-
-            this.profiles.unshift({ label: 'Select a profile', value: '' });
-
-            super.getRecordHasIdParamenter();
-        });
 
         this.langsAux = _.map(<Lang[]>this.langs, obj => {
             return { value: obj.id, label: obj.name };
         });
+        super.init();
     }
 
     createForm() {

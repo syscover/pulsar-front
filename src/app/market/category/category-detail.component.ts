@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,17 +11,13 @@ import { Category } from '../market.models';
     selector: 'ps-category-detail',
     templateUrl: './category-detail.component.html'
 })
-export class CategoryDetailComponent extends CoreDetailComponent implements OnInit {
+export class CategoryDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
         protected objectService: CategoryService
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-        super.getRecordHasIdParamenter();
     }
 
     createForm() {

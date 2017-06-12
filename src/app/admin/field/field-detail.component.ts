@@ -89,7 +89,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
                 this.dataTypes.unshift({ label: 'Select a data type', value: '' });
             });
 
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     createForm() {

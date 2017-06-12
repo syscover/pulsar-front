@@ -51,8 +51,8 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
                 }); // get types
                 this.countries.unshift({ label: 'Select a country', value: '' });
 
-                super.getRecordHasIdParamenter();
             });
+        super.init();
     }
 
     createForm() {

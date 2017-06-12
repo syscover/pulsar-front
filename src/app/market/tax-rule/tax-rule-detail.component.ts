@@ -78,7 +78,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         });
 
         // get object
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     createForm() {

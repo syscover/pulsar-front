@@ -214,8 +214,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.products.unshift({ label: 'Select a product', value: '' });
             });
 
-        // get object
-        super.getRecordHasIdParamenter();
+        super.init();
     }
 
     // function call from parent
