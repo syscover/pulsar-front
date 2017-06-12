@@ -8,8 +8,6 @@ export class AttachmentFamilyService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/attachment-family`); // set application URL
         this.setEndpoint('/api/v1/admin/attachment-family'); // set api URL
     }
 }

@@ -21,29 +21,12 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
 
     orderStatuses: SelectItem[] = [];
 
-    // paramenters for parent class
-    object: PaymentMethod = new PaymentMethod(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    // set lang id in form from object with multiple language
-                    lang_id: this.lang.id
-                });
-            }
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: PaymentMethodService,
         protected orderStatusService: OrderStatusService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -75,7 +58,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
             });
 
         // get object
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

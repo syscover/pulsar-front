@@ -44,7 +44,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     // paramenters for parent class
     object: Product = new Product(); // set empty object
-    private f: Function = (response = undefined) => {
+    customCallback: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
@@ -82,8 +82,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         private attachmentFamilyService: AttachmentFamilyService,
         private productService: ProductService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -216,7 +215,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             });
 
         // get object
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     // function call from parent

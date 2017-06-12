@@ -22,9 +22,10 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
     fieldTypes: SelectItem[] = [];
     dataTypes: SelectItem[] = [];
 
-    // paramenters for parent class
+    // overwirte method and property in parent class
     object: Field = new Field(); // set empty object
-    private f: Function = (response = undefined) => {
+    customCallback: Function = (response = undefined) => {
+
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
@@ -53,8 +54,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
         protected objectService: FieldService,
         protected fieldGroupService: FieldGroupService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -89,7 +89,7 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
                 this.dataTypes.unshift({ label: 'Select a data type', value: '' });
             });
 
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

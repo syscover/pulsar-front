@@ -17,15 +17,12 @@ export class CategoryListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'category.id', 'category.name', 'lang.name'
     ];
-    objects: Category[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: CategoryService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

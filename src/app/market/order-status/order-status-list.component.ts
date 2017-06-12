@@ -17,15 +17,12 @@ export class OrderStatusListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'order_status.id', 'order_status.name'
     ];
-    objects: OrderStatus[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: OrderStatusService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

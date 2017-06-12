@@ -8,8 +8,6 @@ export class ProductService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/market/product`); // set application URL
         this.setEndpoint('/api/v1/market/product'); // set api URL
     }
 }

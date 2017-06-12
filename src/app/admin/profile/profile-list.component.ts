@@ -17,14 +17,11 @@ export class ProfileListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'id', 'name'
     ];
-    objects: Profile[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         protected injector: Injector,
         protected objectService: ProfileService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

@@ -8,8 +8,6 @@ export class ResourceService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/resource`); // set application URL
         this.setEndpoint('/api/v1/admin/resource'); // set api URL
     }
 }

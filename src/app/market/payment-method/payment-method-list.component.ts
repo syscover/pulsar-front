@@ -17,15 +17,12 @@ export class PaymentMethodListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'payment_method.id', 'payment_method.name'
     ];
-    objects: PaymentMethod[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: PaymentMethodService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

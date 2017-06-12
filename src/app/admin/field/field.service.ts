@@ -8,8 +8,6 @@ export class FieldService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/field`); // set application URL
         this.setEndpoint('/api/v1/admin/field'); // set api URL
     }
 }

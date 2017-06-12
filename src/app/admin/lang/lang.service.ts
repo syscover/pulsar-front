@@ -13,8 +13,6 @@ export class LangService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/lang`); // set application URL
         this.setEndpoint('/api/v1/admin/lang'); // set api URL
     }
 

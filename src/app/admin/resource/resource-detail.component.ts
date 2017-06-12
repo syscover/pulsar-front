@@ -21,22 +21,12 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
 
     packages: SelectItem[] = [];
 
-    // paramenters for parent class
-    object: Resource = new Resource(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: ResourceService,
         protected packageService: PackageService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -48,7 +38,7 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
             }); // get packages
 
             this.packages.unshift({ label: 'Select a package', value: '' });
-            super.getRecordHasIdParamenter(this.f);
+            super.getRecordHasIdParamenter();
         });
     }
 

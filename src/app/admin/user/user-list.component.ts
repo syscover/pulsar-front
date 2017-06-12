@@ -17,14 +17,11 @@ export class UserListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'id', 'name', 'profile.name'
     ];
-    objects: Resource[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         protected injector: Injector,
         protected objectService: UserService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

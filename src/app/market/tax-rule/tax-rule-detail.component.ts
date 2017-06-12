@@ -25,7 +25,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
 
     // paramenters for parent class
     object: TaxRule = new TaxRule(); // set empty object
-    private f: Function = (response = undefined) => {
+    customCallback: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
@@ -46,8 +46,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         protected customerClassTaxService: CustomerClassTaxService,
         protected productClassTaxService: ProductClassTaxService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -79,7 +78,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         });
 
         // get object
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

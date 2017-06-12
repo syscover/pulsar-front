@@ -21,22 +21,12 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
 
     resources: SelectItem[] = [];
 
-    // paramenters for parent class
-    object: FieldGroup = new FieldGroup(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: FieldGroupService,
         protected resourceService: ResourceService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -61,7 +51,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
 
                     this.resources.unshift({ label: 'Select a resource', value: '' });
 
-                    super.getRecordHasIdParamenter(this.f);
+                    super.getRecordHasIdParamenter();
                 });
             });
     }

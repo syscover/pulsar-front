@@ -17,14 +17,11 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'group.name', 'customer_class_tax.name'
     ];
-    objects: GroupCustomerClassTax[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         protected injector: Injector,
         protected objectService: GroupCustomerClassTaxService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

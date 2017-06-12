@@ -17,15 +17,12 @@ export class FieldListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'id', 'name'
     ];
-    objects: Field[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: FieldService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

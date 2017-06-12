@@ -22,10 +22,9 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
 
     // paramenters for parent class
     object: TaxRateZone = new TaxRateZone(); // set empty object
-    private f: Function = (response = undefined) => {
+    customCallback: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit') {
             this.object = response.data; // function to set custom data
-
             this.fg.patchValue(this.object); // set values of form
 
             // TODO, apaño para establecer un valor por defecto
@@ -39,22 +38,20 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
         protected objectService: TaxRateZoneService,
         protected countryService: CountryService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
         // get countries
         this.countryService.getRecords([this.baseLang])
             .subscribe((response) => {
-                //this.countries = <Country[]>response.data;
 
                 this.countries = _.map(<Country[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get types
                 this.countries.unshift({ label: 'Select a country', value: '' });
 
-                super.getRecordHasIdParamenter(this.f);
+                super.getRecordHasIdParamenter();
             });
     }
 

@@ -13,8 +13,6 @@ export class TaxRuleService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/market/tax-rule`); // set application URL
         this.setEndpoint('/api/v1/market/tax-rule'); // set api URL
     }
 

@@ -17,15 +17,12 @@ export class ProductListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'product.id', 'product_lang.name'
     ];
-    objects: Product[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: ProductService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

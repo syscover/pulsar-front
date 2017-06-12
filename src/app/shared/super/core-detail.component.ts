@@ -1,4 +1,5 @@
 import { CoreComponent } from './core.component';
+import { CoreService } from './core.service';
 import { Injector, HostBinding } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -15,17 +16,33 @@ export class CoreDetailComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
 
-    dataRoute: DataRoute; // Static dataRoute Object pass from route module
+    dataRoute: DataRoute; // static dataRoute Object pass from route module
     formErrors: Object;
     fg: FormGroup;
     fb: FormBuilder;
     lang: Lang; // Current lang for objects that has multiple language
+    object: Object = {}; // set empty object
+    // Function that can to be overwrite in child class
+    customCallback: Function = (response = undefined) => {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+            this.object = response.data; // function to set custom data
+            this.fg.patchValue(this.object); // set values of form
+
+            // only form objects with create lang action
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
+        }
+    }
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        protected objectService: CoreService
     ) {
-        super(injector);
-
+        super(injector, objectService);
         this.fb = injector.get(FormBuilder);
 
         // set object properties
@@ -38,14 +55,14 @@ export class CoreDetailComponent extends CoreComponent {
     // method that will be overwrite
     createForm() {}
 
-    getRecordHasIdParamenter(f: Function) {
+    getRecordHasIdParamenter() {
 
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
-            f();
+            this.customCallback();
 
             // set lang_id if form has this field
-            // call after f() to overwrite lang_id field with correct value
+            // call after customCallback() to overwrite lang_id field with correct value
             if (this.fg.contains('lang_id')) {
                 this.fg.patchValue({
                     lang_id: this.lang.id // set lang id in form from object with multiple language
@@ -63,22 +80,24 @@ export class CoreDetailComponent extends CoreComponent {
                 let baseParams = _.clone(this.params); // clone objet because params properties are read-only
                 baseParams['lang'] = this.baseLang; // set baseLang to get object
 
-                this.getRecord(f, baseParams); // get baseLang object
+                this.getRecord(baseParams); // get baseLang object
 
             } else if (this.dataRoute.action === 'edit') {
-                this.getRecord(f, this.params);
+                this.getRecord(this.params);
             }
 
         } else {
             // edit action and create lang
-            this.getRecord(f, this.params);
+            this.getRecord(this.params);
         }
     }
 
-    getRecord(f: Function, params: Params) {
+    getRecord(params: Params) {
         this.objectService
             .getRecord(params)
-            .subscribe(data => f(data));
+            .subscribe(data => {
+                this.customCallback(data);
+            });
     }
 
     onSubmit(object: any, routeRedirect: string = undefined, params = []) {
@@ -117,7 +136,7 @@ export class CoreDetailComponent extends CoreComponent {
 
         obs.subscribe(data => {
             if (! routeRedirect) {
-                this.router.navigate([this.objectService.baseUri]);
+                this.router.navigate([this.baseUri]);
             } else {
                 this.router.navigate([routeRedirect]);
             }
@@ -146,7 +165,7 @@ export class CoreDetailComponent extends CoreComponent {
                     .deleteRecord(params)
                     .subscribe(data => {
                         if (! routeRedirect) {
-                            this.router.navigate([this.objectService.baseUri]);
+                            this.router.navigate([this.baseUri]);
                         } else {
                             this.router.navigate([routeRedirect]);
                         }

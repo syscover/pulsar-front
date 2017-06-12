@@ -15,15 +15,14 @@ export class CoreService extends Core {
     protected options: RequestOptions;
     protected http: Http;
     protected authHttp: AuthHttp;
-    private _baseUri: string;
 
     constructor(
         protected injector: Injector
     ) {
         super(injector);
 
-        this.http = injector.get(Http);
-        this.authHttp = injector.get(AuthHttp);
+        this.http = this.injector.get(Http);
+        this.authHttp = this.injector.get(AuthHttp);
 
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
@@ -79,15 +78,6 @@ export class CoreService extends Core {
             .map(response => response.json());
     }
 
-    // use magick methods to keep the same format that setEndpoint method
-    protected setBaseUri(baseUri: string) {
-        this._baseUri = baseUri; // set base uri
-    }
-
-    get baseUri(): string {
-        return this._baseUri; // get base uri
-    }
-
     protected setEndpoint(urlAddons: string) {
         this.apiUrl = this.apiUrl + urlAddons; // set api URL
     }
@@ -96,7 +86,7 @@ export class CoreService extends Core {
 
         let urlParams = '';
         /**
-         * If you have any parameters the url is composed 
+         * If you have any parameters the url is composed
          * according to the order of parameters
          */
         if (params !== undefined) {

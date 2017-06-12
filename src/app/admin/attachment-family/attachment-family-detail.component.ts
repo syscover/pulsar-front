@@ -31,22 +31,12 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
         { value: 'data-url', label: 'data-url' }
     ];
 
-    // paramenters for parent class
-    object: AttachmentFamily = new AttachmentFamily(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: AttachmentFamilyService,
         protected resourceService: ResourceService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -58,7 +48,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
             }); // get resources
 
             this.resources.unshift({ label: 'Select a resource', value: '' });
-            super.getRecordHasIdParamenter(this.f);
+            super.getRecordHasIdParamenter();
         });
 
         // get data types

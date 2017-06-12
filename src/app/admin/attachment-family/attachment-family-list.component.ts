@@ -17,14 +17,11 @@ export class AttachmentFamilyListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'id', 'name'
     ];
-    objects: Package[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         protected injector: Injector,
         protected objectService: AttachmentFamilyService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

@@ -13,25 +13,15 @@ import { CustomerClassTax } from './../market.models';
 })
 export class CustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
 
-    // paramenters for parent class
-    object: CustomerClassTax = new CustomerClassTax(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-            this.fg.setValue(this.object); // set values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: CustomerClassTaxService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

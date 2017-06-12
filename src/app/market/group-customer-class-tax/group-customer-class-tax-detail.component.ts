@@ -25,25 +25,13 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
     groups: SelectItem[] = [];
     customerClassTaxes: SelectItem[] = [];
 
-    // paramenters for parent class
-    object: GroupCustomerClassTax = new GroupCustomerClassTax(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-
-            // data retuned has more data that fields form
-            this.fg.patchValue(this.object); // patch values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: GroupCustomerClassTaxService,
         protected customerClassTaxService: CustomerClassTaxService,
         protected groupService: GroupService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
@@ -68,7 +56,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
             });
 
 
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

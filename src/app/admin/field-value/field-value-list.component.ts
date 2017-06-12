@@ -19,23 +19,20 @@ export class FieldValueListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'id', 'name'
     ];
-    objects: Field[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: FieldValueService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string) {
+    loadDadaTableLazy(event: LazyLoadEvent, lang: string) {
 
         // add parameters before call loadDadaTableLazy to filter records
-        super.loadDadaTableLazy(event, f, lang, [{
+        super.loadDadaTableLazy(event, lang, [{
             'command': 'where',
             'column': 'field_id',
             'operator': '=',

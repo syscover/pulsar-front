@@ -1,4 +1,5 @@
 import { CoreComponent } from './core.component';
+import { CoreService } from './core.service';
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
@@ -10,21 +11,25 @@ export class CoreListComponent extends CoreComponent {
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
-    totalRecords: number;     // total records in datatable
-    filteredRecords: number;     // filtered records over total
-    columnsSearch: string[];  // columns where will be used for global searchs
+    objects: any[] = [];        // property that can to be overwrite in child class
+    totalRecords: number;       // total records in datatable
+    filteredRecords: number;    // filtered records over total
+    columnsSearch: string[];    // columns where will be used for global searchs
+    // Function that can to be overwrite in child class
+    customCallback: Function = data => this.objects = data;
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        protected objectService: CoreService
     ) {
-        super(injector);
+        super(injector, objectService);
     }
 
     getRecords(f: Function): void {
         this.objectService
             .getRecords()
             .subscribe((response: any) => {
-                f(response.data);
+                this.customCallback(response.data);
             });
     }
 
@@ -32,11 +37,10 @@ export class CoreListComponent extends CoreComponent {
      * loadDadaTableLazy method
      *
      * @param event
-     * @param f
      * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
      * @param parameters    when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazy(event: LazyLoadEvent, f: Function, lang: string = undefined, params: Object[] = undefined) {
+    loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, params: Object[] = undefined) {
 
         if (params === undefined) {
             params = []; // create empty array
@@ -83,7 +87,9 @@ export class CoreListComponent extends CoreComponent {
             .subscribe((response) => {
                 this.totalRecords = response.total;
                 this.filteredRecords = response.filtered;
-                f(response.data);
+
+                // instance data on object list
+                this.customCallback(response.data);
             });
     }
 

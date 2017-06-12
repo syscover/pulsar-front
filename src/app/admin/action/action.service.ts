@@ -8,8 +8,6 @@ export class ActionService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/action`); // set application URL
-        this.setEndpoint('/api/v1/admin/action'); // set api URL
+        this.setEndpoint('/api/v1/admin/action'); // set endpoint api URL
     }
 }

@@ -8,8 +8,6 @@ export class OrderStatusService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/market/order-status`); // set application URL
         this.setEndpoint('/api/v1/market/order-status'); // set api URL
     }
 }

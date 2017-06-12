@@ -22,16 +22,13 @@ export class TaxRuleListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'tax_rate_zone.id', 'tax_rate_zone.name', 'tax_rate_zone.tax_rate'
     ];
-    objects: TaxRule[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: TaxRuleService,
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
         this._ = _;
     }
 }

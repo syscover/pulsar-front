@@ -8,8 +8,6 @@ export class ProductClassTaxService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/market/product-class-tax`); // set application URL
         this.setEndpoint('/api/v1/market/product-class-tax'); // set api URL
     }
 }

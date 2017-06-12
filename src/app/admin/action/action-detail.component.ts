@@ -3,9 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { ActionService } from './action.service';
-import { Action } from '../admin.models';
 
 @Component({
     selector: 'ps-action-detail',
@@ -13,25 +11,15 @@ import { Action } from '../admin.models';
 })
 export class ActionDetailComponent extends CoreDetailComponent implements OnInit {
 
-    // paramenters for parent class
-    object: Action = new Action(); // set empty object
-    private f: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response.data; // function to set custom data
-            this.fg.setValue(this.object); // set values of form
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected objectService: ActionService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 
     ngOnInit() {
-        super.getRecordHasIdParamenter(this.f);
+        super.getRecordHasIdParamenter();
     }
 
     createForm() {

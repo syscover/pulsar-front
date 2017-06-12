@@ -19,15 +19,12 @@ export class CountryListComponent extends CoreListComponent {
     columnsSearch: string[] = [
         'country.id', 'country.name'
     ];
-    objects: Country[] = []; // initializes the component to has any data for view
-    f: Function = data => this.objects = data; // function to set custom data
 
     constructor(
         // service for parent class
         protected injector: Injector,
         protected objectService: CountryService
     ) {
-        super(injector);
-        this.baseUri = objectService.baseUri;
+        super(injector, objectService);
     }
 }

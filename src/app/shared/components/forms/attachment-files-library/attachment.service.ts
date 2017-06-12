@@ -13,8 +13,6 @@ export class AttachmentService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/attachment-upload`); // set application URL
         this.setEndpoint('/api/v1/admin/attachment-upload'); // set api URL
     }
 

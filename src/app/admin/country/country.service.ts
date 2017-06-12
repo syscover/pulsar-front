@@ -8,8 +8,6 @@ export class CountryService extends CoreService {
         protected injector: Injector
     ) {
         super(injector);
-
-        this.setBaseUri(`/${this.appPrefix}/admin/country`); // set application URL
         this.setEndpoint('/api/v1/admin/country'); // set api URL
     }
 }
