@@ -23,7 +23,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     @Input() form: FormGroup;
     @Input() name: string;                                  // name of input that contain attachmens FormArray
     @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
-    @Input() apiUrl: string;                                // API url where call once drop elements
+    @Input() endpoint: string;                              // API url where call once drop elements
     @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
     // View elements
@@ -269,7 +269,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             }
         };
 
-        xhr.open('POST', this.apiUrl, true);
+        xhr.open('POST', this.endpoint, true);
         xhr.withCredentials = this.withCredentials;
         xhr.send(formData);
     }
