@@ -40,6 +40,8 @@ export class LoginComponent {
             .subscribe(response => {
                 localStorage.setItem('token', response.token);
                 auth$.unsubscribe();
+
+                // redirect to admin or retrieve the url you wanted to go
                 if (this.authService.redirectUrl) {
                     this.router.navigate([this.authService.redirectUrl]);
                 } else {

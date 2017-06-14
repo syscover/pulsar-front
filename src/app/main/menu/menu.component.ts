@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/primeng';
 import { MainComponent } from './../main.component';
 import { Package } from './../../admin/admin.models';
 import { PackageService } from './../../admin/package/package.service';
+import { environment } from './../../../environments/environment';
 
 import * as _ from 'lodash';
 
@@ -39,15 +40,19 @@ export class MenuComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-
-        this.packageService
+        // get package to know who is active
+        if (environment.production) {
+            this.packageService
             .getRecords()
             .subscribe(response => {
                 this.setMemu(response.data);
             });
+        } else {
+            this.setMemu();
+        }
     }
 
-    setMemu(packages: Package[]) {
+    setMemu(packages: Package[] = []) {
 
         let adminPackage    = _.find(packages, {root: 'admin'});
         let crmPackage      = _.find(packages, {root: 'crm'});
@@ -56,19 +61,19 @@ export class MenuComponent implements OnInit {
 
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] });
 
-        if (cmsPackage.active) {
+        if (! environment.production || cmsPackage.active) {
             this.model.push({
                 label: 'CMS', icon: 'art_track',
                 items: [
-                    {label: 'Articles', icon: 'art_track', routerLink: ['/pulsar/cms/user']},
-                    {label: 'Categories', icon: 'list', routerLink: ['/pulsar/cms/user']},
-                    {label: 'Sections', icon: 'power', routerLink: ['/pulsar/cms/user']},
+                    {label: 'Articles', icon: 'art_track', routerLink: ['/pulsar/cms/article']},
+                    {label: 'Categories', icon: 'list', routerLink: ['/pulsar/cms/category']},
+                    {label: 'Sections', icon: 'power', routerLink: ['/pulsar/cms/section']},
                     {label: 'Families', icon: 'apps', routerLink: ['/pulsar/cms/family']},
                 ]
             });
         }
 
-        if (marketPackage.active) {
+        if (! environment.production || marketPackage.active) {
             this.model.push({
                 label: 'Market', icon: 'shopping_cart',
                 items: [
@@ -100,7 +105,7 @@ export class MenuComponent implements OnInit {
             });
         }
 
-        if (crmPackage.active) {
+        if (! environment.production || crmPackage.active) {
             this.model.push({
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
@@ -110,7 +115,7 @@ export class MenuComponent implements OnInit {
             });
         }
 
-        if (adminPackage.active) {
+        if (! environment.production || adminPackage.active) {
             this.model.push({
                 label: 'Administration', icon: 'settings',
                 items: [

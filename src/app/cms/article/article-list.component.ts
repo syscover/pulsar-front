@@ -3,24 +3,24 @@ import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 
 import { CoreListComponent } from './../../shared/super/core-list.component';
 
-import { CategoryService } from './category.service';
+import { ArticleService } from './article.service';
 
 @Component({
-    selector: 'ps-category-list',
-    templateUrl: './category-list.component.html'
+    selector: 'ps-article-list',
+    templateUrl: './article-list.component.html'
 })
-export class CategoryListComponent extends CoreListComponent {
+export class ArticleListComponent extends CoreListComponent {
 
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'category.id', 'category.name', 'lang.name'
+        'article.id', 'article.name', 'article.name'
     ];
 
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: CategoryService,
+        protected objectService: ArticleService,
     ) {
         super(injector, objectService);
     }

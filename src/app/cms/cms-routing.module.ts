@@ -6,6 +6,12 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
+import { ArticleListComponent } from './article/article-list.component';
+import { ArticleDetailComponent } from './article/article-detail.component';
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
+import { SectionListComponent } from './section/section-list.component';
+import { SectionDetailComponent } from './section/section-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 
@@ -20,27 +26,28 @@ const routes: Routes = [
                 children: [
 
                     // Articles
-                    /*{ path: 'article',                              component: GroupListComponent },
-                    { path: 'article/create',                       component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'article/show/:id',                     component: GroupDetailComponent,       data: { action: 'edit' }},
+                    { path: 'article',                              component: ArticleListComponent },
+                    { path: 'article/create',                       component: ArticleDetailComponent,              data: { action: 'create' }},
+                    { path: 'article/show/:id',                     component: ArticleDetailComponent,              data: { action: 'edit' }},
 
                     // Categories
-                    { path: 'category',                              component: GroupListComponent },
-                    { path: 'category/create',                       component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'category/show/:id',                     component: GroupDetailComponent,       data: { action: 'edit' }},
+                    { path: 'category',                             component: CategoryListComponent },
+                    { path: 'category/create',                      component: CategoryDetailComponent,             data: { action: 'create' }},
+                    { path: 'category/create/:id/:lang',            component: CategoryDetailComponent,             data: { action: 'create-lang' }},
+                    { path: 'category/show/:id/:lang',              component: CategoryDetailComponent,             data: { action: 'edit' }},
 
                     // Secions
-                    { path: 'section',                              component: GroupListComponent },
-                    { path: 'section/create',                       component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'section/show/:id',                     component: GroupDetailComponent,       data: { action: 'edit' }},*/
+                    { path: 'section',                              component: SectionListComponent },
+                    { path: 'section/create',                       component: SectionDetailComponent,              data: { action: 'create' }},
+                    { path: 'section/show/:id',                     component: SectionDetailComponent,              data: { action: 'edit' }},
 
                     // Articles families
                     { path: 'family',                               component: FamilyListComponent },
-                    { path: 'family/create',                        component: FamilyDetailComponent,       data: { action: 'create' }},
-                    { path: 'family/show/:id',                      component: FamilyDetailComponent,       data: { action: 'edit' }},
+                    { path: 'family/create',                        component: FamilyDetailComponent,               data: { action: 'create' }},
+                    { path: 'family/show/:id',                      component: FamilyDetailComponent,               data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '**',                               component: ErrorComponent,             data: { error: '404' }}
+                    { path: '**',                                   component: ErrorComponent,                      data: { error: '404' }}
                 ]
             }
         ]

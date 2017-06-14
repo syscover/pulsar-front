@@ -19,7 +19,7 @@ export class AuthService extends CoreService {
     }
 
     login(user: User) {
-
+        // send credentials to server
         return this.http
             .post(this.getEndpoint('login'), {
                     user: user.user,

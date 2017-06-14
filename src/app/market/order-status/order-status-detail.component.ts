@@ -12,7 +12,7 @@ import { OrderStatus } from '../market.models';
     templateUrl: './order-status-detail.component.html'
 })
 export class OrderStatusDetailComponent extends CoreDetailComponent {
-    
+
     constructor(
         protected injector: Injector,
         protected objectService: OrderStatusService

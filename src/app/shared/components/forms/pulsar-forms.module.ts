@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../../modules/prime-ng.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
-import { ButtonComponent } from './button.component';
+import { CalendarComponent } from './calendar.component';
 import { AutocompleteComponent } from './autocomplete.component';
 import { CheckboxComponent } from './checkbox.component';
 import { DropdownComponent } from './dropdown.component';
@@ -18,10 +18,12 @@ import { AttachmentFilesLibraryComponent } from './attachment-files-library/atta
 import { AttachmentItemComponent } from './attachment-files-library/attachment-item/attachment-item.component';
 import { ImageComponent } from './image.component';
 import { SortableDirective } from './sortable.directive';
+import { ButtonComponent } from './button.component';
 import { FormatSizePipe } from '../../pipes/format-size.pipe';
 
 @NgModule({
     declarations: [
+        CalendarComponent,
         AutocompleteComponent,
         ButtonComponent,
         CheckboxComponent,
@@ -47,6 +49,7 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
         FroalaViewModule.forRoot()
     ],
     exports: [
+        CalendarComponent,
         AutocompleteComponent,
         ButtonComponent,
         CheckboxComponent,

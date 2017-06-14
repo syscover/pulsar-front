@@ -1,0 +1,152 @@
+<div class="container-fluid form-group">
+    <h1>Article</h1>
+
+    <form [formGroup]="fg" (ngSubmit)="onSubmit(object)" novalidate>
+
+        <input type="hidden" formControlName="lang_id">
+        <input type="hidden" formControlName="author_id">
+
+        <p-tabView>
+            <p-tabPanel header="Properties" leftIcon="ui-icon-check" class="padding-top-20">
+
+                <div class="row margin-top-30">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="ID."
+                                type="text"
+                                name="id" class="col-sm-6 col-md-3"></ps-input>
+
+                    <ps-lang-label  [lang]="lang" class="col-sm-6 offset-md-1 col-md-3"></ps-lang-label>
+                </div>
+
+                <div class="row">
+                    <ps-calendar    [form]="fg" 
+                                    [errors]="formErrors"
+                                    [showTime]="true"
+                                    [showIcon]="true"
+                                    dateFormat="mm/dd/yy"
+                                    label="Publish"
+                                    name="publish_text" class="col-sm-12 col-md-5"></ps-calendar>
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Author"
+                                type="text"
+                                name="author" class="col-sm-12 offset-md-1 col-md-6"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-dropdown    [form]="fg"
+                                    [errors]="formErrors"
+                                    [autoWidth]="false"
+                                    [filter]="true"
+                                    [options]="sections"
+                                    name="section_id"
+                                    class="col-sm-12 col-md-5">
+                    </ps-dropdown>
+
+                    <ps-dropdown    [form]="fg"
+                                    [errors]="formErrors"
+                                    [autoWidth]="false"
+                                    [options]="statuses"
+                                    name="status_id"
+                                    class="col-sm-12 offset-md-1 col-md-5">
+                    </ps-dropdown>
+                </div>
+
+                <div class="row">
+                    <ps-dropdown    [form]="fg"
+                                    [errors]="formErrors"
+                                    [autoWidth]="false"
+                                    [filter]="true"
+                                    [options]="families"
+                                    name="family_id"
+                                    class="col-sm-12 col-md-5">
+                    </ps-dropdown>
+                </div>
+
+                <ps-form-header title="Content"
+                                icon="fa ui-icon-subject"></ps-form-header>
+
+                <div class="row">
+                    <ps-calendar    [form]="fg" 
+                                    [errors]="formErrors"
+                                    [showIcon]="true"
+                                    dateFormat="mm/dd/yy"
+                                    label="Date"
+                                    name="date" class="col-sm-12 col-md-5"></ps-calendar>
+                </div>
+
+                <div class="row">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Title"
+                                type="text"
+                                name="title" class="col-12"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Slug"
+                                type="text"
+                                name="slug" class="col-12"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Link"
+                                type="text"
+                                name="link" class="col-8"></ps-input>
+                </div>
+
+                <div class="row">
+                    <ps-spinner     [form]="fg" 
+                                    [errors]="formErrors"
+                                    label="Sort"
+                                    [min]="0"
+                                    name="sort" class="col-sm-12 col-md-4"></ps-spinner>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="Article" leftIcon="ui-icon-edit">
+                <ps-editor  [form]="fg" 
+                            name="article"
+                            placeholder="Enter here your article"
+                            [heightMin]="400"></ps-editor>
+            </p-tabPanel>
+
+            <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
+                <ps-attachment-files-library    #attachments
+                                                [form]="fg"
+                                                name="attachments"
+                                                [endpoint]="apiUrl + '/api/v1/admin/attachment-upload'"
+                                                [attachmentFamilies]="attachmentFamilies">
+                </ps-attachment-files-library>
+            </p-tabPanel>
+        </p-tabView>
+
+
+        <!-- buttons -->
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons margin-top-30">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        *ngIf="dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object)" 
+                        className="red-btn"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>

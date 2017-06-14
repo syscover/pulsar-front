@@ -25,8 +25,7 @@ export class CategoryDetailComponent extends CoreDetailComponent {
             lang_id: ['', Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],
-            active: '',
-            description: ''
+            sort: null
         });
     }
 }

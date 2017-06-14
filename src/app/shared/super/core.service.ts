@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Params } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthHttp } from 'angular2-jwt';
@@ -15,6 +15,7 @@ export class CoreService extends Core {
     protected options: RequestOptions;
     protected http: Http;
     protected authHttp: AuthHttp;
+    protected router: Router;
 
     constructor(
         protected injector: Injector
@@ -24,28 +25,42 @@ export class CoreService extends Core {
         this.http = this.injector.get(Http);
         this.authHttp = this.injector.get(AuthHttp);
 
+        this.router = this.injector.get(Router);
+
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
     proxyGet(action: string, params: Params = undefined) {
         return this.authHttp
-            .get(this.getEndpoint(action, params), this.apiUrl);
+            .get(this.getEndpoint(action, params), this.apiUrl)
+            .catch(this.handleError);
     }
 
     proxyPost(action: string, object: any, params: Params = undefined) {
         return this.authHttp
-            .post(this.getEndpoint(action, params), object, this.options);
+            .post(this.getEndpoint(action, params), object, this.options)
+            .catch(this.handleError);
     }
 
     proxyPut(action: string, object: any, params: Params) {
         return this.authHttp
-            .put(this.getEndpoint(action, params), object, this.options);
+            .put(this.getEndpoint(action, params), object, this.options)
+            .catch(this.handleError);
     }
 
     proxyDelete(action: string, params: Params) {
         return this.authHttp
-            .delete(this.getEndpoint(action, params));
+            .delete(this.getEndpoint(action, params))
+            .catch(this.handleError);
+    }
+
+    private handleError = (err) => {
+        console.log(err);
+        if (err.status === 401) {
+            this.router.navigate(['/pulsar/login']); // redirect to login if token is invalid
+        }
+        return Observable.throw('Error Observable.throw: ' + err.statusText);
     }
 
     searchRecords(object: any, params: Params = undefined): Observable<JsonResponse> {
