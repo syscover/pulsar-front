@@ -18,7 +18,7 @@ import { DynamicFormService } from './../../shared/components/forms/dynamic-form
 
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
-import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
+import { Field, FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 
 import * as _ from 'lodash';
 
@@ -38,7 +38,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     // custom fields
     fieldGroups: SelectItem[] = [];
-    fields: any;
+    fields: Field[];
 
     @ViewChild('productClassTax') private productClassTax;
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
@@ -80,8 +80,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         private dynamicFormService: DynamicFormService,
         protected fieldGroupService: FieldGroupService,
         protected fieldService: FieldService,
-        private attachmentFamilyService: AttachmentFamilyService,
-        private productService: ProductService
+        private attachmentFamilyService: AttachmentFamilyService
     ) {
         super(injector, objectService);
     }
@@ -204,9 +203,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 'operator': '<>',
                 'value': this.params['id']
             });
-        }
+        };
 
-        this.productService.searchRecords(query)
+        this.objectService.searchRecords(query)
             .subscribe((response) => {
                 this.products = _.map(<Product[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };

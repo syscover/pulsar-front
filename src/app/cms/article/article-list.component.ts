@@ -14,7 +14,7 @@ export class ArticleListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'article.id', 'article.name', 'article.name'
+        'article.id', 'article.name', 'article.publish'
     ];
 
     constructor(

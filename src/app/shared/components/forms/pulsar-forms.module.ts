@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../../modules/prime-ng.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
+import { ChipsComponent } from './chips.component';
 import { CalendarComponent } from './calendar.component';
 import { AutocompleteComponent } from './autocomplete.component';
 import { CheckboxComponent } from './checkbox.component';
@@ -23,6 +24,7 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
 
 @NgModule({
     declarations: [
+        ChipsComponent,
         CalendarComponent,
         AutocompleteComponent,
         ButtonComponent,
@@ -49,6 +51,7 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
         FroalaViewModule.forRoot()
     ],
     exports: [
+        ChipsComponent,
         CalendarComponent,
         AutocompleteComponent,
         ButtonComponent,
@@ -68,7 +71,8 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
         SortableDirective,
         FormatSizePipe
     ],
-    providers: [],
+    providers: [
+    ],
 })
 
 export class PulsarFormsModule { }

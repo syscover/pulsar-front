@@ -3,6 +3,7 @@ import { CanActivate, CanActivateChild, NavigationExtras, Router, ActivatedRoute
 
 import { AuthService } from './auth.service';
 import { ConfigService } from './../services/config/config.service';
+import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -23,6 +24,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     }
 
     checkLogin(url: string): boolean {
+
+        /*if (! environment.production) {
+            return true;
+        }*/
+
         if (this.authService.loggedIn()) {
             return true;
         }

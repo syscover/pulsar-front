@@ -27,8 +27,9 @@ const routes: Routes = [
 
                     // Articles
                     { path: 'article',                              component: ArticleListComponent },
-                    { path: 'article/create',                       component: ArticleDetailComponent,              data: { action: 'create' }},
-                    { path: 'article/show/:id',                     component: ArticleDetailComponent,              data: { action: 'edit' }},
+                    { path: 'article/create',                       component: ArticleDetailComponent,             data: { action: 'create' }},
+                    { path: 'article/create/:id/:lang',             component: ArticleDetailComponent,             data: { action: 'create-lang' }},
+                    { path: 'article/show/:id/:lang',               component: ArticleDetailComponent,             data: { action: 'edit' }},
 
                     // Categories
                     { path: 'category',                             component: CategoryListComponent },

@@ -1,3 +1,4 @@
+import { User } from './../admin/admin.models';
 
 export class Editor {
     id: number;
@@ -24,6 +25,13 @@ export class Section {
     id: string;
     name: string;
     article_family_id: number;
+    family: Family
+}
+
+export class Tag {
+    id: number;
+    lang_id: string;
+    name: string;
 }
 
 export class Category {
@@ -40,18 +48,22 @@ export class Article {
     id: number;
     lang_id: string;
     parent_article_id: number;
+    name: string;
     author_id: number;
+    author: User;
     section_id: number;
     family_id: number;
+    family: Family;
     status_id: number;
-    publish: number;
-    publish_text: string;
-    date: number;
+    publish: any;
+    date: any;
     title: string;
     slug: string;
+    categories: Category[];
     link: string;
     blank: boolean;
     sort: number;
     article: string;
+    tags: Tag[];
     data_lang: string;
 }

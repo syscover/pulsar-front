@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { CoreService } from './../../shared/super/core.service';
-import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt';
 
 import { User } from './../../admin/admin.models';
 
@@ -10,6 +10,7 @@ export class AuthService extends CoreService {
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
+    jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(
         protected injector: Injector
@@ -30,5 +31,9 @@ export class AuthService extends CoreService {
 
     loggedIn() {
         return tokenNotExpired();
+    }
+
+    user() {
+        return <User>this.jwtHelper.decodeToken(localStorage.getItem('token'));
     }
 }

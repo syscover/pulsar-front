@@ -1,19 +1,16 @@
-import { Component, Input, Output, OnInit, AfterContentInit, EventEmitter, ViewChild, ContentChildren, QueryList } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { SelectItem, Dropdown, PrimeTemplate } from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 
 import { onValueChangedFormControl } from './../../super/core-validation';
 
 @Component({
-    selector: 'ps-dropdown',
+    selector: 'ps-chips',
     template: `
         <div [formGroup]="form">
-            <p-dropdown [formControlName]="name" 
-                        [options]="options" 
-                        [autoWidth]="autoWidth"
-                        [filter]=filter
-                        (onChange)="handleChange($event)">
-            </p-dropdown>
+            <p-chips  [formControlName]="name"
+                      [placeholder]="label">
+            </p-chips>
             <div *ngIf="error" class="ui-dropdown-message ui-message ui-messages-error ui-corner-all">
                 {{ error }}
             </div>
@@ -30,21 +27,15 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             border-bottom-color: #e62a10; 
         }`]
 })
-export class DropdownComponent implements OnInit, AfterContentInit {
+export class ChipsComponent implements OnInit {
 
     @Input() form: FormGroup;
     @Input() options: SelectItem[] = [];
     @Input() name: string;
-    @Input() autoWidth: boolean;
-    @Input() filter: string;
-
-    @ViewChild(Dropdown) pDropdown: Dropdown;
-    @ContentChildren(PrimeTemplate) templates: QueryList<any>;
+    @Input() label: string;
 
     formControl: AbstractControl;
     error: string;
-
-    @Output() onChange: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
@@ -58,11 +49,6 @@ export class DropdownComponent implements OnInit, AfterContentInit {
             .subscribe(data => this.error = onValueChangedFormControl(this.formControl, data));
     }
 
-    ngAfterContentInit() {
-        this.pDropdown.templates = this.templates; // set custom tamplates in dropdown
-        this.pDropdown.ngAfterContentInit();
-    }
-
     @Input()
     set errors(errors: Object){
         if (this.name && errors && errors[this.name]) {
@@ -70,7 +56,4 @@ export class DropdownComponent implements OnInit, AfterContentInit {
         }
     }
 
-    handleChange($event) {
-        this.onChange.emit($event);
-    }
 }

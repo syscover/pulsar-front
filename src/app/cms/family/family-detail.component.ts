@@ -33,36 +33,34 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
         // get editors
         this.configService.getValue({
                 key: 'pulsar.cms.editors'
-            }).subscribe((response) => {
+            }).flatMap((response) => {
 
                 this.editors = _.map(<Editor[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get types
                 this.editors.unshift({ label: 'Select a editor', value: '' });
-            });
 
-        // get field groups
-        this.fieldGroupService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'field_group.resource_id',
-                        'operator': '=',
-                        'value': 'cms-article-family'
-                    }
-                ]
-            })
-            .subscribe((response) => {
+                return this.fieldGroupService.searchRecords({
+                    'type': 'query',
+                    'parameters': [
+                        {
+                            'command': 'where',
+                            'column': 'field_group.resource_id',
+                            'operator': '=',
+                            'value': 'cms-article-family'
+                        }
+                    ]
+                }); // return next observable
+            }).subscribe((response) => {
 
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
 
                 this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
-            });
 
-        this.init();
+                this.init();
+            });
     }
 
     createForm() {
