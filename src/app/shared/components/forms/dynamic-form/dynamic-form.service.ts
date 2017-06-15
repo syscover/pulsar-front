@@ -16,9 +16,9 @@ export class DynamicFormService {
         private fieldService: FieldService
     ) { }
 
-    instance(fg: FormGroup, properties: any, f: Function) {
+    instance(fieldGroup: number, fg: FormGroup, properties: any, f: Function) {
 
-        if (fg.contains('field_group_id') && fg.get('field_group_id').value !== '') {
+        if (fieldGroup) {
             this.fieldService.searchRecords({
                 'type': 'query',
                 'parameters': [
@@ -26,7 +26,7 @@ export class DynamicFormService {
                         'command': 'where',
                         'column': 'field.field_group_id',
                         'operator': '=',
-                        'value': fg.get('field_group_id').value
+                        'value': fieldGroup
                     },
                     {
                         'command': 'orderBy',
@@ -59,6 +59,7 @@ export class DynamicFormService {
             });
 
         } else {
+            // retun a undefined value
             this.fields = undefined;
             f(this.fields);
         }
