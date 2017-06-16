@@ -17,7 +17,7 @@ export class AttachmentService extends CoreService {
     }
 
     setCropImage(parameters): Observable<any> {
-        return this.http
+        return this.authHttp
             .post(this.getEndpoint('crop', ['crop']), {
                 'type': 'crop',
                 'parameters': parameters
@@ -26,7 +26,7 @@ export class AttachmentService extends CoreService {
     }
 
     deleteAttachment(attachment): Observable<any> {
-        return this.http
+        return this.authHttp
             .post(this.getEndpoint('delete', ['delete']), {
                 'type': 'delete',
                 'attachment': attachment

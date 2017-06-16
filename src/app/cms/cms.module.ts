@@ -12,6 +12,7 @@ import { SectionDetailComponent } from './section/section-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 
+import { FieldService } from './../admin/field/field.service';
 import { FieldGroupService } from './../admin/field-group/field-group.service';
 import { ArticleService } from './article/article.service';
 import { CategoryService } from './category/category.service';
@@ -34,11 +35,12 @@ import { FamilyService } from './family/family.service';
         FamilyDetailComponent
     ],
     providers: [
-       FieldGroupService,
-       ArticleService,
-       CategoryService,
-       SectionService,
-       FamilyService
+        FieldService,
+        FieldGroupService,
+        ArticleService,
+        CategoryService,
+        SectionService,
+        FamilyService
     ]
 })
 

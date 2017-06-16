@@ -52,13 +52,18 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             // set attachments in FormArray from ps-attachment-files-library component
             this.attachments.setValue(this.object.attachments);
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
-            this.handleGetProductTaxes(this.fg.controls['subtotal'].value); // calculate tax prices
 
-            // get fields if object has field group
-            if (this.object.field_group_id) {
-                // set FormGroup with custom FormControls
-                this.handleGetCustomFields(this.object.data.properties);
-            }
+            this.handleGetProductTaxes(
+                this.fg.controls['subtotal'].value,
+                // callback, all http petition must to be sequential to pass JWT
+                () => {
+                    // get fields if object has field group
+                    if (this.object.field_group_id) {
+                        // set FormGroup with custom FormControls
+                        this.handleGetCustomFields(this.object.data.properties);
+                    }
+                }
+            ); // calculate tax prices
 
             if (this.dataRoute.action === 'create-lang') {
                 this.fg.patchValue({
@@ -88,133 +93,129 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     ngOnInit() {
         // get categories
         this.categoryService.getRecords([this.baseLang])
-            .subscribe((response) => {
-            this.categories = _.map(<Category[]>response.data, obj => {
-                return { value: obj.id, label: obj.name };
-            });
-        });
+            .flatMap((response) => {
+                this.categories = _.map(<Category[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
 
-        // get product types
-        this.configService.getValue({
-                key: 'pulsar.market.productTypes',
-                translate: {
-                    lang: this.baseLang,
-                    property: 'name'
-                }
-            }).subscribe((response) => {
-
+                // return next observable
+                return this.configService.getValue({
+                    key: 'pulsar.market.productTypes',
+                    translate: {
+                        lang: this.baseLang,
+                        property: 'name'
+                    }
+                });
+            }).flatMap((response) => {
+                // get product types
                 this.productTypes = _.map(<ProductType[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get types
                 this.productTypes.unshift({ label: 'Select a product type', value: '' });
-            });
 
-
-        // get price types
-        this.configService.getValue({
-                key: 'pulsar.market.priceTypes',
-                translate: {
-                    lang: this.baseLang,
-                    property: 'name'
-                }
-            }).subscribe((response) => {
+                // return next observable
+                return this.configService.getValue({
+                    key: 'pulsar.market.priceTypes',
+                    translate: {
+                        lang: this.baseLang,
+                        property: 'name'
+                    }
+                });
+            }).flatMap((response) => {
 
                 this.priceTypes = _.map(<PriceType[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
                 this.priceTypes.unshift({ label: 'Select a price type', value: '' });
-            });
 
-        // get product class taxes
-        this.productClassTaxService.getRecords()
-            .subscribe((response) => {
+                // return next observable
+                return this.productClassTaxService.getRecords();
+            }).flatMap((response) => {
 
-            this.productClassTaxes = _.map(<ProductClassTax[]>response.data, obj => {
-                return { value: obj.id, label: obj.name };
-            });
-            this.productClassTaxes.unshift({ label: 'Select a tax', value: '' });
-        });
+                this.productClassTaxes = _.map(<ProductClassTax[]>response.data, obj => {
+                    return { value: obj.id, label: obj.name };
+                });
+                this.productClassTaxes.unshift({ label: 'Select a tax', value: '' });
 
-        // get field groups
-        this.fieldGroupService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'field_group.resource_id',
-                        'operator': '=',
-                        'value': 'market-product'
-                    }
-                ]
-            })
-            .subscribe((response) => {
+                // return next observable
+                return  this.fieldGroupService.searchRecords({
+                    'type': 'query',
+                    'parameters': [
+                        {
+                            'command': 'where',
+                            'column': 'field_group.resource_id',
+                            'operator': '=',
+                            'value': 'market-product'
+                        }
+                    ]
+                });
+            }).flatMap((response) => {
 
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
-
                 this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
-            });
 
-        // load attachment families
-        this.attachmentFamilyService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'attachment_family.resource_id',
-                        'operator': '=',
-                        'value': 'market-product'
-                    },
-                    {
-                        'command': 'orderBy',
-                        'operator': 'asc',
-                        'column': 'attachment_family.name'
-                    }
-                ]
-            })
-            .subscribe((response) => {
+                // return next observable
+                return this.attachmentFamilyService.searchRecords({
+                    'type': 'query',
+                    'parameters': [
+                        {
+                            'command': 'where',
+                            'column': 'attachment_family.resource_id',
+                            'operator': '=',
+                            'value': 'market-product'
+                        },
+                        {
+                            'command': 'orderBy',
+                            'operator': 'asc',
+                            'column': 'attachment_family.name'
+                        }
+                    ]
+                });
+
+            }).flatMap((response) => {
                 this.attachmentFamilies = <AttachmentFamily[]>response.data;
-            });
 
-        // load parent products
-        let query = {
-            'type': 'query',
-            'parameters': [
-                {
-                    'command': 'where',
-                    'column': 'product_lang.lang_id',
-                    'operator': '=',
-                    'value': this.params['lang'] ? this.params['lang'] : this.baseLang
-                },
-                {
-                    'command': 'orderBy',
-                    'operator': 'asc',
-                    'column': 'product.sort'
-                }
-            ]
-        };
+                // return next observable
+                // load parent products
+                let query = {
+                    'type': 'query',
+                    'parameters': [
+                        {
+                            'command': 'where',
+                            'column': 'product_lang.lang_id',
+                            'operator': '=',
+                            'value': this.params['lang'] ? this.params['lang'] : this.baseLang
+                        },
+                        {
+                            'command': 'orderBy',
+                            'operator': 'asc',
+                            'column': 'product.sort'
+                        }
+                    ]
+                };
 
-        // set id of product if action is edit
-        if (this.params['id']) {
-            query.parameters.push({
-                'command': 'where',
-                'column': 'product.id',
-                'operator': '<>',
-                'value': this.params['id']
-            });
-        };
+                // set id of product if action is edit
+                if (this.params['id']) {
+                    query.parameters.push({
+                        'command': 'where',
+                        'column': 'product.id',
+                        'operator': '<>',
+                        'value': this.params['id']
+                    });
+                };
 
-        this.objectService.searchRecords(query)
-            .subscribe((response) => {
+                return this.objectService.searchRecords(query);
+            }).subscribe((response) => {
                 this.products = _.map(<Product[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get order status
 
                 this.products.unshift({ label: 'Select a product', value: '' });
-            });
 
-        super.init();
+                super.init();
+            });
     }
 
     // function call from parent
@@ -249,8 +250,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         super.onSubmit(object, routeRedirect, params);
     }
 
-    handleGetProductTaxes(price = null) {
-        this.taxRuleService.getProductTaxes({
+    handleGetProductTaxes(price = null, callback = undefined) {
+        let obs = this.taxRuleService.getProductTaxes({
                 'type': 'query',
                 'parameters': {
                     'price': price,
@@ -262,16 +263,27 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.fg.controls['subtotal_format'].setValue(data.data.subtotalFormat);
                 this.fg.controls['tax_format'].setValue(data.data.taxAmountFormat);
                 this.fg.controls['total_format'].setValue(data.data.totalFormat);
+
+                if (callback) {
+                    callback();
+                }
             });
     }
 
     // get custom fields that has this object
     handleGetCustomFields(properties = undefined) {
-        this.dynamicFormService.instance(
-            this.fg,
-            properties,
-            (fields) => {
-                this.fields = fields;
-            });
+        if (this.fg.contains('field_group_id')) { // check that field_group_id exist
+            this.dynamicFormService.instance(
+                this.fg.get('field_group_id').value,
+                this.fg,
+                properties,
+                (fields) => {
+                    this.fields = fields;
+
+                        // aqui consultar todos los valores posibles que contengar los custom fields para despues pasarlos al componentes
+
+
+                });
+        }
     }
 }

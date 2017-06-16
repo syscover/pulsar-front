@@ -96,6 +96,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     getRecord(params: Params) {
+        // instance object
         this.objectService
             .getRecord(params)
             .subscribe(data => {

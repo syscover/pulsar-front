@@ -1,3 +1,4 @@
+import { DataJson } from './../shared/classes/properties';
 import { User } from './../admin/admin.models';
 
 export class Editor {
@@ -9,7 +10,7 @@ export class Family {
     id: number;
     name: string;
     editor_id: number;
-    file_group_id: number;
+    field_group_id: number;
     date: boolean;
     title: boolean;
     slug: boolean;
@@ -66,4 +67,5 @@ export class Article {
     article: string;
     tags: Tag[];
     data_lang: string;
+    data: DataJson;
 }

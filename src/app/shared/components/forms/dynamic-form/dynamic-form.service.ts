@@ -35,12 +35,12 @@ export class DynamicFormService {
                     }
                 ]
             }).subscribe(data => {
+
                 // set custom fields
                 this.fields = data.data;
 
                 // add FormControl to FormGroup
                 for (const field of this.fields) {
-
                     fg.addControl(field.name, new FormControl('',
                         field.required ? Validators.required : undefined));
                 }

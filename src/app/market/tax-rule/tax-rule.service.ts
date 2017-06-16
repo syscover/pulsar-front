@@ -17,7 +17,7 @@ export class TaxRuleService extends CoreService {
     }
 
     getProductTaxes(object: any): Observable<JsonResponse> {
-        return this.http
+        return this.authHttp
             .post(`${this.apiUrl}/product-taxes`, object, this.options)
             .map((response: Response) => response.json());
     }

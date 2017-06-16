@@ -18,7 +18,7 @@ export class LangService extends CoreService {
 
     getActivatedLangs(): Observable<JsonResponse> {
         // build query
-        return this.http
+        return this.authHttp
             .post(this.getEndpoint('search'), {
                 'type': 'query',
                 'parameters': [

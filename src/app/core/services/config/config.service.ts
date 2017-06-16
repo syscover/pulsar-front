@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -14,7 +15,8 @@ export class ConfigService {
     private env:    Object = null;
 
     constructor(
-        private http: Http
+        private http: Http,
+        private authHttp: AuthHttp
     ) {
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
@@ -35,7 +37,7 @@ export class ConfigService {
     }
 
     public getValue(object: any) {
-        return this.http
+        return this.authHttp
             .post(`${this.apiUrl}/api/v1/admin/config/values`, object, this.options)
             .map((response: Response) => response.json());
     }

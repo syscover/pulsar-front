@@ -63,10 +63,13 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
 
             // get fields if object has field group
-            /*if (this.object.field_group_id) {
+            /*if (this.object.family.field_group_id && this.object.data.properties) {
                 // set FormGroup with custom FormControls
                 this.handleGetCustomFields(this.object.data.properties);
+            } else if (this.object.family.field_group_id) {
+                console.log('dd');
             }*/
+                this.handleGetCustomFields();
 
             if (this.dataRoute.action === 'create-lang') {
                 this.fg.patchValue({
@@ -229,16 +232,24 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         if ($event.value) {
             let family = _.find(this._families, {id: $event.value});
             this.family = family;
+
+             this.handleGetCustomFields();
         }
     }
 
     // get custom fields that has this object
-    handleGetCustomFields(properties = undefined) {
-        this.dynamicFormService.instance(
-            this.fg,
-            properties,
-            (fields) => {
-                this.fields = fields;
-            });
+    handleGetCustomFields() {
+        if (this.family.field_group_id) {
+            // get properties
+            console.log('call handleGetCustomFields');
+            let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;
+            this.dynamicFormService.instance(
+                this.family.field_group_id,
+                this.fg,
+                properties,
+                (fields) => {
+                    this.fields = fields;
+                });
+        }
     }
 }

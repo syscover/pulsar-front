@@ -51,7 +51,7 @@ export class DynamicFormComponent implements OnInit {
     ngOnInit() {
 
         if (this.field.field_type_id === 'select') {
-            // load options from table values
+            // load options for field from table values
             this.fieldValueService.searchRecords({
                 'type': 'query',
                 'parameters': [
