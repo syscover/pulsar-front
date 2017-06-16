@@ -4,12 +4,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { ProductService } from './product.service';
 import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
 
 // custom imports
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
+import { FieldValueService } from './../../admin/field-value/field-value.service';
 import { CategoryService } from './../category/category.service';
 import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
@@ -18,7 +18,7 @@ import { DynamicFormService } from './../../shared/components/forms/dynamic-form
 
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
 import { FieldService } from './../../admin/field/field.service';
-import { Field, FieldGroup, AttachmentFamily } from './../../admin/admin.models';
+import { Field, FieldGroup, AttachmentFamily, FieldValue } from './../../admin/admin.models';
 
 import * as _ from 'lodash';
 
@@ -39,6 +39,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     // custom fields
     fieldGroups: SelectItem[] = [];
     fields: Field[];
+    fieldValues: FieldValue[];
 
     @ViewChild('productClassTax') private productClassTax;
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
@@ -83,6 +84,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
         // Custom fields
         private dynamicFormService: DynamicFormService,
+        private fieldValueService: FieldValueService,
         protected fieldGroupService: FieldGroupService,
         protected fieldService: FieldService,
         private attachmentFamilyService: AttachmentFamilyService
@@ -278,11 +280,32 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.fg,
                 properties,
                 (fields) => {
-                    this.fields = fields;
-
-                        // aqui consultar todos los valores posibles que contengar los custom fields para despues pasarlos al componentes
-
-
+                    // get all values from all custom fields
+                    this.fieldValueService.searchRecords({
+                        'type': 'query',
+                        'parameters': [
+                            {
+                                'command': 'whereIn',
+                                'column': 'field_value.field_id',
+                                'value': _.map(fields, 'id')
+                            },
+                            {
+                                'command': 'where',
+                                'column': 'field_value.lang_id',
+                                'operator': '=',
+                                'value': this.lang.id
+                            },
+                            {
+                                'command': 'orderBy',
+                                'operator': 'asc',
+                                'column': 'field_value.sort'
+                            }
+                        ]
+                    })
+                    .subscribe((response) => {
+                        this.fieldValues = response.data;
+                        this.fields = fields;
+                    });
                 });
         }
     }

@@ -241,7 +241,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     handleGetCustomFields() {
         if (this.family.field_group_id) {
             // get properties
-            console.log('call handleGetCustomFields');
             let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;
             this.dynamicFormService.instance(
                 this.family.field_group_id,

@@ -36,6 +36,7 @@ import * as _ from 'lodash';
 export class DynamicFormComponent implements OnInit {
 
     @Input() field: Field;
+    @Input() fieldValues: FieldValue[];
     @Input() errors: Object;
     @Input() lang: string;
 
@@ -49,37 +50,17 @@ export class DynamicFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
         if (this.field.field_type_id === 'select') {
-            // load options for field from table values
-            this.fieldValueService.searchRecords({
-                'type': 'query',
-                'parameters': [
-                    {
-                        'command': 'where',
-                        'column': 'field_value.field_id',
-                        'operator': '=',
-                        'value': this.field.id
-                    },
-                    {
-                        'command': 'where',
-                        'column': 'field_value.lang_id',
-                        'operator': '=',
-                        'value': this.lang
-                    },
-                    {
-                        'command': 'orderBy',
-                        'operator': 'asc',
-                        'column': 'field_value.sort'
-                    }
-                ]
-            })
-            .subscribe((response) => {
-                this.options = _.map(<FieldValue[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get options
-                this.options.unshift({ label: this.field.labels[this.lang], value: '' });
+
+            // filter fields values to discard vlaues
+            let fv =  _.filter(this.fieldValues, obj => {
+                return (obj.field_id === this.field.id);
             });
+            // map filedValues to create SelectItem
+            this.options = _.map(fv, obj => {
+                return { value: obj.id, label: obj.name };
+            });
+            this.options.unshift({ label: this.field.labels[this.lang], value: '' });
         }
     }
 }

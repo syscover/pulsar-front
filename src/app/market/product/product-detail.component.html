@@ -163,6 +163,7 @@
                 <!-- dynamic form -->
                 <ng-container class="animated fadeIn" *ngFor="let field of fields">
                     <ps-dynamic-form    [field]="field"
+                                        [fieldValues]="fieldValues"
                                         [errors]="formErrors"
                                         [lang]="lang.id"></ps-dynamic-form>
                 </ng-container>
