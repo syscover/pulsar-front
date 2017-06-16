@@ -41,24 +41,23 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
 
     ngOnInit() {
         this.resourceService.getRecords()
-            .subscribe((response) => {
+            .flatMap((response) => {
                 this.resources = _.map(<Resource[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get resources
 
                 this.resources.unshift({ label: 'Select a resource', value: '' });
-            });
 
-        // get data types
-        this.configService.getValue({
-                key: 'pulsar.admin.sizes'
+                return  this.configService.getValue({
+                    key: 'pulsar.admin.sizes'
+                });
             }).subscribe((response) => {
                 this.sizes = _.map(<any[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
-            });
 
-        super.init();
+                super.init();
+            });
     }
 
     createForm() {

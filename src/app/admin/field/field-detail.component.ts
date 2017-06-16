@@ -59,37 +59,35 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
 
     ngOnInit() {
         this.fieldGroupService.getRecords() // get fieldGroups
-            .subscribe(response => {
+            .flatMap(response => {
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
 
                 this.fieldGroups.unshift({ label: 'Select a group', value: '' });
-            });
 
-        // get field types
-        this.configService.getValue({
-                key: 'pulsar.admin.field_types'
-            }).subscribe((response) => {
+                return this.configService.getValue({
+                    key: 'pulsar.admin.field_types'
+                });
+            }).flatMap((response) => {
                 this.fieldTypes = _.map(<FieldType[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
 
                 this.fieldTypes.unshift({ label: 'Select a field type', value: '' });
-            });
 
-        // get data types
-        this.configService.getValue({
-                key: 'pulsar.admin.data_types'
+                return this.configService.getValue({
+                    key: 'pulsar.admin.data_types'
+                });
             }).subscribe((response) => {
                 this.dataTypes = _.map(<DataType[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
 
                 this.dataTypes.unshift({ label: 'Select a data type', value: '' });
-            });
 
-        super.init();
+                super.init();
+            });
     }
 
     createForm() {

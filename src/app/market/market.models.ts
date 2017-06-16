@@ -103,7 +103,7 @@ export class Product {
     price_type_id: number;
     subtotal: number;
     product_class_tax_id: number;
-    attachments: Attachment[]
+    attachments: Attachment[];
     data_lang: string;
     data: DataJson;
 }

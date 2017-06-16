@@ -1,5 +1,5 @@
 import { DataJson } from './../shared/classes/properties';
-import { User } from './../admin/admin.models';
+import { User, Attachment } from './../admin/admin.models';
 
 export class Editor {
     id: number;
@@ -68,4 +68,5 @@ export class Article {
     tags: Tag[];
     data_lang: string;
     data: DataJson;
+    attachments: Attachment[];
 }

@@ -179,7 +179,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }).flatMap((response) => {
                 this.attachmentFamilies = <AttachmentFamily[]>response.data;
 
-                // return next observable
                 // load parent products
                 let query = {
                     'type': 'query',
