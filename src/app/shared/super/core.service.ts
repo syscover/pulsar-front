@@ -3,6 +3,9 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+
 import { AuthHttp } from 'angular2-jwt';
 import { Core } from './core';
 import { JsonResponse } from './../classes/json-respose';

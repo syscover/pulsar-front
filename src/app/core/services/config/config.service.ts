@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
@@ -6,13 +6,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConfigService {
 
+    graphqlUri: string;
     apiUrl: string;
     appPrefix: string;
 
     protected headers: Headers;
     protected options: RequestOptions;
     private config: Object = null;
-    private env:    Object = null;
 
     constructor(
         private http: Http,
@@ -29,13 +29,6 @@ export class ConfigService {
         return this.config[key];
     }
 
-    /**
-     * Use to get the data found in the first file (env file)
-     */
-    public getEnv(key: any) {
-        return this.env[key];
-    }
-
     public getValue(object: any) {
         return this.authHttp
             .post(`${this.apiUrl}/api/v1/admin/config/values`, object, this.options)
@@ -43,9 +36,7 @@ export class ConfigService {
     }
 
     /**
-     * This method:
-     *   a) Loads "env.json" to get the current working environment (e.g.: 'production', 'development')
-     *   b) Loads "config.[env].json" to get all env's variables (e.g.: 'config.development.json')
+     * Load values form local file config.json, and load bootstrap variables from server
      */
     public load() {
         return new Promise((resolve, reject) => {
@@ -62,6 +53,7 @@ export class ConfigService {
                 }).subscribe( (response: Object) => {
 
                     // set global variables
+                    this.graphqlUri = response['graphqlUri'];
                     this.apiUrl = response['apiUrl'];
                     this.appPrefix = response['appPrefix'];
 

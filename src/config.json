@@ -1,4 +1,5 @@
 {
+    "graphqlUri": "http://api.pulsar.local/graphql",
     "apiUrl": "http://api.pulsar.local",
     "appPrefix": "pulsar"
 }
