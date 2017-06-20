@@ -1,17 +1,9 @@
-import { Http, ConnectionBackend } from '@angular/http';
 import { ClientMap } from 'apollo-angular/build/src/types';
-import { Inject, Injectable, ReflectiveInjector } from '@angular/core';
-import { ApolloClient, createNetworkInterface, NetworkInterface } from 'apollo-client';
+import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { Apollo } from 'apollo-angular';
-import { HTTPNetworkInterface } from 'apollo-client/transport/networkInterface';
 
-import { ConfigService } from './../services/config/config.service';
-
-
-@Injectable()
 export class ApolloClientManager {
     private client: ApolloClient;
-    private networkInterface: HTTPNetworkInterface;
 
     static getClient(uri: string = undefined): ApolloClient {
         const cm = new ApolloClientManager(uri);
@@ -19,9 +11,7 @@ export class ApolloClientManager {
     }
 
     static getClientMap(uri: string = undefined): ClientMap {
-        let client = ApolloClientManager.getClient(uri);
-
-        return { 'default' : client };
+        return { 'default' : ApolloClientManager.getClient(uri) };
     }
 
     static apollo(uri: string = undefined): Apollo {
@@ -32,7 +22,7 @@ export class ApolloClientManager {
         uri: string = undefined
     ) {
         const networkInterface = createNetworkInterface({
-            uri: uri ? uri : 'http://api.pulsar.local/graphql'
+            uri: uri ? uri : '/graphql'
         });
 
         networkInterface.use([{

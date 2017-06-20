@@ -1,35 +1,9 @@
-import { createNetworkInterface } from 'apollo-client';
-import { Component, Injector, HostBinding} from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { ApolloClientManager } from './../../core/graphql/apollo-client-manager';
 import { ActionService } from './action.service';
 
 import gql from 'graphql-tag';
-
-// We use the gql tag to parse our query string into a query document
-const ActionsList = gql`
- {
-    actions {
-      id
-      name
-    }
-    packages {
-      id
-      name
-      root
-      sort
-    }
- }
-`;
-
-//interface QueryResponse {
-    //currentUser
-    //loading
-//}
-
-
 
 @Component({
     selector: 'ps-action-list',
@@ -44,20 +18,29 @@ export class ActionListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: ActionService
+        protected objectService: ActionService,
     ) {
         super(injector, objectService);
     }
 
     ngOnInit() {
-        ApolloClientManager
+
+        // query GraphQL
+        /*let queryObjects = gql`
+            actions {
+                id
+                name
+            }
+        `;
+        
+        this.apolloService
             .apollo(this.graphqlUri).watchQuery({
-                query: ActionsList
+                query: queryObjects
             }).subscribe(({data}) => {
 
                 console.log(data);
                 //this.loading = data.loading;
                 //this.currentUser = data.currentUser;
-            });
+            });*/
     }
 }

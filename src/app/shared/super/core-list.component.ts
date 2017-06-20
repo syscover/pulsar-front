@@ -17,6 +17,8 @@ export class CoreListComponent extends CoreComponent {
     columnsSearch: string[];    // columns where will be used for global searchs
     // Function that can to be overwrite in child class
     customCallback: Function = data => this.objects = data;
+    // query objects to graphQL
+    queryObjects: any;
 
     constructor(
         protected injector: Injector,
@@ -31,6 +33,25 @@ export class CoreListComponent extends CoreComponent {
             .subscribe((response: any) => {
                 this.customCallback(response.data);
             });
+    }
+
+    // nueva llamada para usar GraphQL
+    loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string = undefined, params: Object[] = undefined) {
+
+        /*this.objectService.proxyGraphQL()
+            .watchQuery({
+                query: this.queryObjects,
+                variables: {
+                    type: this.type,
+                    offset: event.first,
+                    limit: event.rows,
+            }
+            }).subscribe(({data}) => {
+
+                console.log(data);
+                //this.loading = data.loading;
+                //this.currentUser = data.currentUser;
+            });*/
     }
 
     /**

@@ -1,3 +1,4 @@
+import { ApolloService } from './apollo-service';
 import { NgModule, Inject } from '@angular/core';
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';
@@ -9,7 +10,7 @@ import { ApolloClientManager } from './apollo-client-manager';
     ],
     exports: [ApolloModule],
     providers: [
-        ApolloClientManager
+        ApolloService
     ]
 })
 export class GraphQLModule { }
