@@ -12,6 +12,8 @@ import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
 
 import * as _ from 'lodash';
 
+import gql from 'graphql-tag';
+
 export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     @HostBinding('class') classes = 'animated fadeIn';
@@ -25,7 +27,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // Function that can to be overwrite in child class
     customCallback: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
+            this.object = response; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
 
             // only form objects with create lang action
@@ -53,13 +55,14 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // method that will be overwrite
-    createForm() {}
+    createForm() { }
 
     ngOnInit() {
         this.init();
     }
 
     init() {
+
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
             this.customCallback();
@@ -96,11 +99,33 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     getRecord(params: Params) {
+        /********************* START REST *********************/
         // instance object
-        this.objectService
+        /*this.objectService
             .getRecord(params)
             .subscribe(data => {
                 this.customCallback(data);
+            });*/
+        /********************* END REST *********************/
+
+        let args = {
+            sql: [{
+                command: 'where',
+                column: 'id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
+
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryObject,
+                variables: args
+            }).subscribe(({data}) => {
+                console.log(data);
+                // instance data on object list
+                this.customCallback(data[this.grahpQL.objectName]);
             });
     }
 
@@ -118,7 +143,14 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
 
         if (this.dataRoute.action === 'create') {
-            obs = this.objectService.storeRecord(this.fg.value);
+            //obs = this.objectService.storeRecord(this.fg.value);
+
+            obs = this.objectService
+                .proxyGraphQL()
+                .mutate({
+                    mutation: this.grahpQL.mutationAddObject,
+                    variables: this.fg.value
+                });
         }
         if (this.dataRoute.action === 'create-lang') {
             // Usually the id is disabled, we enable it if you are going to create a new language
@@ -135,7 +167,14 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 params.push(this.fg.controls['lang_id'].value);
             }
 
-            obs = this.objectService.updateRecord(this.fg.value, params);
+            //obs = this.objectService.updateRecord(this.fg.value, params);
+
+             obs = this.objectService
+                .proxyGraphQL()
+                .mutate({
+                    mutation: this.grahpQL.mutationUpdateObject,
+                    variables: this.fg.value
+                });
         }
 
         obs.subscribe(data => {

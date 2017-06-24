@@ -4,6 +4,7 @@ import { ConfirmationService } from 'primeng/primeng';
 
 import { Core } from './core';
 import { CoreService } from './core.service';
+import { GraphQLModel } from './../../core/graphql/graphql-model';
 
 import { Lang } from './../../admin/admin.models';
 
@@ -14,6 +15,7 @@ export class CoreComponent extends Core {
     protected params: Params;
     protected langs: Lang[]; // Activated application lang
     protected confirmationService: ConfirmationService;
+    protected grahpQL: GraphQLModel;
 
     // baseUri to set component urls in templete, this property must to be public because is used in template
     baseUri: string;

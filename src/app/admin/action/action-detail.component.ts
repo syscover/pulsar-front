@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ActionService } from './action.service';
+import { ActionGraphQL } from './action-graphql';
 
 @Component({
     selector: 'ps-action-detail',
@@ -16,6 +16,7 @@ export class ActionDetailComponent extends CoreDetailComponent {
         protected objectService: ActionService
     ) {
         super(injector, objectService);
+        this.grahpQL = new ActionGraphQL();
     }
 
     createForm() {

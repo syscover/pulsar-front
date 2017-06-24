@@ -4,8 +4,6 @@ import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
 
-// plantear como servicio
-
 export class CoreListComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
@@ -17,8 +15,6 @@ export class CoreListComponent extends CoreComponent {
     columnsSearch: string[];    // columns where will be used for global searchs
     // Function that can to be overwrite in child class
     customCallback: Function = data => this.objects = data;
-    // query objects to graphQL
-    queryObjects: any;
 
     constructor(
         protected injector: Injector,
@@ -35,23 +31,34 @@ export class CoreListComponent extends CoreComponent {
             });
     }
 
-    // nueva llamada para usar GraphQL
-    loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string = undefined, params: Object[] = undefined) {
+    /**
+     * loadDadaTableLazy method over GraphQL
+     *
+     * @param event
+     * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
+     * @param params        when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
+     */
+    loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
 
-        /*this.objectService.proxyGraphQL()
+        // set params
+        let args = this.setArgs(event, lang, sql);
+        args['lang'] = lang;
+
+        this.objectService
+            .proxyGraphQL()
             .watchQuery({
-                query: this.queryObjects,
-                variables: {
-                    type: this.type,
-                    offset: event.first,
-                    limit: event.rows,
-            }
+                query: this.grahpQL.queryObjects,
+                variables: args,
+                fetchPolicy: 'network-only'
             }).subscribe(({data}) => {
 
-                console.log(data);
-                //this.loading = data.loading;
-                //this.currentUser = data.currentUser;
-            });*/
+                // paginaton data
+                this.totalRecords = data[this.grahpQL.wrapper].total;
+                this.filteredRecords = data[this.grahpQL.wrapper].filtered;
+
+                // instance data on object list
+                this.customCallback(data[this.grahpQL.wrapper][this.grahpQL.dataList]);
+            });
     }
 
     /**
@@ -61,50 +68,15 @@ export class CoreListComponent extends CoreComponent {
      * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
      * @param parameters    when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, params: Object[] = undefined) {
+    loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
 
-        if (params === undefined) {
-            params = []; // create empty array
-        }
-
-        params.push({
-                'command': 'limit',
-                'value': event.rows
-            });
-
-        params.push({
-                'command': 'offset',
-                'value': event.first
-            });
-
-        // set commands to orderBy
-        if (event.sortField) {
-            params.push({
-                    'command': 'orderBy',
-                    'operator': event.sortOrder === 1 ? 'asc' : 'desc', // asc | desc
-                    'column': event.sortField
-                });
-        }
-
-        // set commands to filter
-        if (event.globalFilter) {
-            for (const column of this.columnsSearch) {
-                params.push({
-                    'command': 'orWhere',
-                    'column': column,
-                    'operator': 'like',
-                    'value': `%${event.globalFilter}%`
-                });
-            }
-        }
+        // set params
+        let args = this.setArgs(event, lang, sql);
+        args['lang'] = lang;
 
         // search elements by paramenters
         this.objectService
-            .searchRecords({
-                'type': 'query',
-                'lang': lang,
-                'parameters': params
-            })
+            .searchRecords(args)
             .subscribe((response) => {
                 this.totalRecords = response.total;
                 this.filteredRecords = response.filtered;
@@ -138,4 +110,44 @@ export class CoreListComponent extends CoreComponent {
         });
     }
 
+    private setArgs(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined): Object {
+
+        let args = {}; // create empty object
+        args['sql'] = sql ? sql : []; // set sql array
+
+        // set limit sql
+        args['sql'].push({
+                command: 'limit',
+                value: event.rows
+            });
+
+        // set offset sql
+        args['sql'].push({
+                command: 'offset',
+                value: event.first
+            });
+
+        // set orderBy sql
+        if (event.sortField) {
+            args['sql'].push({
+                    command: 'orderBy',
+                    operator: event.sortOrder === 1 ? 'asc' : 'desc', // asc | desc
+                    column: event.sortField
+                });
+        }
+
+        // set global filter sql
+        if (event.globalFilter) {
+            for (const column of this.columnsSearch) {
+                 args['sql'].push({
+                    command: 'orWhere',
+                    column: column,
+                    operator: 'like',
+                    value: `%${event.globalFilter}%`
+                });
+            }
+        }
+
+        return args;
+    }
 }

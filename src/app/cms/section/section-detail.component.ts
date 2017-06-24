@@ -38,9 +38,9 @@ export class SectionDetailComponent extends CoreDetailComponent implements OnIni
                 });
 
                 this.families.unshift({ label: 'Select a family', value: '' });
-            });
 
-        this.init();
+                this.init();
+            });
     }
 
     createForm() {

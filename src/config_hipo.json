@@ -1,0 +1,5 @@
+{
+    "graphqlUri": "http://hipocratescurhotel.local/graphql",
+    "apiUrl": "http://hipocratescurhotel.local",
+    "appPrefix": "pulsar"
+}

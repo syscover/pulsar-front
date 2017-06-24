@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
+import { DropdownComponent } from './../../shared/components/forms/dropdown.component';
 
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
@@ -44,6 +45,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     fieldValues: FieldValue[];
 
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
+    @ViewChild('familiesInput') private familiesInput: DropdownComponent;
 
     // paramenters for parent class
     object: Article = new Article(); // set empty object
@@ -247,6 +249,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             let section = _.find(this._sections, {id: $event.value});
             this.fg.controls['family_id'].setValue(section.family.id);
             this.fg.controls['family'].setValue(section.family);
+
+            // TODO, trigger event instead call function
+            this.handleChangeFamily({value: section.family.id});
         }
     }
 

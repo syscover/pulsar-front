@@ -3,6 +3,7 @@ import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
 import { ActionService } from './action.service';
 
+import { ActionGraphQL } from './action-graphql';
 import gql from 'graphql-tag';
 
 @Component({
@@ -18,29 +19,9 @@ export class ActionListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: ActionService,
+        protected objectService: ActionService
     ) {
         super(injector, objectService);
-    }
-
-    ngOnInit() {
-
-        // query GraphQL
-        /*let queryObjects = gql`
-            actions {
-                id
-                name
-            }
-        `;
-        
-        this.apolloService
-            .apollo(this.graphqlUri).watchQuery({
-                query: queryObjects
-            }).subscribe(({data}) => {
-
-                console.log(data);
-                //this.loading = data.loading;
-                //this.currentUser = data.currentUser;
-            });*/
+        this.grahpQL = new ActionGraphQL();
     }
 }

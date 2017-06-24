@@ -6,14 +6,12 @@ import { ApolloClientManager } from './apollo-client-manager';
 export class ApolloService {
 
     _apollo: Apollo;
-
-    constructor() { }
+    _uri: string;
 
     apollo(uri) {
-        if (uri) {
-            this._apollo = ApolloClientManager.apollo(uri);
-        } else if (! this._apollo) {
-            this._apollo = ApolloClientManager.apollo();
+        if (! this._apollo || uri !== this._uri) {
+            this._uri = uri;
+            this._apollo = ApolloClientManager.apollo(this._uri);
         }
         return this._apollo;
     }
