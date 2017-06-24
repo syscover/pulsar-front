@@ -86,22 +86,27 @@ export class CoreListComponent extends CoreComponent {
             });
     }
 
-    deleteRecord(f: Function, object: any, params = []): void {
+    deleteRecord(f: Function, object: any, args = {}): void {
 
-        params.push(object.id);
-
+        // set arguments to delete object
+        args['id'] = object.id;
         if (object.lang_id) {   // check if has languages
-            params.push(object.lang_id);
+            args['lang_id'] = object.lang_id;
         }
 
         // confirm to delete object
         this.confirmationService.confirm({
             message: 'Are you sure that you want delete this object?',
             accept: () => {
+
                 this.objectService
-                    .deleteRecord(params)
-                    .subscribe((response) => {
-                        //delete object and call onLazyLoad event on datatable
+                    .proxyGraphQL()
+                    .mutate({
+                        mutation: this.grahpQL.mutationDeleteObject,
+                        variables: args
+                    }).subscribe((response) => {
+                        // delete object and call onLazyLoad event on datatable
+                        // to reload data
                         this.dataTable.onLazyLoad.emit(
                             this.dataTable.createLazyLoadMetadata()
                         );
@@ -147,7 +152,7 @@ export class CoreListComponent extends CoreComponent {
                 });
             }
         }
-
+        
         return args;
     }
 }

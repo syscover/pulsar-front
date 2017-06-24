@@ -5,6 +5,15 @@ import { ValidationMessageService } from './../../core/services/validation-messa
 
 import * as _ from 'lodash';
 
+/**
+ * Set errors when submit form.
+ * This function set formErrors in core-detail.component.ts, this variable
+ * is binding in all inputs of formGroup.
+ * Each formControl search itself your error inside formErrors
+ *
+ * @param formGroup
+ * @param data
+ */
 export const setErrorsOnSubmitFormGroup = (formGroup: FormGroup, data?: any): Object => {
 
     if (! formGroup) { return; }
@@ -29,9 +38,16 @@ export const setErrorsOnSubmitFormGroup = (formGroup: FormGroup, data?: any): Ob
     return formErrors;
 };
 
+/**
+ * When change formControl, check if has any error, whith first error finded,
+ * set error string in component input, this variable is binding in template to show or not 
+ * message error
+ *
+ * @param formControl
+ * @param data
+ */
 export const onValueChangedFormControl =
     (formControl: AbstractControl, data?: any): string => {
-
     if (! formControl) { return; }
     let formError = undefined;
 
@@ -40,6 +56,7 @@ export const onValueChangedFormControl =
                 ValidationMessageService
             ]);
     const validationMessageService = injector.get(ValidationMessageService);
+
 
     if (formControl && formControl.dirty && ! formControl.valid) {
         for (const error in formControl.errors) {

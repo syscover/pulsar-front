@@ -41,5 +41,11 @@ export class ActionGraphQL implements GraphQLModel {
                 name
             }
         }`;
-    readonly mutationDeleteObject = ``;
+    readonly mutationDeleteObject = gql`
+        mutation AdminDeleteAction ($id:String!) {
+            adminDeleteAction (id:$id){
+                id
+                name
+            }
+        }`;
 }
