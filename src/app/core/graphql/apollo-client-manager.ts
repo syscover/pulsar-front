@@ -11,7 +11,7 @@ export class ApolloClientManager {
     }
 
     static getClientMap(uri: string = undefined): ClientMap {
-        return { 'default' : ApolloClientManager.getClient(uri) };
+        return { default : ApolloClientManager.getClient(uri) };
     }
 
     static apollo(uri: string = undefined): Apollo {
@@ -37,7 +37,14 @@ export class ApolloClientManager {
         }]);
 
         this.client = new ApolloClient({
-            networkInterface
+            networkInterface,
+            dataIdFromObject: o => {
+                if (o['lang_id']) {
+                    return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
+                } else {
+                    return `${o['__typename']}-${o['id']}`;
+                }
+            }
         });
     }
 }
