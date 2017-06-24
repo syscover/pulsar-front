@@ -28,12 +28,18 @@ export class ActionGraphQL implements GraphQLModel {
         }`;
 
     readonly mutationAddObject = gql`
-        mutation AdminAddAction ($id:String! $name:String) {
+        mutation adminAddAction ($id:String! $name:String) {
             addAdminAction (id:$id name:$name){
                 id
                 name
             }
         }`;
-    readonly mutationUpdateObject = ``;
+    readonly mutationUpdateObject = gql`
+        mutation AdminAddAction ($idOld:String $id:String! $name:String) {
+            adminUpdateAction (idOld:$idOld id:$id name:$name){
+                id
+                name
+            }
+        }`;
     readonly mutationDeleteObject = ``;
 }

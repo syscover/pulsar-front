@@ -123,7 +123,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 query: this.grahpQL.queryObject,
                 variables: args
             }).subscribe(({data}) => {
-                console.log(data);
                 // instance data on object list
                 this.customCallback(data[this.grahpQL.objectName]);
             });
@@ -143,8 +142,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
 
         if (this.dataRoute.action === 'create') {
-            //obs = this.objectService.storeRecord(this.fg.value);
-
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
@@ -167,13 +164,17 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 params.push(this.fg.controls['lang_id'].value);
             }
 
-            //obs = this.objectService.updateRecord(this.fg.value, params);
+            let args = this.fg.value;
+            // if route has id param, take this value how idOld
+            if (this.params['id']) {
+                args['idOld'] = this.params['id'];
+            }
 
-             obs = this.objectService
+            obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
                     mutation: this.grahpQL.mutationUpdateObject,
-                    variables: this.fg.value
+                    variables: args
                 });
         }
 
