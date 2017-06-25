@@ -1,17 +1,17 @@
 import { GraphQLModel } from './../../core/graphql/graphql-model';
 import gql from 'graphql-tag';
 
-export class LangGraphQL implements GraphQLModel {
+export class CountryGraphQL implements GraphQLModel {
 
-    readonly objectInputContainer = 'lang'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'langs'; // to know which is the wrapper that contain objects list in response
-    readonly objectContainer = 'adminLang'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminLangsPagination'; // to know wich is the wrapper that contain pagination in response
-    readonly fields = 'id name'; // defaults fields that will be return
+    readonly objectInputContainer = 'country'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectsContainer = 'countries'; // to know which is the wrapper that contain objects list in response
+    readonly objectContainer = 'adminCountry'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'adminCountriesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly fields = 'id lang_id name sort prefix territorial_area_1 territorial_area_2 territorial_area_3 data_lang'; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetAdminLangsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
+        query GetAdminCountriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
+            ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
                 filtered
                 ${this.objectsContainer}(sql:$sql){
@@ -21,29 +21,29 @@ export class LangGraphQL implements GraphQLModel {
         }`;
 
     readonly queryObject = gql`
-        query GetAdminLang ($sql:[CoreSQLQueryInput]) {
-            adminLang (sql:$sql){
+        query GetAdminCountry ($sql:[CoreSQLQueryInput]) {
+            adminCountry (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     readonly mutationAddObject = gql`
-        mutation adminAddLang ($lang:AdminLangInput!) {
-            adminAddLang (lang:$lang){
+        mutation adminAddCountry ($country:AdminCountryInput!) {
+            adminAddCountry (country:$country){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminAddLang ($lang:AdminLangInput! $idOld:String!) {
-            adminUpdateLang (lang:$lang idOld:$idOld){
+        mutation AdminAddCountry ($country:AdminCountryInput! $idOld:String!) {
+            adminUpdateCountry (country:$country idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
     readonly mutationDeleteObject = gql`
-        mutation AdminDeleteLang ($id:String!) {
-            adminDeleteLang (id:$id){
+        mutation AdminDeleteCountry ($id:String! $lang:String!) {
+            adminDeleteCountry (id:$id lang:$lang){
                 ${this.fields}
             }
         }`;

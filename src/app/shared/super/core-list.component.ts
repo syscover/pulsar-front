@@ -42,7 +42,11 @@ export class CoreListComponent extends CoreComponent {
 
         // set params
         let args = this.setArgs(event, lang, sql);
-        args['lang'] = lang;
+
+        // set lang if is defined
+        if (lang) {
+            args['lang'] = lang;
+        }
 
         this.objectService
             .proxyGraphQL()
@@ -91,7 +95,7 @@ export class CoreListComponent extends CoreComponent {
         // set arguments to delete object
         args['id'] = object.id;
         if (object.lang_id) {   // check if has languages
-            args['lang_id'] = object.lang_id;
+            args['lang'] = object.lang_id;
         }
 
         // confirm to delete object

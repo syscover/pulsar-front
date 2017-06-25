@@ -109,6 +109,19 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }]
         };
 
+        // set lang is exist
+        if (params['lang']) {
+            args = {
+                sql: [{
+                    command: 'where',
+                    column: 'lang_id',
+                    operator: '=',
+                    value: params['lang']
+                }]
+            };
+            //args['lang'] = params['lang'];
+        }
+
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -122,8 +135,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     onSubmit(object: any, routeRedirect: string = undefined, params = []) {
 
-        let obs: Observable<any>; // Observable
-
         // set errors from current form, this variable is binded to all form elements
         this.formErrors = setErrorsOnSubmitFormGroup(this.fg);
 
@@ -133,11 +144,16 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             return; // has any validation error when emit submit event
         }
 
-        if (this.dataRoute.action === 'create') {
+        let obs: Observable<any>; // Observable
+        let args = {}; // arguments for observable
 
-            let args = {};
-            // add object to arguments
-            args[this.grahpQL.objectInputContainer] = this.fg.value;
+        // Usually the id is disabled, we enable it if you need tale id data for create or edit
+        this.fg.get('id').enable(); // enable is a method from AbstractControl
+
+        // add object to arguments
+        args[this.grahpQL.objectInputContainer] = this.fg.value;
+
+        if (this.dataRoute.action === 'create') {
 
             obs = this.objectService
                 .proxyGraphQL()
@@ -147,23 +163,15 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
         if (this.dataRoute.action === 'create-lang') {
-            // Usually the id is disabled, we enable it if you are going to create a new language
-            this.fg.get('id').enable(); // enable is a method from AbstractControl
 
-            obs = this.objectService.storeRecord(this.fg.value);
+            obs = this.objectService
+                .proxyGraphQL()
+                .mutate({
+                    mutation: this.grahpQL.mutationAddObject,
+                    variables: args
+                });
         }
         if (this.dataRoute.action === 'edit') {
-
-            let args = {};
-            // add object to arguments
-            args[this.grahpQL.objectInputContainer] = this.fg.value;
-
-            // normaly id field is disabled, 
-            // take id value from object, if field is disabled 
-            // and don't exist in args
-            if (! args[this.grahpQL.objectInputContainer]['id']) {
-                args[this.grahpQL.objectInputContainer]['id'] = object.id;
-            }
 
             // if route has id param, take this value how idOld
             if (this.params['id']) {
@@ -189,15 +197,18 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, params = []): void {
 
-        params.push(object.id);
+        let args = {};
+        args['id'] = object.id;
 
+        // sest lang, don't lang_id, because data isn't like object
         if (object.lang_id) {   // check if has languages
-            params.push(object.lang_id);
+            args['lang'] = object.lang_id;
         } else {
-            // chek if has force lang, this options is used in object with multiple lang in json
+            // chek if has force lang,
+            // this options is used in object with multiple lang in json
             // for example table field
             if (langAux !== undefined) {
-                params.push(langAux);
+                args['lang'] = langAux;
             }
         }
 
@@ -206,7 +217,11 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             message: 'Are you sure that you want delete this object?',
             accept: () => {
                 this.objectService
-                    .deleteRecord(params)
+                    .proxyGraphQL()
+                    .mutate({
+                        mutation: this.grahpQL.mutationDeleteObject,
+                        variables: args
+                    })
                     .subscribe(data => {
                         if (! routeRedirect) {
                             this.router.navigate([this.baseUri]);
