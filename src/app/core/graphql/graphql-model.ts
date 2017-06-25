@@ -1,12 +1,18 @@
 export interface GraphQLModel {
-    // Wrapper that contain GraphQl data in query list
-    readonly wrapper: string;
-    // object that contains data in wrapper
-    readonly dataList: string;
-    // Query to list objects whith pagination
+
+    // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectInputContainer: string;
+    // to know which is the wrapper that contain objects list in response
+    readonly objectsContainer: string;
+    // to know which is the wrappper that contain a object in response
+    readonly objectContainer: any;
+    // to know wich is the wrapper that contain pagination in response
+    readonly paginationContainer: string;
+    // defaults fields that will be return
+    readonly fields: string;
+
+    // Query to get pagination list objets
     readonly queryObjects: any;
-    // Name of object to get in data
-    readonly objectName: string;
     // Query to get a object
     readonly queryObject: any;
     // Query to add object

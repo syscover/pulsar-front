@@ -53,11 +53,11 @@ export class CoreListComponent extends CoreComponent {
             }).subscribe(({data}) => {
 
                 // paginaton data
-                this.totalRecords = data[this.grahpQL.wrapper].total;
-                this.filteredRecords = data[this.grahpQL.wrapper].filtered;
+                this.totalRecords = data[this.grahpQL.paginationContainer].total;
+                this.filteredRecords = data[this.grahpQL.paginationContainer].filtered;
 
                 // instance data on object list
-                this.customCallback(data[this.grahpQL.wrapper][this.grahpQL.dataList]);
+                this.customCallback(data[this.grahpQL.paginationContainer][this.grahpQL.objectsContainer]);
             });
     }
 
@@ -152,7 +152,7 @@ export class CoreListComponent extends CoreComponent {
                 });
             }
         }
-        
+
         return args;
     }
 }

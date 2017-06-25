@@ -3,49 +3,48 @@ import gql from 'graphql-tag';
 
 export class ActionGraphQL implements GraphQLModel {
 
-    readonly wrapper = 'adminActionsPagination';
-    readonly dataList = 'actions';
+    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectsContainer = 'actions'; // to know which is the wrapper that contain objects list in response
+    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly fields = 'id name'; // defaults fields that will be return
+
     readonly queryObjects = gql`
         query GetAdminActionsPagination ($sql:[CoreSQLQueryInput]) {
-            adminActionsPagination (sql:$sql) {
+            ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                actions(sql:$sql){
-                    id
-                    name
+                ${this.objectsContainer}(sql:$sql){
+                    ${this.fields}
                 }
-                
             }
         }`;
 
-    readonly objectName = 'adminAction';
     readonly queryObject = gql`
         query GetAdminAction ($sql:[CoreSQLQueryInput]) {
             adminAction (sql:$sql){
-                id
-                name
+                ${this.fields}
             }
         }`;
 
     readonly mutationAddObject = gql`
-        mutation adminAddAction ($id:String! $name:String) {
-            addAdminAction (id:$id name:$name){
-                id
-                name
+        mutation adminAddAction ($action:AdminActionInput!) {
+            adminAddAction (action:$action){
+                ${this.fields}
             }
         }`;
+
     readonly mutationUpdateObject = gql`
-        mutation AdminAddAction ($idOld:String $id:String! $name:String) {
-            adminUpdateAction (idOld:$idOld id:$id name:$name){
-                id
-                name
+        mutation AdminAddAction ($action:AdminActionInput! $idOld:String!) {
+            adminUpdateAction (action:$action idOld:$idOld){
+                ${this.fields}
             }
         }`;
+
     readonly mutationDeleteObject = gql`
         mutation AdminDeleteAction ($id:String!) {
             adminDeleteAction (id:$id){
-                id
-                name
+                ${this.fields}
             }
         }`;
 }

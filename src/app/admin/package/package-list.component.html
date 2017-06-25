@@ -3,7 +3,7 @@
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
-                (onLazyLoad)="loadDadaTableLazy($event)">
+                (onLazyLoad)="loadDadaTableLazyGraphQL($event)">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
@@ -15,8 +15,7 @@
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
             <div class="dropdown">
-                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                </button>
+                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id]">Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(f, object)">Delete</a>

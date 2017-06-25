@@ -2,9 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
 import { ActionService } from './action.service';
-
 import { ActionGraphQL } from './action-graphql';
-import gql from 'graphql-tag';
 
 @Component({
     selector: 'ps-action-list',

@@ -99,14 +99,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     getRecord(params: Params) {
-        /********************* START REST *********************/
-        // instance object
-        /*this.objectService
-            .getRecord(params)
-            .subscribe(data => {
-                this.customCallback(data);
-            });*/
-        /********************* END REST *********************/
 
         let args = {
             sql: [{
@@ -124,7 +116,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 variables: args
             }).subscribe(({data}) => {
                 // instance data on object list
-                this.customCallback(data[this.grahpQL.objectName]);
+                this.customCallback(data[this.grahpQL.objectContainer]);
             });
     }
 
@@ -142,11 +134,16 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
 
         if (this.dataRoute.action === 'create') {
+
+            let args = {};
+            // add object to arguments
+            args[this.grahpQL.objectInputContainer] = this.fg.value;
+
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
                     mutation: this.grahpQL.mutationAddObject,
-                    variables: this.fg.value
+                    variables: args
                 });
         }
         if (this.dataRoute.action === 'create-lang') {
@@ -157,14 +154,17 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
         if (this.dataRoute.action === 'edit') {
 
-            params.push(object.id);
-            // check if has languages and lang_id is property lang.
-            // for example, in user lang_id is form determinate user lang, not property lang
-            if (this.fg.contains('lang_id') && (! this.fg.contains('check_lang_id') || this.fg.controls['check_lang_id'].value)) {
-                params.push(this.fg.controls['lang_id'].value);
+            let args = {};
+            // add object to arguments
+            args[this.grahpQL.objectInputContainer] = this.fg.value;
+
+            // normaly id field is disabled, 
+            // take id value from object, if field is disabled 
+            // and don't exist in args
+            if (! args[this.grahpQL.objectInputContainer]['id']) {
+                args[this.grahpQL.objectInputContainer]['id'] = object.id;
             }
 
-            let args = this.fg.value;
             // if route has id param, take this value how idOld
             if (this.params['id']) {
                 args['idOld'] = this.params['id'];

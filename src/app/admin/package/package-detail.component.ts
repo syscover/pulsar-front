@@ -1,11 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { PackageService } from './package.service';
 import { Profile } from '../admin.models';
+import { PackageGraphQL } from './package-graphql';
 
 @Component({
     selector: 'ps-package-detail',
@@ -18,6 +17,7 @@ export class PackageDetailComponent extends CoreDetailComponent {
         protected objectService: PackageService,
     ) {
         super(injector, objectService);
+        this.grahpQL = new PackageGraphQL();
     }
 
     createForm() {
