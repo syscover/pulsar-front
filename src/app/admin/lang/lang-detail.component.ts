@@ -1,11 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { LangService } from './lang.service';
 import { Lang } from '../admin.models';
+import { LangGraphQL } from './lang-graphql';
 
 @Component({
     selector: 'ps-lang-detail',
@@ -18,6 +17,7 @@ export class LangDetailComponent extends CoreDetailComponent {
         public objectService: LangService
     ) {
         super(injector, objectService);
+        this.grahpQL = new LangGraphQL();
     }
 
     createForm() {
