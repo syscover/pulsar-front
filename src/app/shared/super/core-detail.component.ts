@@ -62,7 +62,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     init() {
-
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
 

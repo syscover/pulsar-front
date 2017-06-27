@@ -8,7 +8,13 @@ export class PackageGraphQL implements GraphQLModel {
     readonly objectContainer = 'adminPackage'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminPackagesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
-    readonly fields = 'id name root active sort'; // defaults fields that will be return
+    readonly fields = `
+        id 
+        name 
+        root 
+        active 
+        sort
+    `; // defaults fields that will be return
 
     readonly queryObjects = gql`
         query GetAdminPackagesPagination ($sql:[CoreSQLQueryInput]) {
