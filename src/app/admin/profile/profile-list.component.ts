@@ -1,10 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
 import { ProfileService } from './profile.service';
 import { Profile } from '../admin.models';
+import { ProfileGraphQL } from './profile-graphql';
 
 @Component({
     selector: 'app-profile-list',
@@ -23,5 +22,6 @@ export class ProfileListComponent extends CoreListComponent {
         protected objectService: ProfileService
     ) {
         super(injector, objectService);
+        this.grahpQL = new ProfileGraphQL();
     }
 }

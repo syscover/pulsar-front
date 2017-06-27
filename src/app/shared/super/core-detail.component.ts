@@ -137,7 +137,19 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getDataRelationsObjectGraphQL() { }
+    getDataRelationsObjectGraphQL() {
+        if (this.grahpQL.queryRelationsObject) {
+            this.objectService
+                .proxyGraphQL()
+                .watchQuery({
+                    query: this.grahpQL.queryRelationsObject
+                })
+                .subscribe(({data}) => {
+                    this.setDataRelationsObject(data);
+                });
+        }
+     }
+
     // create all elements whith graphQL data obtain from method getDataRelationsObjectGraphQL()
     setDataRelationsObject(data: any) { }
 

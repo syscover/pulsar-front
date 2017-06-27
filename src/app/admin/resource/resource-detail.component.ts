@@ -39,17 +39,6 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
         });
     }
 
-    getDataRelationsObjectGraphQL() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.grahpQL.queryRelationsObject
-            })
-            .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
-            });
-    }
-
     setDataRelationsObject(data: any) {
         // set packages
         this.packages = _.map(<Package[]>data['adminPackages'], obj => {
