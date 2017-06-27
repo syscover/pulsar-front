@@ -7,6 +7,7 @@ export class ActionGraphQL implements GraphQLModel {
     readonly objectsContainer = 'actions'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly relationsFields;
     readonly fields = 'id name'; // defaults fields that will be return
 
     readonly queryObjects = gql`
@@ -20,6 +21,8 @@ export class ActionGraphQL implements GraphQLModel {
             }
         }`;
 
+    readonly queryRelationsObject;
+
     readonly queryObject = gql`
         query GetAdminAction ($sql:[CoreSQLQueryInput]) {
             adminAction (sql:$sql){
@@ -28,14 +31,14 @@ export class ActionGraphQL implements GraphQLModel {
         }`;
 
     readonly mutationAddObject = gql`
-        mutation adminAddAction ($action:AdminActionInput!) {
+        mutation AdminAddAction ($action:AdminActionInput!) {
             adminAddAction (action:$action){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput! $idOld:String!) {
+        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
             adminUpdateAction (action:$action idOld:$idOld){
                 ${this.fields}
             }

@@ -7,6 +7,7 @@ export class PackageGraphQL implements GraphQLModel {
     readonly objectsContainer = 'packages'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminPackage'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminPackagesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly relationsFields;
     readonly fields = 'id name root active sort'; // defaults fields that will be return
 
     readonly queryObjects = gql`
@@ -20,6 +21,8 @@ export class PackageGraphQL implements GraphQLModel {
             }
         }`;
 
+    readonly queryRelationsObject;
+
     readonly queryObject = gql`
         query GetAdminPackage ($sql:[CoreSQLQueryInput]) {
             adminPackage (sql:$sql){
@@ -28,14 +31,14 @@ export class PackageGraphQL implements GraphQLModel {
         }`;
 
     readonly mutationAddObject = gql`
-        mutation adminAddPackage ($package:AdminPackageInput!) {
+        mutation AdminAddPackage ($package:AdminPackageInput!) {
             adminAddPackage (package:$package){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminAddPackage ($package:AdminPackageInput!) {
+        mutation AdminUpdatePackage ($package:AdminPackageInput!) {
             adminUpdatePackage (package:$package){
                 ${this.fields}
             }

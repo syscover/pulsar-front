@@ -8,11 +8,15 @@ export interface GraphQLModel {
     readonly objectContainer: any;
     // to know wich is the wrapper that contain pagination in response
     readonly paginationContainer: string;
+    // fields of objects that have any relation with query object
+    readonly relationsFields: string;
     // defaults fields that will be return
     readonly fields: string;
 
     // Query to get pagination list objets
     readonly queryObjects: any;
+    // Query to get relations data to create new object
+    readonly queryRelationsObject: any;
     // Query to get a object
     readonly queryObject: any;
     // Query to add object

@@ -1,10 +1,9 @@
 import { Component, Injector, HostBinding } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
 import { ResourceService } from './resource.service';
 import { Resource } from '../admin.models';
+import { ResourceGraphQL } from './resource-graphql';
 
 @Component({
     selector: 'ps-resource-list',
@@ -23,5 +22,6 @@ export class ResourceListComponent extends CoreListComponent {
         protected objectService: ResourceService
     ) {
         super(injector, objectService);
+        this.grahpQL = new ResourceGraphQL();
     }
 }

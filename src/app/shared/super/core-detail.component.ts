@@ -65,7 +65,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
-            this.customCallback();
+
+            // to create a new object, do all queries to get data to create new object
+            this.getDataRelationsObjectGraphQL();
 
             // set lang_id if form has this field
             // call after customCallback() to overwrite lang_id field with correct value
@@ -111,15 +113,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         // set lang is exist
         if (params['lang']) {
-            args = {
-                sql: [{
-                    command: 'where',
-                    column: 'lang_id',
-                    operator: '=',
-                    value: params['lang']
-                }]
-            };
-            //args['lang'] = params['lang'];
+            args.sql.push({
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: params['lang']
+            });
         }
 
         this.objectService
@@ -127,11 +126,20 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             .watchQuery({
                 query: this.grahpQL.queryObject,
                 variables: args
-            }).subscribe(({data}) => {
+            })
+            .subscribe(({data}) => {
+                // instance data in relations fields of object
+                this.setDataRelationsObject(data);
+
                 // instance data on object list
                 this.customCallback(data[this.grahpQL.objectContainer]);
             });
     }
+
+    // to create a new object, do all queries to get data across GraphQL
+    getDataRelationsObjectGraphQL() { }
+    // create all elements whith graphQL data obtain from method getDataRelationsObjectGraphQL()
+    setDataRelationsObject(data: any) { }
 
     onSubmit(object: any, routeRedirect: string = undefined, params = []) {
 

@@ -1,15 +1,12 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { ResourceService } from './resource.service';
 import { Resource, Package } from '../admin.models';
-
-// custom imports
 import { PackageService } from './../package/package.service';
 import { SelectItem } from 'primeng/primeng';
+import { ResourceGraphQL } from './resource-graphql';
 
 import * as _ from 'lodash';
 
@@ -27,18 +24,10 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
         protected packageService: PackageService
     ) {
         super(injector, objectService);
+        this.grahpQL = new ResourceGraphQL();
     }
 
     ngOnInit() {
-        this.packageService.getRecords()
-                .subscribe((response) => {
-
-                this.packages = _.map(<Package[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get packages
-
-                this.packages.unshift({ label: 'Select a package', value: '' });
-            });
         super.init();
     }
 
@@ -48,5 +37,24 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
             name: ['', Validators.required ],
             package_id: ['', Validators.required ]
         });
+    }
+
+    getDataRelationsObjectGraphQL() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
+    setDataRelationsObject(data: any) {
+        // set packages
+        this.packages = _.map(<Package[]>data['adminPackages'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.packages.unshift({ label: 'Select a package', value: '' });
     }
 }
