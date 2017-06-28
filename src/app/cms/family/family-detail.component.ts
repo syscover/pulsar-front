@@ -3,11 +3,11 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
-
 import { Editor } from './../cms.models';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FamilyService } from './family.service';
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
+import { FamilyGraphQL } from './family-graphql';
 
 import * as _ from 'lodash';
 
@@ -26,12 +26,13 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
         protected fieldGroupService: FieldGroupService
     ) {
         super(injector, objectService);
+        this.grahpQL = new FamilyGraphQL();
     }
 
     ngOnInit() {
 
         // get editors
-        this.configService.getValue({
+        /*this.configService.getValue({
                 key: 'pulsar.cms.editors'
             }).flatMap((response) => {
 
@@ -59,8 +60,9 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
 
                 this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
 
-                this.init();
-            });
+                
+            });*/
+        this.init();
     }
 
     createForm() {
@@ -79,5 +81,27 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
             editor_id: '',
             field_group_id: ''
         });
+    }
+
+    // to create a new object, do all queries to get data across GraphQL
+    getDataRelationsObjectGraphQL() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject,
+                variables: {
+                    key: 'pulsar.cms.editors'
+                }
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
+    setDataRelationsObject(data: any) {
+        this.editors = _.map(<Editor[]>data.coreConfig, obj => {
+            return { value: obj.id, label: obj.name };
+        }); // get types
+        this.editors.unshift({ label: 'Select a editor', value: '' });
     }
 }

@@ -1,8 +1,8 @@
 import { Component, Injector, HostBinding } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
 import { FamilyService } from './family.service';
+import { FamilyGraphQL } from './family-graphql';
 
 @Component({
     selector: 'ps-family-list',
@@ -20,5 +20,6 @@ export class FamilyListComponent extends CoreListComponent {
         protected objectService: FamilyService,
     ) {
         super(injector, objectService);
+        this.grahpQL = new FamilyGraphQL();
     }
 }

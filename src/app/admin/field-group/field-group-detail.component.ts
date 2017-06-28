@@ -1,15 +1,12 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
 import { FieldGroupService } from './field-group.service';
 import { FieldGroup, Resource } from './../admin.models';
-
-// custom imports
 import { ResourceService } from './../resource/resource.service';
 import { SelectItem } from 'primeng/primeng';
+import { FieldGroupGraphQL } from './field-group-graphql';
 
 import * as _ from 'lodash';
 
@@ -27,11 +24,12 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
         protected resourceService: ResourceService
     ) {
         super(injector, objectService);
+        this.grahpQL = new FieldGroupGraphQL();
     }
 
     ngOnInit() {
         // get product types
-        this.configService.getValue({
+        /*this.configService.getValue({
                 key: 'pulsar.admin.resources_custom_fields'
             }).subscribe((response) => {
                 const resourcesAllowed = <string[]>response.data; // get resources ids from config
@@ -52,7 +50,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
                     this.resources.unshift({ label: 'Select a resource', value: '' });
 
                 });
-            });
+            });*/
         super.init();
     }
 
@@ -62,5 +60,34 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
             name: ['', Validators.required ],
             resource_id: ['', Validators.required ]
         });
+    }
+
+    // to create a new object, do all queries to get data across GraphQL
+    getDataRelationsObjectGraphQL() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject,
+                variables: {
+                    key: 'pulsar.admin.resources_custom_fields'
+                }
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
+    setDataRelationsObject(data: any) {
+        // get resources allowed to add custom field group
+        const resourcesAllowed = data.coreConfig; 
+        let resources = _.filter(<Resource[]>data.adminResources, obj => {
+            return _.find(resourcesAllowed, ['id', obj.id]);
+        });
+
+        // map resources to create SelectItem
+        this.resources = _.map(resources, obj => { // get resources
+            return { value: obj.id, label: obj.name };
+        });
+        this.resources.unshift({ label: 'Select a resource', value: '' });
     }
 }
