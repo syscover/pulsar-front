@@ -11,7 +11,7 @@ export class ActionGraphQL implements GraphQLModel {
     readonly fields = 'id name'; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetAdminActionsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -24,7 +24,7 @@ export class ActionGraphQL implements GraphQLModel {
     readonly queryRelationsObject;
 
     readonly queryObject = gql`
-        query GetAdminAction ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
             adminAction (sql:$sql){
                 ${this.fields}
             }

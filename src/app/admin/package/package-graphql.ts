@@ -17,7 +17,7 @@ export class PackageGraphQL implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetAdminPackagesPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetPackagesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -30,7 +30,7 @@ export class PackageGraphQL implements GraphQLModel {
     readonly queryRelationsObject;
 
     readonly queryObject = gql`
-        query GetAdminPackage ($sql:[CoreSQLQueryInput]) {
+        query AdminGetPackage ($sql:[CoreSQLQueryInput]) {
             adminPackage (sql:$sql){
                 ${this.fields}
             }

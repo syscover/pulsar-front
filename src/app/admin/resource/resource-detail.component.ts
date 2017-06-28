@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
@@ -14,7 +14,7 @@ import * as _ from 'lodash';
     selector: 'ps-resource-detail',
     templateUrl: './resource-detail.component.html'
 })
-export class ResourceDetailComponent extends CoreDetailComponent implements OnInit {
+export class ResourceDetailComponent extends CoreDetailComponent {
 
     packages: SelectItem[] = [];
 
@@ -25,10 +25,6 @@ export class ResourceDetailComponent extends CoreDetailComponent implements OnIn
     ) {
         super(injector, objectService);
         this.grahpQL = new ResourceGraphQL();
-    }
-
-    ngOnInit() {
-        super.init();
     }
 
     createForm() {

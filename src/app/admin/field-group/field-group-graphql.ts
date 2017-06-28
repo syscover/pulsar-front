@@ -31,7 +31,7 @@ export class FieldGroupGraphQL implements GraphQLModel {
     `; // defaults fields that will be return`
 
     readonly queryObjects = gql`
-        query GetAdminFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -42,12 +42,12 @@ export class FieldGroupGraphQL implements GraphQLModel {
         }`;
 
     readonly queryRelationsObject = gql`
-        query GetRelationsAdminFieldGroup($key:String!) {
+        query AdminGetRelationsFieldGroup($key:String!) {
             ${this.relationsFields}
         }`;
 
     readonly queryObject = gql`
-        query GetAdminFieldGroup ($sql:[CoreSQLQueryInput]) {
+        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $key:String!) {
             adminFieldGroup (sql:$sql){
                 ${this.fields}
             }
@@ -62,8 +62,8 @@ export class FieldGroupGraphQL implements GraphQLModel {
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateFieldGroup ($fieldGroup:AdminFieldGroupInput! $idOld:String!) {
-            adminUpdateFieldGroup (fieldGroup:$fieldGroup idOld:$idOld){
+        mutation AdminUpdateFieldGroup ($fieldGroup:AdminFieldGroupInput!) {
+            adminUpdateFieldGroup (fieldGroup:$fieldGroup){
                 ${this.fields}
             }
         }`;

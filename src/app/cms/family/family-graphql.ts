@@ -33,7 +33,7 @@ export class FamilyGraphQL implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetCmsFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+        query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -44,7 +44,7 @@ export class FamilyGraphQL implements GraphQLModel {
         }`;
 
     readonly queryRelationsObject = gql`
-        query GetRelationsCmsFamily($key:String!) {
+        query CmsGetRelationsFamily($key:String!) {
             ${this.relationsFields}
         }`;
 

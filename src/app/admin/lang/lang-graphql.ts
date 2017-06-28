@@ -11,7 +11,7 @@ export class LangGraphQL implements GraphQLModel {
     readonly fields = 'id name icon sort active'; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetAdminLangsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -24,7 +24,7 @@ export class LangGraphQL implements GraphQLModel {
     readonly queryRelationsObject: any;
 
     readonly queryObject = gql`
-        query GetAdminLang ($sql:[CoreSQLQueryInput]) {
+        query AdminGetLang ($sql:[CoreSQLQueryInput]) {
             adminLang (sql:$sql){
                 ${this.fields}
             }

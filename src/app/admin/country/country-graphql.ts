@@ -11,7 +11,7 @@ export class CountryGraphQL implements GraphQLModel {
     readonly fields = 'id lang_id name sort prefix territorial_area_1 territorial_area_2 territorial_area_3 data_lang'; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query GetAdminCountriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
+        query AdminGetCountriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
             ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
                 filtered
@@ -24,7 +24,7 @@ export class CountryGraphQL implements GraphQLModel {
     readonly queryRelationsObject: any;
 
     readonly queryObject = gql`
-        query GetAdminCountry ($sql:[CoreSQLQueryInput]) {
+        query AdminGetCountry ($sql:[CoreSQLQueryInput]) {
             adminCountry (sql:$sql){
                 ${this.fields}
             }

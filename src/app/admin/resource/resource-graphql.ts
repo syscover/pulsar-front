@@ -25,7 +25,7 @@ export class ResourceGraphQL implements GraphQLModel {
     `; // defaults fields that will be return`
 
     readonly queryObjects = gql`
-        query GetAdminResourcesPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -36,7 +36,7 @@ export class ResourceGraphQL implements GraphQLModel {
         }`;
 
     readonly queryRelationsObject = gql`
-        query GetRelationsAdminResource {
+        query AdminGetRelationsResource {
             ${this.relationsFields}
         }`;
 

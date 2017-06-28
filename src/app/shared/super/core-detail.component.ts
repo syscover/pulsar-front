@@ -99,7 +99,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
     }
 
-    getRecord(params: Params) {
+    // get args, in any case that you need create a query with aditonal arguments
+    // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
+    getArgsToGetRecord(params: Params) {
 
         let args = {
             sql: [{
@@ -120,11 +122,16 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             });
         }
 
+        return args;
+    }
+
+    getRecord(params: Params) {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryObject,
-                variables: args
+                // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
+                variables: this.getArgsToGetRecord(params)
             })
             .subscribe(({data}) => {
                 // instance data in relations fields of object

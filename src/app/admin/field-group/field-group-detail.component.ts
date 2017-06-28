@@ -1,6 +1,6 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FieldGroupService } from './field-group.service';
 import { FieldGroup, Resource } from './../admin.models';
@@ -14,7 +14,7 @@ import * as _ from 'lodash';
     selector: 'ps-field-group-detail',
     templateUrl: 'field-group-detail.component.html'
 })
-export class FieldGroupDetailComponent extends CoreDetailComponent implements OnInit {
+export class FieldGroupDetailComponent extends CoreDetailComponent {
 
     resources: SelectItem[] = [];
 
@@ -27,39 +27,24 @@ export class FieldGroupDetailComponent extends CoreDetailComponent implements On
         this.grahpQL = new FieldGroupGraphQL();
     }
 
-    ngOnInit() {
-        // get product types
-        /*this.configService.getValue({
-                key: 'pulsar.admin.resources_custom_fields'
-            }).subscribe((response) => {
-                const resourcesAllowed = <string[]>response.data; // get resources ids from config
-
-                this.resourceService.getRecords()
-                    .subscribe((response2) => {
-
-                    // filter response to discard resources
-                    let resources = _.filter(<Resource[]>response2.data, obj => {
-                        return (resourcesAllowed.indexOf(obj.id) !==  -1);
-                    });
-
-                    // map resources to create SelectItem
-                    this.resources = _.map(resources, obj => { // get resources
-                        return { value: obj.id, label: obj.name };
-                    });
-
-                    this.resources.unshift({ label: 'Select a resource', value: '' });
-
-                });
-            });*/
-        super.init();
-    }
-
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             name: ['', Validators.required ],
             resource_id: ['', Validators.required ]
         });
+    }
+
+    getArgsToGetRecord(params: Params) {
+        return {
+            key: 'pulsar.admin.resources_custom_fields',
+            sql: [{
+                command: 'where',
+                column: 'field_group.id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
     }
 
     // to create a new object, do all queries to get data across GraphQL
