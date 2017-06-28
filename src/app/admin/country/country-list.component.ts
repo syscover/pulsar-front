@@ -1,9 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { CountryService } from './country.service';
-import { Country, Lang } from '../admin.models';
-import { CountryGraphQL } from './country-graphql';
+import { CountryGraphQLService } from './country-graphql.service';
 
 @Component({
     selector: 'ps-country-list',
@@ -11,10 +8,6 @@ import { CountryGraphQL } from './country-graphql';
 })
 export class CountryListComponent extends CoreListComponent {
 
-    //activatedLangs: Lang[];
-
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'country.id', 'country.name'
     ];
@@ -22,9 +15,8 @@ export class CountryListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: CountryService
+        protected grahpQL: CountryGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new CountryGraphQL();
+        super(injector, grahpQL);
     }
 }

@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import { JsonResponse } from './../classes/json-respose';
 
 import * as _ from 'lodash';
 
+@Injectable()
 export class CoreService extends Core {
 
     protected headers: Headers;

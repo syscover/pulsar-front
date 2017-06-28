@@ -1,18 +1,14 @@
 import { CoreComponent } from './core.component';
-import { CoreService } from './core.service';
+import { GraphQLModel } from './../../core/graphql/graphql-model';
 import { Injector, HostBinding, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
-import { DatatableSearchComponent } from './../components/datatable-search/datatable-search.component';
 import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
-
-import * as _ from 'lodash';
-
 import gql from 'graphql-tag';
+import * as _ from 'lodash';
 
 export class CoreDetailComponent extends CoreComponent implements OnInit {
 
@@ -42,9 +38,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     constructor(
         protected injector: Injector,
-        protected objectService: CoreService
+        protected grahpQL: GraphQLModel
     ) {
-        super(injector, objectService);
+        super(injector, grahpQL);
         this.fb = injector.get(FormBuilder);
 
         // set object properties

@@ -1,8 +1,7 @@
 import { CoreComponent } from './core.component';
-import { CoreService } from './core.service';
+import { GraphQLModel } from './../../core/graphql/graphql-model';
 import { Injector, ViewChild, HostBinding } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { LazyLoadEvent, ConfirmationService, DataTable } from 'primeng/primeng';
+import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 export class CoreListComponent extends CoreComponent {
 
@@ -18,9 +17,9 @@ export class CoreListComponent extends CoreComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: CoreService
+        protected grahpQL: GraphQLModel
     ) {
-        super(injector, objectService);
+        super(injector, grahpQL);
     }
 
     getRecords(f: Function): void {
@@ -47,6 +46,8 @@ export class CoreListComponent extends CoreComponent {
         if (lang) {
             args['lang'] = lang;
         }
+
+        console.log(this.grahpQL);
 
         this.objectService
             .proxyGraphQL()

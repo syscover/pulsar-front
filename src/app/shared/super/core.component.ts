@@ -1,21 +1,19 @@
 import { Injector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
-
 import { Core } from './core';
 import { CoreService } from './core.service';
 import { GraphQLModel } from './../../core/graphql/graphql-model';
-
 import { Lang } from './../../admin/admin.models';
 
 export class CoreComponent extends Core {
 
     protected router: Router;
     protected route: ActivatedRoute;
+    protected objectService: CoreService;
     protected params: Params;
     protected langs: Lang[]; // Activated application lang
     protected confirmationService: ConfirmationService;
-    protected grahpQL: GraphQLModel;
 
     // baseUri to set component urls in templete, this property must to be public because is used in template
     baseUri: string;
@@ -28,12 +26,13 @@ export class CoreComponent extends Core {
 
     constructor(
         protected injector: Injector,
-        protected objectService: CoreService
+        protected grahpQL: GraphQLModel
     ) {
         super(injector);
 
         this.router = this.injector.get(Router);
         this.route = this.injector.get(ActivatedRoute);
+        this.objectService = this.injector.get(CoreService);
         this.confirmationService = this.injector.get(ConfirmationService);
 
         // set object properties

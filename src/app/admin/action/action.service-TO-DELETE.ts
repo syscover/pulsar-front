@@ -1,6 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
 import { CoreService } from './../../shared/super/core.service';
-import { ApolloClient, createNetworkInterface } from 'apollo-client';
 
 @Injectable()
 export class ActionService extends CoreService {

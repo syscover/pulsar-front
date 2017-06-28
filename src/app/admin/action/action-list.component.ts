@@ -1,8 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { ActionService } from './action.service';
-import { ActionGraphQL } from './action-graphql';
+import { ActionGraphQLService } from './action-graphql.service';
 
 @Component({
     selector: 'ps-action-list',
@@ -10,16 +8,14 @@ import { ActionGraphQL } from './action-graphql';
 })
 export class ActionListComponent extends CoreListComponent {
 
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
 
     constructor(
         protected injector: Injector,
-        protected objectService: ActionService
+        protected grahpQL: ActionGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new ActionGraphQL();
+        super(injector, grahpQL);
     }
 }

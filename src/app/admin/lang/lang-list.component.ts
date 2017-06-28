@@ -1,9 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { LangService } from './lang.service';
-import { Lang } from '../admin.models';
-import { LangGraphQL } from './lang-graphql';
+import { LangGraphQLService } from './lang-graphql.service';
 
 @Component({
     selector: 'app-lang-list',
@@ -19,9 +16,8 @@ export class LangListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: LangService
+        protected grahpQL: LangGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new LangGraphQL();
+        super(injector, grahpQL);
     }
 }

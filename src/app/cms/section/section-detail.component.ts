@@ -3,11 +3,11 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
-
 import { Editor, Family } from './../cms.models';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { SectionService } from './section.service';
 import { FamilyService } from './../family/family.service';
+import { SectionGraphQL } from './section.graphql';
 
 import * as _ from 'lodash';
 
@@ -22,6 +22,7 @@ export class SectionDetailComponent extends CoreDetailComponent implements OnIni
     constructor(
         protected injector: Injector,
         protected objectService: SectionService,
+        protected graphQL: SectionGraphQL,
         protected familyService: FamilyService
     ) {
         super(injector, objectService);

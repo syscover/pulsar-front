@@ -1,14 +1,26 @@
+import { Injectable } from '@angular/core';
 import { GraphQLModel } from './../../core/graphql/graphql-model';
 import gql from 'graphql-tag';
 
-export class CountryGraphQL implements GraphQLModel {
+@Injectable()
+export class CountryGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'country'; // to know which is the wrapper that will contain an object for to pass arguments
     readonly objectsContainer = 'countries'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminCountry'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminCountriesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields; // fields of objects that have any relation with query object
-    readonly fields = 'id lang_id name sort prefix territorial_area_1 territorial_area_2 territorial_area_3 data_lang'; // defaults fields that will be return
+    readonly fields = `
+        id 
+        lang_id 
+        name 
+        sort 
+        prefix 
+        territorial_area_1 
+        territorial_area_2 
+        territorial_area_3 
+        data_lang
+    `; // defaults fields that will be return
 
     readonly queryObjects = gql`
         query AdminGetCountriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {

@@ -7,7 +7,7 @@ import { Editor } from './../cms.models';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FamilyService } from './family.service';
 import { FieldGroupService } from './../../admin/field-group/field-group.service';
-import { FamilyGraphQL } from './family-graphql';
+import { FamilyGraphQL } from './family.graphql';
 
 import * as _ from 'lodash';
 
@@ -23,10 +23,10 @@ export class FamilyDetailComponent extends CoreDetailComponent {
     constructor(
         protected injector: Injector,
         protected objectService: FamilyService,
+        protected graphQL: FamilyGraphQL,
         protected fieldGroupService: FieldGroupService
     ) {
         super(injector, objectService);
-        this.grahpQL = new FamilyGraphQL();
     }
 
     createForm() {

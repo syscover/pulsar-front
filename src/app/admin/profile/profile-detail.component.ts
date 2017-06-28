@@ -1,10 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { ProfileService } from './profile.service';
-import { Profile } from '../admin.models';
-import { ProfileGraphQL } from './profile-graphql';
+import { ProfileGraphQLService } from './profile-graphql.service';
 
 @Component({
     selector: 'ps-profile-detail',
@@ -14,10 +11,9 @@ export class ProfileDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: ProfileService,
+        protected grahpQL: ProfileGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new ProfileGraphQL();
+        super(injector, grahpQL);
     }
 
     createForm() {

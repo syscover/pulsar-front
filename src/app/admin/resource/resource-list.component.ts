@@ -1,9 +1,7 @@
-import { Component, Injector, HostBinding } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { ResourceService } from './resource.service';
-import { Resource } from '../admin.models';
-import { ResourceGraphQL } from './resource-graphql';
+import { ResourceGraphQLService } from './resource-graphql.service';
 
 @Component({
     selector: 'ps-resource-list',
@@ -11,17 +9,14 @@ import { ResourceGraphQL } from './resource-graphql';
 })
 export class ResourceListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name', 'resource.name'
     ];
 
     constructor(
         protected injector: Injector,
-        protected objectService: ResourceService
+        protected graphQL: ResourceGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new ResourceGraphQL();
+        super(injector, graphQL);
     }
 }

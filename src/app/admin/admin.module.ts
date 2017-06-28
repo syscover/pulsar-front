@@ -30,17 +30,20 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
 import { UserService } from './user/user.service';
-import { LangService } from './lang/lang.service';
-import { CountryService } from './country/country.service';
-import { PackageService } from './package/package.service';
-import { FieldGroupService } from './field-group/field-group.service';
 import { FieldService } from './field/field.service';
 import { FieldValueService } from './field-value/field-value.service';
 import { AttachmentMimeService } from './attachment-mime/attachment-mime.service';
 import { AttachmentFamilyService } from './attachment-family/attachment-family.service';
-import { ProfileService } from './profile/profile.service';
-import { ResourceService } from './resource/resource.service';
-import { ActionService } from './action/action.service';
+
+
+
+import { ActionGraphQLService } from './action/action-graphql.service';
+import { CountryGraphQLService } from './country/country-graphql.service';
+import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
+import { LangGraphQLService } from './lang/lang-graphql.service';
+import { PackageGraphQLService } from './package/package-graphql.service';
+import { ProfileGraphQLService } from './profile/profile-graphql.service';
+import { ResourceGraphQLService } from './resource/resource-graphql.service';
 
 @NgModule({
     imports: [
@@ -76,17 +79,17 @@ import { ActionService } from './action/action.service';
     ],
     providers: [
         UserService,
-        LangService,
-        CountryService,
-        PackageService,
-        FieldGroupService,
         FieldService,
         FieldValueService,
         AttachmentMimeService,
         AttachmentFamilyService,
-        ProfileService,
-        ResourceService,
-        ActionService
+        ActionGraphQLService,
+        CountryGraphQLService,
+        FieldGroupGraphQLService,
+        LangGraphQLService,
+        PackageGraphQLService,
+        ProfileGraphQLService,
+        ResourceGraphQLService
     ],
     bootstrap: []
 })

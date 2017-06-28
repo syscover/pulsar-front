@@ -1,10 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { CountryService } from './country.service';
-import { CountryGraphQL } from './country-graphql';
+import { CountryGraphQLService } from './country-graphql.service';
 
 @Component({
     selector: 'ps-country-detail',
@@ -14,10 +11,9 @@ export class CountryDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: CountryService
+        protected grahpQL: CountryGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new CountryGraphQL();
+        super(injector, grahpQL);
     }
 
     createForm() {

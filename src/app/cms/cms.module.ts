@@ -20,6 +20,9 @@ import { CategoryService } from './category/category.service';
 import { SectionService } from './section/section.service';
 import { FamilyService } from './family/family.service';
 
+import { FamilyGraphQL } from './family/family.graphql';
+import { SectionGraphQL } from './section/section.graphql';
+
 @NgModule({
     imports: [
         SharedModule,
@@ -42,7 +45,9 @@ import { FamilyService } from './family/family.service';
         ArticleService,
         CategoryService,
         SectionService,
-        FamilyService
+        FamilyService,
+        FamilyGraphQL,
+        SectionGraphQL
     ]
 })
 

@@ -1,8 +1,9 @@
+import { Injectable } from '@angular/core';
 import { GraphQLModel } from './../../core/graphql/graphql-model';
-import { identifierModuleUrl } from '@angular/compiler';
 import gql from 'graphql-tag';
 
-export class ResourceGraphQL implements GraphQLModel {
+@Injectable()
+export class ResourceGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'resource'; // to know which is the wrapper that will contain an object for to pass arguments
     readonly objectsContainer = 'resources'; // to know which is the wrapper that contain objects list in response

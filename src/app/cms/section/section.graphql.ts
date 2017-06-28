@@ -1,12 +1,14 @@
+import { Injectable } from '@angular/core';
 import { GraphQLModel } from './../../core/graphql/graphql-model';
 import gql from 'graphql-tag';
 
-export class FamilyGraphQL implements GraphQLModel {
+@Injectable()
+export class SectionGraphQL implements GraphQLModel {
 
-    readonly objectInputContainer = 'family'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'families'; // to know which is the wrapper that contain objects list in response
-    readonly objectContainer = 'cmsFamily'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'cmsFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectInputContainer = 'section'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectsContainer = 'sections'; // to know which is the wrapper that contain objects list in response
+    readonly objectContainer = 'cmsSection'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'cmsSectionsPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
         coreConfig (key:$key) {
             ... on CoreConfigOptionType {
@@ -37,7 +39,7 @@ export class FamilyGraphQL implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryObjects = gql`
-        query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+        query CmsGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -48,35 +50,35 @@ export class FamilyGraphQL implements GraphQLModel {
         }`;
 
     readonly queryRelationsObject = gql`
-        query CmsGetRelationsFamily($key:String!) {
+        query CmsGetRelationsSection($key:String!) {
             ${this.relationsFields}
         }`;
 
     readonly queryObject = gql`
-        query GetCmsFamily ($sql:[CoreSQLQueryInput] $key:String!) {
-            cmsFamily (sql:$sql){
+        query GetCmsSection ($sql:[CoreSQLQueryInput] $key:String!) {
+            cmsSection (sql:$sql){
                 ${this.fields}
             }
             ${this.relationsFields}
         }`;
 
     readonly mutationAddObject = gql`
-        mutation CmsAddFamily ($family:CmsFamilyInput!) {
-            cmsAddFamily (family:$family){
+        mutation CmsAddSection ($section:CmsSectionInput!) {
+            cmsAddSection (section:$section){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateFamily ($family:CmsFamilyInput!) {
-            cmsUpdateFamily (family:$family){
+        mutation CmsUpdateSection ($section:CmsSectionInput!) {
+            cmsUpdateSection (section:$section){
                 ${this.fields}
             }
         }`;
 
     readonly mutationDeleteObject = gql`
-        mutation CmsDeleteFamily ($id:String!) {
-            cmsDeleteFamily (id:$id){
+        mutation CmsDeleteSection ($id:String!) {
+            cmsDeleteSection (id:$id){
                 ${this.fields}
             }
         }`;

@@ -1,12 +1,8 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { ResourceService } from './resource.service';
-import { Resource, Package } from '../admin.models';
-import { PackageService } from './../package/package.service';
+import { ResourceGraphQLService } from './resource-graphql.service';
 import { SelectItem } from 'primeng/primeng';
-import { ResourceGraphQL } from './resource-graphql';
 
 import * as _ from 'lodash';
 
@@ -20,11 +16,9 @@ export class ResourceDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: ResourceService,
-        protected packageService: PackageService
+        protected graphQL: ResourceGraphQLService
     ) {
-        super(injector, objectService);
-        this.grahpQL = new ResourceGraphQL();
+        super(injector, graphQL);
     }
 
     createForm() {
@@ -37,7 +31,7 @@ export class ResourceDetailComponent extends CoreDetailComponent {
 
     setDataRelationsObject(data: any) {
         // set packages
-        this.packages = _.map(<Package[]>data['adminPackages'], obj => {
+        this.packages = _.map(data['adminPackages'], obj => {
             return { value: obj.id, label: obj.name };
         });
         this.packages.unshift({ label: 'Select a package', value: '' });
