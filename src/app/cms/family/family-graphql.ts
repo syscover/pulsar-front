@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 export class FamilyGraphQL implements GraphQLModel {
 
-    readonly objectInputContainer = 'package'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectInputContainer = 'family'; // to know which is the wrapper that will contain an object for to pass arguments
     readonly objectsContainer = 'families'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'cmsFamily'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
@@ -13,6 +13,10 @@ export class FamilyGraphQL implements GraphQLModel {
                 id
                 name
             }
+        }
+        adminFieldGroups {
+            id
+            name
         }
     `; // fields of relations object`
     readonly fields = `
@@ -49,22 +53,23 @@ export class FamilyGraphQL implements GraphQLModel {
         }`;
 
     readonly queryObject = gql`
-        query GetCmsFamily ($sql:[CoreSQLQueryInput]) {
+        query GetCmsFamily ($sql:[CoreSQLQueryInput] $key:String!) {
             cmsFamily (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     readonly mutationAddObject = gql`
-        mutation CmsAddFamily ($package:CmsFamilyInput!) {
-            cmsAddFamily (package:$package){
+        mutation CmsAddFamily ($family:CmsFamilyInput!) {
+            cmsAddFamily (family:$family){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateFamily ($package:CmsFamilyInput!) {
-            cmsUpdateFamily (package:$package){
+        mutation CmsUpdateFamily ($family:CmsFamilyInput!) {
+            cmsUpdateFamily (family:$family){
                 ${this.fields}
             }
         }`;

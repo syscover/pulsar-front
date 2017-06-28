@@ -1,7 +1,7 @@
 import { FieldGroup } from './../../admin/admin.models';
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 import { Editor } from './../cms.models';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
@@ -15,7 +15,7 @@ import * as _ from 'lodash';
     selector: 'ps-family-detail',
     templateUrl: './family-detail.component.html'
 })
-export class FamilyDetailComponent extends CoreDetailComponent implements OnInit {
+export class FamilyDetailComponent extends CoreDetailComponent {
 
     editors: SelectItem[] = [];
     fieldGroups: SelectItem[] = [];
@@ -27,42 +27,6 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
     ) {
         super(injector, objectService);
         this.grahpQL = new FamilyGraphQL();
-    }
-
-    ngOnInit() {
-
-        // get editors
-        /*this.configService.getValue({
-                key: 'pulsar.cms.editors'
-            }).flatMap((response) => {
-
-                this.editors = _.map(<Editor[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get types
-                this.editors.unshift({ label: 'Select a editor', value: '' });
-
-                return this.fieldGroupService.searchRecords({
-                    'type': 'query',
-                    'parameters': [
-                        {
-                            'command': 'where',
-                            'column': 'field_group.resource_id',
-                            'operator': '=',
-                            'value': 'cms-article-family'
-                        }
-                    ]
-                }); // return next observable
-            }).subscribe((response) => {
-
-                this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-
-                this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
-
-                
-            });*/
-        this.init();
     }
 
     createForm() {
@@ -83,6 +47,18 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
         });
     }
 
+    getArgsToGetRecord(params: Params) {
+        return {
+            key: 'pulsar.cms.editors',
+            sql: [{
+                command: 'where',
+                column: 'id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
+    }
+
     // to create a new object, do all queries to get data across GraphQL
     getDataRelationsObjectGraphQL() {
         this.objectService
@@ -99,9 +75,16 @@ export class FamilyDetailComponent extends CoreDetailComponent implements OnInit
     }
 
     setDataRelationsObject(data: any) {
+        // set editor
         this.editors = _.map(<Editor[]>data.coreConfig, obj => {
             return { value: obj.id, label: obj.name };
         }); // get types
         this.editors.unshift({ label: 'Select a editor', value: '' });
+
+        // set fieldsGroups
+        this.fieldGroups = _.map(<FieldGroup[]>data.adminFieldGroups, obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
     }
 }
