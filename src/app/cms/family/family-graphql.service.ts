@@ -54,7 +54,13 @@ export class FamilyGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryObjects;
+    readonly queryObjects = gql`
+        query GetCmsFamilies ($sql:[CoreSQLQueryInput] $key:String!) {
+            cmsFamilies (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
 
     readonly queryObject = gql`
         query GetCmsFamily ($sql:[CoreSQLQueryInput] $key:String!) {

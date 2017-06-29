@@ -65,7 +65,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             // set tags extracting name field
             this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
 
-            this.handleGetCustomFields();
+            //this.handleGetCustomFields();
 
             if (this.dataRoute.action === 'create-lang') {
                 this.fg.patchValue({
@@ -95,13 +95,13 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 });
                 this.sections.unshift({ label: 'Select a section', value: '' });
 
-                return this.familyService.getRecords(); // return next observable
+                            return this.familyService.getRecords(); // return next observable
             }).flatMap(response => {
-                this._families = response.data;
-                this.families = _.map(this._families, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-                this.families.unshift({ label: 'Select a family', value: '' });
+                            this._families = response.data;
+                            this.families = _.map(this._families, obj => {
+                                return { value: obj.id, label: obj.name };
+                            });
+                            this.families.unshift({ label: 'Select a family', value: '' });
 
                 // load articles to select a parent
                 let query = {
@@ -201,8 +201,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     author_id: this.user.id,
                     author_name: this.user.name + ' ' + this.user.surname
                 });
-                super.init();
+                
             });*/
+
+            super.init();
     }
 
     createForm() {
@@ -232,7 +234,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    handleChangeSection($event) {
+    /*handleChangeSection($event) {
         // change family if, change section
         if ($event.value) {
             let section = _.find(this._sections, {id: $event.value});
@@ -267,7 +269,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 properties,
                 (fields) => {
                     // get all values from all custom fields
-                    /*this.fieldValueService.searchRecords({
+                    this.fieldValueService.searchRecords({
                         'type': 'query',
                         'parameters': [
                             {
@@ -291,8 +293,22 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     .subscribe((response) => {
                         this.fieldValues = response.data;
                         this.fields = fields;
-                    });*/
+                    });
                 });
         }
+    }*/
+
+    setDataRelationsObject(data) {
+        // cms families
+        this._families = data['cmsFamilies'];
+        this.families = _.map(this._families, obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.families.unshift({ label: 'Select a family', value: '' });
+
+        // categories
+        this.categories = _.map(<Category[]>data['cmsCategories'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
     }
 }

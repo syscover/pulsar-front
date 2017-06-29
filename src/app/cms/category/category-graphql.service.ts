@@ -32,7 +32,12 @@ export class CategoryGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryObjects;
+    readonly queryObjects = gql`
+        query CmsGetCategories ($sql:[CoreSQLQueryInput]) {
+            cmsCategories (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     readonly queryObject = gql`
         query CmsGetCategory ($sql:[CoreSQLQueryInput]) {
