@@ -10,7 +10,7 @@ export class SectionListComponent extends CoreListComponent {
 
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'id', 'name'
+        'section.id', 'section.name', 'article_family.name'
     ];
 
     constructor(

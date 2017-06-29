@@ -10,13 +10,7 @@ export class SectionGraphQLService implements GraphQLModel {
     readonly objectContainer = 'cmsSection'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsSectionsPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
-        coreConfig (key:$key) {
-            ... on CoreConfigOptionType {
-                id
-                name
-            }
-        }
-        adminFieldGroups {
+        cmsFamilies {
             id
             name
         }
@@ -24,22 +18,15 @@ export class SectionGraphQLService implements GraphQLModel {
     readonly fields = `
         id 
         name 
-        editor_id
-        field_group_id 
-        date 
-        title
-        slug
-        link
-        categories
-        sort
-        tags
-        article_parent
-        attachments
-        data
+        article_family_id
+        family {
+            id
+            name
+        }
     `; // defaults fields that will be return
 
     readonly queryRelationsObject = gql`
-        query CmsGetRelationsSection($key:String!) {
+        query CmsGetRelationsSection {
             ${this.relationsFields}
         }`;
 
@@ -54,7 +41,12 @@ export class SectionGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryObjects;
+    readonly queryObjects = gql`
+        query AdminGetPackages ($sql:[CoreSQLQueryInput]) {
+            adminPackages (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     readonly queryObject = gql`
         query GetCmsSection ($sql:[CoreSQLQueryInput] $key:String!) {

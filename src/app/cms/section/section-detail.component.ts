@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { SectionGraphQLService } from './section-graphql.service';
 import { SelectItem } from 'primeng/primeng';
+import { Family } from './../cms.models';
 
 import * as _ from 'lodash';
 
@@ -46,5 +47,12 @@ export class SectionDetailComponent extends CoreDetailComponent {
             name: ['', Validators.required ],
             article_family_id: ''
         });
+    }
+
+    setDataRelationsObject(data: any) {
+        this.families = _.map(<Family[]>data['cmsFamilies'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.families.unshift({ label: 'Select a family', value: '' });
     }
 }

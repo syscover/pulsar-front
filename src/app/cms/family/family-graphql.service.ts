@@ -42,7 +42,7 @@ export class FamilyGraphQLService implements GraphQLModel {
         query CmsGetRelationsFamily($key:String!) {
             ${this.relationsFields}
         }`;
-    
+
     readonly queryPaginationObject = gql`
         query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
