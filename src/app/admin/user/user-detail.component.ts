@@ -1,14 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { UserService } from './user.service';
-import { User, Profile, Lang } from './../admin.models';
-
-// custom imports
-import { ProfileService } from './../profile/profile.service';
+import { UserGraphQLService } from './user-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -17,21 +10,20 @@ import * as _ from 'lodash';
     selector: 'ps-user-detail',
     templateUrl: './user-detail.component.html'
 })
-export class UserDetailComponent extends CoreDetailComponent implements OnInit {
+export class UserDetailComponent extends CoreDetailComponent {
 
     profiles: SelectItem[] = [];
     langsAux: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected objectService: UserService,
-        protected profileService: ProfileService
+        protected graphQL: UserGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        this.profileService.getRecords()
+        /*this.profileService.getRecords()
             .subscribe((response) => {
 
             this.profiles = _.map(<Profile[]>response.data, obj => {
@@ -43,9 +35,9 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit {
             this.langsAux = _.map(<Lang[]>this.langs, obj => {
                 return { value: obj.id, label: obj.name };
             });
-            super.init();
 
-        });
+        });*/
+            super.init();
     }
 
     createForm() {

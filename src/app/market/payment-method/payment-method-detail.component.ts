@@ -1,14 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { PaymentMethodService } from './payment-method.service';
-import { PaymentMethod, OrderStatus } from './../market.models';
-
-// custom imports
-import { OrderStatusService } from './../order-status/order-status.service';
+import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -17,20 +10,19 @@ import * as _ from 'lodash';
     selector: 'ps-payment-method-detail',
     templateUrl: './payment-method-detail.component.html'
 })
-export class PaymentMethodDetailComponent extends CoreDetailComponent implements OnInit {
+export class PaymentMethodDetailComponent extends CoreDetailComponent {
 
     orderStatuses: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected objectService: PaymentMethodService,
-        protected orderStatusService: OrderStatusService
+        protected graphQL: PaymentMethodGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        // load order status
+        /*// load order status
         this.orderStatusService.searchRecords({
                 'type': 'query',
                 'lang': this.baseLang,
@@ -55,7 +47,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent implements
                 }); // get order status
 
                 this.orderStatuses.unshift({ label: 'Select a Order Status successful', value: '' });
-            });
+            });*/
 
         super.init();
     }

@@ -1,13 +1,8 @@
-import { FieldGroup } from './../../admin/admin.models';
-import { Component, Injector, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/primeng';
-import { Editor, Family } from './../cms.models';
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { SectionService } from './section.service';
-import { FamilyService } from './../family/family.service';
-import { SectionGraphQL } from './section.graphql';
+import { SectionGraphQLService } from './section-graphql.service';
+import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
 
@@ -15,33 +10,30 @@ import * as _ from 'lodash';
     selector: 'ps-section-detail',
     templateUrl: './section-detail.component.html'
 })
-export class SectionDetailComponent extends CoreDetailComponent implements OnInit {
+export class SectionDetailComponent extends CoreDetailComponent {
 
     families: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected objectService: SectionService,
-        protected graphQL: SectionGraphQL,
-        protected familyService: FamilyService
+        protected graphQL: SectionGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
 
         // get field groups
-        this.familyService.getRecords()
+        /*this.familyService.getRecords()
             .subscribe((response) => {
 
                 this.families = _.map(<Family[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 });
-
                 this.families.unshift({ label: 'Select a family', value: '' });
 
-                this.init();
-            });
+            });*/
+        this.init();
     }
 
     createForm() {

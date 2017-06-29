@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { InterceptorXHRBackend } from './core/services/interceptor.service';
 
+import { PackageGraphQLService } from './admin/package/package-graphql.service';
+import { CoreService } from './shared/super/core.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -37,6 +40,8 @@ import { InterceptorXHRBackend } from './core/services/interceptor.service';
             provide: XHRBackend,
             useClass: InterceptorXHRBackend
         },
+        PackageGraphQLService,
+        CoreService,
         ConfigService,
         {
             provide: APP_INITIALIZER,

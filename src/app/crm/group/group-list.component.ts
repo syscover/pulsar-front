@@ -1,10 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { GroupService } from './group.service';
-import { Group } from '../crm.models';
+import { GroupGraphQLService } from './group-graphql.service';
 
 @Component({
     selector: 'ps-group-list',
@@ -12,16 +8,14 @@ import { Group } from '../crm.models';
 })
 export class GroupListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
 
     constructor(
         protected injector: Injector,
-        protected objectService: GroupService
+        protected graphQL: GroupGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

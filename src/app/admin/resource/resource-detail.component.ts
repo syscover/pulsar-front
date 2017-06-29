@@ -2,6 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ResourceGraphQLService } from './resource-graphql.service';
+import { Package } from './../admin.models';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -31,7 +32,7 @@ export class ResourceDetailComponent extends CoreDetailComponent {
 
     setDataRelationsObject(data: any) {
         // set packages
-        this.packages = _.map(data['adminPackages'], obj => {
+        this.packages = _.map(<Package[]>data['adminPackages'], obj => {
             return { value: obj.id, label: obj.name };
         });
         this.packages.unshift({ label: 'Select a package', value: '' });

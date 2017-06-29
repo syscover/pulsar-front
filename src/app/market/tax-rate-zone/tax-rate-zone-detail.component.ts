@@ -1,14 +1,9 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { TaxRateZoneService } from './tax-rate-zone.service';
+import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
 import { TaxRateZone } from './../market.models';
-import { CountryService } from './../../admin/country/country.service';
-import { Country } from './../../admin/admin.models';
+import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
 
@@ -16,7 +11,7 @@ import * as _ from 'lodash';
     selector: 'app-tax-rate-zone-detail',
     templateUrl: 'tax-rate-zone-detail.component.html'
 })
-export class TaxRateZoneDetailComponent extends CoreDetailComponent implements OnInit {
+export class TaxRateZoneDetailComponent extends CoreDetailComponent {
 
     countries: SelectItem[] = [];
 
@@ -35,15 +30,14 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
 
     constructor(
         protected injector: Injector,
-        protected objectService: TaxRateZoneService,
-        protected countryService: CountryService
+        protected graphQL: TaxRateZoneGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
         // get countries
-        this.countryService.getRecords([this.baseLang])
+        /*this.countryService.getRecords([this.baseLang])
             .subscribe((response) => {
 
                 this.countries = _.map(<Country[]>response.data, obj => {
@@ -51,7 +45,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent implements O
                 }); // get types
                 this.countries.unshift({ label: 'Select a country', value: '' });
 
-            });
+            });*/
         super.init();
     }
 

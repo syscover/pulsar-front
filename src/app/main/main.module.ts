@@ -8,8 +8,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent, SubMenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { PackageService } from './../admin/package/package.service';
-
 @NgModule({
     imports: [
         CommonModule,
@@ -23,9 +21,7 @@ import { PackageService } from './../admin/package/package.service';
         SubMenuComponent,
         FooterComponent
     ],
-    providers: [
-        PackageService
-    ],
+    providers: [ ],
     exports: [
         CommonModule,
         MainComponent,

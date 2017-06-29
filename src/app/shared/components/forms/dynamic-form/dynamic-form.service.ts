@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Field } from './../../../../admin/admin.models';
 
-import { FieldService } from './../../../../admin/field/field.service';
+//import { FieldService } from './../../../../admin/field/field.service';
 
 @Injectable()
 export class DynamicFormService {
@@ -13,13 +13,13 @@ export class DynamicFormService {
     private fields: Field[];
 
     constructor(
-        private fieldService: FieldService
+        //private fieldService: FieldService
     ) { }
 
     instance(fieldGroup: number, fg: FormGroup, properties: any, f: Function) {
 
         if (fieldGroup) {
-            this.fieldService.searchRecords({
+            /*this.fieldService.searchRecords({
                 'type': 'query',
                 'parameters': [
                     {
@@ -56,7 +56,7 @@ export class DynamicFormService {
 
                 // execute callback
                 f(this.fields);
-            });
+            });*/
 
         } else {
             // retun a undefined value

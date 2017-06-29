@@ -1,10 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { ProductClassTaxService } from './product-class-tax.service';
-import { ProductClassTax } from '../market.models';
+import { ProductClassTaxGraphQLService } from './product-class-tax-graphql.service';
 
 @Component({
     selector: 'app-product-class-tax-list',
@@ -12,16 +8,14 @@ import { ProductClassTax } from '../market.models';
 })
 export class ProductClassTaxListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
 
     constructor(
         protected injector: Injector,
-        protected objectService: ProductClassTaxService
+        protected graphQL: ProductClassTaxGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

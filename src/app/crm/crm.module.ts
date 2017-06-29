@@ -6,7 +6,6 @@ import { CrmRoutingModule } from './crm-routing.module';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 
-import { GroupService } from './group/group.service';
 
 @NgModule({
     imports: [
@@ -17,9 +16,7 @@ import { GroupService } from './group/group.service';
         GroupListComponent,
         GroupDetailComponent
     ],
-    providers: [
-       GroupService
-    ]
+    providers: [ ]
 })
 
 export class CrmModule {

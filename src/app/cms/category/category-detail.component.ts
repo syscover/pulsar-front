@@ -1,10 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { CategoryService } from './category.service';
+import { CategoryGraphQLService } from './category-graphql.service';
 
 @Component({
     selector: 'ps-category-detail',
@@ -14,9 +11,9 @@ export class CategoryDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: CategoryService
+        protected graphQL: CategoryGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     createForm() {

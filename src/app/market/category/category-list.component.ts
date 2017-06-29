@@ -1,9 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { CategoryService } from './category.service';
+import { CategoryGraphQLService } from './category-graphql.service';
 
 @Component({
     selector: 'ps-category-list',
@@ -11,8 +8,6 @@ import { CategoryService } from './category.service';
 })
 export class CategoryListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'category.id', 'category.name', 'lang.name'
     ];
@@ -20,8 +15,8 @@ export class CategoryListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: CategoryService,
+        protected graphQL: CategoryGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

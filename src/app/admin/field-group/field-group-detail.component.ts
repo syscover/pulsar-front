@@ -4,6 +4,7 @@ import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FieldGroupGraphQLService } from './field-group-graphql.service';
 import { SelectItem } from 'primeng/primeng';
+import { Resource } from './../admin.models';
 
 import * as _ from 'lodash';
 
@@ -60,12 +61,12 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
     setDataRelationsObject(data: any) {
         // get resources allowed to add custom field group
         const resourcesAllowed = data.coreConfig;
-        let resources = _.filter(data.adminResources, obj => {
+        let resources = _.filter(<Resource[]>data.adminResources, obj => {
             return _.find(resourcesAllowed, ['id', obj.id]);
         });
 
         // map resources to create SelectItem
-        this.resources = _.map(resources, obj => { // get resources
+        this.resources = _.map(<Resource[]>resources, obj => { // get resources
             return { value: obj.id, label: obj.name };
         });
         this.resources.unshift({ label: 'Select a resource', value: '' });

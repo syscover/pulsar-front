@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { TaxRateZoneService } from './tax-rate-zone.service';
-import { TaxRateZone } from './../market.models';
+import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
 
 @Component({
     selector: 'ps-tax-rate-zone-list',
@@ -12,17 +8,14 @@ import { TaxRateZone } from './../market.models';
 })
 export class TaxRateZoneListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'tax_rate_zone.id', 'tax_rate_zone.name', 'tax_rate_zone.tax_rate'
     ];
 
     constructor(
-        // service for parent class
         protected injector: Injector,
-        protected objectService: TaxRateZoneService,
+        protected graphQL: TaxRateZoneGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

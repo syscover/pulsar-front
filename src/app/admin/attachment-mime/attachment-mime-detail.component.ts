@@ -1,43 +1,34 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { AttachmentMimeService } from './attachment-mime.service';
-import { Resource } from './../admin.models';
-
-// custom imports
-import { ResourceService } from './../resource/resource.service';
+import { AttachmentMimeGraphQLService } from './attachment-mime-graphql.service';
 import { SelectItem } from 'primeng/primeng';
-
 import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-attachment-mime-detail',
     templateUrl: './attachment-mime-detail.component.html'
 })
-export class AttachmentMimeDetailComponent extends CoreDetailComponent implements OnInit {
+export class AttachmentMimeDetailComponent extends CoreDetailComponent {
 
     resources: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected objectService: AttachmentMimeService,
-        protected resourceService: ResourceService
+        protected graphQL: AttachmentMimeGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        this.resourceService.getRecords()
+        /*this.resourceService.getRecords()
             .subscribe((response) => {
                 this.resources = _.map(<Resource[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
                 }); // get resources
 
                 this.resources.unshift({ label: 'Select a resource', value: '' });
-            });
+            });*/
         super.init();
     }
 

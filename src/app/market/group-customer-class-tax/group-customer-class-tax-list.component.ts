@@ -1,10 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { GroupCustomerClassTaxService } from './group-customer-class-tax.service';
-import { GroupCustomerClassTax } from '../market.models';
+import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax-graphql.service';
 
 @Component({
     selector: 'app-group-customer-class-tax-list',
@@ -20,8 +16,8 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: GroupCustomerClassTaxService
+        protected graphQL: GroupCustomerClassTaxGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

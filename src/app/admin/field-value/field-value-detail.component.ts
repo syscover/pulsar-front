@@ -1,14 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/primeng';
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { FieldValueService } from './field-value.service';
-import { FieldValue } from './../admin.models';
-
-// custom imports
-import { FieldGroupService } from './../field-group/field-group.service';
+import { FieldValueGraphQLService } from './field-value-graphql.service';
 
 import * as _ from 'lodash';
 
@@ -16,16 +9,15 @@ import * as _ from 'lodash';
     selector: 'ps-field-value-detail',
     templateUrl: 'field-value-detail.component.html'
 })
-export class FieldValueDetailComponent extends CoreDetailComponent implements OnInit {
+export class FieldValueDetailComponent extends CoreDetailComponent {
 
     field_id: number;
 
     constructor(
         protected injector: Injector,
-        protected objectService: FieldValueService,
-        protected fieldGroupService: FieldGroupService
+        protected graphQL: FieldValueGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {

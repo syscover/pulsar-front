@@ -4,20 +4,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
+import { ProductGraphQLService } from './product-graphql.service';
 import { ProductService } from './product.service';
 import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
 
 // custom imports
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
-import { FieldValueService } from './../../admin/field-value/field-value.service';
-import { CategoryService } from './../category/category.service';
-import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
+
+
 import { TaxRuleService } from './../tax-rule/tax-rule.service';
-import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
+
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 
-import { FieldGroupService } from './../../admin/field-group/field-group.service';
-import { FieldService } from './../../admin/field/field.service';
+
+
 import { Field, FieldGroup, AttachmentFamily, FieldValue } from './../../admin/admin.models';
 
 import * as _ from 'lodash';
@@ -77,23 +77,18 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     constructor(
         protected injector: Injector,
-        protected objectService: ProductService,
-        protected categoryService: CategoryService,
-        protected productClassTaxService: ProductClassTaxService,
+        protected graphQL: ProductGraphQLService,
+        
         protected taxRuleService: TaxRuleService,
 
         // Custom fields
-        private dynamicFormService: DynamicFormService,
-        private fieldValueService: FieldValueService,
-        protected fieldGroupService: FieldGroupService,
-        protected fieldService: FieldService,
-        private attachmentFamilyService: AttachmentFamilyService
+        private dynamicFormService: DynamicFormService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        // get categories
+        /*// get categories
         this.categoryService.getRecords([this.baseLang])
             .flatMap((response) => {
                 this.categories = _.map(<Category[]>response.data, obj => {
@@ -216,7 +211,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.products.unshift({ label: 'Select a product', value: '' });
 
                 super.init();
-            });
+            });*/
     }
 
     // function call from parent
@@ -280,7 +275,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 properties,
                 (fields) => {
                     // get all values from all custom fields
-                    this.fieldValueService.searchRecords({
+                    /*this.fieldValueService.searchRecords({
                         'type': 'query',
                         'parameters': [
                             {
@@ -304,7 +299,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                     .subscribe((response) => {
                         this.fieldValues = response.data;
                         this.fields = fields;
-                    });
+                    });*/
                 });
         }
     }

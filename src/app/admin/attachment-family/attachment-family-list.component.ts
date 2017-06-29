@@ -1,10 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { AttachmentFamilyService } from './attachment-family.service';
-import { Package } from '../admin.models';
+import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.service';
 
 @Component({
     selector: 'ps-attachment-family-list',
@@ -20,8 +16,8 @@ export class AttachmentFamilyListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: AttachmentFamilyService
+        protected graphQL: AttachmentFamilyGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

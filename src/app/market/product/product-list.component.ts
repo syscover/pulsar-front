@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { ProductService } from './product.service';
-import { Product } from '../market.models';
+import { ProductGraphQLService } from './product-graphql.service';
 
 @Component({
     selector: 'ps-product-list',
@@ -12,8 +8,6 @@ import { Product } from '../market.models';
 })
 export class ProductListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'product.id', 'product_lang.name'
     ];
@@ -21,8 +15,8 @@ export class ProductListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: ProductService,
+        protected graphQL: ProductGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

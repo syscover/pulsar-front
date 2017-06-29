@@ -3,11 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
+import { TaxRuleGraphQLService } from './tax-rule-graphql.service';
 
-import { TaxRuleService } from './tax-rule.service';
-import { CustomerClassTaxService } from './../customer-class-tax/customer-class-tax.service';
-import { TaxRateZoneService } from './../tax-rate-zone/tax-rate-zone.service';
-import { ProductClassTaxService } from './../product-class-tax/product-class-tax.service';
+
 import { TaxRule, TaxRateZone, CustomerClassTax, ProductClassTax } from './../market.models';
 import { SelectItem } from 'primeng/primeng';
 
@@ -41,16 +39,13 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
 
     constructor(
         protected injector: Injector,
-        protected objectService: TaxRuleService,
-        protected taxRateZoneService: TaxRateZoneService,
-        protected customerClassTaxService: CustomerClassTaxService,
-        protected productClassTaxService: ProductClassTaxService
+        protected graphQL: TaxRuleGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        // get tax rate zones
+        /*// get tax rate zones
         this.taxRateZoneService.getRecords()
             .subscribe((response) => {
 
@@ -76,7 +71,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
                 return { value: obj.id, label: obj.name };
             });
         });
-
+*/
         // get object
         super.init();
     }

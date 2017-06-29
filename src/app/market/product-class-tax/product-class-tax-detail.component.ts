@@ -1,11 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { ProductClassTaxService } from './product-class-tax.service';
-import { ProductClassTax } from '../market.models';
+import { ProductClassTaxGraphQLService } from './product-class-tax-graphql.service';
 
 @Component({
     selector: 'app-product-class-tax-detail',
@@ -15,9 +11,9 @@ export class ProductClassTaxDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: ProductClassTaxService,
+        protected graphQL: ProductClassTaxGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     createForm() {

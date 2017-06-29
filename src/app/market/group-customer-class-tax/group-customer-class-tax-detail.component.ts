@@ -1,17 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { GroupCustomerClassTaxService } from './group-customer-class-tax.service';
-import { GroupCustomerClassTax } from '../market.models';
-
-// custom imports
-import { CustomerClassTax } from './../market.models';
-import { CustomerClassTaxService } from './../customer-class-tax/customer-class-tax.service';
-import { Group } from './../../crm/crm.models';
-import { GroupService } from './../../crm/group/group.service';
+import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -20,23 +10,21 @@ import * as _ from 'lodash';
     selector: 'app-group-customer-class-tax-detail',
     templateUrl: 'group-customer-class-tax-detail.component.html'
 })
-export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent implements OnInit {
+export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
 
     groups: SelectItem[] = [];
     customerClassTaxes: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected objectService: GroupCustomerClassTaxService,
-        protected customerClassTaxService: CustomerClassTaxService,
-        protected groupService: GroupService
+        protected graphQL: GroupCustomerClassTaxGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
         // load groups
-        this.groupService.getRecords()
+        /*this.groupService.getRecords()
             .subscribe((response) => {
 
                 this.groups = _.map(<Group[]>response.data, obj => {
@@ -53,7 +41,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent im
                     return { value: obj.id, label: obj.name };
                 });
                 this.customerClassTaxes.unshift({ label: 'Select a customer class tax', value: '' });
-            });
+            });*/
 
         super.init();
     }

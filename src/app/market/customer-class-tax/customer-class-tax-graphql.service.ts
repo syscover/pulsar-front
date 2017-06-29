@@ -3,7 +3,7 @@ import { GraphQLModel } from './../../core/graphql/graphql-model';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class SectionGraphQL implements GraphQLModel {
+export class CustomerClassTaxGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'section'; // to know which is the wrapper that will contain an object for to pass arguments
     readonly objectsContainer = 'sections'; // to know which is the wrapper that contain objects list in response

@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { FieldService } from './field.service';
-import { Field } from '../admin.models';
+import { FieldGraphQLService } from './field-graphql.service';
 
 @Component({
     selector: 'ps-field-list',
@@ -21,8 +17,8 @@ export class FieldListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: FieldService,
+        protected graphQL: FieldGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

@@ -1,11 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { OrderStatusService } from './order-status.service';
-import { OrderStatus } from '../market.models';
+import { OrderStatusGraphQLService } from './order-status-graphql.service';
 
 @Component({
     selector: 'ps-order-status-detail',
@@ -15,9 +11,9 @@ export class OrderStatusDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: OrderStatusService
+        protected graphQL: OrderStatusGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     createForm() {

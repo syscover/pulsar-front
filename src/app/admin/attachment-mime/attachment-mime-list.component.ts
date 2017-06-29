@@ -1,10 +1,6 @@
 import { Component, Injector } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { AttachmentMimeService } from './attachment-mime.service';
-import { Package } from '../admin.models';
+import { AttachmentMimeGraphQLService } from './attachment-mime-graphql.service';
 
 @Component({
     selector: 'ps-attachment-mime-list',
@@ -20,8 +16,8 @@ export class AttachmentMimeListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: AttachmentMimeService
+        protected graphQL: AttachmentMimeGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

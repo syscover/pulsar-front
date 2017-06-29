@@ -1,11 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { GroupService } from './group.service';
-import { Group } from '../crm.models';
+import { GroupGraphQLService } from './group-graphql.service';
 
 @Component({
     selector: 'ps-group-detail',
@@ -15,9 +11,9 @@ export class GroupDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: GroupService
+        protected graphQL: GroupGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     createForm() {

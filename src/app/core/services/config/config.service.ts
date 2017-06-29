@@ -3,6 +3,9 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 
+import { PackageGraphQLService } from './../../../admin/package/package-graphql.service';
+import { CoreService } from './../../../shared/super/core.service';
+
 @Injectable()
 export class ConfigService {
 
@@ -16,8 +19,12 @@ export class ConfigService {
 
     constructor(
         private http: Http,
-        private authHttp: AuthHttp
+        private authHttp: AuthHttp,
+        private packageGraphQLService: PackageGraphQLService,
+        private coreService: CoreService
     ) {
+            console.log(coreService)
+
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
     }
@@ -56,6 +63,8 @@ export class ConfigService {
                     this.graphqlUri = response['graphqlUri'];
                     this.apiUrl = response['apiUrl'];
                     this.appPrefix = response['appPrefix'];
+
+
 
                     /**
                      * Start config from server depending of environment

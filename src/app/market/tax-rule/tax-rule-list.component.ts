@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { TaxRuleService } from './tax-rule.service';
-import { TaxRule } from './../market.models';
+import { TaxRuleGraphQLService } from './tax-rule-graphql.service';
 
 import * as _ from 'lodash';
 
@@ -26,9 +22,9 @@ export class TaxRuleListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: TaxRuleService,
+        protected graphQL: TaxRuleGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
         this._ = _;
     }
 }

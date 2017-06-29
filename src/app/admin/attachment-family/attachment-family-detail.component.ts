@@ -1,14 +1,7 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-
-import { AttachmentFamilyService } from './attachment-family.service';
-import { Resource, AttachmentFamily } from './../admin.models';
-
-// custom imports
-import { ResourceService } from './../resource/resource.service';
+import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -17,7 +10,7 @@ import * as _ from 'lodash';
     selector: 'ps-attachment-family-detail',
     templateUrl: './attachment-family-detail.component.html'
 })
-export class AttachmentFamilyDetailComponent extends CoreDetailComponent implements OnInit {
+export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
 
     resources: SelectItem[] = [];
     sizes: SelectItem[] = [];
@@ -33,14 +26,13 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
 
     constructor(
         protected injector: Injector,
-        protected objectService: AttachmentFamilyService,
-        protected resourceService: ResourceService
+        protected graphQL: AttachmentFamilyGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        this.resourceService.getRecords()
+        /*this.resourceService.getRecords()
             .flatMap((response) => {
                 this.resources = _.map(<Resource[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
@@ -56,8 +48,9 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent impleme
                     return { value: obj.id, label: obj.name };
                 });
 
-                super.init();
-            });
+            });*/
+
+            super.init();
     }
 
     createForm() {

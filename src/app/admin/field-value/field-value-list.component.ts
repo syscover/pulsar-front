@@ -1,10 +1,7 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { FieldValueService } from './field-value.service';
-import { Field} from '../admin.models';
+import { FieldValueGraphQLService } from './field-value-graphql.service';
+import { LazyLoadEvent } from 'primeng/primeng';
 
 @Component({
     selector: 'ps-field-value-list-value',
@@ -23,9 +20,9 @@ export class FieldValueListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: FieldValueService,
+        protected graphQL: FieldValueGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 

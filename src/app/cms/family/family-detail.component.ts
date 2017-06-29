@@ -1,13 +1,11 @@
-import { FieldGroup } from './../../admin/admin.models';
 import { Component, Injector } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
-import { Editor } from './../cms.models';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { FamilyService } from './family.service';
-import { FieldGroupService } from './../../admin/field-group/field-group.service';
-import { FamilyGraphQL } from './family.graphql';
+import { FamilyGraphQLService } from './family-graphql.service';
+import { FieldGroup } from './../../admin/admin.models';
+import { Editor } from './../cms.models';
 
 import * as _ from 'lodash';
 
@@ -22,11 +20,9 @@ export class FamilyDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: FamilyService,
-        protected graphQL: FamilyGraphQL,
-        protected fieldGroupService: FieldGroupService
+        protected graphQL: FamilyGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     createForm() {
@@ -78,7 +74,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         // set editor
         this.editors = _.map(<Editor[]>data.coreConfig, obj => {
             return { value: obj.id, label: obj.name };
-        }); // get types
+        });
         this.editors.unshift({ label: 'Select a editor', value: '' });
 
         // set fieldsGroups

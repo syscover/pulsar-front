@@ -5,16 +5,11 @@ import { Observable } from 'rxjs/Observable';
 import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
+import { ArticleGraphQLService } from './article-graphql.service';
+
 import { DropdownComponent } from './../../shared/components/forms/dropdown.component';
 
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
-import { AttachmentFamilyService } from './../../admin/attachment-family/attachment-family.service';
-import { ArticleService } from './article.service';
-import { CategoryService } from '../category/category.service';
-import { FamilyService } from '../family/family.service';
-import { SectionService } from '../section/section.service';
-import { AuthService } from './../../core/auth/auth.service';
-import { FieldValueService } from './../../admin/field-value/field-value.service';
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
@@ -83,21 +78,15 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
     constructor(
         protected injector: Injector,
-        protected objectService: ArticleService,
-        private sectionService: SectionService,
-        private familyService: FamilyService,
-        private categoryService: CategoryService,
-        private authService: AuthService,
-        private dynamicFormService: DynamicFormService,
-        private fieldValueService: FieldValueService,
-        private attachmentFamilyService: AttachmentFamilyService
+        protected graphQL: ArticleGraphQLService,
+        private dynamicFormService: DynamicFormService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
 
-        this.sectionService
+        /*this.sectionService
             .getRecords()
             .flatMap((response) => {
                 this._sections = response.data;
@@ -213,7 +202,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     author_name: this.user.name + ' ' + this.user.surname
                 });
                 super.init();
-            });
+            });*/
     }
 
     createForm() {
@@ -278,7 +267,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 properties,
                 (fields) => {
                     // get all values from all custom fields
-                    this.fieldValueService.searchRecords({
+                    /*this.fieldValueService.searchRecords({
                         'type': 'query',
                         'parameters': [
                             {
@@ -302,7 +291,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     .subscribe((response) => {
                         this.fieldValues = response.data;
                         this.fields = fields;
-                    });
+                    });*/
                 });
         }
     }

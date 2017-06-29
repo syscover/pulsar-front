@@ -1,14 +1,11 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/primeng';
+import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
+import { FieldGraphQLService } from './field-graphql.service';
 
-import { FieldService } from './field.service';
-import { Field, FieldGroup, FieldType, DataType } from './../admin.models';
+import { SelectItem } from 'primeng/primeng';
 
-// custom imports
-import { FieldGroupService } from './../field-group/field-group.service';
+import { Field } from './../admin.models';
 
 import * as _ from 'lodash';
 
@@ -16,7 +13,7 @@ import * as _ from 'lodash';
     selector: 'ps-field-detail',
     templateUrl: 'field-detail.component.html'
 })
-export class FieldDetailComponent extends CoreDetailComponent implements OnInit {
+export class FieldDetailComponent extends CoreDetailComponent {
 
     fieldGroups: SelectItem[] = [];
     fieldTypes: SelectItem[] = [];
@@ -51,14 +48,13 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
 
     constructor(
         protected injector: Injector,
-        protected objectService: FieldService,
-        protected fieldGroupService: FieldGroupService
+        protected graphQL: FieldGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 
     ngOnInit() {
-        this.fieldGroupService.getRecords() // get fieldGroups
+        /*this.fieldGroupService.getRecords() // get fieldGroups
             .flatMap(response => {
                 this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
@@ -86,8 +82,8 @@ export class FieldDetailComponent extends CoreDetailComponent implements OnInit 
 
                 this.dataTypes.unshift({ label: 'Select a data type', value: '' });
 
-                super.init();
-            });
+            });*/
+            super.init();
     }
 
     createForm() {

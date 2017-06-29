@@ -1,9 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { ArticleService } from './article.service';
+import { ArticleGraphQLService } from './article-graphql.service';
 
 @Component({
     selector: 'ps-article-list',
@@ -20,8 +17,8 @@ export class ArticleListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: ArticleService,
+        protected graphQL: ArticleGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

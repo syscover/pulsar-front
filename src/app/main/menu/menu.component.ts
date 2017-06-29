@@ -6,7 +6,6 @@ import { MenuItem } from 'primeng/primeng';
 
 import { MainComponent } from './../main.component';
 import { Package } from './../../admin/admin.models';
-import { PackageService } from './../../admin/package/package.service';
 import { environment } from './../../../environments/environment';
 
 import * as _ from 'lodash';
@@ -36,12 +35,12 @@ export class MenuComponent implements OnInit {
 
     constructor(
         @Inject(forwardRef(() => MainComponent)) public app: MainComponent,
-        private packageService: PackageService
+        //private packageService: PackageService
     ) {}
 
     ngOnInit() {
         // get package to know who is active
-        if (environment.production) {
+        /*if (environment.production) {
             this.packageService
             .getRecords()
             .subscribe(response => {
@@ -49,7 +48,7 @@ export class MenuComponent implements OnInit {
             });
         } else {
             this.setMemu();
-        }
+        }*/
     }
 
     setMemu(packages: Package[] = []) {

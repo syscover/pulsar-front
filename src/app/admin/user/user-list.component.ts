@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { UserService } from './user.service';
-import { Resource } from '../admin.models';
+import { UserGraphQLService } from './user-graphql.service';
 
 @Component({
     selector: 'ps-user-list',
@@ -12,16 +8,14 @@ import { Resource } from '../admin.models';
 })
 export class UserListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name', 'profile.name'
     ];
 
     constructor(
         protected injector: Injector,
-        protected objectService: UserService,
+        protected graphQL: UserGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

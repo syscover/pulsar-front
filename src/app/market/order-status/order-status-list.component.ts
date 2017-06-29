@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding, ViewChild } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { OrderStatusService } from './order-status.service';
-import { OrderStatus } from '../market.models';
+import { OrderStatusGraphQLService } from './order-status-graphql.service';
 
 @Component({
     selector: 'ps-order-status-list',
@@ -12,17 +8,14 @@ import { OrderStatus } from '../market.models';
 })
 export class OrderStatusListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'order_status.id', 'order_status.name'
     ];
 
     constructor(
-        // service for parent class
         protected injector: Injector,
-        protected objectService: OrderStatusService,
+        protected graphQL: OrderStatusGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

@@ -1,8 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { SectionService } from './section.service';
-import { SectionGraphQL } from './section.graphql';
+import { SectionGraphQLService } from './section-graphql.service';
 
 @Component({
     selector: 'ps-section-list',
@@ -17,9 +15,8 @@ export class SectionListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected objectService: SectionService,
-        protected graphQL: SectionGraphQL
+        protected graphQL: SectionGraphQLService
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

@@ -22,20 +22,10 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 
-import { GroupService } from './../crm/group/group.service';
-import { CountryService } from './../admin/country/country.service';
-import { FieldGroupService } from './../admin/field-group/field-group.service';
-import { FieldService } from './../admin/field/field.service';
-import { CategoryService } from './category/category.service';
-import { CustomerClassTaxService } from './customer-class-tax/customer-class-tax.service';
 import { GroupCustomerClassTaxService } from './group-customer-class-tax/group-customer-class-tax.service';
-import { TaxRateZoneService } from './tax-rate-zone/tax-rate-zone.service';
 import { TaxRuleService } from './tax-rule/tax-rule.service';
-import { PaymentMethodService } from './payment-method/payment-method.service';
 import { OrderStatusService } from './order-status/order-status.service';
-import { ProductClassTaxService } from './product-class-tax/product-class-tax.service';
 import { ProductService } from './product/product.service';
-import { AttachmentFamilyService } from './../admin/attachment-family/attachment-family.service';
 
 @NgModule({
     imports: [
@@ -63,21 +53,11 @@ import { AttachmentFamilyService } from './../admin/attachment-family/attachment
         ProductDetailComponent
     ],
     providers: [
-        CountryService,
-        FieldGroupService,
-        FieldService,
-        CategoryService,
-        CustomerClassTaxService,
         GroupCustomerClassTaxService,
-        TaxRateZoneService,
         TaxRuleService,
-        PaymentMethodService,
         OrderStatusService,
-        ProductClassTaxService,
         OrderStatusService,
-        ProductService,
-        GroupService,
-        AttachmentFamilyService
+        ProductService
     ]
 })
 

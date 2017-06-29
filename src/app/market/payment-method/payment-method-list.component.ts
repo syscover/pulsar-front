@@ -1,10 +1,6 @@
-import { Component, Injector, HostBinding } from '@angular/core';
-import { LazyLoadEvent, DataTable, ConfirmationService } from 'primeng/primeng';
-
+import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-
-import { PaymentMethodService } from './payment-method.service';
-import { PaymentMethod } from './../market.models';
+import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 
 @Component({
     selector: 'ps-payment-method-list',
@@ -12,8 +8,6 @@ import { PaymentMethod } from './../market.models';
 })
 export class PaymentMethodListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'payment_method.id', 'payment_method.name'
     ];
@@ -21,8 +15,8 @@ export class PaymentMethodListComponent extends CoreListComponent {
     constructor(
         // service for parent class
         protected injector: Injector,
-        protected objectService: PaymentMethodService,
+        protected graphQL: PaymentMethodGraphQLService,
     ) {
-        super(injector, objectService);
+        super(injector, graphQL);
     }
 }

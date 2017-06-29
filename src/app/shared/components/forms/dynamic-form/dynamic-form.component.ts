@@ -4,7 +4,6 @@ import { SelectItem } from 'primeng/primeng';
 
 import { DynamicFormService } from './dynamic-form.service';
 import { Field, Lang, FieldValue } from './../../../../admin/admin.models';
-import { FieldValueService } from './../../../../admin/field-value/field-value.service';
 
 import * as _ from 'lodash';
 
@@ -45,8 +44,7 @@ export class DynamicFormComponent implements OnInit {
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
         private applicationRef: ApplicationRef,
-        private dynamicFormService: DynamicFormService,
-        private fieldValueService: FieldValueService
+        private dynamicFormService: DynamicFormService
     ) { }
 
     ngOnInit() {

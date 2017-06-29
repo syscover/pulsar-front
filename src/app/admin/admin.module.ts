@@ -29,14 +29,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
-import { UserService } from './user/user.service';
-import { FieldService } from './field/field.service';
-import { FieldValueService } from './field-value/field-value.service';
-import { AttachmentMimeService } from './attachment-mime/attachment-mime.service';
-import { AttachmentFamilyService } from './attachment-family/attachment-family.service';
-
-
-
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
@@ -78,11 +70,6 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         ActionDetailComponent
     ],
     providers: [
-        UserService,
-        FieldService,
-        FieldValueService,
-        AttachmentMimeService,
-        AttachmentFamilyService,
         ActionGraphQLService,
         CountryGraphQLService,
         FieldGroupGraphQLService,

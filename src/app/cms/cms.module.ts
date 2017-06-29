@@ -12,16 +12,8 @@ import { SectionDetailComponent } from './section/section-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 
-import { FieldService } from './../admin/field/field.service';
-import { AttachmentFamilyService } from './../admin/attachment-family/attachment-family.service';
-import { FieldGroupService } from './../admin/field-group/field-group.service';
-import { ArticleService } from './article/article.service';
-import { CategoryService } from './category/category.service';
-import { SectionService } from './section/section.service';
-import { FamilyService } from './family/family.service';
-
-import { FamilyGraphQL } from './family/family.graphql';
-import { SectionGraphQL } from './section/section.graphql';
+import { FamilyGraphQLService } from './family/family-graphql.service';
+import { SectionGraphQLService } from './section/section-graphql.service';
 
 @NgModule({
     imports: [
@@ -39,15 +31,8 @@ import { SectionGraphQL } from './section/section.graphql';
         FamilyDetailComponent
     ],
     providers: [
-        FieldService,
-        FieldGroupService,
-        AttachmentFamilyService,
-        ArticleService,
-        CategoryService,
-        SectionService,
-        FamilyService,
-        FamilyGraphQL,
-        SectionGraphQL
+        FamilyGraphQLService,
+        SectionGraphQLService
     ]
 })
 

@@ -15,7 +15,6 @@ import { DatatableHeaderComponent } from './components/datatable-header/datatabl
 import { FormHeaderComponent } from './components/form-header/form-header.component';
 import { DynamicFormComponent } from './components/forms/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from './components/forms/dynamic-form/dynamic-form.service';
-import { FieldValueService } from './../admin/field-value/field-value.service';
 import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
 
 
@@ -43,8 +42,8 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
     providers: [
         ConfirmationService,
         DynamicFormService,
-        FieldValueService,
-        AttachmentService    ],
+        AttachmentService
+    ],
     exports: [
         CommonModule,
         FormsModule,
