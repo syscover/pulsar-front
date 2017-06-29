@@ -13,7 +13,6 @@ export class CountryListComponent extends CoreListComponent {
     ];
 
     constructor(
-        // service for parent class
         protected injector: Injector,
         protected grahpQL: CountryGraphQLService
     ) {

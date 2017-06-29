@@ -5,18 +5,25 @@ import gql from 'graphql-tag';
 @Injectable()
 export class CategoryGraphQLService implements GraphQLModel {
 
-    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'actions'; // to know which is the wrapper that contain objects list in response
-    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectInputContainer = 'category'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectsContainer = 'categories'; // to know which is the wrapper that contain objects list in response
+    readonly objectContainer = 'cmsCategory'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'cmsCategoriesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
-    readonly fields = 'id name'; // defaults fields that will be return
+    readonly fields = `
+        id 
+        lang_id
+        name
+        slug
+        sort
+        data_lang
+    `; // defaults fields that will be return
 
     readonly queryRelationsObject;
-    
+
     readonly queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
+        query CmsGetCategoriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
+            ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
                 filtered
                 ${this.objectsContainer}(sql:$sql){
@@ -28,29 +35,29 @@ export class CategoryGraphQLService implements GraphQLModel {
     readonly queryObjects;
 
     readonly queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            adminAction (sql:$sql){
+        query CmsGetCategory ($sql:[CoreSQLQueryInput]) {
+            cmsCategory (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     readonly mutationAddObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput!) {
-            adminAddAction (action:$action){
+        mutation CmsAddCategory ($category:CmsCategoryInput!) {
+            cmsAddCategory (category:$category){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (action:$action idOld:$idOld){
+        mutation CmsUpdateCategory ($category:CmsCategoryInput!) {
+            cmsUpdateCategory (category:$category){
                 ${this.fields}
             }
         }`;
 
     readonly mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+        mutation CmsDeleteCategory ($id:String! $lang:String!) {
+            cmsDeleteCategory (id:$id lang:$lang){
                 ${this.fields}
             }
         }`;
