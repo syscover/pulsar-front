@@ -3,7 +3,6 @@ import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from './graphql/graphql.module';
 import { ValidationMessageService } from './../core/services/validation-message.service';
 import { CoreService } from './../shared/super/core.service';
-import { ApolloService } from './graphql/apollo-service';
 
 import './rxjs-extensions';
 
