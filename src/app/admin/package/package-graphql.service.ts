@@ -18,7 +18,9 @@ export class PackageGraphQLService implements GraphQLModel {
         sort
     `; // defaults fields that will be return
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject;
+
+    readonly queryPaginationObject = gql`
         query AdminGetPackagesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
@@ -29,7 +31,12 @@ export class PackageGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject;
+    readonly queryObjects = gql`
+        query AdminGetPackages ($sql:[CoreSQLQueryInput]) {
+            adminPackages (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     readonly queryObject = gql`
         query AdminGetPackage ($sql:[CoreSQLQueryInput]) {

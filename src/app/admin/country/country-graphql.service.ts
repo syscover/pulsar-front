@@ -22,7 +22,9 @@ export class CountryGraphQLService implements GraphQLModel {
         data_lang
     `; // defaults fields that will be return
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject: any;
+
+    readonly queryPaginationObject = gql`
         query AdminGetCountriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
             ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
@@ -33,7 +35,7 @@ export class CountryGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject: any;
+    readonly queryObjects;
 
     readonly queryObject = gql`
         query AdminGetCountry ($sql:[CoreSQLQueryInput]) {

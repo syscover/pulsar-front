@@ -1,13 +1,9 @@
-import { Component, Input, OnInit, EventEmitter, ViewChild, Inject, forwardRef } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter, Inject, forwardRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/primeng';
-
 import { MainComponent } from './../main.component';
 import { Package } from './../../admin/admin.models';
-import { environment } from './../../../environments/environment';
-
 import * as _ from 'lodash';
 
 @Component({
@@ -27,40 +23,35 @@ import * as _ from 'lodash';
                         visible="true"></ul>
     `
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnChanges {
 
     @Input() reset: boolean;
+    @Input() packages: Package[];
 
     model: any[] = [];
 
     constructor(
-        @Inject(forwardRef(() => MainComponent)) public app: MainComponent,
-        //private packageService: PackageService
+        @Inject(forwardRef(() => MainComponent)) public app: MainComponent
     ) {}
 
-    ngOnInit() {
-        // get package to know who is active
-        /*if (environment.production) {
-            this.packageService
-            .getRecords()
-            .subscribe(response => {
-                this.setMemu(response.data);
-            });
-        } else {
-            this.setMemu();
-        }*/
+    ngOnChanges() {
+        this.setMemu(this.packages);
     }
 
-    setMemu(packages: Package[] = []) {
+    setMemu(packages: Package[]) {
+
+        // if packages is not defines yet
+        if (! packages) { return; }
 
         let adminPackage    = _.find(packages, {root: 'admin'});
         let crmPackage      = _.find(packages, {root: 'crm'});
         let cmsPackage      = _.find(packages, {root: 'cms'});
         let marketPackage   = _.find(packages, {root: 'market'});
 
+        this.model = [];
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] });
 
-        if (! environment.production || cmsPackage.active) {
+        if (cmsPackage.active) {
             this.model.push({
                 label: 'CMS', icon: 'art_track',
                 items: [
@@ -72,7 +63,7 @@ export class MenuComponent implements OnInit {
             });
         }
 
-        if (! environment.production || marketPackage.active) {
+        if (marketPackage.active) {
             this.model.push({
                 label: 'Market', icon: 'shopping_cart',
                 items: [
@@ -104,7 +95,7 @@ export class MenuComponent implements OnInit {
             });
         }
 
-        if (! environment.production || crmPackage.active) {
+        if (crmPackage.active) {
             this.model.push({
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
@@ -114,7 +105,7 @@ export class MenuComponent implements OnInit {
             });
         }
 
-        if (! environment.production || adminPackage.active) {
+        if (adminPackage.active) {
             this.model.push({
                 label: 'Administration', icon: 'settings',
                 items: [
@@ -210,8 +201,7 @@ export class SubMenuComponent {
     constructor(
         @Inject(forwardRef(() => MainComponent))
         public app: MainComponent,
-        public router: Router,
-        public location: Location
+        public router: Router
     ) {}
 
     itemClick(event: Event, item: MenuItem, index: number) {

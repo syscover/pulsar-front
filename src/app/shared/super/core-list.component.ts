@@ -47,12 +47,10 @@ export class CoreListComponent extends CoreComponent {
             args['lang'] = lang;
         }
 
-        console.log(this.grahpQL);
-
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryObjects,
+                query: this.grahpQL.queryPaginationObject,
                 variables: args,
                 fetchPolicy: 'network-only'
             }).subscribe(({data}) => {

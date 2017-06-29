@@ -22,11 +22,6 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 
-import { GroupCustomerClassTaxService } from './group-customer-class-tax/group-customer-class-tax.service';
-import { TaxRuleService } from './tax-rule/tax-rule.service';
-import { OrderStatusService } from './order-status/order-status.service';
-import { ProductService } from './product/product.service';
-
 @NgModule({
     imports: [
         SharedModule,
@@ -53,11 +48,7 @@ import { ProductService } from './product/product.service';
         ProductDetailComponent
     ],
     providers: [
-        GroupCustomerClassTaxService,
-        TaxRuleService,
-        OrderStatusService,
-        OrderStatusService,
-        ProductService
+        
     ]
 })
 

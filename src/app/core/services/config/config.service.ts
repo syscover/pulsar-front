@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
+import { ApolloService } from './../../graphql/apollo-service';
+import gql from 'graphql-tag';
 
 import { PackageGraphQLService } from './../../../admin/package/package-graphql.service';
 import { CoreService } from './../../../shared/super/core.service';
@@ -20,10 +22,10 @@ export class ConfigService {
     constructor(
         private http: Http,
         private authHttp: AuthHttp,
-        private packageGraphQLService: PackageGraphQLService,
-        private coreService: CoreService
+        private apolloService: ApolloService,
+        private packageGraphQLService: PackageGraphQLService
     ) {
-            console.log(coreService)
+          //  console.log(this.coreService);
 
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
@@ -50,6 +52,7 @@ export class ConfigService {
 
             /**
              * Start confign from local file
+             * this operation is do it across http, for being a local file
              */
             let obs = this.http.get('./config.json')
                 .map(res => res.json())
@@ -64,20 +67,33 @@ export class ConfigService {
                     this.apiUrl = response['apiUrl'];
                     this.appPrefix = response['appPrefix'];
 
-
-
                     /**
                      * Start config from server depending of environment
                      */
-                    this.http.get(`${this.apiUrl}/api/v1/admin/config/bootstrap`)
-                        .map(res => res.json())
+                    this.apolloService
+                        .apollo(this.graphqlUri)
+                        .watchQuery({
+                            query: gql`
+                                query CoreGetBootstapConfig {
+                                    coreBootstrapConfig {
+                                        base_lang
+                                        langs {
+                                            id
+                                            name
+                                            icon
+                                            active
+                                            sort
+                                        }
+                                    }
+                                }`
+                        })
                         .catch((error: any) => {
                             console.error('Error reading configuration file');
                             resolve(error);
                             return Observable.throw(error.json().error || 'Server error');
                         })
-                        .subscribe((responseData) => {
-                            this.config = responseData;
+                        .subscribe(({data}) => {
+                            this.config = data['coreBootstrapConfig'];
                             resolve(true);
                         });
                 });

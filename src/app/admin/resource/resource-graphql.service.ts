@@ -25,7 +25,12 @@ export class ResourceGraphQLService implements GraphQLModel {
         }
     `; // defaults fields that will be return`
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject = gql`
+        query AdminGetRelationsResource {
+            ${this.relationsFields}
+        }`;
+
+    readonly queryPaginationObject = gql`
         query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
@@ -36,8 +41,11 @@ export class ResourceGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject = gql`
-        query AdminGetRelationsResource {
+    readonly queryObjects = gql`
+        query AdminGetResources ($sql:[CoreSQLQueryInput]) {
+            adminResources (sql:$sql){
+                ${this.fields}
+            }
             ${this.relationsFields}
         }`;
 

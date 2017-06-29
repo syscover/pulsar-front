@@ -13,10 +13,12 @@ export interface GraphQLModel {
     // defaults fields that will be return
     readonly fields: string;
 
-    // Query to get pagination list objets
-    readonly queryObjects: any;
     // Query to get relations data to create new object
     readonly queryRelationsObject: any;
+    // Query to get pagination list objets
+    readonly queryPaginationObject: any;
+    // Query to get pagination list objets
+    readonly queryObjects: any;
     // Query to get a object
     readonly queryObject: any;
     // Query to add object

@@ -1,4 +1,8 @@
-import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { CoreService } from './../shared/super/core.service';
+import { PackageGraphQLService } from './../admin/package/package-graphql.service';
+import { Package } from '../admin/admin.models';
+import gql from 'graphql-tag';
 declare const jQuery: any; // jQuery definition
 
 enum MenuOrientation {
@@ -11,7 +15,7 @@ enum MenuOrientation {
   selector: 'ps-main',
   templateUrl: './main.component.html'
 })
-export class MainComponent implements AfterViewInit {
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
     layoutCompact: boolean = true;
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
@@ -29,19 +33,35 @@ export class MainComponent implements AfterViewInit {
     activeTopbarItem: any;
     documentClickListener: Function;
     resetMenu: boolean;
+    packages: Package[];
 
     @ViewChild('layoutContainer') layourContainerViewChild: ElementRef;
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
     constructor(
-        private _renderer: Renderer2
+        private _renderer: Renderer2,
+        private coreService: CoreService,
+        private packageGraphQLService: PackageGraphQLService
     ) { }
+
+    ngOnInit() {
+        this.coreService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.packageGraphQLService.queryObjects,
+                variables: {sql: []}
+            })
+            .subscribe(({data}) => {
+                // set packages for menu
+                this.packages = data['adminPackages'];
+            });
+     }
 
     ngAfterViewInit() {
         this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
         this.layoutMenuScroller = <HTMLDivElement> this.layoutMenuScrollerViewChild.nativeElement;
 
-        //hides the horizontal submenus or top menu if outside is clicked
+        // hide the horizontal submenus or top menu if outside is clicked
         this.documentClickListener = this._renderer.listen('body', 'click', (event) => {
             if (!this.topbarItemClick) {
                 this.activeTopbarItem = null;

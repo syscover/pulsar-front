@@ -5,14 +5,11 @@ import { SelectItem } from 'primeng/primeng';
 
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ProductGraphQLService } from './product-graphql.service';
-import { ProductService } from './product.service';
+
 import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
 
 // custom imports
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
-
-
-import { TaxRuleService } from './../tax-rule/tax-rule.service';
 
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 
@@ -78,9 +75,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     constructor(
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
-        
-        protected taxRuleService: TaxRuleService,
-
         // Custom fields
         private dynamicFormService: DynamicFormService
     ) {
@@ -247,7 +241,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     handleGetProductTaxes(price = null, callback = undefined) {
-        let obs = this.taxRuleService.getProductTaxes({
+        /*let obs = this.taxRuleService.getProductTaxes({
                 'type': 'query',
                 'parameters': {
                     'price': price,
@@ -263,7 +257,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 if (callback) {
                     callback();
                 }
-            });
+            });*/
     }
 
     // get custom fields that has this object

@@ -38,7 +38,12 @@ export class CustomerClassTaxGraphQLService implements GraphQLModel {
         data
     `; // defaults fields that will be return
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject = gql`
+        query CmsGetRelationsSection($key:String!) {
+            ${this.relationsFields}
+        }`;
+
+    readonly queryPaginationObject = gql`
         query CmsGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
@@ -49,10 +54,7 @@ export class CustomerClassTaxGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject = gql`
-        query CmsGetRelationsSection($key:String!) {
-            ${this.relationsFields}
-        }`;
+    readonly queryObjects;
 
     readonly queryObject = gql`
         query GetCmsSection ($sql:[CoreSQLQueryInput] $key:String!) {

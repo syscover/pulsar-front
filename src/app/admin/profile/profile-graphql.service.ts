@@ -15,7 +15,9 @@ export class ProfileGraphQLService implements GraphQLModel {
         name 
     `; // defaults fields that will be return
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject;
+
+    readonly queryPaginationObject = gql`
         query AdminGetProfilesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
@@ -26,7 +28,12 @@ export class ProfileGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject;
+    readonly queryObjects = gql`
+        query AdminGetProfiles ($sql:[CoreSQLQueryInput]) {
+            adminProfiles (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     readonly queryObject = gql`
         query AdminGetProfile ($sql:[CoreSQLQueryInput]) {

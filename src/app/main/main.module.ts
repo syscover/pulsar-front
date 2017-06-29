@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-
 import { TopbarComponent } from './topbar/topbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent, SubMenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
+import { CoreService } from './../shared/super/core.service';
 
 @NgModule({
     imports: [
@@ -21,7 +21,9 @@ import { FooterComponent } from './footer/footer.component';
         SubMenuComponent,
         FooterComponent
     ],
-    providers: [ ],
+    providers: [
+        CoreService
+    ],
     exports: [
         CommonModule,
         MainComponent,

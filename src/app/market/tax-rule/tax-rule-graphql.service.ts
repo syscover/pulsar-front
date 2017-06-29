@@ -10,9 +10,14 @@ export class TaxRuleGraphQLService implements GraphQLModel {
     readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
-    readonly fields = 'id name'; // defaults fields that will be return
+    readonly fields = `
+        id
+        name
+    `; // defaults fields that will be return
 
-    readonly queryObjects = gql`
+    readonly queryRelationsObject;
+
+    readonly queryPaginationObject = gql`
         query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
@@ -23,7 +28,7 @@ export class TaxRuleGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryRelationsObject;
+    readonly queryObjects;
 
     readonly queryObject = gql`
         query AdminGetAction ($sql:[CoreSQLQueryInput]) {
