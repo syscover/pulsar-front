@@ -82,9 +82,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
     ngOnInit() {
 
-        /*this.sectionService
-            .getRecords()
-            .flatMap((response) => {
+                                                        /*this.sectionService
+                                                            .getRecords()
+                                                            .flatMap((response) => {
                                                                         this._sections = response.data;
                                                                         this.sections = _.map(this._sections, obj => {
                                                                             return { value: obj.id, label: obj.name };
@@ -92,7 +92,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                                                                         this.sections.unshift({ label: 'Select a section', value: '' });
 
                                                                         return this.familyService.getRecords(); // return next observable
-            }).flatMap(response => {
+                                                                    }).flatMap(response => {
                                                                         this._families = response.data;
                                                                         this.families = _.map(this._families, obj => {
                                                                             return { value: obj.id, label: obj.name };
@@ -132,8 +132,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 // set articles dropdown
                 this.articles = _.map(<Article[]>response.data, obj => {
                     return { value: obj.id, label: obj.name };
-                }); // get order status
-
+                }); 
                 this.articles.unshift({ label: 'Select a article', value: '' });
 
                                                                                         return this.categoryService.searchRecords({
@@ -152,7 +151,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                                                                                                 }
                                                                                             ]
                                                                                         }); // return next observable
-            }).flatMap(response => {
+                                                                                    }).flatMap(response => {
                                                                                         // set categories dropdown
                                                                                         this.categories = _.map(<Category[]>response.data, obj => {
                                                                                             return { value: obj.id, label: obj.name };
@@ -185,7 +184,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                                                                                                         }
                                                                                                     }); // return next observable
                                                                                                 })
-            .subscribe(response => {
+                                                                                                    .subscribe(response => {
                                                                                                     this.statuses = _.map(<Family[]>response.data, obj => {
                                                                                                         return { value: obj.id, label: obj.name };
                                                                                                     });

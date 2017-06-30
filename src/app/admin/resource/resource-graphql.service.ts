@@ -14,7 +14,7 @@ export class ResourceGraphQLService implements GraphQLModel {
             id
             name
         }
-    `; // fields of relations object`
+    `;
     readonly fields = `
         id 
         name 
@@ -23,7 +23,7 @@ export class ResourceGraphQLService implements GraphQLModel {
             id
             name
         }
-    `; // defaults fields that will be return`
+    `;
 
     readonly queryRelationsObject = gql`
         query AdminGetRelationsResource {

@@ -8,10 +8,8 @@ import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.serv
 })
 export class AttachmentFamilyListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'id', 'name'
+        'attachment_family.id', 'attachment_family.name', 'resource.name'
     ];
 
     constructor(

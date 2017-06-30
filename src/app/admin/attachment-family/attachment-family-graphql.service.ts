@@ -5,17 +5,33 @@ import gql from 'graphql-tag';
 @Injectable()
 export class AttachmentFamilyGraphQLService implements GraphQLModel {
 
-    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'actions'; // to know which is the wrapper that contain objects list in response
-    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
-    readonly relationsFields;
-    readonly fields = 'id name'; // defaults fields that will be return
+    readonly objectInputContainer = 'attachmentFamily'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectsContainer = 'attachmentFamilies'; // to know which is the wrapper that contain objects list in response
+    readonly objectContainer = 'adminAttachmentFamily'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'adminAttachmentFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly relationsFields = `
+        adminResources {
+            id
+            name
+        }
+    `;
+    readonly fields = `
+        id 
+        name
+        resource_id
+        resource {
+            id
+            name
+        }
+    `;
 
-    readonly queryRelationsObject;
+    readonly queryRelationsObject = gql`
+        query AdminGetRelationsAttachmentFamily {
+            ${this.relationsFields}
+        }`;
 
     readonly queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
@@ -28,29 +44,29 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
     readonly queryObjects;
 
     readonly queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            adminAction (sql:$sql){
+        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput]) {
+            adminAttachmentFamily (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     readonly mutationAddObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput!) {
-            adminAddAction (action:$action){
+        mutation AdminAddAttachmentFamily ($attachmentFamily:AdminAttachmentFamilyInput!) {
+            adminAddAttachmentFamily (attachmentFamily:$attachmentFamily){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (action:$action idOld:$idOld){
+        mutation AdminUpdateAttachmentFamily ($attachmentFamily:AdminAttachmentFamilyInput!) {
+            adminUpdateAttachmentFamily (attachmentFamily:$attachmentFamily){
                 ${this.fields}
             }
         }`;
 
     readonly mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+        mutation AdminDeleteAttachmentFamily ($id:String!) {
+            adminDeleteAttachmentFamily (id:$id){
                 ${this.fields}
             }
         }`;

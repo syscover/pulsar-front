@@ -30,6 +30,7 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
+import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
@@ -71,6 +72,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     ],
     providers: [
         ActionGraphQLService,
+        AttachmentFamilyGraphQLService,
         CountryGraphQLService,
         FieldGroupGraphQLService,
         LangGraphQLService,
