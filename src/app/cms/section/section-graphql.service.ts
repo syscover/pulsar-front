@@ -42,8 +42,8 @@ export class SectionGraphQLService implements GraphQLModel {
         }`;
 
     readonly queryObjects = gql`
-        query AdminGetPackages ($sql:[CoreSQLQueryInput]) {
-            adminPackages (sql:$sql){
+        query CmsGetSections ($sql:[CoreSQLQueryInput]) {
+            cmsSections (sql:$sql){
                 ${this.fields}
             }
         }`;

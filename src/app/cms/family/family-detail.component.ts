@@ -62,7 +62,9 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             .watchQuery({
                 query: this.grahpQL.queryRelationsObject,
                 variables: {
-                    key: 'pulsar.cms.editors'
+                    config: {
+                        key: 'pulsar.cms.editors'
+                    }
                 }
             })
             .subscribe(({data}) => {

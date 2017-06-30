@@ -10,6 +10,10 @@ export class ArticleGraphQLService implements GraphQLModel {
     readonly objectContainer = 'cmsArticle'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsArticlesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
+        cmsSections {
+            id
+            name
+        }
         cmsFamilies {
             id
             name
@@ -17,6 +21,12 @@ export class ArticleGraphQLService implements GraphQLModel {
         cmsCategories {
             id
             name
+        }
+        cmsStatuses: coreConfig (config:$config) {
+            ... on CoreConfigOptionType {
+                id
+                name
+            }
         }
     `;
     readonly fields = `
@@ -40,7 +50,7 @@ export class ArticleGraphQLService implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryRelationsObject  = gql`
-        query CmsGetRelationsArticles {
+        query CmsGetRelationsArticles ($config:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 

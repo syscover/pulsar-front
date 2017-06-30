@@ -6,6 +6,11 @@ export class Editor {
     name: string;
 }
 
+export class Status {
+    id: number;
+    name: string;
+}
+
 export class Family {
     id: number;
     name: string;

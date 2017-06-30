@@ -10,7 +10,7 @@ export class FamilyGraphQLService implements GraphQLModel {
     readonly objectContainer = 'cmsFamily'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
-        coreConfig (key:$key) {
+        coreConfig (config:$config) {
             ... on CoreConfigOptionType {
                 id
                 name
@@ -39,7 +39,7 @@ export class FamilyGraphQLService implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryRelationsObject = gql`
-        query CmsGetRelationsFamily($key:String!) {
+        query CmsGetRelationsFamily($config:CoreConfigInput!) {
             ${this.relationsFields}
         }`;
 
@@ -55,7 +55,7 @@ export class FamilyGraphQLService implements GraphQLModel {
         }`;
 
     readonly queryObjects = gql`
-        query GetCmsFamilies ($sql:[CoreSQLQueryInput] $key:String!) {
+        query GetCmsFamilies ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             cmsFamilies (sql:$sql){
                 ${this.fields}
             }
@@ -63,7 +63,7 @@ export class FamilyGraphQLService implements GraphQLModel {
         }`;
 
     readonly queryObject = gql`
-        query GetCmsFamily ($sql:[CoreSQLQueryInput] $key:String!) {
+        query GetCmsFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             cmsFamily (sql:$sql){
                 ${this.fields}
             }

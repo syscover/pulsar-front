@@ -3,17 +3,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { SelectItem } from 'primeng/primeng';
-
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ArticleGraphQLService } from './article-graphql.service';
-
 import { DropdownComponent } from './../../shared/components/forms/dropdown.component';
-
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
-
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
-import { Section, Family, Article, Category } from './../cms.models';
+import { Section, Family, Article, Category, Status } from './../cms.models';
 import { Field } from './../../admin/admin.models';
 
 import * as _ from 'lodash';
@@ -89,19 +85,19 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         /*this.sectionService
             .getRecords()
             .flatMap((response) => {
-                this._sections = response.data;
-                this.sections = _.map(this._sections, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-                this.sections.unshift({ label: 'Select a section', value: '' });
+                                                                        this._sections = response.data;
+                                                                        this.sections = _.map(this._sections, obj => {
+                                                                            return { value: obj.id, label: obj.name };
+                                                                        });
+                                                                        this.sections.unshift({ label: 'Select a section', value: '' });
 
-                            return this.familyService.getRecords(); // return next observable
+                                                                        return this.familyService.getRecords(); // return next observable
             }).flatMap(response => {
-                            this._families = response.data;
-                            this.families = _.map(this._families, obj => {
-                                return { value: obj.id, label: obj.name };
-                            });
-                            this.families.unshift({ label: 'Select a family', value: '' });
+                                                                        this._families = response.data;
+                                                                        this.families = _.map(this._families, obj => {
+                                                                            return { value: obj.id, label: obj.name };
+                                                                        });
+                                                                        this.families.unshift({ label: 'Select a family', value: '' });
 
                 // load articles to select a parent
                 let query = {
@@ -140,27 +136,27 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
                 this.articles.unshift({ label: 'Select a article', value: '' });
 
-                return this.categoryService.searchRecords({
-                    type: 'query',
-                    parameters: [
-                        {
-                            command: 'where',
-                            column: 'article_category.lang_id',
-                            operator: '=',
-                            value: this.params['lang'] ? this.params['lang'] : this.baseLang
-                        },
-                        {
-                            command: 'orderBy',
-                            operator: 'asc',
-                            column: 'article_category.name'
-                        }
-                    ]
-                }); // return next observable
+                                                                                        return this.categoryService.searchRecords({
+                                                                                            type: 'query',
+                                                                                            parameters: [
+                                                                                                {
+                                                                                                    command: 'where',
+                                                                                                    column: 'article_category.lang_id',
+                                                                                                    operator: '=',
+                                                                                                    value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                                                                                                },
+                                                                                                {
+                                                                                                    command: 'orderBy',
+                                                                                                    operator: 'asc',
+                                                                                                    column: 'article_category.name'
+                                                                                                }
+                                                                                            ]
+                                                                                        }); // return next observable
             }).flatMap(response => {
-                // set categories dropdown
-                this.categories = _.map(<Category[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get categories
+                                                                                        // set categories dropdown
+                                                                                        this.categories = _.map(<Category[]>response.data, obj => {
+                                                                                            return { value: obj.id, label: obj.name };
+                                                                                        }); // get categories
 
                 return this.attachmentFamilyService.searchRecords({
                     'type': 'query',
@@ -181,19 +177,19 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             }).flatMap(response => {
                 this.attachmentFamilies = <AttachmentFamily[]>response.data;
 
-                return this.configService.getValue({
-                    key: 'pulsar.cms.statuses',
-                    translate: {
-                        lang: this.baseLang,
-                        property: 'name'
-                    }
-                }); // return next observable
-            })
+                                                                                                    return this.configService.getValue({
+                                                                                                        key: 'pulsar.cms.statuses',
+                                                                                                        translate: {
+                                                                                                            lang: this.baseLang,
+                                                                                                            property: 'name'
+                                                                                                        }
+                                                                                                    }); // return next observable
+                                                                                                })
             .subscribe(response => {
-                this.statuses = _.map(<Family[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-                this.statuses.unshift({ label: 'Select a status', value: '' });
+                                                                                                    this.statuses = _.map(<Family[]>response.data, obj => {
+                                                                                                        return { value: obj.id, label: obj.name };
+                                                                                                    });
+                                                                                                    this.statuses.unshift({ label: 'Select a status', value: '' });
 
                 // get actual user for author
                 this.user = this.authService.user();
@@ -298,7 +294,34 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         }
     }*/
 
+    // to create a new object, do all queries to get data across GraphQL
+    getDataRelationsObjectGraphQL() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject,
+                variables: {
+                    query: this.grahpQL.queryRelationsObject,
+                    config: {
+                        key: 'pulsar.cms.statuses',
+                        lang: this.baseLang,
+                        property: 'name'
+                    }
+                }
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
     setDataRelationsObject(data) {
+        // cms sections
+        this._sections = data['cmsSections'];
+        this.sections = _.map(this._sections, obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.sections.unshift({ label: 'Select a section', value: '' });
+
         // cms families
         this._families = data['cmsFamilies'];
         this.families = _.map(this._families, obj => {
@@ -306,9 +329,15 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         });
         this.families.unshift({ label: 'Select a family', value: '' });
 
-        // categories
+        // cms categories
         this.categories = _.map(<Category[]>data['cmsCategories'], obj => {
             return { value: obj.id, label: obj.name };
         });
+
+        // cms statuses
+        this.statuses = _.map(<Status[]>data['cmsStatuses'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.statuses.unshift({ label: 'Select a status', value: '' });
     }
 }
