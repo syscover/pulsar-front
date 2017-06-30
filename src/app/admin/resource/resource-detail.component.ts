@@ -1,5 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ResourceGraphQLService } from './resource-graphql.service';
 import { Package } from './../admin.models';
@@ -28,6 +29,21 @@ export class ResourceDetailComponent extends CoreDetailComponent {
             name: ['', Validators.required ],
             package_id: ['', Validators.required ]
         });
+    }
+
+    // ovewrite this method to custom column id by column resource.id
+    getArgsToGetRecord(params: Params) {
+
+        let args = {
+            sql: [{
+                command: 'where',
+                column: 'resource.id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
+
+        return args;
     }
 
     setDataRelationsObject(data: any) {

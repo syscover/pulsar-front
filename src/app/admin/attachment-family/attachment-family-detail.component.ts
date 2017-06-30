@@ -1,7 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.service';
+import { Resource } from './../admin.models';
 import { SelectItem } from 'primeng/primeng';
 
 import * as _ from 'lodash';
@@ -31,28 +33,6 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         super(injector, graphQL);
     }
 
-    ngOnInit() {
-        /*this.resourceService.getRecords()
-            .flatMap((response) => {
-                this.resources = _.map(<Resource[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); // get resources
-
-                this.resources.unshift({ label: 'Select a resource', value: '' });
-
-                return  this.configService.getValue({
-                    key: 'pulsar.admin.sizes'
-                });
-            }).subscribe((response) => {
-                this.sizes = _.map(<any[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-
-            });*/
-
-            super.init();
-    }
-
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
@@ -63,6 +43,49 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
             sizes: null,
             quality: null,
             format: ''
+        });
+    }
+
+    // ovewrite this method to custom column id by column attachment_family.id
+    getArgsToGetRecord(params: Params) {
+        let args = {
+            sql: [{
+                command: 'where',
+                column: 'attachment_family.id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
+
+        return args;
+    }
+
+    getDataRelationsObjectGraphQL() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject,
+                variables: {
+                    config: {
+                        key: 'pulsar.admin.sizes'
+                    }
+                }
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
+    setDataRelationsObject(data: any) {
+        // set resources
+        this.resources = _.map(<Resource[]>data['adminResources'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.resources.unshift({ label: 'Select a resource', value: '' });
+
+        // set sizes
+        this.sizes = _.map(<any[]>data['adminSizes'], obj => {
+            return { value: obj.id, label: obj.name };
         });
     }
 }

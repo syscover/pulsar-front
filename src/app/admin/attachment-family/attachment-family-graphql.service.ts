@@ -14,6 +14,12 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
             id
             name
         }
+        adminSizes: coreConfig (config:$config) {
+            ... on CoreConfigOptionType {
+                id
+                name
+            }
+        }
     `;
     readonly fields = `
         id 
@@ -26,7 +32,7 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
     `;
 
     readonly queryRelationsObject = gql`
-        query AdminGetRelationsAttachmentFamily {
+        query AdminGetRelationsAttachmentFamily ($config:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 
@@ -41,7 +47,12 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
             }
         }`;
 
-    readonly queryObjects;
+    readonly queryObjects = gql`
+        query AdminGetAttachmentFamilies ($sql:[CoreSQLQueryInput]) {
+            adminAttachmentFamilies (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     readonly queryObject = gql`
         query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput]) {

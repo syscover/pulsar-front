@@ -300,7 +300,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             .watchQuery({
                 query: this.grahpQL.queryRelationsObject,
                 variables: {
-                    query: this.grahpQL.queryRelationsObject,
                     config: {
                         key: 'pulsar.cms.statuses',
                         lang: this.baseLang,
