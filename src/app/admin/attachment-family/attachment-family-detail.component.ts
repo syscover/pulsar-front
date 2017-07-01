@@ -62,7 +62,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    getDataRelationsObjectGraphQL() {
+    getGraphQLDataRelationsToCreateObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({

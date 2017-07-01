@@ -62,7 +62,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
 
             // to create a new object, do all queries to get data to create new object
-            this.getDataRelationsObjectGraphQL();
+            this.getGraphQLDataRelationsToCreateObject();
 
             // set lang_id if form has this field
             // call after customCallback() to overwrite lang_id field with correct value
@@ -139,7 +139,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getDataRelationsObjectGraphQL() {
+    getGraphQLDataRelationsToCreateObject() {
         if (this.grahpQL.queryRelationsObject) {
             this.objectService
                 .proxyGraphQL()
@@ -152,7 +152,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
      }
 
-    // create all elements whith graphQL data obtain from method getDataRelationsObjectGraphQL()
+    // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
     setDataRelationsObject(data: any) { }
 
     onSubmit(object: any, routeRedirect: string = undefined, params = []) {
