@@ -8,6 +8,7 @@ import { ArticleGraphQLService } from './article-graphql.service';
 import { DropdownComponent } from './../../shared/components/forms/dropdown.component';
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
+import { AuthService } from './../../core/auth/auth.service';
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { Field } from './../../admin/admin.models';
@@ -75,6 +76,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     constructor(
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
+        protected authService: AuthService,
         private dynamicFormService: DynamicFormService
     ) {
         super(injector, graphQL);
@@ -157,24 +159,24 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                                                                                             return { value: obj.id, label: obj.name };
                                                                                         }); // get categories
 
-                return this.attachmentFamilyService.searchRecords({
-                    'type': 'query',
-                    'parameters': [
-                        {
-                            'command': 'where',
-                            'column': 'attachment_family.resource_id',
-                            'operator': '=',
-                            'value': 'cms-article'
-                        },
-                        {
-                            'command': 'orderBy',
-                            'operator': 'asc',
-                            'column': 'attachment_family.name'
-                        }
-                    ]
-                }); // return next observable
-            }).flatMap(response => {
-                this.attachmentFamilies = <AttachmentFamily[]>response.data;
+                                                                                        return this.attachmentFamilyService.searchRecords({
+                                                                                            'type': 'query',
+                                                                                            'parameters': [
+                                                                                                {
+                                                                                                    'command': 'where',
+                                                                                                    'column': 'attachment_family.resource_id',
+                                                                                                    'operator': '=',
+                                                                                                    'value': 'cms-article'
+                                                                                                },
+                                                                                                {
+                                                                                                    'command': 'orderBy',
+                                                                                                    'operator': 'asc',
+                                                                                                    'column': 'attachment_family.name'
+                                                                                                }
+                                                                                            ]
+                                                                                        }); // return next observable
+                                                                                    }).flatMap(response => {
+                                                                                    this.attachmentFamilies = <AttachmentFamily[]>response.data;
 
                                                                                                     return this.configService.getValue({
                                                                                                         key: 'pulsar.cms.statuses',
@@ -190,12 +192,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                                                                                                     });
                                                                                                     this.statuses.unshift({ label: 'Select a status', value: '' });
 
-                // get actual user for author
-                this.user = this.authService.user();
-                this.fg.patchValue({
-                    author_id: this.user.id,
-                    author_name: this.user.name + ' ' + this.user.surname
-                });
+                                                                                        // get actual user for author
+                                                                                        this.user = this.authService.user();
+                                                                                        this.fg.patchValue({
+                                                                                            author_id: this.user.id,
+                                                                                            author_name: this.user.name + ' ' + this.user.surname
+                                                                                        });
                 
             });*/
 
@@ -212,7 +214,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             author_name: [{value: '', disabled: true}],
             section_id: ['', Validators.required],
             family_id: '',
-            family: '',
+            family: null,
             status_id: ['', Validators.required],
             publish: '',
             publish_text: '',
@@ -229,12 +231,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    /*handleChangeSection($event) {
+    handleChangeSection($event) {
         // change family if, change section
         if ($event.value) {
             let section = _.find(this._sections, {id: $event.value});
-            this.fg.controls['family_id'].setValue(section.family.id);
-            this.fg.controls['family'].setValue(section.family);
 
             // TODO, trigger event instead call function
             this.handleChangeFamily({value: section.family.id});
@@ -248,11 +248,14 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         if ($event.value) {
             // get family object
             let family = _.find(this._families, {id: $event.value});
+
+            this.fg.controls['family_id'].setValue(family.id);
             this.fg.controls['family'].setValue(family);
-            this.handleGetCustomFields();
+
+            //this.handleGetCustomFields();
         }
     }
-
+/*
     // get custom fields that has this object
     handleGetCustomFields() {
         if (this.fg.controls['family'].value.field_group_id) {
@@ -294,12 +297,25 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     }*/
 
     // to create a new object, do all queries to get data across GraphQL
-    getDataRelationsObjectGraphQL() {
+    getGraphQLDataRelationsToCreateObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryRelationsObject,
                 variables: {
+                    sql: [
+                        {
+                            'command': 'where',
+                            'column': 'attachment_family.resource_id',
+                            'operator': '=',
+                            'value': 'cms-article'
+                        },
+                        {
+                            'command': 'orderBy',
+                            'operator': 'asc',
+                            'column': 'attachment_family.name'
+                        }
+                    ],
                     config: {
                         key: 'pulsar.cms.statuses',
                         lang: this.baseLang,
@@ -337,5 +353,15 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             return { value: obj.id, label: obj.name };
         });
         this.statuses.unshift({ label: 'Select a status', value: '' });
+
+        // admin attachment families
+        this.attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+
+        // cms author
+        this.user = this.authService.user();
+        this.fg.patchValue({
+            author_id: this.user.id,
+            author_name: this.user.name + ' ' + this.user.surname
+        });
     }
 }

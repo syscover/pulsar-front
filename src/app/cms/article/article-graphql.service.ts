@@ -13,10 +13,25 @@ export class ArticleGraphQLService implements GraphQLModel {
         cmsSections {
             id
             name
+            family {
+                id 
+                name
+            }
         }
         cmsFamilies {
-            id
-            name
+            id 
+            name 
+            editor_id
+            field_group_id 
+            date 
+            title
+            slug
+            link
+            categories
+            sort
+            tags
+            article_parent
+            attachments
         }
         cmsCategories {
             id
@@ -27,6 +42,10 @@ export class ArticleGraphQLService implements GraphQLModel {
                 id
                 name
             }
+        }
+        adminAttachmentFamilies (sql:$sql) {
+            id
+            name
         }
     `;
     readonly fields = `
@@ -50,7 +69,7 @@ export class ArticleGraphQLService implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryRelationsObject  = gql`
-        query CmsGetRelationsArticles ($config:CoreConfigInput!){
+        query CmsGetRelationsArticles ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 

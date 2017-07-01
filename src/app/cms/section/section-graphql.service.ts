@@ -49,7 +49,7 @@ export class SectionGraphQLService implements GraphQLModel {
         }`;
 
     readonly queryObject = gql`
-        query GetCmsSection ($sql:[CoreSQLQueryInput] $key:String!) {
+        query GetCmsSection ($sql:[CoreSQLQueryInput]) {
             cmsSection (sql:$sql){
                 ${this.fields}
             }
@@ -64,8 +64,8 @@ export class SectionGraphQLService implements GraphQLModel {
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateSection ($section:CmsSectionInput!) {
-            cmsUpdateSection (section:$section){
+        mutation CmsUpdateSection ($section:CmsSectionInput! $idOld:String!) {
+            cmsUpdateSection (section:$section idOld:$idOld){
                 ${this.fields}
             }
         }`;

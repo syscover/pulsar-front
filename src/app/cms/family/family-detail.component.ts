@@ -57,7 +57,6 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         };
     }
 
-    // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
         this.objectService
             .proxyGraphQL()

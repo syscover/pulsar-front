@@ -185,7 +185,7 @@
                             [heightMin]="400"></ps-editor>
             </p-tabPanel>
 
-            <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
+            <p-tabPanel *ngIf="fg.get('family').value?.attachments" header="Attachments" leftIcon="ui-icon-attachment">
                 <ps-attachment-files-library    #attachments
                                                 [form]="fg"
                                                 name="attachments"

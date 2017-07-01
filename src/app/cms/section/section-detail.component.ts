@@ -1,5 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { SectionGraphQLService } from './section-graphql.service';
 import { SelectItem } from 'primeng/primeng';
@@ -22,21 +23,6 @@ export class SectionDetailComponent extends CoreDetailComponent {
         super(injector, graphQL);
     }
 
-    ngOnInit() {
-
-        // get field groups
-        /*this.familyService.getRecords()
-            .subscribe((response) => {
-
-                this.families = _.map(<Family[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-                this.families.unshift({ label: 'Select a family', value: '' });
-
-            });*/
-        this.init();
-    }
-
     createForm() {
         this.fg = this.fb.group({
             id: ['', [
@@ -47,6 +33,17 @@ export class SectionDetailComponent extends CoreDetailComponent {
             name: ['', Validators.required ],
             article_family_id: ''
         });
+    }
+
+    getArgsToGetRecord(params: Params) {
+        return {
+            sql: [{
+                command: 'where',
+                column: 'section.id',
+                operator: '=',
+                value: params['id']
+            }]
+        };
     }
 
     setDataRelationsObject(data: any) {
