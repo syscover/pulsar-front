@@ -54,9 +54,11 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
                 column: 'attachment_family.id',
                 operator: '=',
                 value: params['id']
-            }]
+            }],
+            config: {
+                key: 'pulsar.admin.sizes'
+            }
         };
-
         return args;
     }
 

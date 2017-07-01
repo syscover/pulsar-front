@@ -25,6 +25,11 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
         id 
         name
         resource_id
+        width
+        height
+        sizes
+        quality
+        format
         resource {
             id
             name
@@ -55,10 +60,11 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
         }`;
 
     readonly queryObject = gql`
-        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             adminAttachmentFamily (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     readonly mutationAddObject = gql`
