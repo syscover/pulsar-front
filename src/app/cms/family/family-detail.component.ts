@@ -45,7 +45,9 @@ export class FamilyDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
-            key: 'pulsar.cms.editors',
+            config: {
+                key: 'pulsar.cms.editors'
+            },
             sql: [{
                 command: 'where',
                 column: 'id',
@@ -56,7 +58,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getDataRelationsObjectGraphQL() {
+    getGraphQLDataRelationsToCreateObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({

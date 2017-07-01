@@ -33,7 +33,9 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
-            key: 'pulsar.admin.resources_custom_fields',
+            config: {
+                key: 'pulsar.admin.resources_custom_fields'
+            },
             sql: [{
                 command: 'where',
                 column: 'field_group.id',
@@ -44,13 +46,15 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getDataRelationsObjectGraphQL() {
+    getGraphQLDataRelationsToCreateObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryRelationsObject,
                 variables: {
-                    key: 'pulsar.admin.resources_custom_fields'
+                    config: {
+                        key: 'pulsar.admin.resources_custom_fields'
+                    }
                 }
             })
             .subscribe(({data}) => {
