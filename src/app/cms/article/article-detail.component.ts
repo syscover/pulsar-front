@@ -82,128 +82,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         super(injector, graphQL);
     }
 
-    ngOnInit() {
-
-                                                        /*this.sectionService
-                                                            .getRecords()
-                                                            .flatMap((response) => {
-                                                                        this._sections = response.data;
-                                                                        this.sections = _.map(this._sections, obj => {
-                                                                            return { value: obj.id, label: obj.name };
-                                                                        });
-                                                                        this.sections.unshift({ label: 'Select a section', value: '' });
-
-                                                                        return this.familyService.getRecords(); // return next observable
-                                                                    }).flatMap(response => {
-                                                                        this._families = response.data;
-                                                                        this.families = _.map(this._families, obj => {
-                                                                            return { value: obj.id, label: obj.name };
-                                                                        });
-                                                                        this.families.unshift({ label: 'Select a family', value: '' });
-
-                // load articles to select a parent
-                let query = {
-                    type: 'query',
-                    parameters: [
-                        {
-                            command: 'where',
-                            column: 'article.lang_id',
-                            operator: '=',
-                            value: this.params['lang'] ? this.params['lang'] : this.baseLang
-                        },
-                        {
-                            command: 'orderBy',
-                            operator: 'asc',
-                            column: 'article.name'
-                        }
-                    ]
-                };
-
-                // set id of product if action is edit
-                if (this.params['id']) {
-                    query.parameters.push({
-                        command: 'where',
-                        column: 'article.id',
-                        operator: '<>',
-                        value: this.params['id']
-                    });
-                };
-
-                return this.objectService.searchRecords(query); // return next observable
-            }).flatMap(response => {
-                // set articles dropdown
-                this.articles = _.map(<Article[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                }); 
-                this.articles.unshift({ label: 'Select a article', value: '' });
-
-                                                                                        return this.categoryService.searchRecords({
-                                                                                            type: 'query',
-                                                                                            parameters: [
-                                                                                                {
-                                                                                                    command: 'where',
-                                                                                                    column: 'article_category.lang_id',
-                                                                                                    operator: '=',
-                                                                                                    value: this.params['lang'] ? this.params['lang'] : this.baseLang
-                                                                                                },
-                                                                                                {
-                                                                                                    command: 'orderBy',
-                                                                                                    operator: 'asc',
-                                                                                                    column: 'article_category.name'
-                                                                                                }
-                                                                                            ]
-                                                                                        }); // return next observable
-                                                                                    }).flatMap(response => {
-                                                                                        // set categories dropdown
-                                                                                        this.categories = _.map(<Category[]>response.data, obj => {
-                                                                                            return { value: obj.id, label: obj.name };
-                                                                                        }); // get categories
-
-                                                                                        return this.attachmentFamilyService.searchRecords({
-                                                                                            'type': 'query',
-                                                                                            'parameters': [
-                                                                                                {
-                                                                                                    'command': 'where',
-                                                                                                    'column': 'attachment_family.resource_id',
-                                                                                                    'operator': '=',
-                                                                                                    'value': 'cms-article'
-                                                                                                },
-                                                                                                {
-                                                                                                    'command': 'orderBy',
-                                                                                                    'operator': 'asc',
-                                                                                                    'column': 'attachment_family.name'
-                                                                                                }
-                                                                                            ]
-                                                                                        }); // return next observable
-                                                                                    }).flatMap(response => {
-                                                                                    this.attachmentFamilies = <AttachmentFamily[]>response.data;
-
-                                                                                                    return this.configService.getValue({
-                                                                                                        key: 'pulsar.cms.statuses',
-                                                                                                        translate: {
-                                                                                                            lang: this.baseLang,
-                                                                                                            property: 'name'
-                                                                                                        }
-                                                                                                    }); // return next observable
-                                                                                                })
-                                                                                                    .subscribe(response => {
-                                                                                                    this.statuses = _.map(<Family[]>response.data, obj => {
-                                                                                                        return { value: obj.id, label: obj.name };
-                                                                                                    });
-                                                                                                    this.statuses.unshift({ label: 'Select a status', value: '' });
-
-                                                                                        // get actual user for author
-                                                                                        this.user = this.authService.user();
-                                                                                        this.fg.patchValue({
-                                                                                            author_id: this.user.id,
-                                                                                            author_name: this.user.name + ' ' + this.user.surname
-                                                                                        });
-                
-            });*/
-
-            super.init();
-    }
-
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
@@ -298,12 +176,39 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
+
+
+        let sqlArticle = [
+            {
+                command: 'where',
+                column: 'article.lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'article.name'
+            }
+        ];
+
+        // set id of product if action is edit
+        if (this.params['id']) {
+            sqlArticle.push({
+                command: 'where',
+                column: 'article.id',
+                operator: '<>',
+                value: this.params['id']
+            });
+        };
+
         this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryRelationsObject,
                 variables: {
-                    sql: [
+                    sqlArticle,
+                    sqlAttachmentFamily: [
                         {
                             'command': 'where',
                             'column': 'attachment_family.resource_id',
@@ -363,5 +268,11 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             author_id: this.user.id,
             author_name: this.user.name + ' ' + this.user.surname
         });
+
+        // cms articles
+        this.articles = _.map(<Article[]>data['cmsArticles'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.articles.unshift({ label: 'Select a article', value: '' });
     }
 }

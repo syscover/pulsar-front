@@ -43,7 +43,11 @@ export class ArticleGraphQLService implements GraphQLModel {
                 name
             }
         }
-        adminAttachmentFamilies (sql:$sql) {
+        adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+            id
+            name
+        }
+        cmsArticles (sql:$sqlArticle) {
             id
             name
         }
@@ -69,7 +73,7 @@ export class ArticleGraphQLService implements GraphQLModel {
     `; // defaults fields that will be return
 
     readonly queryRelationsObject  = gql`
-        query CmsGetRelationsArticles ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!){
+        query CmsGetRelationsArticles ($sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 
