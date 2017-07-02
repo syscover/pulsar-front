@@ -77,105 +77,105 @@
                     </ps-dropdown>
                 </div>
 
-                <ps-form-header *ngIf=" fg.get('family').value?.date || 
+                <div class="animated fadeIn fast" *ngIf=" fg.get('family').value?.date || 
                                         fg.get('family').value?.article_parent || 
                                         fg.get('family').value?.title || 
                                         fg.get('family').value?.slug || 
                                         fg.get('family').value?.categories || 
                                         fg.get('family').value?.link || 
                                         fg.get('family').value?.sort || 
-                                        fg.get('family').value?.tags"
-                                title="Content"
-                                icon="fa ui-icon-subject"></ps-form-header>
+                                        fg.get('family').value?.tags">
+                
+                    <ps-form-header title="Content" icon="fa ui-icon-subject"></ps-form-header>
 
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.date || fg.get('family').value?.article_parent">
-                    <ps-calendar    *ngIf="fg.get('family').value?.date"
-                                    [form]="fg" 
-                                    [errors]="formErrors"
-                                    [showIcon]="true"
-                                    dateFormat="dd/mm/yy"
-                                    label="Date"
-                                    name="date" class="col-sm-12 col-md-5"></ps-calendar>
-
-                    <ps-dropdown    *ngIf="fg.get('family').value?.article_parent"
-                                    [form]="fg"
-                                    [errors]="formErrors"
-                                    [autoWidth]="false"
-                                    [filter]="true"
-                                    [options]="articles"
-                                    name="parent_article_id"
-                                    class="col-sm-12 offset-md-1 col-md-5">
-                    </ps-dropdown>
-                </div>
-
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.title">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Title"
-                                type="text"
-                                name="title" class="col-12"></ps-input>
-                </div>
-
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.slug">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Slug"
-                                type="text"
-                                name="slug" class="col-12"></ps-input>
-                </div>
-
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.categories">
-                    <ps-multi-select    [form]="fg"
+                    <div class="row" *ngIf="fg.get('family').value?.date || fg.get('family').value?.article_parent">
+                        <ps-calendar    *ngIf="fg.get('family').value?.date"
+                                        [form]="fg" 
                                         [errors]="formErrors"
-                                        label="Select categories"
-                                        [options]="categories"
-                                        name="categories_id"
-                                        class="col-sm-12 col-md-5">
-                    </ps-multi-select>
-                </div>
+                                        [showIcon]="true"
+                                        dateFormat="dd/mm/yy"
+                                        label="Date"
+                                        name="date" class="col-sm-12 col-md-5"></ps-calendar>
 
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.link">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Link"
-                                type="text"
-                                name="link" class="col-9"></ps-input>
+                        <ps-dropdown    *ngIf="fg.get('family').value?.article_parent"
+                                        [form]="fg"
+                                        [errors]="formErrors"
+                                        [autoWidth]="false"
+                                        [filter]="true"
+                                        [options]="articles"
+                                        name="parent_article_id"
+                                        class="col-sm-12 offset-md-1 col-md-5">
+                        </ps-dropdown>
+                    </div>
 
-                    <ps-checkbox    [form]="fg"
-                                    name="blank"
-                                    label="New window" class="col-3"></ps-checkbox>
-                </div>
-
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.sort">
-                    <ps-spinner     [form]="fg" 
+                    <div class="row" *ngIf="fg.get('family').value?.title">
+                        <ps-input   [form]="fg" 
                                     [errors]="formErrors"
-                                    label="Sort"
-                                    [min]="0"
-                                    name="sort" class="col-sm-12 col-md-4"></ps-spinner>
-                </div>
+                                    label="Title"
+                                    type="text"
+                                    name="title" class="col-12"></ps-input>
+                    </div>
 
-                <div class="row animated fadeIn fast" *ngIf="fg.get('family').value?.tags">
-                    <ps-chips   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Tags"
-                                name="tags" class="col-12"></ps-chips>
-                </div>
+                    <div class="row" *ngIf="fg.get('family').value?.slug">
+                        <ps-input   [form]="fg" 
+                                    [errors]="formErrors"
+                                    label="Slug"
+                                    type="text"
+                                    name="slug" class="col-12"></ps-input>
+                    </div>
 
-                <ng-container *ngIf="fields?.length > 0">
-                    <ps-form-header class="animated fadeIn fast"
-                                    title="Custom fields"
-                                    icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
-
-                    <!-- dynamic form -->
-                    <ng-container *ngFor="let field of fields">
-                        <ps-dynamic-form    [field]="field"
-                                            [fieldValues]="fieldValues"
+                    <div class="row" *ngIf="fg.get('family').value?.categories">
+                        <ps-multi-select    [form]="fg"
                                             [errors]="formErrors"
-                                            [lang]="lang.id"></ps-dynamic-form>
-                    </ng-container>
-                </ng-container>
-                <!-- /dynamic form -->
+                                            label="Select categories"
+                                            [options]="categories"
+                                            name="categories_id"
+                                            class="col-sm-12 col-md-5">
+                        </ps-multi-select>
+                    </div>
 
+                    <div class="row" *ngIf="fg.get('family').value?.link">
+                        <ps-input   [form]="fg" 
+                                    [errors]="formErrors"
+                                    label="Link"
+                                    type="text"
+                                    name="link" class="col-9"></ps-input>
+
+                        <ps-checkbox    [form]="fg"
+                                        name="blank"
+                                        label="New window" class="col-3"></ps-checkbox>
+                    </div>
+
+                    <div class="row" *ngIf="fg.get('family').value?.sort">
+                        <ps-spinner     [form]="fg" 
+                                        [errors]="formErrors"
+                                        label="Sort"
+                                        [min]="0"
+                                        name="sort" class="col-sm-12 col-md-4"></ps-spinner>
+                    </div>
+
+                    <div class="row" *ngIf="fg.get('family').value?.tags">
+                        <ps-chips   [form]="fg" 
+                                    [errors]="formErrors"
+                                    label="Tags"
+                                    name="tags" class="col-12"></ps-chips>
+                    </div>
+
+                    <ng-container *ngIf="fields?.length > 0">
+                        <ps-form-header class="animated fadeIn fast"
+                                        title="Custom fields"
+                                        icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
+
+                        <!-- dynamic form -->
+                        <ng-container *ngFor="let field of fields">
+                            <ps-dynamic-form    [field]="field"
+                                                [fieldValues]="fieldValues"
+                                                [errors]="formErrors"
+                                                [lang]="lang.id"></ps-dynamic-form>
+                        </ng-container>
+                    </ng-container>
+                    <!-- /dynamic form -->
+                </div>
             </p-tabPanel>
 
             <p-tabPanel *ngIf="fg.get('family').value?.editor_id" header="Article" leftIcon="ui-icon-edit">
