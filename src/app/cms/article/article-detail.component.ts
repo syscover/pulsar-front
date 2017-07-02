@@ -133,7 +133,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             //this.handleGetCustomFields();
         }
     }
-/*
+
     // get custom fields that has this object
     handleGetCustomFields() {
         if (this.fg.controls['family'].value.field_group_id) {
@@ -144,7 +144,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 this.fg,
                 properties,
                 (fields) => {
-                    // get all values from all custom fields
+                    /*// get all values from all custom fields
                     this.fieldValueService.searchRecords({
                         'type': 'query',
                         'parameters': [
@@ -169,10 +169,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     .subscribe((response) => {
                         this.fieldValues = response.data;
                         this.fields = fields;
-                    });
+                    });*/
                 });
         }
-    }*/
+    }
 
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {

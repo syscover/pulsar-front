@@ -5,21 +5,20 @@ import gql from 'graphql-tag';
 @Injectable()
 export class UserGraphQLService implements GraphQLModel {
 
-    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'actions'; // to know which is the wrapper that contain objects list in response
-    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectInputContainer = 'user'; // to know which is the wrapper that will contain an object for to pass arguments
+    readonly objectContainer = 'adminUser'; // to know which is the wrappper that contain a object in response
+    readonly paginationContainer = 'adminUsersPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
-    readonly fields = 'id name'; // defaults fields that will be return
+    readonly fields = 'id name'; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly queryRelationsObject;
 
     readonly queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetUsersPagination ($sql:[CoreSQLQueryInput]) {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }
@@ -28,29 +27,29 @@ export class UserGraphQLService implements GraphQLModel {
     readonly queryObjects;
 
     readonly queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            adminAction (sql:$sql){
+        query AdminGetUser ($sql:[CoreSQLQueryInput]) {
+            adminUser (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     readonly mutationAddObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput!) {
-            adminAddAction (action:$action){
+        mutation AdminAddUser ($user:AdminUserInput!) {
+            adminAddUser (user:$user){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (action:$action idOld:$idOld){
+        mutation AdminUpdateUser ($user:AdminUserInput!) {
+            adminUpdateUser (user:$user){
                 ${this.fields}
             }
         }`;
 
     readonly mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+        mutation AdminDeleteUser ($id:String!) {
+            adminDeleteUser (id:$id){
                 ${this.fields}
             }
         }`;

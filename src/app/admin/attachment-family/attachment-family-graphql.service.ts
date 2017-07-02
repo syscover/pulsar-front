@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 export class AttachmentFamilyGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'attachmentFamily'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'attachmentFamilies'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminAttachmentFamily'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminAttachmentFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
@@ -22,17 +21,19 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
         }
     `;
     readonly fields = `
-        id 
-        name
-        resource_id
-        width
-        height
-        sizes
-        quality
-        format
-        resource {
-            id
+    ... on AdminAttachmentFamily {
+            id 
             name
+            resource_id
+            width
+            height
+            sizes
+            quality
+            format
+            resource {
+                id
+                name
+            }
         }
     `;
 
@@ -46,7 +47,7 @@ export class AttachmentFamilyGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

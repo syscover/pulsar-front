@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 export class ArticleGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'article'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'articles'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'cmsArticle'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsArticlesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
@@ -53,24 +52,26 @@ export class ArticleGraphQLService implements GraphQLModel {
         }
     `;
     readonly fields = `
-        id
-        lang_id
-        parent_article_id
-        name
-        author_id
-        section_id
-        family_id
-        status_id
-        publish
-        date
-        title
-        slug
-        link
-        blank
-        sort
-        article
-        data_lang
-    `; // defaults fields that will be return
+    ... on CmsArticle {
+            id
+            lang_id
+            parent_article_id
+            name
+            author_id
+            section_id
+            family_id
+            status_id
+            publish
+            date
+            title
+            slug
+            link
+            blank
+            sort
+            article
+            data_lang
+        }
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly queryRelationsObject  = gql`
         query CmsGetRelationsArticles ($sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!){
@@ -82,7 +83,7 @@ export class ArticleGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

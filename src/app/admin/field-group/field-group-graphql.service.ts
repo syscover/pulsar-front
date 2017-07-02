@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 export class FieldGroupGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'fieldGroup'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'fieldGroups'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminFieldGroup'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminFieldGroupsPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
@@ -22,14 +21,16 @@ export class FieldGroupGraphQLService implements GraphQLModel {
         }
     `; // fields of relations object`
     readonly fields = `
-        id 
-        name 
-        resource_id
-        resource {
+    ... on AdminFieldGroup {
             id
             name
+            resource_id
+            resource {
+                id
+                name
+            }
         }
-    `; // defaults fields that will be return`
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination`
 
     readonly queryRelationsObject = gql`
         query AdminGetRelationsFieldGroup($key:String!) {
@@ -41,7 +42,7 @@ export class FieldGroupGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

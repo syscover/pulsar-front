@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 export class SectionGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'section'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'sections'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'cmsSection'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsSectionsPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields = `
@@ -16,14 +15,16 @@ export class SectionGraphQLService implements GraphQLModel {
         }
     `; // fields of relations object`
     readonly fields = `
-        id 
-        name 
-        article_family_id
-        family {
+    ... on CmsSection {
             id
             name
+            article_family_id
+            family {
+                id
+                name
+            }
         }
-    `; // defaults fields that will be return
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly queryRelationsObject = gql`
         query CmsGetRelationsSection {
@@ -35,7 +36,7 @@ export class SectionGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

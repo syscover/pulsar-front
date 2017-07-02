@@ -6,18 +6,19 @@ import gql from 'graphql-tag';
 export class CategoryGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'category'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'categories'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'cmsCategory'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'cmsCategoriesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
     readonly fields = `
-        id 
-        lang_id
-        name
-        slug
-        sort
-        data_lang
-    `; // defaults fields that will be return
+    ... on CmsCategory {
+            id
+            lang_id
+            name
+            slug
+            sort
+            data_lang
+        }
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly queryRelationsObject;
 
@@ -26,7 +27,7 @@ export class CategoryGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql lang:$lang) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

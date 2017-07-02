@@ -42,11 +42,6 @@ export class CoreListComponent extends CoreComponent {
         // set params
         let args = this.setArgs(event, lang, sql);
 
-        // set lang if is defined
-        if (lang) {
-            args['lang'] = lang;
-        }
-
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -60,7 +55,7 @@ export class CoreListComponent extends CoreComponent {
                 this.filteredRecords = data[this.grahpQL.paginationContainer].filtered;
 
                 // instance data on object list
-                this.customCallback(data[this.grahpQL.paginationContainer][this.grahpQL.objectsContainer]);
+                this.customCallback(data[this.grahpQL.paginationContainer]['objects']);
             });
     }
 
@@ -75,7 +70,6 @@ export class CoreListComponent extends CoreComponent {
 
         // set params
         let args = this.setArgs(event, lang, sql);
-        args['lang'] = lang;
 
         // search elements by paramenters
         this.objectService
@@ -154,6 +148,11 @@ export class CoreListComponent extends CoreComponent {
                     value: `%${event.globalFilter}%`
                 });
             }
+        }
+
+        // set lang if is defined
+        if (lang) {
+            args['lang'] = lang;
         }
 
         return args;

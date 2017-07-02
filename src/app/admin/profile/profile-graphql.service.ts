@@ -6,14 +6,15 @@ import gql from 'graphql-tag';
 export class ProfileGraphQLService implements GraphQLModel {
 
     readonly objectInputContainer = 'profile'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectsContainer = 'profiles'; // to know which is the wrapper that contain objects list in response
     readonly objectContainer = 'adminProfile'; // to know which is the wrappper that contain a object in response
     readonly paginationContainer = 'adminProfilesPagination'; // to know wich is the wrapper that contain pagination in response
     readonly relationsFields;
     readonly fields = `
-        id 
-        name 
-    `; // defaults fields that will be return
+    ... on AdminProfile {
+            id 
+            name
+        }
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly queryRelationsObject;
 
@@ -22,7 +23,7 @@ export class ProfileGraphQLService implements GraphQLModel {
             ${this.paginationContainer} (sql:$sql) {
                 total
                 filtered
-                ${this.objectsContainer}(sql:$sql){
+                objects (sql:$sql){
                     ${this.fields}
                 }
             }

@@ -2,15 +2,13 @@ export interface GraphQLModel {
 
     // to know which is the wrapper that will contain an object for to pass arguments
     readonly objectInputContainer: string;
-    // to know which is the wrapper that contain objects list in response
-    readonly objectsContainer: string;
     // to know which is the wrappper that contain a object in response
     readonly objectContainer: any;
     // to know wich is the wrapper that contain pagination in response
     readonly paginationContainer: string;
     // fields of objects that have any relation with query object
     readonly relationsFields: string;
-    // defaults fields that will be return
+    // defaults fields that will be return, fragment inline only is necessary for pagination
     readonly fields: string;
 
     // Query to get relations data to create new object

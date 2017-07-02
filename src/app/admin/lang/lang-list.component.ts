@@ -8,8 +8,6 @@ import { LangGraphQLService } from './lang-graphql.service';
 })
 export class LangListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
