@@ -1,5 +1,5 @@
 import { ClientMap } from 'apollo-angular/build/src/types';
-import { ApolloClient, createNetworkInterface } from 'apollo-client';
+import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'apollo-client';
 import { Apollo } from 'apollo-angular';
 
 export class ApolloClientManager {
@@ -36,13 +36,43 @@ export class ApolloClientManager {
             }
         }]);
 
+        const fragmentMatcher = new IntrospectionFragmentMatcher({
+            introspectionQueryResultData: {
+                __schema: {
+                    types: [
+                        {
+                            kind: "INTERFACE", // put your own INTERFACE and UNION types here!
+                            name: "CoreObjectInterface",
+                            possibleTypes: [
+                                { name: "AdminPackage" },
+                                { name: "AdminCountry" },
+                                { name: "AdminLang" },
+                                { name: "AdminAction" },
+                                { name: "AdminResource" },
+                                { name: "AdminProfile" },
+                                { name: "AdminAttachmentFamily" },
+                                { name: "AdminFieldGroup" },
+                                { name: "CmsSection" },
+                                { name: "CmsFamily" },
+                                { name: "CmsCategory" },
+                                { name: "CmsArticle" },
+                            ]
+                        }
+                    ]
+                }
+            }
+        });
+
         this.client = new ApolloClient({
             networkInterface,
+            fragmentMatcher,
             dataIdFromObject: o => {
-                if (o['lang_id']) {
+                if (o['lang_id'] && o['id']) {
                     return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
-                } else {
+                } else if(o['id']) {
                     return `${o['__typename']}-${o['id']}`;
+                } else {
+                    return `${o['__typename']}`;
                 }
             }
         });
