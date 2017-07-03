@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfirmationService } from 'primeng/primeng';
 import { Core } from './core';
 import { CoreService } from './core.service';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import { Lang } from './../../admin/admin.models';
 
 export class CoreComponent extends Core {

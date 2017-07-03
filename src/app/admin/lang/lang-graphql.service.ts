@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
-export class LangGraphQLService implements GraphQLModel {
+@Injectable()
+export class LangGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'lang'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'adminLang'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminLangsPagination'; // to know wich is the wrapper that contain pagination in response
-    readonly relationsFields; // fields of objects that have any relation with query object
+    readonly objectModel = 'Syscover\\Admin\\Models\\Lang'; // model of backoffice relative at this GraphQL service
     readonly fields = `
     ... on AdminLang {
             id
@@ -18,38 +16,16 @@ export class LangGraphQLService implements GraphQLModel {
         }
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly queryRelationsObject: any;
-
-    readonly queryPaginationObject = gql`
-        query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects;
-
-    readonly queryObject = gql`
-        query AdminGetLang ($sql:[CoreSQLQueryInput]) {
-            adminLang (sql:$sql){
-                ${this.fields}
-            }
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation AdminAddLang ($lang:AdminLangInput!) {
-            adminAddLang (lang:$lang){
+        mutation AdminAddLang ($object:AdminLangInput!) {
+            adminAddLang (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateLang ($lang:AdminLangInput! $idOld:String!) {
-            adminUpdateLang (lang:$lang idOld:$idOld){
+        mutation AdminUpdateLang ($object:AdminLangInput! $idOld:String!) {
+            adminUpdateLang (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;

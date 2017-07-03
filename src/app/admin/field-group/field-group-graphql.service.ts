@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class FieldGroupGraphQLService implements GraphQLModel {
+export class FieldGroupGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'fieldGroup'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'adminFieldGroup'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminFieldGroupsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectModel = 'Syscover\\Admin\\Models\\FieldGroup'; // model of backoffice relative at this GraphQL service
     readonly relationsFields = `
         coreConfig (key:$key) {
             ... on CoreConfigOptionType {
@@ -32,48 +30,16 @@ export class FieldGroupGraphQLService implements GraphQLModel {
         }
     `; // defaults fields that will be return, fragment inline only is necessary for pagination`
 
-    readonly queryRelationsObject = gql`
-        query AdminGetRelationsFieldGroup($key:String!) {
-            ${this.relationsFields}
-        }`;
-
-    readonly queryPaginationObject = gql`
-        query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects = gql`
-        query AdminGetFieldGroups ($sql:[CoreSQLQueryInput] $key:String!) {
-            adminFieldGroups (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
-    readonly queryObject = gql`
-        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $key:String!) {
-            adminFieldGroup (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation AdminAddFieldGroup ($fieldGroup:AdminFieldGroupInput!) {
-            adminAddFieldGroup (fieldGroup:$fieldGroup){
+        mutation AdminAddFieldGroup ($object:AdminFieldGroupInput!) {
+            adminAddFieldGroup (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateFieldGroup ($fieldGroup:AdminFieldGroupInput!) {
-            adminUpdateFieldGroup (fieldGroup:$fieldGroup){
+        mutation AdminUpdateFieldGroup ($object:AdminFieldGroupInput!) {
+            adminUpdateFieldGroup (object:$object){
                 ${this.fields}
             }
         }`;

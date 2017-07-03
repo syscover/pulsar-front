@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class CustomerClassTaxGraphQLService implements GraphQLModel {
+export class CustomerClassTaxGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'section'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'cmsSection'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'cmsSectionsPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectModel = 'Syscover\\Market\\Models\\CustomerClassTax'; // model of backoffice relative at this GraphQL service
     readonly relationsFields = `
         coreConfig (key:$key) {
             ... on CoreConfigOptionType {
@@ -37,42 +35,16 @@ export class CustomerClassTaxGraphQLService implements GraphQLModel {
         data
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly queryRelationsObject = gql`
-        query CmsGetRelationsSection($key:String!) {
-            ${this.relationsFields}
-        }`;
-
-    readonly queryPaginationObject = gql`
-        query CmsGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects;
-
-    readonly queryObject = gql`
-        query GetCmsSection ($sql:[CoreSQLQueryInput] $key:String!) {
-            cmsSection (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation CmsAddSection ($section:CmsSectionInput!) {
-            cmsAddSection (section:$section){
+        mutation CmsAddSection ($object:CmsSectionInput!) {
+            cmsAddSection (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateSection ($section:CmsSectionInput!) {
-            cmsUpdateSection (section:$section){
+        mutation CmsUpdateSection ($object:CmsSectionInput!) {
+            cmsUpdateSection (object:$object){
                 ${this.fields}
             }
         }`;

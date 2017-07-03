@@ -33,6 +33,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
+            model: this.grahpQL.objectModel,
             config: {
                 key: 'pulsar.admin.resources_custom_fields'
             },

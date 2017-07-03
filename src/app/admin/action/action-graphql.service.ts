@@ -1,66 +1,54 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
-@Injectable()
-export class ActionGraphQLService implements GraphQLModel {
 
-    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
-    readonly relationsFields;
-    readonly fields = `
-    ... on AdminAction {
-            id 
-            name
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+export class ActionGraphQLService extends GraphQLModel {
 
-    readonly queryRelationsObject;
+    objectModel = 'Syscover\\Admin\\Models\\Action'; // model of backoffice relative at this GraphQL service
 
-    readonly queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
+    queryPaginationObject = gql`
+        query AdminGetActionsPagination ($model:String! $sql:[CoreSQLQueryInput]) {
+        coreObjectsPagination (model:$model sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql){
+                objects (sql:$sql) {
                     ${this.fields}
                 }
             }
         }`;
 
-    readonly queryObjects = gql`
-        query AdminGetActions ($sql:[CoreSQLQueryInput]) {
-            adminActions (sql:$sql){
+
+    mutationAddObject = gql`
+        mutation AdminAddAction ($object:AdminActionInput!) {
+            adminAddAction (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            adminAction (sql:$sql){
+    mutationUpdateObject = gql`
+        mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
+            adminUpdateAction (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationAddObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput!) {
-            adminAddAction (action:$action){
-                ${this.fields}
-            }
-        }`;
-
-    readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (action:$action idOld:$idOld){
-                ${this.fields}
-            }
-        }`;
-
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteAction ($id:String!) {
             adminDeleteAction (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminAction {
+                id 
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

@@ -37,6 +37,7 @@ export class SectionDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
+            model: this.grahpQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'section.id',

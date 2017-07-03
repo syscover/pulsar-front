@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class FamilyGraphQLService implements GraphQLModel {
+export class FamilyGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'family'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'cmsFamily'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'cmsFamiliesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectModel = 'Syscover\\Cms\\Models\\Family'; // model of backoffice relative at this GraphQL service
     readonly relationsFields = `
         coreConfig (config:$config) {
             ... on CoreConfigOptionType {
@@ -39,48 +37,16 @@ export class FamilyGraphQLService implements GraphQLModel {
         }
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly queryRelationsObject = gql`
-        query CmsGetRelationsFamily($config:CoreConfigInput!) {
-            ${this.relationsFields}
-        }`;
-
-    readonly queryPaginationObject = gql`
-        query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects = gql`
-        query GetCmsFamilies ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
-            cmsFamilies (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
-    readonly queryObject = gql`
-        query GetCmsFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
-            cmsFamily (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation CmsAddFamily ($family:CmsFamilyInput!) {
-            cmsAddFamily (family:$family){
+        mutation CmsAddFamily ($object:CmsFamilyInput!) {
+            cmsAddFamily (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateFamily ($family:CmsFamilyInput!) {
-            cmsUpdateFamily (family:$family){
+        mutation CmsUpdateFamily ($object:CmsFamilyInput!) {
+            cmsUpdateFamily (object:$object){
                 ${this.fields}
             }
         }`;

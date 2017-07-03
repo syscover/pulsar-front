@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class ResourceGraphQLService implements GraphQLModel {
+export class ResourceGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'resource'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'adminResource'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminResourcesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectModel = 'Syscover\\Admin\\Models\\Resource'; // model of backoffice relative at this GraphQL service
     readonly relationsFields = `
         adminPackages {
             id
@@ -26,48 +24,16 @@ export class ResourceGraphQLService implements GraphQLModel {
         }
     `;
 
-    readonly queryRelationsObject = gql`
-        query AdminGetRelationsResource {
-            ${this.relationsFields}
-        }`;
-
-    readonly queryPaginationObject = gql`
-        query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects = gql`
-        query AdminGetResources ($sql:[CoreSQLQueryInput]) {
-            adminResources (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
-    readonly queryObject = gql`
-        query GetAdminResource ($sql:[CoreSQLQueryInput]) {
-            adminResource (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation AdminAddResource ($resource:AdminResourceInput!) {
-            adminAddResource (resource:$resource){
+        mutation AdminAddResource ($object:AdminResourceInput!) {
+            adminAddResource (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateResource ($resource:AdminResourceInput! $idOld:String!) {
-            adminUpdateResource (resource:$resource idOld:$idOld){
+        mutation AdminUpdateResource ($object:AdminResourceInput! $idOld:String!) {
+            adminUpdateResource (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;

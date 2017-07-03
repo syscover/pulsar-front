@@ -49,11 +49,14 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
             .proxyGraphQL()
             .watchQuery({
                 query: this.packageGraphQLService.queryObjects,
-                variables: {sql: []}
+                variables: {
+                    model: this.packageGraphQLService.objectModel,
+                    sql: []
+                }
             })
             .subscribe(({data}) => {
                 // set packages for menu
-                this.packages = data['adminPackages'];
+                this.packages = data['coreObjects'];
             });
      }
 

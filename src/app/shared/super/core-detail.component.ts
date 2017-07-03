@@ -1,5 +1,5 @@
 import { CoreComponent } from './core.component';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import { Injector, HostBinding, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -90,7 +90,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
 
         } else {
-            // edit action and create lang
+            // edit object without multilanguague and create lang
             this.getRecord(this.params);
         }
     }
@@ -99,7 +99,10 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
     getArgsToGetRecord(params: Params) {
 
+        console.log(this.grahpQL.objectModel);
+
         let args = {
+            model: this.grahpQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'id',
@@ -134,13 +137,13 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 this.setDataRelationsObject(data);
 
                 // instance data on object list
-                this.customCallback(data[this.grahpQL.objectContainer]);
+                this.customCallback(data['coreObject']);
             });
     }
 
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
-        if (this.grahpQL.queryRelationsObject) {
+        if (this.grahpQL.relationsFields && this.grahpQL.relationsFields !== '') {
             this.objectService
                 .proxyGraphQL()
                 .watchQuery({
@@ -173,7 +176,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         this.fg.get('id').enable(); // enable is a method from AbstractControl
 
         // add object to arguments
-        args[this.grahpQL.objectInputContainer] = this.fg.value;
+        args['object'] = this.fg.value;
 
         if (this.dataRoute.action === 'create') {
 

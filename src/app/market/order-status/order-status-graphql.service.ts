@@ -1,48 +1,26 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class OrderStatusGraphQLService implements GraphQLModel {
+export class OrderStatusGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'action'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'adminAction'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'adminActionsPagination'; // to know wich is the wrapper that contain pagination in response
-    readonly relationsFields;
-    readonly fields = 'id name'; // defaults fields that will be return, fragment inline only is necessary for pagination
-
-    readonly queryRelationsObject;
-
-    readonly queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
-            ${this.paginationContainer} (sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects;
-
-    readonly queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            adminAction (sql:$sql){
-                ${this.fields}
-            }
-        }`;
+    readonly objectModel = 'Syscover\\Market\\Models\\OrtderStatus'; // model of backoffice relative at this GraphQL service
+    readonly fields = `
+        id
+        name
+    `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
     readonly mutationAddObject = gql`
-        mutation AdminAddAction ($action:AdminActionInput!) {
-            adminAddAction (action:$action){
+        mutation AdminAddAction ($object:AdminActionInput!) {
+            adminAddAction (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($action:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (action:$action idOld:$idOld){
+        mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
+            adminUpdateAction (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;

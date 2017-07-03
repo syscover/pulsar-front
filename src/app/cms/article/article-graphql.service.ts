@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class ArticleGraphQLService implements GraphQLModel {
+export class ArticleGraphQLService extends GraphQLModel {
 
-    readonly objectInputContainer = 'article'; // to know which is the wrapper that will contain an object for to pass arguments
-    readonly objectContainer = 'cmsArticle'; // to know which is the wrappper that contain a object in response
-    readonly paginationContainer = 'cmsArticlesPagination'; // to know wich is the wrapper that contain pagination in response
+    readonly objectModel = 'Syscover\\Cms\\Models\\Article'; // model of backoffice relative at this GraphQL service
     readonly relationsFields = `
         cmsSections {
             id
@@ -73,48 +71,16 @@ export class ArticleGraphQLService implements GraphQLModel {
         }
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly queryRelationsObject  = gql`
-        query CmsGetRelationsArticles ($sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!){
-            ${this.relationsFields}
-        }`;
-
-    readonly queryPaginationObject = gql`
-        query CmsGetArticlesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
-            ${this.paginationContainer} (sql:$sql lang:$lang) {
-                total
-                filtered
-                objects (sql:$sql){
-                    ${this.fields}
-                }
-            }
-        }`;
-
-    readonly queryObjects = gql`
-        query CmsGetArticles ($sql:[CoreSQLQueryInput]) {
-            cmsArticles (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
-    readonly queryObject = gql`
-        query CmsGetArticle ($sql:[CoreSQLQueryInput]) {
-            cmsArticle (sql:$sql){
-                ${this.fields}
-            }
-            ${this.relationsFields}
-        }`;
-
     readonly mutationAddObject = gql`
-        mutation CmsAddArticle ($article:CmsArticleInput!) {
-            cmsAddArticle (article:$article){
+        mutation CmsAddArticle ($object:CmsArticleInput!) {
+            cmsAddArticle (object:$object){
                 ${this.fields}
             }
         }`;
 
     readonly mutationUpdateObject = gql`
-        mutation CmsUpdateArticle ($article:CmsArticleInput!) {
-            cmsUpdateArticle (article:$article){
+        mutation CmsUpdateArticle ($object:CmsArticleInput!) {
+            cmsUpdateArticle (object:$object){
                 ${this.fields}
             }
         }`;

@@ -1,5 +1,5 @@
 import { CoreComponent } from './core.component';
-import { GraphQLModel } from './../../core/graphql/graphql-model';
+import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
@@ -40,7 +40,7 @@ export class CoreListComponent extends CoreComponent {
     loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
 
         // set params
-        let args = this.setArgs(event, lang, sql);
+        let args = this.getArgsToGetRecords(event, lang, sql);
 
         this.objectService
             .proxyGraphQL()
@@ -51,11 +51,11 @@ export class CoreListComponent extends CoreComponent {
             }).subscribe(({data}) => {
 
                 // paginaton data
-                this.totalRecords = data[this.grahpQL.paginationContainer].total;
-                this.filteredRecords = data[this.grahpQL.paginationContainer].filtered;
+                this.totalRecords = data['coreObjectsPagination'].total;
+                this.filteredRecords = data['coreObjectsPagination'].filtered;
 
                 // instance data on object list
-                this.customCallback(data[this.grahpQL.paginationContainer]['objects']);
+                this.customCallback(data['coreObjectsPagination']['objects']);
             });
     }
 
@@ -69,7 +69,7 @@ export class CoreListComponent extends CoreComponent {
     loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
 
         // set params
-        let args = this.setArgs(event, lang, sql);
+        let args = this.getArgsToGetRecords(event, lang, sql);
 
         // search elements by paramenters
         this.objectService
@@ -112,9 +112,12 @@ export class CoreListComponent extends CoreComponent {
         });
     }
 
-    private setArgs(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined): Object {
+    private getArgsToGetRecords(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined): Object {
 
         let args = {}; // create empty object
+
+        args['model'] = this.grahpQL.objectModel;
+
         args['sql'] = sql ? sql : []; // set sql array
 
         // set limit sql

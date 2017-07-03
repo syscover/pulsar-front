@@ -48,6 +48,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             config: {
                 key: 'pulsar.cms.editors'
             },
+            model: this.grahpQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'id',
