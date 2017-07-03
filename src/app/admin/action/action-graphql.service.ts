@@ -5,11 +5,12 @@ import gql from 'graphql-tag';
 
 export class ActionGraphQLService extends GraphQLModel {
 
-    objectModel = 'Syscover\\Admin\\Models\\Action'; // model of backoffice relative at this GraphQL service
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Action';
 
     queryPaginationObject = gql`
-        query AdminGetActionsPagination ($model:String! $sql:[CoreSQLQueryInput]) {
-        coreObjectsPagination (model:$model sql:$sql) {
+        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminActionsPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql) {
@@ -18,6 +19,19 @@ export class ActionGraphQLService extends GraphQLModel {
             }
         }`;
 
+    queryObjects = gql`
+        query AdminGetActions ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminActions (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminAction (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     mutationAddObject = gql`
         mutation AdminAddAction ($object:AdminActionInput!) {

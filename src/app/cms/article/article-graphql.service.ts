@@ -5,90 +5,128 @@ import gql from 'graphql-tag';
 @Injectable()
 export class ArticleGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Cms\\Models\\Article'; // model of backoffice relative at this GraphQL service
-    readonly relationsFields = `
-        cmsSections {
-            id
-            name
-            family {
-                id 
-                name
-            }
-        }
-        cmsFamilies {
-            id 
-            name 
-            editor_id
-            field_group_id 
-            date 
-            title
-            slug
-            link
-            categories
-            sort
-            tags
-            article_parent
-            attachments
-        }
-        cmsCategories {
-            id
-            name
-        }
-        cmsStatuses: coreConfig (config:$config) {
-            ... on CoreConfigOptionType {
-                id
-                name
-            }
-        }
-        adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-            id
-            name
-        }
-        cmsArticles (sql:$sqlArticle) {
-            id
-            name
-        }
-    `;
-    readonly fields = `
-    ... on CmsArticle {
-            id
-            lang_id
-            parent_article_id
-            name
-            author_id
-            section_id
-            family_id
-            status_id
-            publish
-            date
-            title
-            slug
-            link
-            blank
-            sort
-            article
-            data_lang
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Cms\\Models\\Article';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query CmsGetArticlesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
+            coreObjectsPagination: cmsArticlesPagination (sql:$sql lang:$lang) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryRelationsObject  = gql`
+        query CmsGetRelationsArticle ($sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!){
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query CmsGetArticles ($sql:[CoreSQLQueryInput]) {
+            coreObjects: cmsArticles (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query GetObject ($sql:[CoreSQLQueryInput]) {
+            coreObject: cmsArticle (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    mutationAddObject = gql`
         mutation CmsAddArticle ($object:CmsArticleInput!) {
             cmsAddArticle (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation CmsUpdateArticle ($object:CmsArticleInput!) {
             cmsUpdateArticle (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation CmsDeleteArticle ($id:String! $lang:String!) {
             cmsDeleteArticle (id:$id lang:$lang){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on CmsArticle {
+                id
+                lang_id
+                parent_article_id
+                name
+                author_id
+                section_id
+                family_id
+                status_id
+                publish
+                date
+                title
+                slug
+                link
+                blank
+                sort
+                article
+                data_lang
+            }
+        `;
+
+        this.relationsFields = `
+            cmsSections {
+                id
+                name
+                family {
+                    id 
+                    name
+                }
+            }
+            cmsFamilies {
+                id 
+                name 
+                editor_id
+                field_group_id 
+                date 
+                title
+                slug
+                link
+                categories
+                sort
+                tags
+                article_parent
+                attachments
+            }
+            cmsCategories {
+                id
+                name
+            }
+            cmsStatuses: coreConfig (config:$config) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
+                }
+            }
+            adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+                id
+                name
+            }
+            cmsArticles (sql:$sqlArticle) {
+                id
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

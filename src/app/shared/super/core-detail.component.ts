@@ -99,8 +99,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
     getArgsToGetRecord(params: Params) {
 
-        console.log(this.grahpQL.objectModel);
-
         let args = {
             model: this.grahpQL.objectModel,
             sql: [{

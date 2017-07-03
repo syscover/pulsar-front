@@ -5,32 +5,64 @@ import gql from 'graphql-tag';
 @Injectable()
 export class ProfileGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\Profile'; // model of backoffice relative at this GraphQL service
-    readonly fields = `
-    ... on AdminProfile {
-            id 
-            name
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Profile';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetProfilesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminProfilesPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetProfiles ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminProfiles (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetProfile ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminProfile (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddProfile ($object:AdminProfileInput!) {
             adminAddProfile (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateProfile ($object:AdminProfileInput!) {
             adminUpdateProfile (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteProfile ($id:String!) {
             adminDeleteProfile (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminProfile {
+                id 
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

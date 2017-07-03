@@ -5,35 +5,67 @@ import gql from 'graphql-tag';
 @Injectable()
 export class LangGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\Lang'; // model of backoffice relative at this GraphQL service
-    readonly fields = `
-    ... on AdminLang {
-            id
-            name 
-            icon 
-            sort 
-            active
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Lang';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminLangsPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetLangs ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminLangs (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetLang ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminLang (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddLang ($object:AdminLangInput!) {
             adminAddLang (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateLang ($object:AdminLangInput! $idOld:String!) {
             adminUpdateLang (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteLang ($id:String!) {
             adminDeleteLang (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminLang {
+                id
+                name 
+                icon 
+                sort 
+                active
+            }
+        `;
+
+        super.init();
+    }
 }

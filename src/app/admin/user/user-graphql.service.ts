@@ -5,30 +5,46 @@ import gql from 'graphql-tag';
 @Injectable()
 export class UserGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\User'; // model of backoffice relative at this GraphQL service
-    readonly fields = `
-        id 
-        name
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
-
-    readonly mutationAddObject = gql`
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\User';
+    
+    mutationAddObject = gql`
         mutation AdminAddUser ($object:AdminUserInput!) {
             adminAddUser (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateUser ($object:AdminUserInput!) {
             adminUpdateUser (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteUser ($id:String!) {
             adminDeleteUser (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminUser {
+                id 
+                name
+            }
+        `;
+
+        this.relationsFields = `
+            adminPackages {
+                id
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

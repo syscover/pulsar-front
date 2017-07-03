@@ -5,23 +5,56 @@ import gql from 'graphql-tag';
 @Injectable()
 export class AttachmentFamilyGraphQLService extends GraphQLModel {
 
-    objectModel = 'Syscover\\Admin\\Models\\AttachmentFamily'; // model of backoffice relative at this GraphQL service
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\AttachmentFamily';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminAttachmentFamiliesPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryRelationsObject = gql`
+        query AdminGetRelationsAttachmentFamily ($config:CoreConfigInput!){
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query AdminGetAttachmentFamilies ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminAttachmentFamilies (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    queryObject = gql`
+        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+            coreObject: adminAttachmentFamily (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
             adminAddAttachmentFamily (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
             adminUpdateAttachmentFamily (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteAttachmentFamily ($id:String!) {
             adminDeleteAttachmentFamily (id:$id){
                 ${this.fields}
@@ -48,11 +81,9 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
             `;
 
         this.relationsFields = `
-                 adminResources: coreObjects (model:"Syscover\\\\Admin\\\\Models\\\\Resource"){
-                    ... on AdminResource {
-                        id
-                        name
-                    }
+                adminResources {
+                    id
+                    name
                 }
                 adminSizes: coreConfig (config:$config) {
                     ... on CoreConfigOptionType {

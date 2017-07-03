@@ -5,49 +5,89 @@ import gql from 'graphql-tag';
 @Injectable()
 export class FieldGroupGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\FieldGroup'; // model of backoffice relative at this GraphQL service
-    readonly relationsFields = `
-        coreConfig (key:$key) {
-            ... on CoreConfigOptionType {
-                id
-                name
-            }
-        }
-        adminResources {
-            id
-            name
-        }
-    `; // fields of relations object`
-    readonly fields = `
-    ... on AdminFieldGroup {
-            id
-            name
-            resource_id
-            resource {
-                id
-                name
-            }
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination`
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\FieldGroup';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminFieldGroupsPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryRelationsObject = gql`
+        query AdminGetRelationsFieldGroup ($config:CoreConfigInput!){
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query AdminGetFieldGroups ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminFieldGroups (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    queryObject = gql`
+        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+            coreObject: adminFieldGroup (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddFieldGroup ($object:AdminFieldGroupInput!) {
             adminAddFieldGroup (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateFieldGroup ($object:AdminFieldGroupInput!) {
             adminUpdateFieldGroup (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteFieldGroup ($id:String!) {
             adminDeleteFieldGroup (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminFieldGroup {
+                id
+                name
+                resource_id
+                resource {
+                    id
+                    name
+                }
+            }
+        `;
+
+        this.relationsFields = `
+            coreConfig (config:$config) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
+                }
+            }
+            adminResources {
+                id
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

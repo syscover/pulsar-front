@@ -5,43 +5,83 @@ import gql from 'graphql-tag';
 @Injectable()
 export class ResourceGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\Resource'; // model of backoffice relative at this GraphQL service
-    readonly relationsFields = `
-        adminPackages {
-            id
-            name
-        }
-    `;
-    readonly fields = `
-    ... on AdminResource {
-            id 
-            name 
-            package_id
-            package {
-                id
-                name
-            }
-        }
-    `;
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Resource';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminResourcesPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryRelationsObject = gql`
+        query AdminGetRelationsResource {
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query AdminGetResources ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminResources (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    queryObject = gql`
+        query AdminGetResource ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminResource (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddResource ($object:AdminResourceInput!) {
             adminAddResource (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateResource ($object:AdminResourceInput! $idOld:String!) {
             adminUpdateResource (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteResource ($id:String!) {
             adminDeleteResource (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminResource {
+                id 
+                name 
+                package_id
+                package {
+                    id
+                    name
+                }
+            }
+        `;
+
+        this.relationsFields = `
+            adminPackages {
+                id
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

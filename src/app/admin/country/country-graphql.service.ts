@@ -5,23 +5,49 @@ import gql from 'graphql-tag';
 @Injectable()
 export class CountryGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\Country'; // model of backoffice relative at this GraphQL service
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Country';
 
-    readonly mutationAddObject = gql`
+    queryPaginationObject = gql`
+        query AdminGetCountriesPagination ($lang:String $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminCountriesPagination (lang:$lang sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetCountries ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminCountries (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetCountry ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminCountry (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    mutationAddObject = gql`
         mutation AdminAddCountry ($object:AdminCountryInput!) {
             adminAddCountry (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateCountry ($object:AdminCountryInput! $idOld:String!) {
             adminUpdateCountry (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteCountry ($id:String! $lang:String!) {
             adminDeleteCountry (id:$id lang:$lang){
                 ${this.fields}

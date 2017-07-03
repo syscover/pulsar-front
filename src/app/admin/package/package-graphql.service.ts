@@ -5,7 +5,33 @@ import gql from 'graphql-tag';
 @Injectable()
 export class PackageGraphQLService extends GraphQLModel {
 
-    objectModel = 'Syscover\\Admin\\Models\\Package'; // model of backoffice relative at this GraphQL service
+    // model of backoffice relative at this GraphQL service
+    objectModel = 'Syscover\\Admin\\Models\\Package';
+
+    queryPaginationObject = gql`
+        query AdminGetPackagesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminPackagesPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetPackages ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminPackages (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetPackage ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminPackage (sql:$sql){
+                ${this.fields}
+            }
+        }`;
 
     mutationAddObject = gql`
         mutation AdminAddPackage ($object:AdminPackageInput!) {
