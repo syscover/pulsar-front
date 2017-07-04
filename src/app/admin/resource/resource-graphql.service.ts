@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class ResourceGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\Resource';
-
     queryPaginationObject = gql`
         query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminResourcesPagination (sql:$sql) {
@@ -62,6 +59,9 @@ export class ResourceGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\Resource';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminResource {

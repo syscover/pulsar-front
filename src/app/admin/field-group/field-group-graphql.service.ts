@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class FieldGroupGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\FieldGroup';
-
     queryPaginationObject = gql`
         query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminFieldGroupsPagination (sql:$sql) {
@@ -62,6 +59,9 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\FieldGroup';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminFieldGroup {

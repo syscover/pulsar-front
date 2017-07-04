@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class ArticleGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Cms\\Models\\Article';
-
     queryPaginationObject = gql`
         query CmsGetArticlesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
             coreObjectsPagination: cmsArticlesPagination (sql:$sql lang:$lang) {
@@ -60,6 +57,9 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Cms\\Models\\Article';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on CmsArticle {

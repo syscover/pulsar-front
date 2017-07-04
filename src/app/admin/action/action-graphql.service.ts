@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 
 export class ActionGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\Action';
-
     queryPaginationObject = gql`
         query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminActionsPagination (sql:$sql) {
@@ -55,6 +52,9 @@ export class ActionGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\Action';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminAction {

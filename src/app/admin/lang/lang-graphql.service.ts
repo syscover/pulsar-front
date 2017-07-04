@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class LangGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\Lang';
-
     queryPaginationObject = gql`
         query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminLangsPagination (sql:$sql) {
@@ -55,6 +52,9 @@ export class LangGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\Lang';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminLang {

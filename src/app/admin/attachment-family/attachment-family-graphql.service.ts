@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class AttachmentFamilyGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\AttachmentFamily';
-
     queryPaginationObject = gql`
         query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminAttachmentFamiliesPagination (sql:$sql) {
@@ -62,6 +59,9 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\AttachmentFamily';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminAttachmentFamily {

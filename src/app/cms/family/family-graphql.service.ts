@@ -5,56 +5,96 @@ import gql from 'graphql-tag';
 @Injectable()
 export class FamilyGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Cms\\Models\\Family'; // model of backoffice relative at this GraphQL service
-    readonly relationsFields = `
-        coreConfig (config:$config) {
-            ... on CoreConfigOptionType {
-                id
-                name
+    queryPaginationObject = gql`
+        query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: cmsFamiliesPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
             }
-        }
-        adminFieldGroups {
-            id
-            name
-        }
-    `; // fields of relations object`
-    readonly fields = `
-    ... on CmsFamily {
-            id
-            name
-            editor_id
-            field_group_id 
-            date 
-            title
-            slug
-            link
-            categories
-            sort
-            tags
-            article_parent
-            attachments
-            data
-        }
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+        }`;
 
-    readonly mutationAddObject = gql`
+    queryRelationsObject = gql`
+        query CmsGetRelationsFamily ($config:CoreConfigInput!){
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+            coreObjects: cmsFamilies (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    queryObject = gql`
+        query CmsGetFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+            coreObject: cmsFamily (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    mutationAddObject = gql`
         mutation CmsAddFamily ($object:CmsFamilyInput!) {
             cmsAddFamily (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation CmsUpdateFamily ($object:CmsFamilyInput!) {
             cmsUpdateFamily (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation CmsDeleteFamily ($id:String!) {
             cmsDeleteFamily (id:$id){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Cms\\Models\\Family';
+
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on CmsFamily {
+                id
+                name
+                editor_id
+                field_group_id 
+                date 
+                title
+                slug
+                link
+                categories
+                sort
+                tags
+                article_parent
+                attachments
+                data
+            }
+        `;
+
+        this.relationsFields = `
+            coreConfig (config:$config) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
+                }
+            }
+            adminFieldGroups {
+                id
+                name
+            }
+        `;
+
+        super.init();
+    }
 }

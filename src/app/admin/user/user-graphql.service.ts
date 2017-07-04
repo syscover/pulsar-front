@@ -5,9 +5,6 @@ import gql from 'graphql-tag';
 @Injectable()
 export class UserGraphQLService extends GraphQLModel {
 
-    // model of backoffice relative at this GraphQL service
-    objectModel = 'Syscover\\Admin\\Models\\User';
-    
     mutationAddObject = gql`
         mutation AdminAddUser ($object:AdminUserInput!) {
             adminAddUser (object:$object){
@@ -30,6 +27,9 @@ export class UserGraphQLService extends GraphQLModel {
         }`;
 
     init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\User';
+
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminUser {
