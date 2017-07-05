@@ -177,7 +177,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
 
-
         let sqlArticle = [
             {
                 command: 'where',

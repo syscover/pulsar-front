@@ -2,6 +2,7 @@ import { CoreComponent } from './core.component';
 import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import { Injector, ViewChild, HostBinding } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
+import { environment } from './../../../environments/environment';
 
 export class CoreListComponent extends CoreComponent {
 
@@ -42,6 +43,8 @@ export class CoreListComponent extends CoreComponent {
         // set params
         let args = this.getArgsToGetRecords(event, lang, sql);
 
+        if(environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
+
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -49,6 +52,8 @@ export class CoreListComponent extends CoreComponent {
                 variables: args,
                 fetchPolicy: 'network-only'
             }).subscribe(({data}) => {
+
+                if(environment.debug) console.log('DEBUG - data from Query Objects Pagination: ', data);
 
                 // paginaton data
                 this.totalRecords = data['coreObjectsPagination'].total;
@@ -66,7 +71,7 @@ export class CoreListComponent extends CoreComponent {
      * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
      * @param parameters    when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
+    /*loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
 
         // set params
         let args = this.getArgsToGetRecords(event, lang, sql);
@@ -81,7 +86,7 @@ export class CoreListComponent extends CoreComponent {
                 // instance data on object list
                 this.customCallback(response.data);
             });
-    }
+    }*/
 
     deleteRecord(f: Function, object: any, args = {}): void {
 
@@ -115,8 +120,6 @@ export class CoreListComponent extends CoreComponent {
     private getArgsToGetRecords(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined): Object {
 
         let args = {}; // create empty object
-
-        args['model'] = this.grahpQL.objectModel;
 
         args['sql'] = sql ? sql : []; // set sql array
 

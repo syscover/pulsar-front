@@ -49,7 +49,6 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
     // ovewrite this method to custom column id by column attachment_family.id
     getArgsToGetRecord(params: Params) {
         let args = {
-            model: this.grahpQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'attachment_family.id',

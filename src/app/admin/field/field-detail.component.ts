@@ -1,11 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FieldGraphQLService } from './field-graphql.service';
-
 import { SelectItem } from 'primeng/primeng';
-
-import { Field } from './../admin.models';
+import { Field, FieldType, FieldGroup, DataType } from './../admin.models';
 
 import * as _ from 'lodash';
 
@@ -22,21 +21,33 @@ export class FieldDetailComponent extends CoreDetailComponent {
     // overwirte method and property in parent class
     object: Field = new Field(); // set empty object
     customCallback: Function = (response = undefined) => {
-
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
+            this.object = response; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
 
             // set lang, this type of objects hasn't land_id in your table
             this.fg.patchValue({lang_id: this.lang.id});
 
             if (this.dataRoute.action === 'create-lang') {
-                this.fg.controls['label'].setValue(this.object.labels[this.baseLang]);
+
+                // set label field
+                this.fg.controls['label'].setValue(
+                    this.object.labels.find((el) => {
+                        return el['id'] === this.baseLang
+                    })['value']
+                );
+
                 // disabled inputs that hasn't caontaint multi language
                 this.disabledForm();
 
             } else if (this.dataRoute.action === 'edit') {
-                this.fg.controls['label'].setValue(this.object.labels[this.lang.id]); // set labels with base lang data
+
+                // set label field
+                this.fg.controls['label'].setValue(
+                    this.object.labels.find((el) => {
+                        return el['id'] === this.lang.id;
+                    })['value']
+                );
 
                 // disabled elemetns if edit diferent language that base lang
                 if (this.lang.id !== this.baseLang) {
@@ -51,39 +62,6 @@ export class FieldDetailComponent extends CoreDetailComponent {
         protected graphQL: FieldGraphQLService
     ) {
         super(injector, graphQL);
-    }
-
-    ngOnInit() {
-        /*this.fieldGroupService.getRecords() // get fieldGroups
-            .flatMap(response => {
-                this.fieldGroups = _.map(<FieldGroup[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-
-                this.fieldGroups.unshift({ label: 'Select a group', value: '' });
-
-                return this.configService.getValue({
-                    key: 'pulsar.admin.field_types'
-                });
-            }).flatMap((response) => {
-                this.fieldTypes = _.map(<FieldType[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-
-                this.fieldTypes.unshift({ label: 'Select a field type', value: '' });
-
-                return this.configService.getValue({
-                    key: 'pulsar.admin.data_types'
-                });
-            }).subscribe((response) => {
-                this.dataTypes = _.map(<DataType[]>response.data, obj => {
-                    return { value: obj.id, label: obj.name };
-                });
-
-                this.dataTypes.unshift({ label: 'Select a data type', value: '' });
-
-            });*/
-            super.init();
     }
 
     createForm() {
@@ -115,5 +93,63 @@ export class FieldDetailComponent extends CoreDetailComponent {
         this.fg.controls['pattern'].disable();
         this.fg.controls['label_class'].disable();
         this.fg.controls['component_class'].disable();
+    }
+
+    getArgsToGetRecord(params: Params): any {
+        let args = {
+            sql: [{
+                command: 'where',
+                column: 'field.id',
+                operator: '=',
+                value: params['id']
+            }],
+            configFieldTypes: {
+                key: 'pulsar.admin.field_types'
+            },
+            configDataTypes: {
+                key: 'pulsar.admin.data_types'
+            }
+        };
+
+        return args;
+    }
+
+    getGraphQLDataRelationsToCreateObject() {
+        this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.grahpQL.queryRelationsObject,
+                variables: {
+                    configFieldTypes: {
+                        key: 'pulsar.admin.field_types'
+                    },
+                    configDataTypes: {
+                        key: 'pulsar.admin.data_types'
+                    }
+                }
+            })
+            .subscribe(({data}) => {
+                this.setDataRelationsObject(data);
+            });
+    }
+
+    setDataRelationsObject(data: any) {
+        // set field groups
+        this.fieldGroups = _.map(<FieldGroup[]>data['adminFieldGroups'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.fieldGroups.unshift({ label: 'Select a group', value: '' });
+
+        // set fields types
+        this.fieldTypes = _.map(<FieldType[]>data['coreConfigFieldTypes'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.fieldTypes.unshift({ label: 'Select a field type', value: '' });
+
+        // set data types
+        this.dataTypes = _.map(<DataType[]>data['coreConfigDataTypes'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.dataTypes.unshift({ label: 'Select a data type', value: '' });
     }
 }

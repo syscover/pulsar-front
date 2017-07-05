@@ -52,6 +52,7 @@ export class ApolloClientManager {
                                 { name: "AdminProfile" },
                                 { name: "AdminAttachmentFamily" },
                                 { name: "AdminFieldGroup" },
+                                { name: "AdminField" },
                                 { name: "CmsSection" },
                                 { name: "CmsFamily" },
                                 { name: "CmsCategory" },
@@ -66,6 +67,7 @@ export class ApolloClientManager {
         this.client = new ApolloClient({
             networkInterface,
             fragmentMatcher,
+            //dataIdFromObject: () => undefined, // to delete id object response
             dataIdFromObject: o => {
                 if (o['lang_id'] && o['id']) {
                     return `${o['__typename']}-${o['id']}-${o['lang_id']}`;

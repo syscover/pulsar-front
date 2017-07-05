@@ -11,14 +11,11 @@ export class FieldValueListComponent extends CoreListComponent {
 
     field_id: number;
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
 
     constructor(
-        // service for parent class
         protected injector: Injector,
         protected graphQL: FieldValueGraphQLService,
     ) {
@@ -26,7 +23,7 @@ export class FieldValueListComponent extends CoreListComponent {
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 
-    loadDadaTableLazy(event: LazyLoadEvent, lang: string) {
+    /*loadDadaTableLazy(event: LazyLoadEvent, lang: string) {
 
         // add parameters before call loadDadaTableLazy to filter records
         super.loadDadaTableLazy(event, lang, [{
@@ -35,5 +32,5 @@ export class FieldValueListComponent extends CoreListComponent {
             'operator': '=',
             'value': this.field_id
         }]);
-    }
+    }*/
 }

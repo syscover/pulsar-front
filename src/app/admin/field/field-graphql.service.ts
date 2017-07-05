@@ -5,30 +5,106 @@ import gql from 'graphql-tag';
 @Injectable()
 export class FieldGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Admin\\Models\\Field'; // model of backoffice relative at this GraphQL service
-    readonly fields = `
-        id
-        name
-    `; // defaults fields that will be return, fragment inline only is necessary for pagination
+    queryPaginationObject = gql`
+        query AdminGetFieldsPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminFieldsPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
 
-    readonly mutationAddObject = gql`
-        mutation AdminAddAction ($object:AdminActionInput!) {
-            adminAddAction (object:$object){
+    queryRelationsObject = gql`
+        query AdminGetRelationsField ($configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
+            ${this.relationsFields}
+        }`;
+
+    queryObjects = gql`
+        query AdminGetFields ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminFields (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    queryObject = gql`
+        query AdminGetField ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
+            coreObject: adminField (sql:$sql){
+                ${this.fields}
+            }
+            ${this.relationsFields}
+        }`;
+
+    mutationAddObject = gql`
+        mutation AdminAddField ($object:AdminFieldInput!) {
+            adminAddField (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (object:$object idOld:$idOld){
+    mutationUpdateObject = gql`
+        mutation AdminUpdateField ($object:AdminFieldInput!) {
+            adminUpdateField (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+    mutationDeleteObject = gql`
+        mutation AdminDeleteField ($id:String! $lang:String) {
+            adminDeleteField (id:$id lang:$lang){
                 ${this.fields}
             }
         }`;
+
+    init() {
+        // model of backoffice relative at this GraphQL service
+        this.objectModel = 'Syscover\\Admin\\Models\\Field';
+
+        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
+        this.fields = `
+            ... on AdminField {
+                id
+                field_group_id
+                name
+                labels {
+                    id
+                    value 
+                }
+                field_type_id
+                field_type_name
+                data_type_id
+                data_type_name
+                required
+                sort
+                max_length
+                pattern
+                label_class
+                component_class
+                data_lang
+            }
+        `;
+
+        this.relationsFields = `
+            adminFieldGroups {
+                id
+                name
+            }
+            coreConfigFieldTypes:coreConfig (config:$configFieldTypes) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
+                }
+            }
+            coreConfigDataTypes:coreConfig (config:$configDataTypes) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
+                }
+            }
+        `;
+
+        super.init();
+    }
 }

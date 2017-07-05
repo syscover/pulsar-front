@@ -8,14 +8,11 @@ import { FieldGraphQLService } from './field-graphql.service';
 })
 export class FieldListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'id', 'name'
     ];
 
     constructor(
-        // service for parent class
         protected injector: Injector,
         protected graphQL: FieldGraphQLService,
     ) {

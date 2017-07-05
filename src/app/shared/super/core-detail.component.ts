@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
+import { environment } from './../../../environments/environment';
 import gql from 'graphql-tag';
 import * as _ from 'lodash';
 
@@ -97,7 +98,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
-    getArgsToGetRecord(params: Params) {
+    getArgsToGetRecord(params: Params): any {
 
         let args = {
             model: this.grahpQL.objectModel,
@@ -119,6 +120,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             });
         }
 
+        if(environment.debug) console.log('DEBUG - arguments to get object: ', args);
+
         return args;
     }
 
@@ -131,6 +134,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 variables: this.getArgsToGetRecord(params)
             })
             .subscribe(({data}) => {
+                if(environment.debug) console.log('DEBUG - response osf query to get object: ', data);
+
                 // instance data in relations fields of object
                 this.setDataRelationsObject(data);
 

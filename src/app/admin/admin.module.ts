@@ -1,3 +1,4 @@
+import { FieldGraphQLService } from './field/field-graphql.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -74,6 +75,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         ActionGraphQLService,
         AttachmentFamilyGraphQLService,
         CountryGraphQLService,
+        FieldGraphQLService,
         FieldGroupGraphQLService,
         LangGraphQLService,
         PackageGraphQLService,
