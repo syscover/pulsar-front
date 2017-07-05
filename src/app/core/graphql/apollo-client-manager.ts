@@ -50,6 +50,7 @@ export class ApolloClientManager {
                                 { name: "AdminAction" },
                                 { name: "AdminResource" },
                                 { name: "AdminProfile" },
+                                { name: "AdminAttachmentMime" },
                                 { name: "AdminAttachmentFamily" },
                                 { name: "AdminFieldGroup" },
                                 { name: "AdminField" },

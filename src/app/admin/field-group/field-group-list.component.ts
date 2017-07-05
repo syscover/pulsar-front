@@ -8,8 +8,6 @@ import { FieldGroupGraphQLService } from './field-group-graphql.service';
 })
 export class FieldGroupListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
         'field_group.id', 'field_group.name', 'resource.name'
     ];

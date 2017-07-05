@@ -52,7 +52,7 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteFieldGroup ($id:String!) {
+        mutation AdminDeleteFieldGroup ($id:Int!) {
             adminDeleteFieldGroup (id:$id){
                 ${this.fields}
             }

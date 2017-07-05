@@ -183,6 +183,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         if (this.dataRoute.action === 'create') {
 
+            if(environment.debug) console.log('DEBUG - args sending to create object: ', args);
+
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
@@ -191,6 +193,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
         if (this.dataRoute.action === 'create-lang') {
+
+            if(environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
             obs = this.objectService
                 .proxyGraphQL()
@@ -205,6 +209,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             if (this.params['id']) {
                 args['idOld'] = this.params['id'];
             }
+
+            if(environment.debug) console.log('DEBUG - args sending to edit object: ', args);
 
             obs = this.objectService
                 .proxyGraphQL()

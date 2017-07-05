@@ -30,44 +30,5 @@ export class GraphQLModel implements GraphQLModelInterface {
         this.init();
     }
 
-    init() {
-        /*// Query to get pagination list objets
-        this.queryPaginationObject = gql`
-            query GetObjectsPagination ($model:String! $sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination (model:$model sql:$sql) {
-                    total
-                    filtered
-                    objects (sql:$sql) {
-                        ${this.fields}
-                    }
-                }
-            }`;
-
-        // instance queryRelationsObject only if relationsFields is defined
-        if (this.relationsFields && this.relationsFields !== '') {
-            // Query to get relations data
-            this.queryRelationsObject = gql`
-                query GetRelationsObject ($config:CoreConfigInput!){
-                    ${this.relationsFields}
-                }`;
-        }
-
-        // Query to get pagination list objets
-        this.queryObjects = gql`
-            query GetObjects ($model:String! $sql:[CoreSQLQueryInput]) {
-                coreObjects (model:$model sql:$sql){
-                    ${this.fields}
-                }
-                ${this.relationsFields}
-            }`;
-
-        // Query to get a object
-        this.queryObject = gql`
-            query GetObject ($model:String! $sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
-                coreObject (model:$model sql:$sql){
-                    ${this.fields}
-                }
-                ${this.relationsFields}
-            }`;*/
-    }
+    init() { }
 }

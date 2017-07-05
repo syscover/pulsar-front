@@ -8,10 +8,8 @@ import { AttachmentMimeGraphQLService } from './attachment-mime-graphql.service'
 })
 export class AttachmentMimeListComponent extends CoreListComponent {
 
-    // paramenters for parent class
-    // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'id', 'name', 'mime'
+        'attachment_mime.id', 'resource.name', 'attachment_mime.mime'
     ];
 
     constructor(
