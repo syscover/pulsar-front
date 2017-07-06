@@ -23,13 +23,21 @@ export class FieldValueListComponent extends CoreListComponent {
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 
-    loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string) {
+    loadDadaTableLazyGraphQL(event: LazyLoadEvent) {
         // add parameters before call loadDadaTableLazy to filter records
-        super.loadDadaTableLazyGraphQL(event, lang, [{
-            'command': 'where',
-            'column': 'field_id',
-            'operator': '=',
-            'value': this.field_id
-        }]);
+        super.loadDadaTableLazyGraphQL(event, [
+            {
+                'command': 'where',
+                'column': 'lang_id',
+                'operator': '=',
+                'value': this.baseLang
+            },
+            {
+                'command': 'where',
+                'column': 'field_id',
+                'operator': '=',
+                'value': this.field_id
+            }]
+        );
     }
 }

@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 export class CountryGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query AdminGetCountriesPagination ($lang:String $sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: adminCountriesPagination (lang:$lang sql:$sql) {
+        query AdminGetCountriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminCountriesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql) {

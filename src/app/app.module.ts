@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { InterceptorXHRBackend } from './core/services/interceptor.service';
 
 import { PackageGraphQLService } from './admin/package/package-graphql.service';
+import { FieldGraphQLService } from './admin/field/field-graphql.service';
 import { CoreService } from './shared/super/core.service';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { CoreService } from './shared/super/core.service';
             useClass: InterceptorXHRBackend
         },
         PackageGraphQLService,
+        FieldGraphQLService,
         CoreService,
         ConfigService,
         {

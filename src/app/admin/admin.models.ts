@@ -84,6 +84,7 @@ export class Field {
     pattern: string;
     label_class: string;
     component_class: string;
+    values: FieldValue[];
     data_lang: string;
     data: string;
 }

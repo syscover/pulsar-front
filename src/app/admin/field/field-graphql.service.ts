@@ -22,7 +22,7 @@ export class FieldGraphQLService extends GraphQLModel {
         }`;
 
     queryObjects = gql`
-        query AdminGetFields ($sql:[CoreSQLQueryInput]) {
+        query AdminGetFields ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
             coreObjects: adminFields (sql:$sql){
                 ${this.fields}
             }
@@ -82,6 +82,14 @@ export class FieldGraphQLService extends GraphQLModel {
                 pattern
                 label_class
                 component_class
+                values {
+                    id
+                    lang_id
+                    counter
+                    sort
+                    featured
+                    name
+                }
                 data_lang
             }
         `;

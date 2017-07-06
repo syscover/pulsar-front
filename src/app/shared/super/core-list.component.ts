@@ -38,10 +38,10 @@ export class CoreListComponent extends CoreComponent {
      * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
      * @param params        when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazyGraphQL(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
+    loadDadaTableLazyGraphQL(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined) {
 
         // set params
-        let args = this.getArgsToGetRecords(event, lang, sql);
+        let args = this.getArgsToGetRecords(event, filters, sql);
 
         if(environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
 
@@ -121,9 +121,19 @@ export class CoreListComponent extends CoreComponent {
         });
     }
 
-    private getArgsToGetRecords(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined): Object {
+    private getArgsToGetRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
 
         let args = {}; // create empty object
+
+        // set filters
+        if (filters) {
+            args['filters'] = filters;
+        }
+
+        /*// set lang if is defined
+        if (lang) {
+            args['lang'] = lang;
+        }*/
 
         args['sql'] = sql ? sql : []; // set sql array
 
@@ -159,16 +169,6 @@ export class CoreListComponent extends CoreComponent {
                 });
             }
         }
-
-        // set lang if is defined
-        if (lang) {
-            args['lang'] = lang;
-        }
-
-        // set aditional filter
-        /*if (filters) {
-            args['filters'] = filters;
-        }*/
 
         return args;
     }

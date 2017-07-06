@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 export class CategoryGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query CmsGetCategoriesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
-            coreObjectsPagination: cmsCategoriesPagination (sql:$sql lang:$lang) {
+        query CmsGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: cmsCategoriesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql) {

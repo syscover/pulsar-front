@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Params } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { SelectItem } from 'primeng/primeng';
@@ -43,11 +44,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     object: Article = new Article(); // set empty object
     customCallback: Function = (response = undefined) => {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
+            this.object = response; // function to set custom data
+
             // change publish and date format to Date, for calendar component
-            this.object.publish = new Date(this.object.publish);
+            //this.object.publish = new Date(this.object.publish);
             if (this.object.date) {
-              this.object.date = new Date(this.object.date);
+              //this.object.date = new Date(this.object.date);
             }
             // set values of form, if the object not match with form, use pachValue instead of setValue
             this.fg.patchValue(this.object);
@@ -62,7 +64,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             // set tags extracting name field
             this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
 
-            //this.handleGetCustomFields();
+            this.handleGetCustomFields();
 
             if (this.dataRoute.action === 'create-lang') {
                 this.fg.patchValue({
@@ -130,48 +132,84 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.controls['family_id'].setValue(family.id);
             this.fg.controls['family'].setValue(family);
 
-            //this.handleGetCustomFields();
+            this.handleGetCustomFields();
         }
     }
 
     // get custom fields that has this object
     handleGetCustomFields() {
+
         if (this.fg.controls['family'].value.field_group_id) {
-            // get properties
+
+            // get properties for get values of custom fields
             let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;
+
             this.dynamicFormService.instance(
                 this.fg.controls['family'].value.field_group_id,
                 this.fg,
                 properties,
                 (fields) => {
-                    /*// get all values from all custom fields
-                    this.fieldValueService.searchRecords({
-                        'type': 'query',
-                        'parameters': [
-                            {
-                                'command': 'whereIn',
-                                'column': 'field_value.field_id',
-                                'value': _.map(fields, 'id')
-                            },
-                            {
-                                'command': 'where',
-                                'column': 'field_value.lang_id',
-                                'operator': '=',
-                                'value': this.lang.id
-                            },
-                            {
-                                'command': 'orderBy',
-                                'operator': 'asc',
-                                'column': 'field_value.sort'
-                            }
-                        ]
-                    })
-                    .subscribe((response) => {
-                        this.fieldValues = response.data;
-                        this.fields = fields;
-                    });*/
+                    this.fields = fields;
                 });
         }
+    }
+
+    getArgsToGetRecord(params: Params): any {
+        let args = {
+            sql: [
+                {
+                    command: 'where',
+                    column: 'article.id',
+                    operator: '=',
+                    value: params['id']
+                },
+                {
+                    command: 'where',
+                    column: 'article.lang_id',
+                    operator: '=',
+                    value: params['lang']
+                }
+            ],
+            sqlArticle: [
+                {
+                    command: 'where',
+                    column: 'article.lang_id',
+                    operator: '=',
+                    value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                },
+                {
+                    command: 'orderBy',
+                    operator: 'asc',
+                    column: 'article.name'
+                },
+                {
+                    command: 'where',
+                    column: 'article.id',
+                    operator: '<>',
+                    value: this.params['id']
+                }
+            ],
+            sqlAttachmentFamily: [
+                {
+                    'command': 'where',
+                    'column': 'attachment_family.resource_id',
+                    'operator': '=',
+                    'value': 'cms-article'
+                },
+                {
+                    'command': 'orderBy',
+                    'operator': 'asc',
+                    'column': 'attachment_family.name'
+                }
+            ],
+            config: {
+                key: 'pulsar.cms.statuses',
+                lang: this.baseLang,
+                property: 'name'
+            }
+        };
+
+        return args;
     }
 
     // to create a new object, do all queries to get data across GraphQL

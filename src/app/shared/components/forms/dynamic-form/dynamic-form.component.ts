@@ -35,7 +35,6 @@ import * as _ from 'lodash';
 export class DynamicFormComponent implements OnInit {
 
     @Input() field: Field;
-    @Input() fieldValues: FieldValue[];
     @Input() errors: Object;
     @Input() lang: string;
 
@@ -50,15 +49,26 @@ export class DynamicFormComponent implements OnInit {
     ngOnInit() {
         if (this.field.field_type_id === 'select') {
 
-            // filter fields values to discard vlaues
-            let fv =  _.filter(this.fieldValues, obj => {
-                return (obj.field_id === this.field.id);
+            // filter fields values by lang
+            let fv =  _.filter(this.field.values, obj => {
+                return (obj.lang_id === this.lang);
             });
+
+            // sort values
+            fv = _.sortBy(fv, 'sort');
+
             // map filedValues to create SelectItem
             this.options = _.map(fv, obj => {
                 return { value: obj.id, label: obj.name };
             });
-            this.options.unshift({ label: this.field.labels[this.lang], value: '' });
+
+            // set label value
+            this.options.unshift({ 
+                label: this.field.labels.find((el) => {
+                        return el['id'] === this.lang;
+                    })['value'],
+                value: ''
+            });
         }
     }
 }

@@ -77,7 +77,7 @@
                     </ps-dropdown>
                 </div>
 
-                <div class="animated fadeIn fast" *ngIf=" fg.get('family').value?.date || 
+                <div *ngIf="fg.get('family').value?.date || 
                                         fg.get('family').value?.article_parent || 
                                         fg.get('family').value?.title || 
                                         fg.get('family').value?.slug || 
@@ -169,7 +169,6 @@
                         <!-- dynamic form -->
                         <ng-container *ngFor="let field of fields">
                             <ps-dynamic-form    [field]="field"
-                                                [fieldValues]="fieldValues"
                                                 [errors]="formErrors"
                                                 [lang]="lang.id"></ps-dynamic-form>
                         </ng-container>

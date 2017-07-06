@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 export class ArticleGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query CmsGetArticlesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
-            coreObjectsPagination: cmsArticlesPagination (sql:$sql lang:$lang) {
+        query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql) {
@@ -29,10 +29,11 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query GetObject ($sql:[CoreSQLQueryInput]) {
+        query GetObject ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             coreObject: cmsArticle (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
