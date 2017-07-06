@@ -229,9 +229,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         });
     }
 
-    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, params = []): void {
+    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, args = {}): void {
 
-        let args = {};
         args['id'] = object.id;
 
         // sest lang, don't lang_id, because data isn't like object
@@ -245,6 +244,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 args['lang'] = langAux;
             }
         }
+
+        if(environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({

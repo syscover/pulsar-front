@@ -54,6 +54,7 @@ export class ApolloClientManager {
                                 { name: "AdminAttachmentFamily" },
                                 { name: "AdminFieldGroup" },
                                 { name: "AdminField" },
+                                { name: "AdminFieldValue" },
                                 { name: "CmsSection" },
                                 { name: "CmsFamily" },
                                 { name: "CmsCategory" },

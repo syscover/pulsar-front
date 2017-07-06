@@ -35,6 +35,7 @@ import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-f
 import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
+import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
@@ -78,6 +79,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         CountryGraphQLService,
         FieldGraphQLService,
         FieldGroupGraphQLService,
+        FieldValueGraphQLService,
         LangGraphQLService,
         PackageGraphQLService,
         ProfileGraphQLService,

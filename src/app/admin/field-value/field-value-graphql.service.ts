@@ -5,23 +5,48 @@ import gql from 'graphql-tag';
 @Injectable()
 export class FieldValueGraphQLService extends GraphQLModel {
 
-    readonly mutationAddObject = gql`
-        mutation AdminAddAction ($object:AdminActionInput!) {
-            adminAddAction (object:$object){
+    queryPaginationObject = gql`
+        query AdminGetFieldValuesPagination ($sql:[CoreSQLQueryInput] $lang:String) {
+            coreObjectsPagination: adminFieldValuesPagination (sql:$sql lang:$lang) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetFieldValues ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminFieldValues (sql:$sql){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (object:$object idOld:$idOld){
+    queryObject = gql`
+        query AdminFieldValue ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminFieldValue (sql:$sql){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+    mutationAddObject = gql`
+        mutation AdminAddFieldValue ($object:AdminFieldValueInput!) {
+            adminAddFieldValue (object:$object){
+                ${this.fields}
+            }
+        }`;
+
+    mutationUpdateObject = gql`
+        mutation AdminUpdateFieldValue ($object:AdminFieldValueInput! $idOld:String!) {
+            adminUpdateFieldValue (object:$object idOld:$idOld){
+                ${this.fields}
+            }
+        }`;
+
+    mutationDeleteObject = gql`
+        mutation AdminDeleteFieldValue ($field:ID! $id:String! $lang:String!) {
+            adminDeleteFieldValue (field:$field id:$id lang:$lang){
                 ${this.fields}
             }
         }`;
@@ -32,35 +57,15 @@ export class FieldValueGraphQLService extends GraphQLModel {
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on AdminField {
+            ... on AdminFieldValue {
                 id
-                field_group_id
-                name
-                labels
-                field_type_id
-                field_type_name
-                data_type_id
-                data_type_name
-                required
+                lang_id
+                field_id
+                counter
                 sort
-                max_length
-                pattern
-                label_class
-                component_class
-                data_lang
-            }
-        `;
-
-        this.relationsFields = `
-            coreConfig (config:$config) {
-                ... on CoreConfigOptionType {
-                    id
-                    name
-                }
-            }
-            adminFieldGroups {
-                id
+                featured
                 name
+                data_lang
             }
         `;
 

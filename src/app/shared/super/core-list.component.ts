@@ -45,13 +45,15 @@ export class CoreListComponent extends CoreComponent {
 
         if(environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
 
-        this.objectService
+        let obs = this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryPaginationObject,
                 variables: args,
                 fetchPolicy: 'network-only'
             }).subscribe(({data}) => {
+
+                obs.unsubscribe();
 
                 if(environment.debug) console.log('DEBUG - data from Query Objects Pagination: ', data);
 
@@ -95,6 +97,8 @@ export class CoreListComponent extends CoreComponent {
         if (object.lang_id) {   // check if has languages
             args['lang'] = object.lang_id;
         }
+
+        if(environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({
@@ -160,6 +164,11 @@ export class CoreListComponent extends CoreComponent {
         if (lang) {
             args['lang'] = lang;
         }
+
+        // set aditional filter
+        /*if (filters) {
+            args['filters'] = filters;
+        }*/
 
         return args;
     }
