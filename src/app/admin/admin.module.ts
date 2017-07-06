@@ -1,4 +1,3 @@
-import { FieldGraphQLService } from './field/field-graphql.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -35,6 +34,7 @@ import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-f
 import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
+import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
