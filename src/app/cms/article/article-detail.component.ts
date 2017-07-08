@@ -57,19 +57,27 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
               objectInput['date'] = new Date(this.object.date);
             }
 
+            // set family object, to change morphology of form
+            this.family = _.find(this._families, {id: this.object.family_id});
+
             // set values of form, if the object not match with form, use pachValue instead of setValue
             this.fg.patchValue(objectInput);
 
-            // set attachments in FormArray from ps-attachment-files-library component
-            this.attachments.setValue(this.object.attachments);
+            if (this.attachments) {
+                // set attachments in FormArray from ps-attachment-files-library component
+                this.attachments.setValue(this.object.attachments);
+            }
 
             // categories
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
             // set tags
             this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name')); // set tags extracting name field
-            // set tags extracting name field
-            this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
 
+            // TODO establece author cuando tengamos los usuarios relacionados
+            // set tags extracting name field
+            // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
+
+            // manage custom fields
             this.handleGetCustomFields();
 
             if (this.dataRoute.action === 'create-lang') {
@@ -130,11 +138,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         this.fields = [];
 
         if ($event.value) {
-            // get family object
+            // set family object, to change morphology of form
             this.family = _.find(this._families, {id: $event.value});
 
             this.fg.controls['family_id'].setValue(this.family.id);
-            //this.fg.controls['family'].setValue(family);
 
             this.handleGetCustomFields();
         }
