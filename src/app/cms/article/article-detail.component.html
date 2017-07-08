@@ -1,11 +1,10 @@
 <div class="container-fluid form-group">
     <h1>Article</h1>
-
+    
     <form [formGroup]="fg" (ngSubmit)="onSubmit(object)" novalidate>
 
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="author_id">
-        <input type="hidden" formControlName="family">
 
         <p-tabView>
             <p-tabPanel header="Properties" leftIcon="ui-icon-check" class="padding-top-20">
@@ -42,7 +41,6 @@
                                     name="status_id"
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
-
                     <ps-calendar    [form]="fg" 
                                     [errors]="formErrors"
                                     [showTime]="true"
@@ -77,19 +75,19 @@
                     </ps-dropdown>
                 </div>
 
-                <div *ngIf="fg.get('family').value?.date || 
-                                        fg.get('family').value?.article_parent || 
-                                        fg.get('family').value?.title || 
-                                        fg.get('family').value?.slug || 
-                                        fg.get('family').value?.categories || 
-                                        fg.get('family').value?.link || 
-                                        fg.get('family').value?.sort || 
-                                        fg.get('family').value?.tags">
+                <div *ngIf="family?.date || 
+                                        family?.article_parent || 
+                                        family?.title || 
+                                        family?.slug || 
+                                        family?.categories || 
+                                        family?.link || 
+                                        family?.sort || 
+                                        family?.tags">
                 
                     <ps-form-header title="Content" icon="fa ui-icon-subject"></ps-form-header>
 
-                    <div class="row" *ngIf="fg.get('family').value?.date || fg.get('family').value?.article_parent">
-                        <ps-calendar    *ngIf="fg.get('family').value?.date"
+                    <div class="row" *ngIf="family?.date || family?.article_parent">
+                        <ps-calendar    *ngIf="family?.date"
                                         [form]="fg" 
                                         [errors]="formErrors"
                                         [showIcon]="true"
@@ -97,7 +95,7 @@
                                         label="Date"
                                         name="date" class="col-sm-12 col-md-5"></ps-calendar>
 
-                        <ps-dropdown    *ngIf="fg.get('family').value?.article_parent"
+                        <ps-dropdown    *ngIf="family?.article_parent"
                                         [form]="fg"
                                         [errors]="formErrors"
                                         [autoWidth]="false"
@@ -108,7 +106,7 @@
                         </ps-dropdown>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.title">
+                    <div class="row" *ngIf="family?.title">
                         <ps-input   [form]="fg" 
                                     [errors]="formErrors"
                                     label="Title"
@@ -116,7 +114,7 @@
                                     name="title" class="col-12"></ps-input>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.slug">
+                    <div class="row" *ngIf="family?.slug">
                         <ps-input   [form]="fg" 
                                     [errors]="formErrors"
                                     label="Slug"
@@ -124,7 +122,7 @@
                                     name="slug" class="col-12"></ps-input>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.categories">
+                    <div class="row" *ngIf="family?.categories">
                         <ps-multi-select    [form]="fg"
                                             [errors]="formErrors"
                                             label="Select categories"
@@ -134,7 +132,7 @@
                         </ps-multi-select>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.link">
+                    <div class="row" *ngIf="family?.link">
                         <ps-input   [form]="fg" 
                                     [errors]="formErrors"
                                     label="Link"
@@ -146,7 +144,7 @@
                                         label="New window" class="col-3"></ps-checkbox>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.sort">
+                    <div class="row" *ngIf="family?.sort">
                         <ps-spinner     [form]="fg" 
                                         [errors]="formErrors"
                                         label="Sort"
@@ -154,7 +152,7 @@
                                         name="sort" class="col-sm-12 col-md-4"></ps-spinner>
                     </div>
 
-                    <div class="row" *ngIf="fg.get('family').value?.tags">
+                    <div class="row" *ngIf="family?.tags">
                         <ps-chips   [form]="fg" 
                                     [errors]="formErrors"
                                     label="Tags"
@@ -177,14 +175,14 @@
                 </div>
             </p-tabPanel>
 
-            <p-tabPanel *ngIf="fg.get('family').value?.editor_id" header="Article" leftIcon="ui-icon-edit">
+            <p-tabPanel *ngIf="family?.editor_id" header="Article" leftIcon="ui-icon-edit">
                 <ps-editor  [form]="fg" 
                             name="article"
                             placeholder="Enter here your article"
                             [heightMin]="400"></ps-editor>
             </p-tabPanel>
 
-            <p-tabPanel *ngIf="fg.get('family').value?.attachments" header="Attachments" leftIcon="ui-icon-attachment">
+            <p-tabPanel *ngIf="family?.attachments" header="Attachments" leftIcon="ui-icon-attachment">
                 <ps-attachment-files-library    #attachments
                                                 [form]="fg"
                                                 name="attachments"

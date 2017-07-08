@@ -12,6 +12,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
                         [dateFormat]="dateFormat"
                         [placeholder]="label"
                         [showIcon]="showIcon"
+                        [utc]="true"
                         (change)="handleChange($event)"></p-calendar>
             <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
                 {{ error }}

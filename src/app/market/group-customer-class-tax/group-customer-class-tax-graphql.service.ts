@@ -5,27 +5,27 @@ import gql from 'graphql-tag';
 @Injectable()
 export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Market\\Models\\GroupCustomerClassTax'; // model of backoffice relative at this GraphQL service
-    readonly fields = `
+    objectModel = 'Syscover\\Market\\Models\\GroupCustomerClassTax'; // model of backoffice relative at this GraphQL service
+    fields = `
         id
         name
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly mutationAddObject = gql`
+    mutationAddObject = gql`
         mutation AdminAddAction ($object:AdminActionInput!) {
             adminAddAction (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
             adminUpdateAction (object:$object idOld:$idOld){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation AdminDeleteAction ($id:String!) {
             adminDeleteAction (id:$id){
                 ${this.fields}

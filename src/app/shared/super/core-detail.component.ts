@@ -181,6 +181,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         // add object to arguments
         args['object'] = this.fg.value;
 
+        // call method that can to be overwrite by children
+        args = this.transformArgumentsOnSubmit(args);
+
         if (this.dataRoute.action === 'create') {
 
             if(environment.debug) console.log('DEBUG - args sending to create object: ', args);
@@ -228,6 +231,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
         });
     }
+
+    // method to be overwrite
+    transformArgumentsOnSubmit(args: Object): Object { return args; }
 
     deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, args = {}): void {
 

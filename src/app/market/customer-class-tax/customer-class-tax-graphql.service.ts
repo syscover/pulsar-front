@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 @Injectable()
 export class CustomerClassTaxGraphQLService extends GraphQLModel {
 
-    readonly objectModel = 'Syscover\\Market\\Models\\CustomerClassTax'; // model of backoffice relative at this GraphQL service
-    readonly relationsFields = `
+    objectModel = 'Syscover\\Market\\Models\\CustomerClassTax'; // model of backoffice relative at this GraphQL service
+    relationsFields = `
         coreConfig (key:$key) {
             ... on CoreConfigOptionType {
                 id
@@ -18,7 +18,7 @@ export class CustomerClassTaxGraphQLService extends GraphQLModel {
             name
         }
     `; // fields of relations object`
-    readonly fields = `
+    fields = `
         id 
         name 
         editor_id
@@ -35,21 +35,21 @@ export class CustomerClassTaxGraphQLService extends GraphQLModel {
         data
     `; // defaults fields that will be return, fragment inline only is necessary for pagination
 
-    readonly mutationAddObject = gql`
+    mutationAddObject = gql`
         mutation CmsAddSection ($object:CmsSectionInput!) {
             cmsAddSection (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationUpdateObject = gql`
+    mutationUpdateObject = gql`
         mutation CmsUpdateSection ($object:CmsSectionInput!) {
             cmsUpdateSection (object:$object){
                 ${this.fields}
             }
         }`;
 
-    readonly mutationDeleteObject = gql`
+    mutationDeleteObject = gql`
         mutation CmsDeleteSection ($id:String!) {
             cmsDeleteSection (id:$id){
                 ${this.fields}

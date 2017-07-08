@@ -29,6 +29,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     categories: SelectItem[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     user: User = new User();
+    family: Family;
 
     private _sections: Section[];
     private _families: Family[];
@@ -46,13 +47,18 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
 
+            // create copy object for change readonly properties
+            let objectInput = Object.assign({}, this.object);
+
             // change publish and date format to Date, for calendar component
-            //this.object.publish = new Date(this.object.publish);
+            objectInput['publish'] = new Date(this.object.publish);
+
             if (this.object.date) {
-              //this.object.date = new Date(this.object.date);
+              objectInput['date'] = new Date(this.object.date);
             }
+
             // set values of form, if the object not match with form, use pachValue instead of setValue
-            this.fg.patchValue(this.object);
+            this.fg.patchValue(objectInput);
 
             // set attachments in FormArray from ps-attachment-files-library component
             this.attachments.setValue(this.object.attachments);
@@ -94,10 +100,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             author_name: [{value: '', disabled: true}],
             section_id: ['', Validators.required],
             family_id: '',
-            family: null,
             status_id: ['', Validators.required],
             publish: '',
-            publish_text: '',
             date: '',
             title: '',
             categories_id: [],
@@ -127,10 +131,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
         if ($event.value) {
             // get family object
-            let family = _.find(this._families, {id: $event.value});
+            this.family = _.find(this._families, {id: $event.value});
 
-            this.fg.controls['family_id'].setValue(family.id);
-            this.fg.controls['family'].setValue(family);
+            this.fg.controls['family_id'].setValue(this.family.id);
+            //this.fg.controls['family'].setValue(family);
 
             this.handleGetCustomFields();
         }
@@ -139,19 +143,30 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     // get custom fields that has this object
     handleGetCustomFields() {
 
-        if (this.fg.controls['family'].value.field_group_id) {
+        if (this.family.field_group_id) {
 
             // get properties for get values of custom fields
             let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;
 
             this.dynamicFormService.instance(
-                this.fg.controls['family'].value.field_group_id,
+                this.family.field_group_id,
                 this.fg,
                 properties,
                 (fields) => {
                     this.fields = fields;
                 });
         }
+    }
+
+    transformArgumentsOnSubmit(args: Object) {
+
+        // serialeize Date object to don't be changed by apollo client
+        args['object']['publish'] = args['object']['publish'].toString();
+        if (args['object']['date']) {
+            args['object']['date'] = args['object']['date'].toString();
+        }
+
+        return args;
     }
 
     getArgsToGetRecord(params: Params): any {

@@ -81,6 +81,9 @@ export class ArticleGraphQLService extends GraphQLModel {
                 sort
                 article
                 data_lang
+                attachments {
+                    id
+                }
             }
         `;
 
