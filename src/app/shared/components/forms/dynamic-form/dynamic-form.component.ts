@@ -20,7 +20,7 @@ import * as _ from 'lodash';
                         class="col-sm-12 col-md-4"></ps-input>
 
             <ps-dropdown *ngSwitchCase="'select'" 
-                        [form]="dynamicFormService.form"
+                        [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors"
                         [autoWidth]="false"
                         [options]="options"
@@ -50,7 +50,7 @@ export class DynamicFormComponent implements OnInit {
         if (this.field.field_type_id === 'select') {
 
             // filter fields values by lang
-            let fv =  _.filter(this.field.values, obj => {
+            let fv = _.filter(this.field.values, obj => {
                 return (obj.lang_id === this.lang);
             });
 
@@ -63,7 +63,7 @@ export class DynamicFormComponent implements OnInit {
             });
 
             // set label value
-            this.options.unshift({ 
+            this.options.unshift({
                 label: this.field.labels.find((el) => {
                         return el['id'] === this.lang;
                     })['value'],

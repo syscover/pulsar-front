@@ -2,15 +2,14 @@ import { ImageComponent } from './../../image.component';
 import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-
-declare const jQuery: any; // jQuery definition
-
 import { AttachmentService } from './../attachment.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { JsonResponse } from './../../../../classes/json-respose';
 import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../admin/admin.models';
+import { environment } from './../../../../../../environments/environment';
 import * as _ from 'lodash';
 import * as Cropper from 'cropperjs';
+declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'ps-attachment-files-library',
@@ -236,6 +235,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // add files to formData to send to server
         for (const file of this.files) {
             formData.append('files[]', file, file.name);
+            if(environment.debug) console.log('DEBUG - append file: ', file);
         }
 
         // progress var
@@ -270,7 +270,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         };
 
         xhr.open('POST', this.endpoint, true);
-        xhr.withCredentials = this.withCredentials;
+        //xhr.withCredentials = this.withCredentials;
+
         xhr.send(formData);
     }
 

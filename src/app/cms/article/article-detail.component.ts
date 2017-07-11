@@ -108,6 +108,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             author_name: [{value: '', disabled: true}],
             section_id: ['', Validators.required],
             family_id: '',
+            field_group_id: '',
             status_id: ['', Validators.required],
             publish: '',
             date: '',
@@ -151,6 +152,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     handleGetCustomFields() {
 
         if (this.family.field_group_id) {
+            this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
 
             // get properties for get values of custom fields
             let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;

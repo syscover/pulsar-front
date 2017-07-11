@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CoreService } from './../../../super/core.service';
 import { FieldGraphQLService } from './../../../../admin/field/field-graphql.service';
 import { Field } from './../../../../admin/admin.models';
@@ -16,7 +16,8 @@ export class DynamicFormService {
 
     constructor(
         private graphQL: FieldGraphQLService,
-        private objectService: CoreService
+        private objectService: CoreService,
+        private fb: FormBuilder
     ) { }
 
     instance(fieldGroup: number, fg: FormGroup, properties: any, f: Function) {
@@ -55,7 +56,20 @@ export class DynamicFormService {
                     this.fields = data['coreObjects'];
 
                     // add FormControl to FormGroup
+                    let customFields = this.fb.group({});
                     for (const field of this.fields) {
+                        customFields.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
+                    }
+
+                    if (properties) { // check that have properties
+                        // instance customs fields with properties values
+                        customFields.patchValue(properties);
+                    }
+
+                    fg.addControl('customFields', customFields);
+
+                    // add FormControl to FormGroup
+                    /*for (const field of this.fields) {
                         fg.addControl(field.name, new FormControl('',
                             field.required ? Validators.required : undefined));
                     }
@@ -63,7 +77,7 @@ export class DynamicFormService {
                     if (properties) { // check that have properties
                         // instance customs fields with properties values
                         fg.patchValue(properties);
-                    }
+                    }*/
 
                     // set instance form of dynamicsFromService
                     // will be used in dynamic-form.component to assign

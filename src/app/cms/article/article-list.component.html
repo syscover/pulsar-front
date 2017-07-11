@@ -7,7 +7,14 @@
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column field="publish" header="Publish" [sortable]="true"></p-column>
+    <p-column [sortable]="true">
+        <ng-template pTemplate="header">
+            Publish
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+            {{ object.publish | date:'dd/MM/y HH:mm:ss' }}
+        </ng-template>
+    </p-column>
     <p-column field="active" header="Active" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
