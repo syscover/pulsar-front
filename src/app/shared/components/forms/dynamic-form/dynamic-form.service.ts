@@ -20,7 +20,7 @@ export class DynamicFormService {
         private fb: FormBuilder
     ) { }
 
-    instance(fieldGroup: number, fg: FormGroup, properties: any, f: Function) {
+    instance(fieldGroup: number, fg: FormGroup, values: any, f: Function) {
 
         if (fieldGroup) {
             // get custom fields from field group
@@ -56,17 +56,17 @@ export class DynamicFormService {
                     this.fields = data['coreObjects'];
 
                     // add FormControl to FormGroup
-                    let customFields = this.fb.group({});
+                    let customFieldValues = this.fb.group({});
                     for (const field of this.fields) {
-                        customFields.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
+                        customFieldValues.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
                     }
 
-                    if (properties) { // check that have properties
-                        // instance customs fields with properties values
-                        customFields.patchValue(properties);
+                    if (values) { // check that have values
+                        // instance customs fields with values values
+                        customFieldValues.patchValue(values);
                     }
 
-                    fg.addControl('customFields', customFields);
+                    fg.addControl('customFields', customFieldValues);
 
                     // add FormControl to FormGroup
                     /*for (const field of this.fields) {
@@ -74,9 +74,9 @@ export class DynamicFormService {
                             field.required ? Validators.required : undefined));
                     }
 
-                    if (properties) { // check that have properties
-                        // instance customs fields with properties values
-                        fg.patchValue(properties);
+                    if (customFieldValues) { // check that have customFieldValues
+                        // instance customs fields with customFieldValues values
+                        fg.patchValue(customFieldValues);
                     }*/
 
                     // set instance form of dynamicsFromService

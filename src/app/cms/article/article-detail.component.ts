@@ -155,12 +155,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
 
             // get properties for get values of custom fields
-            let properties = this.object.data && this.object.data.properties ? this.object.data.properties : undefined;
+            let customFieldsValues = this.object.data && this.object.data.customFieldsValues ? this.object.data.customFieldsValues : undefined;
 
             this.dynamicFormService.instance(
                 this.family.field_group_id,
                 this.fg,
-                properties,
+                customFieldsValues,
                 (fields) => {
                     this.fields = fields;
                 });
