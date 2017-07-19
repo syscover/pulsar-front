@@ -497,6 +497,7 @@ body {
                 transition: transform ease .28s;
                 -webkit-transform: scale(0);
                 transform: scale(0);
+                margin: 0;
             }
             
             .fa-circle {
@@ -863,7 +864,7 @@ body {
 
             &:enabled:hover,
             &:active {
-                background-color: #ffffff;
+                background-color: transparent;
             }
         }
         
@@ -906,7 +907,7 @@ body {
         @include border-radius(8px);
     
         .ui-inputswitch-handle {
-            top: -3px;
+            top: -4px;
             background-color: #ffffff;
             @include border-radius(50%);
             @include transition(background-color .3s);
@@ -1255,6 +1256,19 @@ body {
                     color: #ffffff;
                 }
             }
+        }
+    }
+    
+    .ui-fileupload-choose:not(.ui-state-disabled):hover,
+    .ui-fileupload-choose.ui-state-focus {
+        &.ui-button {
+            background-color: darken($accentColor, 5%);
+        }
+    }
+    
+    .ui-fileupload-choose:not(.ui-state-disabled):active {
+        &.ui-button {
+            background-color: darken($accentColor, 10%);
         }
     }
     

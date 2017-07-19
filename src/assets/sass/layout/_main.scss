@@ -301,13 +301,30 @@ body {
                                 background-color: $accentColor;
                                 
                                 i {
-                                    color: $accentTextColor;
+                                    color: $textColor;
                                 }
                             }
                         }
                     }
                 }
             }                    
+        }
+        
+        .menuitem-badge {
+            position: absolute;
+            right: 28px;
+            top: 13px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            text-align: center;
+            background-color: $accentColor;
+            color: $accentTextColor;
+            font-size: $fontSize - 2;
+            font-weight: 700;
+            line-height: 16px;
+            @include border-radius(50%);
         }
     }
         
@@ -493,6 +510,33 @@ body {
                                 }
                             }
                         }
+                    }
+                }
+            }
+            
+            &.red-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: #F44336;
+                        color: #ffffff;
+                    }
+                }
+            }
+            
+            &.purple-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: #4527A0;
+                        color: #ffffff;
+                    }
+                }
+            }
+            
+            &.teal-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: #00695C;
+                        color: #ffffff;
                     }
                 }
             }
@@ -872,6 +916,18 @@ body {
                             }
                         }
                     }                    
+                }
+                
+                .menuitem-badge {
+                    left: 32px;
+                    top: 7px;
+                }
+                
+                .active-menuitem {
+                    .menuitem-badge {
+                        background-color: $activeMenuItemBadgeColor;
+                        color: $activeMenuItemBadgeTextColor;
+                    }
                 }
             }
             

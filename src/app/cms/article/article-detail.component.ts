@@ -69,6 +69,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
             // categories
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
+
             // set tags
             this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name')); // set tags extracting name field
 

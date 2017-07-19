@@ -78,6 +78,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                 slug
                 categories {
                     id
+                    name
                 }
                 link
                 blank

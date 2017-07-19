@@ -29,15 +29,14 @@ export class DatatableSearchComponent implements OnInit {
 
         this.delayInstance = setTimeout(() => {
 
-            if (! this.dataTable.globalFilter) {
+             if (! this.dataTable.globalFilter) {
                 // set dataTable.globalFilter after ngAfterViewInit to avoid register "keyup" event listener on datatable, view line 756
-                 // https://github.com/primefaces/primeng/blob/master/components/datatable/datatable.ts
+                // https://github.com/primefaces/primeng/blob/master/components/datatable/datatable.ts
                 this.dataTable.globalFilter = this;
             }
 
             const metadata = this.dataTable.createLazyLoadMetadata();
 
-            this.dataTable.stopFilterPropagation = true; // stop call DataTable._filter() in ngDoCheck() hook
             this.dataTable.onLazyLoad.emit(
                 this.dataTable.createLazyLoadMetadata()
             );
