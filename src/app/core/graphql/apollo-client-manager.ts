@@ -74,7 +74,10 @@ export class ApolloClientManager {
                 if (o['lang_id'] && o['id']) {
                     return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
                 } else if (o['id']) {
-                    if (o['__typename'] === 'CoreTranslationField' || o['__typename'] === 'CoreConfigOptionType') {
+                    if (
+                        o['__typename'] === 'CoreTranslationField' ||
+                        o['__typename'] === 'CoreConfigOptionType'
+                    ) {
                         return undefined;
                     }
                     return `${o['__typename']}-${o['id']}`;

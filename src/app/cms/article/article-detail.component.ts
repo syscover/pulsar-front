@@ -52,9 +52,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
             // change publish and date format to Date, for calendar component
             objectInput['publish'] = new Date(this.object.publish);
-
             if (this.object.date) {
-              objectInput['date'] = new Date(this.object.date);
+                objectInput['date'] = new Date(this.object.date);
             }
 
             // set family object, to change morphology of form
@@ -155,12 +154,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
 
             // get properties for get values of custom fields
-            let customFieldsValues = this.object.data && this.object.data.customFieldsValues ? this.object.data.customFieldsValues : undefined;
+            let customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
 
             this.dynamicFormService.instance(
                 this.family.field_group_id,
                 this.fg,
-                customFieldsValues,
+                customFields,
                 (fields) => {
                     this.fields = fields;
                 });

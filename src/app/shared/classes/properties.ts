@@ -1,3 +1,3 @@
 export interface DataJson {
-    customFieldsValues?: Object;
+    customFields?: Object;
 }

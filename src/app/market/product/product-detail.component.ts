@@ -58,7 +58,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                     // get fields if object has field group
                     if (this.object.field_group_id) {
                         // set FormGroup with custom FormControls
-                        this.handleGetCustomFields(this.object.data.customFieldsValues);
+                        this.handleGetCustomFields(this.object.data.customFields);
                     }
                 }
             ); // calculate tax prices

@@ -76,9 +76,16 @@ export class ArticleGraphQLService extends GraphQLModel {
                 date
                 title
                 slug
+                categories {
+                    id
+                }
                 link
                 blank
                 sort
+                tags {
+                    id
+                    name
+                }
                 article
                 data_lang
                 data

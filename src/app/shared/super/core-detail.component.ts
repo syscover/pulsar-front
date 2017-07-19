@@ -126,7 +126,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     getRecord(params: Params) {
-        this.objectService
+        let obs = this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.grahpQL.queryObject,
@@ -141,19 +141,23 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
                 // instance data on object list
                 this.customCallback(data['coreObject']);
+
+                obs.unsubscribe();
             });
     }
 
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
         if (this.grahpQL.relationsFields && this.grahpQL.relationsFields !== '') {
-            this.objectService
+            let obs = this.objectService
                 .proxyGraphQL()
                 .watchQuery({
                     query: this.grahpQL.queryRelationsObject
                 })
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
+
+                    obs.unsubscribe();
                 });
         }
      }

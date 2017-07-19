@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { SelectItem } from 'primeng/primeng';
-
 import { onValueChangedFormControl } from './../../super/core-validation';
 
 @Component({
@@ -30,7 +28,6 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 export class ChipsComponent implements OnInit {
 
     @Input() form: FormGroup;
-    @Input() options: SelectItem[] = [];
     @Input() name: string;
     @Input() label: string;
 
