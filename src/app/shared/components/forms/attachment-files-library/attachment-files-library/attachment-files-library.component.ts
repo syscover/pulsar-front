@@ -283,6 +283,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // get attachment family
         this.attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.family_id]);
 
+        if(environment.debug) console.log('DEBUG - trigger enableCropHandler with this attachment family: ', this.attachmentFamily);
+
         // get image from item changed and instance dialog image
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.controls['attachment_library'].value.url);
 

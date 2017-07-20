@@ -62,16 +62,16 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             // set values of form, if the object not match with form, use pachValue instead of setValue
             this.fg.patchValue(objectInput);
 
+            // set attachments in FormArray from ps-attachment-files-library component
             if (this.attachments) {
-                // set attachments in FormArray from ps-attachment-files-library component
                 this.attachments.setValue(this.object.attachments);
             }
 
-            // categories
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
+            // set categories extracting ids
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
 
-            // set tags
-            this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name')); // set tags extracting name field
+            // set tags extracting name field
+            this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
 
             // TODO establece author cuando tengamos los usuarios relacionados
             // set tags extracting name field
@@ -295,6 +295,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     setDataRelationsObject(data) {
+
         // cms sections
         this._sections = data['cmsSections'];
         this.sections = _.map(this._sections, obj => {

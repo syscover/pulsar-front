@@ -131,8 +131,14 @@ export class ArticleGraphQLService extends GraphQLModel {
                 }
             }
             adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-                id
+                id 
                 name
+                resource_id
+                width
+                height
+                sizes
+                quality
+                format
             }
             cmsArticles (sql:$sqlArticle) {
                 id

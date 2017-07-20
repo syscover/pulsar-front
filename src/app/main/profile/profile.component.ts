@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, EventEmitter,
-        ViewChild, trigger, state, transition, 
+        ViewChild, trigger, state, transition,
         style, animate, Inject, forwardRef} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
