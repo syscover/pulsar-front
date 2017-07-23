@@ -16,7 +16,7 @@ export class AttachmentItemComponent implements OnInit {
     @Input() form: FormGroup;
     @Input() name: string; // name of form array attachment
     @Input() index: number; // id to indentify attachement item
-    @Input() attachmentFamilies: AttachmentFamily[] = [];
+    @Input() families: AttachmentFamily[] = [];
     @Input() attachment: FormGroup;
     @Output() enableCrop: EventEmitter<any> = new EventEmitter();
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
@@ -42,8 +42,8 @@ export class AttachmentItemComponent implements OnInit {
             jQuery($event.target).closest('.attachment-item').removeClass('covered');
         });
 
-        if (this.attachment.get('family.name') !== undefined) {
-            this.familyName = this.attachment.get('family.name').value;
+        if (this.attachment.get('family_id').value !== null) {
+            this.familyName = _.find(this.families, ['id', this.attachment.get('family_id').value]).name;
         }
     }
 
@@ -58,7 +58,7 @@ export class AttachmentItemComponent implements OnInit {
     }
 
     changeFamilyHandler($event) {
-        const family =  _.find(this.attachmentFamilies, {'id': Number($event.target.value)});
+        const family =  _.find(this.families, {'id': Number($event.target.value)});
         this.familyName = family !== undefined ? family.name : '';
     }
 

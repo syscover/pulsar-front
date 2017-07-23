@@ -47,6 +47,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
 
+            // set family object, to change morphology of form
+            this.family = _.find(this._families, {id: this.object.family_id});
+
             // create copy object for change readonly properties
             let objectInput = Object.assign({}, this.object);
 
@@ -56,16 +59,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                 objectInput['date'] = new Date(this.object.date);
             }
 
-            // set family object, to change morphology of form
-            this.family = _.find(this._families, {id: this.object.family_id});
-
             // set values of form, if the object not match with form, use pachValue instead of setValue
             this.fg.patchValue(objectInput);
-
-            // set attachments in FormArray from ps-attachment-files-library component
-            if (this.attachments) {
-                this.attachments.setValue(this.object.attachments);
-            }
 
             // set categories extracting ids
             this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));

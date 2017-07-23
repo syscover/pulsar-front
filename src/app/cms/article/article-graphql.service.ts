@@ -92,6 +92,34 @@ export class ArticleGraphQLService extends GraphQLModel {
                 data
                 attachments {
                     id
+                    lang_id
+                    object_id
+                    object_type
+                    family_id
+                    sort
+                    name
+                    base_path
+                    file_name
+                    url
+                    mime
+                    extension
+                    size
+                    width
+                    height
+                    library_id
+                    library_file_name
+                    attachment_library {
+                        id
+                        name
+                        base_path
+                        file_name
+                        url
+                        mime
+                        extension
+                        size
+                        width
+                        height
+                    }
                 }
             }
         `;

@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { Response } from '@angular/http';
-
 import { Observable } from 'rxjs/Observable';
-
 import { JsonResponse } from './../../../classes/json-respose';
 import { CoreService } from './../../../super/core.service';
+import { environment } from './../../../../../environments/environment';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class AttachmentService extends CoreService {
@@ -17,20 +17,45 @@ export class AttachmentService extends CoreService {
     }
 
     setCropImage(parameters): Observable<any> {
-        return this.authHttp
-            .post(this.getEndpoint('crop', ['crop']), {
-                'type': 'crop',
-                'parameters': parameters
-            }, this.options)
-            .map((response: Response) => response.json());
+
+        if(environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
+
+        let args = {}; // arguments for observable
+        args['object'] = parameters; // add object to arguments
+
+         return this.proxyGraphQL()
+            .mutate({
+                mutation: gql`
+                    mutation AdminCropAttachment ($object:Object!) {
+                        adminCropAttachment (object:$object)
+                    }`,
+                variables: args
+            });
     }
 
     deleteAttachment(attachment): Observable<any> {
+
+        if (environment.debug) console.log('DEBUG - Trigger delete attachment: ', attachment);
+
+        let args = {}; // arguments for observable
+        args['attachment'] = attachment; // add object to arguments
+
+        return this.proxyGraphQL()
+            .mutate({
+                mutation: gql`
+                    mutation AdminDeleteAttachment ($attachment:AdminAttachmentInput!) {
+                        adminDeleteAttachment (attachment:$attachment)
+                    }`,
+                variables: args
+            });
+        
+        
+        /* 
         return this.authHttp
             .post(this.getEndpoint('delete', ['delete']), {
                 'type': 'delete',
                 'attachment': attachment
             }, this.options)
-            .map((response: Response) => response.json());
+            .map((response: Response) => response.json()); */
     }
 }

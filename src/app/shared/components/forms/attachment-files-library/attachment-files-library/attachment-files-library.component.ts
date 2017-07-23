@@ -21,7 +21,8 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     // Input elements
     @Input() form: FormGroup;
     @Input() name: string;                                  // name of input that contain attachmens FormArray
-    @Input() attachmentFamilies: AttachmentFamily[] = [];   // families for AttachmentItemComponent
+    @Input() value: Attachment[];                           // array of attachments to init component
+    @Input() families: AttachmentFamily[] = [];             // families for AttachmentItemComponent
     @Input() endpoint: string;                              // API url where call once drop elements
     @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
@@ -61,6 +62,9 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'drop', ($event) => {
             this.dropHandler($event);
         });
+
+        // set value from component, to init with values only when the component is created
+        if (this.value) this.setValue(this.value);
     }
 
     setValue(attachments: Attachment[]) {
@@ -94,41 +98,36 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             object_id: '',
             object_type: '',
             family_id: '',
-            family: this.fb.group({
-                id: null,
-                name: '',
-                resource_id: null,
-                sizes: '',
-                width: null,
-                height: null
-            }),
+            sort: [null, Validators.required ],
             name: ['', Validators.required ],
-            file_name: ['', Validators.required ],
-            extension: ['', Validators.required ],
             base_path: ['', Validators.required ],
+            file_name: ['', Validators.required ],
             url: ['', Validators.required ],
             mime: ['', Validators.required ],
+            extension: ['', Validators.required ],
             size: [null, Validators.required ],
             width: null,
             height: null,
-            sort: [null, Validators.required ],
             library_id: '',
-            attachment_library: '',
+            library_file_name: '',
+            // need implement attachment library fields to avoid send __typename field that is included in response from graphQL
+            // this field contain AdminAttachmentLibrary value, when we try send values GraphQL expect to optain AdminAttachmentLibraryInput
+            attachment_library: this.fb.group({
+                id: null,
+                name: '',
+                base_path: '',
+                file_name: '',
+                url: '',
+                mime: '',
+                extension: '',
+                size: '',
+                width: '',
+                height: '',
+                data: ''
+            }),
             data: '',
             uploaded: null
         });
-
-        // if famyly is null create a empty family object
-        if (attachment.family === null) {
-            attachment.family = {
-                id: null,
-                name: '',
-                resource_id: null,
-                sizes: '',
-                width: null,
-                height: null
-            };
-        }
 
         if (attachment !== undefined) {
             attachmentFg.patchValue(attachment);
@@ -276,14 +275,15 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     }
 
     enableCropHandler($event) {
+
+        if (environment.debug) console.log('DEBUG - trigger enableCropHandler with this event: ', $event);
+
         // instance attachment to be sent in cropHandler
         this.attachment = $event.attachment;
         this.image = $event.image;
 
         // get attachment family
-        this.attachmentFamily = <AttachmentFamily>_.find(this.attachmentFamilies, ['id', $event.family_id]);
-
-        if(environment.debug) console.log('DEBUG - trigger enableCropHandler with this attachment family: ', this.attachmentFamily);
+        this.attachmentFamily = <AttachmentFamily>_.find(this.families, ['id', $event.family_id]);
 
         // get image from item changed and instance dialog image
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.controls['attachment_library'].value.url);
@@ -314,10 +314,12 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 attachment_family: this.attachmentFamily,
                 attachment: this.attachment.value       // get values from formGroup
             })
-            .subscribe(data => {
+            .subscribe(({data}) => {
+
+                if(environment.debug) console.log('DEBUG - response after crop image: ', data);
+
                 // set attachemnt family id
-                data.data.attachment.family_id = this.attachmentFamily.id;
-                this.attachment.patchValue(data.data.attachment);
+                this.attachment.patchValue(data.adminCropAttachment.attachment);
 
                 // refresh image src
                 this.image.refresh();
@@ -332,7 +334,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
         this.attachmentService.
             deleteAttachment(attachment.value)
-            .subscribe(data => {
+            .subscribe(({data}) => {
 
                 // file deleted
                 for (let i = 0; this.attachments.length; i++) {

@@ -31,8 +31,8 @@
                     <div class="form-group">
                         <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
                             <option value="">Select a family</option>
-                            <option *ngFor="let attachmentFamily of attachmentFamilies"
-                                    [value]="attachmentFamily.id">{{ attachmentFamily.name }}</option>
+                            <option *ngFor="let family of families"
+                                    [value]="family.id">{{ family.name }}</option>
                         </select>
                         <div class="select-back">
                             <i class="material-icons">keyboard_arrow_down</i>
