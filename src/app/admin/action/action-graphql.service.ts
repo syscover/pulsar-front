@@ -18,14 +18,14 @@ export class ActionGraphQLService extends GraphQLModel {
 
     queryObjects = gql`
         query AdminGetActions ($sql:[CoreSQLQueryInput]) {
-            coreObjects: adminActions (sql:$sql){
+            coreObjects: adminActions (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query AdminGetAction ($sql:[CoreSQLQueryInput]) {
-            coreObject: adminAction (sql:$sql){
+            coreObject: adminAction (sql:$sql) {
                 ${this.fields}
             }
         }`;
@@ -39,14 +39,14 @@ export class ActionGraphQLService extends GraphQLModel {
 
     mutationUpdateObject = gql`
         mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (object:$object idOld:$idOld){
+            adminUpdateAction (object:$object idOld:$idOld) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id){
+            adminDeleteAction (id:$id) {
                 ${this.fields}
             }
         }`;
