@@ -48,14 +48,5 @@ export class AttachmentService extends CoreService {
                     }`,
                 variables: args
             });
-        
-        
-        /* 
-        return this.authHttp
-            .post(this.getEndpoint('delete', ['delete']), {
-                'type': 'delete',
-                'attachment': attachment
-            }, this.options)
-            .map((response: Response) => response.json()); */
     }
 }

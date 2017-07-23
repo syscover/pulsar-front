@@ -1,9 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
 import * as _ from 'lodash';
 declare var jQuery: any; // jQuery definition
-
-import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
 
 @Component({
     selector: 'ps-attachment-item',
@@ -22,12 +21,7 @@ export class AttachmentItemComponent implements OnInit {
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
     @ViewChild('imageItem') imageItem;
-    @ViewChild('family') family;
-    @ViewChild('fileName') public fileName;
-
-    familyName: string;
-    imageName: string;
-    imageSize: string;
+    family: AttachmentFamily;
 
     constructor(
         private fb: FormBuilder
@@ -42,9 +36,7 @@ export class AttachmentItemComponent implements OnInit {
             jQuery($event.target).closest('.attachment-item').removeClass('covered');
         });
 
-        if (this.attachment.get('family_id').value !== null) {
-            this.familyName = _.find(this.families, ['id', this.attachment.get('family_id').value]).name;
-        }
+        this.family = _.find(this.families, ['id', this.attachment.get('family_id').value]);
     }
 
     removeItemHandler($event) {
@@ -58,8 +50,7 @@ export class AttachmentItemComponent implements OnInit {
     }
 
     changeFamilyHandler($event) {
-        const family =  _.find(this.families, {'id': Number($event.target.value)});
-        this.familyName = family !== undefined ? family.name : '';
+        this.family =  _.find(this.families, {'id': Number($event.target.value)});
     }
 
     activeCropHandler($event) {
