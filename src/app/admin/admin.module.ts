@@ -40,6 +40,7 @@ import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
 import { ResourceGraphQLService } from './resource/resource-graphql.service';
+import { UserGraphQLService } from './user/user-graphql.service';
 
 @NgModule({
     imports: [
@@ -76,6 +77,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     providers: [
         ActionGraphQLService,
         AttachmentFamilyGraphQLService,
+        AttachmentMimeGraphQLService,
         CountryGraphQLService,
         FieldGraphQLService,
         FieldGroupGraphQLService,
@@ -84,7 +86,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         PackageGraphQLService,
         ProfileGraphQLService,
         ResourceGraphQLService,
-        AttachmentMimeGraphQLService
+        UserGraphQLService
     ],
     bootstrap: []
 })

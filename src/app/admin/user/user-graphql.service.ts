@@ -16,11 +16,17 @@ export class UserGraphQLService extends GraphQLModel {
             }
         }`;
 
+    queryRelationsObject = gql`
+        query AdminGetRelationsUser {
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
         query AdminGetUsers ($sql:[CoreSQLQueryInput]) {
             coreObjects: adminUsers (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     queryObject = gql`
@@ -28,6 +34,7 @@ export class UserGraphQLService extends GraphQLModel {
             coreObject: adminUser (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -60,11 +67,25 @@ export class UserGraphQLService extends GraphQLModel {
             ... on AdminUser {
                 id 
                 name
+                profile {
+                    id
+                    name
+                    surname
+                    lang_id
+                    email
+                    profile_id
+                    access
+                    user
+                }
             }
         `;
 
         this.relationsFields = `
-            adminPackages {
+            adminProfiles {
+                id
+                name
+            }
+            adminLangs {
                 id
                 name
             }

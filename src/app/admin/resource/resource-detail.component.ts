@@ -5,7 +5,6 @@ import { CoreDetailComponent } from './../../shared/super/core-detail.component'
 import { ResourceGraphQLService } from './resource-graphql.service';
 import { Package } from './../admin.models';
 import { SelectItem } from 'primeng/primeng';
-
 import * as _ from 'lodash';
 
 @Component({

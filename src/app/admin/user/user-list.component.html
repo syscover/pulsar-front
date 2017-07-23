@@ -5,9 +5,9 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="loadDadaTableLazyGraphQL($event)">
 
-    <p-column field="id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column field="profile.name" header="Profile" [sortable]="true"></p-column>
+    <p-column field="id" sortField="user.id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" sortField="user.name" header="Name" [sortable]="true"></p-column>
+    <p-column field="profile.name" sortField="profile.name" header="Profile" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @
