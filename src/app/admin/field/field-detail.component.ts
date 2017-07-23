@@ -118,7 +118,7 @@ export class FieldDetailComponent extends CoreDetailComponent {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     configFieldTypes: {
                         key: 'pulsar.admin.field_types'

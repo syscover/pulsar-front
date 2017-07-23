@@ -261,7 +261,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     sqlArticle,
                     sqlAttachmentFamily: [

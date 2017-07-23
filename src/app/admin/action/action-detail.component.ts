@@ -11,9 +11,9 @@ export class ActionDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: ActionGraphQLService
+        protected graphQL: ActionGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     createForm() {

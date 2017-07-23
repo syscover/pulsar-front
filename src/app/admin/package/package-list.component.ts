@@ -16,8 +16,8 @@ export class PackageListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: PackageGraphQLService
+        protected graphQL: PackageGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 }

@@ -11,9 +11,9 @@ export class LangDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: LangGraphQLService
+        protected graphQL: LangGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     createForm() {

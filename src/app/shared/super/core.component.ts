@@ -26,7 +26,7 @@ export class CoreComponent extends Core {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: GraphQLModel
+        protected graphQL: GraphQLModel
     ) {
         super(injector);
 

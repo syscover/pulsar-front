@@ -14,8 +14,8 @@ export class FieldGroupListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: FieldGroupGraphQLService
+        protected graphQL: FieldGroupGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 }

@@ -14,8 +14,8 @@ export class ActionListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: ActionGraphQLService
+        protected graphQL: ActionGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 }

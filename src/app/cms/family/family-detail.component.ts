@@ -48,7 +48,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             config: {
                 key: 'pulsar.cms.editors'
             },
-            model: this.grahpQL.objectModel,
+            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'id',
@@ -62,7 +62,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     config: {
                         key: 'pulsar.cms.editors'

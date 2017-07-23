@@ -11,9 +11,9 @@ export class CountryDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: CountryGraphQLService
+        protected graphQL: CountryGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     createForm() {

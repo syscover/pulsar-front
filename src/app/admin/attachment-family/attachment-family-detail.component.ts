@@ -66,7 +66,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     config: {
                         key: 'pulsar.admin.sizes'

@@ -32,7 +32,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
-            model: this.grahpQL.objectModel,
+            model: this.graphQL.objectModel,
             config: {
                 key: 'pulsar.admin.resources_attachments'
             },
@@ -50,7 +50,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     config: {
                         key: 'pulsar.admin.resources_attachments'

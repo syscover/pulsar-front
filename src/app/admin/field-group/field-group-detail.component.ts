@@ -18,9 +18,9 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: FieldGroupGraphQLService
+        protected graphQL: FieldGroupGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     createForm() {
@@ -33,7 +33,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
 
     getArgsToGetRecord(params: Params) {
         return {
-            model: this.grahpQL.objectModel,
+            model: this.graphQL.objectModel,
             config: {
                 key: 'pulsar.admin.resources_custom_fields'
             },
@@ -51,7 +51,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryRelationsObject,
+                query: this.graphQL.queryRelationsObject,
                 variables: {
                     config: {
                         key: 'pulsar.admin.resources_custom_fields'

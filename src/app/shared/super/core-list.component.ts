@@ -18,9 +18,9 @@ export class CoreListComponent extends CoreComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: GraphQLModel
+        protected graphQL: GraphQLModel
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     getRecords(f: Function): void {
@@ -48,7 +48,7 @@ export class CoreListComponent extends CoreComponent {
         let obs = this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryPaginationObject,
+                query: this.graphQL.queryPaginationObject,
                 variables: args,
                 fetchPolicy: 'network-only'
             }).subscribe(({data}) => {
@@ -108,7 +108,7 @@ export class CoreListComponent extends CoreComponent {
                 this.objectService
                     .proxyGraphQL()
                     .mutate({
-                        mutation: this.grahpQL.mutationDeleteObject,
+                        mutation: this.graphQL.mutationDeleteObject,
                         variables: args
                     }).subscribe((response) => {
                         // delete object and call onLazyLoad event on datatable

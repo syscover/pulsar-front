@@ -14,8 +14,8 @@ export class LangListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: LangGraphQLService
+        protected graphQL: LangGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 }

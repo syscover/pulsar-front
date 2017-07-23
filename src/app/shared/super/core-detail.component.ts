@@ -39,9 +39,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: GraphQLModel
+        protected graphQL: GraphQLModel
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
         this.fb = injector.get(FormBuilder);
 
         // set object properties
@@ -101,7 +101,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     getArgsToGetRecord(params: Params): any {
 
         let args = {
-            model: this.grahpQL.objectModel,
+            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'id',
@@ -129,7 +129,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         let obs = this.objectService
             .proxyGraphQL()
             .watchQuery({
-                query: this.grahpQL.queryObject,
+                query: this.graphQL.queryObject,
                 // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
                 variables: this.getArgsToGetRecord(params)
             })
@@ -148,11 +148,11 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
-        if (this.grahpQL.relationsFields && this.grahpQL.relationsFields !== '') {
+        if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') {
             let obs = this.objectService
                 .proxyGraphQL()
                 .watchQuery({
-                    query: this.grahpQL.queryRelationsObject
+                    query: this.graphQL.queryRelationsObject
                 })
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
@@ -195,7 +195,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
-                    mutation: this.grahpQL.mutationAddObject,
+                    mutation: this.graphQL.mutationAddObject,
                     variables: args
                 });
         }
@@ -206,7 +206,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
-                    mutation: this.grahpQL.mutationAddObject,
+                    mutation: this.graphQL.mutationAddObject,
                     variables: args
                 });
         }
@@ -222,7 +222,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             obs = this.objectService
                 .proxyGraphQL()
                 .mutate({
-                    mutation: this.grahpQL.mutationUpdateObject,
+                    mutation: this.graphQL.mutationUpdateObject,
                     variables: args
                 });
         }
@@ -264,7 +264,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 this.objectService
                     .proxyGraphQL()
                     .mutate({
-                        mutation: this.grahpQL.mutationDeleteObject,
+                        mutation: this.graphQL.mutationDeleteObject,
                         variables: args
                     })
                     .subscribe(data => {

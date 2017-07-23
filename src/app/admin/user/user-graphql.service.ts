@@ -5,6 +5,31 @@ import gql from 'graphql-tag';
 @Injectable()
 export class UserGraphQLService extends GraphQLModel {
 
+    queryPaginationObject = gql`
+        query AdminGetUsersPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminUsersPagination (sql:$sql) {
+                total
+                filtered
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
+            }
+        }`;
+
+    queryObjects = gql`
+        query AdminGetUsers ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminUsers (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
+    queryObject = gql`
+        query AdminGetUser ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminUser (sql:$sql){
+                ${this.fields}
+            }
+        }`;
+
     mutationAddObject = gql`
         mutation AdminAddUser ($object:AdminUserInput!) {
             adminAddUser (object:$object){

@@ -11,9 +11,9 @@ export class ProfileDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected grahpQL: ProfileGraphQLService
+        protected graphQL: ProfileGraphQLService
     ) {
-        super(injector, grahpQL);
+        super(injector, graphQL);
     }
 
     createForm() {
