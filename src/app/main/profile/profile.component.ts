@@ -4,6 +4,8 @@ import {Component, Input, OnInit, EventEmitter,
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/primeng';
+import { User } from '../../admin/admin.models';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
   selector: 'ps-profile',
@@ -22,9 +24,16 @@ import {MenuItem} from 'primeng/primeng';
         ])
     ]
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
     active: boolean;
+    user: User;
+    jwthelper: JwtHelper = new JwtHelper();
+
+    ngOnInit() {
+        this.user = this.jwthelper.decodeToken(localStorage.getItem('token'));
+        console.log(this.user);
+    }
 
     onClick(event) {
         this.active = !this.active;

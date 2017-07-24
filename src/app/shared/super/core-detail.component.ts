@@ -120,7 +120,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             });
         }
 
-        if(environment.debug) console.log('DEBUG - arguments to get object: ', args);
+        if (environment.debug) console.log('DEBUG - arguments to get object: ', args);
 
         return args;
     }
@@ -190,7 +190,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         if (this.dataRoute.action === 'create') {
 
-            if(environment.debug) console.log('DEBUG - args sending to create object: ', args);
+            if (environment.debug) console.log('DEBUG - args sending to create object: ', args);
 
             obs = this.objectService
                 .proxyGraphQL()
@@ -201,7 +201,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
         if (this.dataRoute.action === 'create-lang') {
 
-            if(environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
+            if (environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
             obs = this.objectService
                 .proxyGraphQL()
@@ -217,7 +217,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 args['idOld'] = this.params['id'];
             }
 
-            if(environment.debug) console.log('DEBUG - args sending to edit object: ', args);
+            if (environment.debug) console.log('DEBUG - args sending to edit object: ', args);
 
             obs = this.objectService
                 .proxyGraphQL()
@@ -255,7 +255,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
         }
 
-        if(environment.debug) console.log('DEBUG - args sending to delete object: ', args);
+        if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({

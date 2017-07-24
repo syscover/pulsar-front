@@ -49,7 +49,7 @@ export class MenuComponent implements OnChanges {
         let marketPackage   = _.find(packages, {root: 'market'});
 
         this.model = [];
-        this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] });
+        this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/pulsar/admin/dashboard'] });
 
         if (cmsPackage.active) {
             this.model.push({

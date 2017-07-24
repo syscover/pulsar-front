@@ -67,15 +67,15 @@ export class UserGraphQLService extends GraphQLModel {
             ... on AdminUser {
                 id 
                 name
+                surname
+                lang_id
+                email
+                profile_id
+                access
+                user
                 profile {
                     id
                     name
-                    surname
-                    lang_id
-                    email
-                    profile_id
-                    access
-                    user
                 }
             }
         `;

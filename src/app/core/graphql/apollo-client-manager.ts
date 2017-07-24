@@ -1,5 +1,7 @@
 import { ClientMap } from 'apollo-angular/build/src/types';
 import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'apollo-client';
+import { environment } from './../../../environments/environment';
+import { AuthService } from './../../core/auth/auth.service';
 import { Apollo } from 'apollo-angular';
 
 export class ApolloClientManager {
@@ -18,20 +20,40 @@ export class ApolloClientManager {
         return new Apollo(ApolloClientManager.getClientMap(uri));
     }
 
-    constructor(
-        uri: string = undefined
-    ) {
+    constructor(uri: string = undefined) {
         const networkInterface = createNetworkInterface({
             uri: uri ? uri : '/graphql'
         });
 
+        // middleware to send request
         networkInterface.use([{
-            applyMiddleware(req, next) {
-                if (!req.options.headers) {
-                    req.options.headers = {};  // Create the header object if needed.
+            applyMiddleware(request, next) {
+                if (! request.options.headers) {
+                    request.options.headers = {};  // Create the header object if needed.
                 }
                 // get the authentication token from local storage if it exists
-                req.options.headers.authorization = localStorage.getItem('token') || null;
+                request.options.headers.authorization = `Bearer ${localStorage.getItem('token')}` || null;
+                next();
+            }
+        }]);
+
+        // middleware to send response
+        networkInterface.useAfter([{
+            applyAfterware({ response }, next) {
+                let authorization = response.headers.get('Authorization');
+
+                if (environment.debug) console.log('DEBUG - Token authorization from ApolloClientManager: ', response);
+
+                if (authorization) {
+                    // segment string to avoid Bearer word, the header has this format 'Bearer eyJ0eXAiOiJKV1QiLCJh...'
+                    let token = authorization.split(' ');
+                    localStorage.setItem('token', token[1]);
+                }
+
+                if (response.status === 401) {
+                    //this.router.navigate([`/${this.configService.appPrefix}/login`]);
+                    //logout();
+                }
                 next();
             }
         }]);

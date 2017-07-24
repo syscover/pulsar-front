@@ -3,7 +3,7 @@ import { Component, HostBinding } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
-
+import { environment } from './../../environments/environment';
 import { User } from './../admin/admin.models';
 import { ConfigService } from '../core/services/config/config.service';
 import { AuthService } from './../core/auth/auth.service';
@@ -38,6 +38,9 @@ export class LoginComponent {
         let auth$ = this.authService
             .login(this.fg.value)
             .subscribe(response => {
+
+                if (environment.debug) console.log('DEBUG - response after login: ', response);
+
                 localStorage.setItem('token', response.token);
                 auth$.unsubscribe();
 

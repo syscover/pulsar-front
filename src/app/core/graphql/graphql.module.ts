@@ -8,7 +8,9 @@ import { ApolloClientManager } from './apollo-client-manager';
     imports: [
         ApolloModule.forRoot(ApolloClientManager.getClient)
     ],
-    exports: [ApolloModule],
+    exports: [
+        ApolloModule
+    ],
     providers: [
         ApolloService
     ]
