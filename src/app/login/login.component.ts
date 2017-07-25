@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
 import { Router } from '@angular/router';
@@ -24,11 +24,21 @@ export class LoginComponent {
 
     constructor(
         private fb: FormBuilder,
+        private renderer: Renderer2,
         private router: Router,
         private configService: ConfigService,
         private authService: AuthService
     ) {
         this.createForm();
+    }
+
+    ngOnInit() {
+        this.renderer.setStyle(document.body, 'background-image', `url(../../assets/layout/images/login/bg0${Math.floor((Math.random() * 10))}.jpg)`);
+        //this.renderer.setStyle(document.body, 'height', 0);
+    }
+
+    ngOnDestroy() {
+        this.renderer.removeStyle(document.body, 'background-image');
     }
 
     onSubmit() {
