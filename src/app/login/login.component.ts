@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Message } from 'primeng/primeng';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 import { environment } from './../../environments/environment';
@@ -19,6 +20,7 @@ export class LoginComponent {
     password: string;
     jwtHelper: JwtHelper;
     user: User = new User();
+    msgs: Message[] = [];
 
     constructor(
         private fb: FormBuilder,
@@ -45,6 +47,10 @@ export class LoginComponent {
                 } else {
                     this.router.navigate([`/${this.configService.appPrefix}/admin`]);
                 }
+            }, (error) => {
+                console.log(error.status);
+                this.msgs = [];
+                this.msgs.push({severity: 'error', summary: 'Authentication error', detail: 'Your user or password is incorrect'});
             });
     }
 

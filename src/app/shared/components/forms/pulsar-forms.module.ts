@@ -12,6 +12,7 @@ import { DropdownComponent } from './dropdown.component';
 import { EditorComponent } from './editor.component';
 import { InputComponent } from './input.component';
 import { LangLabelComponent } from './lang-label.component';
+import { MessagesComponent } from './messages.component';
 import { MultiSelectComponent } from './multi-select.component';
 import { SpinnerComponent } from './spinner.component';
 import { TextareaComponent } from './textarea.component';
@@ -33,6 +34,7 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
         EditorComponent,
         InputComponent,
         LangLabelComponent,
+        MessagesComponent,
         MultiSelectComponent,
         SpinnerComponent,
         TextareaComponent,
@@ -62,6 +64,7 @@ import { FormatSizePipe } from '../../pipes/format-size.pipe';
         FroalaViewModule,
         InputComponent,
         LangLabelComponent,
+        MessagesComponent,
         MultiSelectComponent,
         SpinnerComponent,
         TextareaComponent,

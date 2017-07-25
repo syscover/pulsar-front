@@ -43,6 +43,7 @@ export class ConfigService {
      * Load values form local file config.json, and load bootstrap variables from server
      */
     public load() {
+
         return new Promise((resolve, reject) => {
 
             /**
@@ -62,9 +63,14 @@ export class ConfigService {
                     this.apiUrl = response['apiUrl'];
                     this.appPrefix = response['appPrefix'];
 
+
+                    this.http.get('./config.json')
+                        .map(res => res.json())
+                        .subscribe( (response: Object) => {
                     /**
                      * Start config from server depending of environment
                      */
+
                     this.apolloService
                         .apollo(this.graphqlUri)
                         .watchQuery({
@@ -89,15 +95,36 @@ export class ConfigService {
                                     }
                                 }`
                         })
-                        .catch((error: any) => {
-                            console.error('Error reading configuration file');
-                            resolve(error);
-                            return Observable.throw(error.json().error || 'Server error');
-                        })
                         .subscribe(({data}) => {
                             this.config = data['coreBootstrapConfig'];
                             resolve(true);
                         });
+
+                        /* this.config = {
+                            base_lang: 'es',
+                            langs: [
+                                {id: 'es', name: 'Español', icon: 'es', active: true, sort: 1 },
+                                {id: 'en', name: 'English', icon: 'gb', active: true, sort: 0 },
+                            ],
+                            packages: [
+                                {id:1, name: 'Pulsar',root:'',active:true,sort:1},
+                                {id:2, name:'Pulsar Administration Package',root:'admin',active:true,sort:2},
+                                {id:9, name:'CRM Package',root:'crm',active:false,sort:9},
+                                {id:12, name:'Market Package',root:'market',active:false,sort:12},
+                                {id:13, name:'CMS Package',root:'cms',active:true,sort:13}
+                            ]
+                        };
+                        resolve(true);*/
+
+                    });
+
+                        /*
+                        TODO catch error
+                        .catch((error: any) => {
+                            console.error('Error reading configuration file');
+                            resolve(error);
+                            return Observable.throw(error.json().error || 'Server error');
+                        }); */
                 });
                 // end config from loscal file
         });

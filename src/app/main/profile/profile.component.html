@@ -1,4 +1,4 @@
-<div class="profile" [ngClass]="{'profile-expanded':active}">
+<div class="profile" [ngClass]="{'profile-expanded':active}" *ngIf="user">
     <div class="profile-image"></div>
     <a href="#" (click)="onClick($event)">
         <span class="profile-name">{{ user.name }} {{ user.surname }}</span>
@@ -26,7 +26,7 @@
         </a>
     </li> -->
     <li role="menuitem">
-        <a (click)="logout()" class="ripplelink" [attr.tabindex]="!active ? '-1' : null">
+        <a (click)="logout()" class="ripplelink pointer" [attr.tabindex]="!active ? '-1' : null">
             <i class="material-icons">power_settings_new</i>
             <span>Logout</span>
         </a>

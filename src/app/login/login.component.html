@@ -2,11 +2,11 @@
     <div class="ui-g">
         <form [formGroup]="fg" (ngSubmit)="onSubmit()" novalidate>
             <div class="ui-g-12">
-                <img src="../../assets/layout/images/logo-ultima.svg">
+                <img src="../../assets/layout/images/logo-pulsar.png">
             </div>
             <div class="ui-g-12">
                 <span class="md-inputfield">
-                    <input formControlName="user" type="text" autocomplete="on" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                    <input formControlName="user" type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                     <label>Username</label>
                 </span>
             </div>
@@ -21,6 +21,9 @@
                     <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
                     <span class="ui-button-text ui-c">Sign In</span>
                 </button>
+            </div>
+            <div class="ui-g-12">
+                <ps-messages [value]="msgs"></ps-messages>
             </div>
         </form>
     </div>

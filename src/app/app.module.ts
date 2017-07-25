@@ -1,3 +1,4 @@
+import { PulsarFormsModule } from './shared/components/forms/pulsar-forms.module';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +28,7 @@ import { CoreService } from './shared/super/core.service';
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        PulsarFormsModule,
         ReactiveFormsModule,
         HttpModule,
         AppRoutingModule,

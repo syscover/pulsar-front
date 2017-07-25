@@ -1,8 +1,10 @@
-import { ConfigService } from '../core/services/config/config.service';
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfigService } from '../core/services/config/config.service';
 import { CoreService } from './../shared/super/core.service';
 import { PackageGraphQLService } from './../admin/package/package-graphql.service';
 import { Package } from '../admin/admin.models';
+import { AuthService } from './../core/auth/auth.service';
 import gql from 'graphql-tag';
 declare const jQuery: any; // jQuery definition
 
@@ -40,9 +42,11 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
     constructor(
+        private router: Router,
         private _renderer: Renderer2,
         private configService: ConfigService,
-        private packageGraphQLService: PackageGraphQLService
+        private packageGraphQLService: PackageGraphQLService,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {

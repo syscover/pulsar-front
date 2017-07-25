@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { ApolloClientManagerService } from './apollo-client-manager.service';
 
-
 @Injectable()
 export class ApolloService {
 

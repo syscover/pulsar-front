@@ -33,7 +33,12 @@ export class ProfileComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.user = this.authService.user();
+        // profile is the compenent in cherge of control that user is logged
+        if (! this.authService.loggedIn()) {
+            this.router.navigate(['/pulsar/login']);
+        } else {
+            this.user = this.authService.user();
+        }
     }
 
     onClick(event) {

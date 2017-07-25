@@ -1,17 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { ClientMap } from 'apollo-angular/build/src/types';
 import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher, HTTPFetchNetworkInterface } from 'apollo-client';
-import { environment } from './../../../environments/environment';
 import { Apollo } from 'apollo-angular';
-
-//import { ConfigService } from './../services/config/config.service';
+import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class ApolloClientManagerService {
-
-    constructor(
-       // public configService: ConfigService
-    ) { }
 
     apollo(uri: string = undefined): Apollo {
         return new Apollo({ default : this.createApolloClient(uri) });
@@ -47,8 +41,8 @@ export class ApolloClientManagerService {
                     localStorage.setItem('token', token[1]);
                 }
 
-                if (response.status === 401) {
-                    //this.router.navigate([`/${this.configService.appPrefix}/logout`]);
+                if (response.status === 401 || ! authorization) {
+                    if (environment.debug) console.log('DEBUG - Apollo response: ', response.status);
                 }
                 next();
             }
