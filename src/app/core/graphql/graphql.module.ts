@@ -1,4 +1,3 @@
-import { ConfigService } from './../services/config/config.service';
 import { NgModule, Inject } from '@angular/core';
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';

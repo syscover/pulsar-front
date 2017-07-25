@@ -1,3 +1,4 @@
+import { ConfigService } from '../core/services/config/config.service';
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { CoreService } from './../shared/super/core.service';
 import { PackageGraphQLService } from './../admin/package/package-graphql.service';
@@ -40,24 +41,12 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         private _renderer: Renderer2,
-        private coreService: CoreService,
+        private configService: ConfigService,
         private packageGraphQLService: PackageGraphQLService
     ) { }
 
     ngOnInit() {
-        this.coreService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.packageGraphQLService.queryObjects,
-                variables: {
-                    model: this.packageGraphQLService.objectModel,
-                    sql: []
-                }
-            })
-            .subscribe(({data}) => {
-                // set packages for menu
-                this.packages = data['coreObjects'];
-            });
+        this.packages = this.configService.getConfig('packages');
      }
 
     ngAfterViewInit() {

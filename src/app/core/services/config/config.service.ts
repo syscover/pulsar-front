@@ -71,13 +71,20 @@ export class ConfigService {
                         .apollo(this.graphqlUri)
                         .watchQuery({
                             query: gql`
-                                query CoreGetBootstapConfig {
+                                query CoreGetBootstrapConfig {
                                     coreBootstrapConfig {
                                         base_lang
                                         langs {
                                             id
                                             name
                                             icon
+                                            active
+                                            sort
+                                        }
+                                        packages {
+                                            id
+                                            name
+                                            root
                                             active
                                             sort
                                         }
