@@ -1,26 +1,20 @@
+import { Injectable } from '@angular/core';
 import { ClientMap } from 'apollo-angular/build/src/types';
-import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'apollo-client';
+import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher, HTTPFetchNetworkInterface } from 'apollo-client';
 import { environment } from './../../../environments/environment';
-import { AuthService } from './../../core/auth/auth.service';
 import { Apollo } from 'apollo-angular';
 
-export class ApolloClientManager {
-    private client: ApolloClient;
+@Injectable()
+export class ApolloClientManagerService {
 
-    static getClient(uri: string = undefined): ApolloClient {
-        const cm = new ApolloClientManager(uri);
-        return cm.client;
+    constructor(
+    ) { }
+
+    apollo(uri: string = undefined): Apollo {
+        return new Apollo({ default : this.createApolloClient(uri) });
     }
 
-    static getClientMap(uri: string = undefined): ClientMap {
-        return { default : ApolloClientManager.getClient(uri) };
-    }
-
-    static apollo(uri: string = undefined): Apollo {
-        return new Apollo(ApolloClientManager.getClientMap(uri));
-    }
-
-    constructor(uri: string = undefined) {
+    createApolloClient(uri: string = undefined): ApolloClient {
         const networkInterface = createNetworkInterface({
             uri: uri ? uri : '/graphql'
         });
@@ -37,12 +31,12 @@ export class ApolloClientManager {
             }
         }]);
 
-        // middleware to send response
+        // middleware to get response
         networkInterface.useAfter([{
             applyAfterware({ response }, next) {
                 let authorization = response.headers.get('Authorization');
 
-                if (environment.debug) console.log('DEBUG - Token authorization from ApolloClientManager: ', response);
+                if (environment.debug) console.log('DEBUG - Token authorization from Apollo response: ', response);
 
                 if (authorization) {
                     // segment string to avoid Bearer word, the header has this format 'Bearer eyJ0eXAiOiJKV1QiLCJh...'
@@ -51,8 +45,7 @@ export class ApolloClientManager {
                 }
 
                 if (response.status === 401) {
-                    //this.router.navigate([`/${this.configService.appPrefix}/login`]);
-                    //logout();
+                    //this.router.navigate([`/${this.configService.appPrefix}/logout`]);
                 }
                 next();
             }
@@ -77,6 +70,7 @@ export class ApolloClientManager {
                                 { name: "AdminFieldGroup" },
                                 { name: "AdminField" },
                                 { name: "AdminFieldValue" },
+                                { name: "AdminUser" },
                                 { name: "CmsSection" },
                                 { name: "CmsFamily" },
                                 { name: "CmsCategory" },
@@ -88,7 +82,7 @@ export class ApolloClientManager {
             }
         });
 
-        this.client = new ApolloClient({
+        return new ApolloClient({
             networkInterface,
             fragmentMatcher,
             //dataIdFromObject: () => undefined, // to delete id object response

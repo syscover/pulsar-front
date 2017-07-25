@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { ApolloService } from './../../core/graphql/apollo-service';
+import { ApolloService } from './../../core/graphql/apollo.service';
 import { AuthHttp } from 'angular2-jwt';
 import { Core } from './core';
 import { JsonResponse } from './../classes/json-respose';
@@ -28,7 +28,6 @@ export class CoreService extends Core {
         this.http = this.injector.get(Http);
         this.authHttp = this.injector.get(AuthHttp);
         this.apolloService = this.injector.get(ApolloService);
-
         this.router = this.injector.get(Router);
 
         this.headers = new Headers({ 'Content-Type': 'application/json' });

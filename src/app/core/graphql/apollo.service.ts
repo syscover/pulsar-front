@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { ApolloClientManager } from './apollo-client-manager';
+import { ApolloClientManagerService } from './apollo-client-manager.service';
+
 
 @Injectable()
 export class ApolloService {
@@ -8,14 +9,14 @@ export class ApolloService {
     _apollo: Apollo;
     _uri: string;
 
-    constructor() { }
+    constructor(
+        private apolloClientManagerService: ApolloClientManagerService
+    ) { }
 
     apollo(uri) {
         if (! this._apollo || uri !== this._uri) {
             this._uri = uri;
-            this._apollo = ApolloClientManager.apollo(
-                this._uri
-            );
+            this._apollo = this.apolloClientManagerService.apollo(this._uri);
         }
         return this._apollo;
     }

@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import { ApolloService } from './../../graphql/apollo-service';
+import { ApolloService } from './../../graphql/apollo.service';
 import gql from 'graphql-tag';
-
-import { PackageGraphQLService } from './../../../admin/package/package-graphql.service';
 import { CoreService } from './../../../shared/super/core.service';
 
 @Injectable()
@@ -22,8 +20,7 @@ export class ConfigService {
     constructor(
         private http: Http,
         private authHttp: AuthHttp,
-        private apolloService: ApolloService,
-        private packageGraphQLService: PackageGraphQLService
+        private apolloService: ApolloService
     ) {
           //  console.log(this.coreService);
 
