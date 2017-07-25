@@ -1,5 +1,4 @@
-import { AuthGuard } from '../core/auth/auth-guard.service';
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
@@ -15,9 +14,6 @@ import { AuthService } from './../core/auth/auth.service';
 
 export class LoginComponent {
 
-    /*@HostBinding('@fadeInAnimation') get fadeInAnimation(){
-        return 'true';
-    };*/
     fg: FormGroup;
     email: string;
     password: string;
@@ -28,8 +24,7 @@ export class LoginComponent {
         private fb: FormBuilder,
         private router: Router,
         private configService: ConfigService,
-        private authService: AuthService,
-        private authGuard: AuthGuard
+        private authService: AuthService
     ) {
         this.createForm();
     }

@@ -1,11 +1,8 @@
-import {Component, Input, OnInit, EventEmitter,
-        ViewChild, trigger, state, transition,
-        style, animate, Inject, forwardRef} from '@angular/core';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
-import {MenuItem} from 'primeng/primeng';
+import { Component, OnInit, trigger, state, transition, style, animate } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../admin/admin.models';
 import { JwtHelper } from 'angular2-jwt';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'ps-profile',
@@ -30,9 +27,13 @@ export class ProfileComponent implements OnInit {
     user: User;
     jwthelper: JwtHelper = new JwtHelper();
 
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) { }
+
     ngOnInit() {
-        this.user = this.jwthelper.decodeToken(localStorage.getItem('token'));
-        console.log(this.user);
+        this.user = this.authService.user();
     }
 
     onClick(event) {
@@ -40,4 +41,8 @@ export class ProfileComponent implements OnInit {
         event.preventDefault();
     }
 
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/pulsar/login']);
+    }
 }

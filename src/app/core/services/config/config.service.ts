@@ -22,8 +22,6 @@ export class ConfigService {
         private authHttp: AuthHttp,
         private apolloService: ApolloService
     ) {
-          //  console.log(this.coreService);
-
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new RequestOptions({ headers: this.headers });
     }

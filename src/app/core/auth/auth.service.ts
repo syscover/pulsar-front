@@ -2,7 +2,6 @@ import { Injectable, Injector } from '@angular/core';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { CoreService } from './../../shared/super/core.service';
 import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt';
-
 import { User } from './../../admin/admin.models';
 
 @Injectable()
@@ -29,10 +28,16 @@ export class AuthService extends CoreService {
             .map((response: Response) => response.json());
     }
 
+    logout() {
+        localStorage.removeItem('token');
+    }
+
+    // check if user is logged
     loggedIn() {
         return tokenNotExpired();
     }
 
+    // get the user
     user() {
         return <User>this.jwtHelper.decodeToken(localStorage.getItem('token'));
     }

@@ -4,6 +4,8 @@ import { ApolloModule } from 'apollo-angular';
 import { ApolloClientManagerService } from './apollo-client-manager.service';
 import { ApolloService } from './apollo.service';
 
+//import { ConfigService } from './../services/config/config.service';
+
 @NgModule({
     imports: [
         //ApolloModule.forRoot(ApolloClientManager.getClient)
@@ -13,8 +15,9 @@ import { ApolloService } from './apollo.service';
         ApolloModule
     ],
     providers: [
+        //ConfigService,
+        ApolloService,
         ApolloClientManagerService,
-        ApolloService
     ]
 })
 export class GraphQLModule { }

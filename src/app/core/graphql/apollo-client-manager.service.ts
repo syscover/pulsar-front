@@ -4,10 +4,13 @@ import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher, HTT
 import { environment } from './../../../environments/environment';
 import { Apollo } from 'apollo-angular';
 
+//import { ConfigService } from './../services/config/config.service';
+
 @Injectable()
 export class ApolloClientManagerService {
 
     constructor(
+       // public configService: ConfigService
     ) { }
 
     apollo(uri: string = undefined): Apollo {
