@@ -125,7 +125,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             let section = _.find(this._sections, {id: $event.value});
 
             // TODO, trigger event instead call function
-            this.handleChangeFamily({value: section.family.id});
+            if (section.family) {
+                this.handleChangeFamily({value: section.family.id});
+            }
         }
     }
 
