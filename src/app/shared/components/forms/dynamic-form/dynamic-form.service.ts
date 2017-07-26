@@ -5,13 +5,10 @@ import { FieldGraphQLService } from './../../../../admin/field/field-graphql.ser
 import { Field } from './../../../../admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 
-//import { FieldService } from './../../../../admin/field/field.service';
-
 @Injectable()
 export class DynamicFormService {
 
     public form: FormGroup;
-
     private fields: Field[];
 
     constructor(
@@ -51,35 +48,24 @@ export class DynamicFormService {
                     }
                 })
                 .subscribe(({data}) => {
-                    if(environment.debug) console.log('DEBUG - data response from get custom fields: ', data);
+                    if (environment.debug) console.log('DEBUG - data response from get custom fields: ', data);
 
                     this.fields = data['coreObjects'];
 
                     // add FormControl to FormGroup
-                    let customFieldValues = this.fb.group({});
+                    let customFields = this.fb.group({});
                     for (const field of this.fields) {
-                        customFieldValues.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
+                        customFields.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
                     }
 
                     if (values) { // check that have values
                         // instance customs fields with values values
-                        customFieldValues.patchValue(values);
+                        customFields.patchValue(values);
                     }
 
-                    fg.addControl('customFields', customFieldValues);
+                    fg.addControl('customFields', customFields);
 
-                    // add FormControl to FormGroup
-                    /*for (const field of this.fields) {
-                        fg.addControl(field.name, new FormControl('',
-                            field.required ? Validators.required : undefined));
-                    }
-
-                    if (customFieldValues) { // check that have customFieldValues
-                        // instance customs fields with customFieldValues values
-                        fg.patchValue(customFieldValues);
-                    }*/
-
-                    // set instance form of dynamicsFromService
+                    // set instance form of dynamicsFormService
                     // will be used in dynamic-form.component to assign
                     // custom fields to your form
                     this.form = fg;
