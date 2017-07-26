@@ -63,6 +63,8 @@ export class CoreListComponent extends CoreComponent {
 
                 // instance data on object list
                 this.customCallback(data['coreObjectsPagination']['objects']);
+            }, (error) => {
+                console.log('error', error);
             });
     }
 
