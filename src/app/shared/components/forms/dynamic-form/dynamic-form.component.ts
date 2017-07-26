@@ -13,9 +13,9 @@ import * as _ from 'lodash';
         <div class="row" [ngSwitch]="field?.field_type_id">
 
             <ps-input   *ngSwitchCase="'text'"
-                        [form]="dynamicFormService.form"
+                        [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors" 
-                        [label]="field.labels[lang]" 
+                        [label]="label" 
                         [name]="field.name" 
                         class="col-sm-12 col-md-4"></ps-input>
 
@@ -39,6 +39,7 @@ export class DynamicFormComponent implements OnInit {
     @Input() lang: string;
 
     options: SelectItem[] = [];
+    label: string;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
@@ -47,6 +48,11 @@ export class DynamicFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        // get field label
+        this.label = this.field.labels.find((el) => {
+                        return el['id'] === this.lang;
+                    })['value'];
+
         if (this.field.field_type_id === 'select') {
 
             // filter fields values by lang
@@ -64,9 +70,7 @@ export class DynamicFormComponent implements OnInit {
 
             // set label value
             this.options.unshift({
-                label: this.field.labels.find((el) => {
-                        return el['id'] === this.lang;
-                    })['value'],
+                label: this.label,
                 value: ''
             });
         }
