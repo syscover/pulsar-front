@@ -32,14 +32,14 @@ export class MenuComponent implements OnChanges {
 
     constructor(
         @Inject(forwardRef(() => MainComponent)) public app: MainComponent
-    ) {}
+    ) { }
 
     ngOnChanges() {
         this.setMemu(this.packages);
     }
 
     setMemu(packages: Package[]) {
-
+ 
         // if packages is not defines yet
         if (! packages) { return; }
 
@@ -51,7 +51,7 @@ export class MenuComponent implements OnChanges {
         this.model = [];
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/pulsar/admin/dashboard'] });
 
-        if (cmsPackage.active) {
+        if (cmsPackage && cmsPackage.active) {
             this.model.push({
                 label: 'CMS', icon: 'art_track',
                 items: [
@@ -63,7 +63,7 @@ export class MenuComponent implements OnChanges {
             });
         }
 
-        if (marketPackage.active) {
+        if (marketPackage && marketPackage.active) {
             this.model.push({
                 label: 'Market', icon: 'shopping_cart',
                 items: [
@@ -95,7 +95,7 @@ export class MenuComponent implements OnChanges {
             });
         }
 
-        if (crmPackage.active) {
+        if (crmPackage && crmPackage.active) {
             this.model.push({
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
@@ -105,7 +105,7 @@ export class MenuComponent implements OnChanges {
             });
         }
 
-        if (adminPackage.active) {
+        if (adminPackage && adminPackage.active) {
             this.model.push({
                 label: 'Administration', icon: 'settings',
                 items: [

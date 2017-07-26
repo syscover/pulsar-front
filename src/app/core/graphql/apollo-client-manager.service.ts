@@ -33,7 +33,7 @@ export class ApolloClientManagerService {
             applyAfterware({ response }, next) {
                 let authorization = response.headers.get('Authorization');
 
-                if (environment.debug) console.log('DEBUG - Token authorization from Apollo response: ', response);
+                // if (environment.debug) console.log('DEBUG - Token authorization from Apollo response: ', response);
 
                 if (authorization) {
                     // segment string to avoid Bearer word, the header has this format 'Bearer eyJ0eXAiOiJKV1QiLCJh...'
