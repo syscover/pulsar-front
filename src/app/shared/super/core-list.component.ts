@@ -1,10 +1,10 @@
 import { CoreComponent } from './core.component';
 import { GraphQLModel } from './../../core/graphql/graphql-model.class';
-import { Injector, ViewChild, HostBinding } from '@angular/core';
+import { Injector, ViewChild, HostBinding, OnInit } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 import { environment } from './../../../environments/environment';
 
-export class CoreListComponent extends CoreComponent {
+export class CoreListComponent extends CoreComponent implements OnInit {
 
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
@@ -23,6 +23,10 @@ export class CoreListComponent extends CoreComponent {
         super(injector, graphQL);
     }
 
+    ngOnInit() {
+        this.getGraphQLDataRelationsToCreateObject();
+    }
+
     getRecords(f: Function): void {
         this.objectService
             .getRecords()
@@ -30,6 +34,12 @@ export class CoreListComponent extends CoreComponent {
                 this.customCallback(response.data);
             });
     }
+
+    // to create a new object, do all queries to get data across GraphQL
+    getGraphQLDataRelationsToCreateObject() { }
+
+     // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
+    setDataRelationsObject(data: any) { }
 
     /**
      * loadDadaTableLazy method over GraphQL
@@ -64,7 +74,8 @@ export class CoreListComponent extends CoreComponent {
                 // instance data on object list
                 this.customCallback(data['coreObjectsPagination']['objects']);
             }, (error) => {
-                console.log('error', error);
+                console.log('DEBUG - Error GraphQL response in data list: ', error);
+                //this.router.navigate(['/pulsar/login']);
             });
     }
 
