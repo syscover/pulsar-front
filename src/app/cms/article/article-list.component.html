@@ -15,7 +15,14 @@
             {{ object.publish | date:'dd/MM/y HH:mm:ss' }}
         </ng-template>
     </p-column>
-    <p-column field="active" header="Active" [sortable]="true"></p-column>
+    <p-column [sortable]="true">
+        <ng-template pTemplate="header">
+            Status
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+            {{ statuses | getValueObject:'id':object.status_id:'name' }}
+        </ng-template>
+    </p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

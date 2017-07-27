@@ -156,7 +156,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 })
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
-
                     obs.unsubscribe();
                 });
         }

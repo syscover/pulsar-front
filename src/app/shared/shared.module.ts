@@ -1,3 +1,4 @@
+import { GetValueObjectPipe } from './pipes/get-value-object.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -30,8 +31,9 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
     ],
     declarations: [
         DataContainerComponent,
-        CheckLangsObjectPipe,
         ActionLangObjectPipe,
+        CheckLangsObjectPipe,
+        GetValueObjectPipe,
         ErrorComponent,
         DatatableSearchComponent,
         DatatableHeaderComponent,
@@ -58,8 +60,9 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         ProgressSpinnerComponent,
         FormHeaderComponent,
         DynamicFormComponent,
+        ActionLangObjectPipe,
         CheckLangsObjectPipe,
-        ActionLangObjectPipe
+        GetValueObjectPipe,
     ]
 })
 
