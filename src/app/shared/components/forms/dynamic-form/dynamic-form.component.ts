@@ -19,6 +19,14 @@ import * as _ from 'lodash';
                         [name]="field.name" 
                         class="col-sm-12 col-md-4"></ps-input>
 
+            <ps-spinner *ngSwitchCase="'number'"
+                        [form]="dynamicFormService.form.get('customFields')"
+                        [errors]="errors" 
+                        [label]="label" 
+                        [name]="field.name" 
+                        [min]="0"
+                        class="col-sm-12 col-md-4"></ps-spinner>
+
             <ps-dropdown *ngSwitchCase="'select'" 
                         [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors"
