@@ -82,8 +82,7 @@ export class ApolloClientManagerService {
         return new ApolloClient({
             networkInterface,
             fragmentMatcher,
-            //dataIdFromObject: () => undefined, // to delete id object response
-            dataIdFromObject: o => {
+            /* dataIdFromObject: o => {
                 if (o['lang_id'] && o['id']) {
                     return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
                 } else if (o['id']) {
@@ -97,7 +96,8 @@ export class ApolloClientManagerService {
                 } else {
                     return `${o['__typename']}`;
                 }
-            }
+            }, */
+            dataIdFromObject: () => undefined, // to delete id object response
         });
     }
 }
