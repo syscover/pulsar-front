@@ -13,7 +13,6 @@ import { AuthService } from './../../core/auth/auth.service';
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { Field } from './../../admin/admin.models';
-
 import * as _ from 'lodash';
 
 @Component({
