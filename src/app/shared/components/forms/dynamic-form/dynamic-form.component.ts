@@ -57,9 +57,11 @@ export class DynamicFormComponent implements OnInit {
 
     ngOnInit() {
         // get field label
-        this.label = this.field.labels.find((el) => {
-                        return el['id'] === this.lang;
-                    })['value'];
+        const labelObj = this.field.labels.find((el) => {
+                return el['id'] === this.lang;
+            });
+        // check if label exist in lang required
+        this.label = labelObj ? labelObj['value'] : null;
 
         if (this.field.field_type_id === 'select') {
 
