@@ -70,6 +70,10 @@ export class ArticleGraphQLService extends GraphQLModel {
                 name
                 author_id
                 section_id
+                section {
+                    id
+                    name
+                }
                 family_id
                 status_id
                 publish

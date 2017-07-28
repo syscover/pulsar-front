@@ -5,9 +5,9 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="loadDadaTableLazyGraphQL($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang }])">
 
-    <p-column field="id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column [sortable]="true">
+    <p-column field="id" sortField="article.id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" sortField="article.name" header="Name" [sortable]="true"></p-column>
+    <p-column [sortable]="true" sortField="article.publish">
         <ng-template pTemplate="header">
             Publish
         </ng-template>
@@ -15,7 +15,8 @@
             {{ object.publish | date:'dd/MM/y HH:mm:ss' }}
         </ng-template>
     </p-column>
-    <p-column [sortable]="true">
+    <p-column field="section.name" sortField="section.name" header="Section" [sortable]="true"></p-column>
+    <p-column [sortable]="true" sortField="article.status">
         <ng-template pTemplate="header">
             Status
         </ng-template>
