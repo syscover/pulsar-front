@@ -67,6 +67,7 @@ export class FieldGraphQLService extends GraphQLModel {
             ... on AdminField {
                 id
                 field_group_id
+                field_group_name
                 name
                 labels {
                     id
