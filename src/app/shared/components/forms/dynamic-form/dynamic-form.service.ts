@@ -55,7 +55,7 @@ export class DynamicFormService {
                     // add FormControl to FormGroup
                     let customFields = this.fb.group({});
                     for (const field of this.fields) {
-                        customFields.addControl(field.name, new FormControl('', field.required ? Validators.required : undefined));
+                        customFields.addControl(field.name, new FormControl(null, field.required ? Validators.required : undefined));
                     }
 
                     if (values) { // check that have values
