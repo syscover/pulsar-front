@@ -82,22 +82,41 @@ export class ApolloClientManagerService {
         return new ApolloClient({
             networkInterface,
             fragmentMatcher,
-            /* dataIdFromObject: o => {
+             dataIdFromObject: o => {
+
+                function guid() {
+                    function s4() {
+                        return Math.floor((1 + Math.random()) * 0x10000)
+                        .toString(16)
+                        .substring(1);
+                    }
+                    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+                }
+
+                let trackId = true;
+
                 if (o['lang_id'] && o['id']) {
+                    if (trackId) console.log('Apollo ID: ', `${o['__typename']}-${o['id']}-${o['lang_id']}`);
                     return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
                 } else if (o['id']) {
                     if (
                         o['__typename'] === 'CoreTranslationField' ||
                         o['__typename'] === 'CoreConfigOptionType'
                     ) {
-                        return undefined;
+                        const id = guid();
+                        if (trackId) console.log('Apollo ID: ', id);
+                        return id;
                     }
                     return `${o['__typename']}-${o['id']}`;
                 } else {
-                    return `${o['__typename']}`;
+                    const id = guid();
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
+
+                    return id;
+                    //return `${o['__typename']}`;
                 }
-            }, */
-            dataIdFromObject: () => undefined, // to delete id object response
+            }
+            //dataIdFromObject: () => undefined, // to delete id object response
         });
     }
 }
