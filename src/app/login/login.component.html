@@ -6,14 +6,22 @@
             </div>
             <div class="ui-g-12">
                 <span class="md-inputfield">
-                    <input formControlName="user" type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                    <label>Username</label>
+                    <ps-input   
+                        [form]="fg" 
+                        label="Username"
+                        type="text"
+                        name="user" 
+                        class="col-12"></ps-input>
                 </span>
             </div>
             <div class="ui-g-12">
                 <span class="md-inputfield">
-                    <input formControlName="password" type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                    <label>Password</label>
+                    <ps-input   
+                        [form]="fg" 
+                        label="Password"
+                        type="password"
+                        name="password" 
+                        class="col-12"></ps-input>
                 </span>
             </div>
             <div class="ui-g-12">
