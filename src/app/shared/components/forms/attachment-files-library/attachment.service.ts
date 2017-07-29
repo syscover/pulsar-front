@@ -18,7 +18,7 @@ export class AttachmentService extends CoreService {
 
     setCropImage(parameters): Observable<any> {
 
-        if(environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
+        if (environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
 
         let args = {}; // arguments for observable
         args['object'] = parameters; // add object to arguments

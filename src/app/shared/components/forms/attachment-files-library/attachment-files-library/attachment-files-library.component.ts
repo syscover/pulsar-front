@@ -234,7 +234,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         // add files to formData to send to server
         for (const file of this.files) {
             formData.append('files[]', file, file.name);
-            if(environment.debug) console.log('DEBUG - append file: ', file);
+            if (environment.debug) console.log('DEBUG - append file: ', file);
         }
 
         // progress var
@@ -316,7 +316,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
             })
             .subscribe(({data}) => {
 
-                if(environment.debug) console.log('DEBUG - response after crop image: ', data);
+                if (environment.debug) console.log('DEBUG - response after crop image: ', data);
 
                 // set attachemnt family id
                 this.attachment.patchValue(data.adminCropAttachment.attachment);

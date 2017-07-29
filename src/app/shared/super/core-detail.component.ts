@@ -134,7 +134,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 variables: this.getArgsToGetRecord(params)
             })
             .subscribe(({data}) => {
-                if(environment.debug) console.log('DEBUG - response of query to get object: ', data);
+                if (environment.debug) console.log('DEBUG - response of query to get object: ', data);
 
                 // instance data in relations fields of object
                 this.setDataRelationsObject(data);
