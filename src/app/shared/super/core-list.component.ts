@@ -23,9 +23,7 @@ export class CoreListComponent extends CoreComponent implements OnInit {
         super(injector, graphQL);
     }
 
-    ngOnInit() {
-        this.getGraphQLDataRelationsToCreateObject();
-    }
+    ngOnInit() { }
 
     getRecords(f: Function): void {
         this.objectService
@@ -34,12 +32,6 @@ export class CoreListComponent extends CoreComponent implements OnInit {
                 this.customCallback(response.data);
             });
     }
-
-    // to create a new object, do all queries to get data across GraphQL
-    getGraphQLDataRelationsToCreateObject() { }
-
-     // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
-    setDataRelationsObject(data: any) { }
 
     /**
      * loadDadaTableLazy method over GraphQL
@@ -51,9 +43,9 @@ export class CoreListComponent extends CoreComponent implements OnInit {
     loadDadaTableLazyGraphQL(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined) {
 
         // set params
-        let args = this.getArgsToGetRecords(event, filters, sql);
+        let args = this.getArguments(event, filters, sql);
 
-        if(environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
+        if (environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
 
         let obs = this.objectService
             .proxyGraphQL()
@@ -65,43 +57,27 @@ export class CoreListComponent extends CoreComponent implements OnInit {
 
                 obs.unsubscribe();
 
-                if(environment.debug) console.log('DEBUG - data from Query Objects Pagination: ', data);
+                if (environment.debug) console.log('DEBUG - data from Query Objects Pagination: ', data);
 
                 // paginaton data
                 this.totalRecords = data['coreObjectsPagination'].total;
                 this.filteredRecords = data['coreObjectsPagination'].filtered;
 
+                // set custom data
+                this.setCustomData(data);
+
                 // instance data on object list
                 this.customCallback(data['coreObjectsPagination']['objects']);
             }, (error) => {
-                console.log('DEBUG - Error GraphQL response in data list: ', error);
-                //this.router.navigate(['/pulsar/login']);
+                if (environment.debug) {
+                    console.log('DEBUG - Error GraphQL response in data list: ', error);
+                } else {
+                    this.router.navigate(['/pulsar/login']);
+                }
             });
     }
 
-    /**
-     * loadDadaTableLazy method
-     *
-     * @param event
-     * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
-     * @param parameters    when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
-     */
-    /*loadDadaTableLazy(event: LazyLoadEvent, lang: string = undefined, sql: Object[] = undefined) {
-
-        // set params
-        let args = this.getArgsToGetRecords(event, lang, sql);
-
-        // search elements by paramenters
-        this.objectService
-            .searchRecords(args)
-            .subscribe((response) => {
-                this.totalRecords = response.total;
-                this.filteredRecords = response.filtered;
-
-                // instance data on object list
-                this.customCallback(response.data);
-            });
-    }*/
+    setCustomData(data: Object): void { }
 
     deleteRecord(f: Function, object: any, args = {}): void {
 
@@ -111,7 +87,7 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             args['lang'] = object.lang_id;
         }
 
-        if(environment.debug) console.log('DEBUG - args sending to delete object: ', args);
+        if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({
@@ -134,7 +110,7 @@ export class CoreListComponent extends CoreComponent implements OnInit {
         });
     }
 
-    private getArgsToGetRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
+    getArguments(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
 
         let args = {}; // create empty object
 
@@ -183,6 +159,11 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             }
         }
 
+        return this.getCustomArguments(args);
+    }
+
+    // instante custom arguments, for example in article-list.component.ts
+    getCustomArguments(args: Object): Object {
         return args;
     }
 }
