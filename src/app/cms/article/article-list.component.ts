@@ -1,7 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
 import { ArticleGraphQLService } from './article-graphql.service';
+import { LazyLoadEvent } from 'primeng/primeng';
 import { Status } from './../cms.models';
+import { environment } from './../../../environments/environment';
 
 @Component({
     selector: 'ps-article-list',
@@ -24,28 +26,17 @@ export class ArticleListComponent extends CoreListComponent {
         super(injector, graphQL);
     }
 
-    // to create a new object, do all queries to get data across GraphQL
-    getGraphQLDataRelationsToCreateObject() {
-        // set id of product if action is edit
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    config: {
-                        key: 'pulsar.cms.statuses',
-                        lang: this.baseLang,
-                        property: 'name'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
-            });
+    getCustomArguments(args: Object): Object {
+        // set arguments to get statuses
+        args['config'] = {
+            key: 'pulsar.cms.statuses',
+            lang: this.baseLang,
+            property: 'name'
+        };
+        return args;
     }
 
-    setDataRelationsObject(data) {
-        // cms statuses
+    setCustomData(data: Object): void {
         this.statuses = data['cmsStatuses'];
     }
 }

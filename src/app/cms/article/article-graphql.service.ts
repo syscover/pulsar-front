@@ -6,12 +6,18 @@ import gql from 'graphql-tag';
 export class ArticleGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql) {
                     ${this.fields}
+                }
+            }
+            cmsStatuses: coreConfig (config:$config) {
+                ... on CoreConfigOptionType {
+                    id
+                    name
                 }
             }
         }`;
@@ -29,7 +35,7 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query GetObject ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!) {
+        query CmsGetArticle ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             coreObject: cmsArticle (sql:$sql){
                 ${this.fields}
             }
