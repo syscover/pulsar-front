@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../../modules/prime-ng.module';
-import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { ChipsComponent } from './chips.component';
 import { CalendarComponent } from './calendar.component';

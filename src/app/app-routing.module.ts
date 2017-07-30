@@ -5,7 +5,8 @@ import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     // bootstrap route
-    { path: 'pulsar', redirectTo: 'pulsar' + '/login', pathMatch: 'full' },
+    { path: '', redirectTo: 'pulsar/login', pathMatch: 'full' },
+    { path: 'pulsar', redirectTo: 'pulsar/login', pathMatch: 'full' },
     { path: 'pulsar/login', component: LoginComponent },
     { path: 'pulsar', component: MainComponent, loadChildren: 'app/main/main.module#MainModule' },
 ];

@@ -12,8 +12,10 @@ export class Core {
         protected injector: Injector
     ) {
         this.configService = injector.get(ConfigService);
-        this.graphqlUri = this.configService.graphqlUri;
-        this.appPrefix = this.configService.appPrefix;
-        this.apiUrl = this.configService.apiUrl;
+
+        // I need to create a bind because the configuration service is instantiated asynchronously
+        this.graphqlUri = this.configService.get('graphqlUri');
+        this.appPrefix = this.configService.get('appPrefix');
+        this.apiUrl = this.configService.get('apiUrl');
     }
 }

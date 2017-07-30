@@ -213,7 +213,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
             // get urls across sanitizer to avoid security cross domain
-            file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+            file.objectURL = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files[i]));
             this.files.push(files[i]);
         }
 
@@ -283,7 +283,7 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.image = $event.image;
 
         // get attachment family
-        this.attachmentFamily = <AttachmentFamily>_.find(this.families, ['id', $event.family_id]);
+        this.attachmentFamily = <AttachmentFamily>_.find(this.families, {'id': $event.family_id});
 
         // get image from item changed and instance dialog image
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.controls['attachment_library'].value.url);

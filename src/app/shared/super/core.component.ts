@@ -38,8 +38,8 @@ export class CoreComponent extends Core {
         // set object properties
         this.setBaseUri();
         this.params = this.route.snapshot.params;
-        this.langs = this.configService.getConfig('langs');
-        this.baseLang = this.configService.getConfig('base_lang');
+        this.langs = this.configService.get('langs');
+        this.baseLang = this.configService.get('base_lang');
     }
 
     protected setBaseUri(baseUri: string = undefined) {

@@ -55,7 +55,7 @@ export class LoginComponent {
                 if (this.authService.redirectUrl) {
                     this.router.navigate([this.authService.redirectUrl]);
                 } else {
-                    this.router.navigate([`/${this.configService.appPrefix}/admin`]);
+                    this.router.navigate([`/${this.configService.get('appPrefix')}/admin`]);
                 }
             }, (error) => {
                 console.log(error.status);

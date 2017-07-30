@@ -1,8 +1,8 @@
+import { ConfigService } from './../../../core/services/config/config.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-declare const jQuery: any; // jQuery definition
-
 import { onValueChangedFormControl } from './../../super/core-validation';
+declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'ps-editor',
@@ -43,7 +43,9 @@ export class EditorComponent implements OnInit {
     formControl: AbstractControl;
     error: string;
 
-    constructor() { }
+    constructor(
+        private configService: ConfigService
+    ) { }
 
     ngOnInit() {
         this.formControl = this.form.controls[this.name];
@@ -60,6 +62,7 @@ export class EditorComponent implements OnInit {
             };
 
             // set froala option properties
+            this.froalaOptions.key = this.configService.get('froalaKey');
             this.froalaOptions.placeholderText = this.placeholder;
             this.froalaOptions.heightMin = this.heightMin;
             this.froalaOptions.heightMax = this.heightMax;
@@ -78,8 +81,8 @@ export class EditorComponent implements OnInit {
                 'fontFamily',
                 'fontSize',
                 'fullscreen',
-                'image',
-                'imageManager',
+                //'image',
+                //'imageManager',
                 'inlineStyle',
                 'lineBreaker',
                 'link',
@@ -91,7 +94,7 @@ export class EditorComponent implements OnInit {
                 'save',
                 'table',
                 'url',
-                'video',
+                //'video',
                 'wordPaste'
             ];
     }
@@ -106,6 +109,7 @@ export class EditorComponent implements OnInit {
 }
 
 class FroalaOptions {
+    public key: string;
     public placeholderText: string;
     public charCounterCount: boolean;
     public pluginsEnabled: string[];
@@ -114,3 +118,4 @@ class FroalaOptions {
     public enter: number;
     public tabSpaces: number;
 }
+

@@ -50,7 +50,7 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.packages = this.configService.getConfig('packages');
+        this.packages = this.configService.get('packages');
      }
 
     ngAfterViewInit() {

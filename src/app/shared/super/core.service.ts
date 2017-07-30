@@ -103,7 +103,7 @@ export class CoreService extends Core {
 
     protected setEndpoint(urlAddons: string) {
         // set api URL
-        this.apiUrl = this.apiUrl + urlAddons; 
+        this.apiUrl = this.apiUrl + urlAddons;
     }
 
     protected getEndpoint(action: string, params: Params = undefined) {

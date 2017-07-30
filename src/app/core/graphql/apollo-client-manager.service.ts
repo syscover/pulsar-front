@@ -93,7 +93,7 @@ export class ApolloClientManagerService {
                     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
                 }
 
-                let trackId = true;
+                let trackId = false;
 
                 if (o['lang_id'] && o['id']) {
                     if (trackId) console.log('Apollo ID: ', `${o['__typename']}-${o['id']}-${o['lang_id']}`);
@@ -113,7 +113,6 @@ export class ApolloClientManagerService {
                     if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
 
                     return id;
-                    //return `${o['__typename']}`;
                 }
             }
             //dataIdFromObject: () => undefined, // to delete id object response
