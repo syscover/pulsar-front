@@ -13,9 +13,9 @@ import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
-import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';*/
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
-import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component'; */
+import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component'; 
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 /* import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
@@ -70,12 +70,12 @@ const routes: Routes = [
                     { path: 'order-status/show/:id/:lang',                  component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
-                    /* { path: 'payment-method',                               component: PaymentMethodListComponent },
+                    { path: 'payment-method',                               component: PaymentMethodListComponent },
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
                     { path: 'payment-method/create/:id/:lang',              component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
                     { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
-                    // Products
+                    /* // Products
                     { path: 'product',                                      component: ProductListComponent },
                     { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
                     { path: 'product/create/:id/:lang',                     component: ProductDetailComponent,                      data: { action: 'create-lang' }},

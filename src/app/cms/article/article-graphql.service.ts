@@ -43,7 +43,7 @@ export class ArticleGraphQLService extends GraphQLModel {
         query CmsGetArticle (
             $sql:[CoreSQLQueryInput] 
             $sqlAttachmentFamily:[CoreSQLQueryInput] 
-            $sqlCategory:[CoreSQLQueryInput] 
+            $sqlCategory:[CoreSQLQueryInput]
             $sqlArticle:[CoreSQLQueryInput] 
             $config:CoreConfigInput!
         ) {

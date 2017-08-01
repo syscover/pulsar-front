@@ -240,7 +240,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         return args;
     }
 
-    getCustomArgumentsForGraphQLDataRelationsToCreateObject(args: Object): Object {
+    getCustomArgumentsForGraphQLDataRelationsToCreateObject(): Object {
         let sqlArticle = [
             {
                 command: 'where',

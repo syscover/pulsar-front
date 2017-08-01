@@ -72,6 +72,9 @@ export class ApolloClientManagerService {
                                 { name: "CmsFamily" },
                                 { name: "CmsCategory" },
                                 { name: "CmsArticle" },
+                                { name: "CrmGroup" },
+                                { name: "MarketOrderStatus" },
+                                { name: "MarketPaymentMethod" },
                             ]
                         }
                     ]
@@ -104,9 +107,10 @@ export class ApolloClientManagerService {
                         o['__typename'] === 'CoreConfigOptionType'
                     ) {
                         const id = guid();
-                        if (trackId) console.log('Apollo ID: ', id);
+                        if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
                         return id;
                     }
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, o['id']);
                     return `${o['__typename']}-${o['id']}`;
                 } else {
                     const id = guid();
