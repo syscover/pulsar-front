@@ -96,6 +96,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
     }
 
+
+
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
     getArgsToGetRecord(params: Params): any {
@@ -120,8 +122,15 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             });
         }
 
+        args = this.getCustomArgumentsForArgsToGetRecord(args);
+
         if (environment.debug) console.log('DEBUG - arguments to get object: ', args);
 
+        return args;
+    }
+
+    // instante custom arguments, for example in payment-method-detail.component.ts
+    getCustomArgumentsForArgsToGetRecord(args: Object): any {
         return args;
     }
 
@@ -150,15 +159,25 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     getGraphQLDataRelationsToCreateObject() {
         if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') {
 
-            let args = {}; // create empty object
-            args = this.getCustomArgumentsForGraphQLDataRelationsToCreateObject(args);
+            let args = this.getCustomArgumentsForGraphQLDataRelationsToCreateObject();
+
+            let options;
+
+            // check if there are any variable
+            if (args) {
+                options = {
+                    query: this.graphQL.queryRelationsObject,
+                    variables: args
+                };
+            } else {
+                options = {
+                    query: this.graphQL.queryRelationsObject
+                };
+            }
 
             let obs = this.objectService
                 .proxyGraphQL()
-                .watchQuery({
-                    query: this.graphQL.queryRelationsObject,
-                    variables: args
-                })
+                .watchQuery(options)
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
                     obs.unsubscribe();
@@ -167,8 +186,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // instante custom arguments, for example in payment-method-detail.component.ts
-    getCustomArgumentsForGraphQLDataRelationsToCreateObject(args: Object): Object {
-        return args;
+    getCustomArgumentsForGraphQLDataRelationsToCreateObject(): Object {
+        return undefined;
     }
 
     // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
