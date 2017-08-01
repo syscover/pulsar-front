@@ -149,17 +149,27 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // to create a new object, do all queries to get data across GraphQL
     getGraphQLDataRelationsToCreateObject() {
         if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') {
+
+            let args = {}; // create empty object
+            args = this.getCustomArgumentsForGraphQLDataRelationsToCreateObject(args);
+
             let obs = this.objectService
                 .proxyGraphQL()
                 .watchQuery({
-                    query: this.graphQL.queryRelationsObject
+                    query: this.graphQL.queryRelationsObject,
+                    variables: args
                 })
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
                     obs.unsubscribe();
                 });
         }
-     }
+    }
+
+    // instante custom arguments, for example in payment-method-detail.component.ts
+    getCustomArgumentsForGraphQLDataRelationsToCreateObject(args: Object): Object {
+        return args;
+    }
 
     // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
     setDataRelationsObject(data: any) { }
