@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
-
 import { MarketRoutingModule } from './market-routing.module';
 
-import { CategoryListComponent } from './category/category-list.component';
+import { OrderStatusListComponent } from './order-status/order-status-list.component';
+import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
+import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
+
+/* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
@@ -15,12 +18,10 @@ import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
-import { OrderStatusListComponent } from './order-status/order-status-list.component';
-import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductListComponent } from './product/product-list.component';
-import { ProductDetailComponent } from './product/product-detail.component';
+import { ProductDetailComponent } from './product/product-detail.component'; */
 
 @NgModule({
     imports: [
@@ -28,7 +29,7 @@ import { ProductDetailComponent } from './product/product-detail.component';
         MarketRoutingModule
     ],
     declarations: [
-        CategoryListComponent,
+        /* CategoryListComponent,
         CategoryDetailComponent,
         CustomerClassTaxListComponent,
         CustomerClassTaxDetailComponent,
@@ -39,16 +40,16 @@ import { ProductDetailComponent } from './product/product-detail.component';
         GroupCustomerClassTaxListComponent,
         GroupCustomerClassTaxDetailComponent,
         PaymentMethodListComponent,
-        PaymentMethodDetailComponent,
+        PaymentMethodDetailComponent, */
         OrderStatusListComponent,
         OrderStatusDetailComponent,
-        ProductClassTaxListComponent,
+        /* ProductClassTaxListComponent,
         ProductClassTaxDetailComponent,
         ProductListComponent,
-        ProductDetailComponent
+        ProductDetailComponent */
     ],
     providers: [
-        
+        OrderStatusGraphQLService
     ]
 })
 

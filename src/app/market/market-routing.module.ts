@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { DataContainerComponent } from './../shared/components/data-container/data-container.component';
 import { ErrorComponent } from './../shared/components/errors/error.component';
-
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
-import { CategoryListComponent } from './category/category-list.component';
+/* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
@@ -17,13 +15,13 @@ import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
-import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
+import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component'; */
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
-import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+/* import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductListComponent } from './product/product-list.component';
-import { ProductDetailComponent } from './product/product-detail.component';
+import { ProductDetailComponent } from './product/product-detail.component'; */
 
 const routes: Routes = [
     {
@@ -35,7 +33,7 @@ const routes: Routes = [
                 canActivateChild: [AuthGuard],
                 children: [
                     // Categories
-                    { path: 'category',                                     component: CategoryListComponent },
+                    /* { path: 'category',                                     component: CategoryListComponent },
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
                     { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
@@ -63,7 +61,7 @@ const routes: Routes = [
                     // Tax Rule
                     { path: 'tax-rule',                                     component: TaxRuleListComponent },
                     { path: 'tax-rule/create',                              component: TaxRuleDetailComponent,                      data: { action: 'create' }},
-                    { path: 'tax-rule/show/:id',                            component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'tax-rule/show/:id',                            component: TaxRuleDetailComponent,                      data: { action: 'edit' }}, */
 
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
@@ -72,7 +70,7 @@ const routes: Routes = [
                     { path: 'order-status/show/:id/:lang',                  component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
-                    { path: 'payment-method',                               component: PaymentMethodListComponent },
+                    /* { path: 'payment-method',                               component: PaymentMethodListComponent },
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
                     { path: 'payment-method/create/:id/:lang',              component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
                     { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
@@ -81,7 +79,7 @@ const routes: Routes = [
                     { path: 'product',                                      component: ProductListComponent },
                     { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
                     { path: 'product/create/:id/:lang',                     component: ProductDetailComponent,                      data: { action: 'create-lang' }},
-                    { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }}, */
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}
