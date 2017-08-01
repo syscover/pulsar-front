@@ -209,6 +209,14 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
                     value: this.params['id']
                 }
             ],
+            sqlCategory: [
+                {
+                    command: 'where',
+                    column: 'lang_id',
+                    operator: '=',
+                    value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                }
+            ],
             sqlAttachmentFamily: [
                 {
                     'command': 'where',
@@ -232,9 +240,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         return args;
     }
 
-    // to create a new object, do all queries to get data across GraphQL
-    getGraphQLDataRelationsToCreateObject() {
-
+    getCustomArgumentsForGraphQLDataRelationsToCreateObject(args: Object): Object {
         let sqlArticle = [
             {
                 command: 'where',
@@ -259,35 +265,37 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
             });
         };
 
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    sqlArticle,
-                    sqlAttachmentFamily: [
-                        {
-                            'command': 'where',
-                            'column': 'attachment_family.resource_id',
-                            'operator': '=',
-                            'value': 'cms-article'
-                        },
-                        {
-                            'command': 'orderBy',
-                            'operator': 'asc',
-                            'column': 'attachment_family.name'
-                        }
-                    ],
-                    config: {
-                        key: 'pulsar.cms.statuses',
-                        lang: this.baseLang,
-                        property: 'name'
-                    }
+        let sqlCategory = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            }
+        ];
+
+        return {
+            sqlArticle,
+            sqlAttachmentFamily: [
+                {
+                    'command': 'where',
+                    'column': 'attachment_family.resource_id',
+                    'operator': '=',
+                    'value': 'cms-article'
+                },
+                {
+                    'command': 'orderBy',
+                    'operator': 'asc',
+                    'column': 'attachment_family.name'
                 }
-            })
-            .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
-            });
+            ],
+            sqlCategory,
+            config: {
+                key: 'pulsar.cms.statuses',
+                lang: this.baseLang,
+                property: 'name'
+            }
+        };
     }
 
     setDataRelationsObject(data) {

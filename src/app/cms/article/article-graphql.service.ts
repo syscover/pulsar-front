@@ -23,7 +23,12 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject  = gql`
-        query CmsGetRelationsArticle ($sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!){
+        query CmsGetRelationsArticle (
+            $sqlAttachmentFamily:[CoreSQLQueryInput] 
+            $sqlCategory:[CoreSQLQueryInput] 
+            $sqlArticle:[CoreSQLQueryInput] 
+            $config:CoreConfigInput!
+        ) {
             ${this.relationsFields}
         }`;
 
@@ -35,7 +40,13 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query CmsGetArticle ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput] $sqlArticle:[CoreSQLQueryInput] $config:CoreConfigInput!) {
+        query CmsGetArticle (
+            $sql:[CoreSQLQueryInput] 
+            $sqlAttachmentFamily:[CoreSQLQueryInput] 
+            $sqlCategory:[CoreSQLQueryInput] 
+            $sqlArticle:[CoreSQLQueryInput] 
+            $config:CoreConfigInput!
+        ) {
             coreObject: cmsArticle (sql:$sql){
                 ${this.fields}
             }
@@ -158,8 +169,9 @@ export class ArticleGraphQLService extends GraphQLModel {
                 article_parent
                 attachments
             }
-            cmsCategories {
+            cmsCategories (sql:$sqlCategory) {
                 id
+                lang_id
                 name
             }
             cmsStatuses: coreConfig (config:$config) {
