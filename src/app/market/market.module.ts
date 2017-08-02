@@ -12,6 +12,9 @@ import { OrderStatusListComponent } from './order-status/order-status-list.compo
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
+import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
+import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 
 /* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
@@ -22,8 +25,7 @@ import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 
-import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
-import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component'; */
 
@@ -44,18 +46,20 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         CustomerClassTaxListComponent,
         CustomerClassTaxDetailComponent,
         PaymentMethodListComponent,
-        PaymentMethodDetailComponent, 
+        PaymentMethodDetailComponent,
         OrderStatusListComponent,
         OrderStatusDetailComponent,
-        /* ProductClassTaxListComponent,
+        ProductClassTaxListComponent,
         ProductClassTaxDetailComponent,
+        /* 
         ProductListComponent,
         ProductDetailComponent */
     ],
     providers: [
         CustomerClassTaxGraphQLService,
         OrderStatusGraphQLService,
-        PaymentMethodGraphQLService
+        PaymentMethodGraphQLService,
+        ProductClassTaxGraphQLService
     ]
 })
 
