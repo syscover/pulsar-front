@@ -65,7 +65,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
     }
 
     setDataRelationsObject(data: any) {
-        console.log('XXXX', data);
         // set order statuses
         this.orderStatuses = _.map(<OrderStatus[]>data['marketOrderStatuses'], obj => {
             return { value: obj.id, label: obj.name };
