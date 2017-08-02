@@ -135,7 +135,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     getRecord(params: Params) {
-        let obs = this.objectService
+        let subs = this.objectService
             .proxyGraphQL()
             .watchQuery({
                 query: this.graphQL.queryObject,
@@ -151,7 +151,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 // instance data on object list
                 this.customCallback(data['coreObject']);
 
-                obs.unsubscribe();
+                subs.unsubscribe();
             });
     }
 
@@ -175,12 +175,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 };
             }
 
-            let obs = this.objectService
+            let subs = this.objectService
                 .proxyGraphQL()
                 .watchQuery(options)
                 .subscribe(({data}) => {
                     this.setDataRelationsObject(data);
-                    obs.unsubscribe();
+                    subs.unsubscribe();
                 });
         }
     }
@@ -255,12 +255,13 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
 
-        obs.subscribe(data => {
+        let subs = obs.subscribe(data => {
             if (! routeRedirect) {
                 this.router.navigate([this.baseUri]);
             } else {
                 this.router.navigate([routeRedirect]);
             }
+            subs.unsubscribe();
         });
     }
 
