@@ -75,6 +75,7 @@ export class ApolloClientManagerService {
                                 { name: "CrmGroup" },
                                 { name: "MarketOrderStatus" },
                                 { name: "MarketPaymentMethod" },
+                                { name: "MarketCustomerClassTax" },
                             ]
                         }
                     ]

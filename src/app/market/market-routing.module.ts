@@ -6,14 +6,14 @@ import { AuthGuard } from './../core/auth/auth-guard.service';
 
 /* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
-import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
-import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';*/
+import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
+import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component'; 
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -38,11 +38,6 @@ const routes: Routes = [
                     { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
-                    // Customer Class Tax
-                    { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
-                    { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
-                    { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
-
                     // Group Customer Class Tax
                     { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
                     { path: 'group-customer-class-tax/create',              component: GroupCustomerClassTaxDetailComponent,        data: { action: 'create' }},
@@ -62,6 +57,11 @@ const routes: Routes = [
                     { path: 'tax-rule',                                     component: TaxRuleListComponent },
                     { path: 'tax-rule/create',                              component: TaxRuleDetailComponent,                      data: { action: 'create' }},
                     { path: 'tax-rule/show/:id',                            component: TaxRuleDetailComponent,                      data: { action: 'edit' }}, */
+
+                    // Customer Class Tax
+                    { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
+                    { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
+                    { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
 
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
