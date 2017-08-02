@@ -52,7 +52,7 @@ export class UserGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteUser ($id:String!) {
+        mutation AdminDeleteUser ($id:Int!) {
             adminDeleteUser (id:$id){
                 ${this.fields}
             }

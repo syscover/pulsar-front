@@ -52,7 +52,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteAttachmentFamily ($id:String!) {
+        mutation AdminDeleteAttachmentFamily ($id:Int!) {
             adminDeleteAttachmentFamily (id:$id){
                 ${this.fields}
             }

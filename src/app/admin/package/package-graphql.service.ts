@@ -45,7 +45,7 @@ export class PackageGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeletePackage ($id:String!) {
+        mutation AdminDeletePackage ($id:Int!) {
             adminDeletePackage (id:$id){
                 ${this.fields}
             }

@@ -52,7 +52,7 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation CmsDeleteFamily ($id:String!) {
+        mutation CmsDeleteFamily ($id:Int!) {
             cmsDeleteFamily (id:$id){
                 ${this.fields}
             }
