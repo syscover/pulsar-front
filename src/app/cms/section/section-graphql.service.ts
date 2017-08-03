@@ -10,9 +10,7 @@ export class SectionGraphQLService extends GraphQLModel {
             coreObjectsPagination: cmsSectionsPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

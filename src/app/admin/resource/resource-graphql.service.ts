@@ -10,9 +10,7 @@ export class ResourceGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminResourcesPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

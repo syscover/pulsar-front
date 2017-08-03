@@ -10,9 +10,7 @@ export class FamilyGraphQLService extends GraphQLModel {
             coreObjectsPagination: cmsFamiliesPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

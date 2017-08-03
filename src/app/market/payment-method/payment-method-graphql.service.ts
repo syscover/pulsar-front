@@ -10,9 +10,7 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
             coreObjectsPagination: marketPaymentMethodsPagination (filters:$filters sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

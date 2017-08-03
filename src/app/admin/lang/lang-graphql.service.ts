@@ -10,9 +10,7 @@ export class LangGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminLangsPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

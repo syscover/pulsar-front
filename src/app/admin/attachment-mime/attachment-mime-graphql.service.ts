@@ -10,9 +10,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminAttachmentMimesPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

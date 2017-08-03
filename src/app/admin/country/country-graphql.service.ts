@@ -10,9 +10,7 @@ export class CountryGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminCountriesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

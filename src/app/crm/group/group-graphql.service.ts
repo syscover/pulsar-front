@@ -10,9 +10,7 @@ export class GroupGraphQLService extends GraphQLModel {
             coreObjectsPagination: crmGroupsPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

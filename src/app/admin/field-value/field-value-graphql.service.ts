@@ -10,9 +10,7 @@ export class FieldValueGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminFieldValuesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

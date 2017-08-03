@@ -10,9 +10,7 @@ export class ProductClassTaxGraphQLService extends GraphQLModel {
             coreObjectsPagination: marketProductClassTaxesPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

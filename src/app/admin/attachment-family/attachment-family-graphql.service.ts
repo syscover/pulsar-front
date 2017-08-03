@@ -10,9 +10,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
             coreObjectsPagination: adminAttachmentFamiliesPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 

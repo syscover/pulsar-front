@@ -10,9 +10,7 @@ export class ArticleGraphQLService extends GraphQLModel {
             coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
             cmsStatuses: coreConfig (config:$config) {
                 ... on CoreConfigOptionType {

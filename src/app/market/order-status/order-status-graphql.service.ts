@@ -10,9 +10,7 @@ export class OrderStatusGraphQLService extends GraphQLModel {
             coreObjectsPagination: marketOrderStatusesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql) {
-                    ${this.fields}
-                }
+                objects (sql:$sql)
             }
         }`;
 
