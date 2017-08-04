@@ -18,12 +18,13 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
+import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 
 
 /* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
-import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
-import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { ProductListComponent } from './product/product-list.component';
@@ -37,8 +38,6 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
     declarations: [
         /* CategoryListComponent,
         CategoryDetailComponent,
-        TaxRateZoneListComponent,
-        TaxRateZoneDetailComponent,
         TaxRuleListComponent,
         TaxRuleDetailComponent,*/
         CustomerClassTaxDetailComponent,
@@ -51,7 +50,9 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         OrderStatusListComponent,
         ProductClassTaxDetailComponent,
         ProductClassTaxListComponent,
-        /* 
+        TaxRateZoneDetailComponent,
+        TaxRateZoneListComponent,
+        /*
         ProductListComponent,
         ProductDetailComponent */
     ],
@@ -60,7 +61,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         GroupCustomerClassTaxGraphQLService,
         OrderStatusGraphQLService,
         PaymentMethodGraphQLService,
-        ProductClassTaxGraphQLService
+        ProductClassTaxGraphQLService,
+        TaxRateZoneGraphQLService
     ]
 })
 

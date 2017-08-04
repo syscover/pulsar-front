@@ -6,8 +6,6 @@ import { AuthGuard } from './../core/auth/auth-guard.service';
 
 /* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
-import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
-import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';*/
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
@@ -20,6 +18,8 @@ import { OrderStatusDetailComponent } from './order-status/order-status-detail.c
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 /* 
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component'; */
@@ -38,11 +38,6 @@ const routes: Routes = [
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
                     { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
-
-                    // Tax Rate Zone
-                    { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
-                    { path: 'tax-rate-zone/create',                         component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
-                    { path: 'tax-rate-zone/show/:id',                       component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
 
                     // Tax Rule
                     { path: 'tax-rule',                                     component: TaxRuleListComponent },
@@ -75,6 +70,11 @@ const routes: Routes = [
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
                     { path: 'payment-method/create/:id/:lang',              component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
                     { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
+
+                    // Tax Rate Zone
+                    { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
+                    { path: 'tax-rate-zone/create',                         component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
+                    { path: 'tax-rate-zone/show/:id',                       component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
 
                     /* // Products
                     { path: 'product',                                      component: ProductListComponent },

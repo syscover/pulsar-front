@@ -174,6 +174,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 };
             }
 
+            if (environment.debug) console.log('DEBUG - options of relations to create object: ', options);
+
             let subs = this.objectService
                 .proxyGraphQL()
                 .watchQuery(options)
