@@ -37,7 +37,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getCustomArgumentsForArgsToGetRecord(args: Object): Object {
+    getCustomArgumentsForArgsToGetRecord(args: Object, params: Params): Object {
 
         args['sqlOrderStatus'] = [{
                 command: 'where',

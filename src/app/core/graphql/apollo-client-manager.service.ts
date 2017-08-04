@@ -48,7 +48,8 @@ export class ApolloClientManagerService {
             }
         }]);
 
-        const fragmentMatcher = new IntrospectionFragmentMatcher({
+        // doesn't include fragmentMatcher in apollo cliente because CoreObjectInterface is unused
+        /* const fragmentMatcher = new IntrospectionFragmentMatcher({
             introspectionQueryResultData: {
                 __schema: {
                     types: [
@@ -58,36 +59,18 @@ export class ApolloClientManagerService {
                             possibleTypes: [
                                 { name: "AdminPackage" },
                                 { name: "AdminCountry" },
-                                { name: "AdminLang" },
-                                { name: "AdminAction" },
-                                { name: "AdminResource" },
-                                { name: "AdminProfile" },
-                                { name: "AdminAttachmentMime" },
-                                { name: "AdminAttachmentFamily" },
-                                { name: "AdminFieldGroup" },
-                                { name: "AdminField" },
-                                { name: "AdminFieldValue" },
-                                { name: "AdminUser" },
-                                { name: "CmsSection" },
-                                { name: "CmsFamily" },
-                                { name: "CmsCategory" },
-                                { name: "CmsArticle" },
-                                { name: "CrmGroup" },
-                                { name: "MarketOrderStatus" },
-                                { name: "MarketPaymentMethod" },
-                                { name: "MarketCustomerClassTax" },
-                                { name: "MarketProductClassTax" },
+                                ...
                             ]
                         }
                     ]
                 }
             }
-        });
+        }); */
 
         return new ApolloClient({
             networkInterface,
-            fragmentMatcher,
-             dataIdFromObject: o => {
+            //fragmentMatcher,
+            dataIdFromObject: o => {
 
                 function guid() {
                     function s4() {

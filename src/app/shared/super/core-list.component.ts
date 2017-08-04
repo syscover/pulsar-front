@@ -41,7 +41,6 @@ export class CoreListComponent extends CoreComponent implements OnInit {
      * @param params        when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
     loadDadaTableLazyGraphQL(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined) {
-
         // set params
         let args = this.getArguments(event, filters, sql);
 
@@ -87,6 +86,9 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             args['lang'] = object.lang_id;
         }
 
+        // call method that can to be overwrite by children
+        args = this.getCustomArgumentsForDeleteRecord(object, args);
+
         if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
         // confirm to delete object
@@ -109,6 +111,9 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             }
         });
     }
+
+    // method to be overwrite
+    getCustomArgumentsForDeleteRecord(object: any, args: Object): Object { return args; }
 
     getArguments(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
 

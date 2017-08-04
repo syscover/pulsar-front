@@ -62,7 +62,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         if (this.dataRoute.action === 'create') {
             this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
 
-            // to create a new object, do all queries to get data to create new object
+            // to create a new object, do all queries to get relations data to create new object
             this.getGraphQLDataRelationsToCreateObject();
 
             // set lang_id if form has this field
@@ -96,7 +96,27 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
     }
 
+    // function to get record in edit action or create lang action
+    getRecord(params: Params) {
+        let subs = this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                query: this.graphQL.queryObject,
+                // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
+                variables: this.getArgsToGetRecord(params)
+            })
+            .subscribe(({data}) => {
+                if (environment.debug) console.log('DEBUG - response of query to get object: ', data);
 
+                // instance data in relations fields of object
+                this.setDataRelationsObject(data);
+
+                // instance data on object list
+                this.customCallback(data['coreObject']);
+
+                subs.unsubscribe();
+            });
+    }
 
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
@@ -122,7 +142,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             });
         }
 
-        args = this.getCustomArgumentsForArgsToGetRecord(args);
+        args = this.getCustomArgumentsForArgsToGetRecord(args, params);
 
         if (environment.debug) console.log('DEBUG - arguments to get object: ', args);
 
@@ -130,29 +150,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // instante custom arguments, for example in payment-method-detail.component.ts
-    getCustomArgumentsForArgsToGetRecord(args: Object): any {
+    getCustomArgumentsForArgsToGetRecord(args: Object, params: Params): any {
         return args;
-    }
-
-    getRecord(params: Params) {
-        let subs = this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryObject,
-                // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
-                variables: this.getArgsToGetRecord(params)
-            })
-            .subscribe(({data}) => {
-                if (environment.debug) console.log('DEBUG - response of query to get object: ', data);
-
-                // instance data in relations fields of object
-                this.setDataRelationsObject(data);
-
-                // instance data on object list
-                this.customCallback(data['coreObject']);
-
-                subs.unsubscribe();
-            });
     }
 
     // to create a new object, do all queries to get data across GraphQL
@@ -191,8 +190,11 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     }
 
     // create all elements whith graphQL data obtain from method getGraphQLDataRelationsToCreateObject()
+    // this function load realtion data to create object or edit object
     setDataRelationsObject(data: any) { }
 
+
+    // funtion that will be call for create object, create lang object and update object
     onSubmit(object: any, routeRedirect: string = undefined, params = []) {
 
         // set errors from current form, this variable is binded to all form elements
@@ -207,16 +209,21 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         let obs: Observable<any>; // Observable
         let args = {}; // arguments for observable
 
-        // Usually the id is disabled, we enable it if you need tale id data for create or edit
-        this.fg.get('id').enable(); // enable is a method from AbstractControl
+        if (this.fg.get('id')) {
+            // Usually the id is disabled, we enable it if you need tale id data for create or edit
+            this.fg.get('id').enable(); // enable is a method from AbstractControl
+        }
 
         // add object to arguments
         args['object'] = this.fg.value;
 
         // call method that can to be overwrite by children
-        args = this.transformArgumentsOnSubmit(args);
+        args = this.getCustomArgumentsForOnSubmit(args, object);
 
         if (this.dataRoute.action === 'create') {
+
+            // call method that can to be overwrite by children
+            args = this.getCustomArgumentsForCreateOnSubmit(args, object);
 
             if (environment.debug) console.log('DEBUG - args sending to create object: ', args);
 
@@ -228,6 +235,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
         if (this.dataRoute.action === 'create-lang') {
+
+            // call method that can to be overwrite by children
+            args = this.getCustomArgumentsForCreateLangOnSubmit(args, object);
 
             if (environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
@@ -244,6 +254,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             if (this.params['id']) {
                 args['idOld'] = this.params['id'];
             }
+
+            // call method that can to be overwrite by children
+            args = this.getCustomArgumentsForEditOnSubmit(args, object);
 
             if (environment.debug) console.log('DEBUG - args sending to edit object: ', args);
 
@@ -265,8 +278,34 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         });
     }
 
-    // method to be overwrite
-    transformArgumentsOnSubmit(args: Object): Object { return args; }
+    /**
+     * Method to be overwrite
+     * @param args  Object
+     * @param params Params
+     */
+    getCustomArgumentsForOnSubmit(args: Object, object: any): Object { return args; }
+
+    /**
+     * Method to be overwrite
+     * @param args  Object
+     * @param params Params
+     */
+    getCustomArgumentsForCreateOnSubmit(args: Object, params: Params): Object { return args; }
+
+    /**
+     * Method to be overwrite
+     * @param args  Object
+     * @param params Params
+     */
+    getCustomArgumentsForCreateLangOnSubmit(args: Object, params: Params): Object { return args; }
+
+    /**
+     * Method to be overwrite
+     * @param args  Object
+     * @param params Params
+     */
+    getCustomArgumentsForEditOnSubmit(args: Object, params: Params): Object { return args; }
+
 
     deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, args = {}): void {
 
@@ -283,6 +322,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 args['lang'] = langAux;
             }
         }
+
+        // call method that can to be overwrite by children
+        args = this.getCustomArgumentsForDeleteRecord(object, args);
 
         if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
@@ -306,4 +348,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
         });
     }
+
+    // method to be overwrite
+    getCustomArgumentsForDeleteRecord(object: any, args: Object): Object { return args; }
 }

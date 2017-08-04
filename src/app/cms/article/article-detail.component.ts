@@ -163,8 +163,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         }
     }
 
-    transformArgumentsOnSubmit(args: Object) {
-
+    getCustomArgumentsForOnSubmit(args: Object, object: any) {
         // serialeize Date object to don't be changed by apollo client
         args['object']['publish'] = args['object']['publish'].toString();
         if (args['object']['date']) {
