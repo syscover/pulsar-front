@@ -6,12 +6,17 @@ import gql from 'graphql-tag';
 export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query MarketGetGroupCustomerClassTaxesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: marketGroupCustomerClassTaxesPagination (filters:$filters sql:$sql) {
+        query MarketGetGroupCustomerClassTaxesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: marketGroupCustomerClassTaxesPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
             }
+        }`;
+
+    queryRelationsObject  = gql`
+        query MarketGetRelationsArticle {
+            ${this.relationsFields}
         }`;
 
     queryObjects = gql`
@@ -19,6 +24,7 @@ export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
             coreObjects: marketGroupCustomerClassTaxes (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     queryObject = gql`
@@ -26,6 +32,7 @@ export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
             coreObject: marketGroupCustomerClassTax (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -36,15 +43,15 @@ export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateGroupCustomerClassTax ($object:MarketGroupCustomerClassTaxInput!) {
-            marketUpdateGroupCustomerClassTax (object:$object){
+        mutation MarketUpdateGroupCustomerClassTax ($group_id:Int! $customer_class_tax_id:Int! $object:MarketGroupCustomerClassTaxInput!) {
+            marketUpdateGroupCustomerClassTax (group_id:$group_id customer_class_tax_id:$customer_class_tax_id object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteGroupCustomerClassTax ($id:String! $lang:String!) {
-            marketDeleteGroupCustomerClassTax (id:$id lang:$lang){
+        mutation MarketDeleteGroupCustomerClassTax ($group_id:Int! $customer_class_tax_id:Int!) {
+            marketDeleteGroupCustomerClassTax (group_id:$group_id customer_class_tax_id:$customer_class_tax_id){
                 ${this.fields}
             }
         }`;
@@ -58,6 +65,17 @@ export class GroupCustomerClassTaxGraphQLService extends GraphQLModel {
             ... on MarketGroupCustomerClassTax {
                 group_id
                 customer_class_tax_id 
+            }
+        `;
+
+        this.relationsFields = `
+            crmGroups {
+                id
+                name
+            }
+            marketCustomerClassTaxes {
+                id
+                name
             }
         `;
 
