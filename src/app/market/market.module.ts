@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { MarketRoutingModule } from './market-routing.module';
 
+import { CategoryDetailComponent } from './category/category-detail.component';
+import { CategoryGraphQLService } from './category/category-graphql.service';
+import { CategoryListComponent } from './category/category-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
@@ -25,10 +28,7 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 
-
-/* import { CategoryListComponent } from './category/category-list.component';
-import { CategoryDetailComponent } from './category/category-detail.component';
-
+/*
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component'; */
 
@@ -38,9 +38,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         MarketRoutingModule
     ],
     declarations: [
-        /* CategoryListComponent,
         CategoryDetailComponent,
-        */
+        CategoryListComponent,
         CustomerClassTaxDetailComponent,
         CustomerClassTaxListComponent,
         GroupCustomerClassTaxDetailComponent,
@@ -60,6 +59,7 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         ProductDetailComponent */
     ],
     providers: [
+        CategoryGraphQLService,
         CustomerClassTaxGraphQLService,
         GroupCustomerClassTaxGraphQLService,
         OrderStatusGraphQLService,
@@ -70,6 +70,4 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
     ]
 })
 
-export class MarketModule {
-    constructor() {}
-}
+export class MarketModule { }

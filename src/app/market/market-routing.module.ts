@@ -4,8 +4,8 @@ import { DataContainerComponent } from './../shared/components/data-container/da
 import { ErrorComponent } from './../shared/components/errors/error.component';
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
-/* import { CategoryListComponent } from './category/category-list.component';
-import { CategoryDetailComponent } from './category/category-detail.component';*/
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
@@ -34,11 +34,10 @@ const routes: Routes = [
                 canActivateChild: [AuthGuard],
                 children: [
                     // Categories
-                    /* { path: 'category',                                     component: CategoryListComponent },
+                    { path: 'category',                                     component: CategoryListComponent },
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
                     { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
-                     */
 
                     // Group Customer Class Tax
                     { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
