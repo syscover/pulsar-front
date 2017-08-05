@@ -32,7 +32,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
     }
 
     // instante custom arguments, for example in payment-method-detail.component.ts
-    getCustomArgumentsForArgsToGetRecord(args: Object, params: Params): any {
+    getCustomArgumentsGetRecord(args: Object, params: Params): any {
         return {
             model: this.graphQL.objectModel,
             sql: [{
@@ -50,7 +50,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set groups
         this.groups = _.map(<Group[]>data['crmGroups'], obj => {
             return { value: obj.id, label: obj.name };
@@ -64,7 +64,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
         this.customerClassTaxes.unshift({ label: 'Select a customer class tax', value: '' });
     }
 
-    getCustomArgumentsForEditOnSubmit(args: Object, object: any): Object {
+    getCustomArgumentsEditPostRecord(args: Object, object: any): Object {
         args['group_id'] = object.group_id;
         args['customer_class_tax_id'] = object.customer_class_tax_id;
 

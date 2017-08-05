@@ -47,7 +47,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
     }
 
     // ovewrite this method to custom column id by column attachment_family.id
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         let args = {
             sql: [{
                 command: 'where',
@@ -62,7 +62,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    getGraphQLDataRelationsToCreateObject() {
+    relationsObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -74,11 +74,11 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
                 }
             })
             .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
+                this.setRelationsData(data);
             });
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set resources
         this.resources = _.map(<Resource[]>data['adminResources'], obj => {
             return { value: obj.id, label: obj.name };

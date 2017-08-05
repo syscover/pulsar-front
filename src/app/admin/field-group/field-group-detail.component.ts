@@ -31,7 +31,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         return {
             model: this.graphQL.objectModel,
             config: {
@@ -47,7 +47,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getGraphQLDataRelationsToCreateObject() {
+    relationsObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -59,11 +59,11 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
                 }
             })
             .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
+                this.setRelationsData(data);
             });
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // get resources allowed to add custom field group
         const resourcesAllowed = data.coreConfig;
         let resources = _.filter(<Resource[]>data.adminResources, obj => {

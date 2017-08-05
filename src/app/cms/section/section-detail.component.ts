@@ -35,7 +35,7 @@ export class SectionDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         return {
             model: this.graphQL.objectModel,
             sql: [{
@@ -47,7 +47,7 @@ export class SectionDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         this.families = _.map(<Family[]>data['cmsFamilies'], obj => {
             return { value: obj.id, label: obj.name };
         });

@@ -41,7 +41,7 @@ export class LoginComponent {
         this.renderer.removeStyle(document.body, 'background-image');
     }
 
-    onSubmit() {
+    postRecord() {
         let auth$ = this.authService
             .login(this.fg.value)
             .subscribe(response => {

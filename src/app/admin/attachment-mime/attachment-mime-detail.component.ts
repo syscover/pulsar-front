@@ -30,7 +30,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         return {
             model: this.graphQL.objectModel,
             config: {
@@ -46,7 +46,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
     }
 
     // to create a new object, do all queries to get data across GraphQL
-    getGraphQLDataRelationsToCreateObject() {
+    relationsObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -58,11 +58,11 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
                 }
             })
             .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
+                this.setRelationsData(data);
             });
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
 
         // get resources allowed to add attachment mime
         const resourcesAllowed = data.coreConfig;

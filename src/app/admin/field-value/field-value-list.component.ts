@@ -23,9 +23,9 @@ export class FieldValueListComponent extends CoreListComponent {
         this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
     }
 
-    loadDadaTableLazyGraphQL(event: LazyLoadEvent) {
+    getRecords(event: LazyLoadEvent) {
         // add parameters before call loadDadaTableLazy to filter records
-        super.loadDadaTableLazyGraphQL(event, [
+        super.getRecords(event, [
             {
                 'command': 'where',
                 'column': 'lang_id',

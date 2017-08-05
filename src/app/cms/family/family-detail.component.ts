@@ -43,7 +43,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         return {
             config: {
                 key: 'pulsar.cms.editors'
@@ -58,7 +58,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         };
     }
 
-    getGraphQLDataRelationsToCreateObject() {
+    relationsObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -70,11 +70,11 @@ export class FamilyDetailComponent extends CoreDetailComponent {
                 }
             })
             .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
+                this.setRelationsData(data);
             });
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set editor
         this.editors = _.map(<Editor[]>data.coreConfig, obj => {
             return { value: obj.id, label: obj.name };

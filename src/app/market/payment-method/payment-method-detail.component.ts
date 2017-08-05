@@ -37,7 +37,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getCustomArgumentsForArgsToGetRecord(args: Object, params: Params): Object {
+    getCustomArgumentsGetRecord(args: Object, params: Params): Object {
 
         args['sqlOrderStatus'] = [{
                 command: 'where',
@@ -49,7 +49,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    getCustomArgumentsForGraphQLDataRelationsToCreateObject(): Object {
+    argumentsRelationsObject(): Object {
         let sqlOrderStatus = [
             {
                 command: 'where',
@@ -64,7 +64,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set order statuses
         this.orderStatuses = _.map(<OrderStatus[]>data['marketOrderStatuses'], obj => {
             return { value: obj.id, label: obj.name };

@@ -43,35 +43,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     // paramenters for parent class
     object: Product = new Product(); // set empty object
-    customCallback: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-            // set attachments in FormArray from ps-attachment-files-library component
-            this.attachments.setValue(this.object.attachments);
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
-
-            this.handleGetProductTaxes(
-                this.fg.controls['subtotal'].value,
-                // callback, all http petition must to be sequential to pass JWT
-                () => {
-                    // get fields if object has field group
-                    if (this.object.field_group_id) {
-                        // set FormGroup with custom FormControls
-                        this.handleGetCustomFields(this.object.data.customFields);
-                    }
-                }
-            ); // calculate tax prices
-
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    // set lang id in form from object with multiple language
-                    lang_id: this.lang.id
-                });
-            }
-        }
-    }
-
+    
     constructor(
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
@@ -236,8 +208,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    onSubmit(object: any, routeRedirect: string = undefined, params = []) {
-        super.onSubmit(object, routeRedirect, params);
+    postRecord(object: any, routeRedirect: string = undefined, params = []) {
+        super.postRecord(object, routeRedirect, params);
     }
 
     handleGetProductTaxes(price = null, callback = undefined) {
@@ -295,6 +267,35 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                         this.fields = fields;
                     });*/
                 });
+        }
+    }
+
+    setData (response = undefined) {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+            this.object = response.data; // function to set custom data
+            this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
+            // set attachments in FormArray from ps-attachment-files-library component
+            this.attachments.setValue(this.object.attachments);
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
+
+            this.handleGetProductTaxes(
+                this.fg.controls['subtotal'].value,
+                // callback, all http petition must to be sequential to pass JWT
+                () => {
+                    // get fields if object has field group
+                    if (this.object.field_group_id) {
+                        // set FormGroup with custom FormControls
+                        this.handleGetCustomFields(this.object.data.customFields);
+                    }
+                }
+            ); // calculate tax prices
+
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
         }
     }
 }

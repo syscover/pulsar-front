@@ -26,7 +26,7 @@ export class ArticleListComponent extends CoreListComponent {
         super(injector, graphQL);
     }
 
-    getCustomArguments(args: Object): Object {
+    getCustomArgumentsGetRecords(args: Object): Object {
         // set arguments to get statuses
         args['config'] = {
             key: 'pulsar.cms.statuses',
@@ -36,7 +36,7 @@ export class ArticleListComponent extends CoreListComponent {
         return args;
     }
 
-    setCustomData(data: Object): void {
+    setRelationsData(data: Object): void {
         this.statuses = data['cmsStatuses'];
     }
 }

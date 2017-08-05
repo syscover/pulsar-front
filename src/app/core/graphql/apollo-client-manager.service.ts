@@ -81,7 +81,7 @@ export class ApolloClientManagerService {
                     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
                 }
 
-                let trackId = false;
+                let trackId = true;
 
                 if (o['lang_id'] && o['id']) {
                     if (trackId) console.log('Apollo ID: ', `${o['__typename']}-${o['id']}-${o['lang_id']}`);
@@ -95,7 +95,8 @@ export class ApolloClientManagerService {
                         if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
                         return id;
                     }
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, o['id']);
+
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['id']}`);
                     return `${o['__typename']}-${o['id']}`;
                 } else {
                     const id = guid();

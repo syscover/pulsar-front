@@ -18,45 +18,6 @@ export class FieldDetailComponent extends CoreDetailComponent {
     fieldTypes: SelectItem[] = [];
     dataTypes: SelectItem[] = [];
 
-    // overwirte method and property in parent class
-    object: Field = new Field(); // set empty object
-    customCallback: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
-
-            // set lang, this type of objects hasn't land_id in your table
-            this.fg.patchValue({lang_id: this.lang.id});
-
-            if (this.dataRoute.action === 'create-lang') {
-
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object.labels.find((el) => {
-                        return el['id'] === this.baseLang
-                    })['value']
-                );
-
-                // disabled inputs that hasn't caontaint multi language
-                this.disabledForm();
-
-            } else if (this.dataRoute.action === 'edit') {
-
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object.labels.find((el) => {
-                        return el['id'] === this.lang.id;
-                    })['value']
-                );
-
-                // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) {
-                    this.disabledForm();
-                }
-            }
-        }
-    }
-
     constructor(
         protected injector: Injector,
         protected graphQL: FieldGraphQLService
@@ -95,7 +56,44 @@ export class FieldDetailComponent extends CoreDetailComponent {
         this.fg.controls['component_class'].disable();
     }
 
-    getArgsToGetRecord(params: Params): any {
+    setData(response = undefined) {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+            this.object = response; // function to set custom data
+            this.fg.patchValue(this.object); // set values of form
+
+            // set lang, this type of objects hasn't land_id in your table
+            this.fg.patchValue({lang_id: this.lang.id});
+
+            if (this.dataRoute.action === 'create-lang') {
+
+                // set label field
+                this.fg.controls['label'].setValue(
+                    this.object['labels'].find((el) => {
+                        return el['id'] === this.baseLang
+                    })['value']
+                );
+
+                // disabled inputs that hasn't caontaint multi language
+                this.disabledForm();
+
+            } else if (this.dataRoute.action === 'edit') {
+
+                // set label field
+                this.fg.controls['label'].setValue(
+                    this.object['labels'].find((el) => {
+                        return el['id'] === this.lang.id;
+                    })['value']
+                );
+
+                // disabled elemetns if edit diferent language that base lang
+                if (this.lang.id !== this.baseLang) {
+                    this.disabledForm();
+                }
+            }
+        }
+    }
+
+    argumentsGetRecord(params: Params): any {
         let args = {
             sql: [{
                 command: 'where',
@@ -114,7 +112,7 @@ export class FieldDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    getGraphQLDataRelationsToCreateObject() {
+    relationsObject() {
         this.objectService
             .proxyGraphQL()
             .watchQuery({
@@ -129,11 +127,11 @@ export class FieldDetailComponent extends CoreDetailComponent {
                 }
             })
             .subscribe(({data}) => {
-                this.setDataRelationsObject(data);
+                this.setRelationsData(data);
             });
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set field groups
         this.fieldGroups = _.map(<FieldGroup[]>data['adminFieldGroups'], obj => {
             return { value: obj.id, label: obj.name };

@@ -1,7 +1,7 @@
 <div class="container-fluid form-group">
     <h1>Category</h1>
 
-    <form [formGroup]="fg" (ngSubmit)="onSubmit(object)" novalidate>
+    <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
         <input type="hidden" formControlName="lang_id">
 

@@ -4,7 +4,7 @@ import { Injector, ViewChild, HostBinding, OnInit } from '@angular/core';
 import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 import { environment } from './../../../environments/environment';
 
-export class CoreListComponent extends CoreComponent implements OnInit {
+export class CoreListComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
     @ViewChild(('dataTableObjects')) dataTable: DataTable;
@@ -13,24 +13,12 @@ export class CoreListComponent extends CoreComponent implements OnInit {
     totalRecords: number;       // total records in datatable
     filteredRecords: number;    // filtered records over total
     columnsSearch: string[];    // columns where will be used for global searchs
-    // Function that can to be overwrite in child class
-    customCallback: Function = data => this.objects = data;
 
     constructor(
         protected injector: Injector,
         protected graphQL: GraphQLModel
     ) {
         super(injector, graphQL);
-    }
-
-    ngOnInit() { }
-
-    getRecords(f: Function): void {
-        this.objectService
-            .getRecords()
-            .subscribe((response: any) => {
-                this.customCallback(response.data);
-            });
     }
 
     /**
@@ -40,9 +28,9 @@ export class CoreListComponent extends CoreComponent implements OnInit {
      * @param lang          if need all results must be filtered by lang_id, not all multi language tablas have lang_is, for example table field
      * @param params        when overwrite loadDadaTableLazy function, is to add more parametes, for example field_value table need add field id
      */
-    loadDadaTableLazyGraphQL(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined) {
+    getRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined) {
         // set params
-        let args = this.getArguments(event, filters, sql);
+        let args = this.argumentsGetRecords(event, filters, sql);
 
         if (environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
 
@@ -62,11 +50,11 @@ export class CoreListComponent extends CoreComponent implements OnInit {
                 this.totalRecords = data['coreObjectsPagination'].total;
                 this.filteredRecords = data['coreObjectsPagination'].filtered;
 
-                // set custom data
-                this.setCustomData(data);
+                // set realtions data
+                this.setRelationsData(data);
 
                 // instance data on object list
-                this.customCallback(data['coreObjectsPagination']['objects']);
+                this.setData(data['coreObjectsPagination']['objects']);
             }, (error) => {
                 if (environment.debug) {
                     console.log('DEBUG - Error GraphQL response in data list: ', error);
@@ -76,7 +64,19 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             });
     }
 
-    setCustomData(data: Object): void { }
+    /**
+     * Set data for realations object
+     * @param data
+     */
+    setRelationsData(data: Object): void { }
+
+    /**
+     *
+     * @param data
+     */
+    setData (data): void {
+        this.objects = data;
+    }
 
     deleteRecord(f: Function, object: any, args = {}): void {
 
@@ -87,7 +87,7 @@ export class CoreListComponent extends CoreComponent implements OnInit {
         }
 
         // call method that can to be overwrite by children
-        args = this.getCustomArgumentsForDeleteRecord(object, args);
+        args = this.getCustomArgumentsDeleteRecord(object, args);
 
         if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 
@@ -113,9 +113,9 @@ export class CoreListComponent extends CoreComponent implements OnInit {
     }
 
     // method to be overwrite
-    getCustomArgumentsForDeleteRecord(object: any, args: Object): Object { return args; }
+    getCustomArgumentsDeleteRecord(object: any, args: Object): Object { return args; }
 
-    getArguments(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
+    argumentsGetRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
 
         let args = {}; // create empty object
 
@@ -123,11 +123,6 @@ export class CoreListComponent extends CoreComponent implements OnInit {
         if (filters) {
             args['filters'] = filters;
         }
-
-        /*// set lang if is defined
-        if (lang) {
-            args['lang'] = lang;
-        }*/
 
         args['sql'] = sql ? sql : []; // set sql array
 
@@ -164,11 +159,11 @@ export class CoreListComponent extends CoreComponent implements OnInit {
             }
         }
 
-        return this.getCustomArguments(args);
+        return this.getCustomArgumentsGetRecords(args);
     }
 
     // instante custom arguments, for example in article-list.component.ts
-    getCustomArguments(args: Object): Object {
+    getCustomArgumentsGetRecords(args: Object): Object {
         return args;
     }
 }

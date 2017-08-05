@@ -31,7 +31,7 @@ export class ResourceDetailComponent extends CoreDetailComponent {
     }
 
     // ovewrite this method to custom column id by column resource.id
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
 
         let args = {
             model: this.graphQL.objectModel,
@@ -46,7 +46,7 @@ export class ResourceDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set packages
         this.packages = _.map(<Package[]>data['adminPackages'], obj => {
             return { value: obj.id, label: obj.name };

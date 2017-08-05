@@ -21,6 +21,9 @@ import * as _ from 'lodash';
 })
 export class ArticleDetailComponent extends CoreDetailComponent implements OnInit {
 
+    // set empty object
+    object: Article = new Article();
+
     sections: SelectItem[] = [];
     families: SelectItem[] = [];
     statuses: SelectItem[] = [];
@@ -39,49 +42,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
     @ViewChild('familiesInput') private familiesInput: DropdownComponent;
-
-    // paramenters for parent class
-    object: Article = new Article(); // set empty object
-    customCallback: Function = (response = undefined) => {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response; // function to set custom data
-
-            // set family object, to change morphology of form
-            this.family = _.find(this._families, {id: this.object.family_id});
-
-            // create copy object for change readonly properties
-            let objectInput = Object.assign({}, this.object);
-
-            // change publish and date format to Date, for calendar component
-            objectInput['publish'] = new Date(this.object.publish);
-            if (this.object.date) {
-                objectInput['date'] = new Date(this.object.date);
-            }
-
-            // set values of form, if the object not match with form, use pachValue instead of setValue
-            this.fg.patchValue(objectInput);
-
-            // set categories extracting ids
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
-
-            // set tags extracting name field
-            this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
-
-            // TODO establece author cuando tengamos los usuarios relacionados
-            // set tags extracting name field
-            // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
-
-            // manage custom fields
-            this.handleGetCustomFields();
-
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    // set lang id in form from object with multiple language
-                    lang_id: this.lang.id
-                });
-            }
-        }
-    }
 
     constructor(
         protected injector: Injector,
@@ -163,7 +123,48 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         }
     }
 
-    getCustomArgumentsForOnSubmit(args: Object, object: any) {
+    setData(response = undefined) {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+            this.object = response; // function to set custom data
+
+            // set family object, to change morphology of form
+            this.family = _.find(this._families, {id: this.object.family_id});
+
+            // create copy object for change readonly properties
+            let objectInput = Object.assign({}, this.object);
+
+            // change publish and date format to Date, for calendar component
+            objectInput['publish'] = new Date(this.object.publish);
+            if (this.object.date) {
+                objectInput['date'] = new Date(this.object.date);
+            }
+
+            // set values of form, if the object not match with form, use pachValue instead of setValue
+            this.fg.patchValue(objectInput);
+
+            // set categories extracting ids
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+
+            // set tags extracting name field
+            this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
+
+            // TODO establece author cuando tengamos los usuarios relacionados
+            // set tags extracting name field
+            // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
+
+            // manage custom fields
+            this.handleGetCustomFields();
+
+            if (this.dataRoute.action === 'create-lang') {
+                this.fg.patchValue({
+                    // set lang id in form from object with multiple language
+                    lang_id: this.lang.id
+                });
+            }
+        }
+    }
+
+    getCustomArgumentsPostRecord(args: Object, object: any) {
         // serialeize Date object to don't be changed by apollo client
         args['object']['publish'] = args['object']['publish'].toString();
         if (args['object']['date']) {
@@ -173,7 +174,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         return args;
     }
 
-    getArgsToGetRecord(params: Params): any {
+    argumentsGetRecord(params: Params): any {
         let args = {
             sql: [
                 {
@@ -239,7 +240,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         return args;
     }
 
-    getCustomArgumentsForGraphQLDataRelationsToCreateObject(): Object {
+    argumentsRelationsObject(): Object {
         let sqlArticle = [
             {
                 command: 'where',
@@ -297,7 +298,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
         };
     }
 
-    setDataRelationsObject(data) {
+    setRelationsData(data) {
 
         // cms sections
         this._sections = data['cmsSections'];

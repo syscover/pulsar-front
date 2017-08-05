@@ -38,7 +38,7 @@ export class UserDetailComponent extends CoreDetailComponent {
     }
 
     // ovewrite this method to custom column id by column resource.id
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
 
         let args = {
             model: this.graphQL.objectModel,
@@ -53,7 +53,7 @@ export class UserDetailComponent extends CoreDetailComponent {
         return args;
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set langs
         this.langsAux = _.map(<Profile[]>data['adminLangs'], obj => {
             return { value: obj.id, label: obj.name };

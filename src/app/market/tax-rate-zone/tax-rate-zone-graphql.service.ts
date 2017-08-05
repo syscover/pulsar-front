@@ -15,7 +15,7 @@ export class TaxRateZoneGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query MarketGetTaxRateZone ($sqlCountry:[CoreSQLQueryInput]) {
+        query MarketRelationsTaxRateZone ($sqlCountry:[CoreSQLQueryInput]) {
             ${this.relationsFields}
         }`;
 

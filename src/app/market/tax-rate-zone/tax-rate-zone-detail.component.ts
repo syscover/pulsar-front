@@ -36,7 +36,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getArgsToGetRecord(params: Params) {
+    argumentsGetRecord(params: Params) {
         return {
             model: this.graphQL.objectModel,
             sql: [{
@@ -54,7 +54,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
         };
     }
 
-    getCustomArgumentsForGraphQLDataRelationsToCreateObject(): Object {
+    argumentsRelationsObject(): Object {
         let sqlCountry = [
             {
                 command: 'where',
@@ -69,7 +69,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setDataRelationsObject(data: any) {
+    setRelationsData(data: any) {
         // set countries
         this.countries = _.map(<Country[]>data['adminCountries'], obj => {
             return { value: obj.id, label: obj.name };

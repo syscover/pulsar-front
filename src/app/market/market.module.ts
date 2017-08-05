@@ -21,12 +21,14 @@ import { ProductClassTaxListComponent } from './product-class-tax/product-class-
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
+import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
+import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 
 
 /* import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
-import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
-import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
+
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component'; */
 
@@ -38,8 +40,7 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
     declarations: [
         /* CategoryListComponent,
         CategoryDetailComponent,
-        TaxRuleListComponent,
-        TaxRuleDetailComponent,*/
+        */
         CustomerClassTaxDetailComponent,
         CustomerClassTaxListComponent,
         GroupCustomerClassTaxDetailComponent,
@@ -52,6 +53,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         ProductClassTaxListComponent,
         TaxRateZoneDetailComponent,
         TaxRateZoneListComponent,
+        TaxRuleDetailComponent,
+        TaxRuleListComponent,
         /*
         ProductListComponent,
         ProductDetailComponent */
@@ -62,7 +65,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         OrderStatusGraphQLService,
         PaymentMethodGraphQLService,
         ProductClassTaxGraphQLService,
-        TaxRateZoneGraphQLService
+        TaxRateZoneGraphQLService,
+        TaxRuleGraphQLService
     ]
 })
 

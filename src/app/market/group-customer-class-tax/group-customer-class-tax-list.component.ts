@@ -21,7 +21,7 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
         super(injector, graphQL);
     }
 
-    getCustomArgumentsForDeleteRecord(object: any, args: Object): Object {
+    getCustomArgumentsDeleteRecord(object: any, args: Object): Object {
         return {
             'group_id': object.group_id,
             'customer_class_tax_id': object.customer_class_tax_id
