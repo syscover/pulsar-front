@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Params } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,7 +19,7 @@ import * as _ from 'lodash';
     selector: 'ps-article-detail',
     templateUrl: './article-detail.component.html'
 })
-export class ArticleDetailComponent extends CoreDetailComponent implements OnInit {
+export class ArticleDetailComponent extends CoreDetailComponent {
 
     // set empty object
     object: Article = new Article();
@@ -106,7 +106,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
 
     // get custom fields that has this object
     handleGetCustomFields() {
-
         if (this.family.field_group_id) {
             this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
 
@@ -299,7 +298,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements OnIni
     }
 
     setRelationsData(data) {
-
         // cms sections
         this._sections = data['cmsSections'];
         this.sections = _.map(this._sections, obj => {
