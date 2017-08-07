@@ -22,10 +22,10 @@ export class ArticleGraphQLService extends GraphQLModel {
 
     queryRelationsObject  = gql`
         query CmsGetRelationsArticle (
-            $sqlAttachmentFamily:[CoreSQLQueryInput] 
+            $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput] 
             $sqlArticle:[CoreSQLQueryInput] 
-            $config:CoreConfigInput!
+            $configStatuses:CoreConfigInput!
         ) {
             ${this.relationsFields}
         }`;
@@ -172,7 +172,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                 lang_id
                 name
             }
-            cmsStatuses: coreConfig (config:$config) {
+            cmsStatuses: coreConfig (config:$configStatuses) {
                 ... on CoreConfigOptionType {
                     id
                     name

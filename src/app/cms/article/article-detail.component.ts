@@ -264,6 +264,20 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             });
         };
 
+        let sqlAttachmentFamily = [
+            {
+                'command': 'where',
+                'column': 'attachment_family.resource_id',
+                'operator': '=',
+                'value': 'cms-article'
+            },
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'attachment_family.name'
+            }
+        ];
+
         let sqlCategory = [
             {
                 command: 'where',
@@ -273,27 +287,17 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             }
         ];
 
+        let configStatuses = {
+            key: 'pulsar.cms.statuses',
+            lang: this.baseLang,
+            property: 'name'
+        };
+
         return {
             sqlArticle,
-            sqlAttachmentFamily: [
-                {
-                    'command': 'where',
-                    'column': 'attachment_family.resource_id',
-                    'operator': '=',
-                    'value': 'cms-article'
-                },
-                {
-                    'command': 'orderBy',
-                    'operator': 'asc',
-                    'column': 'attachment_family.name'
-                }
-            ],
+            sqlAttachmentFamily,
             sqlCategory,
-            config: {
-                key: 'pulsar.cms.statuses',
-                lang: this.baseLang,
-                property: 'name'
-            }
+            configStatuses
         };
     }
 
