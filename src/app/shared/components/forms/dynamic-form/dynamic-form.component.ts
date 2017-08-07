@@ -60,6 +60,7 @@ export class DynamicFormComponent implements OnInit {
         const labelObj = this.field.labels.find((el) => {
                 return el['id'] === this.lang;
             });
+
         // check if label exist in lang required
         this.label = labelObj ? labelObj['value'] : null;
 

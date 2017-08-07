@@ -63,6 +63,10 @@ export class DynamicFormService {
                         customFields.patchValue(values);
                     }
 
+                    // remove customFields control if exist
+                    if (fg.get('customFields')) fg.removeControl('customFields');
+
+                    // add new customFields control
                     fg.addControl('customFields', customFields);
 
                     // set instance form of dynamicsFormService
@@ -74,7 +78,7 @@ export class DynamicFormService {
                     f(this.fields);
                 });
         } else {
-            // retun a undefined value
+            // reset fields
             this.fields = undefined;
             f(this.fields);
         }
