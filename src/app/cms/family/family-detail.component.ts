@@ -58,20 +58,25 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         };
     }
 
-    relationsObject() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    config: {
-                        key: 'pulsar.cms.editors'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setRelationsData(data);
-            });
+    argumentsRelationsObject() {
+
+        let sqlFieldGroup = [
+            {
+                command: 'where',
+                column: 'resource_id',
+                operator: '=',
+                value: 'cms-article-family'
+            }
+        ];
+
+        let configEditors = {
+            key: 'pulsar.cms.editors'
+        };
+
+        return {
+            configEditors,
+            sqlFieldGroup
+        };
     }
 
     setRelationsData(data: any) {

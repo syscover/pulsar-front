@@ -15,7 +15,7 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query CmsGetRelationsFamily ($config:CoreConfigInput!){
+        query CmsGetRelationsFamily ($configEditors:CoreConfigInput! $sqlFieldGroup:[CoreSQLQueryInput]){
             ${this.relationsFields}
         }`;
 
@@ -81,13 +81,13 @@ export class FamilyGraphQLService extends GraphQLModel {
         `;
 
         this.relationsFields = `
-            coreConfig (config:$config) {
+            coreConfig (config:$configEditors) {
                 ... on CoreConfigOptionType {
                     id
                     name
                 }
             }
-            adminFieldGroups {
+            adminFieldGroups (sql:$sqlFieldGroup) {
                 id
                 name
             }
