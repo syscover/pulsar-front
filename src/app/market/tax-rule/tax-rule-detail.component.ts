@@ -53,7 +53,6 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
 
     argumentsGetRecord(params: Params) {
         return {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'tax_rule.id',

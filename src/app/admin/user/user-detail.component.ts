@@ -41,7 +41,6 @@ export class UserDetailComponent extends CoreDetailComponent {
     argumentsGetRecord(params: Params) {
 
         let args = {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'user.id',

@@ -37,7 +37,6 @@ export class SectionDetailComponent extends CoreDetailComponent {
 
     argumentsGetRecord(params: Params) {
         return {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'section.id',

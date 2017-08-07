@@ -32,7 +32,6 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
 
     argumentsGetRecord(params: Params) {
         return {
-            model: this.graphQL.objectModel,
             config: {
                 key: 'pulsar.admin.resources_attachments'
             },

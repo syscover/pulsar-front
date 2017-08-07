@@ -34,7 +34,6 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
     // instante custom arguments, for example in payment-method-detail.component.ts
     getCustomArgumentsGetRecord(args: Object, params: Params): any {
         return {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'group_id',

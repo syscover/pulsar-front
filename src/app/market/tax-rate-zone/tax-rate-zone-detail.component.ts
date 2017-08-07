@@ -38,7 +38,6 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
 
     argumentsGetRecord(params: Params) {
         return {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'tax_rate_zone.id',

@@ -34,7 +34,6 @@ export class ResourceDetailComponent extends CoreDetailComponent {
     argumentsGetRecord(params: Params) {
 
         let args = {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
                 column: 'resource.id',
