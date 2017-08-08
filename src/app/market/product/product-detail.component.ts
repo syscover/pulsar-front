@@ -77,8 +77,11 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     // get taxes for product
-    handleGetProductTaxes(price = null, callback = undefined) {
-         let subs = this.objectService
+    handleGetProductTaxes(price = null, callback = undefined): void {
+
+        if (! price) return;
+
+        let subs = this.objectService
             .proxyGraphQL()
             .watchQuery({
                 fetchPolicy: 'network-only',
