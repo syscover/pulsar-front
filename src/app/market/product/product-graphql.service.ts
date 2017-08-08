@@ -72,7 +72,7 @@ export class ProductGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Market\\Models\\Product';
-        this.table = 'product';
+        this.table = 'product_lang';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
@@ -81,6 +81,11 @@ export class ProductGraphQLService extends GraphQLModel {
                 lang_id
                 name
                 slug
+                categories {
+                    id
+                    lang_id
+                    name
+                }
                 field_group_id
                 product_type_id
                 parent_product_id

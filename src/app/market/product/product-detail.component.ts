@@ -31,8 +31,8 @@ export class ProductDetailComponent extends CoreDetailComponent {
     fields: Field[];
     fieldValues: FieldValue[];
 
-    @ViewChild('productClassTax') private productClassTax;
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
+    @ViewChild('productClassTax') private productClassTax;
 
     // paramenters for parent class
     object: Product = new Product(); // set empty object
@@ -63,7 +63,6 @@ export class ProductDetailComponent extends CoreDetailComponent {
             price_type_id: ['', Validators.required],
             product_class_tax_id: ['', Validators.required],
             description: '',
-            size: '',
             price: null,
             subtotal: null,
             subtotal_format: [{value: null, disabled: true}, Validators.required ],
@@ -77,6 +76,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
         super.postRecord(object, routeRedirect, params);
     }
 
+    // get taxes for product
     handleGetProductTaxes(price = null, callback = undefined) {
          let subs = this.objectService
             .proxyGraphQL()
@@ -124,11 +124,11 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
     setData (response = undefined) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response.data; // function to set custom data
+            this.object = response; // function to set custom data
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
-            // set attachments in FormArray from ps-attachment-files-library component
-            this.attachments.setValue(this.object.attachments);
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id')); // set categories extracting ids
+
+            // set categories extracting ids
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
 
             this.handleGetProductTaxes(
                 this.fg.controls['subtotal'].value,
@@ -190,7 +190,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 'command': 'where',
                 'column': 'attachment_family.resource_id',
                 'operator': '=',
-                'value': 'cms-article'
+                'value': 'market-product'
             },
             {
                 'command': 'orderBy',

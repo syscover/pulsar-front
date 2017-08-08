@@ -36,7 +36,7 @@ export class AttachmentItemComponent implements OnInit {
             jQuery($event.target).closest('.attachment-item').removeClass('covered');
         });
 
-        this.family = _.find(this.families, ['id', this.attachment.get('family_id').value]);
+        this.family = _.find(this.families, {'id': this.attachment.get('family_id').value});
     }
 
     removeItemHandler($event) {

@@ -180,6 +180,7 @@
 
             <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
                 <ps-attachment-files-library    #attachments
+                                                [value]="object.attachments"
                                                 [form]="fg"
                                                 name="attachments"
                                                 [endpoint]="apiUrl + '/api/v1/admin/attachment-upload'"

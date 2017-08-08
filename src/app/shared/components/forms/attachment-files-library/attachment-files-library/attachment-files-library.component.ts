@@ -1,5 +1,4 @@
-import { ImageComponent } from './../../image.component';
-import { Component, ViewChildren, QueryList, Input, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, ViewChildren, QueryList, Input, OnInit, OnChanges, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AttachmentService } from './../attachment.service';
@@ -16,7 +15,7 @@ declare const jQuery: any; // jQuery definition
     templateUrl: './attachment-files-library.html',
     styleUrls: ['./attachment-files-library.scss']
 })
-export class AttachmentFilesLibraryComponent implements OnInit {
+export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
 
     // Input elements
     @Input() form: FormGroup;
@@ -38,7 +37,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
     cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-    image: ImageComponent;                  // image where will be load new image cropped
     displayDialog: boolean = false;
     progress: number = 0;
 
@@ -62,8 +60,11 @@ export class AttachmentFilesLibraryComponent implements OnInit {
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'drop', ($event) => {
             this.dropHandler($event);
         });
+    }
 
-        // set value from component, to init with values only when the component is created
+    ngOnChanges() {
+        // set value from component, to init with values only 
+        // when the component is created or change value input
         if (this.value) this.setValue(this.value);
     }
 
@@ -280,7 +281,6 @@ export class AttachmentFilesLibraryComponent implements OnInit {
 
         // instance attachment to be sent in cropHandler
         this.attachment = $event.attachment;
-        this.image = $event.image;
 
         // get attachment family
         this.attachmentFamily = <AttachmentFamily>_.find(this.families, {'id': $event.family_id});
@@ -315,14 +315,10 @@ export class AttachmentFilesLibraryComponent implements OnInit {
                 attachment: this.attachment.value       // get values from formGroup
             })
             .subscribe(({data}) => {
-
                 if (environment.debug) console.log('DEBUG - response after crop image: ', data);
 
                 // set attachemnt family id
                 this.attachment.patchValue(data.adminCropAttachment.attachment);
-
-                // refresh image src
-                this.image.refresh();
 
                 // hide crop dialog
                 this.displayDialog = false;
