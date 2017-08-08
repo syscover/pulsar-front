@@ -35,17 +35,6 @@ export class SectionDetailComponent extends CoreDetailComponent {
         });
     }
 
-    argumentsGetRecord(params: Params) {
-        return {
-            sql: [{
-                command: 'where',
-                column: 'section.id',
-                operator: '=',
-                value: params['id']
-            }]
-        };
-    }
-
     setRelationsData(data: any) {
         this.families = _.map(<Family[]>data['cmsFamilies'], obj => {
             return { value: obj.id, label: obj.name };

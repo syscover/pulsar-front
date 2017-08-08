@@ -15,7 +15,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsAttachmentFamily ($config:CoreConfigInput!){
+        query AdminGetRelationsAttachmentFamily ($configSizes:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 
@@ -28,7 +28,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput] $configSizes:CoreConfigInput) {
             coreObject: adminAttachmentFamily (sql:$sql){
                 ${this.fields}
             }
@@ -57,8 +57,8 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\AttachmentFamily';
+        this.model = 'Syscover\\Admin\\Models\\AttachmentFamily';
+        this.table = 'attachment_family';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
@@ -83,7 +83,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
                     id
                     name
                 }
-                adminSizes: coreConfig (config:$config) {
+                configSizes:coreConfig (config:$configSizes) {
                     ... on CoreConfigOptionType {
                         id
                         name

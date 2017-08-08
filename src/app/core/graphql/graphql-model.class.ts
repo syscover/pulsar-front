@@ -1,10 +1,11 @@
 import { GraphQLModel as GraphQLModelInterface } from './graphql-model.interface';
-import gql from 'graphql-tag';
 
 export class GraphQLModel implements GraphQLModelInterface {
 
     // model of backoffice relative at this GraphQL service
-    objectModel: string;
+    model: string;
+    // table name
+    table: string;
     // fields of objects that have any relation with query object, set empty by defaul because is used in multiple queries
     relationsFields: string;
     // defaults fields that will be return, fragment inline only is necessary for pagination

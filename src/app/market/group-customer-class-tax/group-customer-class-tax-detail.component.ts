@@ -31,7 +31,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent {
         });
     }
 
-    // instante custom arguments, for example in payment-method-detail.component.ts
+    // instante custom arguments because has a especific ids
     getCustomArgumentsGetRecord(args: Object, params: Params): any {
         return {
             sql: [{

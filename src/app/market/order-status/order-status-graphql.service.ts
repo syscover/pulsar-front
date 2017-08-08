@@ -50,8 +50,8 @@ export class OrderStatusGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Market\\Models\\OrderStatus';
+        this.model = 'Syscover\\Market\\Models\\OrderStatus';
+        this.table = 'order_status';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

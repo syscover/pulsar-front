@@ -50,8 +50,8 @@ export class ProfileGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\Profile';
+        this.model = 'Syscover\\Admin\\Models\\Profile';
+        this.table = 'profile';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

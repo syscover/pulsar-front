@@ -8,7 +8,6 @@ import { Lang } from './../../admin/admin.models';
 import { DataRoute } from './../classes/data-route';
 import { setErrorsOnSubmitFormGroup } from './../super/core-validation';
 import { environment } from './../../../environments/environment';
-import gql from 'graphql-tag';
 import * as _ from 'lodash';
 
 export class CoreDetailComponent extends CoreComponent implements OnInit {
@@ -102,6 +101,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         let subs = this.objectService
             .proxyGraphQL()
             .watchQuery({
+                fetchPolicy: 'network-only',
                 query: this.graphQL.queryObject,
                 // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
                 variables: this.argumentsGetRecord(params)
@@ -122,12 +122,11 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
     argumentsGetRecord(params: Params): any {
-
+        this.graphQL.table
         let args = {
-            model: this.graphQL.objectModel,
             sql: [{
                 command: 'where',
-                column: 'id',
+                column: `${this.graphQL.table}.id`,
                 operator: '=',
                 value: params['id']
             }]
@@ -137,7 +136,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         if (params['lang']) {
             args.sql.push({
                 command: 'where',
-                column: 'lang_id',
+                column: `${this.graphQL.table}.lang_id`,
                 operator: '=',
                 value: params['lang']
             });
@@ -150,9 +149,10 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         return args;
     }
 
-    // instante custom arguments, for example in payment-method-detail.component.ts
+    // instante custom arguments, for example in field-detail.component.ts
+    // default merge relations arguments with argumens
     getCustomArgumentsGetRecord(args: Object, params: Params): any {
-        return args;
+        return Object.assign({}, args, this.argumentsRelationsObject());
     }
 
     /**
@@ -189,7 +189,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
     }
 
-    // instante custom arguments, for example in payment-method-detail.component.ts
+    // get arguments, for example in payment-method-detail.component.ts
     argumentsRelationsObject(): Object {
         return undefined;
     }

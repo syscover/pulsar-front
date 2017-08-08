@@ -1,7 +1,9 @@
 export interface GraphQLModel {
 
     // model of backoffice relative at this GraphQL service
-    objectModel;
+    model: string;
+    // table name
+    table: string;
     // fields of objects that have any relation with query object
     relationsFields: string;
     // defaults fields that will be return, fragment inline only is necessary for pagination

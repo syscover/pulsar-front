@@ -27,10 +27,9 @@ import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.com
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
-
-/*
+import { ProductDetailComponent } from './product/product-detail.component';
+import { ProductGraphQLService } from './product/product-graphql.service';
 import { ProductListComponent } from './product/product-list.component';
-import { ProductDetailComponent } from './product/product-detail.component'; */
 
 @NgModule({
     imports: [
@@ -54,9 +53,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         TaxRateZoneListComponent,
         TaxRuleDetailComponent,
         TaxRuleListComponent,
-        /*
         ProductListComponent,
-        ProductDetailComponent */
+        ProductDetailComponent
     ],
     providers: [
         CategoryGraphQLService,
@@ -66,7 +64,8 @@ import { ProductDetailComponent } from './product/product-detail.component'; */
         PaymentMethodGraphQLService,
         ProductClassTaxGraphQLService,
         TaxRateZoneGraphQLService,
-        TaxRuleGraphQLService
+        TaxRuleGraphQLService,
+        ProductGraphQLService
     ]
 })
 

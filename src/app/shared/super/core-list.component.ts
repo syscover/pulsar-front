@@ -37,9 +37,9 @@ export class CoreListComponent extends CoreComponent {
         let obs = this.objectService
             .proxyGraphQL()
             .watchQuery({
+                fetchPolicy: 'network-only',
                 query: this.graphQL.queryPaginationObject,
-                variables: args,
-                fetchPolicy: 'network-only'
+                variables: args
             }).subscribe(({data}) => {
 
                 obs.unsubscribe();

@@ -15,7 +15,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsAttachmentMime ($config:CoreConfigInput!){
+        query AdminGetRelationsAttachmentMime ($configAttachmentResources:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 
@@ -28,7 +28,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query AdminGetAttachmentMime ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+        query AdminGetAttachmentMime ($sql:[CoreSQLQueryInput] $configAttachmentResources:CoreConfigInput) {
             coreObject: adminAttachmentMime (sql:$sql){
                 ${this.fields}
             }
@@ -58,7 +58,8 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
 
     init() {
         // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\AttachmentMime';
+        this.model = 'Syscover\\Admin\\Models\\AttachmentMime';
+        this.table = 'attachment_mime';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
@@ -74,7 +75,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
         `;
 
         this.relationsFields = `
-            coreConfig (config:$config) {
+            configAttachmentResources:coreConfig (config:$configAttachmentResources) {
                 ... on CoreConfigOptionType {
                     id
                     name

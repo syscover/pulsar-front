@@ -50,8 +50,8 @@ export class ProductClassTaxGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Market\\Models\\ProductClassTax';
+        this.model = 'Syscover\\Market\\Models\\ProductClassTax';
+        this.table = 'product_class_tax';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

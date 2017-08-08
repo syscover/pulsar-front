@@ -57,8 +57,8 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Market\\Models\\PaymentMethod';
+        this.model = 'Syscover\\Market\\Models\\PaymentMethod';
+        this.table = 'payment_method';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

@@ -93,14 +93,22 @@ export class FieldDetailComponent extends CoreDetailComponent {
         }
     }
 
-    argumentsGetRecord(params: Params): any {
-        let args = {
+    // overwrite this method for not implement lang_id property in aguments
+    // field object has translations in field name in json format
+    getCustomArgumentsGetRecord(args: Object, params: Params): any {
+        return Object.assign({}, {
             sql: [{
                 command: 'where',
                 column: 'field.id',
                 operator: '=',
                 value: params['id']
-            }],
+            }]},
+            this.argumentsRelationsObject()
+        );
+    }
+
+    argumentsRelationsObject(): Object {
+        return {
             configFieldTypes: {
                 key: 'pulsar.admin.field_types'
             },
@@ -108,27 +116,6 @@ export class FieldDetailComponent extends CoreDetailComponent {
                 key: 'pulsar.admin.data_types'
             }
         };
-
-        return args;
-    }
-
-    relationsObject() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    configFieldTypes: {
-                        key: 'pulsar.admin.field_types'
-                    },
-                    configDataTypes: {
-                        key: 'pulsar.admin.data_types'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setRelationsData(data);
-            });
     }
 
     setRelationsData(data: any) {

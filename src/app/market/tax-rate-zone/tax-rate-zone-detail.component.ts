@@ -36,23 +36,6 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
         });
     }
 
-    argumentsGetRecord(params: Params) {
-        return {
-            sql: [{
-                command: 'where',
-                column: 'tax_rate_zone.id',
-                operator: '=',
-                value: params['id']
-            }],
-            sqlCountry: [{
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
-            }]
-        };
-    }
-
     argumentsRelationsObject(): Object {
         let sqlCountry = [
             {

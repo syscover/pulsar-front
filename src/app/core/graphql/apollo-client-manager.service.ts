@@ -81,7 +81,7 @@ export class ApolloClientManagerService {
                     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
                 }
 
-                let trackId = true;
+                let trackId = false;
 
                 if (o['lang_id'] && o['id']) {
                     if (trackId) console.log('Apollo ID: ', `${o['__typename']}-${o['id']}-${o['lang_id']}`);

@@ -51,17 +51,6 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         }
     }
 
-    argumentsGetRecord(params: Params) {
-        return {
-            sql: [{
-                command: 'where',
-                column: 'tax_rule.id',
-                operator: '=',
-                value: params['id']
-            }]
-        };
-    }
-
     setRelationsData(data: any) {
 
         // set tax rate zones

@@ -5,7 +5,6 @@ import { CoreService } from './../shared/super/core.service';
 import { PackageGraphQLService } from './../admin/package/package-graphql.service';
 import { Package } from '../admin/admin.models';
 import { AuthService } from './../core/auth/auth.service';
-import gql from 'graphql-tag';
 declare const jQuery: any; // jQuery definition
 
 enum MenuOrientation {

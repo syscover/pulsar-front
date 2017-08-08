@@ -43,7 +43,7 @@ export class ArticleGraphQLService extends GraphQLModel {
             $sqlAttachmentFamily:[CoreSQLQueryInput] 
             $sqlCategory:[CoreSQLQueryInput]
             $sqlArticle:[CoreSQLQueryInput] 
-            $config:CoreConfigInput!
+            $configStatuses:CoreConfigInput!
         ) {
             coreObject: cmsArticle (sql:$sql){
                 ${this.fields}
@@ -73,8 +73,8 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Cms\\Models\\Article';
+        this.model = 'Syscover\\Cms\\Models\\Article';
+        this.table = 'article';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

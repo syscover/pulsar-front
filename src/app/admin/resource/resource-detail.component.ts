@@ -30,21 +30,6 @@ export class ResourceDetailComponent extends CoreDetailComponent {
         });
     }
 
-    // ovewrite this method to custom column id by column resource.id
-    argumentsGetRecord(params: Params) {
-
-        let args = {
-            sql: [{
-                command: 'where',
-                column: 'resource.id',
-                operator: '=',
-                value: params['id']
-            }]
-        };
-
-        return args;
-    }
-
     setRelationsData(data: any) {
         // set packages
         this.packages = _.map(<Package[]>data['adminPackages'], obj => {

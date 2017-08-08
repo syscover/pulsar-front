@@ -50,8 +50,8 @@ export class LangGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\Lang';
+        this.model = 'Syscover\\Admin\\Models\\Lang';
+        this.table = 'lang';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

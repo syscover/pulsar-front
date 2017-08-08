@@ -20,7 +20,7 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryObjects = gql`
-        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
             coreObjects: cmsFamilies (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query CmsGetFamily ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+        query CmsGetFamily ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
             coreObject: cmsFamily (sql:$sql){
                 ${this.fields}
             }
@@ -57,8 +57,8 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Cms\\Models\\Family';
+        this.model = 'Syscover\\Cms\\Models\\Family';
+        this.table = 'article_family';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

@@ -46,36 +46,12 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         });
     }
 
-    // ovewrite this method to custom column id by column attachment_family.id
-    argumentsGetRecord(params: Params) {
-        let args = {
-            sql: [{
-                command: 'where',
-                column: 'attachment_family.id',
-                operator: '=',
-                value: params['id']
-            }],
-            config: {
+    argumentsRelationsObject(): Object {
+        return {
+            configSizes : {
                 key: 'pulsar.admin.sizes'
             }
         };
-        return args;
-    }
-
-    relationsObject() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    config: {
-                        key: 'pulsar.admin.sizes'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setRelationsData(data);
-            });
     }
 
     setRelationsData(data: any) {
@@ -86,7 +62,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         this.resources.unshift({ label: 'Select a resource', value: '' });
 
         // set sizes
-        this.sizes = _.map(<any[]>data['adminSizes'], obj => {
+        this.sizes = _.map(<any[]>data['configSizes'], obj => {
             return { value: obj.id, label: obj.name };
         });
     }

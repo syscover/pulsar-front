@@ -15,7 +15,7 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsFieldGroup ($config:CoreConfigInput!){
+        query AdminGetRelationsFieldGroup ($configFieldGroupResources:CoreConfigInput!){
             ${this.relationsFields}
         }`;
 
@@ -28,7 +28,7 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $config:CoreConfigInput) {
+        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $configFieldGroupResources:CoreConfigInput) {
             coreObject: adminFieldGroup (sql:$sql){
                 ${this.fields}
             }
@@ -57,8 +57,8 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\FieldGroup';
+        this.model = 'Syscover\\Admin\\Models\\FieldGroup';
+        this.table = 'field_group';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
@@ -74,7 +74,7 @@ export class FieldGroupGraphQLService extends GraphQLModel {
         `;
 
         this.relationsFields = `
-            coreConfig (config:$config) {
+            configFieldGroupResources:coreConfig (config:$configFieldGroupResources) {
                 ... on CoreConfigOptionType {
                     id
                     name

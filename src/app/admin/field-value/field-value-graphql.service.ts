@@ -50,8 +50,8 @@ export class FieldValueGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Admin\\Models\\FieldValue';
+        this.model = 'Syscover\\Admin\\Models\\FieldValue';
+        this.table = 'field_value';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

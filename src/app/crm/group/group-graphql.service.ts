@@ -50,8 +50,8 @@ export class GroupGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Crm\\Models\\Group';
+        this.model = 'Syscover\\Crm\\Models\\Group';
+        this.table = 'group';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

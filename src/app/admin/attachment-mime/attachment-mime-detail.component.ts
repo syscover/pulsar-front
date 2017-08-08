@@ -30,41 +30,18 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
         });
     }
 
-    argumentsGetRecord(params: Params) {
+    argumentsRelationsObject(): Object {
         return {
-            config: {
-                key: 'pulsar.admin.resources_attachments'
-            },
-            sql: [{
-                command: 'where',
-                column: 'attachment_mime.id',
-                operator: '=',
-                value: params['id']
-            }]
+            configAttachmentResources : {
+                key: 'pulsar.admin.attachment_resources'
+            }
         };
-    }
-
-    // to create a new object, do all queries to get data across GraphQL
-    relationsObject() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    config: {
-                        key: 'pulsar.admin.resources_attachments'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setRelationsData(data);
-            });
     }
 
     setRelationsData(data: any) {
 
         // get resources allowed to add attachment mime
-        const resourcesAllowed = data.coreConfig;
+        const resourcesAllowed = data.configAttachmentResources;
         let resources = _.filter(<Resource[]>data.adminResources, obj => {
             return _.find(resourcesAllowed, ['id', obj.id]);
         });

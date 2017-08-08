@@ -31,40 +31,17 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
         });
     }
 
-    argumentsGetRecord(params: Params) {
+    argumentsRelationsObject(): Object {
         return {
-            config: {
-                key: 'pulsar.admin.resources_custom_fields'
-            },
-            sql: [{
-                command: 'where',
-                column: 'field_group.id',
-                operator: '=',
-                value: params['id']
-            }]
+            configFieldGroupResources : {
+                key: 'pulsar.admin.custom_field_resources'
+            }
         };
-    }
-
-    // to create a new object, do all queries to get data across GraphQL
-    relationsObject() {
-        this.objectService
-            .proxyGraphQL()
-            .watchQuery({
-                query: this.graphQL.queryRelationsObject,
-                variables: {
-                    config: {
-                        key: 'pulsar.admin.resources_custom_fields'
-                    }
-                }
-            })
-            .subscribe(({data}) => {
-                this.setRelationsData(data);
-            });
     }
 
     setRelationsData(data: any) {
         // get resources allowed to add custom field group
-        const resourcesAllowed = data.coreConfig;
+        const resourcesAllowed = data.configFieldGroupResources;
         let resources = _.filter(<Resource[]>data.adminResources, obj => {
             return _.find(resourcesAllowed, ['id', obj.id]);
         });

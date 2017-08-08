@@ -37,18 +37,6 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
         });
     }
 
-    getCustomArgumentsGetRecord(args: Object, params: Params): Object {
-
-        args['sqlOrderStatus'] = [{
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
-            }];
-
-        return args;
-    }
-
     argumentsRelationsObject(): Object {
         let sqlOrderStatus = [
             {

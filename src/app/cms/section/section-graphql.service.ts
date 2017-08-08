@@ -57,8 +57,8 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        // model of backoffice relative at this GraphQL service
-        this.objectModel = 'Syscover\\Cms\\Models\\Section';
+        this.model = 'Syscover\\Cms\\Models\\Section';
+        this.table = 'section';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

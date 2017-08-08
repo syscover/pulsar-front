@@ -37,21 +37,6 @@ export class UserDetailComponent extends CoreDetailComponent {
         });
     }
 
-    // ovewrite this method to custom column id by column resource.id
-    argumentsGetRecord(params: Params) {
-
-        let args = {
-            sql: [{
-                command: 'where',
-                column: 'user.id',
-                operator: '=',
-                value: params['id']
-            }]
-        };
-
-        return args;
-    }
-
     setRelationsData(data: any) {
         // set langs
         this.langsAux = _.map(<Profile[]>data['adminLangs'], obj => {

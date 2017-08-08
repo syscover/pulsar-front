@@ -43,21 +43,6 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         });
     }
 
-    argumentsGetRecord(params: Params) {
-        return {
-            config: {
-                key: 'pulsar.cms.editors'
-            },
-            model: this.graphQL.objectModel,
-            sql: [{
-                command: 'where',
-                column: 'id',
-                operator: '=',
-                value: params['id']
-            }]
-        };
-    }
-
     argumentsRelationsObject() {
 
         let sqlFieldGroup = [
