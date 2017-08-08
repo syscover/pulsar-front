@@ -1,47 +1,41 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'ps-image',
     template: `
-        <img #image [src]="src" [class]="styleClass" [style]="style">
+        <img #image [src]="imgSrc" [class]="styleClass" [style]="style">
     `,
     providers: [
         {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ImageComponent),
-        multi: true
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ImageComponent),
+            multi: true
         }
     ]
 })
 
-export class ImageComponent implements ControlValueAccessor, OnInit {
+export class ImageComponent implements ControlValueAccessor {
 
-    @Input('src') src;
+    private _src: string;
+    @Input('src') imgSrc;
     @Input('styleClass') styleClass;
     @Input('style') style;
 
-    propagateChange = (_: any) => {};
-
-    constructor() { }
-
     writeValue(value: string) {
         if (value !== undefined) {
-            this.src = value;
+            this._src = value;
+            this.refresh();
         }
     }
-
-    registerOnChange(fn) {
-        this.propagateChange = fn;
-    }
-
-    registerOnTouched() {}
+    registerOnChange(fn) { }
+    registerOnTouched(fn) { }
 
     refresh() {
-        let originSrc = this.src;
-
-        this.src = this.src + '?' + Math.random();
+        this.imgSrc = this._src + '?' + Math.random();
     }
 
-    ngOnInit() { }
+    get src(): string {
+        return this._src;
+    }
 }
