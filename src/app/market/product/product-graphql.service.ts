@@ -79,6 +79,7 @@ export class ProductGraphQLService extends GraphQLModel {
             ... on MarketProduct {
                 id
                 lang_id
+                code
                 name
                 slug
                 categories {
