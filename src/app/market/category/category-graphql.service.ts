@@ -51,7 +51,7 @@ export class CategoryGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Market\\Models\\Category';
-        this.table = 'category';
+        this.table = 'market_category';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

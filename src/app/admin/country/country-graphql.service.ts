@@ -52,7 +52,7 @@ export class CountryGraphQLService extends GraphQLModel {
     init() {
         // model of backoffice relative at this GraphQL service
         this.model = 'Syscover\\Admin\\Models\\Country';
-        this.table = 'country';
+        this.table = 'admin_country';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

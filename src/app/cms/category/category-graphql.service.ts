@@ -14,6 +14,11 @@ export class CategoryGraphQLService extends GraphQLModel {
             }
         }`;
 
+    queryRelationsObject = gql`
+        query CmsGetRelationsCategory {
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
         query CmsGetCategories ($sql:[CoreSQLQueryInput]) {
             coreObjects: cmsCategories (sql:$sql){
@@ -26,6 +31,7 @@ export class CategoryGraphQLService extends GraphQLModel {
             coreObject: cmsCategory (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -51,7 +57,7 @@ export class CategoryGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Cms\\Models\\Category';
-        this.table = 'article_category';
+        this.table = 'cms_category';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
@@ -60,8 +66,16 @@ export class CategoryGraphQLService extends GraphQLModel {
                 lang_id
                 name
                 slug
+                section_id
                 sort
                 data_lang
+            }
+        `;
+
+        this.relationsFields = `
+            cmsSections {
+                id
+                name
             }
         `;
 

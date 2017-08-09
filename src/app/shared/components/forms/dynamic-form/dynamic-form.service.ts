@@ -29,14 +29,14 @@ export class DynamicFormService {
                         sql: [
                             {
                                 'command': 'where',
-                                'column': 'field.field_group_id',
+                                'column': 'admin_field.field_group_id',
                                 'operator': '=',
                                 'value': fieldGroup
                             },
                             {
                                 'command': 'orderBy',
                                 'operator': 'asc',
-                                'column': 'field.sort'
+                                'column': 'admin_field.sort'
                             }
                         ],
                         configFieldTypes: {

@@ -50,13 +50,22 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         return {
             configSizes : {
                 key: 'pulsar.admin.sizes'
+            },
+            configAttachmentResources : {
+                key: 'pulsar.admin.attachment_resources'
             }
         };
     }
 
     setRelationsData(data: any) {
-        // set resources
-        this.resources = _.map(<Resource[]>data['adminResources'], obj => {
+        // get resources allowed to add custom field group
+        const resourcesAllowed = data.configAttachmentResources;
+        let resources = _.filter(<Resource[]>data.adminResources, obj => {
+            return _.find(resourcesAllowed, ['id', obj.id]);
+        });
+
+        // map resources to create SelectItem
+        this.resources = _.map(<Resource[]>resources, obj => { // get resources
             return { value: obj.id, label: obj.name };
         });
         this.resources.unshift({ label: 'Select a resource', value: '' });

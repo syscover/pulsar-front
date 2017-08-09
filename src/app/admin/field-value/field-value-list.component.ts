@@ -34,7 +34,7 @@ export class FieldValueListComponent extends CoreListComponent {
             },
             {
                 'command': 'where',
-                'column': 'field_id',
+                'column': 'admin_field_value.field_id',
                 'operator': '=',
                 'value': this.field_id
             }]

@@ -58,14 +58,14 @@ export class SectionGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Cms\\Models\\Section';
-        this.table = 'section';
+        this.table = 'cms_section';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on CmsSection {
                 id
                 name
-                article_family_id
+                family_id
                 family {
                     id
                     name

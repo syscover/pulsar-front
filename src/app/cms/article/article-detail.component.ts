@@ -177,14 +177,14 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         let sqlArticle = [
             {
                 command: 'where',
-                column: 'article.lang_id',
+                column: 'cms_article.lang_id',
                 operator: '=',
                 value: this.params['lang'] ? this.params['lang'] : this.baseLang
             },
             {
                 command: 'orderBy',
                 operator: 'asc',
-                column: 'article.name'
+                column: 'cms_article.name'
             }
         ];
 
@@ -192,7 +192,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         if (this.params['id']) {
             sqlArticle.push({
                 command: 'where',
-                column: 'article.id',
+                column: 'cms_article.id',
                 operator: '<>',
                 value: this.params['id']
             });
@@ -201,14 +201,14 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         let sqlAttachmentFamily = [
             {
                 'command': 'where',
-                'column': 'attachment_family.resource_id',
+                'column': 'admin_attachment_family.resource_id',
                 'operator': '=',
                 'value': 'cms-article'
             },
             {
                 'command': 'orderBy',
                 'operator': 'asc',
-                'column': 'attachment_family.name'
+                'column': 'admin_attachment_family.name'
             }
         ];
 

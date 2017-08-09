@@ -59,7 +59,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
     init() {
         // model of backoffice relative at this GraphQL service
         this.model = 'Syscover\\Admin\\Models\\AttachmentMime';
-        this.table = 'attachment_mime';
+        this.table = 'admin_attachment_mime';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

@@ -30,7 +30,7 @@ export class Family {
 export class Section {
     id: string;
     name: string;
-    article_family_id: number;
+    family_id: number;
     family: Family
 }
 
@@ -45,6 +45,7 @@ export class Category {
     lang_id: string;
     name: string;
     slug: string;
+    section_id: number;
     sort: number;
     data_lang: string;
     data: string;

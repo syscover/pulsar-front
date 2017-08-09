@@ -31,7 +31,7 @@ export class SectionDetailComponent extends CoreDetailComponent {
                 Validators.maxLength(30)]
             ],
             name: ['', Validators.required ],
-            article_family_id: ''
+            family_id: ''
         });
     }
 

@@ -74,7 +74,7 @@ export class ArticleGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Cms\\Models\\Article';
-        this.table = 'article';
+        this.table = 'cms_article';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

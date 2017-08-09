@@ -58,7 +58,7 @@ export class FamilyGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Cms\\Models\\Family';
-        this.table = 'article_family';
+        this.table = 'cms_family';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

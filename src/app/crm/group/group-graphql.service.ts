@@ -51,7 +51,7 @@ export class GroupGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Crm\\Models\\Group';
-        this.table = 'group';
+        this.table = 'crm_group';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

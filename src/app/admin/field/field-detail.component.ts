@@ -99,7 +99,7 @@ export class FieldDetailComponent extends CoreDetailComponent {
         return Object.assign({}, {
             sql: [{
                 command: 'where',
-                column: 'field.id',
+                column: 'admin_field.id',
                 operator: '=',
                 value: params['id']
             }]},

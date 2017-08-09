@@ -58,7 +58,7 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Market\\Models\\PaymentMethod';
-        this.table = 'payment_method';
+        this.table = 'market_payment_method';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

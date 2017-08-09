@@ -57,7 +57,7 @@ export class TaxRuleGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Market\\Models\\TaxRule';
-        this.table = 'tax_rule';
+        this.table = 'market_tax_rule';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

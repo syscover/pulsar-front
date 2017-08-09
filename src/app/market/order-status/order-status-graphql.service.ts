@@ -51,7 +51,7 @@ export class OrderStatusGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Market\\Models\\OrderStatus';
-        this.table = 'order_status';
+        this.table = 'market_order_status';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

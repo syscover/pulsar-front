@@ -32,6 +32,17 @@
         </div>
 
         <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [filter]="true"
+                            [options]="sections"
+                            name="section_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+
+        <div class="row">
             <ps-spinner     [form]="fg" 
                             [errors]="formErrors"
                             label="Sort"

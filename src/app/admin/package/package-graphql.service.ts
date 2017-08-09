@@ -51,7 +51,7 @@ export class PackageGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Admin\\Models\\Package';
-        this.table = 'package';
+        this.table = 'admin_package';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

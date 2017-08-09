@@ -155,30 +155,6 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     argumentsRelationsObject(): Object {
-        let sqlArticle = [
-            {
-                command: 'where',
-                column: 'article.lang_id',
-                operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'article.name'
-            }
-        ];
-
-        // set id of product if action is edit
-        if (this.params['id']) {
-            sqlArticle.push({
-                command: 'where',
-                column: 'article.id',
-                operator: '<>',
-                value: this.params['id']
-            });
-        };
-
         let sqlCategory = [
             {
                 command: 'where',
@@ -191,35 +167,35 @@ export class ProductDetailComponent extends CoreDetailComponent {
         let sqlAttachmentFamily = [
             {
                 'command': 'where',
-                'column': 'attachment_family.resource_id',
+                'column': 'admin_attachment_family.resource_id',
                 'operator': '=',
                 'value': 'market-product'
             },
             {
                 'command': 'orderBy',
                 'operator': 'asc',
-                'column': 'attachment_family.name'
+                'column': 'admin_attachment_family.name'
             }
         ];
 
         let sqlProduct = [
             {
                 'command': 'where',
-                'column': 'product_lang.lang_id',
+                'column': 'market_product_lang.lang_id',
                 'operator': '=',
                 'value': this.params['lang'] ? this.params['lang'] : this.baseLang
             },
             {
                 'command': 'orderBy',
                 'operator': 'asc',
-                'column': 'product.sort'
+                'column': 'market_product.sort'
             }
         ];
 
         if (this.params['id']) {
             sqlProduct.push({
                 command: 'where',
-                column: 'product.id',
+                column: 'market_product.id',
                 operator: '<>',
                 value: this.params['id']
             });
