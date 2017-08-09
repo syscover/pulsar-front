@@ -80,6 +80,10 @@ export class DynamicFormService {
         } else {
             // reset fields
             this.fields = undefined;
+
+            // remove customFields control if exist
+            if (fg.get('customFields')) fg.removeControl('customFields');
+
             f(this.fields);
         }
     }

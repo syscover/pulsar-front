@@ -110,19 +110,16 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
     // get custom fields that has this object
     handleGetCustomFields() {
-        if (this.fg.contains('field_group_id')) { // check that field_group_id exist
+        // get properties for get values of custom fields
+        let customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
 
-            // get properties for get values of custom fields
-            let customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
-
-            this.dynamicFormService.instance(
-                this.fg.get('field_group_id').value,
-                this.fg,
-                customFields,
-                (fields) => {
-                    this.fields = fields;
-                });
-        }
+        this.dynamicFormService.instance(
+            this.fg.get('field_group_id').value,
+            this.fg,
+            customFields,
+            (fields) => {
+                this.fields = fields;
+            });
     }
 
     setData (response = undefined) {
