@@ -32,6 +32,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     attachmentFamilies: AttachmentFamily[] = [];
     user: User = new User();
     family: Family;
+    imageUploadURL: string;
 
     private _sections: Section[];
     private _families: Family[];
@@ -50,6 +51,9 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         private dynamicFormService: DynamicFormService
     ) {
         super(injector, graphQL);
+
+        // set froala upload image url
+        this.imageUploadURL = `${this.apiUrl}/api/v1/admin/wysiwyg/upload`;
     }
 
     createForm() {

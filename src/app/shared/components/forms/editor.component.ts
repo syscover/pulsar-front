@@ -1,5 +1,5 @@
 import { ConfigService } from './../../../core/services/config/config.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Renderer2, Input, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { onValueChangedFormControl } from './../../super/core-validation';
 declare const jQuery: any; // jQuery definition
@@ -28,7 +28,7 @@ declare const jQuery: any; // jQuery definition
             border-bottom-color: #e62a10; 
         }`]
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit, OnChanges {
 
     @Input() form: FormGroup;
     @Input() type: string;
@@ -37,14 +37,15 @@ export class EditorComponent implements OnInit {
     @Input() placeholder: string;
     @Input() heightMin: number;
     @Input() heightMax: number;
+    @Input() imageUploadURL: string;
 
     froalaOptions: FroalaOptions = new FroalaOptions();
-
     formControl: AbstractControl;
     error: string;
 
     constructor(
-        private configService: ConfigService
+        private configService: ConfigService,
+        private renderer: Renderer2
     ) { }
 
     ngOnInit() {
@@ -77,11 +78,11 @@ export class EditorComponent implements OnInit {
                 'draggable',
                 'emoticons',
                 'entities',
-                'file',
+                //'file',
                 'fontFamily',
                 'fontSize',
                 'fullscreen',
-                //'image',
+                'image',
                 //'imageManager',
                 'inlineStyle',
                 'lineBreaker',
@@ -94,9 +95,36 @@ export class EditorComponent implements OnInit {
                 'save',
                 'table',
                 'url',
-                //'video',
+                'video',
                 'wordPaste'
             ];
+            this.froalaOptions.events = {
+                'froalaEditor.image.uploaded' : (e, editor, response) => {
+                    //
+                },
+                'froalaEditor.image.beforeUpload' : (e, editor, images) => {
+                    //
+                },
+                'froalaEditor.image.inserted' : (e, editor, $img, response) => {
+                    for (const image of $img) {
+                        this.renderer.addClass(image, 'ps-uploaded');
+                        let objResponse = JSON.parse(response);
+                        this.renderer.setAttribute(image, 'data-ps-image', JSON.stringify(objResponse.image));
+                    }
+                }
+            };
+    }
+
+    ngOnChanges() {
+        if (this.imageUploadURL) {
+            this.froalaOptions.imageUploadMethod = 'POST';
+            this.froalaOptions.requestWithCORS = true;
+            this.froalaOptions.imageUploadURL = this.imageUploadURL;
+            this.froalaOptions.imageResizeWithPercent = true;
+            this.froalaOptions.imageRoundPercent = true;
+            this.froalaOptions.imageDefaultWidth = 100;
+            this.froalaOptions.imageSplitHTML = true;
+        }
     }
 
     @Input()
@@ -105,7 +133,6 @@ export class EditorComponent implements OnInit {
             this.error = errors[this.name];
         }
     }
-
 }
 
 class FroalaOptions {
@@ -117,5 +144,13 @@ class FroalaOptions {
     public heightMax: number;
     public enter: number;
     public tabSpaces: number;
+    public imageUploadMethod: string;
+    public requestWithCORS: boolean;
+    public imageUploadURL: string;
+    public imageDefaultWidth: number;
+    public imageResizeWithPercent: boolean;
+    public imageRoundPercent: boolean;
+    public imageSplitHTML: boolean;
+    public events: Object;
+    public imageStyles: Object;
 }
-
