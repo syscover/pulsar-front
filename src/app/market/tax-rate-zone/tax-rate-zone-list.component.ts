@@ -9,7 +9,7 @@ import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
 export class TaxRateZoneListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'tax_rate_zone.id', 'tax_rate_zone.name', 'tax_rate_zone.tax_rate'
+        'market_tax_rate_zone.id', 'market_tax_rate_zone.name', 'market_tax_rate_zone.tax_rate'
     ];
 
     constructor(

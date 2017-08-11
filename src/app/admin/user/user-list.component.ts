@@ -9,7 +9,7 @@ import { UserGraphQLService } from './user-graphql.service';
 export class UserListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'id', 'name', 'profile.name'
+        'admin_user.id', 'admin_user.name', 'admin_profile.name'
     ];
 
     constructor(

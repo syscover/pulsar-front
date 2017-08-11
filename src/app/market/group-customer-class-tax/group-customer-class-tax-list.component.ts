@@ -11,7 +11,7 @@ export class GroupCustomerClassTaxListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'group.name', 'customer_class_tax.name'
+        'crm_group.name', 'market_customer_class_tax.name'
     ];
 
     constructor(

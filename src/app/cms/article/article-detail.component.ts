@@ -30,6 +30,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     articles: SelectItem[] = [];
     categories: SelectItem[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
+    imageStyles: Object = new Object;
     user: User = new User();
     family: Family;
     imageUploadURL: string;
@@ -267,6 +268,11 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
         // admin attachment families
         this.attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+
+        // Images styles for Froala
+        for (let attachemntFamily of this.attachmentFamilies) {
+            this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
+        }
 
         // cms author
         this.user = this.authService.user();

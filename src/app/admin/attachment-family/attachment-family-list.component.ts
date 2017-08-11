@@ -9,7 +9,7 @@ import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.serv
 export class AttachmentFamilyListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'attachment_family.id', 'attachment_family.name', 'resource.name'
+        'admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name'
     ];
 
     constructor(

@@ -9,7 +9,7 @@ import { FieldGraphQLService } from './field-graphql.service';
 export class FieldListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'field.id', 'field.name', 'field_group.name'
+        'admin_field.id', 'admin_field.name', 'admin_field_group.name'
     ];
 
     constructor(

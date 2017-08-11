@@ -181,7 +181,9 @@
                             name="article"
                             placeholder="Enter here your article"
                             [heightMin]="400"
-                            [imageUploadURL]="imageUploadURL"></ps-editor>
+                            [imageUploadURL]="imageUploadURL"
+                            [imageStyles]="imageStyles"
+                            [attachmentFamilies]="attachmentFamilies"></ps-editor>
             </p-tabPanel>
 
             <p-tabPanel *ngIf="family?.attachments" header="Attachments" leftIcon="ui-icon-attachment">

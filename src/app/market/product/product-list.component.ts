@@ -9,7 +9,7 @@ import { ProductGraphQLService } from './product-graphql.service';
 export class ProductListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'product.id', 'product_lang.name'
+        'market_product.id', 'market_product_lang.name'
     ];
 
     constructor(

@@ -9,7 +9,7 @@ import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 export class PaymentMethodListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'payment_method.id', 'payment_method.name'
+        'market_payment_method.id', 'market_payment_method.name'
     ];
 
     constructor(

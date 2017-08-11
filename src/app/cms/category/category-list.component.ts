@@ -9,7 +9,7 @@ import { CategoryGraphQLService } from './category-graphql.service';
 export class CategoryListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'article_category.id', 'article_category.name'
+        'cms_category.id', 'cms_category.name'
     ];
 
     constructor(

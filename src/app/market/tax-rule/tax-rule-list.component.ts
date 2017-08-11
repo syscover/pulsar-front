@@ -16,7 +16,7 @@ export class TaxRuleListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'tax_rate_zone.id', 'tax_rate_zone.name', 'tax_rate_zone.tax_rate'
+        'market_tax_rate_zone.id', 'market_tax_rate_zone.name', 'market_tax_rate_zone.tax_rate'
     ];
 
     constructor(
