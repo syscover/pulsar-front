@@ -6,6 +6,7 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
+import { CustomerListComponent } from './customer/customer-list.component';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 
@@ -18,6 +19,9 @@ const routes: Routes = [
                 path: '',                                       component: DataContainerComponent,
                 canActivateChild: [AuthGuard],
                 children: [
+
+                    // Customers
+                    { path: 'customer',                         component: CustomerListComponent },
 
                     // Groups
                     { path: 'group',                            component: GroupListComponent },

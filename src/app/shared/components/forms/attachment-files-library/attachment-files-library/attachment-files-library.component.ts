@@ -303,8 +303,6 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
     disableCropHandler($event) {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
         this.cropper.destroy();
-        //this.dialog.visible = false;
-        //this.display = false;
     }
 
     cropHandler($event) {

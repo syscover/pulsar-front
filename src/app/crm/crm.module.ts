@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { CrmRoutingModule } from './crm-routing.module';
-import { GroupListComponent } from './group/group-list.component';
+import { CustomerGraphQLService } from './customer/customer-graphql.service';
+import { CustomerListComponent } from './customer/customer-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupGraphQLService } from './group/group-graphql.service';
+import { GroupListComponent } from './group/group-list.component';
 
 
 @NgModule({
@@ -12,10 +14,12 @@ import { GroupGraphQLService } from './group/group-graphql.service';
         CrmRoutingModule
     ],
     declarations: [
+        CustomerListComponent,
         GroupListComponent,
         GroupDetailComponent
     ],
     providers: [
+        CustomerGraphQLService,
         GroupGraphQLService
     ]
 })
