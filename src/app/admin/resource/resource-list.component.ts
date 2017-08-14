@@ -10,7 +10,7 @@ import { ResourceGraphQLService } from './resource-graphql.service';
 export class ResourceListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'admin_resource.id', 'admin_resource.name', 'admin_package.name'
+        'admin_resource.id', 'admin_resource.name', 'admin_package.name', 'admin_group.name'
     ];
 
     constructor(

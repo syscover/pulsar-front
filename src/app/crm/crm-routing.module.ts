@@ -6,9 +6,10 @@ import { ErrorComponent } from './../shared/components/errors/error.component';
 
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
+import { CustomerDetailComponent } from './customer/customer-detail.component';
 import { CustomerListComponent } from './customer/customer-list.component';
-import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
+import { GroupListComponent } from './group/group-list.component';
 
 const routes: Routes = [
     {
@@ -22,14 +23,16 @@ const routes: Routes = [
 
                     // Customers
                     { path: 'customer',                         component: CustomerListComponent },
+                    { path: 'customer/create',                  component: CustomerDetailComponent,     data: { action: 'create' }},
+                    { path: 'customer/show/:id',                component: CustomerDetailComponent,     data: { action: 'edit' }},
 
                     // Groups
                     { path: 'group',                            component: GroupListComponent },
-                    { path: 'group/create',                     component: GroupDetailComponent,       data: { action: 'create' }},
-                    { path: 'group/show/:id',                   component: GroupDetailComponent,       data: { action: 'edit' }},
+                    { path: 'group/create',                     component: GroupDetailComponent,        data: { action: 'create' }},
+                    { path: 'group/show/:id',                   component: GroupDetailComponent,        data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '**',                               component: ErrorComponent,             data: { error: '404' }}
+                    { path: '**',                               component: ErrorComponent,              data: { error: '404' }}
                 ]
             }
         ]

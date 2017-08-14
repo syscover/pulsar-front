@@ -88,8 +88,8 @@ export class ProductGraphQLService extends GraphQLModel {
                     name
                 }
                 field_group_id
-                product_type_id
-                parent_product_id
+                type_id
+                parent_id
                 weight
                 active
                 sort

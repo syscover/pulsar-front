@@ -95,8 +95,8 @@ export class Product {
     slug: string;
     description: string;
     field_group_id: number;
-    product_type_id: number;
-    parent_product_id; number;
+    type_id: number;
+    parent_id; number;
     weight: number;
     active: boolean;
     sort: number;

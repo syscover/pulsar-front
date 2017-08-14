@@ -14,6 +14,11 @@ export class CustomerGraphQLService extends GraphQLModel {
             }
         }`;
 
+    queryRelationsObject = gql`
+        query AdminGetRelationsResource {
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
         query CrmGetCustomers ($sql:[CoreSQLQueryInput]) {
             coreObjects: crmCustomers (sql:$sql){
@@ -26,6 +31,7 @@ export class CustomerGraphQLService extends GraphQLModel {
             coreObject: crmCustomer (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -51,14 +57,31 @@ export class CustomerGraphQLService extends GraphQLModel {
 
     init() {
         this.model = 'Syscover\\Crm\\Models\\Customer';
-        this.table = 'crm_group';
+        this.table = 'crm_customer';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on CrmCustomer {
                     id
+                    group_id
+                    group {
+                        id
+                        name
+                    }
                     name
+                    surname
+                    email
+                    address
+                    user
+                    active
                 }
+        `;
+
+        this.relationsFields = `
+            crmGroups {
+                id
+                name
+            }
         `;
 
         super.init();
