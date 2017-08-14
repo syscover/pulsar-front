@@ -5,9 +5,9 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="getRecords($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang }])">
 
-    <p-column field="id" sortField="article.id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" sortField="article.name" header="Name" [sortable]="true"></p-column>
-    <p-column [sortable]="true" sortField="article.publish">
+    <p-column field="id" sortField="cms_article.id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" sortField="cms_article.name" header="Name" [sortable]="true"></p-column>
+    <p-column [sortable]="true" sortField="cms_article.publish">
         <ng-template pTemplate="header">
             Publish
         </ng-template>
@@ -15,8 +15,8 @@
             {{ object.publish | date:'dd/MM/y HH:mm:ss' }}
         </ng-template>
     </p-column>
-    <p-column field="section.name" sortField="section.name" header="Section" [sortable]="true"></p-column>
-    <p-column [sortable]="true" sortField="article.status">
+    <p-column field="section.name" sortField="cms_section.name" header="Section" [sortable]="true"></p-column>
+    <p-column [sortable]="true" sortField="cms_article.status">
         <ng-template pTemplate="header">
             Status
         </ng-template>

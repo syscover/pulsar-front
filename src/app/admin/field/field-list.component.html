@@ -5,9 +5,9 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="getRecords($event)">
 
-    <p-column field="id" sortField="field.id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" sortField="field.name" header="Name" [sortable]="true"></p-column>
-    <p-column field="field_group_name" sortField="field_group.name" header="Group" [sortable]="true"></p-column>
+    <p-column field="id" sortField="admin_field.id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" sortField="admin_field.name" header="Name" [sortable]="true"></p-column>
+    <p-column field="field_group_name" sortField="admin_field_group.name" header="Group" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

@@ -9,7 +9,7 @@ import { CustomerGraphQLService } from './customer-graphql.service';
 export class CustomerListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'id', 'name'
+        'customer.id', 'customer.name', 'customer.surname', 'customer.email'
     ];
 
     constructor(

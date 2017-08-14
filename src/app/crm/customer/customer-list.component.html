@@ -5,8 +5,10 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="getRecords($event)">
 
-    <p-column field="id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>  
+    <p-column field="id" sortField="cms_customer.id" header="#" [sortable]="true"></p-column>
+    <p-column field="name" sortField="cms_customer.name" header="Name" [sortable]="true"></p-column>
+    <p-column field="surname" sortField="cms_customer.surname" header="Surname" [sortable]="true"></p-column>
+    <p-column field="email" sortField="cms_customer.email" header="Email" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

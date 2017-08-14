@@ -168,11 +168,13 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             // check if there are any variable
             if (args) {
                 options = {
+                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryRelationsObject,
                     variables: args
                 };
             } else {
                 options = {
+                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryRelationsObject
                 };
             }

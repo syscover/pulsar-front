@@ -15,6 +15,7 @@ import { GroupListComponent } from './group/group-list.component';
     ],
     declarations: [
         CustomerListComponent,
+    
         GroupListComponent,
         GroupDetailComponent
     ],
