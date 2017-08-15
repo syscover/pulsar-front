@@ -15,7 +15,7 @@ export class CustomerGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsResource {
+        query CrmGetRelationsCustomer ($sqlCountry:[CoreSQLQueryInput]){
             ${this.relationsFields}
         }`;
 
@@ -27,7 +27,7 @@ export class CustomerGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query CrmGetCustomer ($sql:[CoreSQLQueryInput]) {
+        query CrmGetCustomer ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
             coreObject: crmCustomer (sql:$sql){
                 ${this.fields}
             }
@@ -74,12 +74,18 @@ export class CustomerGraphQLService extends GraphQLModel {
                     address
                     user
                     active
+                    country_id
                 }
         `;
 
         this.relationsFields = `
             crmGroups {
                 id
+                name
+            }
+            adminCountries (sql:$sqlCountry){
+                id
+                lang_id
                 name
             }
         `;

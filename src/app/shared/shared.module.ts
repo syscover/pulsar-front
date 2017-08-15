@@ -13,7 +13,6 @@ import { ActionLangObjectPipe } from './pipes/action-lang-object.pipe';
 import { ErrorComponent } from './components/errors/error.component';
 import { DatatableSearchComponent } from './components/datatable-search/datatable-search.component';
 import { DatatableHeaderComponent } from './components/datatable-header/datatable-header.component';
-import { FormHeaderComponent } from './components/form-header/form-header.component';
 import { DynamicFormComponent } from './components/forms/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from './components/forms/dynamic-form/dynamic-form.service';
 import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
@@ -30,21 +29,20 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         ConfirmDialogModule
     ],
     declarations: [
-        DataContainerComponent,
         ActionLangObjectPipe,
         CheckLangsObjectPipe,
-        GetValueObjectPipe,
-        ErrorComponent,
-        DatatableSearchComponent,
+        DataContainerComponent,
         DatatableHeaderComponent,
+        DatatableSearchComponent,
+        DynamicFormComponent,
+        ErrorComponent,
+        GetValueObjectPipe,
         ProgressSpinnerComponent,
-        FormHeaderComponent,
-        DynamicFormComponent
     ],
     providers: [
         ConfirmationService,
         DynamicFormService,
-        AttachmentService
+        AttachmentService,
     ],
     exports: [
         CommonModule,
@@ -58,7 +56,6 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         DatatableSearchComponent,
         DatatableHeaderComponent,
         ProgressSpinnerComponent,
-        FormHeaderComponent,
         DynamicFormComponent,
         ActionLangObjectPipe,
         CheckLangsObjectPipe,

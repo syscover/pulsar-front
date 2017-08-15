@@ -66,20 +66,23 @@
                                 type="password"
                                 name="password" class="col-12 col-md-6"></ps-input>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Repeat password"
                                 type="password"
                                 name="re_password" class="col-12 col-md-6"></ps-input>
-                </div>
+                </div> -->
                 <div class="row">
                     <ps-checkbox    [form]="fg"
                                     name="active"
                                     label="Active" class="col-sm-12"></ps-checkbox>
                 </div>
-                
-                
+
+                <ps-form-header title="Geolocation" icon="fa ui-icon-subject"></ps-form-header>
+
+                <ps-address [form]="fg"
+                            [countries]="countries"></ps-address>
             </p-tabPanel>
 
             <p-tabPanel header="Addreses" leftIcon="ui-icon-edit">

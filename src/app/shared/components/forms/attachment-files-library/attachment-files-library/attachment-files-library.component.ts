@@ -12,8 +12,8 @@ declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'ps-attachment-files-library',
-    templateUrl: './attachment-files-library.html',
-    styleUrls: ['./attachment-files-library.scss']
+    templateUrl: './attachment-files-library.component.html',
+    styleUrls: ['./attachment-files-library.component.scss']
 })
 export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
 

@@ -1,0 +1,36 @@
+<div class="row">
+    <ps-input   [form]="form" 
+                [errors]="formErrors"
+                label="Address"
+                name="address" 
+                class="col-12"></ps-input>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <ps-dropdown    [form]="form"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="countriesInput"
+                            [filter]="true"
+                            (onChange)="handleChangeCountry($event)"
+                            name="country_id"
+                            class="col-12">
+            </ps-dropdown>
+        </div>    
+        <div class="row">
+            <ps-dropdown    [form]="form"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="territorialAreas1Input"
+                            [filter]="true"
+                            (onChange)="handleChangeTerritorialArea1($event)"
+                            name="territorial_area_1_id"
+                            class="col-12">
+            </ps-dropdown>
+        </div>
+    </div>
+    <div class="col-md-6">
+        MAPA
+    </div>
+</div>

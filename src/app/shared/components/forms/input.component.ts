@@ -1,6 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-
 import { onValueChangedFormControl } from './../../super/core-validation';
 
 @Component({
@@ -33,7 +32,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 export class InputComponent implements OnInit {
 
     @Input() form: FormGroup;
-    @Input() type: string;
+    @Input() type: string = 'text';
     @Input() label: string;
     @Input() name: string;
 

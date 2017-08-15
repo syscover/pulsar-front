@@ -6,8 +6,8 @@ declare var jQuery: any; // jQuery definition
 
 @Component({
     selector: 'ps-attachment-item',
-    templateUrl: './attachment-item.html',
-    styleUrls: ['./attachment-item.scss']
+    templateUrl: './attachment-item.component.html',
+    styleUrls: ['./attachment-item.component.scss']
 })
 
 export class AttachmentItemComponent implements OnInit {

@@ -33,6 +33,12 @@ export class Country {
     data: string;
 }
 
+export class TerritorialArea1 {
+    id: string;
+    country_id: string;
+    name: string;
+}
+
 export class Package {
     id: number;
     name: string;

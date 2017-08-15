@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
-
 import { DynamicFormService } from './dynamic-form.service';
 import { Field, Lang, FieldValue } from './../../../../admin/admin.models';
-
 import * as _ from 'lodash';
 
 @Component({

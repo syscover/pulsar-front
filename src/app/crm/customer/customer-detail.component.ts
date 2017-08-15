@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { CustomerGraphQLService } from './customer-graphql.service';
+import { Country } from './../../admin/admin.models';
 import { Group } from './../crm.models';
 import { SelectItem } from 'primeng/primeng';
 import * as _ from 'lodash';
@@ -14,6 +15,10 @@ import * as _ from 'lodash';
 export class CustomerDetailComponent extends CoreDetailComponent {
 
     groups: SelectItem[] = [];
+    //countries: SelectItem[] = [];
+    territorial_areas_1: SelectItem[] = [];
+    countries: Country[];
+    //_territorial_areas_1: TerritorialA[];
 
     constructor(
         protected injector: Injector,
@@ -32,9 +37,24 @@ export class CustomerDetailComponent extends CoreDetailComponent {
             email: [null, Validators.required],
             user: [null, Validators.required],
             password: null,
-            re_password: null,
+            //re_password: null,
             active: null
         });
+    }
+
+    argumentsRelationsObject(): Object {
+        let sqlCountry = [
+            {
+                command: 'where',
+                column: 'admin_country.lang_id',
+                operator: '=',
+                value: this.baseLang
+            }
+        ];
+
+        return {
+            sqlCountry
+        };
     }
 
     setRelationsData(data: any) {
@@ -43,5 +63,12 @@ export class CustomerDetailComponent extends CoreDetailComponent {
             return { value: obj.id, label: obj.name };
         });
         this.groups.unshift({ label: 'Select a group', value: '' });
+
+        // set countries
+        this.countries = data['adminCountries'];
+        /* this.countries = _.map(this._countries, obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.countries.unshift({ label: 'Select a country', value: '' }); */
     }
 }
