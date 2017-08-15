@@ -18,7 +18,7 @@
                             class="col-12">
             </ps-dropdown>
         </div>    
-        <div class="row">
+        <div class="row" *ngIf="territorialAreas1Input.length > 0">
             <ps-dropdown    [form]="form"
                             [errors]="formErrors"
                             [autoWidth]="false"
@@ -28,6 +28,55 @@
                             name="territorial_area_1_id"
                             class="col-12">
             </ps-dropdown>
+        </div>
+        <div class="row" *ngIf="territorialAreas2Input.length > 0">
+            <ps-dropdown    [form]="form"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="territorialAreas2Input"
+                            [filter]="true"
+                            (onChange)="handleChangeTerritorialArea2($event)"
+                            name="territorial_area_2_id"
+                            class="col-12">
+            </ps-dropdown>
+        </div>
+        <div class="row" *ngIf="territorialAreas3Input.length > 0">
+            <ps-dropdown    [form]="form"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="territorialAreas3Input"
+                            [filter]="true"
+                            name="territorial_area_3_id"
+                            class="col-12">
+            </ps-dropdown>
+        </div>
+        <div class="row">
+                <ps-input   [form]="form" 
+                            [errors]="formErrors"
+                            label="CP"
+                            name="cp" 
+                            class="col-10"></ps-input>
+        </div>
+        <div class="row">
+                <ps-input   [form]="form" 
+                            [errors]="formErrors"
+                            label="Locality"
+                            name="locality" 
+                            class="col-12"></ps-input>
+        </div>
+        <div class="row">
+                <ps-input   [form]="form" 
+                            [errors]="formErrors"
+                            label="Latitude"
+                            name="latitude" 
+                            class="col-12"></ps-input>
+        </div>
+        <div class="row">
+                <ps-input   [form]="form" 
+                            [errors]="formErrors"
+                            label="Longitude"
+                            name="longitude" 
+                            class="col-12"></ps-input>
         </div>
     </div>
     <div class="col-md-6">

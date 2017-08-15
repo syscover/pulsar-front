@@ -74,7 +74,15 @@ export class CustomerGraphQLService extends GraphQLModel {
                     address
                     user
                     active
+                    address
                     country_id
+                    territorial_area_1_id
+                    territorial_area_2_id
+                    territorial_area_3_id
+                    cp
+                    locality
+                    latitude
+                    longitude
                 }
         `;
 
@@ -83,10 +91,13 @@ export class CustomerGraphQLService extends GraphQLModel {
                 id
                 name
             }
-            adminCountries (sql:$sqlCountry){
+            adminCountries (sql:$sqlCountry) {
                 id
                 lang_id
                 name
+                territorial_area_1
+                territorial_area_2
+                territorial_area_3
             }
         `;
 

@@ -39,6 +39,21 @@ export class TerritorialArea1 {
     name: string;
 }
 
+export class TerritorialArea2 {
+    id: string;
+    country_id: string;
+    territorial_area_1_id: string;
+    name: string;
+}
+
+export class TerritorialArea3 {
+    id: string;
+    country_id: string;
+    territorial_area_1_id: string;
+    territorial_area_2_id: string;
+    name: string;
+}
+
 export class Package {
     id: number;
     name: string;
