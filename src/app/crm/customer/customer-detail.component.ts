@@ -31,6 +31,8 @@ export class CustomerDetailComponent extends CoreDetailComponent {
         this.fg = this.fb.group({
             id: [null, Validators.required],
             group_id: ['', Validators.required],
+            company: null,
+            tin: null,
             name: null,
             surname: null,
             address: null,

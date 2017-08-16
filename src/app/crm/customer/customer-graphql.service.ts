@@ -68,6 +68,8 @@ export class CustomerGraphQLService extends GraphQLModel {
                         id
                         name
                     }
+                    company
+                    tin
                     name
                     surname
                     email
