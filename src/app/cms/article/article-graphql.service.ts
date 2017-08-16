@@ -106,6 +106,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                     id
                     name
                 }
+                excerpt
                 article
                 data_lang
                 data
@@ -156,7 +157,8 @@ export class ArticleGraphQLService extends GraphQLModel {
             cmsFamilies {
                 id 
                 name 
-                editor_id
+                excerpt_editor_id
+                article_editor_id
                 field_group_id 
                 date 
                 title

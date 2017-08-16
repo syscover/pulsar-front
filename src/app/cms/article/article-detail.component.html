@@ -176,7 +176,17 @@
                 </div>
             </p-tabPanel>
 
-            <p-tabPanel *ngIf="family?.editor_id" header="Article" leftIcon="ui-icon-edit">
+            <p-tabPanel *ngIf="family?.excerpt_editor_id" header="Excerpt" leftIcon="ui-icon-edit">
+                <ps-editor  [form]="fg" 
+                            name="excerpt"
+                            placeholder="Enter here your excerpt"
+                            [heightMin]="400"
+                            [imageUploadURL]="imageUploadURL"
+                            [imageStyles]="imageStyles"
+                            [attachmentFamilies]="attachmentFamilies"></ps-editor>
+            </p-tabPanel>
+
+            <p-tabPanel *ngIf="family?.article_editor_id" header="Article" leftIcon="ui-icon-edit">
                 <ps-editor  [form]="fg" 
                             name="article"
                             placeholder="Enter here your article"

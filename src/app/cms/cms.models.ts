@@ -14,7 +14,8 @@ export class Status {
 export class Family {
     id: number;
     name: string;
-    editor_id: number;
+    excerpt_editor_id: number;
+    article_editor_id: number;
     field_group_id: number;
     date: boolean;
     title: boolean;
@@ -70,6 +71,7 @@ export class Article {
     link: string;
     blank: boolean;
     sort: number;
+    excerpt: string;
     article: string;
     tags: Tag[];
     data_lang: string;

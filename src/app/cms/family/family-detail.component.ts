@@ -15,7 +15,8 @@ import * as _ from 'lodash';
 })
 export class FamilyDetailComponent extends CoreDetailComponent {
 
-    editors: SelectItem[] = [];
+    excerptEditors: SelectItem[] = [];
+    articleEditors: SelectItem[] = [];
     fieldGroups: SelectItem[] = [];
 
     constructor(
@@ -38,7 +39,8 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             link: '',
             article_parent: '',
             attachments: '',
-            editor_id: '',
+            excerpt_editor_id: '',
+            article_editor_id: '',
             field_group_id: ''
         });
     }
@@ -65,11 +67,17 @@ export class FamilyDetailComponent extends CoreDetailComponent {
     }
 
     setRelationsData(data: any) {
-        // set editor
-        this.editors = _.map(<Editor[]>data.coreConfig, obj => {
+        // set article editors
+        this.articleEditors = _.map(<Editor[]>data.coreConfig, obj => {
             return { value: obj.id, label: obj.name };
         });
-        this.editors.unshift({ label: 'Select a editor', value: '' });
+        this.articleEditors.unshift({ label: 'Select a article editor', value: '' });
+
+        // set article editors
+        this.excerptEditors = _.map(<Editor[]>data.coreConfig, obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.excerptEditors.unshift({ label: 'Select a excerpt editor', value: '' });
 
         // set fieldsGroups
         this.fieldGroups = _.map(<FieldGroup[]>data.adminFieldGroups, obj => {

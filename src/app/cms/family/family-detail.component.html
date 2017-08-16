@@ -68,8 +68,15 @@
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
                             [autoWidth]="false"
-                            [options]="editors"
-                            name="editor_id"
+                            [options]="excerptEditors"
+                            name="excerpt_editor_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="articleEditors"
+                            name="article_editor_id"
                             class="col-sm-12 col-md-5">
             </ps-dropdown>
         </div>

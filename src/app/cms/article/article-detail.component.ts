@@ -78,6 +78,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             blank: '',
             sort: null,
             tags: [],
+            excerpt: '',
             article: '',
             attachments: this.fb.array([])
         });

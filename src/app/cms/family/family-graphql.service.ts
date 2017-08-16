@@ -65,7 +65,8 @@ export class FamilyGraphQLService extends GraphQLModel {
             ... on CmsFamily {
                 id
                 name
-                editor_id
+                excerpt_editor_id
+                article_editor_id
                 field_group_id 
                 date 
                 title
