@@ -165,7 +165,6 @@ export class AttachmentLibrary {
     size: number;
     width: number;
     height: number;
-    sort: number;
     data: string;
 }
 
@@ -175,6 +174,10 @@ export class Attachment extends AttachmentLibrary {
     object_type: string;
     family_id: number;
     library_id: number;
+    library_file_name: string;
     attachment_library: AttachmentLibrary;
+    sort: number;
+    alt: string;
+    title: string;
     data_lang: string;
 }

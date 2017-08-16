@@ -85,7 +85,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
 
     // casting as FormArray for avoid error in build proccess
     getFormArrayControls(name: string) {
-        let fa = this.form.controls[name] as FormArray;
+        const fa = this.form.controls[name] as FormArray;
         return fa.controls;
     }
 
@@ -100,7 +100,8 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
             object_type: '',
             family_id: '',
             sort: [null, Validators.required ],
-            name: ['', Validators.required ],
+            alt: '',
+            title: '',
             base_path: ['', Validators.required ],
             file_name: ['', Validators.required ],
             url: ['', Validators.required ],

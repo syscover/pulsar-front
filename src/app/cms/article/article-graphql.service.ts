@@ -116,7 +116,8 @@ export class ArticleGraphQLService extends GraphQLModel {
                     object_type
                     family_id
                     sort
-                    name
+                    alt
+                    title
                     base_path
                     file_name
                     url

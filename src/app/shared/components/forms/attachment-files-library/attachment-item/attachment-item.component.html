@@ -17,7 +17,7 @@
             <div class="attachment-over">
                 <div class="attachment-over-uncovered">
                     <h4 class="attachment-title">{{ family?.name }}</h4>
-                    <p class="attachment-sub">{{ attachment.get('name').value }}</p>
+                    <p class="attachment-sub">{{ attachment.get('title').value }}</p>
                     <p class="attachment-size">{{ attachment.get('size').value | formatSize }}</p>
                     <a class="attachment-edit-open open-over">
                         <i class="material-icons">mode_edit</i>
@@ -25,9 +25,15 @@
                 </div>
                 <div class="attachment-over-covered">
                     <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
+
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Image name" formControlName="name">
+                        <input type="text" class="form-control" placeholder="Image alt" formControlName="alt">
                     </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Image title" formControlName="title">
+                    </div>
+
                     <div class="form-group">
                         <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
                             <option value="">Select a family</option>
