@@ -77,23 +77,32 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     // get taxes for product
-    handleGetProductTaxes(price = null, callback = undefined): void {
+    handleGetProductTaxes(price = null, callback = undefined, forceCalculatePriceWithoutTax = undefined): void {
 
         if (! price) return;
+
+        let args = {
+            price: price,
+            productClassTax: this.fg.controls['product_class_tax_id'].value
+        };
+
+        // force to calualte price without tax, when show product the price always
+        // is without tax because is subtotal the refernece price, this flag is activated in
+        // function setData os this component
+        if (forceCalculatePriceWithoutTax) {
+            args['productTaxPrices'] = forceCalculatePriceWithoutTax;
+        }
 
         let subs = this.objectService
             .proxyGraphQL()
             .watchQuery({
                 fetchPolicy: 'network-only',
                 query: gql`
-                    query MarketProductTaxes ($price:Float! $productClassTax:Int) {
-                        marketProductTaxes (price:$price productClassTax:$productClassTax)
+                    query MarketProductTaxes ($price:Float! $productClassTax:Int $productTaxPrices:Int) {
+                        marketProductTaxes (price:$price productClassTax:$productClassTax productTaxPrices:$productTaxPrices)
                     }
                 `,
-                variables: {
-                    price: price,
-                    productClassTax: this.fg.controls['product_class_tax_id'].value
-                }
+                variables: args
             })
             .subscribe(({data}) => {
                 subs.unsubscribe();
@@ -139,7 +148,8 @@ export class ProductDetailComponent extends CoreDetailComponent {
                         // set FormGroup with custom FormControls
                         this.handleGetCustomFields();
                     }
-                }
+                },
+                1 // force to calualte price without tax
             ); // calculate tax prices
 
             if (this.dataRoute.action === 'create-lang') {
