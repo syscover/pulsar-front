@@ -96,6 +96,7 @@
                 <ps-form-header title="Geolocation" icon="fa ui-icon-subject"></ps-form-header>
 
                 <ps-address [form]="fg"
+                            [errors]="formErrors"
                             [countries]="countries"
                             [object]="object"></ps-address>
             </p-tabPanel>
@@ -103,14 +104,7 @@
             <p-tabPanel header="Addreses" leftIcon="ui-icon-edit">
             </p-tabPanel>
 
-            <p-tabPanel *ngIf="family?.attachments" header="Attachments" leftIcon="ui-icon-attachment">
-                <ps-attachment-files-library    #attachments
-                                                [value]="object.attachments"
-                                                [form]="fg"
-                                                name="attachments"
-                                                [endpoint]="apiUrl + '/api/v1/admin/attachment-upload'"
-                                                [families]="attachmentFamilies">
-                </ps-attachment-files-library>
+            <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
             </p-tabPanel>
         </p-tabView>
 

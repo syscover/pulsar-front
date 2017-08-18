@@ -1,6 +1,6 @@
 <div class="row">
     <ps-input   [form]="form" 
-                [errors]="formErrors"
+                [errors]="errors"
                 label="Address"
                 name="address" 
                 class="col-12"></ps-input>
@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <div class="row">
             <ps-dropdown    [form]="form"
-                            [errors]="formErrors"
+                            [errors]="errors"
                             [autoWidth]="false"
                             [options]="countriesInput"
                             [filter]="true"
@@ -20,7 +20,7 @@
         </div>    
         <div class="row" *ngIf="territorialAreas1Input.length > 0">
             <ps-dropdown    [form]="form"
-                            [errors]="formErrors"
+                            [errors]="errors"
                             [autoWidth]="false"
                             [options]="territorialAreas1Input"
                             [filter]="true"
@@ -31,7 +31,7 @@
         </div>
         <div class="row" *ngIf="territorialAreas2Input.length > 0">
             <ps-dropdown    [form]="form"
-                            [errors]="formErrors"
+                            [errors]="errors"
                             [autoWidth]="false"
                             [options]="territorialAreas2Input"
                             [filter]="true"
@@ -42,7 +42,7 @@
         </div>
         <div class="row" *ngIf="territorialAreas3Input.length > 0">
             <ps-dropdown    [form]="form"
-                            [errors]="formErrors"
+                            [errors]="errors"
                             [autoWidth]="false"
                             [options]="territorialAreas3Input"
                             [filter]="true"
@@ -52,28 +52,28 @@
         </div>
         <div class="row">
                 <ps-input   [form]="form" 
-                            [errors]="formErrors"
+                            [errors]="errors"
                             label="CP"
                             name="cp" 
                             class="col-10"></ps-input>
         </div>
         <div class="row">
                 <ps-input   [form]="form" 
-                            [errors]="formErrors"
+                            [errors]="errors"
                             label="Locality"
                             name="locality" 
                             class="col-12"></ps-input>
         </div>
         <div class="row">
                 <ps-input   [form]="form" 
-                            [errors]="formErrors"
+                            [errors]="errors"
                             label="Latitude"
                             name="latitude" 
                             class="col-12"></ps-input>
         </div>
         <div class="row">
                 <ps-input   [form]="form" 
-                            [errors]="formErrors"
+                            [errors]="errors"
                             label="Longitude"
                             name="longitude" 
                             class="col-12"></ps-input>

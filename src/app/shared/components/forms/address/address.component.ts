@@ -18,6 +18,7 @@ export class AddressComponent implements OnInit, OnChanges {
     @Input('form') form: FormGroup;
     @Input('object') object: any;
     @Input('countries') countries: Country[] = [];
+    @Input('errors') errors: Object;
 
     territorialAreas1: TerritorialArea1[] = [];
     territorialAreas2: TerritorialArea2[] = [];
