@@ -16,7 +16,7 @@ import * as _ from 'lodash';
 export class AddressComponent implements OnInit, OnChanges {
 
     @Input('form') form: FormGroup;
-    @Input('object') object: any;
+    @Input('object') object: any;  // object that has address
     @Input('countries') countries: Country[] = [];
     @Input('errors') errors: Object;
 
@@ -47,14 +47,15 @@ export class AddressComponent implements OnInit, OnChanges {
 
     // load values
     ngOnChanges () {
+        
         // load countries from Input
         this.countriesInput = _.map(this.countries, obj => {
             return { value: obj.id, label: obj.name };
         });
         this.countriesInput.unshift({ label: 'Select a country', value: '' });
 
-        // check that object has properties
-        if (Object.keys(this.object).length !== 0) {
+        // check that object has properties and country_id is defined
+        if (Object.keys(this.object).length !== 0 && this.object.country_id !== null) {
             let sqlAdminTerritorialAreas1, sqlAdminTerritorialAreas2, sqlAdminTerritorialAreas3 = undefined;
 
             // load territorial area 1
