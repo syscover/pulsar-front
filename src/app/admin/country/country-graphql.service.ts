@@ -58,13 +58,14 @@ export class CountryGraphQLService extends GraphQLModel {
         this.fields = `
             ... on AdminCountry {
                 id
-                lang_id 
-                name 
-                sort 
-                prefix 
-                territorial_area_1 
-                territorial_area_2 
-                territorial_area_3 
+                lang_id
+                name
+                sort
+                prefix
+                territorial_area_1
+                territorial_area_2
+                territorial_area_3
+                zones
                 data_lang
             }
         `;

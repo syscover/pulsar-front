@@ -61,6 +61,16 @@
                         label="Territorial Area 3" class="col-sm-12 col-md-6"></ps-input>
         </div>
 
+        <div class="row">
+                <ps-multi-select    [form]="fg"
+                                    [errors]="formErrors"
+                                    label="Select a enabled zones"
+                                    [options]="zones"
+                                    name="zones"
+                                    class="col-sm-12 col-md-6">
+            </ps-multi-select>
+        </div>
+
         <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 
