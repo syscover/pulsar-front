@@ -81,6 +81,18 @@
     -moz-box-shadow: none;
 }
 
+@mixin shadow($value) {
+    box-shadow: $value;
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+}
+
+@mixin multi-shadow($value1, $value2) {
+    -webkit-box-shadow: $value1, $value2;
+    -moz-box-shadow: $value1, $value2;
+    box-shadow: $value1, $value2;
+}
+
 @mixin hover-element {
     background-color: $hoverBgColor;
     color: $hoverTextColor;
@@ -174,4 +186,16 @@
     animation-name: $animation;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model;
+    -moz-box-sizing: $box-model;
+    box-sizing: $box-model;
+}
+
+@mixin flex() {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }

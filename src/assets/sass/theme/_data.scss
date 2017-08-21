@@ -482,13 +482,17 @@ body {
             }
         }
         
+        .ui-datatable-loading {
+            @include opacity(.3);
+        }
+        
         .ui-datatable-loading-content {
-            top: 30%;
+            top: 35%;
             
             .fa {
                 @include material-icon('refresh');
-                font-size: 2em;
                 @include animation(0, 1000ms, spin);
+                font-size: 2em;
             }
         }
     }
