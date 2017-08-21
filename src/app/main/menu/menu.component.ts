@@ -10,7 +10,6 @@ import * as _ from 'lodash';
     selector: 'ps-menu',
     styles: [`
         :host{
-            font-size: 16px;
             line-height: 1.5em;
         }
     `],
@@ -100,7 +99,13 @@ export class MenuComponent implements OnChanges {
                 label: 'CRM', icon: 'supervisor_account',
                 items: [
                     {label: 'Customers', icon: 'face', routerLink: ['/pulsar/crm/customer']},
-                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/group']}
+                    {label: 'Groups', icon: 'crop_free', routerLink: ['/pulsar/crm/group']},
+                    {
+                        label: 'Preferences', icon: 'settings',
+                        items: [
+                            {label: 'Address types', icon: 'map', routerLink: ['/pulsar/crm/type']}
+                        ]
+                    }
                 ]
             });
         }
