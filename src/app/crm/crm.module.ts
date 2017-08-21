@@ -7,6 +7,9 @@ import { CustomerListComponent } from './customer/customer-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupGraphQLService } from './group/group-graphql.service';
 import { GroupListComponent } from './group/group-list.component';
+import { TypeDetailComponent } from './type/type-detail.component';
+import { TypeGraphQLService } from './type/type-graphql.service';
+import { TypeListComponent } from './type/type-list.component';
 
 
 @NgModule({
@@ -18,11 +21,14 @@ import { GroupListComponent } from './group/group-list.component';
         CustomerListComponent,
         CustomerDetailComponent,
         GroupListComponent,
-        GroupDetailComponent
+        GroupDetailComponent,
+        TypeListComponent,
+        TypeDetailComponent
     ],
     providers: [
         CustomerGraphQLService,
-        GroupGraphQLService
+        GroupGraphQLService,
+        TypeGraphQLService
     ]
 })
 

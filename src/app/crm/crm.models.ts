@@ -4,6 +4,11 @@ export class Group {
     name: string;
 }
 
+export class Type {
+    id: number;
+    name: string;
+}
+
 export class Customer {
     id: number;
     lang_id: string;
