@@ -14,6 +14,10 @@ export class CoreListComponent extends CoreComponent {
     filteredRecords: number;    // filtered records over total
     columnsSearch: string[];    // columns where will be used for global searchs
 
+    static test() {
+        console.log('export');
+    }
+
     constructor(
         protected injector: Injector,
         protected graphQL: GraphQLModel

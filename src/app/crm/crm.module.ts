@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { CrmRoutingModule } from './crm-routing.module';
+//import { AddressGraphQLService } from './customer/address-graphql.service';
 import { CustomerGraphQLService } from './customer/customer-graphql.service';
 import { CustomerDetailComponent } from './customer/customer-detail.component';
 import { CustomerListComponent } from './customer/customer-list.component';
@@ -26,6 +27,7 @@ import { TypeListComponent } from './type/type-list.component';
         TypeDetailComponent
     ],
     providers: [
+        //AddressGraphQLService,
         CustomerGraphQLService,
         GroupGraphQLService,
         TypeGraphQLService

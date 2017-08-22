@@ -80,6 +80,7 @@
                                 type="password"
                                 name="password" class="col-12 col-md-6"></ps-input>
                 </div>
+
                 <!-- <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
@@ -87,6 +88,7 @@
                                 type="password"
                                 name="re_password" class="col-12 col-md-6"></ps-input>
                 </div> -->
+
                 <div class="row">
                     <ps-checkbox    [form]="fg"
                                     name="active"
@@ -101,11 +103,40 @@
                             [object]="object"></ps-address>
             </p-tabPanel>
 
-            <p-tabPanel header="Addreses" leftIcon="ui-icon-edit">
+            <p-tabPanel header="Addreses" leftIcon="ui-icon-edit" *ngIf="dataRoute.action === 'edit'">
+                <ps-datatable-search [dataTable]="dataTableAddreses" label="Search"></ps-datatable-search>
+                <p-dataTable    #dataTableAddreses
+                                [value]="addresses" 
+                                [rows]="10"
+                                [responsive]="true"
+                                [paginator]="true" 
+                                [totalRecords]="totalRecords">
+                
+                    <p-column field="id" sortField="crm_address.id" header="#" [sortable]="true"></p-column>
+                    <p-column field="alias" sortField="crm_address.alias" header="Alias" [sortable]="true"></p-column>
+                    <p-column field="name" sortField="crm_address.name" header="Name" [sortable]="true"></p-column>
+                    <p-column field="email" sortField="crm_address.email" header="Email" [sortable]="true"></p-column>
+                    <p-column field="type.name" sortField="crm_type.name" header="Type" [sortable]="true"></p-column>
+                    <p-column styleClass="col-button center">
+                        <ng-template pTemplate="header">
+                            @
+                        </ng-template>
+                        <ng-template let-object="rowData" pTemplate="body">
+                            <div class="dropdown">
+                                <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id]">Edit</a>
+                                    <a class="dropdown-item pointer" (click)="deleteRecord(f, object)">Delete</a>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
             </p-tabPanel>
 
-            <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
-            </p-tabPanel>
+            <!-- <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment"></p-tabPanel> -->
+
         </p-tabView>
 
 
