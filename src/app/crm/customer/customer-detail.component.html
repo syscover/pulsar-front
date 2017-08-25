@@ -104,6 +104,9 @@
             </p-tabPanel>
 
             <p-tabPanel header="Addreses" leftIcon="ui-icon-edit" *ngIf="dataRoute.action === 'edit'">
+                <!-- <div>
+                    <button pButton type="button" (click)="onclick()" label="Click" class="col-md-3"></button>
+                </div> -->
                 <!-- <ps-datatable-search [dataTable]="dataTableAddreses" label="Search"></ps-datatable-search> -->
                 <p-dataTable    #dataTableAddreses
                                 [value]="addresses" 

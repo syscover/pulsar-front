@@ -177,6 +177,13 @@
                             [heightMin]="400"></ps-editor>
             </p-tabPanel>
 
+            <p-tabPanel header="Stocks" leftIcon="ui-icon-edit">
+                <p-dataTable [value]="cars" [editable]="true">
+                    <p-column field="stock" header="Stock" [editable]="true"></p-column>
+                    <p-column field="minimum_stock" header="Minimum stock" [editable]="true"></p-column>
+                </p-dataTable>
+            </p-tabPanel>
+
             <p-tabPanel header="Attachments" leftIcon="ui-icon-attachment">
                 <ps-attachment-files-library    #attachments
                                                 [value]="object.attachments"

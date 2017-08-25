@@ -81,6 +81,11 @@ const routes: Routes = [
                     { path: 'product/create/:id/:lang',                     component: ProductDetailComponent,                      data: { action: 'create-lang' }},
                     { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
 
+                    // Warehouses
+                    { path: 'warehouse',                                    component: TaxRuleListComponent },
+                    { path: 'warehouse/create',                             component: TaxRuleDetailComponent,                      data: { action: 'create' }},
+                    { path: 'warehouse/show/:id',                           component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
+
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}
                 ]

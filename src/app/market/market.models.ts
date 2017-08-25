@@ -107,3 +107,29 @@ export class Product {
     data_lang: string;
     data: DataJson;
 }
+
+export class Warehouse {
+    id: number;
+    name: string;
+
+    // geolocation data
+    country_id: string;
+    territorial_area_1_id: string;
+    territorial_area_2_id: string;
+    territorial_area_3_id: string;
+    cp: string;
+    locality: string;
+    address: string;
+    latitude: string;
+    longitude: string;
+
+    active: boolean;
+}
+
+export class Stock {
+    id: number;
+    warehouse_id: number;
+    product_id: number;
+    stock: number;
+    minimum_stock: number;
+}
