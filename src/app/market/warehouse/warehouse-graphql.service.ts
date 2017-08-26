@@ -3,62 +3,89 @@ import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class TypeGraphQLService extends GraphQLModel {
+export class WarehouseGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query CrmGetTypesPagination ($sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: crmTypesPagination (sql:$sql) {
+        query MarketGetWarehousesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: marketWarehousesPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
             }
         }`;
 
+    queryRelationsObject = gql`
+        query marketGetRelationsWarehouse ($sqlCountry:[CoreSQLQueryInput]){
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
-        query CrmGetTypes ($sql:[CoreSQLQueryInput]) {
-            coreObjects: crmTypes (sql:$sql){
+        query MarketGetWarehouses ($sql:[CoreSQLQueryInput]) {
+            coreObjects: marketWarehouses (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query CrmGetType ($sql:[CoreSQLQueryInput]) {
-            coreObject: crmType (sql:$sql){
+        query MarketGetWarehouse ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+            coreObject: marketWarehouse (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
-        mutation CrmAddType ($object:CrmTypeInput!) {
-            crmAddType (object:$object){
+        mutation MarketAddWarehouse ($object:MarketWarehouseInput!) {
+            marketAddWarehouse (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CrmUpdateType ($object:CrmTypeInput!) {
-            crmUpdateType (object:$object){
+        mutation MarketUpdateWarehouse ($object:MarketWarehouseInput!) {
+            marketUpdateWarehouse (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation CrmDeleteType ($id:Int!) {
-            crmDeleteType (id:$id){
+        mutation MarketDeleteWarehouse ($id:Int!) {
+            marketDeleteWarehouse (id:$id){
                 ${this.fields}
             }
         }`;
 
     init() {
-        this.model = 'Syscover\\Crm\\Models\\Type';
-        this.table = 'crm_type';
+        this.model = 'Syscover\\Market\\Models\\Warehouse';
+        this.table = 'market_warehouse';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on CrmType {
+            ... on MarketWarehouse {
                     id
                     name
+                    country_id
+                    territorial_area_1_id
+                    territorial_area_2_id
+                    territorial_area_3_id
+                    cp
+                    locality
+                    address
+                    latitude
+                    longitude
+                    active
                 }
+        `;
+
+        this.relationsFields = `
+            adminCountries (sql:$sqlCountry) {
+                id
+                lang_id
+                name
+                territorial_area_1
+                territorial_area_2
+                territorial_area_3
+            }
         `;
 
         super.init();

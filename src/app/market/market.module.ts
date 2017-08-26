@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { MarketRoutingModule } from './market-routing.module';
@@ -30,6 +29,9 @@ import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductGraphQLService } from './product/product-graphql.service';
 import { ProductListComponent } from './product/product-list.component';
+import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
+import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
+import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 
 @NgModule({
     imports: [
@@ -54,7 +56,9 @@ import { ProductListComponent } from './product/product-list.component';
         TaxRuleDetailComponent,
         TaxRuleListComponent,
         ProductListComponent,
-        ProductDetailComponent
+        ProductDetailComponent,
+        WarehouseListComponent,
+        WarehouseDetailComponent
     ],
     providers: [
         CategoryGraphQLService,
@@ -65,7 +69,8 @@ import { ProductListComponent } from './product/product-list.component';
         ProductClassTaxGraphQLService,
         TaxRateZoneGraphQLService,
         TaxRuleGraphQLService,
-        ProductGraphQLService
+        ProductGraphQLService,
+        WarehouseGraphQLService
     ]
 })
 

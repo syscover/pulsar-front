@@ -31,6 +31,7 @@ export class CustomerGraphQLService extends GraphQLModel {
             coreObject: crmCustomer (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
             crmAddresses (sql:$sqlAddress){
                 id
                 type_id
@@ -54,7 +55,6 @@ export class CustomerGraphQLService extends GraphQLModel {
                 latitude
                 longitude
             }
-            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -96,16 +96,15 @@ export class CustomerGraphQLService extends GraphQLModel {
                     name
                     surname
                     email
-                    address
                     user
                     active
-                    address
                     country_id
                     territorial_area_1_id
                     territorial_area_2_id
                     territorial_area_3_id
                     cp
                     locality
+                    address
                     latitude
                     longitude
                 }

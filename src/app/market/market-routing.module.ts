@@ -22,6 +22,8 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductListComponent } from './product/product-list.component';
+import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
+import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 
 const routes: Routes = [
     {
@@ -82,9 +84,9 @@ const routes: Routes = [
                     { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
 
                     // Warehouses
-                    { path: 'warehouse',                                    component: TaxRuleListComponent },
-                    { path: 'warehouse/create',                             component: TaxRuleDetailComponent,                      data: { action: 'create' }},
-                    { path: 'warehouse/show/:id',                           component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'warehouse',                                    component: WarehouseListComponent },
+                    { path: 'warehouse/create',                             component: WarehouseDetailComponent,                    data: { action: 'create' }},
+                    { path: 'warehouse/show/:id',                           component: WarehouseDetailComponent,                    data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}
