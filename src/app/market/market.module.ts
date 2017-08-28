@@ -20,6 +20,7 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { StockGraphQLService } from './stock/stock-graphql.service';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
@@ -70,6 +71,7 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         TaxRateZoneGraphQLService,
         TaxRuleGraphQLService,
         ProductGraphQLService,
+        StockGraphQLService,
         WarehouseGraphQLService
     ]
 })

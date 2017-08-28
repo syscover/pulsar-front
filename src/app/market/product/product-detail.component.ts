@@ -1,10 +1,12 @@
+import { bootstrapItem } from '@angular/cli/utilities/route-utils';
 import { Component, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ProductGraphQLService } from './product-graphql.service';
-import { Product, Category, ProductType, PriceType, ProductClassTax } from './../market.models';
+import { Product, Category, ProductType, PriceType, ProductClassTax, Stock } from './../market.models';
+import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 import { Field, FieldGroup, AttachmentFamily, FieldValue } from './../../admin/admin.models';
@@ -25,12 +27,14 @@ export class ProductDetailComponent extends CoreDetailComponent {
     productClassTaxes: SelectItem[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     products: SelectItem[] = [];
+    stocksData: any[] = [];
 
     // custom fields
     fieldGroups: SelectItem[] = [];
     fields: Field[];
     fieldValues: FieldValue[];
 
+    @ViewChild('stocksDataTable') private stocksDataTable;
     @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
     @ViewChild('productClassTax') private productClassTax;
 
@@ -40,6 +44,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
     constructor(
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
+        private graphQLStock: StockGraphQLService,
         private dynamicFormService: DynamicFormService
     ) {
         super(injector, graphQL);
@@ -149,7 +154,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                         this.handleGetCustomFields();
                     }
                 },
-                1 // force to calualte price without tax
+                1 // force to calulate price without tax
             ); // calculate tax prices
 
             if (this.dataRoute.action === 'create-lang') {
@@ -217,6 +222,15 @@ export class ProductDetailComponent extends CoreDetailComponent {
             }
         ];
 
+        let sqlStock = [
+            {
+                command: 'where',
+                column: 'product_id',
+                operator: '=',
+                value: this.params['id']
+            }
+        ];
+
         let configProductTypes = {
             key: 'pulsar.market.productTypes',
             lang: this.baseLang,
@@ -234,12 +248,32 @@ export class ProductDetailComponent extends CoreDetailComponent {
             sqlAttachmentFamily,
             sqlProduct,
             sqlFieldGroup,
+            sqlStock,
             configProductTypes,
             configPriceTypes
         };
     }
 
     setRelationsData(data) {
+
+        if (this.dataRoute.action === 'edit') {
+            let stocksData = [];
+            for (const warehouse of data['marketWarehouses']) {
+
+                let stock = _.find(data['marketStocks'], {warehouse_id: warehouse.id});
+
+                stocksData.push({
+                    warehouse_id: warehouse.id,
+                    product_id: data['coreObject']['id'],
+                    name: warehouse.name,
+                    stock_id: stock ? stock['id'] : null,
+                    stock: stock ? stock['stock'] : 0,
+                    minimum_stock: stock ? stock['minimum_stock'] : 0,
+                });
+                this.stocksData = stocksData;
+            }
+        }
+
         // market categories
         this.categories = _.map(<Category[]>data['marketCategories'], obj => {
             return { value: obj.id, label: obj.name };
@@ -277,5 +311,56 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
         // admin attachment families
         this.attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+    }
+
+    /* handleBlurStock($event) {
+        console.log('XX', $event);
+        this.stocksDataTable.reset();
+
+        if ($event.keyCode == 13) {
+            $event.preventDefault();
+        }
+    } */
+
+    handleOnEditComplete($event) {
+
+        console.log('TODO: capturar envento blur', $event);
+
+        if ($event.data.stock_id === null) {
+            let subs = this.objectService
+                .proxyGraphQL()
+                .mutate({
+                    mutation: this.graphQLStock.mutationAddObject,
+                    variables: {
+                        object: {
+                            warehouse_id: $event.data.warehouse_id,
+                            product_id: $event.data.product_id,
+                            stock: $event.data.stock,
+                            minimum_stock: $event.data.minimum_stock
+                        }
+                    }
+                })
+                .subscribe(data => {
+                    if (environment.debug) console.log('DEBUG - add new stock: ', data);
+                    subs.unsubscribe();
+                });
+
+        } else {
+            let subs = this.objectService
+                .proxyGraphQL()
+                .mutate({
+                    mutation: this.graphQLStock.mutationUpdateObject,
+                    variables: {
+                        object: {
+                            id: $event.data.stock_id,
+                            stock: $event.data.stock,
+                            minimum_stock: $event.data.minimum_stock
+                        }
+                    }
+                })
+                .subscribe(data => {
+                    subs.unsubscribe();
+                });
+        }
     }
 }

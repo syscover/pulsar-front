@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
@@ -35,11 +36,12 @@ export class ProductGraphQLService extends GraphQLModel {
 
     queryObject = gql`
         query MarketGetProduct (
-            $sql:[CoreSQLQueryInput] 
+            $sql:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput]
             $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlFieldGroup:[CoreSQLQueryInput]
             $sqlProduct:[CoreSQLQueryInput]
+            $sqlStock:[CoreSQLQueryInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
         ) {
@@ -47,6 +49,17 @@ export class ProductGraphQLService extends GraphQLModel {
                 ${this.fields}
             }
             ${this.relationsFields}
+            marketStocks (sql:$sqlStock) {
+                id
+                warehouse_id
+                product_id
+                stock
+                minimum_stock
+            }
+            marketWarehouses {
+                id
+                name
+            }
         }`;
 
     mutationAddObject = gql`

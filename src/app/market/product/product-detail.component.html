@@ -177,9 +177,24 @@
                             [heightMin]="400"></ps-editor>
             </p-tabPanel>
 
-            <p-tabPanel header="Stocks" leftIcon="ui-icon-edit">
-                <p-dataTable [value]="cars" [editable]="true">
+            <p-tabPanel header="Stocks" leftIcon="ui-icon-edit" *ngIf="dataRoute.action === 'edit'">
+                <p-dataTable    #stocksDataTable
+                                [value]="stocksData"
+                                [editable]="true"
+                                (onEditComplete)="handleOnEditComplete($event)">
+
+                    <p-column field="name" header="Warehose"></p-column>
                     <p-column field="stock" header="Stock" [editable]="true"></p-column>
+                    <!-- <p-column field="stock" header="Stock" [editable]="true">
+
+                        <ng-template let-col let-stock="rowData" pTemplate="editor">
+                            <input type="text" [value]="stock[col.field]" pInputText (blur)="handleBlurStock($event)" (keypress)="handleBlurStock($event)" appendTo="body"/>
+                        </ng-template>
+                        <ng-template let-col let-stock="rowData" pTemplate="body">
+                            {{ stock[col.field] }} bb
+                        </ng-template>
+
+                    </p-column> -->
                     <p-column field="minimum_stock" header="Minimum stock" [editable]="true"></p-column>
                 </p-dataTable>
             </p-tabPanel>
