@@ -11,10 +11,9 @@ import { CountryGraphQLService } from './country-graphql.service';
 export class CountryDetailComponent extends CoreDetailComponent {
 
     zones: SelectItem[] = [
-        { value: 'country', label: 'Country' },
-        { value: 'territorial_area_1', label: 'Territorial Area 1' },
-        { value: 'territorial_area_2', label: 'Territorial Area 2' },
-        { value: 'territorial_area_3', label: 'Territorial Area 3' }
+        { value: 'territorial_areas_1', label: 'Territorial Areas 1' },
+        { value: 'territorial_areas_2', label: 'Territorial Areas 2' },
+        { value: 'territorial_areas_3', label: 'Territorial Areas 3' }
     ];
 
     constructor(
