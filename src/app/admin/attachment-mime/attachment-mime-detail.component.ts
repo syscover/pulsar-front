@@ -33,7 +33,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
     argumentsRelationsObject(): Object {
         return {
             configAttachmentResources : {
-                key: 'pulsar.admin.attachment_resources'
+                key: 'pulsar-admin.attachment_resources'
             }
         };
     }

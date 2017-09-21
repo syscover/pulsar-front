@@ -110,10 +110,10 @@ export class FieldDetailComponent extends CoreDetailComponent {
     argumentsRelationsObject(): Object {
         return {
             configFieldTypes: {
-                key: 'pulsar.admin.field_types'
+                key: 'pulsar-admin.field_types'
             },
             configDataTypes: {
-                key: 'pulsar.admin.data_types'
+                key: 'pulsar-admin.data_types'
             }
         };
     }

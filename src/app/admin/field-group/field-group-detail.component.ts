@@ -34,7 +34,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
     argumentsRelationsObject(): Object {
         return {
             configFieldGroupResources : {
-                key: 'pulsar.admin.field_group_resources'
+                key: 'pulsar-admin.field_group_resources'
             }
         };
     }

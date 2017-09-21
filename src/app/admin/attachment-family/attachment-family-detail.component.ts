@@ -49,10 +49,10 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
     argumentsRelationsObject(): Object {
         return {
             configSizes : {
-                key: 'pulsar.admin.sizes'
+                key: 'pulsar-admin.sizes'
             },
             configAttachmentResources : {
-                key: 'pulsar.admin.attachment_resources'
+                key: 'pulsar-admin.attachment_resources'
             }
         };
     }

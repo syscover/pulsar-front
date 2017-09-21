@@ -232,13 +232,13 @@ export class ProductDetailComponent extends CoreDetailComponent {
         ];
 
         let configProductTypes = {
-            key: 'pulsar.market.productTypes',
+            key: 'pulsar-market.productTypes',
             lang: this.baseLang,
             property: 'name'
         };
 
         let configPriceTypes = {
-            key: 'pulsar.market.priceTypes',
+            key: 'pulsar-market.priceTypes',
             lang: this.baseLang,
             property: 'name'
         };

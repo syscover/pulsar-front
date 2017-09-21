@@ -40,10 +40,10 @@ export class DynamicFormService {
                             }
                         ],
                         configFieldTypes: {
-                            key: 'pulsar.admin.field_types'
+                            key: 'pulsar-admin.field_types'
                         },
                         configDataTypes: {
-                            key: 'pulsar.admin.data_types'
+                            key: 'pulsar-admin.data_types'
                         }
                     }
                 })

@@ -228,7 +228,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         ];
 
         let configStatuses = {
-            key: 'pulsar.cms.statuses',
+            key: 'pulsar-cms.statuses',
             lang: this.baseLang,
             property: 'name'
         };

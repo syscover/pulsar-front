@@ -57,7 +57,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
         ];
 
         let configEditors = {
-            key: 'pulsar.cms.editors'
+            key: 'pulsar-cms.editors'
         };
 
         return {

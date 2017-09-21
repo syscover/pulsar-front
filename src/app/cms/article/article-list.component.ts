@@ -30,7 +30,7 @@ export class ArticleListComponent extends CoreListComponent {
     getCustomArgumentsGetRecords(args: Object): Object {
         // set arguments to get statuses
         args['config'] = {
-            key: 'pulsar.cms.statuses',
+            key: 'pulsar-cms.statuses',
             lang: this.baseLang,
             property: 'name'
         };
