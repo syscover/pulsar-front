@@ -10,7 +10,8 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             <span class="md-inputfield">
                 <p-spinner  [formControlName]="name"
                             [min]="min"
-                            [max]="max">
+                            [max]="max"
+                            [step]="step"
                             (onChange)="handleChange($event)">
                             </p-spinner>
                 <label>{{ label }}</label>
@@ -38,6 +39,7 @@ export class SpinnerComponent implements OnInit {
     @Input() name: string;
     @Input() min: number;
     @Input() max: number;
+    @Input() step: number = 1;
 
     formControl: AbstractControl;
     error: string;
@@ -64,7 +66,6 @@ export class SpinnerComponent implements OnInit {
     }
 
     handleChange($event) {
-        console.log($event);
         this.onChange.emit($event);
     }
 }

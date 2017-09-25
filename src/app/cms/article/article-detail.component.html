@@ -177,13 +177,23 @@
             </p-tabPanel>
 
             <p-tabPanel *ngIf="family?.excerpt_editor_id" header="Excerpt" leftIcon="ui-icon-edit">
-                <ps-editor  [form]="fg" 
-                            name="excerpt"
-                            placeholder="Enter here your excerpt"
-                            [heightMin]="400"
-                            [imageUploadURL]="imageUploadURL"
-                            [imageStyles]="imageStyles"
-                            [attachmentFamilies]="attachmentFamilies"></ps-editor>
+                <div [ngSwitch]="family.excerpt_editor_id">
+                    <ps-textarea    *ngSwitchCase="1"
+                                    [form]="fg"
+                                    rows="10"
+                                    name="excerpt"
+                                    placeholder="Excerpt"
+                                    class="col-12"></ps-textarea>
+                    
+                    <ps-editor  *ngSwitchCase="2"
+                                [form]="fg" 
+                                name="excerpt"
+                                placeholder="Enter here your excerpt"
+                                [heightMin]="400"
+                                [imageUploadURL]="imageUploadURL"
+                                [imageStyles]="imageStyles"
+                                [attachmentFamilies]="attachmentFamilies"></ps-editor>
+                </div>
             </p-tabPanel>
 
             <p-tabPanel *ngIf="family?.article_editor_id" header="Article" leftIcon="ui-icon-edit">
