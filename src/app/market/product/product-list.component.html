@@ -6,6 +6,7 @@
                 (onLazyLoad)="getRecords($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang }])">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
+    <p-column field="code" header="Code" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
     <p-column field="active" header="Active" [sortable]="true"></p-column>
     <p-column field="subtotal" header="Subtotal" [sortable]="true"></p-column>

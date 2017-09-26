@@ -161,6 +161,7 @@ export class ProductGraphQLService extends GraphQLModel {
                 id
                 lang_id
                 name
+                code
             }
             adminFieldGroups (sql:$sqlFieldGroup){
                 id
