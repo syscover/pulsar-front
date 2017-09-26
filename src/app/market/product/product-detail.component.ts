@@ -298,14 +298,15 @@ export class ProductDetailComponent extends CoreDetailComponent {
         this.priceTypes.unshift({ label: 'Select a price type', value: '' });
 
         // market field groups
-        this.fieldGroups = _.map(<PriceType[]>data['adminFieldGroups'], obj => {
+        this.fieldGroups = _.map(<FieldGroup[]>data['adminFieldGroups'], obj => {
             return { value: obj.id, label: obj.name };
         });
         this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
 
         // market products
-        this.products = _.map(<PriceType[]>data['marketProducts'], obj => {
-            return { value: obj.id, label: obj.name };
+        this.products = _.map(<Product[]>data['marketProducts'], obj => {
+            let code = obj.code ? ` (${obj.code})` : '';
+            return { value: obj.id, label: `${obj.name}${code}` };
         });
         this.products.unshift({ label: 'Select a product', value: '' });
 
