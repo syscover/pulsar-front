@@ -323,6 +323,14 @@ export class ProductDetailComponent extends CoreDetailComponent {
         }
     } */
 
+    handleBlurName($event) {
+        console.log('XX', $event);
+    }
+
+    handleChangeName($event) {
+        console.log('YY', $event);
+    }
+
     handleOnEditComplete($event) {
 
         console.log('TODO: capturar envento blur', $event);

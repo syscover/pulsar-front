@@ -10,6 +10,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
                 <input  [formControlName]="name"
                         [type]="type"
                         (change)="handleChange($event)"
+                        (blur)="handleBlur($event)"
                         pInputText>
                 <label>{{ label }}</label>
                 <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
@@ -36,7 +37,8 @@ export class InputComponent implements OnInit {
     @Input() label: string;
     @Input() name: string;
 
-    @Output() onChange = new EventEmitter<any>();
+    @Output() change = new EventEmitter<any>();
+    @Output() blur = new EventEmitter<any>();
 
     formControl: AbstractControl;
     error: string;
@@ -61,6 +63,10 @@ export class InputComponent implements OnInit {
     }
 
     handleChange($event) {
-        this.onChange.emit($event);
+        this.change.emit($event);
+    }
+
+    handleBlur($event) {
+        this.blur.emit($event);
     }
 }
