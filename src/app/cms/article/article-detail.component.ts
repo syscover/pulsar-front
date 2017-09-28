@@ -13,7 +13,9 @@ import { AuthService } from './../../core/auth/auth.service';
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { Field } from './../../admin/admin.models';
+import { environment } from './../../../environments/environment';
 import * as _ from 'lodash';
+import gql from 'graphql-tag';
 
 @Component({
     selector: 'ps-article-detail',
@@ -287,5 +289,30 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             return { value: obj.id, label: obj.name };
         });
         this.articles.unshift({ label: 'Select a article', value: '' });
+    }
+
+    handleCheckSlug($event) {
+        let subs = this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                fetchPolicy: 'network-only',
+                query: gql`
+                    query MarketProductSlug ($model:String! $slug:String! $id:Int) {
+                        adminCheckSlug (model:$model slug:$slug id:$id)
+                    }
+                `,
+                variables: {
+                    model: 'Syscover\\Cms\\Models\\Article',
+                    slug: $event.target.value,
+                    id: this.object.id
+                }
+            })
+            .subscribe(({data}) => {
+
+                if (environment.debug) console.log('DEBUG - response of query article slug: ', data);
+
+                this.fg.controls['slug'].setValue(data['adminCheckSlug']);
+                subs.unsubscribe();
+            });
     }
 }

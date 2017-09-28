@@ -314,21 +314,29 @@ export class ProductDetailComponent extends CoreDetailComponent {
         this.attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
     }
 
-    /* handleBlurStock($event) {
-        console.log('XX', $event);
-        this.stocksDataTable.reset();
+    handleCheckSlug($event) {
+        let subs = this.objectService
+            .proxyGraphQL()
+            .watchQuery({
+                fetchPolicy: 'network-only',
+                query: gql`
+                    query MarketProductSlug ($model:String! $slug:String! $id:Int) {
+                        adminCheckSlug (model:$model slug:$slug id:$id)
+                    }
+                `,
+                variables: {
+                    model: 'Syscover\\Market\\Models\\ProductLang',
+                    slug: $event.target.value,
+                    id: this.object.id
+                }
+            })
+            .subscribe(({data}) => {
 
-        if ($event.keyCode == 13) {
-            $event.preventDefault();
-        }
-    } */
+                if (environment.debug) console.log('DEBUG - response of query product slug: ', data);
 
-    handleBlurName($event) {
-        console.log('XX', $event);
-    }
-
-    handleChangeName($event) {
-        console.log('YY', $event);
+                this.fg.controls['slug'].setValue(data['adminCheckSlug']);
+                subs.unsubscribe();
+            });
     }
 
     handleOnEditComplete($event) {

@@ -110,6 +110,7 @@
                     <div class="row" *ngIf="family?.title">
                         <ps-input   [form]="fg" 
                                     [errors]="formErrors"
+                                    (change)="handleCheckSlug($event)"
                                     label="Title"
                                     type="text"
                                     name="title" class="col-12"></ps-input>
@@ -118,6 +119,7 @@
                     <div class="row" *ngIf="family?.slug">
                         <ps-input   [form]="fg" 
                                     [errors]="formErrors"
+                                    (change)="handleCheckSlug($event)"
                                     label="Slug"
                                     type="text"
                                     name="slug" class="col-12"></ps-input>

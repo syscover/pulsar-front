@@ -37,8 +37,7 @@
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
-                                (blur)="handleBlurName($event)"
-                                (change)="handleChangeName($event)"
+                                (change)="handleCheckSlug($event)"
                                 label="Name"
                                 type="text"
                                 name="name" class="col-12"></ps-input>
@@ -47,6 +46,7 @@
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
+                                (change)="handleCheckSlug($event)"
                                 label="Slug"
                                 type="text"
                                 name="slug" class="col-12"></ps-input>
