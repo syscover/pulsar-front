@@ -4,7 +4,7 @@ import { Params } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { FamilyGraphQLService } from './family-graphql.service';
-import { FieldGroup } from './../../admin/admin.models';
+import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import { Editor } from './../cms.models';
 
 import * as _ from 'lodash';
@@ -18,6 +18,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
     excerptEditors: SelectItem[] = [];
     articleEditors: SelectItem[] = [];
     fieldGroups: SelectItem[] = [];
+    attachmentFamilies: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
@@ -39,9 +40,10 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             link: '',
             article_parent: '',
             attachments: '',
-            excerpt_editor_id: '',
-            article_editor_id: '',
-            field_group_id: ''
+            attachment_families: null,
+            excerpt_editor_id: null,
+            article_editor_id: null,
+            field_group_id: null
         });
     }
 
@@ -56,13 +58,23 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             }
         ];
 
+        let sqlAttachmentFamily = [
+            {
+                command: 'where',
+                column: 'resource_id',
+                operator: '=',
+                value: 'cms-article'
+            }
+        ];
+
         let configEditors = {
             key: 'pulsar-cms.editors'
         };
 
         return {
             configEditors,
-            sqlFieldGroup
+            sqlFieldGroup,
+            sqlAttachmentFamily
         };
     }
 
@@ -84,5 +96,10 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             return { value: obj.id, label: obj.name };
         });
         this.fieldGroups.unshift({ label: 'Select a field group', value: '' });
+
+        // set attachmentFamilies
+        this.attachmentFamilies = _.map(<AttachmentFamily[]>data.adminAttachmentFamilies, obj => {
+            return { value: obj.id, label: obj.name };
+        });
     }
 }

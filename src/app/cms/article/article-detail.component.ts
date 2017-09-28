@@ -39,6 +39,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
     private _sections: Section[];
     private _families: Family[];
+    private _attachment_families: AttachmentFamily[];
 
     // custom fields
     fields: Field[];
@@ -107,6 +108,16 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             this.family = _.find(this._families, {id: $event.value});
 
             this.fg.controls['family_id'].setValue(this.family.id);
+
+            // load attachment families depend of article familie
+            if (this.family.attachment_families !== null) {
+                this.attachmentFamilies = [];
+                for (let idAttachmentFamily of this.family.attachment_families) {
+                    this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
+                }
+            } else {
+                this.attachmentFamilies = this._attachment_families;
+            }
 
             this.handleGetCustomFields();
         }
@@ -270,7 +281,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         this.statuses.unshift({ label: 'Select a status', value: '' });
 
         // admin attachment families
-        this.attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+        this._attachment_families = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+        this.attachmentFamilies = this._attachment_families;
 
         // Images styles for Froala
         for (let attachemntFamily of this.attachmentFamilies) {

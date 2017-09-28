@@ -26,6 +26,7 @@ export class Family {
     tags: boolean;
     article_parent: boolean;
     attachments: boolean;
+    attachment_families: number[];
 }
 
 export class Section {
