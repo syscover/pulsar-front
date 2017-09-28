@@ -92,6 +92,16 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         if ($event.value) {
             let section = _.find(this._sections, {id: $event.value});
 
+            // load attachment families depend of article familie
+            if (section.attachment_families !== null) {
+                this.attachmentFamilies = [];
+                for (let idAttachmentFamily of section.attachment_families) {
+                    this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
+                }
+            } else {
+                this.attachmentFamilies = this._attachment_families;
+            }
+
             // TODO, trigger event instead call function
             if (section.family) {
                 this.handleChangeFamily({value: section.family.id});
@@ -108,16 +118,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             this.family = _.find(this._families, {id: $event.value});
 
             this.fg.controls['family_id'].setValue(this.family.id);
-
-            // load attachment families depend of article familie
-            if (this.family.attachment_families !== null) {
-                this.attachmentFamilies = [];
-                for (let idAttachmentFamily of this.family.attachment_families) {
-                    this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
-                }
-            } else {
-                this.attachmentFamilies = this._attachment_families;
-            }
 
             this.handleGetCustomFields();
         }

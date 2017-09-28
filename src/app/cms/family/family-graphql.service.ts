@@ -15,12 +15,12 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query CmsGetRelationsFamily ($configEditors:CoreConfigInput! $sqlFieldGroup:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]){
+        query CmsGetRelationsFamily ($configEditors:CoreConfigInput! $sqlFieldGroup:[CoreSQLQueryInput]){
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
+        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
             coreObjects: cmsFamilies (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class FamilyGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query CmsGetFamily ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
+        query CmsGetFamily ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
             coreObject: cmsFamily (sql:$sql){
                 ${this.fields}
             }
@@ -77,7 +77,6 @@ export class FamilyGraphQLService extends GraphQLModel {
                 tags
                 article_parent
                 attachments
-                attachment_families
                 data
             }
         `;
@@ -90,10 +89,6 @@ export class FamilyGraphQLService extends GraphQLModel {
                 }
             }
             adminFieldGroups (sql:$sqlFieldGroup) {
-                id
-                name
-            }
-            adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
                 id
                 name
             }

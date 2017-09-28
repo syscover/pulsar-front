@@ -1,3 +1,4 @@
+import { AttachmentFamily } from './../../admin/admin.models';
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Params } from '@angular/router';
@@ -15,6 +16,7 @@ import * as _ from 'lodash';
 export class SectionDetailComponent extends CoreDetailComponent {
 
     families: SelectItem[] = [];
+    attachmentFamilies: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
@@ -31,8 +33,25 @@ export class SectionDetailComponent extends CoreDetailComponent {
                 Validators.maxLength(30)]
             ],
             name: ['', Validators.required ],
-            family_id: ''
+            family_id: null,
+            attachment_families: null
         });
+    }
+
+    argumentsRelationsObject() {
+
+        let sqlAttachmentFamily = [
+            {
+                command: 'where',
+                column: 'resource_id',
+                operator: '=',
+                value: 'cms-article'
+            }
+        ];
+
+        return {
+            sqlAttachmentFamily
+        };
     }
 
     setRelationsData(data: any) {
@@ -40,5 +59,12 @@ export class SectionDetailComponent extends CoreDetailComponent {
             return { value: obj.id, label: obj.name };
         });
         this.families.unshift({ label: 'Select a family', value: '' });
+
+        // set attachmentFamilies
+        this.attachmentFamilies = _.map(<AttachmentFamily[]>data.adminAttachmentFamilies, obj => {
+            return { value: obj.id, label: obj.name };
+        });
     }
 }
+
+

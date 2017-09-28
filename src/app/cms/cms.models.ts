@@ -26,14 +26,14 @@ export class Family {
     tags: boolean;
     article_parent: boolean;
     attachments: boolean;
-    attachment_families: number[];
 }
 
 export class Section {
     id: string;
     name: string;
     family_id: number;
-    family: Family
+    family: Family;
+    attachment_families: number[];
 }
 
 export class Tag {

@@ -15,12 +15,12 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query CmsGetRelationsSection {
+        query CmsGetRelationsSection ($sqlAttachmentFamily:[CoreSQLQueryInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CmsGetSections ($sql:[CoreSQLQueryInput]) {
+        query CmsGetSections ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
             coreObjects: cmsSections (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     queryObject = gql`
-        query CmsGetSection ($sql:[CoreSQLQueryInput]) {
+        query CmsGetSection ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
             coreObject: cmsSection (sql:$sql){
                 ${this.fields}
             }
@@ -70,11 +70,16 @@ export class SectionGraphQLService extends GraphQLModel {
                     id
                     name
                 }
+                attachment_families
             }
         `;
 
         this.relationsFields = `
             cmsFamilies {
+                id
+                name
+            }
+            adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
                 id
                 name
             }

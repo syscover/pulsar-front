@@ -153,6 +153,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                     id 
                     name
                 }
+                attachment_families
             }
             cmsFamilies {
                 id 
@@ -169,7 +170,6 @@ export class ArticleGraphQLService extends GraphQLModel {
                 tags
                 article_parent
                 attachments
-                attachment_families
             }
             cmsCategories (sql:$sqlCategory) {
                 id
