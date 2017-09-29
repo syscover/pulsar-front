@@ -34,6 +34,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     attachmentFamilies: AttachmentFamily[] = [];
     imageStyles: Object = new Object;
     user: User = new User();
+    section: Section;
     family: Family;
     imageUploadURL: string;
 
@@ -90,22 +91,26 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     handleChangeSection($event) {
         // change family if, change section
         if ($event.value) {
-            let section = _.find(this._sections, {id: $event.value});
+            this.section = _.find(this._sections, {id: $event.value});
 
-            // load attachment families depend of article familie
-            if (section.attachment_families !== null) {
-                this.attachmentFamilies = [];
-                for (let idAttachmentFamily of section.attachment_families) {
-                    this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
-                }
-            } else {
-                this.attachmentFamilies = this._attachment_families;
-            }
+            this.loadAttachmentFamilies();
 
             // TODO, trigger event instead call function
-            if (section.family) {
-                this.handleChangeFamily({value: section.family.id});
+            if (this.section.family) {
+                this.handleChangeFamily({value: this.section.family.id});
             }
+        }
+    }
+
+    private loadAttachmentFamilies() {
+        // load attachment families depend of article familie
+        if (this.section.attachment_families !== null) {
+            this.attachmentFamilies = [];
+            for (let idAttachmentFamily of this.section.attachment_families) {
+                this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
+            }
+        } else {
+            this.attachmentFamilies = this._attachment_families;
         }
     }
 
@@ -144,6 +149,10 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     setData(response = undefined) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
+
+            // set section object and load attachment families
+            this.section = _.find(this._sections, {id: this.object.section_id});
+            this.loadAttachmentFamilies();
 
             // set family object, to change morphology of form
             this.family = _.find(this._families, {id: this.object.family_id});

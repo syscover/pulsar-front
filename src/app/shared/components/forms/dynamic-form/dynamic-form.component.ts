@@ -15,7 +15,7 @@ import * as _ from 'lodash';
                         [errors]="errors" 
                         [label]="label" 
                         [name]="field.name" 
-                        class="col-sm-12 col-md-4"></ps-input>
+                        [class]="field.component_class ? field.component_class : 'col-6'"></ps-input>
 
             <ps-spinner *ngSwitchCase="'number'"
                         [form]="dynamicFormService.form.get('customFields')"
@@ -23,7 +23,7 @@ import * as _ from 'lodash';
                         [label]="label" 
                         [name]="field.name" 
                         [min]="0"
-                        class="col-sm-12 col-md-4"></ps-spinner>
+                        [class]="field.component_class ? field.component_class : 'col-6'"></ps-spinner>
 
             <ps-dropdown *ngSwitchCase="'select'" 
                         [form]="dynamicFormService.form.get('customFields')"
@@ -31,9 +31,21 @@ import * as _ from 'lodash';
                         [autoWidth]="false"
                         [options]="options"
                         [name]="field.name"
-                        class="col-sm-12 col-md-5"></ps-dropdown>
+                        [class]="field.component_class ? field.component_class : 'col-6'"></ps-dropdown>
 
-            <div *ngSwitchDefault>Error</div>
+            <ps-editor  *ngSwitchCase="'wysiwyg'"
+                        [form]="dynamicFormService.form.get('customFields')"
+                        [errors]="errors" 
+                        [label]="label"
+                        [name]="field.name"
+                        [placeholder]="'Enter here your ' + label"
+                        [heightMin]="300"
+                        [imageUploadURL]="imageUploadURL"
+                        [imageStyles]="imageStyles"
+                        [attachmentFamilies]="attachmentFamilies"
+                        [class]="field.component_class ? field.component_class : 'col-12'"></ps-editor>
+
+            <div *ngSwitchDefault>Error field {{ field.field_type_id }} nor implemented</div>
         </div>
     `
 })

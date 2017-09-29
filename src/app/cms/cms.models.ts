@@ -60,7 +60,7 @@ export class Article {
     name: string;
     author_id: number;
     author: User;
-    section_id: number;
+    section_id: string;
     family_id: number;
     family: Family;
     status_id: number;

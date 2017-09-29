@@ -10,13 +10,11 @@ declare const jQuery: any; // jQuery definition
     selector: 'ps-editor',
     template: `
         <div [formGroup]="form">
-            <span class="md-inputfield">
-                <textarea [froalaEditor]="froalaOptions" [formControlName]="name"></textarea>
-                <label>{{ label }}</label>
-                <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
-                    {{ error }}
-                </div>
-            </span>
+            <label>{{ label }}</label>
+            <textarea [froalaEditor]="froalaOptions" [formControlName]="name"></textarea>
+            <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
+                {{ error }}
+            </div>
         <div>
     `,
     styles: [`
