@@ -44,7 +44,7 @@ export class DropdownComponent implements OnInit, AfterContentInit {
     formControl: AbstractControl;
     error: string;
 
-    @Output() onChange: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
@@ -71,6 +71,6 @@ export class DropdownComponent implements OnInit, AfterContentInit {
     }
 
     handleChange($event) {
-        this.onChange.emit($event);
+        this.change.emit($event);
     }
 }

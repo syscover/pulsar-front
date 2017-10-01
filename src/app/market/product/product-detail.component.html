@@ -114,7 +114,7 @@
                                 type="number"
                                 [errors]="formErrors"
                                 label="Price"
-                                (onChange)="handleGetProductTaxes(fg.controls['price'].value)"
+                                (change)="handleGetProductTaxes($event)"
                                 name="price" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
 
@@ -124,21 +124,23 @@
                                     [autoWidth]="false"
                                     [options]="productClassTaxes"
                                     name="product_class_tax_id"
-                                    (onChange)="handleGetProductTaxes(fg.controls['price'].value)"
+                                    (change)="handleGetProductTaxes($event)"
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
 
                     <ps-input   [form]="fg"
                                 [errors]="formErrors"
                                 label="Subtotal"
-                                name="subtotal_format" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
+                                name="subtotal_format" 
+                                class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
 
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Tax"
-                                name="tax_format" class="col-sm-12 offset-md-7 col-md-4"></ps-input>
+                                name="tax_format" 
+                                class="col-sm-12 offset-md-7 col-md-4"></ps-input>
                 </div>
 
                 <div class="row">
