@@ -16,7 +16,8 @@
                                 type="text"
                                 name="id" class="col-sm-6 col-md-3"></ps-input>
 
-                    <ps-lang-label  [lang]="lang" class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
+                    <ps-lang-label  [lang]="lang" 
+                                    class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
                 </div>
 
                 <div class="row">
@@ -231,7 +232,7 @@
 
             <ps-button  type="button" 
                         icon="ui-icon-clear" 
-                        *ngIf="dataRoute.action === 'edit'"
+                        *ngIf="dataRoute.action === 'edit' && lang.id !== configService.get('base_lang')"
                         label="Delete translation" 
                         (click)="deleteRecord(object)" 
                         className="red-btn"

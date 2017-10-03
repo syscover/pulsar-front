@@ -233,11 +233,11 @@
                         [routerLink]="[baseUri]"
                         class="col-sm-10 col-md-3"></ps-button>
 
-            <ps-button  type="button" 
-                        icon="ui-icon-clear" 
-                        *ngIf="dataRoute.action === 'edit'"
-                        label="Delete translation" 
-                        (click)="deleteRecord(object)" 
+            <ps-button  type="button"
+                        icon="ui-icon-clear"
+                        *ngIf="dataRoute.action === 'edit' && lang.id !== configService.get('base_lang')"
+                        label="Delete translation"
+                        (click)="deleteRecord(object)"
                         className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>

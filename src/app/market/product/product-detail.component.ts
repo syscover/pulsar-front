@@ -1,4 +1,3 @@
-import { bootstrapItem } from '@angular/cli/utilities/route-utils';
 import { Component, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +9,7 @@ import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { AttachmentFilesLibraryComponent } from './../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 import { DynamicFormService } from './../../shared/components/forms/dynamic-form/dynamic-form.service';
 import { Field, FieldGroup, AttachmentFamily, FieldValue } from './../../admin/admin.models';
+import { ConfigService } from '../../core/services/config/config.service';
 import { environment } from './../../../environments/environment';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
@@ -45,7 +45,8 @@ export class ProductDetailComponent extends CoreDetailComponent {
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
         private graphQLStock: StockGraphQLService,
-        private dynamicFormService: DynamicFormService
+        private dynamicFormService: DynamicFormService,
+        public configService: ConfigService
     ) {
         super(injector, graphQL);
     }

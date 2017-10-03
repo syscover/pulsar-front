@@ -13,6 +13,7 @@ import { AuthService } from './../../core/auth/auth.service';
 import { User, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { Field } from './../../admin/admin.models';
+import { ConfigService } from '../../core/services/config/config.service';
 import { environment } from './../../../environments/environment';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
@@ -53,7 +54,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
         protected authService: AuthService,
-        private dynamicFormService: DynamicFormService
+        private dynamicFormService: DynamicFormService,
+        public configService: ConfigService
     ) {
         super(injector, graphQL);
 
