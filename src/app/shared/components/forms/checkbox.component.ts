@@ -54,5 +54,4 @@ export class CheckboxComponent implements OnInit {
     handleChange($event) {
         this.formControl.setValue($event); //
     }
-
 }

@@ -39,7 +39,7 @@ export class CalendarComponent implements OnInit {
     @Input() dateFormat: string;
     @Input() showIcon: boolean = false;
 
-    @Output() onChange = new EventEmitter<any>();
+    @Output() change = new EventEmitter<any>();
 
     formControl: AbstractControl;
     error: string;
@@ -64,6 +64,6 @@ export class CalendarComponent implements OnInit {
     }
 
     handleChange($event) {
-        this.onChange.emit($event);
+        this.change.emit($event);
     }
 }

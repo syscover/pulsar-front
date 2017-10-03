@@ -44,7 +44,7 @@ export class SpinnerComponent implements OnInit {
     formControl: AbstractControl;
     error: string;
 
-    @Output() private onChange = new EventEmitter<any>();
+    @Output() private change = new EventEmitter<any>();
 
     constructor() { }
 
@@ -66,6 +66,6 @@ export class SpinnerComponent implements OnInit {
     }
 
     handleChange($event) {
-        this.onChange.emit($event);
+        this.change.emit($event);
     }
 }

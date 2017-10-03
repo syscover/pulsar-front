@@ -13,7 +13,7 @@
                             [autoWidth]="false"
                             [options]="countriesInput"
                             [filter]="true"
-                            (onChange)="handleChangeCountry($event)"
+                            (change)="handleChangeCountry($event)"
                             name="country_id"
                             class="col-12">
             </ps-dropdown>
@@ -24,7 +24,7 @@
                             [autoWidth]="false"
                             [options]="territorialAreas1Input"
                             [filter]="true"
-                            (onChange)="handleChangeTerritorialArea1($event)"
+                            (change)="handleChangeTerritorialArea1($event)"
                             name="territorial_area_1_id"
                             class="col-12">
             </ps-dropdown>
@@ -35,7 +35,7 @@
                             [autoWidth]="false"
                             [options]="territorialAreas2Input"
                             [filter]="true"
-                            (onChange)="handleChangeTerritorialArea2($event)"
+                            (change)="handleChangeTerritorialArea2($event)"
                             name="territorial_area_2_id"
                             class="col-12">
             </ps-dropdown>
