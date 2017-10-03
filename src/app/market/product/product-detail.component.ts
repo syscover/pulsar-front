@@ -86,7 +86,10 @@ export class ProductDetailComponent extends CoreDetailComponent {
     handleGetProductTaxes($event, callback = undefined, forceCalculatePriceWithoutTax = undefined): void {
 
         let price = this.fg.controls['price'].value
-        if (! price) return;
+        if (! price) {
+            if (callback) callback();
+            return;
+        }
 
         let args = {
             price: price,
