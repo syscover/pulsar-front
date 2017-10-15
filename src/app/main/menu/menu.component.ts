@@ -67,6 +67,12 @@ export class MenuComponent implements OnChanges {
                 label: 'Market', icon: 'shopping_cart',
                 items: [
                     {
+                        label: 'Sales', icon: 'monetization_on',
+                        items: [
+                            {label: 'Orders', icon: 'shopping_basket', routerLink: ['/pulsar/market/product']}
+                        ]
+                    },
+                    {
                         label: 'Catalog', icon: 'layers',
                         items: [
                             {label: 'Products', icon: 'view_day', routerLink: ['/pulsar/market/product']},
