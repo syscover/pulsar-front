@@ -68,7 +68,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
             name: ['', Validators.required],
-            parent_article_id: '',
+            parent_id: '',
             author_id: '',
             author_name: [{value: '', disabled: true}],
             section_id: ['', Validators.required],

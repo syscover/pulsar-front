@@ -56,7 +56,7 @@ export class Category {
 export class Article {
     id: number;
     lang_id: string;
-    parent_article_id: number;
+    parent_id: number;
     name: string;
     author_id: number;
     author: User;

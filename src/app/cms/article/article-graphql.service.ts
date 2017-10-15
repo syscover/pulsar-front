@@ -81,7 +81,7 @@ export class ArticleGraphQLService extends GraphQLModel {
             ... on CmsArticle {
                 id
                 lang_id
-                parent_article_id
+                parent_id
                 name
                 author_id
                 section_id
