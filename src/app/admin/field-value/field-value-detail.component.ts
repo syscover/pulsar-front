@@ -23,6 +23,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
     ngOnInit() {
         // set fieldId to be used in template
         this.field_id = this.params['field'];
+
         // set field_id in reactive form
         this.fg.controls['field_id'].setValue(this.field_id);
 
@@ -38,6 +39,17 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
             sort: '',
             featured: ''
         });
+    }
+
+    getCustomArgumentsGetRecord(args, params) {
+        args.sql.push({
+            command: 'where',
+            column: `${this.graphQL.table}.field_id`,
+            operator: '=',
+            value: params['field']
+        });
+
+        return args;
     }
 
     handleEnableId($event) {

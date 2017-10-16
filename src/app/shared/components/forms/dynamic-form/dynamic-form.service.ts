@@ -24,6 +24,7 @@ export class DynamicFormService {
             this.objectService
                 .proxyGraphQL()
                 .watchQuery({
+                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryObjects,
                     variables: {
                         sql: [
