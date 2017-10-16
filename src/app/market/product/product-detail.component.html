@@ -115,7 +115,7 @@
                                 type="number"
                                 [errors]="formErrors"
                                 label="Price"
-                                (change)="handleGetProductTaxes($event)"
+                                (change)="handleGetProductTaxes()"
                                 name="price" class="col-sm-12 offset-md-2 col-md-4"></ps-input>
                 </div>
 
@@ -125,7 +125,7 @@
                                     [autoWidth]="false"
                                     [options]="productClassTaxes"
                                     name="product_class_tax_id"
-                                    (change)="handleGetProductTaxes($event)"
+                                    (change)="handleGetProductTaxes()"
                                     class="col-sm-12 col-md-5">
                     </ps-dropdown>
 

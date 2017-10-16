@@ -83,9 +83,11 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     // get taxes for product
-    handleGetProductTaxes($event, callback = undefined, forceCalculatePriceWithoutTax = undefined): void {
+    handleGetProductTaxes(subtotal = undefined, forceCalculatePriceWithoutTax = undefined, callback = undefined): void {
 
-        let price = this.fg.controls['price'].value
+        // subtotal is defined when load element
+        let price = subtotal ? subtotal : this.fg.controls['price'].value;
+
         if (! price) {
             if (callback) callback();
             return;
@@ -100,7 +102,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
         // is without tax because is subtotal the refernece price, this flag is activated in
         // function setData os this component
         if (forceCalculatePriceWithoutTax) {
-            args['productTaxPrices'] = forceCalculatePriceWithoutTax;
+            args['productTaxPrices'] = 1;
         }
 
         let subs = this.objectService
@@ -151,6 +153,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
             this.handleGetProductTaxes(
                 this.fg.controls['subtotal'].value,
+                true, // force to calulate price without tax
                 // callback, all http petition must to be sequential to pass JWT
                 () => {
                     // get fields if object has field group
@@ -158,8 +161,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                         // set FormGroup with custom FormControls
                         this.handleGetCustomFields();
                     }
-                },
-                1 // force to calulate price without tax
+                }
             ); // calculate tax prices
 
             if (this.dataRoute.action === 'create-lang') {
