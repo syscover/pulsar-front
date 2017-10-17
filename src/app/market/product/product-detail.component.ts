@@ -273,7 +273,6 @@ export class ProductDetailComponent extends CoreDetailComponent {
                     warehouse_id: warehouse.id,
                     product_id: data['coreObject']['id'],
                     name: warehouse.name,
-                    stock_id: stock ? stock['id'] : null,
                     stock: stock ? stock['stock'] : 0,
                     minimum_stock: stock ? stock['minimum_stock'] : 0,
                 });
@@ -346,45 +345,26 @@ export class ProductDetailComponent extends CoreDetailComponent {
             });
     }
 
-    handleOnEditComplete($event) {
+    handleOnEditCompleteStock($event) {
 
         console.log('TODO: capturar envento blur', $event);
 
-        if ($event.data.stock_id === null) {
-            let subs = this.objectService
-                .proxyGraphQL()
-                .mutate({
-                    mutation: this.graphQLStock.mutationAddObject,
-                    variables: {
-                        object: {
-                            warehouse_id: $event.data.warehouse_id,
-                            product_id: $event.data.product_id,
-                            stock: $event.data.stock,
-                            minimum_stock: $event.data.minimum_stock
-                        }
+        let subs = this.objectService
+            .proxyGraphQL()
+            .mutate({
+                mutation: this.graphQLStock.mutationSetStock,
+                variables: {
+                    object: {
+                        warehouse_id: $event.data.warehouse_id,
+                        product_id: $event.data.product_id,
+                        stock: $event.data.stock,
+                        minimum_stock: $event.data.minimum_stock
                     }
-                })
-                .subscribe(data => {
-                    if (environment.debug) console.log('DEBUG - add new stock: ', data);
-                    subs.unsubscribe();
-                });
-
-        } else {
-            let subs = this.objectService
-                .proxyGraphQL()
-                .mutate({
-                    mutation: this.graphQLStock.mutationUpdateObject,
-                    variables: {
-                        object: {
-                            id: $event.data.stock_id,
-                            stock: $event.data.stock,
-                            minimum_stock: $event.data.minimum_stock
-                        }
-                    }
-                })
-                .subscribe(data => {
-                    subs.unsubscribe();
-                });
-        }
+                }
+            })
+            .subscribe(data => {
+                if (environment.debug) console.log('DEBUG - set stock: ', data);
+                subs.unsubscribe();
+            });
     }
 }

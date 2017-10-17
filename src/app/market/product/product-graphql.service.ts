@@ -50,7 +50,6 @@ export class ProductGraphQLService extends GraphQLModel {
             }
             ${this.relationsFields}
             marketStocks (sql:$sqlStock) {
-                id
                 warehouse_id
                 product_id
                 stock

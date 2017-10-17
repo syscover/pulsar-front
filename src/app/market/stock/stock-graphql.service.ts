@@ -6,46 +6,9 @@ import gql from 'graphql-tag';
 @Injectable()
 export class StockGraphQLService extends GraphQLModel {
 
-    queryPaginationObject = gql`
-        query MarketGetStocksPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: marketStocksPagination (filters:$filters sql:$sql) {
-                total
-                filtered
-                objects (sql:$sql)
-            }
-        }`;
-
-    queryObjects = gql`
-        query MarketGetStocks ($sql:[CoreSQLQueryInput]) {
-            coreObjects: marketStocks (sql:$sql){
-                ${this.fields}
-            }
-        }`;
-
-    queryObject = gql`
-        query MarketGetStock ($sql:[CoreSQLQueryInput]) {
-            coreObject: marketStock (sql:$sql){
-                ${this.fields}
-            }
-        }`;
-
-    mutationAddObject = gql`
-        mutation MarketAddStock ($object:MarketStockInput!) {
-            marketAddStock (object:$object){
-                ${this.fields}
-            }
-        }`;
-
-    mutationUpdateObject = gql`
-        mutation MarketUpdateStock ($object:MarketStockInput!) {
-            marketUpdateStock (object:$object){
-                ${this.fields}
-            }
-        }`;
-
-    mutationDeleteObject = gql`
-        mutation MarketDeleteStock ($id:String! $lang:String!) {
-            marketDeleteStock (id:$id){
+    mutationSetStock = gql`
+        mutation MarketSetStock ($object:MarketStockInput!) {
+            marketSetStock (object:$object){
                 ${this.fields}
             }
         }`;
@@ -57,7 +20,6 @@ export class StockGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketStock {
-                id
                 warehouse_id
                 product_id
                 stock

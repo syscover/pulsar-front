@@ -187,7 +187,7 @@
                 <p-dataTable    #stocksDataTable
                                 [value]="stocksData"
                                 [editable]="true"
-                                (onEditComplete)="handleOnEditComplete($event)">
+                                (onEditComplete)="handleOnEditCompleteStock($event)">
 
                     <p-column field="name" header="Warehose"></p-column>
                     <p-column field="stock" header="Stock" [editable]="true"></p-column>
