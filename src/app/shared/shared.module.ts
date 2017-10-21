@@ -1,4 +1,3 @@
-import { GetValueObjectPipe } from './pipes/get-value-object.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,6 +15,8 @@ import { DatatableHeaderComponent } from './components/datatable-header/datatabl
 import { DynamicFormComponent } from './components/forms/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from './components/forms/dynamic-form/dynamic-form.service';
 import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
+import { GetLangValuePipe } from './pipes/get-lang-value.pipe';
+import { GetObjectValuePipe } from './pipes/get-object-value.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         DatatableSearchComponent,
         DynamicFormComponent,
         ErrorComponent,
-        GetValueObjectPipe,
+        GetObjectValuePipe,
+        GetLangValuePipe,
         ProgressSpinnerComponent,
     ],
     providers: [
@@ -59,7 +61,8 @@ import { AttachmentService } from './components/forms/attachment-files-library/a
         DynamicFormComponent,
         ActionLangObjectPipe,
         CheckLangsObjectPipe,
-        GetValueObjectPipe,
+        GetObjectValuePipe,
+        GetLangValuePipe,
     ]
 })
 

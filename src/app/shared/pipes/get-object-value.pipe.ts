@@ -3,9 +3,9 @@ import { Translated } from './../classes/translated';
 import * as _ from 'lodash';
 
 @Pipe({
-    name: 'getValueObject'
+    name: 'getObjectValue'
 })
-export class GetValueObjectPipe implements PipeTransform {
+export class GetObjectValuePipe implements PipeTransform {
     transform(objects: any[], id: string, value: any, field: string): string {
 
         // all config id are string

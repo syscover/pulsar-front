@@ -11,6 +11,8 @@ import { CustomerClassTaxListComponent } from './customer-class-tax/customer-cla
 import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax/group-customer-class-tax-detail.component';
 import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax/group-customer-class-tax-graphql.service';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
+import { OrderGraphQLService } from './order/order-graphql.service';
+import { OrderListComponent } from './order/order-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -20,6 +22,9 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { ProductDetailComponent } from './product/product-detail.component';
+import { ProductGraphQLService } from './product/product-graphql.service';
+import { ProductListComponent } from './product/product-list.component';
 import { StockGraphQLService } from './stock/stock-graphql.service';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
@@ -27,9 +32,6 @@ import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.com
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
-import { ProductDetailComponent } from './product/product-detail.component';
-import { ProductGraphQLService } from './product/product-graphql.service';
-import { ProductListComponent } from './product/product-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
@@ -48,6 +50,7 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         GroupCustomerClassTaxListComponent,
         PaymentMethodDetailComponent,
         PaymentMethodListComponent,
+        OrderListComponent,
         OrderStatusDetailComponent,
         OrderStatusListComponent,
         ProductClassTaxDetailComponent,
@@ -70,6 +73,7 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         ProductClassTaxGraphQLService,
         TaxRateZoneGraphQLService,
         TaxRuleGraphQLService,
+        OrderGraphQLService,
         ProductGraphQLService,
         StockGraphQLService,
         WarehouseGraphQLService

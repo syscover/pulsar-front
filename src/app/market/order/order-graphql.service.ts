@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 export class OrderGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query MarketGetOrdersPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: marketProductsPagination (filters:$filters sql:$sql) {
+        query MarketGetOrdersPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: marketOrdersPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
@@ -84,65 +84,27 @@ export class OrderGraphQLService extends GraphQLModel {
         }`;
 
     init() {
-        this.model = 'Syscover\\Market\\Models\\Product';
-        this.table = 'market_product_lang';
+        this.model = 'Syscover\\Market\\Models\\Order';
+        this.table = 'market_order';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on MarketProduct {
+            ... on MarketOrder {
                 id
-                lang_id
-                code
-                name
-                slug
-                categories {
+                date
+                customer_name
+                customer_surname
+                customer_email
+                customer_mobile
+                status {
                     id
                     lang_id
                     name
                 }
-                field_group_id
-                type_id
-                parent_id
-                weight
-                active
-                sort
-                price_type_id
-                subtotal
-                product_class_tax_id
-                description
-                data_lang
-                data
-                attachments {
+                payment_method {
                     id
                     lang_id
-                    object_id
-                    object_type
-                    family_id
-                    sort
-                    alt
-                    title
-                    base_path
-                    file_name
-                    url
-                    mime
-                    extension
-                    size
-                    width
-                    height
-                    library_id
-                    library_file_name
-                    attachment_library {
-                        id
-                        name
-                        base_path
-                        file_name
-                        url
-                        mime
-                        extension
-                        size
-                        width
-                        height
-                    }
+                    name
                 }
             }
         `;

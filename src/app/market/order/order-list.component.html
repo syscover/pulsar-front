@@ -1,29 +1,25 @@
-<ps-datatable-header title="Articles {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Orders {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="getRecords($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang }])">
 
-    <p-column field="id" sortField="cms_article.id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" sortField="cms_article.name" header="Name" [sortable]="true"></p-column>
-    <p-column [sortable]="true" sortField="cms_article.publish">
-        <ng-template pTemplate="header">
-            Publish
-        </ng-template>
-        <ng-template let-object="rowData" pTemplate="body">
-            {{ object.publish | date:'dd/MM/y HH:mm:ss' }}
-        </ng-template>
-    </p-column>
-    <p-column field="section.name" sortField="cms_section.name" header="Section" [sortable]="true"></p-column>
-    <p-column [sortable]="true" sortField="cms_article.status">
+    <p-column field="id" sortField="market_product.id" header="#" [sortable]="true"></p-column>
+    <p-column field="date" header="Date" [sortable]="true"></p-column>
+    <p-column field="customer_name" header="Name" [sortable]="true"></p-column>
+    <p-column field="customer_surname" header="Surname" [sortable]="true"></p-column>
+    <p-column field="customer_email" header="Email" [sortable]="true"></p-column>
+    <p-column field="customer_mobile" header="Mobile" [sortable]="true"></p-column>
+    <p-column [sortable]="true" sortField="market_order.status_id">
         <ng-template pTemplate="header">
             Status
         </ng-template>
         <ng-template let-object="rowData" pTemplate="body">
-            {{ statuses | getObjectValue:'id':object.status_id:'name' }}
+            {{ object.statuses | getLangValue:'es':'name' }}
         </ng-template>
     </p-column>
+    <p-column field="total" header="Total" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @
