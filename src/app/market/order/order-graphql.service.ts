@@ -15,51 +15,21 @@ export class OrderGraphQLService extends GraphQLModel {
             }
         }`;
 
-    queryRelationsObject  = gql`
-        query MarketGetRelationsProduct (
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlFieldGroup:[CoreSQLQueryInput]
-            $sqlProduct:[CoreSQLQueryInput]
-            $configProductTypes:CoreConfigInput!
-            $configPriceTypes:CoreConfigInput!
-        ) {
-            ${this.relationsFields}
-        }`;
-
     queryObjects = gql`
-        query MarketGetProducts ($sql:[CoreSQLQueryInput]) {
-            coreObjects: marketProducts (sql:$sql){
+        query MarketGetOrders ($sql:[CoreSQLQueryInput]) {
+            coreObjects: marketOrders (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetProduct (
+        query MarketGetOrder (
             $sql:[CoreSQLQueryInput]
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlFieldGroup:[CoreSQLQueryInput]
-            $sqlProduct:[CoreSQLQueryInput]
-            $sqlStock:[CoreSQLQueryInput]
-            $configProductTypes:CoreConfigInput!
-            $configPriceTypes:CoreConfigInput!
         ) {
-            coreObject: marketProduct (sql:$sql){
+            coreObject: marketOrder (sql:$sql){
                 ${this.fields}
             }
             ${this.relationsFields}
-            marketStocks (sql:$sqlStock) {
-                id
-                warehouse_id
-                product_id
-                stock
-                minimum_stock
-            }
-            marketWarehouses {
-                id
-                name
-            }
         }`;
 
     mutationAddObject = gql`
@@ -96,61 +66,11 @@ export class OrderGraphQLService extends GraphQLModel {
                 customer_surname
                 customer_email
                 customer_mobile
-                status {
-                    id
-                    lang_id
-                    name
-                }
-                payment_method {
-                    id
-                    lang_id
-                    name
-                }
             }
         `;
 
         this.relationsFields = `
-            marketCategories (sql:$sqlCategory) {
-                id
-                lang_id
-                name
-            }
-            marketProductClassTaxes {
-                id
-                name
-            }
-            marketProducts (sql:$sqlProduct) {
-                id
-                lang_id
-                name
-                code
-            }
-            adminFieldGroups (sql:$sqlFieldGroup){
-                id
-                name
-            }
-            adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-                id 
-                name
-                resource_id
-                width
-                height
-                sizes
-                quality
-                format
-            }
-            marketProductTypes: coreConfig (config:$configProductTypes) {
-                ... on CoreConfigOptionType {
-                    id
-                    name
-                }
-            }
-            marketPriceTypes: coreConfig (config:$configPriceTypes) {
-                ... on CoreConfigOptionType {
-                    id
-                    name
-                }
-            }
+            
         `;
 
         super.init();

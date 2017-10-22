@@ -20,6 +20,7 @@ import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
+import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderListComponent } from './order/order-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductListComponent } from './product/product-list.component';
@@ -91,10 +92,8 @@ const routes: Routes = [
 
                     // Orders
                     { path: 'order',                                        component: OrderListComponent },
-                    /* { path: 'order/create',                                 component: OrderDetailComponent,                        data: { action: 'create' }},
-                    { path: 'order/create/:id/:lang',                       component: OrderDetailComponent,                        data: { action: 'create-lang' }},
-                    { path: 'order/show/:id/:lang',                         component: OrderDetailComponent,                        data: { action: 'edit' }}, */
-
+                    /* { path: 'order/create',                                 component: OrderDetailComponent,                        data: { action: 'create' }},*/
+                    { path: 'order/show/:id',                               component: OrderDetailComponent,                        data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}

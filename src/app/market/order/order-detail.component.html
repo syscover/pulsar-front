@@ -1,0 +1,56 @@
+<div class="container-fluid form-group">
+    <h1>Order</h1>
+    
+    <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+
+        
+
+        <p-tabView>       
+            <p-tabPanel header="Order" leftIcon="ui-icon-check" class="padding-top-20">
+                <div class="row margin-top-30">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="ID."
+                                type="text"
+                                name="id" class="col-sm-6 col-md-3"></ps-input>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="Customer" leftIcon="ui-icon-edit">
+                <div class="row margin-top-30">
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Name"
+                                type="text"
+                                name="customer_name" class="col-sm-12 col-md-4"></ps-input>
+
+                    <ps-input   [form]="fg" 
+                                [errors]="formErrors"
+                                label="Surname"
+                                type="text"
+                                name="customer_surname" class="col-sm-12 col-md-8"></ps-input>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="Gift" leftIcon="ui-icon-edit">
+                
+            </p-tabPanel>
+
+        </p-tabView>
+
+
+        <!-- buttons -->
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons margin-top-30">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>

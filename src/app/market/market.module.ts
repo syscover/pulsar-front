@@ -12,6 +12,7 @@ import { GroupCustomerClassTaxDetailComponent } from './group-customer-class-tax
 import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax/group-customer-class-tax-graphql.service';
 import { GroupCustomerClassTaxListComponent } from './group-customer-class-tax/group-customer-class-tax-list.component';
 import { OrderGraphQLService } from './order/order-graphql.service';
+import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderListComponent } from './order/order-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
@@ -50,6 +51,7 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         GroupCustomerClassTaxListComponent,
         PaymentMethodDetailComponent,
         PaymentMethodListComponent,
+        OrderDetailComponent,
         OrderListComponent,
         OrderStatusDetailComponent,
         OrderStatusListComponent,
