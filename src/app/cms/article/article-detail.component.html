@@ -76,6 +76,7 @@
                     </ps-dropdown>
                 </div>
 
+                <!-- article content -->
                 <div *ngIf="family?.date || 
                                         family?.article_parent || 
                                         family?.title || 
@@ -161,21 +162,23 @@
                                     label="Tags"
                                     name="tags" class="col-12"></ps-chips>
                     </div>
-
-                    <ng-container *ngIf="fields?.length > 0">
-                        <ps-form-header class="animated fadeIn fast"
-                                        title="Custom fields"
-                                        icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
-
-                        <!-- dynamic form -->
-                        <ng-container *ngFor="let field of fields">
-                            <ps-dynamic-form    [field]="field"
-                                                [errors]="formErrors"
-                                                [lang]="lang.id"></ps-dynamic-form>
-                        </ng-container>
-                    </ng-container>
-                    <!-- /dynamic form -->
                 </div>
+                <!-- /article content -->
+
+                <!-- dynamic form -->
+                <ng-container *ngIf="fields?.length > 0">
+                    <ps-form-header class="animated fadeIn fast"
+                                    title="Custom fields"
+                                    icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
+
+                    <ng-container *ngFor="let field of fields">
+                        <ps-dynamic-form    [field]="field"
+                                            [errors]="formErrors"
+                                            [lang]="lang.id"></ps-dynamic-form>
+                    </ng-container>
+                </ng-container>
+                <!-- /dynamic form -->
+
             </p-tabPanel>
 
             <p-tabPanel *ngIf="family?.excerpt_editor_id" header="Excerpt" leftIcon="ui-icon-edit">
