@@ -62,6 +62,8 @@ export class OrderGraphQLService extends GraphQLModel {
             ... on MarketOrder {
                 id
                 date
+                status_id
+                ip
                 customer_name
                 customer_surname
                 customer_email
@@ -70,7 +72,13 @@ export class OrderGraphQLService extends GraphQLModel {
         `;
 
         this.relationsFields = `
-            
+            marketOrderStatuses {
+                id
+                lang_id 
+                name 
+                active
+                data_lang
+            }
         `;
 
         super.init();

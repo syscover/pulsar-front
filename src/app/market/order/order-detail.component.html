@@ -3,16 +3,41 @@
     
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
+
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="IP"
+                        type="text"
+                        name="ip" class="col-sm-6 offset-md-3 col-md-3"></ps-input>
+        </div>
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="statuses"
+                            name="status_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+            <ps-calendar    [form]="fg" 
+                            [errors]="formErrors"
+                            [showTime]="true"
+                            [showIcon]="true"
+                            dateFormat="dd/mm/yy"
+                            label="Date"
+                            name="date" 
+                            class="col-sm-12 offset-md-1 col-md-5"></ps-calendar>
+        </div>
         
 
         <p-tabView>       
-            <p-tabPanel header="Order" leftIcon="ui-icon-check" class="padding-top-20">
+            <p-tabPanel header="Products" leftIcon="ui-icon-check" class="padding-top-20">
                 <div class="row margin-top-30">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="ID."
-                                type="text"
-                                name="id" class="col-sm-6 col-md-3"></ps-input>
                 </div>
             </p-tabPanel>
 

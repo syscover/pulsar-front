@@ -15,7 +15,8 @@
                                 [errors]="formErrors"
                                 label="ID."
                                 type="text"
-                                name="id" class="col-sm-6 col-md-3"></ps-input>
+                                name="id" 
+                                class="col-sm-6 col-md-3"></ps-input>
 
                     <ps-lang-label  [lang]="lang" class="col-sm-6 offset-md-1 col-md-3"></ps-lang-label>
                 </div>
@@ -25,13 +26,15 @@
                                 [errors]="formErrors"
                                 label="Name"
                                 type="text"
-                                name="name" class="col-sm-12 col-md-6"></ps-input>
+                                name="name" 
+                                class="col-sm-12 col-md-6"></ps-input>
 
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
                                 label="Author"
                                 type="text"
-                                name="author_name" class="col-sm-12 col-md-6"></ps-input>
+                                name="author_name" 
+                                class="col-sm-12 col-md-6"></ps-input>
                 </div>
 
                 <div class="row">
@@ -48,7 +51,8 @@
                                     [showIcon]="true"
                                     dateFormat="dd/mm/yy"
                                     label="Publish"
-                                    name="publish" class="col-sm-12 offset-md-1 col-md-5"></ps-calendar>
+                                    name="publish" 
+                                    class="col-sm-12 offset-md-1 col-md-5"></ps-calendar>
                 </div>
 
                 <div class="row">
@@ -95,7 +99,8 @@
                                         [showIcon]="true"
                                         dateFormat="dd/mm/yy"
                                         label="Date"
-                                        name="date" class="col-sm-12 col-md-5"></ps-calendar>
+                                        name="date" 
+                                        class="col-sm-12 col-md-5"></ps-calendar>
 
                         <ps-dropdown    *ngIf="family?.article_parent"
                                         [form]="fg"
@@ -114,7 +119,8 @@
                                     (change)="handleCheckSlug($event)"
                                     label="Title"
                                     type="text"
-                                    name="title" class="col-12"></ps-input>
+                                    name="title" 
+                                    class="col-12"></ps-input>
                     </div>
 
                     <div class="row" *ngIf="family?.slug">
@@ -141,11 +147,13 @@
                                     [errors]="formErrors"
                                     label="Link"
                                     type="text"
-                                    name="link" class="col-9"></ps-input>
+                                    name="link" 
+                                    class="col-9"></ps-input>
 
                         <ps-checkbox    [form]="fg"
                                         name="blank"
-                                        label="New window" class="col-3"></ps-checkbox>
+                                        label="New window" 
+                                        class="col-3"></ps-checkbox>
                     </div>
 
                     <div class="row" *ngIf="family?.sort">
@@ -153,14 +161,16 @@
                                         [errors]="formErrors"
                                         label="Sort"
                                         [min]="0"
-                                        name="sort" class="col-sm-12 col-md-4"></ps-spinner>
+                                        name="sort" 
+                                        class="col-sm-12 col-md-4"></ps-spinner>
                     </div>
 
                     <div class="row" *ngIf="family?.tags">
                         <ps-chips   [form]="fg" 
                                     [errors]="formErrors"
                                     label="Tags"
-                                    name="tags" class="col-12"></ps-chips>
+                                    name="tags" 
+                                    class="col-12"></ps-chips>
                     </div>
                 </div>
                 <!-- /article content -->

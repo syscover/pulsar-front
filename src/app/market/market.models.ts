@@ -133,3 +133,8 @@ export class Stock {
     stock: number;
     minimum_stock: number;
 }
+
+export class Order {
+    id: number;
+    date: any;
+}

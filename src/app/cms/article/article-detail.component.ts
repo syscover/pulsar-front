@@ -24,7 +24,7 @@ import gql from 'graphql-tag';
 })
 export class ArticleDetailComponent extends CoreDetailComponent {
 
-    // set empty object
+    // set empty object, overwritte object to be used in this class
     object: Article = new Article();
 
     sections: SelectItem[] = [];
