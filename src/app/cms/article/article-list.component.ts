@@ -34,6 +34,13 @@ export class ArticleListComponent extends CoreListComponent {
             lang: this.baseLang,
             property: 'name'
         };
+
+        args['sql'].push({
+            command: 'orderBy',
+            operator: 'desc',
+            column: 'cms_article.id'
+        });
+
         return args;
     }
 

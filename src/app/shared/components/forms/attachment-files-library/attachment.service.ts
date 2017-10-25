@@ -20,16 +20,15 @@ export class AttachmentService extends CoreService {
 
         if (environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
 
-        let args = {}; // arguments for observable
-        args['object'] = parameters; // add object to arguments
-
-         return this.proxyGraphQL()
+        return this.proxyGraphQL()
             .mutate({
                 mutation: gql`
                     mutation AdminCropAttachment ($object:Object!) {
                         adminCropAttachment (object:$object)
                     }`,
-                variables: args
+                variables: {
+                    object: parameters // add object to arguments
+                }
             });
     }
 

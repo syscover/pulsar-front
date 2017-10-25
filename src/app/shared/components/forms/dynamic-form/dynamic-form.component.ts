@@ -13,14 +13,14 @@ import * as _ from 'lodash';
             <ps-input   *ngSwitchCase="'text'"
                         [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors" 
-                        [label]="label" 
+                        [label]="label"
                         [name]="field.name" 
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-input>
 
             <ps-spinner *ngSwitchCase="'number'"
                         [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors" 
-                        [label]="label" 
+                        [label]="label"
                         [name]="field.name" 
                         [min]="0"
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-spinner>
@@ -32,6 +32,14 @@ import * as _ from 'lodash';
                         [options]="options"
                         [name]="field.name"
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-dropdown>
+
+            <ps-multi-select    *ngSwitchCase="'select-multiple'" 
+                                [form]="dynamicFormService.form.get('customFields')"
+                                [errors]="errors"
+                                [label]="label"
+                                [options]="options"
+                                [name]="field.name"
+                                [class]="field.component_class ? field.component_class : 'col-6'"></ps-multi-select>
 
             <ps-editor  *ngSwitchCase="'wysiwyg'"
                         [form]="dynamicFormService.form.get('customFields')"
@@ -74,7 +82,10 @@ export class DynamicFormComponent implements OnInit {
         // check if label exist in lang required
         this.label = labelObj ? labelObj['value'] : null;
 
-        if (this.field.field_type_id === 'select') {
+        if (
+            this.field.field_type_id === 'select' ||
+            this.field.field_type_id === 'select-multiple'
+        ) {
 
             // filter fields values by lang
             let fv = _.filter(this.field.values, obj => {
