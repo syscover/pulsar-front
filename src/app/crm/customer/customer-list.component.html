@@ -2,7 +2,8 @@
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
-                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
+                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords"
+                [rowsPerPageOptions]="[10,25,50]"
                 (onLazyLoad)="getRecords($event)">
 
     <p-column field="id" sortField="crm_customer.id" header="#" [sortable]="true"></p-column>

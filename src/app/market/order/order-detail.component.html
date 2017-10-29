@@ -16,6 +16,7 @@
                         type="text"
                         name="ip" class="col-sm-6 offset-md-3 col-md-3"></ps-input>
         </div>
+
         <div class="row">
             <ps-dropdown    [form]="fg"
                             [errors]="formErrors"
@@ -32,6 +33,21 @@
                             label="Date"
                             name="date" 
                             class="col-sm-12 offset-md-1 col-md-5"></ps-calendar>
+        </div>
+
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="paymentMethods"
+                            name="payment_method_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Transaction ID"
+                        type="text"
+                        name="transaction_id" class="col-sm-12 offset-md-1 col-md-5"></ps-input>
         </div>
         
 

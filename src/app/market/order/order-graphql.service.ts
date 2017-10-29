@@ -79,6 +79,13 @@ export class OrderGraphQLService extends GraphQLModel {
                 active
                 data_lang
             }
+            marketPaymentMethods {
+                id
+                lang_id 
+                name
+                sort
+                active
+            }
         `;
 
         super.init();

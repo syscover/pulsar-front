@@ -16,6 +16,7 @@ export class OrderDetailComponent extends CoreDetailComponent {
     object: Order = new Order();
 
     statuses: SelectItem[] = [];
+    paymentMethods: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
@@ -30,6 +31,8 @@ export class OrderDetailComponent extends CoreDetailComponent {
             date: [{value: '', disabled: true}, Validators.required ],
             status_id: ['', Validators.required],
             ip: [{value: '', disabled: true}, Validators.required ],
+            payment_method_id: ['', Validators.required],
+            transaction_id: [{value: '', disabled: true}],
             customer_name: null,
             customer_surname: null,
         });
@@ -59,6 +62,14 @@ export class OrderDetailComponent extends CoreDetailComponent {
            return { value: obj.id, label: obj.name };
         });
         this.statuses.unshift({ label: 'Select a order status', value: '' });
+
+        // market payment methods
+        this.paymentMethods = _.filter(<OrderStatus[]>data['marketPaymentMethods'], obj => {
+            return obj.lang_id === this.baseLang;
+        }).map(obj => {
+           return { value: obj.id, label: obj.name };
+        });
+        this.statuses.unshift({ label: 'Select a payment mehod', value: '' });
 
         /* // cms sections
         this._sections = data['cmsSections'];

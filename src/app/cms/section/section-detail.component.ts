@@ -29,7 +29,7 @@ export class SectionDetailComponent extends CoreDetailComponent {
         this.fg = this.fb.group({
             id: ['', [
                 Validators.required,
-                Validators.minLength(5),
+                Validators.minLength(4),
                 Validators.maxLength(30)]
             ],
             name: ['', Validators.required ],
