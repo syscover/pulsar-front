@@ -6,6 +6,13 @@
 }
 
 {
+    "graphqlUri": "https://dev.ruralka.com/graphql",
+    "apiUrl": "https://dev.ruralka.com",
+    "appPrefix": "pulsar",
+    "froalaKey": "grtpbhngA6kfg=="
+}
+
+{
     "graphqlUri": "https://ruralka.com/graphql",
     "apiUrl": "https://ruralka.com",
     "appPrefix": "pulsar",

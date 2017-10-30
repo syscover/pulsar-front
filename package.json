@@ -23,7 +23,7 @@
     "@angular/router": "^4.4.3",
     "@types/jquery": "^2.0.41",
     "@types/lodash": "^4.14.68",
-    "angular-froala-wysiwyg": "^1.0.0",
+    "angular-froala-wysiwyg": "^2.7.1",
     "angular2-jwt": "^0.2.3",
     "animate.css": "^3.5.2",
     "apollo-angular": "^0.13.0",

@@ -33,8 +33,17 @@ export class OrderDetailComponent extends CoreDetailComponent {
             ip: [{value: '', disabled: true}, Validators.required ],
             payment_method_id: ['', Validators.required],
             transaction_id: [{value: '', disabled: true}],
+            customer_company: null,
+            customer_tin: null,
             customer_name: null,
             customer_surname: null,
+            customer_email: null,
+            customer_mobile: null,
+
+
+            shipping_amount: [{value: '', disabled: true}],
+            subtotal: [{value: '', disabled: true}],
+            total: [{value: '', disabled: true}],
         });
     }
 

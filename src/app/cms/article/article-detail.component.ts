@@ -41,7 +41,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
     private _sections: Section[];
     private _families: Family[];
-    private _attachment_families: AttachmentFamily[];
+    private _attachmentFamilies: AttachmentFamily[];
 
     // custom fields
     fields: Field[];
@@ -109,10 +109,16 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         if (this.section.attachment_families !== null) {
             this.attachmentFamilies = [];
             for (let idAttachmentFamily of this.section.attachment_families) {
-                this.attachmentFamilies.push(_.find(this._attachment_families, {id: +idAttachmentFamily}));
+
+                let af = _.find(this._attachmentFamilies, {id: +idAttachmentFamily});
+                this.attachmentFamilies.push(af);
+                this.imageStyles['ps-attachment-family-' + af.id] = af.name; // Images styles for Froala
             }
         } else {
-            this.attachmentFamilies = this._attachment_families;
+            this.attachmentFamilies = this._attachmentFamilies;
+            for (let attachemntFamily of this.attachmentFamilies) {
+                this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
+            }
         }
     }
 
@@ -292,13 +298,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         this.statuses.unshift({ label: 'Select a status', value: '' });
 
         // admin attachment families
-        this._attachment_families = <AttachmentFamily[]>data['adminAttachmentFamilies'];
-        this.attachmentFamilies = this._attachment_families;
-
-        // Images styles for Froala
-        for (let attachemntFamily of this.attachmentFamilies) {
-            this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
-        }
+        // this objects are manage in loadAttachmentFamilies method
+        this._attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
 
         // cms author
         this.user = this.authService.user();

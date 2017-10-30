@@ -1,4 +1,4 @@
-import { Component, Renderer2, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Renderer2, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { onValueChangedFormControl } from './../../super/core-validation';
 import { ConfigService } from './../../../core/services/config/config.service';
@@ -28,7 +28,7 @@ declare const jQuery: any; // jQuery definition
             border-bottom-color: #e62a10; 
         }`]
 })
-export class EditorComponent implements OnInit, OnChanges {
+export class EditorComponent implements OnInit {
 
     @Input() form: FormGroup;
     @Input() type: string;
@@ -114,7 +114,7 @@ export class EditorComponent implements OnInit, OnChanges {
                     this.renderer.setAttribute(image, 'data-ps-image', JSON.stringify(objResponse.image));
                 }
             },
-            'froalaEditor.commands.after': (e, editor, cmd, param1) => {
+            'froalaEditor.commands.after': (e, editor, cmd, param1, param2) => {
                 // after change style
                 if (cmd === 'imageStyle') {
                     if (param1.indexOf('ps-attachment-family') !== -1) {
@@ -123,15 +123,15 @@ export class EditorComponent implements OnInit, OnChanges {
                                 // get attachment family know with preview
                                 let attachmentFamily = _.find(this.attachmentFamilies, {id: parseInt(param1.split('-')[3])});
                                 this.renderer.setStyle(image, 'width', `${attachmentFamily.width}px`);
+                            } else {
+                                this.renderer.setStyle(image, 'width', `100%`);
                             }
                         }
                     }
                 }
             }
         };
-    }
 
-    ngOnChanges() {
         if (this.imageUploadURL) {
             this.froalaOptions.imageUploadMethod = 'POST';
             this.froalaOptions.requestWithCORS = true;
@@ -141,6 +141,7 @@ export class EditorComponent implements OnInit, OnChanges {
             this.froalaOptions.imageDefaultWidth = 100;
             this.froalaOptions.imageSplitHTML = true;
         }
+
         this.froalaOptions.imageStyles = Object.assign({},
             this.imageStyles,
             {
