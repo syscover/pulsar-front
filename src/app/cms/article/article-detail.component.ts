@@ -310,7 +310,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
         // cms articles
         this.articles = _.map(<Article[]>data['cmsArticles'], obj => {
-            return { value: obj.id, label: obj.name };
+            return { value: obj.id, label: obj.id + ' - ' + obj.name };
         });
         this.articles.unshift({ label: 'Select a article', value: '' });
     }

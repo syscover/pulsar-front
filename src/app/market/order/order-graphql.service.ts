@@ -64,6 +64,7 @@ export class OrderGraphQLService extends GraphQLModel {
                 date
                 status_id
                 ip
+                transaction_id
                 customer_company
                 customer_tin
                 customer_name
