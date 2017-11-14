@@ -3373,12 +3373,12 @@ body {
       padding-left: 2.5em; }
     body .ui-button.ui-button-text-icon-right, body .ui-datepicker-buttonpane > button.ui-button-text-icon-right {
       padding-right: 2.5em; }
-    body .ui-button.secondary, body .ui-datepicker-buttonpane > button.secondary {
+    body .ui-button.secondary, body .ui-button.ui-secondary-button, body .ui-datepicker-buttonpane > button.secondary, body .ui-datepicker-buttonpane > button.ui-secondary-button {
       background-color: #FF5722;
       color: #ffffff; }
-      body .ui-button.secondary:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.secondary:enabled:not(:focus):hover {
+      body .ui-button.secondary:enabled:not(:focus):hover, body .ui-button.ui-secondary-button:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.secondary:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.ui-secondary-button:enabled:not(:focus):hover {
         background-color: #D84315; }
-      body .ui-button.secondary:focus, body .ui-datepicker-buttonpane > button.secondary:focus {
+      body .ui-button.secondary:focus, body .ui-button.ui-secondary-button:focus, body .ui-datepicker-buttonpane > button.secondary:focus, body .ui-datepicker-buttonpane > button.ui-secondary-button:focus {
         outline: 0 none;
         background-color: #ff7e55; }
     body .ui-button.blue-grey-btn, body .ui-datepicker-buttonpane > button.blue-grey-btn {
@@ -3402,18 +3402,18 @@ body {
       body .ui-button.teal-btn:focus, body .ui-datepicker-buttonpane > button.teal-btn:focus {
         outline: 0 none;
         background-color: #00c9b6; }
-    body .ui-button.red-btn, body .ui-datepicker-buttonpane > button.red-btn {
+    body .ui-button.red-btn, body .ui-button.ui-danger-button, body .ui-datepicker-buttonpane > button.red-btn, body .ui-datepicker-buttonpane > button.ui-danger-button {
       background-color: #F44336; }
-      body .ui-button.red-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.red-btn:enabled:not(:focus):hover {
+      body .ui-button.red-btn:enabled:not(:focus):hover, body .ui-button.ui-danger-button:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.red-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.ui-danger-button:enabled:not(:focus):hover {
         background-color: #C62828; }
-      body .ui-button.red-btn:focus, body .ui-datepicker-buttonpane > button.red-btn:focus {
+      body .ui-button.red-btn:focus, body .ui-button.ui-danger-button:focus, body .ui-datepicker-buttonpane > button.red-btn:focus, body .ui-datepicker-buttonpane > button.ui-danger-button:focus {
         outline: 0 none;
         background-color: #f77066; }
-    body .ui-button.green-btn, body .ui-datepicker-buttonpane > button.green-btn {
+    body .ui-button.green-btn, body .ui-button.ui-success-button, body .ui-datepicker-buttonpane > button.green-btn, body .ui-datepicker-buttonpane > button.ui-success-button {
       background-color: #4CAF50; }
-      body .ui-button.green-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.green-btn:enabled:not(:focus):hover {
+      body .ui-button.green-btn:enabled:not(:focus):hover, body .ui-button.ui-success-button:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.green-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.ui-success-button:enabled:not(:focus):hover {
         background-color: #2E7D32; }
-      body .ui-button.green-btn:focus, body .ui-datepicker-buttonpane > button.green-btn:focus {
+      body .ui-button.green-btn:focus, body .ui-button.ui-success-button:focus, body .ui-datepicker-buttonpane > button.green-btn:focus, body .ui-datepicker-buttonpane > button.ui-success-button:focus {
         outline: 0 none;
         background-color: #6ec071; }
     body .ui-button.deep-orange-btn, body .ui-datepicker-buttonpane > button.deep-orange-btn {
@@ -3437,12 +3437,12 @@ body {
       body .ui-button.pink-btn:focus, body .ui-datepicker-buttonpane > button.pink-btn:focus {
         outline: 0 none;
         background-color: #ee4c83; }
-    body .ui-button.amber-btn, body .ui-datepicker-buttonpane > button.amber-btn {
+    body .ui-button.amber-btn, body .ui-button.ui-warning-button, body .ui-datepicker-buttonpane > button.amber-btn, body .ui-datepicker-buttonpane > button.ui-warning-button {
       background-color: #FFC107;
       color: #212121; }
-      body .ui-button.amber-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.amber-btn:enabled:not(:focus):hover {
+      body .ui-button.amber-btn:enabled:not(:focus):hover, body .ui-button.ui-warning-button:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.amber-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.ui-warning-button:enabled:not(:focus):hover {
         background-color: #FF8F00; }
-      body .ui-button.amber-btn:focus, body .ui-datepicker-buttonpane > button.amber-btn:focus {
+      body .ui-button.amber-btn:focus, body .ui-button.ui-warning-button:focus, body .ui-datepicker-buttonpane > button.amber-btn:focus, body .ui-datepicker-buttonpane > button.ui-warning-button:focus {
         outline: 0 none;
         background-color: #ffce3a; }
     body .ui-button.orange-btn, body .ui-datepicker-buttonpane > button.orange-btn {
@@ -3466,6 +3466,14 @@ body {
       body .ui-button.indigo-btn:focus, body .ui-datepicker-buttonpane > button.indigo-btn:focus {
         outline: 0 none;
         background-color: #606fc7; }
+    body .ui-button.blue-btn, body .ui-button.ui-info-button, body .ui-datepicker-buttonpane > button.blue-btn, body .ui-datepicker-buttonpane > button.ui-info-button {
+      background-color: #03A9F4;
+      color: #ffffff; }
+      body .ui-button.blue-btn:enabled:not(:focus):hover, body .ui-button.ui-info-button:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.blue-btn:enabled:not(:focus):hover, body .ui-datepicker-buttonpane > button.ui-info-button:enabled:not(:focus):hover {
+        background-color: #0277BD; }
+      body .ui-button.blue-btn:focus, body .ui-button.ui-info-button:focus, body .ui-datepicker-buttonpane > button.blue-btn:focus, body .ui-datepicker-buttonpane > button.ui-info-button:focus {
+        outline: 0 none;
+        background-color: #2ebcfc; }
     body .ui-button.flat, body .ui-datepicker-buttonpane > button.flat {
       box-shadow: none;
       -webkit-box-shadow: none;
@@ -4065,14 +4073,14 @@ body {
     body .ui-datepicker tbody td {
       padding: .25em .125em;
       box-sizing: border-box; }
-      body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
+      body .ui-datepicker tbody td.ui-datepicker-today a {
         color: #ffffff;
         background: #a8a8a8; }
-        body .ui-datepicker tbody td.ui-datepicker-today a.ui-state-active, body .ui-datepicker tbody td.ui-datepicker-today span.ui-state-active {
+        body .ui-datepicker tbody td.ui-datepicker-today a.ui-state-active {
           color: #ffffff;
           background-color: #FF5722;
           color: #ffffff; }
-      body .ui-datepicker tbody td a, body .ui-datepicker tbody td span {
+      body .ui-datepicker tbody td a {
         padding: .25em;
         margin: 0;
         text-align: center;
@@ -4084,13 +4092,17 @@ body {
         -webkit-border-radius: 50%;
         border-radius: 50%;
         line-height: 1.8em; }
-        body .ui-datepicker tbody td a.ui-state-active, body .ui-datepicker tbody td span.ui-state-active {
+        body .ui-datepicker tbody td a.ui-state-active {
           color: #ffffff;
           background-color: #FF5722;
           color: #ffffff; }
-        body .ui-datepicker tbody td a:not(.ui-state-active):not(.ui-state-highlight):hover, body .ui-datepicker tbody td span:not(.ui-state-active):not(.ui-state-highlight):hover {
+        body .ui-datepicker tbody td a:not(.ui-state-active):not(.ui-state-highlight):hover {
           background-color: #e8e8e8;
           color: #000000; }
+        body .ui-datepicker tbody td a span {
+          display: inline;
+          padding: 0;
+          text-align: center; }
     body .ui-datepicker .ui-timepicker {
       -moz-border-radius: 0;
       -webkit-border-radius: 0;

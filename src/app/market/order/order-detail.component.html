@@ -55,7 +55,15 @@
         <p-tabView>       
             <p-tabPanel header="Products" leftIcon="ui-icon-check" class="padding-top-20">
                 
-                <ps-form-header title="Products" icon="fa ui-icon-apps"></ps-form-header>
+                <ps-form-header title="Products" icon="fa ui-icon-apps" style="margin-bottom: -30px"></ps-form-header>
+                <div class="row">
+                    <p-dataTable [value]="orderRows">
+                        <p-column field="id" header="ID"></p-column>
+                        <p-column field="name" header="Name"></p-column>
+                        <p-column field="quantity" header="Quantity"></p-column>
+                        <p-column field="subtotal" header="Subtotal"></p-column>
+                    </p-dataTable>
+                </div>
 
                 <ps-form-header title="Amounts" icon="fa ui-icon-attach-money"></ps-form-header>
                 <div class="row">

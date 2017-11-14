@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { OrderGraphQLService } from './order-graphql.service';
 import { SelectItem } from 'primeng/primeng';
-import { OrderStatus, Order } from './../market.models';
+import { Order, OrderRow, OrderStatus } from './../market.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,6 +15,7 @@ export class OrderDetailComponent extends CoreDetailComponent {
     // set empty object, overwritte object to be used in this class
     object: Order = new Order();
 
+    orderRows: OrderRow[] = [];
     statuses: SelectItem[] = [];
     paymentMethods: SelectItem[] = [];
 
@@ -63,6 +64,9 @@ export class OrderDetailComponent extends CoreDetailComponent {
     }
 
     setRelationsData(data) {
+
+        // market order rows
+        this.orderRows = <OrderRow[]>data['coreObject']['rows'];
 
         // market order statuses
         this.statuses = _.filter(<OrderStatus[]>data['marketOrderStatuses'], obj => {

@@ -203,7 +203,7 @@ body {
             padding-right: 2.5em;
         }
                         
-        &.secondary {
+        &.secondary, &.ui-secondary-button {
             background-color: $accentColor;
             color: $accentTextColor;
             
@@ -256,7 +256,7 @@ body {
             }
         }
         
-        &.red-btn {
+        &.red-btn, &.ui-danger-button {
             background-color: #F44336;
             
             &:enabled:not(:focus):hover {
@@ -269,7 +269,7 @@ body {
             }
         }
         
-        &.green-btn {
+        &.green-btn, &.ui-success-button {
             background-color: #4CAF50;
             
            &:enabled:not(:focus):hover {
@@ -321,7 +321,7 @@ body {
             }
         }
         
-        &.amber-btn {
+        &.amber-btn, &.ui-warning-button {
             background-color: #FFC107;
             color: #212121;
             
@@ -371,6 +371,20 @@ body {
             &:focus {
                 outline: 0 none;
                 background-color: lighten(#3F51B5,10%);
+            }
+        }
+        
+        &.blue-btn, &.ui-info-button {
+            background-color: #03A9F4;
+            color: #ffffff;
+            
+            &:enabled:not(:focus):hover {
+                background-color: #0277BD;   
+            }
+            
+            &:focus {
+                outline: 0 none;
+                background-color: lighten(#03A9F4,10%);
             }
         }
         
@@ -1099,7 +1113,7 @@ body {
                 box-sizing: border-box;
 
                 &.ui-datepicker-today {
-                    a,span {
+                    a {
                         color: #ffffff;
                         background: lighten($primaryColor,20%);
                         
@@ -1111,7 +1125,7 @@ body {
                     }
                 }
                 
-                a,span {
+                a {
                     padding: .25em;
                     margin: 0;
                     text-align: center;
@@ -1130,6 +1144,12 @@ body {
 
                     &:not(.ui-state-active):not(.ui-state-highlight):hover {
                         @include hover-element();
+                    }
+                    
+                    span {
+                        display: inline;
+                        padding: 0;
+                        text-align: center;
                     }
                 }                
             }

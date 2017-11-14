@@ -1,3 +1,4 @@
+import { print } from 'util';
 import { DataJson } from './../shared/classes/properties';
 import { Lang, Country, Attachment } from './../admin/admin.models';
 
@@ -137,4 +138,14 @@ export class Stock {
 export class Order {
     id: number;
     date: any;
+}
+
+export class OrderRow {
+    id: number;
+    lang_id: string;
+    order_id: number;
+    product_id: number;
+    name: string;
+    description: string;
+    price: number;
 }

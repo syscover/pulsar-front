@@ -40,7 +40,7 @@
     "moment": "^2.18.1",
     "nanoscroller": "^0.8.7",
     "popper.js": "^1.12.3",
-    "primeng": "4.2.2",
+    "primeng": "^4.3.0",
     "quill": "^1.2.3",
     "rxjs": "^5.1.0",
     "tether": "^1.4.0",

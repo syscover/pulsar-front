@@ -65,6 +65,12 @@ export class OrderGraphQLService extends GraphQLModel {
                 status_id
                 ip
                 transaction_id
+                rows {
+                    id
+                    name
+                    quantity
+                    subtotal
+                }
                 customer_company
                 customer_tin
                 customer_name
