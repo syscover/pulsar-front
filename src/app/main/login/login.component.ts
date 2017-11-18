@@ -3,10 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
-import { environment } from './../../environments/environment';
-import { User } from './../admin/admin.models';
-import { ConfigService } from '../core/services/config/config.service';
-import { AuthService } from './../core/auth/auth.service';
+import { environment } from './../../../environments/environment';
+import { User } from './../../admin/admin.models';
+import { ConfigService } from '../../core/services/config/config.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
     selector: 'ps-login',
@@ -33,7 +33,7 @@ export class LoginComponent {
     }
 
     ngOnInit() {
-        this.renderer.setStyle(document.body, 'background-image', `url(../../assets/layout/images/login/bg0${Math.floor((Math.random() * 10))}.jpg)`);
+        this.renderer.setStyle(document.body, 'background-image', `url(assets/layout/images/login/bg0${Math.floor((Math.random() * 10))}.jpg)`);
         //this.renderer.setStyle(document.body, 'height', 0);
     }
 

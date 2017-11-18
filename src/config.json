@@ -1,6 +1,6 @@
 {
-    "graphqlUri": "http://vinipad.local/graphql",
-    "apiUrl": "http://vinipad.local",
+    "graphqlUri": "http://api.pulsar.local/graphql",
+    "apiUrl": "http://api.pulsar.local",
     "appPrefix": "pulsar",
-    "froalaKey": "xgB-11A-9B-8ewsB3uuxA-9q=="
+    "froalaKey": "6rrlrA-7maugpgptogA-21ogF6nab=="
 }

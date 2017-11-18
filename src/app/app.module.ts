@@ -12,7 +12,7 @@ import { ConfigService } from './core/services/config/config.service';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './main/login/login.component';
 import { InterceptorXHRBackend } from './core/services/interceptor.service';
 
 import { PackageGraphQLService } from './admin/package/package-graphql.service';
