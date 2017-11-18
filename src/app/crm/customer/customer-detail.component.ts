@@ -112,7 +112,7 @@ export class CustomerDetailComponent extends CoreDetailComponent {
         // set params
         let args = this.argumentsGetRecords(event, filters, sql);
 
-        if (environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
+        if (environment.debug) console.log('DEBUG - Args pass to Query Objects Pagination: ', args);
 
         let obs = this.objectService
             .proxyGraphQL()

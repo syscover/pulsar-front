@@ -47,6 +47,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                     // set lang id in form from object with multiple language
                     lang_id: this.lang.id
                 });
+                this.fg.removeControl('id');
             }
         }
     }
@@ -122,24 +123,34 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
     argumentsGetRecord(params: Params): any {
-        this.graphQL.table
-        let args = {
-            sql: [{
-                command: 'where',
-                column: `${this.graphQL.table}.id`,
-                operator: '=',
-                value: params['id']
-            }]
-        };
+        let args;
 
         // set lang is exist
         if (params['lang']) {
-            args.sql.push({
-                command: 'where',
-                column: `${this.graphQL.table}.lang_id`,
-                operator: '=',
-                value: params['lang']
-            });
+            args = {
+                sql: [{
+                    command: 'where',
+                    column: `${this.graphQL.table}.obj_id`,
+                    operator: '=',
+                    value: params['id']
+                },
+                {
+                    command: 'where',
+                    column: `${this.graphQL.table}.lang_id`,
+                    operator: '=',
+                    value: params['lang']
+                }]
+            };
+
+        } else {
+            args = {
+                sql: [{
+                    command: 'where',
+                    column: `${this.graphQL.table}.id`,
+                    operator: '=',
+                    value: params['id']
+                }]
+            };
         }
 
         args = this.getCustomArgumentsGetRecord(args, params);
@@ -219,6 +230,10 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         if (this.fg.get('id')) {
             // Usually the id is disabled, we enable it if you need tale id data for create or edit
             this.fg.get('id').enable(); // enable is a method from AbstractControl
+        }
+        if (this.fg.get('obj_id')) {
+            // Usually the id is disabled, we enable it if you need tale id data for create or edit
+            this.fg.get('obj_id').enable(); // enable is a method from AbstractControl
         }
 
         // add object to arguments
@@ -325,7 +340,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         // sest lang, don't lang_id, because data isn't like object
         if (object.lang_id) {   // check if has languages
-            args['lang'] = object.lang_id;
+            args['lang_id'] = object.lang_id;
+            args['obj_id'] = object.obj_id;
         } else {
             // chek if has force lang,
             // this options is used in object with multiple lang in json
@@ -338,7 +354,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         // call method that can to be overwrite by children
         args = this.getCustomArgumentsDeleteRecord(object, args);
 
-        if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
+        if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({

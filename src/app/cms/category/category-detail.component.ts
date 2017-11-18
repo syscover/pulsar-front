@@ -23,7 +23,8 @@ export class CategoryDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: [{value: '', disabled: true}],
+            id: '',
+            obj_id: [{value: '', disabled: true}],
             lang_id: ['', Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],

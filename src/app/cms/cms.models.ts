@@ -44,6 +44,7 @@ export class Tag {
 
 export class Category {
     id: number;
+    obj_id: number;
     lang_id: string;
     name: string;
     slug: string;

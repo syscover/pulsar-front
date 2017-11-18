@@ -36,7 +36,7 @@ export class CoreListComponent extends CoreComponent {
         // set params
         let args = this.argumentsGetRecords(event, filters, sql);
 
-        if (environment.debug) console.log('DEBUG - Arguments pass to Query Objects Pagination: ', args);
+        if (environment.debug) console.log('DEBUG - Args pass to Query Objects Pagination: ', args);
 
         let obs = this.objectService
             .proxyGraphQL()
@@ -48,7 +48,7 @@ export class CoreListComponent extends CoreComponent {
 
                 obs.unsubscribe();
 
-                if (environment.debug) console.log('DEBUG - data from Query Objects Pagination: ', data);
+                if (environment.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data);
 
                 // paginaton data
                 this.totalRecords = data['coreObjectsPagination'].total;
@@ -84,10 +84,12 @@ export class CoreListComponent extends CoreComponent {
 
     deleteRecord(f: Function, object: any, args = {}): void {
 
-        // set arguments to delete object
         args['id'] = object.id;
+
+        // set arguments to delete object
         if (object.lang_id) {   // check if has languages
-            args['lang'] = object.lang_id;
+            args['lang_id'] = object.lang_id;
+            args['obj_id'] = object.obj_id;
         }
 
         // call method that can to be overwrite by children
@@ -99,7 +101,6 @@ export class CoreListComponent extends CoreComponent {
         this.confirmationService.confirm({
             message: 'Are you sure that you want delete this object?',
             accept: () => {
-
                 this.objectService
                     .proxyGraphQL()
                     .mutate({
