@@ -43,11 +43,11 @@ export class FieldGroupDetailComponent extends CoreDetailComponent {
         // get resources allowed to add custom field group
         const resourcesAllowed = data.configFieldGroupResources;
         let resources = _.filter(<Resource[]>data.adminResources, obj => {
-            return _.find(resourcesAllowed, ['id', obj.id]);
+            return _.find(resourcesAllowed, {id: obj.id}) ? true : false;
         });
 
         // map resources to create SelectItem
-        this.resources = _.map(<Resource[]>resources, obj => { // get resources
+        this.resources = _.map(resources, obj => { // get resources
             return { value: obj.id, label: obj.name };
         });
         this.resources.unshift({ label: 'Select a resource', value: '' });

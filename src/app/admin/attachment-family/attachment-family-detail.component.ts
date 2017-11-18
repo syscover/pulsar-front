@@ -61,7 +61,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent {
         // get resources allowed to add custom field group
         const resourcesAllowed = data.configAttachmentResources;
         let resources = _.filter(<Resource[]>data.adminResources, obj => {
-            return _.find(resourcesAllowed, ['id', obj.id]);
+            return _.find(resourcesAllowed, ['id', obj.id]) ? true : false;
         });
 
         // map resources to create SelectItem
