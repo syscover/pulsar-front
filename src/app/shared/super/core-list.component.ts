@@ -84,16 +84,8 @@ export class CoreListComponent extends CoreComponent {
 
     deleteRecord(f: Function, object: any, args = {}): void {
 
-        args['id'] = object.id;
-
-        // set arguments to delete object
-        if (object.lang_id) {   // check if has languages
-            args['lang_id'] = object.lang_id;
-            args['object_id'] = object.object_id;
-        }
-
         // call method that can to be overwrite by children
-        args = this.getCustomArgumentsDeleteRecord(object, args);
+        args = this.getCustomArgumentsDeleteRecord(object, object);
 
         if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
 

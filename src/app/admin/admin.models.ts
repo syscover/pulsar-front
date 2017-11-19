@@ -123,12 +123,14 @@ export class FieldValue {
 }
 
 export class Action {
-    id: string;
+    id: number;
+    object_id: string;
     name: string;
 }
 
 export class Resource {
-    id: string;
+    id: number;
+    object_id: string;
     name: string;
     package_id: number;
 }

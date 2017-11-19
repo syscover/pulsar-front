@@ -95,7 +95,7 @@ const routes: Routes = [
                     // Actions
                     { path: 'action',                                   component: ActionListComponent },
                     { path: 'action/create',                            component: ActionDetailComponent,       data: { action: 'create' }},
-                    { path: 'action/show/:id',                          component: ActionDetailComponent,       data: { action: 'edit' }},
+                    { path: 'action/show/:object_id',                   component: ActionDetailComponent,       data: { action: 'edit' }},
 
                     // Resources
                     { path: 'resource',                                 component: ResourceListComponent },

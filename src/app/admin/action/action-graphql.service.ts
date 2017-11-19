@@ -36,15 +36,15 @@ export class ActionGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($object:AdminActionInput! $idOld:String!) {
-            adminUpdateAction (object:$object idOld:$idOld) {
+        mutation AdminUpdateAction ($object:AdminActionInput!) {
+            adminUpdateAction (object:$object) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($id:String!) {
-            adminDeleteAction (id:$id) {
+        mutation AdminDeleteAction ($object_id:String!) {
+            adminDeleteAction (object_id:$object_id) {
                 ${this.fields}
             }
         }`;
@@ -56,7 +56,8 @@ export class ActionGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminAction {
-                id 
+                id
+                object_id
                 name
             }
         `;

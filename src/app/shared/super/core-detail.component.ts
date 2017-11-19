@@ -350,23 +350,28 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
      */
     deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, args = {}): void {
 
-        args['id'] = object.id;
+        /* args['id'] = object.id;
 
-        // sest lang, don't lang_id, because data isn't like object
-        if (object.lang_id) {   // check if has languages
+        // set lang, don't lang_id, because data isn't like object
+        if (object.lang_id) {
             args['lang_id'] = object.lang_id;
             args['object_id'] = object.object_id;
+        } else if (object.object_id) {
+            args['object_id'] = object.object_id;
         } else {
+
+            TODO, esto está sin verificar
+
             // chek if has force lang,
             // this options is used in object with multiple lang in json
             // for example table field
             if (langAux !== undefined) {
                 args['lang'] = langAux;
             }
-        }
+        } */
 
         // call method that can to be overwrite by children
-        args = this.getCustomArgumentsDeleteRecord(object, args);
+        args = this.getCustomArgumentsDeleteRecord(object, object);
 
         if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
 

@@ -50,8 +50,8 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation CmsDeleteSection ($id:String!) {
-            cmsDeleteSection (id:$id){
+        mutation CmsDeleteSection ($object_id:String!) {
+            cmsDeleteSection (object_id:$object_id){
                 ${this.fields}
             }
         }`;
