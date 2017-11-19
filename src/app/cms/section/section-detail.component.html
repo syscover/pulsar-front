@@ -2,12 +2,15 @@
     <h1>Section</h1>
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+        
+        <input type="hidden" formControlName="id">
+
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
                         label="ID."
                         type="text"
-                        name="id" class="col-sm-12 col-md-6"></ps-input>
+                        name="object_id" class="col-sm-12 col-md-6"></ps-input>
         </div>
 
         <div class="row">

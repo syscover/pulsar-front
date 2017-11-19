@@ -89,7 +89,7 @@ export class CoreListComponent extends CoreComponent {
         // set arguments to delete object
         if (object.lang_id) {   // check if has languages
             args['lang_id'] = object.lang_id;
-            args['obj_id'] = object.obj_id;
+            args['object_id'] = object.object_id;
         }
 
         // call method that can to be overwrite by children

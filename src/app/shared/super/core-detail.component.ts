@@ -43,10 +43,13 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
             // only form objects with create lang action
             if (this.dataRoute.action === 'create-lang') {
+
                 this.fg.patchValue({
                     // set lang id in form from object with multiple language
                     lang_id: this.lang.id
                 });
+
+                // remove id to avois confict with duplicate id
                 this.fg.removeControl('id');
             }
         }
@@ -77,13 +80,13 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
 
         // Create lang or edit object for objects with multi language
-        if (this.params['lang'] !== undefined) {
-            this.lang = <Lang>_.find(this.langs, {'id': this.params['lang']}); // get lang object
+        if (this.params['lang_id'] !== undefined) {
+            this.lang = <Lang>_.find(this.langs, {'id': this.params['lang_id']}); // get lang object
 
             // get baseLang record
             if (this.dataRoute.action === 'create-lang') {
                 let baseParams = _.clone(this.params); // clone objet because params properties are read-only
-                baseParams['lang'] = this.baseLang; // set baseLang to get object
+                baseParams['lang_id'] = this.baseLang; // set baseLang to get object
 
                 this.getRecord(baseParams); // get baseLang object
 
@@ -125,12 +128,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     argumentsGetRecord(params: Params): any {
         let args;
 
-        // set lang is exist
-        if (params['lang']) {
+        // set paramenters for objects that has lang_id and object_id
+        if (params['lang'] && params['object_id']) {
             args = {
                 sql: [{
                     command: 'where',
-                    column: `${this.graphQL.table}.obj_id`,
+                    column: `${this.graphQL.table}.object_id`,
                     operator: '=',
                     value: params['id']
                 },
@@ -139,6 +142,17 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                     column: `${this.graphQL.table}.lang_id`,
                     operator: '=',
                     value: params['lang']
+                }]
+            };
+
+        } else if (params['object_id']) {
+
+            args = {
+                sql: [{
+                    command: 'where',
+                    column: `${this.graphQL.table}.object_id`,
+                    operator: '=',
+                    value: params['object_id']
                 }]
             };
 
@@ -231,9 +245,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             // Usually the id is disabled, we enable it if you need tale id data for create or edit
             this.fg.get('id').enable(); // enable is a method from AbstractControl
         }
-        if (this.fg.get('obj_id')) {
+        if (this.fg.get('object_id')) {
             // Usually the id is disabled, we enable it if you need tale id data for create or edit
-            this.fg.get('obj_id').enable(); // enable is a method from AbstractControl
+            this.fg.get('object_id').enable(); // enable is a method from AbstractControl
         }
 
         // add object to arguments
@@ -341,7 +355,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         // sest lang, don't lang_id, because data isn't like object
         if (object.lang_id) {   // check if has languages
             args['lang_id'] = object.lang_id;
-            args['obj_id'] = object.obj_id;
+            args['object_id'] = object.object_id;
         } else {
             // chek if has force lang,
             // this options is used in object with multiple lang in json

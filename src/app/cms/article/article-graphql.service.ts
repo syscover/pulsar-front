@@ -66,8 +66,8 @@ export class ArticleGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation CmsDeleteArticle ($id:String! $lang:String!) {
-            cmsDeleteArticle (id:$id lang:$lang){
+        mutation CmsDeleteArticle ($object_id:Int! $lang_id:String!) {
+            cmsDeleteArticle (object_id:$object_id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
@@ -80,6 +80,7 @@ export class ArticleGraphQLService extends GraphQLModel {
         this.fields = `
             ... on CmsArticle {
                 id
+                object_id
                 lang_id
                 parent_id
                 name
@@ -148,6 +149,7 @@ export class ArticleGraphQLService extends GraphQLModel {
         this.relationsFields = `
             cmsSections {
                 id
+                object_id
                 name
                 family {
                     id 
@@ -173,6 +175,7 @@ export class ArticleGraphQLService extends GraphQLModel {
             }
             cmsCategories (sql:$sqlCategory) {
                 id
+                object_id
                 lang_id
                 name
             }

@@ -27,7 +27,8 @@ export class SectionDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: ['', [
+            id: '',
+            object_id: ['', [
                 Validators.required,
                 Validators.minLength(4),
                 Validators.maxLength(30)]

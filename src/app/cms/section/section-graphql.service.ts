@@ -43,8 +43,8 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation CmsUpdateSection ($object:CmsSectionInput! $idOld:String!) {
-            cmsUpdateSection (object:$object idOld:$idOld){
+        mutation CmsUpdateSection ($object:CmsSectionInput!) {
+            cmsUpdateSection (object:$object){
                 ${this.fields}
             }
         }`;
@@ -64,6 +64,7 @@ export class SectionGraphQLService extends GraphQLModel {
         this.fields = `
             ... on CmsSection {
                 id
+                object_id
                 name
                 family_id
                 family {
