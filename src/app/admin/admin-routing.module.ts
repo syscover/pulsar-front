@@ -100,7 +100,7 @@ const routes: Routes = [
                     // Resources
                     { path: 'resource',                                 component: ResourceListComponent },
                     { path: 'resource/create',                          component: ResourceDetailComponent,     data: { action: 'create' }},
-                    { path: 'resource/show/:id',                        component: ResourceDetailComponent,     data: { action: 'edit' }},
+                    { path: 'resource/show/:object_id',                 component: ResourceDetailComponent,     data: { action: 'edit' }},
 
                     // Profiles
                     { path: 'profile',                                  component: ProfileListComponent },

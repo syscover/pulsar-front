@@ -24,7 +24,8 @@ export class ResourceDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: ['', Validators.required ],
+            id: '',
+            object_id: ['', Validators.required ],
             name: ['', Validators.required ],
             package_id: ['', Validators.required ]
         });

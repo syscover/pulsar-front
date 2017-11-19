@@ -43,15 +43,15 @@ export class ResourceGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateResource ($object:AdminResourceInput! $idOld:String!) {
-            adminUpdateResource (object:$object idOld:$idOld){
+        mutation AdminUpdateResource ($object:AdminResourceInput!) {
+            adminUpdateResource (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteResource ($id:String!) {
-            adminDeleteResource (id:$id){
+        mutation AdminDeleteResource ($object_id:String!) {
+            adminDeleteResource (object_id:$object_id){
                 ${this.fields}
             }
         }`;
@@ -63,7 +63,8 @@ export class ResourceGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminResource {
-                id 
+                id
+                object_id
                 name 
                 package_id
                 package {
