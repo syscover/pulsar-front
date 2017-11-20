@@ -58,7 +58,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             object_id: '',
             lang_id: ['', Validators.required],
             code: '',
-            categories_id: [[], Validators.required],
+            categories_object_id: [[], Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],
             field_group_id: '',
@@ -150,7 +150,10 @@ export class ProductDetailComponent extends CoreDetailComponent {
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
 
             // set categories extracting ids
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+            console.log(this.object.categories);
+            console.log(_.map(this.object.categories, 'object_id'));
+
+            this.fg.controls['categories_object_id'].setValue(_.map(this.object.categories, 'object_id'));
 
             this.handleGetProductTaxes(
                 this.fg.controls['subtotal'].value,
@@ -283,7 +286,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
         // market categories
         this.categories = _.map(<Category[]>data['marketCategories'], obj => {
-            return { value: obj.id, label: obj.name };
+            return { value: obj.object_id, label: obj.name };
         });
 
         // market product class tax

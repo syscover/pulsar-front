@@ -98,6 +98,7 @@ export class ProductGraphQLService extends GraphQLModel {
                 slug
                 categories {
                     id
+                    object_id
                     lang_id
                     name
                 }
@@ -151,6 +152,7 @@ export class ProductGraphQLService extends GraphQLModel {
         this.relationsFields = `
             marketCategories (sql:$sqlCategory) {
                 id
+                object_id
                 lang_id
                 name
             }
