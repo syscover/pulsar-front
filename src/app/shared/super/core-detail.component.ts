@@ -129,19 +129,21 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         let args;
 
         // set paramenters for objects that has lang_id and object_id
-        if (params['lang'] && params['object_id']) {
+        if (params['lang_id'] && params['object_id']) {
+            // check if object has table lang
+            let table = this.graphQL.tableLang ?  this.graphQL.tableLang : this.graphQL.table;
             args = {
                 sql: [{
                     command: 'where',
-                    column: `${this.graphQL.table}.object_id`,
+                    column: `${table}.object_id`,
                     operator: '=',
-                    value: params['id']
+                    value: params['object_id']
                 },
                 {
                     command: 'where',
-                    column: `${this.graphQL.table}.lang_id`,
+                    column: `${table}.lang_id`,
                     operator: '=',
-                    value: params['lang']
+                    value: params['lang_id']
                 }]
             };
 
@@ -395,7 +397,4 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
         });
     }
-
-    // method to be overwrite
-    getCustomArgumentsDeleteRecord(object: any, args: Object): Object { return args; }
 }

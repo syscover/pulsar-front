@@ -55,4 +55,7 @@ export class CoreComponent extends Core {
             this.baseUri = baseUri;
         }
     }
+
+    // method to be overwrite
+    getCustomArgumentsDeleteRecord(object: any, args: Object): Object { return args; }
 }

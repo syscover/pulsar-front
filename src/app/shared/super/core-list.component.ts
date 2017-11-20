@@ -87,7 +87,7 @@ export class CoreListComponent extends CoreComponent {
         // call method that can to be overwrite by children
         args = this.getCustomArgumentsDeleteRecord(object, object);
 
-        if (environment.debug) console.log('DEBUG - args sending to delete object: ', args);
+        if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
 
         // confirm to delete object
         this.confirmationService.confirm({
@@ -98,7 +98,8 @@ export class CoreListComponent extends CoreComponent {
                     .mutate({
                         mutation: this.graphQL.mutationDeleteObject,
                         variables: args
-                    }).subscribe((response) => {
+                    })
+                    .subscribe((response) => {
                         // delete object and call onLazyLoad event on datatable
                         // to reload data
                         this.dataTable.onLazyLoad.emit(
@@ -108,9 +109,6 @@ export class CoreListComponent extends CoreComponent {
             }
         });
     }
-
-    // method to be overwrite
-    getCustomArgumentsDeleteRecord(object: any, args: Object): Object { return args; }
 
     argumentsGetRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {
 

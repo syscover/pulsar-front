@@ -82,8 +82,8 @@ const routes: Routes = [
                     // Products
                     { path: 'product',                                      component: ProductListComponent },
                     { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
-                    { path: 'product/create/:id/:lang',                     component: ProductDetailComponent,                      data: { action: 'create-lang' }},
-                    { path: 'product/show/:id/:lang',                       component: ProductDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'product/create/:lang_id/:object_id',           component: ProductDetailComponent,                      data: { action: 'create-lang' }},
+                    { path: 'product/show/:lang_id/:object_id',             component: ProductDetailComponent,                      data: { action: 'edit' }},
 
                     // Warehouses
                     { path: 'warehouse',                                    component: WarehouseListComponent },

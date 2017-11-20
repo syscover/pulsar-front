@@ -55,6 +55,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
     createForm() {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}, Validators.required ],
+            object_id: '',
             lang_id: ['', Validators.required],
             code: '',
             categories_id: [[], Validators.required],
@@ -179,7 +180,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             }
         ];
 
@@ -202,7 +203,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 'command': 'where',
                 'column': 'market_product_lang.lang_id',
                 'operator': '=',
-                'value': this.params['lang'] ? this.params['lang'] : this.baseLang
+                'value': this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             },
             {
                 'command': 'orderBy',
@@ -216,7 +217,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'market_product.id',
                 operator: '<>',
-                value: this.params['id']
+                value: this.params['object_id']
             });
         };
 
@@ -234,7 +235,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'product_id',
                 operator: '=',
-                value: this.params['id']
+                value: this.params['object_id']
             }
         ];
 

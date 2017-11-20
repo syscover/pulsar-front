@@ -76,20 +76,22 @@ export class ProductGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteProduct ($id:String! $lang:String!) {
-            marketDeleteProduct (id:$id lang:$lang){
+        mutation MarketDeleteProduct ($object_id:Int! $lang_id:String!) {
+            marketDeleteProduct (object_id:$object_id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
 
     init() {
         this.model = 'Syscover\\Market\\Models\\Product';
-        this.table = 'market_product_lang';
+        this.table = 'market_product';
+        this.tableLang = 'market_product_lang';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketProduct {
                 id
+                object_id
                 lang_id
                 code
                 name
@@ -158,6 +160,7 @@ export class ProductGraphQLService extends GraphQLModel {
             }
             marketProducts (sql:$sqlProduct) {
                 id
+                object_id
                 lang_id
                 name
                 code
