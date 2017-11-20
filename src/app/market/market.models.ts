@@ -4,6 +4,7 @@ import { Lang, Country, Attachment } from './../admin/admin.models';
 
 export class Category {
     id: number;
+    object_id: number;
     lang_id: string;
     lang: Lang;
     parent: number;

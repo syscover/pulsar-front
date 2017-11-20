@@ -39,8 +39,8 @@ const routes: Routes = [
                     // Categories
                     { path: 'category',                                     component: CategoryListComponent },
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
-                    { path: 'category/create/:id/:lang',                    component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
-                    { path: 'category/show/:id/:lang',                      component: CategoryDetailComponent,                     data: { action: 'edit' }},
+                    { path: 'category/create/:lang_id/:object_id',          component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+                    { path: 'category/show/:lang_id/:object_id',            component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
                     // Group Customer Class Tax
                     { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },

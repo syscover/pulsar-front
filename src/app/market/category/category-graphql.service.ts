@@ -43,8 +43,8 @@ export class CategoryGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteCategory ($id:String! $lang:String!) {
-            marketDeleteCategory (id:$id lang:$lang){
+        mutation MarketDeleteCategory ($object_id:Int! $lang_id:String!) {
+            marketDeleteCategory (object_id:$object_id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
@@ -57,6 +57,7 @@ export class CategoryGraphQLService extends GraphQLModel {
         this.fields = `
             ... on MarketCategory {
                 id
+                object_id
                 lang_id
                 parent_id
                 name

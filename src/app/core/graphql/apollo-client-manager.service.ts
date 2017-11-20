@@ -83,10 +83,7 @@ export class ApolloClientManagerService {
 
                 let trackId = false;
 
-                if (o['lang_id'] && o['id']) {
-                    if (trackId) console.log('Apollo ID: ', `${o['__typename']}-${o['id']}-${o['lang_id']}`);
-                    return `${o['__typename']}-${o['id']}-${o['lang_id']}`;
-                } else if (o['id']) {
+                if (o['id']) {
                     if (
                         o['__typename'] === 'CoreTranslationField' ||
                         o['__typename'] === 'CoreConfigOptionType'
