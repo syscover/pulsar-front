@@ -43,8 +43,8 @@ export class OrderStatusGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteOrderStatus ($id:String! $lang:String!) {
-            marketDeleteOrderStatus (id:$id lang:$lang){
+        mutation MarketDeleteOrderStatus ($object_id:Int! $lang_id:String!) {
+            marketDeleteOrderStatus (object_id:$object_id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
@@ -57,6 +57,7 @@ export class OrderStatusGraphQLService extends GraphQLModel {
         this.fields = `
             ... on MarketOrderStatus {
                 id
+                object_id
                 lang_id 
                 name 
                 active

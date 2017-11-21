@@ -66,6 +66,7 @@ export class PriceType {
 
 export class OrderStatus {
     id: number;
+    object_id: number;
     lang_id: string;
     lang: Lang;
     name: string;

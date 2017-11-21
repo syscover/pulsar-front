@@ -79,6 +79,7 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
         this.relationsFields = `
             marketOrderStatuses (sql:$sqlOrderStatus){
                 id
+                object_id
                 name
             }
         `;

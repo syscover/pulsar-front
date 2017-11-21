@@ -55,7 +55,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
     setRelationsData(data: any) {
         // set order statuses
         this.orderStatuses = _.map(<OrderStatus[]>data['marketOrderStatuses'], obj => {
-            return { value: obj.id, label: obj.name };
+            return { value: obj.object_id, label: obj.name };
         });
         this.orderStatuses.unshift({ label: 'Select a order status', value: '' });
     }

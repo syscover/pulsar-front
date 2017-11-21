@@ -60,8 +60,8 @@ const routes: Routes = [
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
                     { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-                    { path: 'order-status/create/:id/:lang',                component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
-                    { path: 'order-status/show/:id/:lang',                  component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
+                    { path: 'order-status/create/:lang_id/:object_id',      component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+                    { path: 'order-status/show/:lang_id/:object_id',        component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
                     { path: 'payment-method',                               component: PaymentMethodListComponent },
