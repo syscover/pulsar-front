@@ -25,7 +25,8 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: [{value: '', disabled: true}, Validators.required ],
+            id: '',
+            object_id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
             order_status_successful_id: ['', Validators.required],
             name: ['', Validators.required ],
@@ -43,7 +44,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             }
         ];
 

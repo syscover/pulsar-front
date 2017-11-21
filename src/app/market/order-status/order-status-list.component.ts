@@ -9,7 +9,7 @@ import { OrderStatusGraphQLService } from './order-status-graphql.service';
 export class OrderStatusListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'market_order_status.id', 'market_order_status.name'
+        'market_order_status.object_id', 'market_order_status.name'
     ];
 
     constructor(

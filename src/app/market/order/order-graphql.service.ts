@@ -94,6 +94,7 @@ export class OrderGraphQLService extends GraphQLModel {
             }
             marketPaymentMethods {
                 id
+                object_id
                 lang_id 
                 name
                 sort

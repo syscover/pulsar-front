@@ -66,8 +66,8 @@ const routes: Routes = [
                     // Payment Method
                     { path: 'payment-method',                               component: PaymentMethodListComponent },
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
-                    { path: 'payment-method/create/:id/:lang',              component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
-                    { path: 'payment-method/show/:id/:lang',                component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
+                    { path: 'payment-method/create/:lang_id/:object_id',    component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'payment-method/show/:lang_id/:object_id',      component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
                     // Tax Rate Zone
                     { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
