@@ -1,12 +1,16 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService, DataTable } from 'primeng/primeng';
 import { Core } from './core';
 import { CoreService } from './core.service';
 import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import { Lang } from './../../admin/admin.models';
+import { environment } from './../../../environments/environment';
 
 export class CoreComponent extends Core {
+
+    // reference of datatable element of list views
+    @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
     protected router: Router;
     protected route: ActivatedRoute;
@@ -54,6 +58,50 @@ export class CoreComponent extends Core {
         } else {
             this.baseUri = baseUri;
         }
+    }
+
+    /**
+     * @param object
+     * @param args
+     * @param routeRedirect
+     */
+    deleteRecord(object: any, args = {}, routeRedirect: string = undefined): void {
+
+        // merge object properties with aditional arguments for send it to server
+        object = Object.assign(args, object);
+
+        // call method that can to be overwrite by children
+        args = this.getCustomArgumentsDeleteRecord(object, object);
+
+        if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
+
+        // confirm to delete object
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want delete this object?',
+            accept: () => {
+                this.objectService
+                    .proxyGraphQL()
+                    .mutate({
+                        mutation: this.graphQL.mutationDeleteObject,
+                        variables: args
+                    })
+                    .subscribe((response) => {
+
+                        if (routeRedirect) this.router.navigate([routeRedirect]);
+
+                        if (this.dataTable) {
+                            // delete object and call onLazyLoad event on datatable
+                            // to reload data
+                            this.dataTable.onLazyLoad.emit(
+                                this.dataTable.createLazyLoadMetadata()
+                            );
+                        } else {
+                            // list or deatail
+                            this.router.navigate([this.baseUri]);
+                        }
+                    });
+            }
+        });
     }
 
     // method to be overwrite

@@ -343,44 +343,4 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
      * @param params Params
      */
     getCustomArgumentsEditPostRecord(args: Object, params: Params): Object { return args; }
-
-    /**
-     * @param object
-     * @param routeRedirect
-     * @param langId        use this parameter to overwritte or set lang parameter to send it
-     * @param args
-     */
-    deleteRecord(object: any, routeRedirect: string = undefined, langId: string = undefined, args = {}): void {
-
-        // chek if has force langId, this options is used in object with multiple lang in json.
-        // example: table field
-        if (langId !== undefined) {
-            args['lang_id'] = langId;
-        }
-
-        // call method that can to be overwrite by children
-        args = this.getCustomArgumentsDeleteRecord(object, object);
-
-        if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
-
-        // confirm to delete object
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want delete this object?',
-            accept: () => {
-                this.objectService
-                    .proxyGraphQL()
-                    .mutate({
-                        mutation: this.graphQL.mutationDeleteObject,
-                        variables: args
-                    })
-                    .subscribe((response) => {
-                        if (! routeRedirect) {
-                            this.router.navigate([this.baseUri]);
-                        } else {
-                            this.router.navigate([routeRedirect]);
-                        }
-                    });
-            }
-        });
-    }
 }

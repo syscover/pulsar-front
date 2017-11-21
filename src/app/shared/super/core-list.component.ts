@@ -7,7 +7,6 @@ import { environment } from './../../../environments/environment';
 export class CoreListComponent extends CoreComponent {
 
     @HostBinding('class') classes = 'animated fadeIn';
-    @ViewChild(('dataTableObjects')) dataTable: DataTable;
 
     objects: any[] = [];        // property that can to be overwrite in child class
     totalRecords: number;       // total records in datatable
@@ -76,34 +75,6 @@ export class CoreListComponent extends CoreComponent {
      */
     setData (data): void {
         this.objects = data;
-    }
-
-    deleteRecord(f: Function, object: any, args = {}): void {
-console.log(f);
-        // call method that can to be overwrite by children
-        args = this.getCustomArgumentsDeleteRecord(object, object);
-
-        if (environment.debug) console.log('DEBUG - Args sending to delete object: ', args);
-
-        // confirm to delete object
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want delete this object?',
-            accept: () => {
-                this.objectService
-                    .proxyGraphQL()
-                    .mutate({
-                        mutation: this.graphQL.mutationDeleteObject,
-                        variables: args
-                    })
-                    .subscribe((response) => {
-                        // delete object and call onLazyLoad event on datatable
-                        // to reload data
-                        this.dataTable.onLazyLoad.emit(
-                            this.dataTable.createLazyLoadMetadata()
-                        );
-                    });
-            }
-        });
     }
 
     argumentsGetRecords(event: LazyLoadEvent, filters: Object[] = undefined, sql: Object[] = undefined): Object {

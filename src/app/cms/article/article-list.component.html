@@ -58,7 +58,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.lang_id, object.object_id]">Edit</a>
-                    <a class="dropdown-item pointer" (click)="deleteRecord(f, object)">Delete</a>
+                    <a class="dropdown-item pointer" (click)="deleteRecord(object)">Delete</a>
                 </div>
             </div>
         </ng-template>

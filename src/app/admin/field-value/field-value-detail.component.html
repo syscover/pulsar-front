@@ -54,7 +54,7 @@
                         icon="ui-icon-clear" 
                         *ngIf="dataRoute.action === 'edit'"
                         label="Delete translation" 
-                        (click)="deleteRecord(object, baseUri + '/' + field_id , lang.id, {field:field_id})" 
+                        (click)="deleteRecord(object, {field:field_id}, baseUri + '/' + field_id , lang.id)" 
                         className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>
