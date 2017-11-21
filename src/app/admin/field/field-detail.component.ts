@@ -43,19 +43,6 @@ export class FieldDetailComponent extends CoreDetailComponent {
         });
     }
 
-    disabledForm() {
-        this.fg.controls['field_group_id'].disable();
-        this.fg.controls['name'].disable();
-        this.fg.controls['field_type_id'].disable();
-        this.fg.controls['data_type_id'].disable();
-        this.fg.controls['required'].disable();
-        this.fg.controls['sort'].disable();
-        this.fg.controls['max_length'].disable();
-        this.fg.controls['pattern'].disable();
-        this.fg.controls['label_class'].disable();
-        this.fg.controls['component_class'].disable();
-    }
-
     setData(response = undefined) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
@@ -91,6 +78,19 @@ export class FieldDetailComponent extends CoreDetailComponent {
                 }
             }
         }
+    }
+
+    disabledForm() {
+        this.fg.controls['field_group_id'].disable();
+        this.fg.controls['name'].disable();
+        this.fg.controls['field_type_id'].disable();
+        this.fg.controls['data_type_id'].disable();
+        this.fg.controls['required'].disable();
+        this.fg.controls['sort'].disable();
+        this.fg.controls['max_length'].disable();
+        this.fg.controls['pattern'].disable();
+        this.fg.controls['label_class'].disable();
+        this.fg.controls['component_class'].disable();
     }
 
     // overwrite this method for not implement lang_id property in aguments

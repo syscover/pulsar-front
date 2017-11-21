@@ -50,8 +50,8 @@ export class FieldGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteField ($id:String! $lang:String) {
-            adminDeleteField (id:$id lang:$lang){
+        mutation AdminDeleteField ($id:Int! $lang_id:String) {
+            adminDeleteField (id:$id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;

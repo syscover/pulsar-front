@@ -14,10 +14,6 @@ export class CoreListComponent extends CoreComponent {
     filteredRecords: number;    // filtered records over total
     columnsSearch: string[];    // columns where will be used for global searchs
 
-    static test() {
-        console.log('export');
-    }
-
     constructor(
         protected injector: Injector,
         protected graphQL: GraphQLModel
@@ -83,7 +79,7 @@ export class CoreListComponent extends CoreComponent {
     }
 
     deleteRecord(f: Function, object: any, args = {}): void {
-
+console.log(f);
         // call method that can to be overwrite by children
         args = this.getCustomArgumentsDeleteRecord(object, object);
 

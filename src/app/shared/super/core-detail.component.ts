@@ -236,7 +236,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         if (this.fg.invalid) {
             // TODO, show general error
-            console.log(this.fg);
+            console.log(this.fg.errors);
             return; // has any validation error when emit submit event
         }
 
@@ -347,30 +347,16 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     /**
      * @param object
      * @param routeRedirect
-     * @param langAux
+     * @param langId        use this parameter to overwritte or set lang parameter to send it
      * @param args
      */
-    deleteRecord(object: any, routeRedirect: string = undefined, langAux: string = undefined, args = {}): void {
+    deleteRecord(object: any, routeRedirect: string = undefined, langId: string = undefined, args = {}): void {
 
-        /* args['id'] = object.id;
-
-        // set lang, don't lang_id, because data isn't like object
-        if (object.lang_id) {
-            args['lang_id'] = object.lang_id;
-            args['object_id'] = object.object_id;
-        } else if (object.object_id) {
-            args['object_id'] = object.object_id;
-        } else {
-
-            TODO, esto está sin verificar
-
-            // chek if has force lang,
-            // this options is used in object with multiple lang in json
-            // for example table field
-            if (langAux !== undefined) {
-                args['lang'] = langAux;
-            }
-        } */
+        // chek if has force langId, this options is used in object with multiple lang in json.
+        // example: table field
+        if (langId !== undefined) {
+            args['lang_id'] = langId;
+        }
 
         // call method that can to be overwrite by children
         args = this.getCustomArgumentsDeleteRecord(object, object);
@@ -387,7 +373,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                         mutation: this.graphQL.mutationDeleteObject,
                         variables: args
                     })
-                    .subscribe(data => {
+                    .subscribe((response) => {
                         if (! routeRedirect) {
                             this.router.navigate([this.baseUri]);
                         } else {

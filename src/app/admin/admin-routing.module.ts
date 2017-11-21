@@ -73,8 +73,8 @@ const routes: Routes = [
                     // Fields
                     { path: 'field',                                    component: FieldListComponent },
                     { path: 'field/create',                             component: FieldDetailComponent,        data: { action: 'create' }},
-                    { path: 'field/create/:id/:lang',                   component: FieldDetailComponent,        data: { action: 'create-lang' }},
-                    { path: 'field/show/:id/:lang',                     component: FieldDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field/create/:lang_id/:id',                component: FieldDetailComponent,        data: { action: 'create-lang' }},
+                    { path: 'field/show/:lang_id/:id',                  component: FieldDetailComponent,        data: { action: 'edit' }},
 
                     // Field Values
                     { path: 'field-value/:field',                       component: FieldValueListComponent },
