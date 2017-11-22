@@ -5,7 +5,7 @@
                 [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 (onLazyLoad)="getRecords($event)">
 
-    <p-column field="object_id" sortField="admin_resource.object_id" header="#" [sortable]="true"></p-column>
+    <p-column field="id" sortField="admin_resource.id" header="#" [sortable]="true"></p-column>
     <p-column field="name" sortField="admin_resource.name" header="Name" [sortable]="true"></p-column>
     <p-column field="package.name" sortField="admin_package.name" header="Package" [sortable]="true"></p-column>  
     <p-column styleClass="col-button center">
@@ -17,7 +17,7 @@
                 <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.object_id]">Edit</a>
+                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id]">Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(object)">Delete</a>
                 </div>
             </div>

@@ -79,8 +79,8 @@ const routes: Routes = [
                     // Field Values
                     { path: 'field-value/:field_id',                            component: FieldValueListComponent },
                     { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
-                    { path: 'field-value/create/:field_id/:lang_id/:object_id', component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
-                    { path: 'field-value/show/:field_id/:lang_id/:object_id',   component: FieldValueDetailComponent,           data: { action: 'edit' }},
+                    { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
+                    { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
 
                     // Attachment families
                     { path: 'attachment-family',                                component: AttachmentFamilyListComponent },
@@ -100,7 +100,7 @@ const routes: Routes = [
                     // Resources
                     { path: 'resource',                                         component: ResourceListComponent },
                     { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
-                    { path: 'resource/show/:object_id',                         component: ResourceDetailComponent,             data: { action: 'edit' }},
+                    { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},
 
                     // Profiles
                     { path: 'profile',                                          component: ProfileListComponent },

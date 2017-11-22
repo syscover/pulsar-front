@@ -50,8 +50,8 @@ export class ResourceGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteResource ($object_id:String!) {
-            adminDeleteResource (object_id:$object_id){
+        mutation AdminDeleteResource ($id:String!) {
+            adminDeleteResource (id:$id){
                 ${this.fields}
             }
         }`;
@@ -63,8 +63,8 @@ export class ResourceGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminResource {
+                ix
                 id
-                object_id
                 name 
                 package_id
                 package {
