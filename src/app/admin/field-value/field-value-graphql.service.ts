@@ -43,8 +43,8 @@ export class FieldValueGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteFieldValue ($field_id:Int! $object_id:String! $lang_id:String!) {
-            adminDeleteFieldValue (field_id:$field_id object_id:$object_id lang_id:$lang_id){
+        mutation AdminDeleteFieldValue ($field_id:Int! $lang_id:String! $id:String!) {
+            adminDeleteFieldValue (field_id:$field_id lang_id:$lang_id id:$id){
                 ${this.fields}
             }
         }`;
@@ -56,8 +56,8 @@ export class FieldValueGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminFieldValue {
+                ix
                 id
-                object_id
                 lang_id
                 field_id
                 counter

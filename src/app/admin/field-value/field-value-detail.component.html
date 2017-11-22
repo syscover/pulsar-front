@@ -3,7 +3,7 @@
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object, baseUri + '/' + field_id, [field_id])" novalidate>
 
-        <input type="hidden" formControlName="id">
+        <input type="hidden" formControlName="ix">
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="field_id">
 
@@ -12,7 +12,7 @@
                         [errors]="formErrors" 
                         label="ID."
                         type="text"
-                        name="object_id" 
+                        name="id" 
                         class="col-10 col-sm-6 col-md-3"></ps-input>
             <p-checkbox binary="true" (onChange)="handleEnableId($event)" class="col-1"></p-checkbox>
 

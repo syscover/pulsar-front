@@ -32,8 +32,8 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: '',
-            object_id: [{value: '', disabled: true}],
+            ix: null,
+            id: [{value: '', disabled: true}],
             lang_id: ['', Validators.required ],
             field_id: [this.field_id, Validators.required ],
             name: ['', Validators.required ],
@@ -55,10 +55,10 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
 
     handleEnableId($event) {
         // enable or disable id input
-        if (this.fg.controls['object_id'].disabled) {
-            this.fg.controls['object_id'].enable();
+        if (this.fg.controls['id'].disabled) {
+            this.fg.controls['id'].enable();
         } else {
-            this.fg.controls['object_id'].disable();
+            this.fg.controls['id'].disable();
         }
     }
 }

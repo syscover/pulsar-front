@@ -12,7 +12,7 @@ export class FieldValueListComponent extends CoreListComponent {
     field_id: number;
 
     columnsSearch: string[] = [
-        'object_id', 'name'
+        'id', 'name'
     ];
 
     constructor(
