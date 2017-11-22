@@ -6,7 +6,7 @@
                 [rowsPerPageOptions]="[10,25,50]"
                 (onLazyLoad)="getRecords($event)">
 
-    <p-column field="object_id" sortField="cms_section.object_id" header="#" [sortable]="true"></p-column>
+    <p-column field="id" sortField="cms_section.id" header="#" [sortable]="true"></p-column>
     <p-column field="name" sortField="cms_section.name" header="Name" [sortable]="true"></p-column>
     <p-column field="family.name" sortField="cms_article_family.name" header="Family" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
@@ -18,7 +18,7 @@
                 <button pButton type="button" icon="ui-icon-more-vert" class="datatable-actions dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.object_id]">Edit</a>
+                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id]">Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(object)">Delete</a>
                 </div>
             </div>

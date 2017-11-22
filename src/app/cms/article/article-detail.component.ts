@@ -65,8 +65,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: '',
-            object_id: [{value: '', disabled: true}],
+            ix: '',
+            id: [{value: '', disabled: true}],
             lang_id: ['', Validators.required],
             name: ['', Validators.required],
             parent_id: '',
@@ -94,7 +94,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     handleChangeSection($event) {
         // change family if, change section
         if ($event.value) {
-            this.section = _.find(this._sections, {object_id: $event.value});
+            this.section = _.find(this._sections, {id: $event.value});
 
             this.loadAttachmentFamilies();
 
@@ -160,7 +160,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             this.object = response; // function to set custom data
 
             // set section object and load attachment families
-            this.section = _.find(this._sections, {object_id: this.object.section_id});
+            this.section = _.find(this._sections, {id: this.object.section_id});
             this.loadAttachmentFamilies();
 
             // set family object, to change morphology of form
@@ -196,7 +196,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                     // set lang id in form from object with multiple language
                     lang_id: this.lang.id
                 });
-                this.fg.removeControl('id');
             }
         }
     }
@@ -217,7 +216,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'cms_article.lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             },
             {
                 command: 'orderBy',
@@ -255,7 +254,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             }
         ];
 
@@ -277,7 +276,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         // cms sections
         this._sections = data['cmsSections'];
         this.sections = _.map(this._sections, obj => {
-            return { value: obj.object_id, label: obj.name };
+            return { value: obj.id, label: obj.name };
         });
         this.sections.unshift({ label: 'Select a section', value: '' });
 
@@ -290,7 +289,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
         // cms categories
         this.categories = _.map(<Category[]>data['cmsCategories'], obj => {
-            return { value: obj.object_id, label: obj.name };
+            return { value: obj.id, label: obj.name };
         });
 
         // cms statuses

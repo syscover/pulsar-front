@@ -50,8 +50,8 @@ export class SectionGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation CmsDeleteSection ($object_id:String!) {
-            cmsDeleteSection (object_id:$object_id){
+        mutation CmsDeleteSection ($id:String!) {
+            cmsDeleteSection (id:$id){
                 ${this.fields}
             }
         }`;
@@ -63,8 +63,8 @@ export class SectionGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on CmsSection {
+                ix
                 id
-                object_id
                 name
                 family_id
                 family {

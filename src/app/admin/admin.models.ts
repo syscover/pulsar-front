@@ -172,6 +172,7 @@ export class AttachmentLibrary {
 }
 
 export class Attachment extends AttachmentLibrary {
+    id: number;
     lang_id: string;
     object_id: number;
     object_type: string;
