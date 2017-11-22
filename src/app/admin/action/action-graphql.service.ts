@@ -43,8 +43,8 @@ export class ActionGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteAction ($object_id:String!) {
-            adminDeleteAction (object_id:$object_id) {
+        mutation AdminDeleteAction ($id:String!) {
+            adminDeleteAction (id:$id) {
                 ${this.fields}
             }
         }`;
@@ -56,8 +56,8 @@ export class ActionGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminAction {
+                ix
                 id
-                object_id
                 name
             }
         `;

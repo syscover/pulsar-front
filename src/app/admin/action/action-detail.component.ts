@@ -18,8 +18,8 @@ export class ActionDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: '',
-            object_id: ['', [Validators.required, Validators.minLength(2)] ],
+            ix: null,
+            id: ['', [Validators.required, Validators.minLength(2)] ],
             name: ['', Validators.required ]
         });
     }
