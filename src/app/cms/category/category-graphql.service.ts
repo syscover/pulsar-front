@@ -49,8 +49,8 @@ export class CategoryGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation CmsDeleteCategory ($object_id:Int! $lang_id:String!) {
-            cmsDeleteCategory (object_id:$object_id lang_id:$lang_id){
+        mutation CmsDeleteCategory ($lang_id:String! $id:Int!) {
+            cmsDeleteCategory (lang_id:$lang_id id:$id){
                 ${this.fields}
             }
         }`;
@@ -62,8 +62,8 @@ export class CategoryGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on CmsCategory {
+                ix
                 id
-                object_id
                 lang_id
                 name
                 slug

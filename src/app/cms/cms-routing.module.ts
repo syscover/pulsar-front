@@ -34,8 +34,8 @@ const routes: Routes = [
                     // Categories
                     { path: 'category',                             component: CategoryListComponent },
                     { path: 'category/create',                      component: CategoryDetailComponent,             data: { action: 'create' }},
-                    { path: 'category/create/:lang_id/:object_id',  component: CategoryDetailComponent,             data: { action: 'create-lang' }},
-                    { path: 'category/show/:lang_id/:object_id',    component: CategoryDetailComponent,             data: { action: 'edit' }},
+                    { path: 'category/create/:lang_id/:id',         component: CategoryDetailComponent,             data: { action: 'create-lang' }},
+                    { path: 'category/show/:lang_id/:id',           component: CategoryDetailComponent,             data: { action: 'edit' }},
 
                     // Secions
                     { path: 'section',                              component: SectionListComponent },

@@ -48,9 +48,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                     // set lang id in form from object with multiple language
                     lang_id: this.lang.id
                 });
-
-                // remove id to avois confict with duplicate id
-                this.fg.removeControl('id');
             }
         }
     }
@@ -128,33 +125,22 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     argumentsGetRecord(params: Params): any {
         let args;
 
-        // set paramenters for objects that has lang_id and object_id
-        if (params['lang_id'] && params['object_id']) {
+        // set paramenters for objects that has lang_id and id
+        if (params['lang_id'] && params['id']) {
             // check if object has table lang
             let table = this.graphQL.tableLang ?  this.graphQL.tableLang : this.graphQL.table;
             args = {
                 sql: [{
                     command: 'where',
-                    column: `${table}.object_id`,
+                    column: `${table}.id`,
                     operator: '=',
-                    value: params['object_id']
+                    value: params['id']
                 },
                 {
                     command: 'where',
                     column: `${table}.lang_id`,
                     operator: '=',
                     value: params['lang_id']
-                }]
-            };
-
-        } else if (params['object_id']) {
-
-            args = {
-                sql: [{
-                    command: 'where',
-                    column: `${this.graphQL.table}.object_id`,
-                    operator: '=',
-                    value: params['object_id']
                 }]
             };
 
@@ -247,10 +233,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             // Usually the id is disabled, we enable it if you need tale id data for create or edit
             this.fg.get('id').enable(); // enable is a method from AbstractControl
         }
-        if (this.fg.get('object_id')) {
-            // Usually the id is disabled, we enable it if you need tale id data for create or edit
-            this.fg.get('object_id').enable(); // enable is a method from AbstractControl
-        }
 
         // add object to arguments
         args['object'] = this.fg.value;
@@ -273,6 +255,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
         if (this.dataRoute.action === 'create-lang') {
+
+            // remove id to avoid confict with duplicate id
+            delete args['object']['ix'];
 
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsCreateLangPostRecord(args, object);
