@@ -36,15 +36,15 @@ export class FieldValueGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateFieldValue ($object:AdminFieldValueInput! $idOld:String!) {
-            adminUpdateFieldValue (object:$object idOld:$idOld){
+        mutation AdminUpdateFieldValue ($object:AdminFieldValueInput!) {
+            adminUpdateFieldValue (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteFieldValue ($field:ID! $id:String! $lang:String!) {
-            adminDeleteFieldValue (field:$field id:$id lang:$lang){
+        mutation AdminDeleteFieldValue ($field_id:Int! $object_id:String! $lang_id:String!) {
+            adminDeleteFieldValue (field_id:$field_id object_id:$object_id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
@@ -57,6 +57,7 @@ export class FieldValueGraphQLService extends GraphQLModel {
         this.fields = `
             ... on AdminFieldValue {
                 id
+                object_id
                 lang_id
                 field_id
                 counter

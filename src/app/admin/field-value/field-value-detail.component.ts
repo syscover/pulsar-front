@@ -22,7 +22,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
 
     ngOnInit() {
         // set fieldId to be used in template
-        this.field_id = this.params['field'];
+        this.field_id = this.params['field_id'];
 
         // set field_id in reactive form
         this.fg.controls['field_id'].setValue(this.field_id);
@@ -32,7 +32,8 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: [{value: '', disabled: true}],
+            id: '',
+            object_id: [{value: '', disabled: true}],
             lang_id: ['', Validators.required ],
             field_id: [this.field_id, Validators.required ],
             name: ['', Validators.required ],
@@ -46,7 +47,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
             command: 'where',
             column: `${this.graphQL.table}.field_id`,
             operator: '=',
-            value: params['field']
+            value: params['field_id']
         });
 
         return args;
@@ -54,10 +55,10 @@ export class FieldValueDetailComponent extends CoreDetailComponent {
 
     handleEnableId($event) {
         // enable or disable id input
-        if (this.fg.controls['id'].disabled) {
-            this.fg.controls['id'].enable();
+        if (this.fg.controls['object_id'].disabled) {
+            this.fg.controls['object_id'].enable();
         } else {
-            this.fg.controls['id'].disable();
+            this.fg.controls['object_id'].disable();
         }
     }
 }

@@ -38,78 +38,78 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             {
-                path: '',                                               component: DataContainerComponent,
+                path: '',                                                       component: DataContainerComponent,
                 canActivateChild: [AuthGuard],
                 children: [
                      // Dashboard
-                    { path: 'dashboard',                                component: DashboardComponent },
+                    { path: 'dashboard',                                        component: DashboardComponent },
 
                     // Langs
-                    { path: 'user',                                     component: UserListComponent },
-                    { path: 'user/create',                              component: UserDetailComponent,         data: { action: 'create' }},
-                    { path: 'user/show/:id',                            component: UserDetailComponent,         data: { action: 'edit' }},
+                    { path: 'user',                                             component: UserListComponent },
+                    { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
+                    { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
 
                     // Langs
-                    { path: 'lang',                                     component: LangListComponent },
-                    { path: 'lang/create',                              component: LangDetailComponent,         data: { action: 'create' }},
-                    { path: 'lang/show/:id',                            component: LangDetailComponent,         data: { action: 'edit' }},
+                    { path: 'lang',                                             component: LangListComponent },
+                    { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create' }},
+                    { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit' }},
 
                     // Countries
-                    { path: 'country',                                  component: CountryListComponent },
-                    { path: 'country/create',                           component: CountryDetailComponent,      data: { action: 'create' }},
-                    { path: 'country/create/:id/:lang',                 component: CountryDetailComponent,      data: { action: 'create-lang' }},
-                    { path: 'country/show/:id/:lang',                   component: CountryDetailComponent,      data: { action: 'edit' }},
+                    { path: 'country',                                          component: CountryListComponent },
+                    { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
+                    { path: 'country/create/:id/:lang',                         component: CountryDetailComponent,              data: { action: 'create-lang' }},
+                    { path: 'country/show/:id/:lang',                           component: CountryDetailComponent,              data: { action: 'edit' }},
 
                     // Packages
-                    { path: 'package',                                  component: PackageListComponent },
-                    { path: 'package/create',                           component: PackageDetailComponent,      data: { action: 'create' }},
-                    { path: 'package/show/:id',                         component: PackageDetailComponent,      data: { action: 'edit' }},
+                    { path: 'package',                                          component: PackageListComponent },
+                    { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
+                    { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
 
                     // Field groups
-                    { path: 'field-group',                              component: FieldGroupListComponent },
-                    { path: 'field-group/create',                       component: FieldGroupDetailComponent,   data: { action: 'create' }},
-                    { path: 'field-group/show/:id',                     component: FieldGroupDetailComponent,   data: { action: 'edit' }},
+                    { path: 'field-group',                                      component: FieldGroupListComponent },
+                    { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create' }},
+                    { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit' }},
 
                     // Fields
-                    { path: 'field',                                    component: FieldListComponent },
-                    { path: 'field/create',                             component: FieldDetailComponent,        data: { action: 'create' }},
-                    { path: 'field/create/:lang_id/:id',                component: FieldDetailComponent,        data: { action: 'create-lang' }},
-                    { path: 'field/show/:lang_id/:id',                  component: FieldDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field',                                            component: FieldListComponent },
+                    { path: 'field/create',                                     component: FieldDetailComponent,                data: { action: 'create' }},
+                    { path: 'field/create/:lang_id/:id',                        component: FieldDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit' }},
 
                     // Field Values
-                    { path: 'field-value/:field',                       component: FieldValueListComponent },
-                    { path: 'field-value/create/:field',                component: FieldValueDetailComponent,        data: { action: 'create' }},
-                    { path: 'field-value/create/:field/:id/:lang',      component: FieldValueDetailComponent,        data: { action: 'create-lang' }},
-                    { path: 'field-value/show/:field/:id/:lang',        component: FieldValueDetailComponent,        data: { action: 'edit' }},
+                    { path: 'field-value/:field_id',                            component: FieldValueListComponent },
+                    { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
+                    { path: 'field-value/create/:field_id/:lang_id/:object_id', component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
+                    { path: 'field-value/show/:field_id/:lang_id/:object_id',   component: FieldValueDetailComponent,           data: { action: 'edit' }},
 
                     // Attachment families
-                    { path: 'attachment-family',                        component: AttachmentFamilyListComponent },
-                    { path: 'attachment-family/create',                 component: AttachmentFamilyDetailComponent,      data: { action: 'create' }},
-                    { path: 'attachment-family/show/:id',               component: AttachmentFamilyDetailComponent,      data: { action: 'edit' }},
+                    { path: 'attachment-family',                                component: AttachmentFamilyListComponent },
+                    { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create' }},
+                    { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit' }},
 
                     // Attachment mimes
-                    { path: 'attachment-mime',                          component: AttachmentMimeListComponent },
-                    { path: 'attachment-mime/create',                   component: AttachmentMimeDetailComponent,      data: { action: 'create' }},
-                    { path: 'attachment-mime/show/:id',                 component: AttachmentMimeDetailComponent,      data: { action: 'edit' }},
+                    { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
+                    { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
+                    { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
 
                     // Actions
-                    { path: 'action',                                   component: ActionListComponent },
-                    { path: 'action/create',                            component: ActionDetailComponent,       data: { action: 'create' }},
-                    { path: 'action/show/:object_id',                   component: ActionDetailComponent,       data: { action: 'edit' }},
+                    { path: 'action',                                           component: ActionListComponent },
+                    { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create' }},
+                    { path: 'action/show/:object_id',                           component: ActionDetailComponent,               data: { action: 'edit' }},
 
                     // Resources
-                    { path: 'resource',                                 component: ResourceListComponent },
-                    { path: 'resource/create',                          component: ResourceDetailComponent,     data: { action: 'create' }},
-                    { path: 'resource/show/:object_id',                 component: ResourceDetailComponent,     data: { action: 'edit' }},
+                    { path: 'resource',                                         component: ResourceListComponent },
+                    { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
+                    { path: 'resource/show/:object_id',                         component: ResourceDetailComponent,             data: { action: 'edit' }},
 
                     // Profiles
-                    { path: 'profile',                                  component: ProfileListComponent },
-                    { path: 'profile/create',                           component: ProfileDetailComponent,      data: { action: 'create' }},
-                    { path: 'profile/show/:id',                         component: ProfileDetailComponent,      data: { action: 'edit' }},
+                    { path: 'profile',                                          component: ProfileListComponent },
+                    { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
+                    { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
 
                     // Wildcard route
-                    { path: '',                                         redirectTo: 'dashboard' },
-                    { path: '**',                                       component: ErrorComponent,             data: { error: '404' }}
+                    { path: '',                                                 redirectTo: 'dashboard' },
+                    { path: '**',                                               component: ErrorComponent,                      data: { error: '404' }}
                 ]
             }
         ]

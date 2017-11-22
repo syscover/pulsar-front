@@ -87,17 +87,19 @@ export class CoreComponent extends Core {
                     })
                     .subscribe((response) => {
 
-                        if (routeRedirect) this.router.navigate([routeRedirect]);
-
-                        if (this.dataTable) {
-                            // delete object and call onLazyLoad event on datatable
-                            // to reload data
-                            this.dataTable.onLazyLoad.emit(
-                                this.dataTable.createLazyLoadMetadata()
-                            );
+                        if (routeRedirect) {
+                            this.router.navigate([routeRedirect]);
                         } else {
-                            // list or deatail
-                            this.router.navigate([this.baseUri]);
+                            if (this.dataTable) {
+                                // delete object and call onLazyLoad event on datatable
+                                // to reload data
+                                this.dataTable.onLazyLoad.emit(
+                                    this.dataTable.createLazyLoadMetadata()
+                                );
+                            } else {
+                                // list or deatail
+                                this.router.navigate([this.baseUri]);
+                            }
                         }
                     });
             }

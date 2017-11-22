@@ -111,7 +111,8 @@ export class Field {
 }
 
 export class FieldValue {
-    id: string;
+    id: number;
+    object_id: string;
     counter: number;
     lang_id: string;
     field_id: number;

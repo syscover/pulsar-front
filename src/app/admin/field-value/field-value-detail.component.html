@@ -3,6 +3,7 @@
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object, baseUri + '/' + field_id, [field_id])" novalidate>
 
+        <input type="hidden" formControlName="id">
         <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="field_id">
 
@@ -11,7 +12,8 @@
                         [errors]="formErrors" 
                         label="ID."
                         type="text"
-                        name="id" class="col-10 col-sm-6 col-md-3"></ps-input>
+                        name="object_id" 
+                        class="col-10 col-sm-6 col-md-3"></ps-input>
             <p-checkbox binary="true" (onChange)="handleEnableId($event)" class="col-1"></p-checkbox>
 
             <ps-lang-label  [lang]="lang" class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
@@ -22,7 +24,8 @@
                         [errors]="formErrors"
                         label="Name"
                         type="text"
-                        name="name" class="col-12"></ps-input>
+                        name="name" 
+                        class="col-12"></ps-input>
         </div>
 
         <div class="row">
@@ -30,11 +33,13 @@
                         [errors]="formErrors"
                         label="Sort"
                         type="number"
-                        name="sort" class="col-sm-12 col-md-4"></ps-input>
+                        name="sort" 
+                        class="col-sm-12 col-md-4"></ps-input>
 
             <ps-checkbox    [form]="fg"
                             name="featured"
-                            label="Featured" class="offset-md-1 col-sm-12 col-md-4"></ps-checkbox>
+                            label="Featured" 
+                            class="offset-md-1 col-sm-12 col-md-4"></ps-checkbox>
         </div>
 
         <!-- buttons -->
@@ -54,7 +59,7 @@
                         icon="ui-icon-clear" 
                         *ngIf="dataRoute.action === 'edit'"
                         label="Delete translation" 
-                        (click)="deleteRecord(object, {field:field_id}, baseUri + '/' + field_id , lang.id)" 
+                        (click)="deleteRecord(object, {field_id:field_id}, baseUri + '/' + field_id)" 
                         className="red-btn"
                         class="col-sm-10 col-md-3"></ps-button>
         </div>

@@ -12,7 +12,7 @@ export class FieldValueListComponent extends CoreListComponent {
     field_id: number;
 
     columnsSearch: string[] = [
-        'id', 'name'
+        'object_id', 'name'
     ];
 
     constructor(
@@ -20,7 +20,7 @@ export class FieldValueListComponent extends CoreListComponent {
         protected graphQL: FieldValueGraphQLService,
     ) {
         super(injector, graphQL);
-        this.field_id = this.params['field']; // set field id to be used in view and loadDadaTableLazy method
+        this.field_id = this.params['field_id']; // set field id to be used in view and loadDadaTableLazy method
     }
 
     getRecords(event: LazyLoadEvent) {
