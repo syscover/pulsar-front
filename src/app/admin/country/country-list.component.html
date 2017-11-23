@@ -19,11 +19,11 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuData">
                     <div *ngFor="let lang of langs">
                         <a  *ngIf="(object | actionLangObject:lang) === 'edit'" 
-                            [routerLink]="[baseUri + '/show', object.id, lang.id]"
+                            [routerLink]="[baseUri + '/show', lang.id, object.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Edit</a>
                             
                         <a  *ngIf="(object | actionLangObject:lang) === 'create'" 
-                            [routerLink]="[baseUri + '/create', object.id, lang.id]"
+                            [routerLink]="[baseUri + '/create', lang.id, object.id]"
                             class="dropdown-item"><span class="flag-icon flag-icon-{{ lang.icon }}"></span> Create</a>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.id, object.lang_id]">Edit</a>
+                    <a class="dropdown-item" [routerLink]="[baseUri + '/show', object.lang_id, object.id]">Edit</a>
                     <a class="dropdown-item pointer" (click)="deleteRecord(object)">Delete</a>
                 </div>
             </div>

@@ -36,8 +36,8 @@ export class LangGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateLang ($object:AdminLangInput! $idOld:String!) {
-            adminUpdateLang (object:$object idOld:$idOld){
+        mutation AdminUpdateLang ($object:AdminLangInput!) {
+            adminUpdateLang (object:$object){
                 ${this.fields}
             }
         }`;

@@ -57,8 +57,8 @@ const routes: Routes = [
                     // Countries
                     { path: 'country',                                          component: CountryListComponent },
                     { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
-                    { path: 'country/create/:id/:lang',                         component: CountryDetailComponent,              data: { action: 'create-lang' }},
-                    { path: 'country/show/:id/:lang',                           component: CountryDetailComponent,              data: { action: 'edit' }},
+                    { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
+                    { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
 
                     // Packages
                     { path: 'package',                                          component: PackageListComponent },

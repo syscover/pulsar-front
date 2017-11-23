@@ -273,11 +273,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         }
         if (this.dataRoute.action === 'edit') {
 
-            // if route has id param, take this value how idOld
-            if (this.params['id']) {
-                args['idOld'] = this.params['id'];
-            }
-
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsEditPostRecord(args, object);
 

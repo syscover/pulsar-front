@@ -3,6 +3,7 @@
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
+        <input type="hidden" formControlName="ix">
         <input type="hidden" formControlName="lang_id">
 
         <div class="row">
@@ -10,7 +11,8 @@
                         [errors]="formErrors"
                         label="ID."
                         type="text"
-                        name="id" class="col-sm-6 col-md-3 mr-md-auto"></ps-input>
+                        name="id" 
+                        class="col-sm-6 col-md-3 mr-md-auto"></ps-input>
 
             <ps-lang-label  [lang]="lang" class="col-sm-6 mr-md-auto col-md-3"></ps-lang-label>
         </div>
@@ -20,7 +22,8 @@
                         [errors]="formErrors"
                         label="Name"
                         type="text"
-                        name="name" class="col-12"></ps-input>
+                        name="name" 
+                        class="col-12"></ps-input>
         </div>
 
         <div class="row">
@@ -28,13 +31,15 @@
                         [errors]="formErrors"
                         name="prefix"
                         type="text"
-                        label="Prefix" class="col-sm-12 col-md-4"></ps-input>
+                        label="Prefix" 
+                        class="col-sm-12 col-md-4"></ps-input>
 
             <ps-spinner [form]="fg" 
                         [errors]="formErrors"
                         label="Sort"
                         [min]="0"
-                        name="sort" class="col-sm-12 col-md-4"></ps-spinner>
+                        name="sort" 
+                        class="col-sm-12 col-md-4"></ps-spinner>
         </div>
 
         <div class="row">
@@ -42,7 +47,8 @@
                         [errors]="formErrors"
                         name="territorial_area_1"
                         type="text"
-                        label="Territorial Area 1" class="col-sm-12 col-md-6"></ps-input>
+                        label="Territorial Area 1" 
+                        class="col-sm-12 col-md-6"></ps-input>
         </div>
 
         <div class="row">
@@ -50,7 +56,8 @@
                         [errors]="formErrors"
                         name="territorial_area_2"
                         type="text"
-                        label="Territorial Area 2" class="col-sm-12 col-md-6"></ps-input>
+                        label="Territorial Area 2" 
+                        class="col-sm-12 col-md-6"></ps-input>
         </div>
 
         <div class="row">
@@ -58,7 +65,8 @@
                         [errors]="formErrors"
                         name="territorial_area_3"
                         type="text"
-                        label="Territorial Area 3" class="col-sm-12 col-md-6"></ps-input>
+                        label="Territorial Area 3" 
+                        class="col-sm-12 col-md-6"></ps-input>
         </div>
 
         <div class="row">

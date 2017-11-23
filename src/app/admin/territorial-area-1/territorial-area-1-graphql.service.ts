@@ -36,8 +36,8 @@ export class TerritorialArea1GraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateTerritorialArea1 ($object:AdminTerritorialArea1Input! $idOld:String!) {
-            adminUpdateTerritorialArea1 (object:$object idOld:$idOld){
+        mutation AdminUpdateTerritorialArea1 ($object:AdminTerritorialArea1Input!) {
+            adminUpdateTerritorialArea1 (object:$object){
                 ${this.fields}
             }
         }`;

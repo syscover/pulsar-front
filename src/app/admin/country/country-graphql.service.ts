@@ -36,15 +36,15 @@ export class CountryGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateCountry ($object:AdminCountryInput! $idOld:String!) {
-            adminUpdateCountry (object:$object idOld:$idOld){
+        mutation AdminUpdateCountry ($object:AdminCountryInput!) {
+            adminUpdateCountry (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteCountry ($id:String! $lang:String!) {
-            adminDeleteCountry (id:$id lang:$lang){
+        mutation AdminDeleteCountry ($lang_id:String! $id:String!) {
+            adminDeleteCountry (lang_id:$lang_id id:$id) {
                 ${this.fields}
             }
         }`;
@@ -57,6 +57,7 @@ export class CountryGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminCountry {
+                ix
                 id
                 lang_id
                 name
