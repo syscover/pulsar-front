@@ -43,8 +43,8 @@ export class OrderStatusGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteOrderStatus ($object_id:Int! $lang_id:String!) {
-            marketDeleteOrderStatus (object_id:$object_id lang_id:$lang_id){
+        mutation MarketDeleteOrderStatus ($lang_id:String! $id:Int!) {
+            marketDeleteOrderStatus (lang_id:$lang_id id:$id){
                 ${this.fields}
             }
         }`;
@@ -56,8 +56,8 @@ export class OrderStatusGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketOrderStatus {
+                ix
                 id
-                object_id
                 lang_id 
                 name 
                 active

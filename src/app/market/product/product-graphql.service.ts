@@ -76,8 +76,8 @@ export class ProductGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteProduct ($object_id:Int! $lang_id:String!) {
-            marketDeleteProduct (object_id:$object_id lang_id:$lang_id){
+        mutation MarketDeleteProduct ($lang_id:String! $id:Int!) {
+            marketDeleteProduct (lang_id:$lang_id id:$id){
                 ${this.fields}
             }
         }`;
@@ -90,15 +90,15 @@ export class ProductGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketProduct {
+                ix
                 id
-                object_id
                 lang_id
                 code
                 name
                 slug
                 categories {
+                    ix
                     id
-                    object_id
                     lang_id
                     name
                 }
@@ -115,6 +115,7 @@ export class ProductGraphQLService extends GraphQLModel {
                 data_lang
                 data
                 attachments {
+                    ix
                     id
                     lang_id
                     object_id
@@ -151,8 +152,8 @@ export class ProductGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             marketCategories (sql:$sqlCategory) {
+                ix
                 id
-                object_id
                 lang_id
                 name
             }
@@ -161,8 +162,8 @@ export class ProductGraphQLService extends GraphQLModel {
                 name
             }
             marketProducts (sql:$sqlProduct) {
+                ix
                 id
-                object_id
                 lang_id
                 name
                 code

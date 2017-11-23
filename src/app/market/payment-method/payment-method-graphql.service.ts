@@ -50,8 +50,8 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeletePaymentMethod ($object_id:Int! $lang_id:String!) {
-            marketDeletePaymentMethod (object_id:$object_id lang_id:$lang_id){
+        mutation MarketDeletePaymentMethod ($lang_id:String! $id:Int!) {
+            marketDeletePaymentMethod (lang_id:$lang_id id:$id){
                 ${this.fields}
             }
         }`;
@@ -63,8 +63,8 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketPaymentMethod {
+                ix
                 id
-                object_id
                 lang_id 
                 name
                 order_status_successful_id
@@ -79,8 +79,8 @@ export class PaymentMethodGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             marketOrderStatuses (sql:$sqlOrderStatus){
+                ix
                 id
-                object_id
                 name
             }
         `;

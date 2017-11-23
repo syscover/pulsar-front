@@ -18,8 +18,8 @@ export class OrderStatusDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: '',
-            object_id: [{value: '', disabled: true}, Validators.required ],
+            ix: null,
+            id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
             name: ['', Validators.required ],
             active: null

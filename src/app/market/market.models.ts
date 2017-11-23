@@ -3,8 +3,8 @@ import { DataJson } from './../shared/classes/properties';
 import { Lang, Country, Attachment } from './../admin/admin.models';
 
 export class Category {
+    ix: number;
     id: number;
-    object_id: number;
     lang_id: string;
     lang: Lang;
     parent: number;
@@ -65,8 +65,8 @@ export class PriceType {
 }
 
 export class OrderStatus {
+    ix: number;
     id: number;
-    object_id: number;
     lang_id: string;
     lang: Lang;
     name: string;

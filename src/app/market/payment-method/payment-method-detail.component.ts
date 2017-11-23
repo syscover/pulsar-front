@@ -25,8 +25,8 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
-            id: '',
-            object_id: [{value: '', disabled: true}, Validators.required ],
+            ix: null,
+            id: [{value: '', disabled: true}, Validators.required ],
             lang_id: ['', Validators.required],
             order_status_successful_id: ['', Validators.required],
             name: ['', Validators.required ],
@@ -56,7 +56,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent {
     setRelationsData(data: any) {
         // set order statuses
         this.orderStatuses = _.map(<OrderStatus[]>data['marketOrderStatuses'], obj => {
-            return { value: obj.object_id, label: obj.name };
+            return { value: obj.id, label: obj.name };
         });
         this.orderStatuses.unshift({ label: 'Select a order status', value: '' });
     }

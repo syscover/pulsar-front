@@ -85,16 +85,16 @@ export class OrderGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             marketOrderStatuses {
+                ix
                 id
-                object_id
                 lang_id 
                 name 
                 active
                 data_lang
             }
             marketPaymentMethods {
+                ix
                 id
-                object_id
                 lang_id 
                 name
                 sort

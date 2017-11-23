@@ -3,7 +3,7 @@
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
-        <input type="hidden" formControlName="id">
+        <input type="hidden" formControlName="ix">
         <input type="hidden" formControlName="lang_id">
 
         <div class="row">
@@ -11,7 +11,7 @@
                         [errors]="formErrors"
                         label="ID."
                         type="text"
-                        name="object_id" class="col-sm-6 col-md-3"></ps-input>
+                        name="id" class="col-sm-6 col-md-3"></ps-input>
 
             <ps-lang-label  [lang]="lang" class="offset-md-1 col-sm-6 col-md-3"></ps-lang-label>
         </div>

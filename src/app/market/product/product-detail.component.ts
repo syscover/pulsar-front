@@ -54,11 +54,11 @@ export class ProductDetailComponent extends CoreDetailComponent {
     // function call from parent
     createForm() {
         this.fg = this.fb.group({
-            id: [{value: '', disabled: true}, Validators.required ],
-            object_id: '',
+            ix: null,
+            id: null,
             lang_id: ['', Validators.required],
             code: '',
-            categories_object_id: [[], Validators.required],
+            categories_id: [[], Validators.required],
             name: ['', Validators.required ],
             slug: ['', Validators.required ],
             field_group_id: '',
@@ -150,10 +150,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             this.fg.patchValue(this.object); // set values of form, if the object not match with form, use pachValue instead of setvelue
 
             // set categories extracting ids
-            console.log(this.object.categories);
-            console.log(_.map(this.object.categories, 'object_id'));
-
-            this.fg.controls['categories_object_id'].setValue(_.map(this.object.categories, 'object_id'));
+            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
 
             this.handleGetProductTaxes(
                 this.fg.controls['subtotal'].value,
@@ -220,7 +217,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'market_product.id',
                 operator: '<>',
-                value: this.params['object_id']
+                value: this.params['id']
             });
         };
 
@@ -238,7 +235,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 command: 'where',
                 column: 'product_id',
                 operator: '=',
-                value: this.params['object_id']
+                value: this.params['id']
             }
         ];
 
@@ -286,7 +283,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
 
         // market categories
         this.categories = _.map(<Category[]>data['marketCategories'], obj => {
-            return { value: obj.object_id, label: obj.name };
+            return { value: obj.id, label: obj.name };
         });
 
         // market product class tax

@@ -39,8 +39,8 @@ const routes: Routes = [
                     // Categories
                     { path: 'category',                                     component: CategoryListComponent },
                     { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
-                    { path: 'category/create/:lang_id/:object_id',          component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
-                    { path: 'category/show/:lang_id/:object_id',            component: CategoryDetailComponent,                     data: { action: 'edit' }},
+                    { path: 'category/create/:lang_id/:id',                 component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+                    { path: 'category/show/:lang_id/:id',                   component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
                     // Group Customer Class Tax
                     { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
@@ -60,14 +60,14 @@ const routes: Routes = [
                     // Order Status
                     { path: 'order-status',                                 component: OrderStatusListComponent },
                     { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-                    { path: 'order-status/create/:lang_id/:object_id',      component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
-                    { path: 'order-status/show/:lang_id/:object_id',        component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
+                    { path: 'order-status/create/:lang_id/:id',             component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+                    { path: 'order-status/show/:lang_id/:id',               component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
                     // Payment Method
                     { path: 'payment-method',                               component: PaymentMethodListComponent },
                     { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
-                    { path: 'payment-method/create/:lang_id/:object_id',    component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
-                    { path: 'payment-method/show/:lang_id/:object_id',      component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
+                    { path: 'payment-method/create/:lang_id/:id',           component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'payment-method/show/:lang_id/:id',             component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
                     // Tax Rate Zone
                     { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
@@ -82,8 +82,8 @@ const routes: Routes = [
                     // Products
                     { path: 'product',                                      component: ProductListComponent },
                     { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
-                    { path: 'product/create/:lang_id/:object_id',           component: ProductDetailComponent,                      data: { action: 'create-lang' }},
-                    { path: 'product/show/:lang_id/:object_id',             component: ProductDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'product/create/:lang_id/:id',                  component: ProductDetailComponent,                      data: { action: 'create-lang' }},
+                    { path: 'product/show/:lang_id/:id',                    component: ProductDetailComponent,                      data: { action: 'edit' }},
 
                     // Warehouses
                     { path: 'warehouse',                                    component: WarehouseListComponent },
