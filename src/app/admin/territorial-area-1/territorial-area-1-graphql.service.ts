@@ -57,6 +57,7 @@ export class TerritorialArea1GraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminTerritorialArea1 {
+                ix
                 id
                 country_id
                 name
