@@ -18,6 +18,7 @@ export class LangDetailComponent extends CoreDetailComponent {
 
     createForm() {
         this.fg = this.fb.group({
+            ix: null,
             id: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
             name: ['', Validators.required],
             icon: ['', Validators.required],

@@ -2,6 +2,9 @@
     <h1>Lang</h1>
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+
+        <input type="hidden" formControlName="ix">
+
         <div class="row">
             <ps-input   [form]="fg"
                         [errors]="formErrors"

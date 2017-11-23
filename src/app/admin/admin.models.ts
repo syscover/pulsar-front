@@ -12,6 +12,7 @@ export class User {
 }
 
 export class Lang {
+    ix: number;
     id: string;
     name: string;
     icon: string;
@@ -111,8 +112,8 @@ export class Field {
 }
 
 export class FieldValue {
-    id: number;
-    object_id: string;
+    ix: number;
+    id: string;
     counter: number;
     lang_id: string;
     field_id: number;
@@ -124,14 +125,14 @@ export class FieldValue {
 }
 
 export class Action {
-    id: number;
-    object_id: string;
+    ix: number;
+    id: string;
     name: string;
 }
 
 export class Resource {
-    id: number;
-    object_id: string;
+    ix: number;
+    id: string;
     name: string;
     package_id: number;
 }

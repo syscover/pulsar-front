@@ -56,6 +56,7 @@ export class LangGraphQLService extends GraphQLModel {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminLang {
+                ix
                 id
                 name 
                 icon 
