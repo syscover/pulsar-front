@@ -46,6 +46,7 @@ export class MenuComponent implements OnChanges {
         let crmPackage      = _.find(packages, {root: 'crm'});
         let cmsPackage      = _.find(packages, {root: 'cms'});
         let marketPackage   = _.find(packages, {root: 'market'});
+        let reviewPackage   = _.find(packages, {root: 'review'});
 
         this.model = [];
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/pulsar/admin/dashboard'] });
@@ -111,6 +112,24 @@ export class MenuComponent implements OnChanges {
                         label: 'Preferences', icon: 'settings',
                         items: [
                             {label: 'Address types', icon: 'map', routerLink: ['/pulsar/crm/type']}
+                        ]
+                    }
+                ]
+            });
+        }
+
+        if (reviewPackage && reviewPackage.active) {
+            this.model.push({
+                label: 'Review', icon: 'star',
+                items: [
+                    {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/replies']},
+                    {label: 'Averages', icon: 'poll', routerLink: ['/pulsar/review/averages']},
+                    {
+                        label: 'Polls', icon: 'assignment',
+                        items: [
+                            {label: 'Polls', icon: 'format_list_numbered', routerLink: ['/pulsar/review/poll']},
+                            {label: 'Requests', icon: 'help', routerLink: ['/pulsar/review/request']},
+                            {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']},
                         ]
                     }
                 ]

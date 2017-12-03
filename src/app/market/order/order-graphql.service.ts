@@ -33,22 +33,22 @@ export class OrderGraphQLService extends GraphQLModel {
         }`;
 
     mutationAddObject = gql`
-        mutation MarketAddProduct ($object:MarketProductInput!) {
-            marketAddProduct (object:$object){
+        mutation MarketAddOrder ($object:MarketOrderInput!) {
+            marketAddOrder (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateProduct ($object:MarketProductInput!) {
-            marketUpdateProduct (object:$object){
+        mutation MarketUpdateOrder ($object:MarketOrderInput!) {
+            marketUpdateOrder (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteProduct ($id:String! $lang:String!) {
-            marketDeleteProduct (id:$id lang:$lang){
+        mutation MarketDeleteOrder ($id:Int!) {
+            marketDeleteOrder (id:$id){
                 ${this.fields}
             }
         }`;
