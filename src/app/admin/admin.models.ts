@@ -69,8 +69,8 @@ export class CronJob {
     package_id: number;
     cron_expression: string;
     command: string;
-    last_run: string;
-    next_run: string;
+    last_run: Date;
+    next_run: Date;
     active: boolean;
 }
 

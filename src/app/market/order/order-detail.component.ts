@@ -48,19 +48,14 @@ export class OrderDetailComponent extends CoreDetailComponent {
         });
     }
 
-    // Function that can to be overwrite in child class
-    setData(response = undefined) {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response; // function to set custom data
+    beforePatchValueEdit() {
+        // create copy object for change readonly properties
+        let objectInput = Object.assign({}, this.object);
 
-            // create copy object for change readonly properties
-            let objectInput = Object.assign({}, this.object);
+        // change date format to Date, for calendar component
+        objectInput['date'] = new Date(this.object.date);
 
-            // change date format to Date, for calendar component
-            objectInput['date'] = new Date(this.object.date);
-
-            this.fg.patchValue(objectInput); // set values of form
-        }
+        this.object = objectInput;
     }
 
     setRelationsData(data) {

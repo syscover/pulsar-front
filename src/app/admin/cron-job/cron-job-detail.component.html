@@ -31,21 +31,43 @@
         <div class="row">
             <ps-input   [form]="fg"
                         [errors]="formErrors"
-                        label="Root"
+                        label="Cron expression"
                         type="text"
-                        name="root" class="col-12"></ps-input>
+                        name="cron_expression" class="col-12"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        label="Command"
+                        type="text"
+                        name="command" class="col-12"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-calendar    [form]="fg" 
+                            [errors]="formErrors"
+                            [showTime]="true"
+                            [showIcon]="true"
+                            dateFormat="dd/mm/yy"
+                            label="Last run"
+                            name="last_run" 
+                            class="col-sm-12 col-md-5"></ps-calendar>
+
+            <ps-calendar    [form]="fg" 
+                            [errors]="formErrors"
+                            [showTime]="true"
+                            [showIcon]="true"
+                            dateFormat="dd/mm/yy"
+                            label="Next run"
+                            name="next_run" 
+                            class="col-sm-12 offset-md-1 col-md-5"></ps-calendar>
         </div>
 
         <div class="row">
             <ps-checkbox    [form]="fg"
                             name="active"
                             label="Active" class="col-sm-12 col-md-4"></ps-checkbox>
-                            
-            <ps-spinner     [form]="fg" 
-                            [errors]="formErrors"
-                            label="Sort"
-                            [min]="0"
-                            name="sort" class="col-sm-12 col-md-4"></ps-spinner>
         </div>
         
         <!-- buttons -->

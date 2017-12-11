@@ -144,6 +144,7 @@ export class MenuComponent implements OnChanges {
                     {label: 'Languages', icon: 'translate', routerLink: ['/pulsar/admin/lang']},
                     {label: 'Countries', icon: 'public', routerLink: ['/pulsar/admin/country']},
                     {label: 'Packages', icon: 'view_comfy', routerLink: ['/pulsar/admin/package']},
+                    {label: 'Cron Jobs', icon: 'timer', routerLink: ['/pulsar/admin/cron-job']},
                     {
                         label: 'Custom Fields', icon: 'flip_to_front',
                         items: [

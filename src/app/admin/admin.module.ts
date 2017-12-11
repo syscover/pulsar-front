@@ -10,6 +10,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { CronJobListComponent } from './cron-job/cron-job-list.component';
+import { CronJobDetailComponent } from './cron-job/cron-job-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
@@ -33,6 +35,7 @@ import { ActionGraphQLService } from './action/action-graphql.service';
 import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
+import { CronJobGraphQLService } from './cron-job/cron-job-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
@@ -55,6 +58,8 @@ import { UserGraphQLService } from './user/user-graphql.service';
         LangDetailComponent,
         CountryListComponent,
         CountryDetailComponent,
+        CronJobListComponent,
+        CronJobDetailComponent,
         PackageListComponent,
         PackageDetailComponent,
         FieldGroupListComponent,
@@ -79,6 +84,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
         AttachmentFamilyGraphQLService,
         AttachmentMimeGraphQLService,
         CountryGraphQLService,
+        CronJobGraphQLService,
         FieldGraphQLService,
         FieldGroupGraphQLService,
         FieldValueGraphQLService,

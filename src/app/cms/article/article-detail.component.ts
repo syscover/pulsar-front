@@ -91,6 +91,42 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         });
     }
 
+    beforePatchValueEdit() {
+        // set section object and load attachment families
+        this.section = _.find(this._sections, {id: this.object.section_id});
+        this.loadAttachmentFamilies();
+
+        // set family object, to change morphology of form
+        this.family = _.find(this._families, {id: this.object.family_id});
+
+        // create copy object for change readonly properties
+        let objectInput = Object.assign({}, this.object);
+
+        // change publish and date format to Date, for calendar component
+        objectInput['publish'] = new Date(this.object.publish);
+        if (this.object.date) {
+            objectInput['date'] = new Date(this.object.date);
+        }
+
+        // overwrite object with object cloned
+        this.object = objectInput;
+    }
+
+    afterPatchValueEdit() {
+        // set categories extracting ids
+        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+
+        // set tags extracting name field
+        this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
+
+        // TODO establece author cuando tengamos los usuarios relacionados
+        // set tags extracting name field
+        // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
+
+        // manage custom fields
+        this.handleGetCustomFields();
+    }
+
     handleChangeSection($event) {
         // change family if, change section
         if ($event.value) {
@@ -152,51 +188,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 (fields) => {
                     this.fields = fields;
                 });
-        }
-    }
-
-    setData(response = undefined) {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response; // function to set custom data
-
-            // set section object and load attachment families
-            this.section = _.find(this._sections, {id: this.object.section_id});
-            this.loadAttachmentFamilies();
-
-            // set family object, to change morphology of form
-            this.family = _.find(this._families, {id: this.object.family_id});
-
-            // create copy object for change readonly properties
-            let objectInput = Object.assign({}, this.object);
-
-            // change publish and date format to Date, for calendar component
-            objectInput['publish'] = new Date(this.object.publish);
-            if (this.object.date) {
-                objectInput['date'] = new Date(this.object.date);
-            }
-
-            // set values of form, if the object not match with form, use pachValue instead of setValue
-            this.fg.patchValue(objectInput);
-
-            // set categories extracting ids
-            this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
-
-            // set tags extracting name field
-            this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
-
-            // TODO establece author cuando tengamos los usuarios relacionados
-            // set tags extracting name field
-            // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
-
-            // manage custom fields
-            this.handleGetCustomFields();
-
-            if (this.dataRoute.action === 'create-lang') {
-                this.fg.patchValue({
-                    // set lang id in form from object with multiple language
-                    lang_id: this.lang.id
-                });
-            }
         }
     }
 

@@ -39,7 +39,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     setData(response = undefined) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
+
+            this.beforePatchValueEdit();
+
             this.fg.patchValue(this.object); // set values of form
+
+            this.afterPatchValueEdit();
 
             // only form objects with create lang action
             if (this.dataRoute.action === 'create-lang') {
@@ -51,6 +56,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             }
         }
     }
+
+    // method to implement actions befere patch value in edit action
+    beforePatchValueEdit() {}
+
+    // method to implement actions after patch value in edit action
+    afterPatchValueEdit() {}
 
     // method that will be overwrite
     createForm() { }

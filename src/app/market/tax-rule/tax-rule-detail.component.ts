@@ -37,18 +37,13 @@ export class TaxRuleDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    setData(response = undefined) {
-        if (this.dataRoute.action === 'edit') {
-            this.object = response; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
-
-            // set product class taxes
-            this.fg.controls['tax_rate_zones_id'].setValue(_.map(this.object['tax_rate_zones'], 'id'));
-            // set customer class taxes
-            this.fg.controls['customer_class_taxes_id'].setValue(_.map(this.object['customer_class_taxes'], 'id'));
-            // set product class taxes
-            this.fg.controls['product_class_taxes_id'].setValue(_.map(this.object['product_class_taxes'], 'id'));
-        }
+    afterPatchValueEdit() {
+        // set product class taxes
+        this.fg.controls['tax_rate_zones_id'].setValue(_.map(this.object['tax_rate_zones'], 'id'));
+        // set customer class taxes
+        this.fg.controls['customer_class_taxes_id'].setValue(_.map(this.object['customer_class_taxes'], 'id'));
+        // set product class taxes
+        this.fg.controls['product_class_taxes_id'].setValue(_.map(this.object['product_class_taxes'], 'id'));
     }
 
     setRelationsData(data: any) {
