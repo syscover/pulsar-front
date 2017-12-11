@@ -1,14 +1,13 @@
-<ps-datatable-header title="Categories {{ objects.length }} of {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Questions {{ objects.length }} of {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    [value]="objects" [responsive]="true" #dataTableObjects
-                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords"
+                [lazy]="true" [rows]="10" [paginator]="true" [totalRecords]="totalRecords" 
                 [rowsPerPageOptions]="[10,25,50]"
                 (onLazyLoad)="getRecords($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang}])">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column field="active" header="Active" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

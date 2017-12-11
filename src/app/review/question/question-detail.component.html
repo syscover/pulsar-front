@@ -1,0 +1,82 @@
+<div class="container-fluid form-group">
+    <h1>Question</h1>
+
+    <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+
+        <input type="hidden" formControlName="ix">
+        <input type="hidden" formControlName="lang_id">
+
+        <div class="row margin-top-30">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" 
+                        class="col-sm-6 col-md-3"></ps-input>
+
+            <ps-lang-label  [lang]="lang" class="col-sm-6 offset-md-1 col-md-3"></ps-lang-label>
+        </div>
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="polls"
+                            name="poll_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="questionTypes"
+                            name="type_id"
+                            class="col-sm-12 col-md-5">
+            </ps-dropdown>
+        </div>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" class="col-12"></ps-input>
+        </div>
+        <div class="row">
+            <ps-textarea    [form]="fg"
+                            name="description"
+                            placeholder="Description"
+                            class="col-12"></ps-textarea>
+        
+        </div>
+        <div class="row">
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="High score"
+                            [min]="0"
+                            name="high_score" 
+                            class="col-sm-12 col-md-4"></ps-spinner>
+        </div>
+
+        <!-- buttons -->
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button"
+                        icon="ui-icon-clear" 
+                        *ngIf="dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object)" 
+                        className="red-btn"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>

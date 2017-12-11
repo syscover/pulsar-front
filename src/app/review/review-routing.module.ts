@@ -4,7 +4,10 @@ import { DataContainerComponent } from './../shared/components/data-container/da
 import { ErrorComponent } from './../shared/components/errors/error.component';
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
-
+import { PollListComponent } from './poll/poll-list.component';
+import { PollDetailComponent } from './poll/poll-detail.component';
+import { QuestionDetailComponent } from './question/question-detail.component';
+import { QuestionListComponent } from './question/question-list.component';
 
 const routes: Routes = [
     {
@@ -15,7 +18,16 @@ const routes: Routes = [
                 path: '',                                                   component: DataContainerComponent,
                 canActivateChild: [AuthGuard],
                 children: [
-                    
+                    // Polls
+                    { path: 'poll',                                         component: PollListComponent },
+                    { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
+                    { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
+
+                    // Questions
+                    { path: 'question',                                     component: QuestionListComponent },
+                    { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
+                    { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
+                    { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}
