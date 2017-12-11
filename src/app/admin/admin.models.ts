@@ -63,6 +63,17 @@ export class Package {
     sort: number;
 }
 
+export class CronJob {
+    id: number;
+    name: string;
+    package_id: number;
+    cron_expression: string;
+    command: string;
+    last_run: string;
+    next_run: string;
+    active: boolean;
+}
+
 export class FieldGroup {
     id: number;
     name: string;

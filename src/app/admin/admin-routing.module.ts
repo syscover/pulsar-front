@@ -13,6 +13,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { CronJobListComponent } from './cron-job/cron-job-list.component';
+import { CronJobDetailComponent } from './cron-job/cron-job-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
@@ -64,6 +66,11 @@ const routes: Routes = [
                     { path: 'package',                                          component: PackageListComponent },
                     { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
                     { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
+
+                    // Cron jobs
+                    { path: 'cron-job',                                         component: CronJobListComponent },
+                    { path: 'cron-job/create',                                  component: CronJobDetailComponent,              data: { action: 'create' }},
+                    { path: 'cron-job/show/:id',                                component: CronJobDetailComponent,              data: { action: 'edit' }},
 
                     // Field groups
                     { path: 'field-group',                                      component: FieldGroupListComponent },
