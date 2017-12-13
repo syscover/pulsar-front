@@ -8,6 +8,8 @@ import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { QuestionDetailComponent } from './question/question-detail.component';
 import { QuestionListComponent } from './question/question-list.component';
+import { ReviewDetailComponent } from './review/review-detail.component';
+import { ReviewListComponent } from './review/review-list.component';
 
 const routes: Routes = [
     {
@@ -28,6 +30,11 @@ const routes: Routes = [
                     { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
                     { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
                     { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},
+
+                    // Reviews
+                    { path: 'review',                                       component: ReviewListComponent },
+                    { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
+                    { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}

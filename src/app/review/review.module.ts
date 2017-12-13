@@ -7,6 +7,9 @@ import { PollListComponent } from './poll/poll-list.component';
 import { QuestionGraphQLService } from './question/question-graphql.service';
 import { QuestionDetailComponent } from './question/question-detail.component';
 import { QuestionListComponent } from './question/question-list.component';
+import { ReviewGraphQLService } from './review/review-graphql.service';
+import { ReviewDetailComponent } from './review/review-detail.component';
+import { ReviewListComponent } from './review/review-list.component';
 
 @NgModule({
     imports: [
@@ -17,11 +20,14 @@ import { QuestionListComponent } from './question/question-list.component';
         PollListComponent,
         PollDetailComponent,
         QuestionListComponent,
-        QuestionDetailComponent
+        QuestionDetailComponent,
+        ReviewListComponent,
+        ReviewDetailComponent
     ],
     providers: [
         PollGraphQLService,
-        QuestionGraphQLService
+        QuestionGraphQLService,
+        ReviewGraphQLService
     ]
 })
 

@@ -16,6 +16,7 @@ export class Question {
     type_id: number;
     name: string;
     description: string;
+    sort: number;
     high_score: number;
     data_lang: string;
 }
@@ -23,5 +24,24 @@ export class Question {
 export class QuestionType {
     id: number;
     name: string;
+}
+
+export class Review {
+    id: number;
+    date: any;
+    poll_id: number;
+    object_id: number;
+    object_type: string;
+    object_name: string;
+    customer_id: number;
+    customer_name: string;
+    customer_email: string;
+    email_subject: string;
+    verified: boolean;
+    validated: boolean;
+    completed: boolean;
+    average: number;
+    mailing: any;
+    expiration: any;
 }
 

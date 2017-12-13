@@ -233,7 +233,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
         if (this.fg.invalid) {
             // TODO, show general error
-            console.log(this.fg.errors);
+            console.log(this.fg);
             return; // has any validation error when emit submit event
         }
 

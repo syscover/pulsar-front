@@ -69,9 +69,10 @@ export class QuestionGraphQLService extends GraphQLModel {
                 id
                 lang_id
                 poll_id
+                type_id
                 name
                 description
-                type_id
+                sort
                 high_score
                 data_lang
             }

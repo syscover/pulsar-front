@@ -31,6 +31,7 @@ export class QuestionDetailComponent extends CoreDetailComponent {
             type_id: [null, Validators.required],
             name: [null, Validators.required],
             description: null,
+            sort: null,
             high_score: null
         });
     }
