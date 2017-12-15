@@ -122,14 +122,14 @@ export class MenuComponent implements OnChanges {
             this.model.push({
                 label: 'Review', icon: 'star',
                 items: [
-                    {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/replies']},
-                    {label: 'Averages', icon: 'poll', routerLink: ['/pulsar/review/averages']},
+                    {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/reply']},
+                    {label: 'Averages', icon: 'poll', routerLink: ['/pulsar/review/average']},
                     {
                         label: 'Polls', icon: 'assignment',
                         items: [
                             {label: 'Polls', icon: 'format_list_numbered', routerLink: ['/pulsar/review/poll']},
                             {label: 'Questions', icon: 'help', routerLink: ['/pulsar/review/question']},
-                            {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']},
+                            {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']}
                         ]
                     }
                 ]

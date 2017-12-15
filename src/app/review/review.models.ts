@@ -3,6 +3,7 @@ export class Poll {
     id: number;
     name: string;
     email_template: string;
+    send_notification: boolean;
     default_high_score: number;
     mailing_days: number;
     expiration_days: number;
@@ -33,6 +34,7 @@ export class Review {
     object_id: number;
     object_type: string;
     object_name: string;
+    object_email: string;
     customer_id: number;
     customer_name: string;
     customer_email: string;
@@ -45,3 +47,13 @@ export class Review {
     expiration: any;
 }
 
+export class Average {
+    id: number;
+    poll_id: number;
+    object_id: number;
+    object_type: string;
+    object_name: string;
+    reviews: number;
+    total: number;
+    average: number;
+}

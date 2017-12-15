@@ -27,6 +27,7 @@ export class ReviewDetailComponent extends CoreDetailComponent {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             object_name: [{value: null, disabled: true}],
+            object_email: [{value: null, disabled: true}],
             customer_name: [{value: null, disabled: true}],
             customer_email: [{value: null, disabled: true}],
             average: [{value: null, disabled: true}],

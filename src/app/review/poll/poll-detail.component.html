@@ -28,6 +28,12 @@
                         class="col-12"></ps-input>
         </div>
         <div class="row">
+            <ps-checkbox    [form]="fg"
+                            name="send_notification"
+                            label="Send notifications" 
+                            class="col-sm-12 col-md-4"></ps-checkbox>
+        </div>
+        <div class="row">
             <ps-spinner     [form]="fg" 
                             [errors]="formErrors"
                             label="Default high score"

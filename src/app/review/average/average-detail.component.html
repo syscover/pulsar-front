@@ -1,5 +1,5 @@
 <div class="container-fluid form-group">
-    <h1>Review</h1>
+    <h1>Average</h1>
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
@@ -17,27 +17,22 @@
                         label="Object name"
                         type="text"
                         name="object_name" 
-                        class="col-sm-12 col-md-6"></ps-input>
-            <ps-input   [form]="fg"
-                        [errors]="formErrors"
-                        label="Object email"
-                        type="text"
-                        name="object_email" 
-                        class="col-sm-12 col-md-6"></ps-input>
+                        class="col-12"></ps-input>
         </div>
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
-                        label="Customer name"
+                        label="Reviews"
                         type="text"
-                        name="customer_name" 
-                        class="col-sm-12 col-md-6"></ps-input>
+                        name="reviews" 
+                        class="col-sm-6 col-md-4"></ps-input>
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
-                        label="Customer email"
+                        label="Total"
                         type="text"
-                        name="customer_email" 
-                        class="col-sm-12 col-md-6"></ps-input>
+                        name="total" 
+                        class="col-sm-6 col-md-4"></ps-input>
+            
         </div>
         <div class="row">
             <ps-input   [form]="fg" 
@@ -48,27 +43,6 @@
                         class="col-sm-6 col-md-4"></ps-input>
             
         </div>
-        <div class="row">
-                <ps-checkbox    [form]="fg"
-                                name="completed"
-                                label="Completed" 
-                                class="col-sm-12 col-md-4"></ps-checkbox>
-                <ps-checkbox    [form]="fg"
-                                name="validated"
-                                label="Validated" 
-                                class="col-sm-12 col-md-4"></ps-checkbox>
-        </div>
-        <ps-form-header title="Actions" icon="fa ui-icon-flash-on"></ps-form-header>
-        <div class="row">
-            <ps-dropdown    [form]="fg"
-                            [errors]="formErrors"
-                            [autoWidth]="false"
-                            [options]="actions"
-                            name="action_id"
-                            class="col-sm-12 col-md-6">
-            </ps-dropdown>
-        </div>
-        
 
         <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start action-buttons">

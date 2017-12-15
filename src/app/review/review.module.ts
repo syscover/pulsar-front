@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { ReviewRoutingModule } from './review-routing.module';
+
+import { AverageGraphQLService } from './average/average-graphql.service';
+import { AverageDetailComponent } from './average/average-detail.component';
+import { AverageListComponent } from './average/average-list.component';
 import { PollGraphQLService } from './poll/poll-graphql.service';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
@@ -17,6 +21,8 @@ import { ReviewListComponent } from './review/review-list.component';
         ReviewRoutingModule
     ],
     declarations: [
+        AverageListComponent,
+        AverageDetailComponent,
         PollListComponent,
         PollDetailComponent,
         QuestionListComponent,
@@ -25,6 +31,7 @@ import { ReviewListComponent } from './review/review-list.component';
         ReviewDetailComponent
     ],
     providers: [
+        AverageGraphQLService,
         PollGraphQLService,
         QuestionGraphQLService,
         ReviewGraphQLService

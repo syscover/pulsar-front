@@ -4,6 +4,8 @@ import { DataContainerComponent } from './../shared/components/data-container/da
 import { ErrorComponent } from './../shared/components/errors/error.component';
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
+import { AverageListComponent } from './average/average-list.component';
+import { AverageDetailComponent } from './average/average-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { QuestionDetailComponent } from './question/question-detail.component';
@@ -35,6 +37,11 @@ const routes: Routes = [
                     { path: 'review',                                       component: ReviewListComponent },
                     { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
                     { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+
+                    // Averages
+                    { path: 'average',                                       component: AverageListComponent },
+                    { path: 'average/create',                                component: AverageDetailComponent,                     data: { action: 'create' }},
+                    { path: 'average/show/:id',                              component: AverageDetailComponent,                     data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}

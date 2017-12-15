@@ -21,6 +21,7 @@ export class PollDetailComponent extends CoreDetailComponent {
             id: [{value: null, disabled: true}],
             name: [null, Validators.required ],
             email_template: null,
+            send_notification: null,
             default_high_score: null,
             mailing_days: null,
             expiration_days: null
