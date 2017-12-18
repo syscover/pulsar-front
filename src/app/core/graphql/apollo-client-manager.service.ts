@@ -83,24 +83,26 @@ export class ApolloClientManagerService {
 
                 let trackId = false;
 
-                if (o['id']) {
-                    if (
-                        o['__typename'] === 'CoreTranslationField' ||
-                        o['__typename'] === 'CoreConfigOptionType'
-                    ) {
-                        const id = guid();
-                        if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
-                        return id;
-                    }
-
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['id']}`);
-                    return `${o['__typename']}-${o['id']}`;
-                } else {
+                if (o['__typename'] === 'CoreTranslationField' || o['__typename'] === 'CoreConfigOptionType') {
                     const id = guid();
                     if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
-
                     return id;
                 }
+
+                if (o['ix']) {
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['ix']}`);
+                    return `${o['__typename']}-${o['ix']}`;
+                }
+
+                if (o['id']) {
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['id']}`);
+                    return `${o['__typename']}-${o['id']}`;
+                }
+
+                const id = guid();
+                if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
+
+                return id;
             }
             //dataIdFromObject: () => undefined, // to delete id object response
         });
