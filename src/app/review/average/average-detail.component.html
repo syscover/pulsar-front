@@ -10,6 +10,16 @@
                         type="text"
                         name="id" class="col-sm-6 col-md-3"></ps-input>
         </div>
+
+        <div class="row">
+            <ps-dropdown    [form]="fg"
+                            [errors]="formErrors"
+                            [autoWidth]="false"
+                            [options]="polls"
+                            name="poll_id"
+                            class="col-sm-12 col-md-6">
+            </ps-dropdown>
+        </div>
         
         <div class="row">
             <ps-input   [form]="fg" 

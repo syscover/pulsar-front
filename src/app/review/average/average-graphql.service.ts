@@ -31,6 +31,7 @@ export class AverageGraphQLService extends GraphQLModel {
             coreObject: reviewAverage (sql:$sql) {
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -63,6 +64,15 @@ export class AverageGraphQLService extends GraphQLModel {
             ... on ReviewAverage {
                 id
                 poll_id
+                poll {
+                    id
+                    name
+                    email_template
+                    send_notification
+                    default_high_score
+                    mailing_days
+                    expiration_days
+                }
                 object_id
                 object_type
                 object_name

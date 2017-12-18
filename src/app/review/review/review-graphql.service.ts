@@ -42,8 +42,8 @@ export class ReviewGraphQLService extends GraphQLModel {
         }`;
 
     mutationUpdateObject = gql`
-        mutation ReviewActionReview ($id:Int! $action_id:Int!) {
-            reviewActionReview (id:$id action_id:$action_id) {
+        mutation ReviewActionReview ($object:ReviewReviewInput! $action_id:Int!) {
+            reviewActionReview (object:$object action_id:$action_id) {
                 ${this.fields}
             }
         }`;
@@ -65,6 +65,20 @@ export class ReviewGraphQLService extends GraphQLModel {
                 id
                 date
                 poll_id
+                poll {
+                    id
+                    name
+                    questions {
+                        ix
+                        id
+                        lang_id
+                        type_id
+                        name
+                        description
+                        sort
+                        high_score
+                    }
+                }
                 object_id
                 object_type
                 object_name
@@ -78,7 +92,15 @@ export class ReviewGraphQLService extends GraphQLModel {
                 completed
                 average
                 mailing
+                sent
                 expiration
+                responses {
+                    id
+                    review_id
+                    question_id
+                    score
+                    text
+                }
             }
         `;
 

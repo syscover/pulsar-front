@@ -124,12 +124,12 @@ export class MenuComponent implements OnChanges {
                 items: [
                     {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/reply']},
                     {label: 'Averages', icon: 'poll', routerLink: ['/pulsar/review/average']},
+                    {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']},
                     {
                         label: 'Polls', icon: 'assignment',
                         items: [
                             {label: 'Polls', icon: 'format_list_numbered', routerLink: ['/pulsar/review/poll']},
-                            {label: 'Questions', icon: 'help', routerLink: ['/pulsar/review/question']},
-                            {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']}
+                            {label: 'Questions', icon: 'help', routerLink: ['/pulsar/review/question']}
                         ]
                     }
                 ]

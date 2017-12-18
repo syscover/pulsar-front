@@ -1,4 +1,3 @@
-
 export class Poll {
     id: number;
     name: string;
@@ -44,12 +43,14 @@ export class Review {
     completed: boolean;
     average: number;
     mailing: any;
+    sent: boolean;
     expiration: any;
 }
 
 export class Average {
     id: number;
     poll_id: number;
+    poll: Poll;
     object_id: number;
     object_type: string;
     object_name: string;

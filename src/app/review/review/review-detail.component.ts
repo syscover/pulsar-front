@@ -1,8 +1,10 @@
+import { Question } from '../review.models';
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormArray, Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { ReviewGraphQLService } from './review-graphql.service';
 import { SelectItem } from 'primeng/primeng';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-review-detail',
@@ -10,10 +12,13 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class ReviewDetailComponent extends CoreDetailComponent {
 
+    public questions: Question[] = [];
+
     actions: SelectItem[] = [
         { value: '', label: 'Select a action' },
-        { value: 1, label: 'Validate and add score' },
-        { value: 2, label: 'Invalidate and subtract score' }
+        { value: 1, label: 'Update, validate and add score' },
+        { value: 2, label: 'Update, invalidate and subtract score' },
+        { value: 3, label: 'Only update review' }
     ];
 
     constructor(
@@ -33,16 +38,39 @@ export class ReviewDetailComponent extends CoreDetailComponent {
             average: [{value: null, disabled: true}],
             completed: [{value: null, disabled: true}],
             validated: [{value: null, disabled: true}],
-            action_id: [null, Validators.required]
+            action_id: [null, Validators.required],
+            responses: this.fb.array([])
         });
     }
 
-    getCustomArgumentsEditPostRecord(args, object) {
-        let newArgs = {};
+    get responses(): FormArray {
+        return this.fg.get('responses') as FormArray;
+    };
 
-        newArgs['id'] = args['object']['id']
-        newArgs['action_id'] = args['object']['action_id']
-        args = newArgs;
+    beforePatchValueEdit() {
+        this.questions = _.filter(this.object['poll']['questions'], obj => {
+            return obj.lang_id === this.baseLang;
+        });
+
+        for (let obj of this.object['responses']) {
+            let response = this.fb.group({
+                id: null,
+                question_id: null,
+                score: null,
+                text: null
+            });
+
+            // set formArray estructure
+            this.responses.push(response);
+        }
+    }
+
+    getCustomArgumentsEditPostRecord(args, object) {
+
+        args['action_id'] = args['object']['action_id'];
+
+        // delete action_id from object to ajust to review class
+        delete args['object']['action_id'];
 
         return args;
     }

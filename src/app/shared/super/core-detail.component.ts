@@ -35,6 +35,10 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         this.createForm();
     }
 
+    ngOnInit() {
+        this.init();
+    }
+
     // Function that can to be overwrite in child class
     setData(response = undefined) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
@@ -65,10 +69,6 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     // method that will be overwrite
     createForm() { }
-
-    ngOnInit() {
-        this.init();
-    }
 
     init() {
         if (this.dataRoute.action === 'create') {
