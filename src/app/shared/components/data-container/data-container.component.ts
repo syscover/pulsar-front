@@ -13,7 +13,5 @@ import { Component } from '@angular/core';
   `]
 })
 export class DataContainerComponent {
-
   constructor() { }
-
 }

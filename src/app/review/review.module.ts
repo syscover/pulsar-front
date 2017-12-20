@@ -18,6 +18,7 @@ import { ReviewListComponent } from './review/review-list.component';
 import { PreferenceDetailComponent } from './preference/preference-detail.component';
 import { PreferenceGraphQLService } from './preference/preference-graphql.service';
 
+
 @NgModule({
     imports: [
         SharedModule,

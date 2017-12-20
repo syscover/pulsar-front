@@ -7,10 +7,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent, SubMenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreService } from './../shared/super/core.service';
+import { GrowlModule } from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
     imports: [
         CommonModule,
+        GrowlModule,
         MainRoutingModule
     ],
     declarations: [
@@ -22,7 +25,8 @@ import { CoreService } from './../shared/super/core.service';
         FooterComponent
     ],
     providers: [
-        CoreService
+        CoreService,
+        MessageService
     ],
     exports: [
         CommonModule,

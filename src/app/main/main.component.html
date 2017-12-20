@@ -15,19 +15,15 @@
                 <div class="nano-content menu-scroll-content">
                     <ps-profile *ngIf="profileMode=='inline' && ! isHorizontal()"></ps-profile>
 
-                    <ps-menu 
-                        [packages]="packages"
-                        [reset]="resetMenu"
-                    ></ps-menu>
+                    <ps-menu    [packages]="packages"
+                                [reset]="resetMenu"></ps-menu>
                     
                 </div>
             </div>
         </div>
         
         <div class="layout-main">
-            
             <router-outlet></router-outlet>
-            
             <ps-footer></ps-footer>
         </div>
         

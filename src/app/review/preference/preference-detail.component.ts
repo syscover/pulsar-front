@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { PreferenceGraphQLService } from './preference-graphql.service';
 import { Preference } from './../../shared/share.models';
+import { MessageService } from 'primeng/components/common/messageservice';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,7 +16,8 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PreferenceGraphQLService
+        protected graphQL: PreferenceGraphQLService,
+        private messageService: MessageService
     ) {
         super(injector, graphQL);
     }
@@ -46,9 +48,6 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
 
     // instance PreferenceType[] object to do a post
     getCustomArgumentsPostRecord(args, object) {
-
-        console.log(args);
-
         let objectInput = [];
         for (let propertyName in object) {
             objectInput.push({
@@ -56,6 +55,8 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
                 value: args['object'][propertyName]
             });
         }
+
+        this.messageService.add({severity: 'success', summary: 'Preferences saved', detail: 'Your preferences has been saved'});
 
         return {
             preferences: objectInput

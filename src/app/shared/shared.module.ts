@@ -17,6 +17,7 @@ import { DynamicFormService } from './components/forms/dynamic-form/dynamic-form
 import { AttachmentService } from './components/forms/attachment-files-library/attachment.service';
 import { GetLangValuePipe } from './pipes/get-lang-value.pipe';
 import { GetObjectValuePipe } from './pipes/get-object-value.pipe';
+import { NumberArrayPipe } from './pipes/number-array.pipe';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { GetObjectValuePipe } from './pipes/get-object-value.pipe';
         ErrorComponent,
         GetObjectValuePipe,
         GetLangValuePipe,
+        NumberArrayPipe,
         ProgressSpinnerComponent,
     ],
     providers: [
@@ -63,6 +65,7 @@ import { GetObjectValuePipe } from './pipes/get-object-value.pipe';
         CheckLangsObjectPipe,
         GetObjectValuePipe,
         GetLangValuePipe,
+        NumberArrayPipe,
     ]
 })
 

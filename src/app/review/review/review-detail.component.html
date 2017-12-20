@@ -76,7 +76,9 @@
                         <ng-container [ngSwitch]="question.type_id">
                             <div *ngSwitchCase="1" class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" formControlName="score">
+                                    <select class="form-control" formControlName="score">
+                                        <option *ngFor="let number of question.high_score | numberArray" value="{{ number }}">{{ number }}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div *ngSwitchCase="2" class="col-12">
