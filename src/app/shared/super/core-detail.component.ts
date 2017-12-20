@@ -93,7 +93,9 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
             // get baseLang record
             if (this.dataRoute.action === 'create-lang') {
-                let baseParams = _.clone(this.params); // clone objet because params properties are read-only
+
+                // create copy object for change readonly properties
+                let baseParams = _.clone(this.params); // clone objet because params properties are read-only, you can use Object.assign({}, this.params)
                 baseParams['lang_id'] = this.baseLang; // set baseLang to get object
 
                 this.getRecord(baseParams); // get baseLang object

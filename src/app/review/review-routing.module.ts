@@ -12,6 +12,7 @@ import { QuestionDetailComponent } from './question/question-detail.component';
 import { QuestionListComponent } from './question/question-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 import { ReviewListComponent } from './review/review-list.component';
+import { PreferenceDetailComponent } from './preference/preference-detail.component';
 
 const routes: Routes = [
     {
@@ -39,9 +40,12 @@ const routes: Routes = [
                     { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
                     // Averages
-                    { path: 'average',                                       component: AverageListComponent },
-                    { path: 'average/create',                                component: AverageDetailComponent,                     data: { action: 'create' }},
-                    { path: 'average/show/:id',                              component: AverageDetailComponent,                     data: { action: 'edit' }},
+                    { path: 'average',                                      component: AverageListComponent },
+                    { path: 'average/create',                               component: AverageDetailComponent,                      data: { action: 'create' }},
+                    { path: 'average/show/:id',                             component: AverageDetailComponent,                      data: { action: 'edit' }},
+
+                    // Preferences
+                    { path: 'preferences',                                  component: PreferenceDetailComponent,                   data: { action: 'edit' }},
 
                     // Wildcard route
                     { path: '**',                                           component: ErrorComponent,                              data: { error: '404' }}

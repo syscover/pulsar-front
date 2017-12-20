@@ -131,7 +131,8 @@ export class MenuComponent implements OnChanges {
                             {label: 'Polls', icon: 'format_list_numbered', routerLink: ['/pulsar/review/poll']},
                             {label: 'Questions', icon: 'help', routerLink: ['/pulsar/review/question']}
                         ]
-                    }
+                    },
+                    {label: 'Preferences', icon: 'settings', routerLink: ['/pulsar/review/preferences']}
                 ]
             });
         }

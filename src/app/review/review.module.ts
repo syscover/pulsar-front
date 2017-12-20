@@ -15,6 +15,9 @@ import { ReviewGraphQLService } from './review/review-graphql.service';
 import { ReviewDetailComponent } from './review/review-detail.component';
 import { ReviewListComponent } from './review/review-list.component';
 
+import { PreferenceDetailComponent } from './preference/preference-detail.component';
+import { PreferenceGraphQLService } from './preference/preference-graphql.service';
+
 @NgModule({
     imports: [
         SharedModule,
@@ -28,13 +31,15 @@ import { ReviewListComponent } from './review/review-list.component';
         QuestionListComponent,
         QuestionDetailComponent,
         ReviewListComponent,
-        ReviewDetailComponent
+        ReviewDetailComponent,
+        PreferenceDetailComponent
     ],
     providers: [
         AverageGraphQLService,
         PollGraphQLService,
         QuestionGraphQLService,
-        ReviewGraphQLService
+        ReviewGraphQLService,
+        PreferenceGraphQLService
     ]
 })
 

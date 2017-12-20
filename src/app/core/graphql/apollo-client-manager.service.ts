@@ -99,6 +99,11 @@ export class ApolloClientManagerService {
                     return `${o['__typename']}-${o['id']}`;
                 }
 
+                if (o['key']) {
+                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['key']}`);
+                    return `${o['__typename']}-${o['key']}`;
+                }
+
                 const id = guid();
                 if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
 

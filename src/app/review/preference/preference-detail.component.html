@@ -1,0 +1,75 @@
+<div class="container-fluid form-group">
+    <h1>Review Preferences</h1>
+
+    <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+
+        <div class="row">
+            <ps-checkbox    [form]="fg"
+                            name="review_validate_comments"
+                            label="Validate comments" 
+                            class="col-sm-12 col-md-4"></ps-checkbox>
+           
+        </div>
+        <!-- <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" 
+                        class="col-sm-6 col-md-3"></ps-input>
+        </div>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" 
+                        class="col-12"></ps-input>
+        </div>
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Email template"
+                        type="text"
+                        name="email_template" 
+                        class="col-12"></ps-input>
+        </div>
+        <div class="row">
+            <ps-checkbox    [form]="fg"
+                            name="send_notification"
+                            label="Send notifications" 
+                            class="col-sm-12 col-md-4"></ps-checkbox>
+        </div>
+        <div class="row">
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Default high score"
+                            [min]="0"
+                            name="default_high_score" 
+                            class="col-sm-12 col-md-4"></ps-spinner>
+        </div>
+        <div class="row">
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Mainling days"
+                            [min]="0"
+                            name="mailing_days" 
+                            class="col-sm-6 col-md-4"></ps-spinner>
+            <ps-spinner     [form]="fg" 
+                            [errors]="formErrors"
+                            label="Expiration days"
+                            [min]="0"
+                            name="expiration_days" 
+                            class="col-sm-6 col-md-4"></ps-spinner>
+        </div> -->
+
+
+        <!-- buttons -->
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+</div>
