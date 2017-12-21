@@ -4,8 +4,8 @@ import { DataContainerComponent } from './../shared/components/data-container/da
 import { ErrorComponent } from './../shared/components/errors/error.component';
 import { AuthGuard } from './../core/auth/auth-guard.service';
 
-import { AverageListComponent } from './average/average-list.component';
-import { AverageDetailComponent } from './average/average-detail.component';
+import { ObjectAverageListComponent } from './object-average/object-average-list.component';
+import { ObjectAverageDetailComponent } from './object-average/object-average-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { QuestionDetailComponent } from './question/question-detail.component';
@@ -40,9 +40,9 @@ const routes: Routes = [
                     { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
                     // Averages
-                    { path: 'average',                                      component: AverageListComponent },
-                    { path: 'average/create',                               component: AverageDetailComponent,                      data: { action: 'create' }},
-                    { path: 'average/show/:id',                             component: AverageDetailComponent,                      data: { action: 'edit' }},
+                    { path: 'object-average',                               component: ObjectAverageListComponent },
+                    { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},
+                    { path: 'object-average/show/:id',                      component: ObjectAverageDetailComponent,                data: { action: 'edit' }},
 
                     // Preferences
                     { path: 'preferences',                                  component: PreferenceDetailComponent,                   data: { action: 'edit' }},

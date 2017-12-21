@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 import { ReviewRoutingModule } from './review-routing.module';
 
-import { AverageGraphQLService } from './average/average-graphql.service';
-import { AverageDetailComponent } from './average/average-detail.component';
-import { AverageListComponent } from './average/average-list.component';
+import { ObjectAverageGraphQLService } from './object-average/object-average-graphql.service';
+import { ObjectAverageDetailComponent } from './object-average/object-average-detail.component';
+import { ObjectAverageListComponent } from './object-average/object-average-list.component';
 import { PollGraphQLService } from './poll/poll-graphql.service';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
@@ -25,8 +25,8 @@ import { PreferenceGraphQLService } from './preference/preference-graphql.servic
         ReviewRoutingModule
     ],
     declarations: [
-        AverageListComponent,
-        AverageDetailComponent,
+        ObjectAverageListComponent,
+        ObjectAverageDetailComponent,
         PollListComponent,
         PollDetailComponent,
         QuestionListComponent,
@@ -36,7 +36,7 @@ import { PreferenceGraphQLService } from './preference/preference-graphql.servic
         PreferenceDetailComponent
     ],
     providers: [
-        AverageGraphQLService,
+        ObjectAverageGraphQLService,
         PollGraphQLService,
         QuestionGraphQLService,
         ReviewGraphQLService,

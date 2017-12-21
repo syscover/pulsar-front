@@ -75,7 +75,7 @@ export class FieldGroupGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             configFieldGroupResources:coreConfig (config:$configFieldGroupResources) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

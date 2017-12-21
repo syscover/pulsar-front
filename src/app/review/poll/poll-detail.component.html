@@ -22,7 +22,7 @@
         <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"
-                        label="Email template"
+                        label="Email template for customer"
                         type="text"
                         name="email_template" 
                         class="col-12"></ps-input>
@@ -31,6 +31,12 @@
             <ps-checkbox    [form]="fg"
                             name="send_notification"
                             label="Send notifications to owner object" 
+                            class="col-sm-12 col-md-4"></ps-checkbox>
+        </div>
+        <div class="row">
+            <ps-checkbox    [form]="fg"
+                            name="validate"
+                            label="Validate review by moderator" 
                             class="col-sm-12 col-md-4"></ps-checkbox>
         </div>
         <div class="row">

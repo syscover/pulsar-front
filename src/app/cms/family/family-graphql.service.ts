@@ -83,7 +83,7 @@ export class FamilyGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             coreConfig (config:$configEditors) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

@@ -60,6 +60,7 @@ export class PollGraphQLService extends GraphQLModel {
                 name
                 email_template
                 send_notification
+                validate
                 default_high_score
                 mailing_days
                 expiration_days

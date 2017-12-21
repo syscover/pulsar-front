@@ -3,11 +3,11 @@ import { GraphQLModel } from './../../core/graphql/graphql-model.class';
 import gql from 'graphql-tag';
 
 
-export class AverageGraphQLService extends GraphQLModel {
+export class ObjectAverageGraphQLService extends GraphQLModel {
 
     queryPaginationObject = gql`
-        query ReviewGetAveragesPagination ($sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: reviewAveragesPagination (sql:$sql) {
+        query ReviewGetObjectAveragesPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: reviewObjectAveragesPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
@@ -15,53 +15,53 @@ export class AverageGraphQLService extends GraphQLModel {
         }`;
 
     queryRelationsObject = gql`
-        query ReviewGetAveragesReview {
+        query ReviewGetObjectAveragesReview {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query ReviewGetAverages ($sql:[CoreSQLQueryInput]) {
-            coreObjects: reviewAverages (sql:$sql) {
+        query ReviewGetObjectAverages ($sql:[CoreSQLQueryInput]) {
+            coreObjects: reviewObjectAverages (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query ReviewGetAverage ($sql:[CoreSQLQueryInput]) {
-            coreObject: reviewAverage (sql:$sql) {
+        query ReviewGetObjectAverage ($sql:[CoreSQLQueryInput]) {
+            coreObject: reviewObjectAverage (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
-        mutation ReviewAddAverage ($object:ReviewAverageInput!) {
-            reviewAddAverage (object:$object){
+        mutation ReviewAddObjectAverage ($object:ReviewAverageInput!) {
+            reviewAddObjectAverage (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation ReviewUpdateAverage ($object:ReviewAverageInput!) {
-            reviewUpdateAverage (object:$object) {
+        mutation ReviewUpdateObjectAverage ($object:ReviewAverageInput!) {
+            reviewUpdateObjectAverage (object:$object) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation ReviewDeleteAverage ($id:Int!) {
-            reviewDeleteAverage (id:$id) {
+        mutation ReviewDeleteObjectAverage ($id:Int!) {
+            reviewDeleteObjectAverage (id:$id) {
                 ${this.fields}
             }
         }`;
 
     init() {
-        this.model = 'Syscover\\Review\\Models\\Average';
-        this.table = 'review_average';
+        this.model = 'Syscover\\Review\\Models\\ObjectAverage';
+        this.table = 'review_object_average';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on ReviewAverage {
+            ... on ReviewObjectAverage {
                 id
                 poll_id
                 poll {

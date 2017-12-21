@@ -13,7 +13,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                 objects (sql:$sql)
             }
             cmsStatuses: coreConfig (config:$config) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }
@@ -180,7 +180,7 @@ export class ArticleGraphQLService extends GraphQLModel {
                 name
             }
             cmsStatuses: coreConfig (config:$configStatuses) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

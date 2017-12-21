@@ -84,13 +84,13 @@ export class AttachmentFamilyGraphQLService extends GraphQLModel {
                     name
                 }
                 configSizes:coreConfig (config:$configSizes) {
-                    ... on CoreConfigOptionType {
+                    ... on CoreConfigOption {
                         id
                         name
                     }
                 }
                 configAttachmentResources:coreConfig (config:$configAttachmentResources) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

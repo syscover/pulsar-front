@@ -1,12 +1,12 @@
 import { Component, Injector } from '@angular/core';
 import { CoreListComponent } from './../../shared/super/core-list.component';
-import { AverageGraphQLService } from './average-graphql.service';
+import { ObjectAverageGraphQLService } from './object-average-graphql.service';
 
 @Component({
-    selector: 'ps-average-list',
-    templateUrl: './average-list.component.html'
+    selector: 'ps-object-average-list',
+    templateUrl: './object-average-list.component.html'
 })
-export class AverageListComponent extends CoreListComponent {
+export class ObjectAverageListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
         'id', 'object_name', 'average'
@@ -14,7 +14,7 @@ export class AverageListComponent extends CoreListComponent {
 
     constructor(
         protected injector: Injector,
-        protected graphQL: AverageGraphQLService
+        protected graphQL: ObjectAverageGraphQLService
     ) {
         super(injector, graphQL);
     }

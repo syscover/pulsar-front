@@ -183,13 +183,13 @@ export class ProductGraphQLService extends GraphQLModel {
                 format
             }
             marketProductTypes: coreConfig (config:$configProductTypes) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }
             }
             marketPriceTypes: coreConfig (config:$configPriceTypes) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

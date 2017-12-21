@@ -1,13 +1,29 @@
 <div class="container-fluid form-group">
     <h1>Review Preferences</h1>
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
-        <div class="row">
+        <div class="row margin-top-30">
             <ps-checkbox    [form]="fg"
                             name="review_validate_comments"
-                            label="Validate comments" 
+                            label="Validate customer comments" 
                             class="col-sm-12 col-md-4"></ps-checkbox>
            
         </div>
+        <div class="row">
+            <ps-multi-select    [form]="fg"
+                                [errors]="formErrors"
+                                label="Moderators"
+                                [options]="users"
+                                name="review_moderators"
+                                class="col-sm-12 col-md-5"></ps-multi-select>
+        </div>
+        <!-- <ps-dropdown    [form]="fg"
+                        [errors]="formErrors"
+                        [autoWidth]="false"
+                        [options]="users"
+                        name="moderators"
+                        class="col-sm-12 col-md-5">
+        </ps-dropdown> -->
+        
         <!-- <div class="row">
             <ps-input   [form]="fg" 
                         [errors]="formErrors"

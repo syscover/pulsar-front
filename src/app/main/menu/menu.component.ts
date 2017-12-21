@@ -123,7 +123,7 @@ export class MenuComponent implements OnChanges {
                 label: 'Review', icon: 'star',
                 items: [
                     {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/reply']},
-                    {label: 'Averages', icon: 'poll', routerLink: ['/pulsar/review/average']},
+                    {label: 'Object Averages', icon: 'poll', routerLink: ['/pulsar/review/object-average']},
                     {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']},
                     {
                         label: 'Polls', icon: 'assignment',

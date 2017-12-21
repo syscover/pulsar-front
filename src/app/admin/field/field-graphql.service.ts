@@ -99,13 +99,13 @@ export class FieldGraphQLService extends GraphQLModel {
                 name
             }
             coreConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }
             }
             coreConfigDataTypes:coreConfig (config:$configDataTypes) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

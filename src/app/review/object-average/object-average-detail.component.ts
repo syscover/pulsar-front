@@ -1,22 +1,22 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
-import { AverageGraphQLService } from './average-graphql.service';
+import { ObjectAverageGraphQLService } from './object-average-graphql.service';
 import { Poll } from './../review.models';
 import { SelectItem } from 'primeng/primeng';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'ps-average-detail',
-    templateUrl: './average-detail.component.html'
+    selector: 'ps-object-average-detail',
+    templateUrl: './object-average-detail.component.html'
 })
-export class AverageDetailComponent extends CoreDetailComponent {
+export class ObjectAverageDetailComponent extends CoreDetailComponent {
 
     polls: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
-        protected graphQL: AverageGraphQLService
+        protected graphQL: ObjectAverageGraphQLService
     ) {
         super(injector, graphQL);
     }

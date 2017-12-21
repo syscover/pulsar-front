@@ -84,7 +84,7 @@ export class QuestionGraphQLService extends GraphQLModel {
                 name
             }
             reviewQuestionTypes: coreConfig (config:$configQuestionTypes) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }

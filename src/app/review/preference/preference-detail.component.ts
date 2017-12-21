@@ -1,9 +1,11 @@
+import { User } from './../../admin/admin.models';
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { PreferenceGraphQLService } from './preference-graphql.service';
 import { Preference } from './../../shared/share.models';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { SelectItem } from 'primeng/primeng';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,6 +15,7 @@ import * as _ from 'lodash';
 export class PreferenceDetailComponent extends CoreDetailComponent {
 
     object: any = []; // set empty object
+    users: SelectItem[] = [];
 
     constructor(
         protected injector: Injector,
@@ -25,6 +28,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
     createForm() {
         this.fg = this.fb.group({
             review_validate_comments: null,
+            review_moderators: null
         });
     }
 
@@ -32,7 +36,8 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
     getCustomArgumentsGetRecord(args, params) {
         return {
             keys: [
-                'review_validate_comments'
+                'review_validate_comments',
+                'review_moderators'
             ]
         };
     }
@@ -48,8 +53,9 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
 
     // instance PreferenceType[] object to do a post
     getCustomArgumentsPostRecord(args, object) {
+
         let objectInput = [];
-        for (let propertyName in object) {
+        for (let propertyName in args['object']) {
             objectInput.push({
                 key: propertyName,
                 value: args['object'][propertyName]
@@ -61,5 +67,12 @@ export class PreferenceDetailComponent extends CoreDetailComponent {
         return {
             preferences: objectInput
         };
+    }
+
+    setRelationsData(data: any) {
+        // set users
+        this.users = _.map(<User[]>data['adminUsers'], obj => {
+            return { value: obj.id, label: obj.name + (obj.surname ? ' ' + obj.surname : '') };
+        });
     }
 }

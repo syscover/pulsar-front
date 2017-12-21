@@ -56,8 +56,8 @@ export class QuestionDetailComponent extends CoreDetailComponent {
         });
         this.polls.unshift({ label: 'Select a poll', value: '' });
 
-         // review question types
-         this.questionTypes = _.map(<QuestionType[]>data['reviewQuestionTypes'], obj => {
+        // review question types
+        this.questionTypes = _.map(<QuestionType[]>data['reviewQuestionTypes'], obj => {
             return { value: obj.id, label: obj.name };
         });
         this.questionTypes.unshift({ label: 'Select a question type', value: '' });

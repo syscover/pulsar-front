@@ -83,7 +83,7 @@ export class ApolloClientManagerService {
 
                 let trackId = false;
 
-                if (o['__typename'] === 'CoreTranslationField' || o['__typename'] === 'CoreConfigOptionType') {
+                if (o['__typename'] === 'CoreTranslationField' || o['__typename'] === 'CoreConfigOption') {
                     const id = guid();
                     if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
                     return id;

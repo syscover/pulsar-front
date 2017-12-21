@@ -76,7 +76,7 @@ export class AttachmentMimeGraphQLService extends GraphQLModel {
 
         this.relationsFields = `
             configAttachmentResources:coreConfig (config:$configAttachmentResources) {
-                ... on CoreConfigOptionType {
+                ... on CoreConfigOption {
                     id
                     name
                 }
