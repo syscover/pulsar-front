@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { CoreDetailComponent } from './../../shared/super/core-detail.component';
 import { QuestionGraphQLService } from './question-graphql.service';
 import { Poll, QuestionType } from './../review.models';
@@ -34,6 +34,18 @@ export class QuestionDetailComponent extends CoreDetailComponent {
             sort: null,
             high_score: null
         });
+    }
+
+    beforePatchValueEdit() {
+        // only for questions with type score and has average
+        if (this.dataRoute.action === 'edit' && this.object['average']) {
+            this.fg.addControl('average', this.fb.group({
+                id: null,
+                reviews: [null, Validators.required],
+                total: [null, Validators.required],
+                average: [null, Validators.required]
+            }));
+        }
     }
 
     argumentsRelationsObject(): Object {

@@ -20,6 +20,7 @@ export class Question {
     sort: number;
     high_score: number;
     data_lang: string;
+    average: QuestionAverage;
 }
 
 export class QuestionType {
@@ -55,6 +56,13 @@ export class ObjectAverage {
     object_id: number;
     object_type: string;
     object_name: string;
+    reviews: number;
+    total: number;
+    average: number;
+}
+
+export class QuestionAverage {
+    id: number;
     reviews: number;
     total: number;
     average: number;

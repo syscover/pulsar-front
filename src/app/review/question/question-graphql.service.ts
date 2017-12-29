@@ -75,6 +75,12 @@ export class QuestionGraphQLService extends GraphQLModel {
                 sort
                 high_score
                 data_lang
+                average {
+                    id
+                    reviews
+                    total
+                    average
+                }
             }
         `;
 

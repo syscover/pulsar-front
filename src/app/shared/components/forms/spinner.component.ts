@@ -12,8 +12,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
                             [min]="min"
                             [max]="max"
                             [step]="step"
-                            (onChange)="handleChange($event)">
-                            </p-spinner>
+                            (onChange)="handleChange($event)"></p-spinner>
                 <label>{{ label }}</label>
                 <div *ngIf="error" class="ui-message ui-messages-error ui-corner-all">
                     {{ error }}
@@ -35,6 +34,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
 export class SpinnerComponent implements OnInit {
 
     @Input() form: FormGroup;
+    @Input() formGroupName: string;
     @Input() label: string;
     @Input() name: string;
     @Input() min: number;
@@ -49,6 +49,9 @@ export class SpinnerComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        // check if form control belong to formGroupName
+        if (this.formGroupName) this.form = <FormGroup>this.form.controls[this.formGroupName];
+
         this.formControl = this.form.controls[this.name];
 
         // Error validation

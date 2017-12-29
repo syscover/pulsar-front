@@ -63,6 +63,38 @@
                             class="col-sm-12 col-md-4"></ps-spinner>
         </div>
 
+        <div formGroupName="average" *ngIf="dataRoute.action === 'edit' && object['type_id'] === 1">
+            <input type="hidden" formControlName="id">
+            
+            <ps-form-header title="Averages" icon="fa ui-icon-assessment" class="margin-top-30"></ps-form-header>
+            <div class="row">
+                <ps-spinner     [form]="fg"
+                                formGroupName="average"
+                                [errors]="formErrors"
+                                label="Reviews"
+                                [min]="0"
+                                name="reviews" 
+                                class="col-sm-12 col-md-4"></ps-spinner>
+                <ps-spinner     [form]="fg"
+                                formGroupName="average"
+                                [errors]="formErrors"
+                                label="Total"
+                                [min]="0"
+                                name="total" 
+                                class="col-sm-12 col-md-4"></ps-spinner>
+            </div>
+            <div class="row">
+                <ps-spinner     [form]="fg"
+                                formGroupName="average"
+                                [errors]="formErrors"
+                                label="Average"
+                                [min]="0"
+                                [step]="0.01"
+                                name="average" 
+                                class="col-sm-12 col-md-4"></ps-spinner>
+            </div>
+        </div>
+
         <!-- buttons -->
         <div class="row justify-content-sm-center justify-content-md-start action-buttons">
             <ps-button  type="submit" 
