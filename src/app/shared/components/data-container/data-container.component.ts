@@ -15,7 +15,7 @@ import { Message } from 'primeng/primeng';
 })
 export class DataContainerComponent {
 
-    //msgs: Message[] = [];
+    msgs: Message[] = [];
 
     constructor() { }
 }
