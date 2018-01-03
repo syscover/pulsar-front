@@ -92,6 +92,7 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onMenuButtonClick(event) {
+        this.menuClick = true;
         this.rotateMenuButton = !this.rotateMenuButton;
         this.topbarMenuActive = false;
 
@@ -99,11 +100,10 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
             this.overlayMenuActive = !this.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
-                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
-            } else {
-                this.staticMenuMobileActive = !this.staticMenuMobileActive;
-            }
+                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive; } else {
+                this.staticMenuMobileActive = !this.staticMenuMobileActive; }
         }
+
         event.preventDefault();
     }
 
