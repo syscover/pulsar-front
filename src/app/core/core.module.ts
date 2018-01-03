@@ -1,10 +1,18 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthModule } from './auth/auth.module';
 import { ServicesModule } from './services/services.module';
 import { GraphqlModule } from './graphql/graphql.module';
 import { ValidationMessageService } from './services/validation-message.service';
-export const REGEXP = /.*/;
+
+export function jwtOptionsFactory() {
+    return {
+        tokenGetter: () => {
+            return localStorage.getItem('access_token');
+        },
+        whitelistedDomains: [/.*/]
+    };
+}
 
 @NgModule({
     imports: [
@@ -12,11 +20,10 @@ export const REGEXP = /.*/;
         GraphqlModule,
         AuthModule,
         JwtModule.forRoot({
-            config: {
-                tokenGetter: () => {
-                    return localStorage.getItem('access_token');
-                },
-                whitelistedDomains: [REGEXP]
+            jwtOptionsProvider: {
+                provide: JWT_OPTIONS,
+                useFactory: jwtOptionsFactory,
+                deps: []
             }
         })
     ],
