@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CoreService } from './../../../super/core.service';
-import { FieldGraphQLService } from './../../../../admin/field/field-graphql.service';
-import { Country, TerritorialArea1 } from './../../../../admin/admin.models';
+import { CoreService } from './../../../../core/super/core.service';
+import { FieldGraphQLService } from './../../../../modules/admin/field/field-graphql.service';
+import { Country, TerritorialArea1 } from './../../../../modules/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 import gql from 'graphql-tag';
 
@@ -19,12 +19,12 @@ export class AddressService {
         if (environment.debug) console.log('DEBUG - arguments to get resources: ', args);
 
         return this.objectService
-            .proxyGraphQL()
+            .apolloClient()
             .watchQuery({
                 query: gql`
                     query AddressResources (
-                        $sqlAdminTerritorialAreas1:[CoreSQLQueryInput] 
-                        $sqlAdminTerritorialAreas2:[CoreSQLQueryInput] 
+                        $sqlAdminTerritorialAreas1:[CoreSQLQueryInput]
+                        $sqlAdminTerritorialAreas2:[CoreSQLQueryInput]
                         $sqlAdminTerritorialAreas3:[CoreSQLQueryInput]
                     ) {
                         adminTerritorialAreas1: adminTerritorialAreas1 (sql:$sqlAdminTerritorialAreas1){
@@ -42,13 +42,14 @@ export class AddressService {
                     }
                 `,
                 variables: args
-            });
+            })
+            .valueChanges;
     }
 
     territorialAreas1(country: Country) {
         if (country) {
             return this.objectService
-                .proxyGraphQL()
+                .apolloClient()
                 .watchQuery({
                     query: gql`
                         query AdminGetTerritorialAreas1 ($sql:[CoreSQLQueryInput]) {
@@ -74,7 +75,8 @@ export class AddressService {
                             }
                         ]
                     }
-                });
+                })
+                .valueChanges;
         }
 
         return null;
@@ -83,8 +85,8 @@ export class AddressService {
     territorialAreas2(territorialArea1: TerritorialArea1) {
         if (territorialArea1) {
             return this.objectService
-                .proxyGraphQL()
-                    .watchQuery({
+                .apolloClient()
+                .watchQuery({
                     query: gql`
                         query AdminGetTerritorialAreas2 ($sql:[CoreSQLQueryInput]) {
                             coreObjects: adminTerritorialAreas2 (sql:$sql){
@@ -109,7 +111,8 @@ export class AddressService {
                             }
                         ]
                     }
-                });
+                })
+                .valueChanges;
         }
 
         return null;
@@ -118,8 +121,8 @@ export class AddressService {
     territorialAreas3(territorialArea2: TerritorialArea1) {
         if (territorialArea2) {
             return this.objectService
-                .proxyGraphQL()
-                    .watchQuery({
+                .apolloClient()
+                .watchQuery({
                     query: gql`
                         query AdminGetTerritorialAreas3 ($sql:[CoreSQLQueryInput]) {
                             coreObjects: adminTerritorialAreas3 (sql:$sql){
@@ -144,7 +147,8 @@ export class AddressService {
                             }
                         ]
                     }
-                });
+                })
+                .valueChanges;
         }
 
         return null;

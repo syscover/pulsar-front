@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-button',
     template: `
-        <button pButton 
-            [type]="type" 
-            [icon]="icon" 
+        <button pButton
+            [type]="type"
+            [icon]="icon"
             [label]="label"
             [class]="className"></button>
     `,
@@ -30,5 +30,4 @@ export class ButtonComponent implements OnInit {
     constructor( ) { }
 
     ngOnInit() { }
-
 }

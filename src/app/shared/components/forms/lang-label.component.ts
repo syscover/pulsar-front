@@ -1,6 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, OnInit, Input } from '@angular/core';
-import { Lang } from './../../../admin/admin.models';
+import { Lang } from './../../../modules/admin/admin.models';
 
 @Component({
     selector: 'ps-lang-label',

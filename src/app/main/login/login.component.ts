@@ -1,11 +1,10 @@
-import { Component, Renderer2, OnInit } from '@angular/core';
+import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
 import { Router } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
 import { environment } from './../../../environments/environment';
-import { User } from './../../admin/admin.models';
-import { ConfigService } from '../../core/services/config/config.service';
+import { User } from './../../modules/admin/admin.models';
+import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
@@ -13,12 +12,11 @@ import { AuthService } from './../../core/auth/auth.service';
     templateUrl: './login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
 
     fg: FormGroup;
     email: string;
     password: string;
-    jwtHelper: JwtHelper;
     user: User = new User();
     msgs: Message[] = [];
 
@@ -34,7 +32,6 @@ export class LoginComponent {
 
     ngOnInit() {
         this.renderer.setStyle(document.body, 'background-image', `url(assets/layout/images/login/bg0${Math.floor((Math.random() * 10))}.jpg)`);
-        //this.renderer.setStyle(document.body, 'height', 0);
     }
 
     ngOnDestroy() {
@@ -42,14 +39,13 @@ export class LoginComponent {
     }
 
     postRecord() {
-        let auth$ = this.authService
+        this.authService
             .login(this.fg.value)
             .subscribe(response => {
 
                 if (environment.debug) console.log('DEBUG - response after login: ', response);
 
-                localStorage.setItem('token', response.token);
-                auth$.unsubscribe();
+                localStorage.setItem('access_token', response['access_token']);
 
                 // redirect to admin or retrieve the url you wanted to go
                 if (this.authService.redirectUrl) {
@@ -58,7 +54,7 @@ export class LoginComponent {
                     this.router.navigate([`/${this.configService.get('appPrefix')}/admin`]);
                 }
             }, (error) => {
-                console.log(error.status);
+                console.log(error);
                 this.msgs = [];
                 this.msgs.push({severity: 'error', summary: 'Authentication error', detail: 'Your user or password is incorrect'});
             });

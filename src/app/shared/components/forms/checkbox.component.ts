@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-checkbox',
     template: `
         <div [formGroup]="form">
-            <p-checkbox 
+            <p-checkbox
                 [formControlName]="name"
-                [label]="label" 
+                [label]="label"
                 binary="true"
                 (onChange)="handleChange($event)">
             </p-checkbox>
@@ -23,7 +23,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class CheckboxComponent implements OnInit {
@@ -52,6 +52,6 @@ export class CheckboxComponent implements OnInit {
     }
 
     handleChange($event) {
-        this.formControl.setValue($event); //
+        this.formControl.setValue($event);
     }
 }

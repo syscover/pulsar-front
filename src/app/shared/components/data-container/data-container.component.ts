@@ -1,5 +1,6 @@
 import { Input } from '@angular/core/src/metadata/directives';
 import { Component } from '@angular/core';
+import { Message } from 'primeng/primeng';
 
 @Component({
   selector: 'ps-data-container',
@@ -13,5 +14,8 @@ import { Component } from '@angular/core';
   `]
 })
 export class DataContainerComponent {
-  constructor() { }
+
+    //msgs: Message[] = [];
+
+    constructor() { }
 }

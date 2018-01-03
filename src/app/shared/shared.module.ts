@@ -19,7 +19,6 @@ import { GetLangValuePipe } from './pipes/get-lang-value.pipe';
 import { GetObjectValuePipe } from './pipes/get-object-value.pipe';
 import { NumberArrayPipe } from './pipes/number-array.pipe';
 
-
 @NgModule({
     imports: [
         CommonModule,

@@ -1,8 +1,8 @@
 import { Component, Renderer2, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { onValueChangedFormControl } from './../../super/core-validation';
-import { ConfigService } from './../../../core/services/config/config.service';
-import { AttachmentFamily } from './../../../admin/admin.models';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
+import { ConfigService } from './../../../core/services/config.service';
+import { AttachmentFamily } from './../../../modules/admin/admin.models';
 import * as _ from 'lodash';
 declare const jQuery: any; // jQuery definition
 
@@ -25,7 +25,7 @@ declare const jQuery: any; // jQuery definition
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class EditorComponent implements OnInit {
@@ -80,19 +80,19 @@ export class EditorComponent implements OnInit {
             'draggable',
             'emoticons',
             'entities',
-            //'file',
+            // 'file',
             'fontFamily',
             'fontSize',
             'fullscreen',
             'image',
-            //'imageManager',
+            // 'imageManager',
             'inlineStyle',
             'lineBreaker',
             'link',
             'lists',
             'paragraphFormat',
             'paragraphStyle',
-            //'quickInsert',
+            // 'quickInsert',
             'quote',
             'save',
             'table',

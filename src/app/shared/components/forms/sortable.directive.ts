@@ -33,9 +33,9 @@ export class SortableDirective implements OnInit {
                 },
                 update: (event, ui) => {
                     dropIndex = this.domIndexOf(ui.item, event.target);
-                    let targetChild = this.sortable.splice(dragIndex, 1)[0];
+                    const targetChild = this.sortable.splice(dragIndex, 1)[0];
 
-                    //let angular know we are updating his data
+                    // let angular know we are updating his data
                     this.zone.run(() => {
                         this.sortable.splice(dropIndex, 0, targetChild);
                         this.onSort.emit(this.sortable);

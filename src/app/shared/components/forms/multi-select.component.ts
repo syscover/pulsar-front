@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-multi-select',

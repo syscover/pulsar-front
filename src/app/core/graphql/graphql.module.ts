@@ -1,19 +1,22 @@
-import { NgModule, Inject } from '@angular/core';
-import { ApolloClient, createNetworkInterface } from 'apollo-client';
+import { NgModule } from '@angular/core';
+import { HttpLinkModule } from 'apollo-angular-link-http';
 import { ApolloModule } from 'apollo-angular';
-import { ApolloClientManagerService } from './apollo-client-manager.service';
-import { ApolloService } from './apollo.service';
+
+
+
+import { GraphQLService } from './graphql.service';
 
 @NgModule({
     imports: [
+        HttpLinkModule,
         ApolloModule
     ],
-    exports: [
-        ApolloModule
-    ],
+    exports: [],
+    declarations: [],
     providers: [
-        ApolloClientManagerService,
-        ApolloService
-    ]
+        GraphQLService
+    ],
 })
-export class GraphQLModule { }
+export class GraphqlModule {
+    constructor() {}
+}

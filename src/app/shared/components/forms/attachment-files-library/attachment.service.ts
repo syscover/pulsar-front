@@ -1,8 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
-import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { JsonResponse } from './../../../classes/json-respose';
-import { CoreService } from './../../../super/core.service';
+import { CoreService } from './../../../../core/super/core.service';
 import { environment } from './../../../../../environments/environment';
 import gql from 'graphql-tag';
 
@@ -20,7 +19,7 @@ export class AttachmentService extends CoreService {
 
         if (environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
 
-        return this.proxyGraphQL()
+        return this.apolloClient()
             .mutate({
                 mutation: gql`
                     mutation AdminCropAttachment ($object:Object!) {
@@ -39,7 +38,7 @@ export class AttachmentService extends CoreService {
         let args = {}; // arguments for observable
         args['attachment'] = attachment; // add object to arguments
 
-        return this.proxyGraphQL()
+        return this.apolloClient()
             .mutate({
                 mutation: gql`
                     mutation AdminDeleteAttachment ($attachment:AdminAttachmentInput!) {

@@ -3,7 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/primeng';
 import { MainComponent } from './../main.component';
-import { Package } from './../../admin/admin.models';
+import { Package } from './../../modules/admin/admin.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -14,12 +14,7 @@ import * as _ from 'lodash';
         }
     `],
     template: `
-        <ul ps-submenu 
-                        [item]="model" 
-                        root="true" 
-                        class="ultima-menu ultima-main-menu clearfix" 
-                        [reset]="reset" 
-                        visible="true"></ul>
+        <ul ps-submenu [item]="model" root="true" class="ultima-menu ultima-main-menu clearfix" [reset]="reset" visible="true"></ul>
     `
 })
 export class MenuComponent implements OnChanges {
@@ -38,15 +33,15 @@ export class MenuComponent implements OnChanges {
     }
 
     setMemu(packages: Package[]) {
- 
+
         // if packages is not defines yet
         if (! packages) { return; }
 
-        let adminPackage    = _.find(packages, {root: 'admin'});
-        let crmPackage      = _.find(packages, {root: 'crm'});
-        let cmsPackage      = _.find(packages, {root: 'cms'});
-        let marketPackage   = _.find(packages, {root: 'market'});
-        let reviewPackage   = _.find(packages, {root: 'review'});
+        const adminPackage    = _.find(packages, {root: 'admin'});
+        const crmPackage      = _.find(packages, {root: 'crm'});
+        const cmsPackage      = _.find(packages, {root: 'cms'});
+        const marketPackage   = _.find(packages, {root: 'market'});
+        const reviewPackage   = _.find(packages, {root: 'review'});
 
         this.model = [];
         this.model.push({ label: 'Dashboard', icon: 'dashboard', routerLink: ['/pulsar/admin/dashboard'] });
@@ -180,45 +175,50 @@ export class MenuComponent implements OnChanges {
     selector: '[ps-submenu]',
     template: `
         <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
-            <li *ngIf="child.visible === false ? false : true" 
-                [ngClass]="{'active-menuitem': isActive(i)}">
-                <a  *ngIf="!child.routerLink"
-                    [href]="child.url||'#'"  
-                    (click)="itemClick($event, child, i)" 
-                    class="ripplelink" 
-                    [attr.tabindex]="!visible ? '-1' : null" 
-                    [attr.target]="child.target">
-                    <i class="material-icons">{{child.icon}}</i>
+            <li [ngClass]="{'active-menuitem': isActive(i)}" [class]="child.badgeStyleClass" *ngIf="child.visible === false ? false : true">
+                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)"
+                class="ripplelink" *ngIf="!child.routerLink"
+                    [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
+                    <i *ngIf="child.icon" class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
-                    <i class="material-icons" *ngIf="child.items">keyboard_arrow_down</i>
+                    <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
+                    <i class="material-icons submenu-icon" *ngIf="child.items">keyboard_arrow_down</i>
                 </a>
 
-                <a  *ngIf="child.routerLink"
-                    (click)="itemClick($event, child, i)" 
-                    class="ripplelink" 
-                    [routerLink]="child.routerLink" 
-                    routerLinkActive="active-menuitem-routerlink" 
-                    [routerLinkActiveOptions]="{exact: true}" 
-                    [attr.tabindex]="!visible ? '-1' : null" 
-                    [attr.target]="child.target">
-                    <i class="material-icons">{{child.icon}}</i>
+                <a (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)" class="ripplelink" *ngIf="child.routerLink"
+                    [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink"
+                [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
+                    <i *ngIf="child.icon" class="material-icons">{{child.icon}}</i>
                     <span>{{child.label}}</span>
-                    <i class="material-icons" *ngIf="child.items">keyboard_arrow_down</i>
+                    <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
+                    <i class="material-icons submenu-icon" *ngIf="child.items">keyboard_arrow_down</i>
                 </a>
-                <ul ps-submenu [item]="child" *ngIf="child.items" [@children]="isActive(i) ? 'visible' : 'hidden'" [visible]="isActive(i)" [reset]="reset"></ul>
+                <div class="layout-menu-tooltip">
+                    <div class="layout-menu-tooltip-arrow"></div>
+                    <div class="layout-menu-tooltip-text">{{child.label}}</div>
+                </div>
+                <ul ps-submenu [item]="child" *ngIf="child.items" [visible]="isActive(i)" [reset]="reset"
+                    [@children]="(app.isSlim()||app.isHorizontal())&&root ? isActive(i) ?
+                    'visible' : 'hidden' : isActive(i) ? 'visibleAnimated' : 'hiddenAnimated'"></ul>
             </li>
         </ng-template>
     `,
     animations: [
         trigger('children', [
-            state('hidden', style({
+            state('hiddenAnimated', style({
                 height: '0px'
+            })),
+            state('visibleAnimated', style({
+                height: '*'
             })),
             state('visible', style({
                 height: '*'
             })),
-            transition('visible => hidden', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-            transition('hidden => visible', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
+            state('hidden', style({
+                height: '0px'
+            })),
+            transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+            transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
         ])
     ]
 })
@@ -238,35 +238,44 @@ export class SubMenuComponent {
     ) {}
 
     itemClick(event: Event, item: MenuItem, index: number) {
-        //avoid processing disabled items
+        if (this.root) {
+            this.app.menuHoverActive = !this.app.menuHoverActive;
+        }
+
+        // avoid processing disabled items
         if (item.disabled) {
             event.preventDefault();
             return true;
         }
 
-        //activate current item and deactivate active sibling if any
+        // activate current item and deactivate active sibling if any
         this.activeIndex = (this.activeIndex === index) ? null : index;
 
-        //execute command
+        // execute command
         if (item.command) {
             item.command({originalEvent: event, item: item});
         }
 
-        //prevent hash change
+        // prevent hash change
         if (item.items || (!item.url && !item.routerLink)) {
             event.preventDefault();
         }
 
-        //hide menu
-        if (! item.items) {
-            if (this.app.isHorizontal()) {
-                this.app.resetMenu = true;
-            } else {
-                this.app.resetMenu = false;
-            }
+        // hide menu
+        if (!item.items) {
+            if (this.app.isHorizontal() || this.app.isSlim()) {
+                this.app.resetMenu = true; } else {
+                this.app.resetMenu = false; }
 
             this.app.overlayMenuActive = false;
             this.app.staticMenuMobileActive = false;
+            this.app.menuHoverActive = !this.app.menuHoverActive;
+        }
+    }
+
+    onMouseEnter(index: number) {
+        if (this.root && this.app.menuHoverActive && (this.app.isHorizontal() || this.app.isSlim())) {
+            this.activeIndex = index;
         }
     }
 
@@ -281,7 +290,7 @@ export class SubMenuComponent {
     set reset(val: boolean) {
         this._reset = val;
 
-        if (this._reset && this.app.isHorizontal()) {
+        if (this._reset && (this.app.isHorizontal() || this.app.isSlim())) {
             this.activeIndex = null;
         }
     }

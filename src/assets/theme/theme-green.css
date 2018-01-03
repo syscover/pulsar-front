@@ -3282,12 +3282,47 @@ body {
       margin: 0px;
       color: #e62a10;
       font-size: .75em; }
+    body .md-inputfield.md-inputfield-fill input {
+      background-color: #f7f7f7;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 4px; }
+    body .md-inputfield.md-inputfield-fill label {
+      top: 2px; }
+    body .md-inputfield.md-inputfield-fill input:focus ~ label,
+    body .md-inputfield.md-inputfield-fill input.ui-state-filled ~ label,
+    body .md-inputfield.md-inputfield-fill .ui-inputwrapper-focus ~ label,
+    body .md-inputfield.md-inputfield-fill .ui-inputwrapper-filled ~ label {
+      top: -20px;
+      font-size: 12px;
+      color: #4CAF50; }
+    body .md-inputfield.md-inputfield-box {
+      background-color: #f7f7f7;
+      height: 44px; }
+      body .md-inputfield.md-inputfield-box > *:not(label) {
+        bottom: 0px;
+        position: absolute;
+        background-color: #f7f7f7;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 24px; }
+      body .md-inputfield.md-inputfield-box > label {
+        top: 23px; }
+      body .md-inputfield.md-inputfield-box input:focus ~ label,
+      body .md-inputfield.md-inputfield-box input.ui-state-filled ~ label,
+      body .md-inputfield.md-inputfield-box .ui-inputwrapper-focus ~ label,
+      body .md-inputfield.md-inputfield-box .ui-inputwrapper-filled ~ label {
+        top: 1px; }
+      body .md-inputfield.md-inputfield-box .input:-webkit-autofill ~ label {
+        top: 1px; }
   body .ui-material-message.ui-message.ui-messages-error {
     background-color: transparent;
     border: 0 none;
     margin: 0px;
     color: #e62a10;
     font-size: .75em; }
+    body .ui-material-message.ui-message.ui-messages-error label {
+      top: 4px; }
   body .ui-listbox {
     min-width: 12.5em;
     background-color: #ffffff;
@@ -3515,6 +3550,8 @@ body {
       -moz-border-radius-bottomright: 3px;
       -webkit-border-bottom-right-radius: 3px;
       border-bottom-right-radius: 3px; }
+    body .ui-splitbutton .ui-menu {
+      min-width: 100%; }
   body .ui-fluid .ui-splitbutton .ui-button:first-child {
     width: calc(100% - 2em); }
   body .ui-chkbox {
@@ -3528,6 +3565,7 @@ body {
       border: 2px solid #757575;
       width: 1.25em;
       height: 1.25em;
+      overflow: hidden;
       -moz-transition: background-color 0.3s;
       -o-transition: background-color 0.3s;
       -webkit-transition: background-color 0.3s;
@@ -3535,7 +3573,7 @@ body {
       body .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
         font-size: 1.25em;
         margin-left: -2px;
-        margin-top: -1px; }
+        margin-top: -2px; }
       body .ui-chkbox .ui-chkbox-box.ui-state-active {
         border-color: #4CAF50;
         background-color: #4CAF50; }
@@ -4458,6 +4496,8 @@ body .ui-fieldset {
       -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }
       body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler:hover {
         background-color: #2E7D32; }
+    body .ui-fieldset .ui-fieldset-legend .ui-fieldset-legend-text {
+      color: #4CAF50; }
     body .ui-fieldset .ui-fieldset-legend.ui-state-focus {
       background-color: transparent; }
 body .ui-accordion .ui-accordion-header {
@@ -4471,8 +4511,10 @@ body .ui-accordion .ui-accordion-header {
   transition: background-color 0.3s; }
   body .ui-accordion .ui-accordion-header > a {
     padding: 0.625em 1em;
-    padding-left: 2.5em;
     color: #ffffff; }
+    body .ui-accordion .ui-accordion-header > a .ui-accordion-toggle-icon,
+    body .ui-accordion .ui-accordion-header > a .ui-accordion-header-text {
+      vertical-align: middle; }
   body .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
     background-color: #2E7D32; }
   body .ui-accordion .ui-accordion-header.ui-state-active {
@@ -4486,12 +4528,6 @@ body .ui-accordion .ui-accordion-header {
     border-bottom-right-radius: 0; }
     body .ui-accordion .ui-accordion-header.ui-state-active > a {
       color: #212121; }
-  body .ui-accordion .ui-accordion-header .fa-caret-right {
-    margin-top: -.5em;
-    font-size: 1.5em; }
-  body .ui-accordion .ui-accordion-header .fa-caret-down {
-    margin-top: -.5em;
-    font-size: 1.5em; }
 body .ui-accordion .ui-accordion-content {
   padding: 0.625em 1em;
   line-height: 1.5em; }
@@ -5120,7 +5156,7 @@ body .ui-tree {
         color: #212121; }
 body .ui-tree-draghelper {
   border: 1px solid #4CAF50; }
-body .fc .fc-button-group .ui-icon-circle-triangle-e {
+body .fc .fc-toolbar .ui-icon-circle-triangle-e {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -5144,10 +5180,10 @@ body .fc .fc-button-group .ui-icon-circle-triangle-e {
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
   font-feature-settings: 'liga';
-  margin-top: .25em; }
-  body .fc .fc-button-group .ui-icon-circle-triangle-e:before {
+  margin-top: .15em; }
+  body .fc .fc-toolbar .ui-icon-circle-triangle-e:before {
     content: "play_circle_outline"; }
-body .fc .fc-button-group .ui-icon-circle-triangle-w {
+body .fc .fc-toolbar .ui-icon-circle-triangle-w {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -5176,10 +5212,10 @@ body .fc .fc-button-group .ui-icon-circle-triangle-w {
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
-  margin-top: .25em; }
-  body .fc .fc-button-group .ui-icon-circle-triangle-w:before {
+  margin-top: .15em; }
+  body .fc .fc-toolbar .ui-icon-circle-triangle-w:before {
     content: "play_circle_outline"; }
-body .fc .fc-button-group .ui-state-active {
+body .fc .fc-toolbar .ui-state-active {
   background-color: #ffeb3b; }
 body .fc .fc-event {
   background-color: #A5D6A7;
@@ -5486,7 +5522,7 @@ body .ui-tabmenu {
           vertical-align: middle; }
         body .ui-tabmenu .ui-tabmenu-nav > .ui-tabmenuitem > a .ui-menuitem-icon {
           font-weight: 1em;
-          margin-right: .5em; }
+          margin-right: .25em; }
       body .ui-tabmenu .ui-tabmenu-nav > .ui-tabmenuitem.ui-state-default a {
         color: #757575; }
         body .ui-tabmenu .ui-tabmenu-nav > .ui-tabmenuitem.ui-state-default a .fa {

@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AttachmentService } from './../attachment.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { JsonResponse } from './../../../../classes/json-respose';
-import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../admin/admin.models';
+import { AttachmentFamily, Attachment, AttachmentLibrary } from './../../../../../modules/admin/admin.models';
 import { environment } from './../../../../../../environments/environment';
 import * as _ from 'lodash';
 import * as Cropper from 'cropperjs';
@@ -37,8 +37,8 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
     cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-    displayDialog: boolean = false;
-    progress: number = 0;
+    displayDialog = false;
+    progress = 0;
 
     constructor(
         private fb: FormBuilder,
@@ -89,7 +89,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
         return fa.controls;
     }
 
-    createAttachment(attachment = undefined) {
+    createAttachment(attachment?) {
 
         // add attachment FormGroup to attachments FormArray
         // with function attachments get FormArray

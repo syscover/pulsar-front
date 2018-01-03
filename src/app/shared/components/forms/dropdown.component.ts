@@ -2,14 +2,14 @@ import { Component, Input, Output, OnInit, AfterContentInit, EventEmitter, ViewC
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { SelectItem, Dropdown, PrimeTemplate } from 'primeng/primeng';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-dropdown',
     template: `
         <div [formGroup]="form">
-            <p-dropdown [formControlName]="name" 
-                        [options]="options" 
+            <p-dropdown [formControlName]="name"
+                        [options]="options"
                         [autoWidth]="autoWidth"
                         [filter]=filter
                         (onChange)="handleChange($event)">
@@ -27,7 +27,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class DropdownComponent implements OnInit, AfterContentInit {

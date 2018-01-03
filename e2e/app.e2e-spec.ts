@@ -1,14 +1,14 @@
-import { Front.Pulsar.LocalPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('front.pulsar.local App', () => {
-  let page: Front.Pulsar.LocalPage;
+describe('front.pulsar5.local App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new Front.Pulsar.LocalPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

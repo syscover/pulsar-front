@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-input',
@@ -27,7 +27,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class InputComponent implements OnInit {

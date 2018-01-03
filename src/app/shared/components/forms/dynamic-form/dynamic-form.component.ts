@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, ApplicationRef } from '@an
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 import { DynamicFormService } from './dynamic-form.service';
-import { Field, Lang, FieldValue } from './../../../../admin/admin.models';
+import { Field, Lang, FieldValue } from './../../../../modules/admin/admin.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,20 +12,20 @@ import * as _ from 'lodash';
 
             <ps-input   *ngSwitchCase="'text'"
                         [form]="dynamicFormService.form.get('customFields')"
-                        [errors]="errors" 
+                        [errors]="errors"
                         [label]="label"
-                        [name]="field.name" 
+                        [name]="field.name"
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-input>
 
             <ps-spinner *ngSwitchCase="'number'"
                         [form]="dynamicFormService.form.get('customFields')"
-                        [errors]="errors" 
+                        [errors]="errors"
                         [label]="label"
-                        [name]="field.name" 
+                        [name]="field.name"
                         [min]="0"
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-spinner>
 
-            <ps-dropdown *ngSwitchCase="'select'" 
+            <ps-dropdown *ngSwitchCase="'select'"
                         [form]="dynamicFormService.form.get('customFields')"
                         [errors]="errors"
                         [autoWidth]="false"
@@ -33,7 +33,7 @@ import * as _ from 'lodash';
                         [name]="field.name"
                         [class]="field.component_class ? field.component_class : 'col-6'"></ps-dropdown>
 
-            <ps-multi-select    *ngSwitchCase="'select-multiple'" 
+            <ps-multi-select    *ngSwitchCase="'select-multiple'"
                                 [form]="dynamicFormService.form.get('customFields')"
                                 [errors]="errors"
                                 [label]="label"
@@ -43,7 +43,7 @@ import * as _ from 'lodash';
 
             <ps-editor  *ngSwitchCase="'wysiwyg'"
                         [form]="dynamicFormService.form.get('customFields')"
-                        [errors]="errors" 
+                        [errors]="errors"
                         [label]="label"
                         [name]="field.name"
                         [placeholder]="'Enter here your ' + label"

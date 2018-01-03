@@ -1,18 +1,17 @@
 import { Injectable, Injector } from '@angular/core';
-import { Headers, RequestOptions, Response } from '@angular/http';
-import { CoreService } from './../../shared/super/core.service';
-import { AuthHttp, tokenNotExpired, JwtHelper } from 'angular2-jwt';
-import { User } from './../../admin/admin.models';
+import { CoreService } from './../../core/super/core.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from './../../modules/admin/admin.models';
 
 @Injectable()
 export class AuthService extends CoreService {
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
-    jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        private jwtHelperService: JwtHelperService
     ) {
         super(injector);
         this.setEndpoint('/api/v1/login'); // set api URL
@@ -24,21 +23,26 @@ export class AuthService extends CoreService {
             .post(this.getEndpoint('login'), {
                     user: user.user,
                     password: user.password
-                }, this.options)
-            .map((response: Response) => response.json());
+                }, this.options);
     }
 
     logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('access_token');
     }
 
     // check if user is logged
     loggedIn() {
-        return tokenNotExpired();
+        const token: string = this.jwtHelperService.tokenGetter();
+
+        if (! token) return false;
+
+        const tokenExpired: boolean = this.jwtHelperService.isTokenExpired(token);
+
+        return ! tokenExpired;
     }
 
     // get the user
     user() {
-        return <User>this.jwtHelper.decodeToken(localStorage.getItem('token'));
+        return <User>this.jwtHelperService.decodeToken(localStorage.getItem('access_token'));
     }
 }

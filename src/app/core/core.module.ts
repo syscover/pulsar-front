@@ -1,24 +1,32 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from './auth/auth.module';
-import { GraphQLModule } from './graphql/graphql.module';
-import { ValidationMessageService } from './../core/services/validation-message.service';
-import './rxjs-extensions';
+import { ServicesModule } from './services/services.module';
+import { GraphqlModule } from './graphql/graphql.module';
+import { ValidationMessageService } from './services/validation-message.service';
+export const REGEXP = /.*/;
 
 @NgModule({
     imports: [
+        ServicesModule,
+        GraphqlModule,
         AuthModule,
-        GraphQLModule
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: () => {
+                    return localStorage.getItem('access_token');
+                },
+                whitelistedDomains: [REGEXP]
+            }
+        })
     ],
-    declarations:   [],
-    providers:      [
+    exports: [ServicesModule],
+    declarations: [],
+    providers: [
         ValidationMessageService
     ],
-    exports:        [],
-    bootstrap:      []
 })
-
 export class CoreModule {
-
     constructor(
         @Optional() @SkipSelf() parentModule: CoreModule
     ) {

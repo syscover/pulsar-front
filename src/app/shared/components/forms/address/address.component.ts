@@ -2,11 +2,11 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 import { AddressService } from './address.service';
-import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from './../../../../admin/admin.models';
+import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from './../../../../modules/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 import * as _ from 'lodash';
 
-//import { onValueChangedFormControl } from './../../super/core-validation';
+// import { onValueChangedFormControl } from './../../super/core-validation';
 
 @Component({
     selector: 'ps-address',
@@ -47,7 +47,7 @@ export class AddressComponent implements OnInit, OnChanges {
 
     // load values
     ngOnChanges () {
-        
+
         // load countries from Input
         this.countriesInput = _.map(this.countries, obj => {
             return { value: obj.id, label: obj.name };

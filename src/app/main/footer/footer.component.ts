@@ -11,6 +11,7 @@ import { Component, Inject, forwardRef } from '@angular/core';
         </div>
     `
 })
+
 export class FooterComponent {
 
 }

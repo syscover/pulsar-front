@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { AttachmentFamily, Attachment } from './../../../../../admin/admin.models';
+import { AttachmentFamily, Attachment } from './../../../../../modules/admin/admin.models';
 import * as _ from 'lodash';
 declare var jQuery: any; // jQuery definition
 

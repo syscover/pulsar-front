@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-autocomplete',
@@ -10,11 +10,11 @@ import { onValueChangedFormControl } from './../../super/core-validation';
         <div [formGroup]="form">
             <p-autoComplete #autoComplete
                             [formControlName]="name"
-                            [suggestions]="filteredRecords" 
+                            [suggestions]="filteredRecords"
                             [field]="field"
                             dataKey="value"
                             inputId="value"
-                            [placeholder]="placeholder" 
+                            [placeholder]="placeholder"
                             (completeMethod)="filterRecords($event)"
                             (onDropdownClick)="handleDropdown($event)"
                             (onSelect)="handleSelect($event)"
@@ -36,7 +36,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class AutocompleteComponent implements OnInit {

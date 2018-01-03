@@ -1,7 +1,7 @@
 import { Component, OnInit, trigger, state, transition, style, animate } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../admin/admin.models';
-import { JwtHelper } from 'angular2-jwt';
+import { User } from '../../modules/admin/admin.models';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -25,11 +25,11 @@ export class ProfileComponent implements OnInit {
 
     active: boolean;
     user: User;
-    jwthelper: JwtHelper = new JwtHelper();
 
     constructor(
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private jwtHelper: JwtHelperService
     ) { }
 
     ngOnInit() {

@@ -1,10 +1,11 @@
-<div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}">
+<div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}" (click)="onLayoutClick()">
 
     <div #layoutContainer class="layout-container" 
             [ngClass]="{'menu-layout-static': ! isOverlay(),
             'menu-layout-overlay': isOverlay(),
             'layout-menu-overlay-active': overlayMenuActive,
             'menu-layout-horizontal': isHorizontal(),
+            'menu-layout-slim': isSlim(),
             'layout-menu-static-inactive': staticMenuDesktopInactive,
             'layout-menu-static-active': staticMenuMobileActive}">
 
@@ -23,8 +24,10 @@
         </div>
         
         <div class="layout-main">
-            <router-outlet></router-outlet>
-            <ps-footer></ps-footer>
+            <div class="layout-content">
+                <router-outlet></router-outlet>
+                <ps-footer></ps-footer>
+            </div>
         </div>
         
         <div class="layout-mask"></div>

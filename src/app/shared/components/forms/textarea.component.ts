@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
-import { onValueChangedFormControl } from './../../super/core-validation';
+import { onValueChangedFormControl } from './../../../core/super/core-validation';
 
 @Component({
     selector: 'ps-textarea',
     template: `
         <div [formGroup]="form">
-            <span class="md-inputfield">        
+            <span class="md-inputfield">
                 <h1 *ngIf="label">{{ label }}</h1>
-                <textarea   [formControlName]="name" 
-                            [rows]="rows" 
-                            [cols]="cols" 
+                <textarea   [formControlName]="name"
+                            [rows]="rows"
+                            [cols]="cols"
                             [placeholder]="placeholder"
                             pInputTextarea autoResize="autoResize">
                 </textarea>
@@ -29,7 +29,7 @@ import { onValueChangedFormControl } from './../../super/core-validation';
             position: absolute;
         }
         input.ng-dirty.ng-invalid {
-            border-bottom-color: #e62a10; 
+            border-bottom-color: #e62a10;
         }`]
 })
 export class TextareaComponent implements OnInit {

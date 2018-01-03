@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CoreService } from './../../../super/core.service';
-import { FieldGraphQLService } from './../../../../admin/field/field-graphql.service';
-import { Field } from './../../../../admin/admin.models';
+import { CoreService } from './../../../../core/super/core.service';
+import { FieldGraphQLService } from './../../../../modules/admin/field/field-graphql.service';
+import { Field } from './../../../../modules/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class DynamicFormService {
         if (fieldGroup) {
             // get custom fields from field group
             this.objectService
-                .proxyGraphQL()
+                .apolloClient()
                 .watchQuery({
                     fetchPolicy: 'network-only',
                     query: this.graphQL.queryObjects,
@@ -48,6 +48,7 @@ export class DynamicFormService {
                         }
                     }
                 })
+                .valueChanges
                 .subscribe(({data}) => {
                     if (environment.debug) console.log('DEBUG - data response from get custom fields: ', data);
 
