@@ -112,7 +112,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     // function to get record in edit action or create lang action
     getRecord(params: Params) {
-        this.objectService
+        const ob = this.objectService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -129,6 +129,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
                 // instance data on object list
                 this.setData(data['coreObject']);
+
+                ob.unsubscribe();
             });
     }
 
@@ -140,7 +142,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
         // set paramenters for objects that has lang_id and id
         if (params['lang_id'] && params['id']) {
             // check if object has table lang
-            let table = this.graphQL.tableLang ?  this.graphQL.tableLang : this.graphQL.table;
+            const table = this.graphQL.tableLang ? this.graphQL.tableLang : this.graphQL.table;
             args = {
                 sql: [{
                     command: 'where',
@@ -298,13 +300,12 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                 });
         }
 
-        let subs = obs.subscribe(data => {
+        obs.subscribe(data => {
             if (! routeRedirect) {
                 this.router.navigate([this.baseUri]);
             } else {
                 this.router.navigate([routeRedirect]);
             }
-            subs.unsubscribe();
         });
     }
 

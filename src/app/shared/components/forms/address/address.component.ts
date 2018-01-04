@@ -116,7 +116,7 @@ export class AddressComponent implements OnInit, OnChanges {
                 }
             }
 
-            let obs =  this.addressService
+            const ob =  this.addressService
                 .gerResources({
                     sqlAdminTerritorialAreas1,
                     sqlAdminTerritorialAreas2,
@@ -148,7 +148,7 @@ export class AddressComponent implements OnInit, OnChanges {
                         this.territorialAreas3Input.unshift({ label: `Select a ${this.addressService.country.territorial_area_3}`, value: '' });
                     }
 
-                    obs.unsubscribe();
+                    ob.unsubscribe();
                 });
         }
     }
@@ -164,7 +164,7 @@ export class AddressComponent implements OnInit, OnChanges {
             this.addressService.country = _.find(this.countries, {id: $event.value});
 
             if (this.addressService.country) {
-                let obs = this.addressService
+                const ob = this.addressService
                     .territorialAreas1(this.addressService.country)
                     .subscribe(({data}) => {
                         if (environment.debug) console.log('DEBUG - data response from get territorial area 1: ', data);
@@ -177,7 +177,7 @@ export class AddressComponent implements OnInit, OnChanges {
                             this.territorialAreas1Input.unshift({ label: `Select a ${this.addressService.country.territorial_area_1}`, value: '' });
                         }
 
-                        obs.unsubscribe();
+                        ob.unsubscribe();
                     });
             }
         }
@@ -185,10 +185,10 @@ export class AddressComponent implements OnInit, OnChanges {
 
     handleChangeTerritorialArea1($event) {
         if ($event.value) {
-            let territorialArea1 = _.find(this.territorialAreas1, {id: $event.value});
+            const territorialArea1 = _.find(this.territorialAreas1, {id: $event.value});
 
             if (territorialArea1) {
-                let obs = this.addressService
+                const ob = this.addressService
                     .territorialAreas2(territorialArea1)
                     .subscribe(({data}) => {
                         if (environment.debug) console.log('DEBUG - data response from get territorial area 2: ', data);
@@ -201,7 +201,7 @@ export class AddressComponent implements OnInit, OnChanges {
                             this.territorialAreas2Input.unshift({ label: `Select a ${this.addressService.country.territorial_area_2}`, value: '' });
                         }
 
-                        obs.unsubscribe();
+                        ob.unsubscribe();
                     });
             }
         }
@@ -209,10 +209,10 @@ export class AddressComponent implements OnInit, OnChanges {
 
     handleChangeTerritorialArea2($event) {
         if ($event.value) {
-            let territorialArea2 = _.find(this.territorialAreas2, {id: $event.value});
+            const territorialArea2 = _.find(this.territorialAreas2, {id: $event.value});
 
             if (territorialArea2) {
-                let obs = this.addressService
+                const ob = this.addressService
                     .territorialAreas3(territorialArea2)
                     .subscribe(({data}) => {
                         if (environment.debug) console.log('DEBUG - data response from get territorial area 3: ', data);
@@ -225,7 +225,7 @@ export class AddressComponent implements OnInit, OnChanges {
                             this.territorialAreas3Input.unshift({ label: `Select a ${this.addressService.country.territorial_area_3}`, value: '' });
                         }
 
-                        obs.unsubscribe();
+                        ob.unsubscribe();
                     });
             }
         }

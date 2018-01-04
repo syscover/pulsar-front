@@ -21,7 +21,7 @@ export class DynamicFormService {
 
         if (fieldGroup) {
             // get custom fields from field group
-            this.objectService
+            const ob = this.objectService
                 .apolloClient()
                 .watchQuery({
                     fetchPolicy: 'network-only',
@@ -50,6 +50,7 @@ export class DynamicFormService {
                 })
                 .valueChanges
                 .subscribe(({data}) => {
+                    ob.unsubscribe();
                     if (environment.debug) console.log('DEBUG - data response from get custom fields: ', data);
 
                     this.fields = data['coreObjects'];

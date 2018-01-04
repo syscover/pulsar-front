@@ -33,7 +33,7 @@ export class CoreListComponent extends CoreComponent {
 
         if (environment.debug) console.log('DEBUG - Args pass to Query Objects Pagination: ', args);
 
-        this.objectService
+        const ob = this.objectService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -53,6 +53,8 @@ export class CoreListComponent extends CoreComponent {
 
                 // instance data on object list
                 this.setData(data['coreObjectsPagination']['objects']);
+
+                ob.unsubscribe();
             }, (error) => {
                 if (environment.debug) {
                     console.log('DEBUG - Error GraphQL response in data list: ', error);

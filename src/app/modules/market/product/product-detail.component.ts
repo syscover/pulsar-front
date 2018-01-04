@@ -106,7 +106,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             args['productTaxPrices'] = 1;
         }
 
-        let subs = this.objectService
+        const ob = this.objectService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -119,7 +119,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             })
             .valueChanges
             .subscribe(({data}) => {
-                subs.unsubscribe();
+                ob.unsubscribe();
                 if (environment.debug) console.log('DEBUG - response of marketProductTaxes query: ', data);
 
                 this.fg.controls['subtotal'].setValue(data['marketProductTaxes']['subtotal']);
@@ -323,7 +323,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     handleCheckSlug($event) {
-        let subs = this.objectService
+        const ob = this.objectService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -340,11 +340,10 @@ export class ProductDetailComponent extends CoreDetailComponent {
             })
             .valueChanges
             .subscribe(({data}) => {
-
+                ob.unsubscribe();
                 if (environment.debug) console.log('DEBUG - response of query product slug: ', data);
 
                 this.fg.controls['slug'].setValue(data['adminCheckSlug']);
-                subs.unsubscribe();
             });
     }
 

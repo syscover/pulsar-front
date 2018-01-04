@@ -27,7 +27,7 @@ export function jwtOptionsFactory() {
             }
         })
     ],
-    exports: [ServicesModule],
+    exports: [],
     declarations: [],
     providers: [
         ValidationMessageService

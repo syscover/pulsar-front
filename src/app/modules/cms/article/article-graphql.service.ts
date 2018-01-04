@@ -23,8 +23,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
     queryRelationsObject  = gql`
         query CmsGetRelationsArticle (
             $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlCategory:[CoreSQLQueryInput] 
-            $sqlArticle:[CoreSQLQueryInput] 
+            $sqlCategory:[CoreSQLQueryInput]
+            $sqlArticle:[CoreSQLQueryInput]
             $configStatuses:CoreConfigInput!
         ) {
             ${this.relationsFields}
@@ -39,10 +39,10 @@ export class ArticleGraphQLService extends GraphQLSchema {
 
     queryObject = gql`
         query CmsGetArticle (
-            $sql:[CoreSQLQueryInput] 
-            $sqlAttachmentFamily:[CoreSQLQueryInput] 
+            $sql:[CoreSQLQueryInput]
+            $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput]
-            $sqlArticle:[CoreSQLQueryInput] 
+            $sqlArticle:[CoreSQLQueryInput]
             $configStatuses:CoreConfigInput!
         ) {
             coreObject: cmsArticle (sql:$sql){
@@ -152,18 +152,18 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 id
                 name
                 family {
-                    id 
+                    id
                     name
                 }
                 attachment_families
             }
             cmsFamilies {
-                id 
-                name 
+                id
+                name
                 excerpt_editor_id
                 article_editor_id
-                field_group_id 
-                date 
+                field_group_id
+                date
                 title
                 slug
                 link
@@ -186,7 +186,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 }
             }
             adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-                id 
+                id
                 name
                 resource_id
                 width

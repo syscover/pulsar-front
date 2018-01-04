@@ -145,15 +145,15 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         // load attachment families depend of article familie
         if (this.section.attachment_families !== null) {
             this.attachmentFamilies = [];
-            for (let idAttachmentFamily of this.section.attachment_families) {
+            for (const idAttachmentFamily of this.section.attachment_families) {
 
-                let af = _.find(this._attachmentFamilies, {id: +idAttachmentFamily});
+                const af = _.find(this._attachmentFamilies, {id: +idAttachmentFamily});
                 this.attachmentFamilies.push(af);
                 this.imageStyles['ps-attachment-family-' + af.id] = af.name; // Images styles for Froala
             }
         } else {
             this.attachmentFamilies = this._attachmentFamilies;
-            for (let attachemntFamily of this.attachmentFamilies) {
+            for (const attachemntFamily of this.attachmentFamilies) {
                 this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
             }
         }
@@ -179,7 +179,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
 
             // get properties for get values of custom fields
-            let customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
+            const customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
 
             this.dynamicFormService.instance(
                 this.family.field_group_id,
@@ -202,7 +202,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     }
 
     argumentsRelationsObject(): Object {
-        let sqlArticle = [
+        const sqlArticle = [
             {
                 command: 'where',
                 column: 'cms_article.lang_id',
@@ -224,9 +224,9 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 operator: '<>',
                 value: this.params['id']
             });
-        };
+        }
 
-        let sqlAttachmentFamily = [
+        const sqlAttachmentFamily = [
             {
                 'command': 'where',
                 'column': 'admin_attachment_family.resource_id',
@@ -240,7 +240,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let sqlCategory = [
+        const sqlCategory = [
             {
                 command: 'where',
                 column: 'lang_id',
@@ -249,7 +249,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let configStatuses = {
+        const configStatuses = {
             key: 'pulsar-cms.statuses',
             lang: this.baseLang,
             property: 'name'
@@ -308,7 +308,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     }
 
     handleCheckSlug($event) {
-        const subs = this.objectService
+        const ob = this.objectService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -329,7 +329,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 if (environment.debug) console.log('DEBUG - response of query article slug: ', data);
 
                 this.fg.controls['slug'].setValue(data['adminCheckSlug']);
-                subs.unsubscribe();
+                ob.unsubscribe();
             });
     }
 }

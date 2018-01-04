@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CoreService } from './../../../../core/super/core.service';
-import { FieldGraphQLService } from './../../../../modules/admin/field/field-graphql.service';
 import { Country, TerritorialArea1 } from './../../../../modules/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 import gql from 'graphql-tag';
