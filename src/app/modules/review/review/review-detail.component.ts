@@ -52,16 +52,14 @@ export class ReviewDetailComponent extends CoreDetailComponent {
             return obj.lang_id === this.baseLang;
         });
 
-        for (let obj of this.object['responses']) {
-            let response = this.fb.group({
+        for (const obj of this.object['responses']) {
+            // set formArray estructure
+            this.responses.push(this.fb.group({
                 id: null,
                 question_id: null,
                 score: null,
                 text: null
-            });
-
-            // set formArray estructure
-            this.responses.push(response);
+            }));
         }
     }
 

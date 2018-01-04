@@ -39,6 +39,11 @@ const routes: Routes = [
                     { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
                     { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
+                    // Comments
+                    { path: 'comment',                                       component: ReviewListComponent },
+                    { path: 'comment/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
+                    { path: 'comment/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+
                     // Averages
                     { path: 'object-average',                               component: ObjectAverageListComponent },
                     { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},

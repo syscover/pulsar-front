@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { GraphQLSchema } from './../../../core/graphql/graphql-schema.class';
 import gql from 'graphql-tag';
 
-
 export class ReviewGraphQLService extends GraphQLSchema {
 
     queryPaginationObject = gql`

@@ -67,3 +67,14 @@ export class QuestionAverage {
     total: number;
     average: number;
 }
+
+export class Comment {
+    id: number;
+    review_id: number;
+    date: any;
+    owner_id: number;
+    name: string;
+    email: string;
+    comment: string;
+    validated: boolean;
+}

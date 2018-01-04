@@ -117,7 +117,7 @@ export class MenuComponent implements OnChanges {
             this.model.push({
                 label: 'Review', icon: 'star',
                 items: [
-                    {label: 'Replies', icon: 'comment', routerLink: ['/pulsar/review/reply']},
+                    {label: 'Comments', icon: 'comment', routerLink: ['/pulsar/review/comment']},
                     {label: 'Object Averages', icon: 'poll', routerLink: ['/pulsar/review/object-average']},
                     {label: 'Reviews', icon: 'offline_pin', routerLink: ['/pulsar/review/review']},
                     {

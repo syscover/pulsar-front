@@ -1,6 +1,6 @@
-import { GraphQLSchema as GraphQLSchemaInterface } from './graphql-schema.interface';
+// import { GraphQLSchema as GraphQLSchemaInterface } from './graphql-schema.interface';
 
-export class GraphQLSchema implements GraphQLSchemaInterface {
+export class GraphQLSchema { // implements GraphQLSchemaInterface {
 
     // model of backoffice relative at this GraphQL service
     model: string;
