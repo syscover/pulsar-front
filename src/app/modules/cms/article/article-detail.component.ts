@@ -100,7 +100,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         this.family = _.find(this._families, {id: this.object.family_id});
 
         // create copy object for change readonly properties
-        let objectInput = Object.assign({}, this.object);
+        const objectInput = Object.assign({}, this.object);
 
         // change publish and date format to Date, for calendar component
         objectInput['publish'] = new Date(this.object.publish);

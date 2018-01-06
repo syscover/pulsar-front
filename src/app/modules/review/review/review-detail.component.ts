@@ -45,7 +45,7 @@ export class ReviewDetailComponent extends CoreDetailComponent {
 
     get responses(): FormArray {
         return this.fg.get('responses') as FormArray;
-    };
+    }
 
     beforePatchValueEdit() {
         this.questions = _.filter(this.object['poll']['questions'], obj => {

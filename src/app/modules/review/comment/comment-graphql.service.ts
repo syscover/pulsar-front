@@ -30,7 +30,6 @@ export class CommentGraphQLService extends GraphQLSchema {
             coreObject: reviewComment (sql:$sql) {
                 ${this.fields}
             }
-            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -63,19 +62,53 @@ export class CommentGraphQLService extends GraphQLSchema {
             ... on ReviewComment {
                 id
                 review_id
+                review {
+                    id
+                    object_name
+                    poll_id
+                    poll {
+                        id
+                        name
+                        questions {
+                            ix
+                            id
+                            lang_id
+                            type_id
+                            name
+                            description
+                            sort
+                            high_score
+                        }
+                    }
+                    responses {
+                        id
+                        review_id
+                        question_id
+                        score
+                        text
+                    }
+                    comments {
+                        id
+                        date
+                        owner_id
+                        name
+                        email
+                        text
+                    }
+                }
                 date
                 owner_id
                 name
                 email
-                comment
+                text
                 validated
             }
         `;
 
         /* this.relationsFields = `
-            reviewPolls {
+            reviewReview {
                 id
-                name
+                object_name
             }
         `; */
 

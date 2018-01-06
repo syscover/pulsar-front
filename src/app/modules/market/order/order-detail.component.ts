@@ -50,7 +50,7 @@ export class OrderDetailComponent extends CoreDetailComponent {
 
     beforePatchValueEdit() {
         // create copy object for change readonly properties
-        let objectInput = Object.assign({}, this.object);
+        const objectInput = Object.assign({}, this.object);
 
         // change date format to Date, for calendar component
         objectInput['date'] = new Date(this.object.date);

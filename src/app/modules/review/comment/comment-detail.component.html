@@ -1,10 +1,12 @@
 <div class="container-fluid form-group">
-    <h1>Review</h1>
+    <h1>Comment</h1>
 
     <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
 
+        <input type="hidden" formControlName="review_id">
+
         <p-tabView>
-            <p-tabPanel header="Review" leftIcon="ui-icon-check" class="padding-top-20">
+            <p-tabPanel header="Comment" leftIcon="ui-icon-check" class="padding-top-20">
 
                 <div class="row margin-top-30">
                     <ps-input   [form]="fg" 
@@ -12,50 +14,39 @@
                                 label="ID."
                                 type="text"
                                 name="id" class="col-sm-6 col-md-3"></ps-input>
+
+                    <ps-calendar    [form]="fg" 
+                                    [errors]="formErrors"
+                                    [showTime]="true"
+                                    [showIcon]="true"
+                                    dateFormat="dd/mm/yy"
+                                    label="Date"
+                                    name="date" 
+                                    class="col-sm-12 offset-md-3 col-md-6"></ps-calendar>
                 </div>
                 
                 <div class="row">
                     <ps-input   [form]="fg" 
                                 [errors]="formErrors"
-                                label="Object name"
+                                label="Name"
                                 type="text"
-                                name="object_name" 
+                                name="name" 
                                 class="col-sm-12 col-md-6"></ps-input>
                     <ps-input   [form]="fg"
                                 [errors]="formErrors"
-                                label="Object email"
+                                label="Email"
                                 type="text"
-                                name="object_email" 
+                                name="email" 
                                 class="col-sm-12 col-md-6"></ps-input>
                 </div>
                 <div class="row">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Customer name"
-                                type="text"
-                                name="customer_name" 
-                                class="col-sm-12 col-md-6"></ps-input>
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Customer email"
-                                type="text"
-                                name="customer_email" 
-                                class="col-sm-12 col-md-6"></ps-input>
+                    <ps-textarea    [form]="fg"
+                                    rows="10"
+                                    name="text"
+                                    placeholder="Comment"
+                                    class="col-12"></ps-textarea>
                 </div>
                 <div class="row">
-                    <ps-input   [form]="fg" 
-                                [errors]="formErrors"
-                                label="Average"
-                                type="text"
-                                name="average" 
-                                class="col-sm-6 col-md-4"></ps-input>
-                    
-                </div>
-                <div class="row">
-                        <ps-checkbox    [form]="fg"
-                                        name="completed"
-                                        label="Completed" 
-                                        class="col-sm-12 col-md-4"></ps-checkbox>
                         <ps-checkbox    [form]="fg"
                                         name="validated"
                                         label="Validated" 
@@ -63,33 +54,40 @@
                 </div>
             </p-tabPanel>
 
+            <p-tabPanel header="Conversation" leftIcon="ui-icon-comment">
+                <div class="conversation" *ngIf="object.review">
+                    <div class="comment-container" *ngFor="let comment of object.review.comments" [class.customer]="comment.owner_id == 2" [class.object]="comment.owner_id == 1">
+                        <div class="comment">
+                            <div class="date">{{ comment.name }} ({{ comment.date }})</div>
+                            <div class="text">{{ comment.text }}</div>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
             <p-tabPanel header="Questions" leftIcon="ui-icon-help">
-
-                <div formArrayName="responses">
-                    <div class="row" *ngFor="let question of questions; let i=index" [formGroupName]="i">
-                        <input type="hidden" formControlName="id">
-                        <input type="hidden" formControlName="question_id">
+                <div *ngIf="object.review">
+                    <div class="row" *ngFor="let question of questions">
                         <div class="col-12">
-                            <strong>{{ question.name }}</strong><br>
+                            <strong>{{ question.name }}</strong>
+                            <br>
                             <small>{{ question.description }}</small>
                         </div>
                         <ng-container [ngSwitch]="question.type_id">
                             <div *ngSwitchCase="1" class="col-12">
                                 <div class="form-group">
-                                    <select class="form-control" formControlName="score">
-                                        <option *ngFor="let number of question.high_score | numberArray" [value]="number">{{ number }}</option>
+                                    <select class="form-control" disabled>
+                                        <option *ngFor="let number of question.high_score | numberArray" [value]="number" [selected]="findResponse(question.id).score === number">{{ number }}</option>
                                     </select>
                                 </div>
                             </div>
                             <div *ngSwitchCase="2" class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" formControlName="text"></textarea>
+                                    <textarea class="form-control" readonly>{{ findResponse(question.id).text }}</textarea>
                                 </div>
                             </div>
                         </ng-container>
                     </div>
                 </div>
-
             </p-tabPanel>
         </p-tabView>
 

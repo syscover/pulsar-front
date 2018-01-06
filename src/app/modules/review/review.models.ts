@@ -7,6 +7,7 @@ export class Poll {
     default_high_score: number;
     mailing_days: number;
     expiration_days: number;
+    questions: Question[];
 }
 
 export class Question {
@@ -23,6 +24,14 @@ export class Question {
     average: QuestionAverage;
 }
 
+export class Response {
+    id: number;
+    review_id: number;
+    question_id: number;
+    score: number;
+    text: string;
+}
+
 export class QuestionType {
     id: number;
     name: string;
@@ -32,6 +41,7 @@ export class Review {
     id: number;
     date: any;
     poll_id: number;
+    poll: Poll;
     object_id: number;
     object_type: string;
     object_name: string;
@@ -47,6 +57,8 @@ export class Review {
     mailing: any;
     sent: boolean;
     expiration: any;
+    comments: Comment[];
+    responses: Response[];
 }
 
 export class ObjectAverage {
@@ -71,6 +83,7 @@ export class QuestionAverage {
 export class Comment {
     id: number;
     review_id: number;
+    review: Review;
     date: any;
     owner_id: number;
     name: string;

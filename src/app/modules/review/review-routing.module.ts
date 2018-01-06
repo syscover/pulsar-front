@@ -4,6 +4,8 @@ import { DataContainerComponent } from './../../shared/components/data-container
 import { ErrorComponent } from './../../shared/components/errors/error.component';
 import { AuthGuard } from './../../core/auth/auth-guard.service';
 
+import { CommentListComponent } from './comment/comment-list.component';
+import { CommentDetailComponent } from './comment/comment-detail.component';
 import { ObjectAverageListComponent } from './object-average/object-average-list.component';
 import { ObjectAverageDetailComponent } from './object-average/object-average-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
@@ -40,9 +42,9 @@ const routes: Routes = [
                     { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
                     // Comments
-                    { path: 'comment',                                       component: ReviewListComponent },
-                    { path: 'comment/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
-                    { path: 'comment/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+                    { path: 'comment',                                       component: CommentListComponent },
+                    { path: 'comment/create',                                component: CommentDetailComponent,                       data: { action: 'create' }},
+                    { path: 'comment/show/:id',                              component: CommentDetailComponent,                       data: { action: 'edit' }},
 
                     // Averages
                     { path: 'object-average',                               component: ObjectAverageListComponent },
