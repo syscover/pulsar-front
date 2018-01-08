@@ -320,12 +320,11 @@ export class ArticleDetailComponent extends CoreDetailComponent {
                 variables: {
                     model: 'Syscover\\Cms\\Models\\Article',
                     slug: $event.target.value,
-                    id: this.object.id
+                    id: this.object.id ? this.object.id : null
                 }
             })
             .valueChanges
             .subscribe(({data}) => {
-
                 if (environment.debug) console.log('DEBUG - response of query article slug: ', data);
 
                 this.fg.controls['slug'].setValue(data['adminCheckSlug']);

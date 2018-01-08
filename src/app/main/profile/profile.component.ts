@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../../modules/admin/admin.models';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../core/auth/auth.service';
+import { Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'ps-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
     constructor(
         private router: Router,
         private authService: AuthService,
-        private jwtHelper: JwtHelperService
+        private jwtHelper: JwtHelperService,
+        private apollo: Apollo
     ) { }
 
     ngOnInit() {
@@ -48,6 +50,7 @@ export class ProfileComponent implements OnInit {
 
     logout() {
         this.authService.logout();
+        this.apollo.getClient().resetStore();
         this.router.navigate(['/pulsar/login']);
     }
 }

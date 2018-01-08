@@ -196,6 +196,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 format
             }
             cmsArticles (sql:$sqlArticle) {
+                ix
                 id
                 name
             }

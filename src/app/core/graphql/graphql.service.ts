@@ -15,7 +15,8 @@ export class GraphQLService {
 
         // id cache policy
         const cache = new InMemoryCache({
-            dataIdFromObject: (o) => {
+            dataIdFromObject: (o: any) => {
+
                 function guid() {
                     function s4() {
                         return Math.floor((1 + Math.random()) * 0x10000)
@@ -27,29 +28,29 @@ export class GraphQLService {
 
                 const trackId = false;
 
-                if (o['__typename'] === 'CoreTranslationField' || o['__typename'] === 'CoreConfigOption') {
+                if (o.__typename === 'CoreTranslationField' || o.__typename === 'CoreConfigOption') {
                     const uid = guid();
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, uid);
+                    if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, uid);
                     return uid;
                 }
 
                 if (o['ix']) {
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['ix']}`);
-                    return `${o['__typename']}-${o['ix']}`;
+                    if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, `${o.__typename}-${o['ix']}`);
+                    return `${o.__typename}-${o['ix']}`;
                 }
 
                 if (o['id']) {
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['id']}`);
-                    return `${o['__typename']}-${o['id']}`;
+                    if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, `${o.__typename}-${o['id']}`);
+                    return `${o.__typename}-${o['id']}`;
                 }
 
                 if (o['key']) {
-                    if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, `${o['__typename']}-${o['key']}`);
-                    return `${o['__typename']}-${o['key']}`;
+                    if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, `${o.__typename}-${o['key']}`);
+                    return `${o.__typename}-${o['key']}`;
                 }
 
                 const id = guid();
-                if (trackId) console.log(`Apollo ID for type ${o['__typename']}:`, id);
+                if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, id);
 
                 return id;
             }
