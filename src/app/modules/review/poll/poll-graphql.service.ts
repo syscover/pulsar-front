@@ -60,6 +60,7 @@ export class PollGraphQLService extends GraphQLSchema {
                 name
                 email_template
                 send_notification
+                poll_route
                 validate
                 default_high_score
                 mailing_days

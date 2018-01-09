@@ -29,6 +29,8 @@
         "../node_modules/cropperjs/dist/cropper.min.css",
         "../node_modules/nanoscroller/bin/css/nanoscroller.css",
         "../node_modules/primeng/resources/primeng.min.css",
+        "assets/vendor/loading-btn/loading.css",
+        "assets/vendor/loading-btn/loading-btn.css",
         "assets/vendor/flag-icon-css/css/flag-icon.css",
         "assets/vendor/font-awesome/scss/font-awesome.scss",
         "assets/vendor/jquery-ui/jquery-ui.min.css",

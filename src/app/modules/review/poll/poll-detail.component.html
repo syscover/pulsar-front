@@ -28,6 +28,14 @@
                         class="col-12"></ps-input>
         </div>
         <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Route to acces poll"
+                        type="text"
+                        name="poll_route" 
+                        class="col-12"></ps-input>
+        </div>
+        <div class="row">
             <ps-checkbox    [form]="fg"
                             name="send_notification"
                             label="Send notifications to owner object" 
