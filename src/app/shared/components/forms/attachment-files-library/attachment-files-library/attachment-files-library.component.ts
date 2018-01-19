@@ -291,7 +291,7 @@ export class AttachmentFilesLibraryComponent implements OnInit, OnChanges {
 
         // set crop on dialog image
         this.cropper = new Cropper(this.cropperImage.nativeElement, {
-            aspectRatio: this.attachmentFamily.width / this.attachmentFamily.height,
+            aspectRatio: this.attachmentFamily.width && this.attachmentFamily.height ? this.attachmentFamily.width / this.attachmentFamily.height : NaN,
             viewMode: 2,
             minContainerWidth: 0,
             preview: this.cropperPreview.nativeElement

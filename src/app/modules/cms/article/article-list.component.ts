@@ -14,7 +14,7 @@ export class ArticleListComponent extends CoreListComponent {
     // paramenters for parent class
     // columns where will be used for global searchs
     columnsSearch: string[] = [
-        'cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_section.name'
+        'cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_article.slug', 'cms_section.name'
     ];
     statuses: Status[] = [];
 
