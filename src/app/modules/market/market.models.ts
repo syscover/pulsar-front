@@ -39,7 +39,7 @@ export class TaxRateZone {
     territorial_area_1_id: string;
     territorial_area_2_id: string;
     territorial_area_3_id: string;
-    cp: string;
+    zip: string;
     tax_rate: string;
 }
 
@@ -120,7 +120,7 @@ export class Warehouse {
     territorial_area_1_id: string;
     territorial_area_2_id: string;
     territorial_area_3_id: string;
-    cp: string;
+    zip: string;
     locality: string;
     address: string;
     latitude: string;

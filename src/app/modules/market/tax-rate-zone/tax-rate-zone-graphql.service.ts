@@ -68,7 +68,7 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema {
                 territorial_area_1_id
                 territorial_area_2_id
                 territorial_area_3_id
-                cp
+                zip
                 tax_rate
             }
         `;

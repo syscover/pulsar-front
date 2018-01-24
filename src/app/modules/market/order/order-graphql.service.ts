@@ -87,15 +87,15 @@ export class OrderGraphQLService extends GraphQLSchema {
             marketOrderStatuses {
                 ix
                 id
-                lang_id 
-                name 
+                lang_id
+                name
                 active
                 data_lang
             }
             marketPaymentMethods {
                 ix
                 id
-                lang_id 
+                lang_id
                 name
                 sort
                 active

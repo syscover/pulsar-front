@@ -31,7 +31,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent {
             territorial_area_1_id: null,
             territorial_area_2_id: null,
             territorial_area_3_id: null,
-            cp: '',
+            zip: '',
             tax_rate: [null, Validators.required ]
         });
     }
