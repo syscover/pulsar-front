@@ -14,6 +14,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
 
     @HostBinding('class') classes = 'animated fadeIn';
 
+    loading = false;
     dataRoute: DataRoute; // static dataRoute Object pass from route module
     formErrors: Object;
     fg: FormGroup;
@@ -188,8 +189,7 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
     relationsObject(): void {
         if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') {
 
-            let args = this.argumentsRelationsObject();
-
+            const args = this.argumentsRelationsObject();
             let options;
 
             // check if there are any variable
@@ -239,6 +239,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
             console.log(this.fg);
             return; // has any validation error when emit submit event
         }
+
+        this.loading = true;
 
         let obs: Observable<any>; // Observable
         let args = {}; // arguments for observable

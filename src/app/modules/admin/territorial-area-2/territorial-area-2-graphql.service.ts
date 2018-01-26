@@ -62,6 +62,7 @@ export class TerritorialArea2GraphQLService extends GraphQLSchema {
                 country_id
                 territorial_area_1_id
                 name
+                slug
             }
         `;
 

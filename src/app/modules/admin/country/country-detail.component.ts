@@ -26,14 +26,15 @@ export class CountryDetailComponent extends CoreDetailComponent {
     createForm() {
         this.fg = this.fb.group({
             ix: null,
-            id: ['', Validators.required ],
-            name: ['', Validators.required],
-            lang_id: ['', Validators.required],
-            prefix: ['', Validators.required],
-            sort: ['', Validators.required],
-            territorial_area_1: '',
-            territorial_area_2: '',
-            territorial_area_3: '',
+            id: [null, Validators.required ],
+            name: [null, Validators.required],
+            slug: null,
+            lang_id: [null, Validators.required],
+            prefix: [null, Validators.required],
+            sort: [null, Validators.required],
+            territorial_area_1: null,
+            territorial_area_2: null,
+            territorial_area_3: null,
             zones: [],
         });
     }

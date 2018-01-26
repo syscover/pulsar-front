@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../../modules/prime-ng.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
 import { AddressComponent } from './address/address.component';
 import { ChipsComponent } from './chips.component';
 import { CalendarComponent } from './calendar.component';

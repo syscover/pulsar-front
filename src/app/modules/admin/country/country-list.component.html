@@ -6,7 +6,8 @@
                 (onLazyLoad)="getRecords($event, [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': baseLang }])">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>  
+    <p-column field="name" header="Name" [sortable]="true"></p-column>
+    <p-column field="slug" header="Slug" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

@@ -9,7 +9,7 @@ import { CountryGraphQLService } from './country-graphql.service';
 export class CountryListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'admin_country.id', 'admin_country.name'
+        'admin_country.id', 'admin_country.name', 'admin_country.slug'
     ];
 
     constructor(

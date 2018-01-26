@@ -61,6 +61,7 @@ export class CountryGraphQLService extends GraphQLSchema {
                 id
                 lang_id
                 name
+                slug
                 sort
                 prefix
                 territorial_area_1

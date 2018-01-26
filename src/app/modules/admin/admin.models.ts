@@ -25,6 +25,7 @@ export class Country {
     lang_id: string;
     lang: Lang;
     name: string;
+    slug: string;
     sort: number;
     prefix: string;
     territorial_area_1: string;
@@ -38,6 +39,7 @@ export class TerritorialArea1 {
     id: string;
     country_id: string;
     name: string;
+    slug: string;
 }
 
 export class TerritorialArea2 {
@@ -45,6 +47,7 @@ export class TerritorialArea2 {
     country_id: string;
     territorial_area_1_id: string;
     name: string;
+    slug: string;
 }
 
 export class TerritorialArea3 {
@@ -53,6 +56,7 @@ export class TerritorialArea3 {
     territorial_area_1_id: string;
     territorial_area_2_id: string;
     name: string;
+    slug: string;
 }
 
 export class Package {
