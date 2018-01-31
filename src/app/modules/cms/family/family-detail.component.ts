@@ -47,16 +47,21 @@ export class FamilyDetailComponent extends CoreDetailComponent {
 
     argumentsRelationsObject() {
 
-        let sqlFieldGroup = [
+        const sqlFieldGroup = [
             {
                 command: 'where',
                 column: 'resource_id',
                 operator: '=',
                 value: 'cms-article-family'
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_field_group.name'
             }
         ];
 
-        let configEditors = {
+        const configEditors = {
             key: 'pulsar-cms.editors'
         };
 

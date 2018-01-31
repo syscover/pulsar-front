@@ -22,6 +22,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
 
     queryRelationsObject  = gql`
         query CmsGetRelationsArticle (
+            $sqlSection: [CoreSQLQueryInput]
+            $sqlFamily: [CoreSQLQueryInput]
             $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput]
             $sqlArticle:[CoreSQLQueryInput]
@@ -40,6 +42,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
     queryObject = gql`
         query CmsGetArticle (
             $sql:[CoreSQLQueryInput]
+            $sqlSection: [CoreSQLQueryInput]
+            $sqlFamily: [CoreSQLQueryInput]
             $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput]
             $sqlArticle:[CoreSQLQueryInput]
@@ -147,7 +151,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
         `;
 
         this.relationsFields = `
-            cmsSections {
+            cmsSections (sql:$sqlSection) {
                 ix
                 id
                 name
@@ -157,7 +161,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 }
                 attachment_families
             }
-            cmsFamilies {
+            cmsFamilies (sql:$sqlFamily) {
                 id
                 name
                 excerpt_editor_id

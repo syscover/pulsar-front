@@ -226,6 +226,22 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             });
         }
 
+        const sqlSection = [
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'cms_section.name'
+            }
+        ];
+
+        const sqlFamily = [
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'cms_family.name'
+            }
+        ];
+
         const sqlAttachmentFamily = [
             {
                 'command': 'where',
@@ -257,6 +273,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
         return {
             sqlArticle,
+            sqlSection,
+            sqlFamily,
             sqlAttachmentFamily,
             sqlCategory,
             configStatuses
