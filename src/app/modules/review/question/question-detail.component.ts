@@ -50,7 +50,7 @@ export class QuestionDetailComponent extends CoreDetailComponent {
 
     argumentsRelationsObject(): Object {
 
-        let configQuestionTypes = {
+        const configQuestionTypes = {
             key: 'pulsar-review.questionTypes',
             lang: this.baseLang,
             property: 'name'

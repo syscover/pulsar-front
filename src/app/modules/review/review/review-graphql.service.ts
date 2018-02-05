@@ -9,7 +9,9 @@ export class ReviewGraphQLService extends GraphQLSchema {
             coreObjectsPagination: reviewReviewsPagination (sql:$sql) {
                 total
                 filtered
-                objects (sql:$sql)
+                objects (sql:$sql) {
+                    ${this.fields}
+                }
             }
         }`;
 

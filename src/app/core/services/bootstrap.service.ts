@@ -19,7 +19,8 @@ export class BootstrapService {
             // start config from local file, this operation is do it across http, for being a local file
             this.http.get('./config.json')
                 .catch((error: any): any => {
-                    console.log('Configuration file "config.json" could not be read, please create config.json file');
+                    console.log(error);
+                    console.error('Configuration file "config.json" could not be read, please create config.json file');
                     resolve(true);
                     return Observable.throw(error.json().error || 'Server error');
                 }).subscribe( (config: Object) => {

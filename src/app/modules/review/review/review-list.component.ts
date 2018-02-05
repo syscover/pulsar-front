@@ -9,7 +9,7 @@ import { ReviewGraphQLService } from './review-graphql.service';
 export class ReviewListComponent extends CoreListComponent {
 
     columnsSearch: string[] = [
-        'id', 'object_name', 'customer_email', 'average'
+        'id', 'object_name', 'customer_email'
     ];
 
     constructor(

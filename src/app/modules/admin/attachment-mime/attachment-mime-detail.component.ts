@@ -42,7 +42,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent {
 
         // get resources allowed to add attachment mime
         const resourcesAllowed = data.configAttachmentResources;
-        let resources = _.filter(<Resource[]>data.adminResources, obj => {
+        const resources = _.filter(<Resource[]>data.adminResources, obj => {
             return _.find(resourcesAllowed, ['id', obj.id]) ? true : false;
         });
 

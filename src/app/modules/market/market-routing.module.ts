@@ -85,6 +85,14 @@ const routes: Routes = [
                     { path: 'product/create/:lang_id/:id',                  component: ProductDetailComponent,                      data: { action: 'create-lang' }},
                     { path: 'product/show/:lang_id/:id',                    component: ProductDetailComponent,                      data: { action: 'edit' }},
 
+                    // Cart rules
+                    // { path: 'cart-rule',                                 component: CartRuleListComponent },
+                    // { path: 'cart-rule/create',                          component: CartRuleDetailComponent, data: { action: 'create' }},
+                    // { path: 'cart-rule/create/:lang_id/:id',             component: CartRuleDetailComponent, data: { action: 'create-lang' }},
+                    // { path: 'cart-rule/show/:lang_id/:id',               component: CartRuleDetailComponent, data: { action: 'edit' }},
+
+                    // Catalog rule
+
                     // Warehouses
                     { path: 'warehouse',                                    component: WarehouseListComponent },
                     { path: 'warehouse/create',                             component: WarehouseDetailComponent,                    data: { action: 'create' }},

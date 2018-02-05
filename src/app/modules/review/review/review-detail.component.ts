@@ -43,17 +43,13 @@ export class ReviewDetailComponent extends CoreDetailComponent {
         });
     }
 
-    get responses(): FormArray {
-        return this.fg.get('responses') as FormArray;
-    }
-
     beforePatchValueEdit() {
         this.questions = _.filter(this.object['poll']['questions'], obj => {
             return obj.lang_id === this.baseLang;
         });
 
-        for (const obj of this.object['responses']) {
-            // set formArray estructure
+        // init formArray estructure
+        for (const obj of this.questions) {
             this.responses.push(this.fb.group({
                 id: null,
                 question_id: null,
@@ -61,6 +57,10 @@ export class ReviewDetailComponent extends CoreDetailComponent {
                 text: null
             }));
         }
+    }
+
+    get responses(): FormArray {
+        return this.fg.get('responses') as FormArray;
     }
 
     getCustomArgumentsEditPostRecord(args, object) {

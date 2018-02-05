@@ -77,6 +77,12 @@ export class MenuComponent implements OnChanges {
                         ]
                     },
                     {
+                        label: 'Marketing', icon: 'store_mall_directory',
+                        items: [
+                            {label: 'Cart rules', icon: 'shopping_cart', routerLink: ['/pulsar/market/product']}
+                        ]
+                    },
+                    {
                         label: 'Taxes', icon: 'keyboard_hide',
                         items: [
                             {label: 'Customer class taxes', icon: 'group', routerLink: ['/pulsar/market/customer-class-tax']},
