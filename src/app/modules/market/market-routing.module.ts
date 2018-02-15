@@ -4,6 +4,8 @@ import { DataContainerComponent } from './../../shared/components/data-container
 import { ErrorComponent } from './../../shared/components/errors/error.component';
 import { AuthGuard } from './../../core/auth/auth-guard.service';
 
+import { CartPriceRuleListComponent } from './cart-price-rule/cart-price-rule-list.component';
+import { CartPriceRuleDetailComponent } from './cart-price-rule/cart-price-rule-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
@@ -85,11 +87,11 @@ const routes: Routes = [
                     { path: 'product/create/:lang_id/:id',                  component: ProductDetailComponent,                      data: { action: 'create-lang' }},
                     { path: 'product/show/:lang_id/:id',                    component: ProductDetailComponent,                      data: { action: 'edit' }},
 
-                    // Cart rules
-                    // { path: 'cart-rule',                                 component: CartRuleListComponent },
-                    // { path: 'cart-rule/create',                          component: CartRuleDetailComponent, data: { action: 'create' }},
-                    // { path: 'cart-rule/create/:lang_id/:id',             component: CartRuleDetailComponent, data: { action: 'create-lang' }},
-                    // { path: 'cart-rule/show/:lang_id/:id',               component: CartRuleDetailComponent, data: { action: 'edit' }},
+                    // Cart Price rules
+                    { path: 'cart-price-rule',                              component: CartPriceRuleListComponent },
+                    { path: 'cart-price-rule/create',                       component: CartPriceRuleDetailComponent,                data: { action: 'create' }},
+                    { path: 'cart-price-rule/create/:lang_id/:id',          component: CartPriceRuleDetailComponent,                data: { action: 'create-lang' }},
+                    { path: 'cart-price-rule/show/:lang_id/:id',            component: CartPriceRuleDetailComponent,                data: { action: 'edit' }},
 
                     // Catalog rule
 

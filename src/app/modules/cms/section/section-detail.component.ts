@@ -41,12 +41,17 @@ export class SectionDetailComponent extends CoreDetailComponent {
 
     argumentsRelationsObject() {
 
-        let sqlAttachmentFamily = [
+        const sqlAttachmentFamily = [
             {
                 command: 'where',
-                column: 'resource_id',
+                column: 'admin_attachment_family.resource_id',
                 operator: '=',
                 value: 'cms-article'
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_attachment_family.name'
             }
         ];
 

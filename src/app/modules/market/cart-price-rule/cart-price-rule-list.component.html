@@ -1,18 +1,19 @@
-<ps-datatable-header title="Fields {{ objects.length }} de {{ filteredRecords }} - filtrados de {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
+<ps-datatable-header title="Cart price rules {{ objects.length }} of {{ filteredRecords }} - filters of {{ totalRecords }}" [createLink]="baseUri + '/create'"></ps-datatable-header>
 <ps-datatable-search [dataTable]="dataTableObjects" label="Search"></ps-datatable-search>
 
 <p-dataTable    #dataTableObjects
-                [value]="objects" 
+                [value]="objects"
                 [responsive]="true"
                 [lazy]="true" 
                 [rows]="10" 
                 [paginator]="true" 
-                [totalRecords]="totalRecords" 
+                [totalRecords]="totalRecords"
+                [rowsPerPageOptions]="[10,25,50]"
                 (onLazyLoad)="getRecords($event)">
 
-    <p-column field="id" sortField="admin_field.id" header="#" [sortable]="true"></p-column>
-    <p-column field="name" sortField="admin_field.name" header="Name" [sortable]="true"></p-column>
-    <p-column field="field_group_name" sortField="admin_field_group.name" header="Group" [sortable]="true"></p-column>
+    <p-column field="id" header="#" [sortable]="true"></p-column>
+    <!-- <p-column field="name" header="Name" [sortable]="true"></p-column> -->
+    <p-column field="active" header="Active" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">
             @

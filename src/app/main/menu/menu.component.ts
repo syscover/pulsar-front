@@ -79,7 +79,7 @@ export class MenuComponent implements OnChanges {
                     {
                         label: 'Marketing', icon: 'store_mall_directory',
                         items: [
-                            {label: 'Cart rules', icon: 'shopping_cart', routerLink: ['/pulsar/market/product']}
+                            {label: 'Cart Price rules', icon: 'shopping_cart', routerLink: ['/pulsar/market/cart-price-rule']}
                         ]
                     },
                     {

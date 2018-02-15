@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './../../shared/shared.module';
 import { MarketRoutingModule } from './market-routing.module';
 
+import { CartPriceRuleDetailComponent } from './cart-price-rule/cart-price-rule-detail.component';
+import { CartPriceRuleGraphQLService } from './cart-price-rule/cart-price-rule-graphql.service';
+import { CartPriceRuleListComponent } from './cart-price-rule/cart-price-rule-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CategoryGraphQLService } from './category/category-graphql.service';
 import { CategoryListComponent } from './category/category-list.component';
@@ -43,6 +46,8 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         MarketRoutingModule
     ],
     declarations: [
+        CartPriceRuleDetailComponent,
+        CartPriceRuleListComponent,
         CategoryDetailComponent,
         CategoryListComponent,
         CustomerClassTaxDetailComponent,
@@ -67,6 +72,7 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
         WarehouseDetailComponent
     ],
     providers: [
+        CartPriceRuleGraphQLService,
         CategoryGraphQLService,
         CustomerClassTaxGraphQLService,
         GroupCustomerClassTaxGraphQLService,

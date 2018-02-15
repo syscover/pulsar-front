@@ -151,3 +151,35 @@ export class OrderRow {
     description: string;
     price: number;
 }
+
+export class DiscountType {
+    id: number;
+    name: string;
+}
+
+export class CartPriceRurle {
+    id: number;
+    names: string;
+    descriptions: string;
+    active: boolean;
+    group_ids: string;
+    customer_ids: string;
+    combinable: boolean;
+    priority: number;
+    has_coupon: boolean;
+    coupon_code: string;
+    coupon_uses: number;
+    customer_uses: number;
+    total_uses: number;
+    enable_from: string;
+    enable_to: string;
+    condition_rules: string;
+    discount_type_id: number;
+    discount_fixed_amount: number;
+    discount_percentage: number;
+    maximum_discount_amount: number;
+    apply_shipping_amount: boolean;
+    free_shipping: boolean;
+    product_rules: string;
+    data_lang: string;
+}

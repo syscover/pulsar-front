@@ -176,7 +176,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
     }
 
     argumentsRelationsObject(): Object {
-        let sqlCategory = [
+        const sqlCategory = [
             {
                 command: 'where',
                 column: 'lang_id',
@@ -185,7 +185,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let sqlAttachmentFamily = [
+        const sqlAttachmentFamily = [
             {
                 'command': 'where',
                 'column': 'admin_attachment_family.resource_id',
@@ -199,7 +199,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let sqlProduct = [
+        const sqlProduct = [
             {
                 'command': 'where',
                 'column': 'market_product_lang.lang_id',
@@ -220,9 +220,9 @@ export class ProductDetailComponent extends CoreDetailComponent {
                 operator: '<>',
                 value: this.params['id']
             });
-        };
+        }
 
-        let sqlFieldGroup = [
+        const sqlFieldGroup = [
             {
                 command: 'where',
                 column: 'resource_id',
@@ -231,7 +231,7 @@ export class ProductDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let sqlStock = [
+        const sqlStock = [
             {
                 command: 'where',
                 column: 'product_id',
@@ -240,13 +240,13 @@ export class ProductDetailComponent extends CoreDetailComponent {
             }
         ];
 
-        let configProductTypes = {
+        const configProductTypes = {
             key: 'pulsar-market.productTypes',
             lang: this.baseLang,
             property: 'name'
         };
 
-        let configPriceTypes = {
+        const configPriceTypes = {
             key: 'pulsar-market.priceTypes',
             lang: this.baseLang,
             property: 'name'

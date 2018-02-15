@@ -1,26 +1,29 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { Params } from '@angular/router';
+//import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../../core/super/core-detail.component';
-import { FieldGraphQLService } from './field-graphql.service';
+import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { SelectItem } from 'primeng/primeng';
-import { Field, FieldType, FieldGroup, DataType } from './../admin.models';
+import { Group } from './../../crm/crm.models';
+import { ProductType } from './../market.models';
 
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'ps-field-detail',
-    templateUrl: 'field-detail.component.html'
+    selector: 'ps-cart-price-rule-detail',
+    templateUrl: 'cart-price-rule-detail.component.html'
 })
-export class FieldDetailComponent extends CoreDetailComponent {
+export class CartPriceRuleDetailComponent extends CoreDetailComponent {
 
-    fieldGroups: SelectItem[] = [];
+    groups: SelectItem[] = [];
+    discountTypes: SelectItem[] = [];
+     /*
     fieldTypes: SelectItem[] = [];
-    dataTypes: SelectItem[] = [];
+    dataTypes: SelectItem[] = []; */
 
     constructor(
         protected injector: Injector,
-        protected graphQL: FieldGraphQLService
+        protected graphQL: CartPriceRuleGraphQLService
     ) {
         super(injector, graphQL);
     }
@@ -28,22 +31,30 @@ export class FieldDetailComponent extends CoreDetailComponent {
     createForm() {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
-            field_group_id: [null, Validators.required ],
             lang_id: [null, Validators.required],
-            label: [null, Validators.required ],
-            name: [null, Validators.required ],
-            field_type_id: [null, Validators.required ],
-            data_type_id: [null, Validators.required ],
-            required: null,
-            sort: null,
-            max_length: null,
-            pattern: null,
-            label_class: null,
-            component_class: null
+            name: [null, Validators.required],
+            description: [null, Validators.required],
+            active: [null, Validators.required],
+            group_ids: [],
+            combinable: [null, Validators.required],
+            priority: [null, Validators.required],
+            has_coupon: [null, Validators.required],
+            coupon_code: null,
+            coupon_uses: null,
+            customer_uses: null,
+            total_uses: null,
+            enable_from: null,
+            enable_to: null,
+            discount_type_id: [null, Validators.required],
+            discount_fixed_amount: null,
+            discount_percentage: null,
+            maximum_discount_amount: null,
+            apply_shipping_amount: [null, Validators.required],
+            free_shipping: [null, Validators.required]
         });
     }
 
-    setData(response?) {
+    /* setData(response?) {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             this.object = response; // function to set custom data
             this.fg.patchValue(this.object); // set values of form
@@ -78,9 +89,9 @@ export class FieldDetailComponent extends CoreDetailComponent {
                 }
             }
         }
-    }
+    } */
 
-    disabledForm() {
+   /*  disabledForm() {
         this.fg.controls['field_group_id'].disable();
         this.fg.controls['name'].disable();
         this.fg.controls['field_type_id'].disable();
@@ -105,9 +116,9 @@ export class FieldDetailComponent extends CoreDetailComponent {
             }]},
             this.argumentsRelationsObject()
         );
-    }
+    } */
 
-    argumentsRelationsObject(): Object {
+    /* argumentsRelationsObject(): Object {
         return {
             configFieldTypes: {
                 key: 'pulsar-admin.field_types'
@@ -117,24 +128,31 @@ export class FieldDetailComponent extends CoreDetailComponent {
             }
         };
     }
+    */
+
+    argumentsRelationsObject(): Object {
+
+        const configDiscountTypes = {
+            key: 'pulsar-market.discountTypes',
+            lang: this.baseLang,
+            property: 'name'
+        };
+
+        return {
+            configDiscountTypes
+        };
+    }
 
     setRelationsData(data: any) {
         // set field groups
-        this.fieldGroups = _.map(<FieldGroup[]>data['adminFieldGroups'], obj => {
+        this.groups = _.map(<Group[]>data['crmGroups'], obj => {
             return { value: obj.id, label: obj.name };
         });
-        this.fieldGroups.unshift({ label: 'Select a group', value: '' });
 
-        // set fields types
-        this.fieldTypes = _.map(<FieldType[]>data['coreConfigFieldTypes'], obj => {
+        // market discount types
+        this.discountTypes = _.map(<ProductType[]>data['marketDiscountTypes'], obj => {
             return { value: obj.id, label: obj.name };
         });
-        this.fieldTypes.unshift({ label: 'Select a field type', value: '' });
-
-        // set data types
-        this.dataTypes = _.map(<DataType[]>data['coreConfigDataTypes'], obj => {
-            return { value: obj.id, label: obj.name };
-        });
-        this.dataTypes.unshift({ label: 'Select a data type', value: '' });
+        this.discountTypes.unshift({ label: 'Select a product type', value: '' });
     }
 }

@@ -173,7 +173,7 @@ export class ProductGraphQLService extends GraphQLSchema {
                 name
             }
             adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-                id 
+                id
                 name
                 resource_id
                 width
