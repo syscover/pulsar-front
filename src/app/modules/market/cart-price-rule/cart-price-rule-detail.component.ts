@@ -37,7 +37,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             active: [null, Validators.required],
             group_ids: [],
             combinable: [null, Validators.required],
-            priority: [null, Validators.required],
+            priority: null,
             has_coupon: [null, Validators.required],
             coupon_code: null,
             coupon_uses: null,
@@ -131,7 +131,6 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
     */
 
     argumentsRelationsObject(): Object {
-
         const configDiscountTypes = {
             key: 'pulsar-market.discountTypes',
             lang: this.baseLang,

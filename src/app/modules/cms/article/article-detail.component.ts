@@ -193,10 +193,8 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
     getCustomArgumentsPostRecord(args: Object, object: any) {
         // serialeize Date object to don't be changed by apollo client
-        args['object']['publish'] = args['object']['publish'].toString();
-        if (args['object']['date']) {
-            args['object']['date'] = args['object']['date'].toString();
-        }
+        if (args['object']['publish']) args['object']['publish'] = args['object']['publish'].toString();
+        if (args['object']['date']) args['object']['date'] = args['object']['date'].toString();
 
         return args;
     }
