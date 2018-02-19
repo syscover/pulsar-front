@@ -104,9 +104,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
         // change publish and date format to Date, for calendar component
         objectInput['publish'] = new Date(this.object.publish);
-        if (this.object.date) {
-            objectInput['date'] = new Date(this.object.date);
-        }
+        if (this.object.date) objectInput['date'] = new Date(this.object.date);
 
         // overwrite object with object cloned
         this.object = objectInput;

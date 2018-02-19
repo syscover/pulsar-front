@@ -171,8 +171,8 @@ export class CartPriceRurle {
     coupon_uses: number;
     customer_uses: number;
     total_uses: number;
-    enable_from: string;
-    enable_to: string;
+    enable_from: any;
+    enable_to: any;
     condition_rules: string;
     discount_type_id: number;
     discount_fixed_amount: number;

@@ -1,11 +1,11 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-//import { Params } from '@angular/router';
+import { Params } from '@angular/router';
 import { CoreDetailComponent } from './../../../core/super/core-detail.component';
 import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 import { Group } from './../../crm/crm.models';
-import { ProductType } from './../market.models';
+import { ProductType, CartPriceRurle } from './../market.models';
 
 import * as _ from 'lodash';
 
@@ -17,9 +17,6 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
 
     groups: SelectItem[] = [];
     discountTypes: SelectItem[] = [];
-     /*
-    fieldTypes: SelectItem[] = [];
-    dataTypes: SelectItem[] = []; */
 
     constructor(
         protected injector: Injector,
@@ -33,12 +30,12 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             id: [{value: null, disabled: true}],
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
-            description: [null, Validators.required],
-            active: [null, Validators.required],
+            description: null,
+            active: null,
             group_ids: [],
-            combinable: [null, Validators.required],
+            combinable: null,
             priority: null,
-            has_coupon: [null, Validators.required],
+            has_coupon: null,
             coupon_code: null,
             coupon_uses: null,
             customer_uses: null,
@@ -49,49 +46,84 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             discount_fixed_amount: null,
             discount_percentage: null,
             maximum_discount_amount: null,
-            apply_shipping_amount: [null, Validators.required],
-            free_shipping: [null, Validators.required]
+            apply_shipping_amount: null,
+            free_shipping: null
         });
     }
 
-    /* setData(response?) {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-            this.object = response; // function to set custom data
-            this.fg.patchValue(this.object); // set values of form
+    // overwrite this method for not implement lang_id property in aguments
+    // field object has translations in field name in json format
+    getCustomArgumentsGetRecord(args: Object, params: Params): any {
+        return Object.assign({}, {
+            sql: [{
+                command: 'where',
+                column: 'market_cart_price_rule.id',
+                operator: '=',
+                value: params['id']
+            }]},
+            this.argumentsRelationsObject()
+        );
+    }
 
+    beforePatchValueEdit() {
+        // create copy object for change readonly properties
+        const objectInput = Object.assign({}, this.object);
+
+        // change publish and date format to Date, for calendar component
+        if (this.object['enable_from']) objectInput['enable_from'] = new Date(this.object['enable_from']);
+        if (this.object['enable_to']) objectInput['enable_to'] = new Date(this.object['enable_to']);
+
+        // overwrite object with object cloned
+        this.object = objectInput;
+    }
+
+    afterPatchValueEdit() {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
             // set lang, this type of objects hasn't land_id in your table
             this.fg.patchValue({lang_id: this.lang.id});
+        }
 
-            if (this.dataRoute.action === 'create-lang') {
+        if (this.dataRoute.action === 'create-lang') {
 
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
-                        return el['id'] === this.baseLang
-                    })['value']
-                );
+            // set name field
+            this.fg.controls['name'].setValue(
+                this.object['names'].find((el) => {
+                    return el['id'] === this.baseLang;
+                })['value']
+            );
+            // set description field
+            this.fg.controls['description'].setValue(
+                this.object['descriptions'].find((el) => {
+                    return el['id'] === this.baseLang;
+                })['value']
+            );
 
-                // disabled inputs that hasn't caontaint multi language
-                this.disabledForm();
+            // disabled inputs that hasn't caontaint multi language
+            //this.disabledForm();
 
-            } else if (this.dataRoute.action === 'edit') {
+        } else if (this.dataRoute.action === 'edit') {
 
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
-                        return el['id'] === this.lang.id;
-                    })['value']
-                );
+            // set name field
+            this.fg.controls['name'].setValue(
+                this.object['names'].find((el) => {
+                    return el['id'] === this.lang.id;
+                })['value']
+            );
+            // set description field
+            this.fg.controls['description'].setValue(
+                this.object['descriptions'].find((el) => {
+                    return el['id'] === this.lang.id;
+                })['value']
+            );
 
-                // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) {
-                    this.disabledForm();
-                }
+            // disabled elemetns if edit diferent language that base lang
+            if (this.lang.id !== this.baseLang) {
+              //  this.disabledForm();
             }
         }
-    } */
+    }
 
-   /*  disabledForm() {
+    /* disabledForm() {
         this.fg.controls['field_group_id'].disable();
         this.fg.controls['name'].disable();
         this.fg.controls['field_type_id'].disable();
@@ -102,21 +134,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
         this.fg.controls['pattern'].disable();
         this.fg.controls['label_class'].disable();
         this.fg.controls['component_class'].disable();
-    }
-
-    // overwrite this method for not implement lang_id property in aguments
-    // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): any {
-        return Object.assign({}, {
-            sql: [{
-                command: 'where',
-                column: 'admin_field.id',
-                operator: '=',
-                value: params['id']
-            }]},
-            this.argumentsRelationsObject()
-        );
     } */
+
 
     /* argumentsRelationsObject(): Object {
         return {
@@ -127,8 +146,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
                 key: 'pulsar-admin.data_types'
             }
         };
-    }
-    */
+    } */
 
     argumentsRelationsObject(): Object {
         const configDiscountTypes = {
