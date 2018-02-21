@@ -6,15 +6,14 @@ import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { SelectItem } from 'primeng/primeng';
 import { Group } from './../../crm/crm.models';
 import { ProductType, CartPriceRurle } from './../market.models';
-
 import * as _ from 'lodash';
 
 @Component({
     selector: 'ps-cart-price-rule-detail',
     templateUrl: 'cart-price-rule-detail.component.html'
 })
-export class CartPriceRuleDetailComponent extends CoreDetailComponent {
-
+export class CartPriceRuleDetailComponent extends CoreDetailComponent
+{
     groups: SelectItem[] = [];
     discountTypes: SelectItem[] = [];
 
@@ -25,7 +24,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
         super(injector, graphQL);
     }
 
-    createForm() {
+    createForm()
+    {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             lang_id: [null, Validators.required],
@@ -39,7 +39,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             coupon_code: null,
             coupon_uses: null,
             customer_uses: null,
-            total_uses: null,
+            total_uses: [{value: null, disabled: true}],
             enable_from: null,
             enable_to: null,
             discount_type_id: [null, Validators.required],
@@ -53,7 +53,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
 
     // overwrite this method for not implement lang_id property in aguments
     // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): any {
+    getCustomArgumentsGetRecord(args: Object, params: Params): any
+    {
         return Object.assign({}, {
             sql: [{
                 command: 'where',
@@ -65,7 +66,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
         );
     }
 
-    beforePatchValueEdit() {
+    beforePatchValueEdit()
+    {
         // create copy object for change readonly properties
         const objectInput = Object.assign({}, this.object);
 
@@ -78,7 +80,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
     }
 
     afterPatchValueEdit() {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang')
+        {
             // set lang, this type of objects hasn't land_id in your table
             this.fg.patchValue({lang_id: this.lang.id});
         }
@@ -99,10 +102,10 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             );
 
             // disabled inputs that hasn't caontaint multi language
-            //this.disabledForm();
-
-        } else if (this.dataRoute.action === 'edit') {
-
+            this.disabledForm();
+        }
+        else if (this.dataRoute.action === 'edit')
+        {
             // set name field
             this.fg.controls['name'].setValue(
                 this.object['names'].find((el) => {
@@ -117,38 +120,32 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
             );
 
             // disabled elemetns if edit diferent language that base lang
-            if (this.lang.id !== this.baseLang) {
-              //  this.disabledForm();
-            }
+            if (this.lang.id !== this.baseLang) this.disabledForm();
         }
     }
 
-    /* disabledForm() {
-        this.fg.controls['field_group_id'].disable();
-        this.fg.controls['name'].disable();
-        this.fg.controls['field_type_id'].disable();
-        this.fg.controls['data_type_id'].disable();
-        this.fg.controls['required'].disable();
-        this.fg.controls['sort'].disable();
-        this.fg.controls['max_length'].disable();
-        this.fg.controls['pattern'].disable();
-        this.fg.controls['label_class'].disable();
-        this.fg.controls['component_class'].disable();
-    } */
+    disabledForm()
+    {
+        this.fg.controls['active'].disable();
+        this.fg.controls['group_ids'].disable();
+        this.fg.controls['combinable'].disable();
+        this.fg.controls['priority'].disable();
+        this.fg.controls['has_coupon'].disable();
+        this.fg.controls['coupon_code'].disable();
+        this.fg.controls['coupon_uses'].disable();
+        this.fg.controls['customer_uses'].disable();
+        this.fg.controls['enable_from'].disable();
+        this.fg.controls['enable_to'].disable();
+        this.fg.controls['discount_type_id'].disable();
+        this.fg.controls['discount_fixed_amount'].disable();
+        this.fg.controls['discount_percentage'].disable();
+        this.fg.controls['maximum_discount_amount'].disable();
+        this.fg.controls['apply_shipping_amount'].disable();
+        this.fg.controls['free_shipping'].disable();
+    }
 
-
-    /* argumentsRelationsObject(): Object {
-        return {
-            configFieldTypes: {
-                key: 'pulsar-admin.field_types'
-            },
-            configDataTypes: {
-                key: 'pulsar-admin.data_types'
-            }
-        };
-    } */
-
-    argumentsRelationsObject(): Object {
+    argumentsRelationsObject(): Object
+    {
         const configDiscountTypes = {
             key: 'pulsar-market.discountTypes',
             lang: this.baseLang,
@@ -160,7 +157,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setRelationsData(data: any) {
+    setRelationsData(data: any)
+    {
         // set field groups
         this.groups = _.map(<Group[]>data['crmGroups'], obj => {
             return { value: obj.id, label: obj.name };

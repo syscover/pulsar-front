@@ -12,7 +12,14 @@
                 (onLazyLoad)="getRecords($event)">
 
     <p-column field="id" header="#" [sortable]="true"></p-column>
-    <!-- <p-column field="name" header="Name" [sortable]="true"></p-column> -->
+    <p-column>
+        <ng-template pTemplate="header">
+            Name
+        </ng-template>
+        <ng-template let-object="rowData" pTemplate="body">
+            {{ object.names | getLangValue:'es':'value':'id' }}
+        </ng-template>
+    </p-column>
     <p-column field="active" header="Active" [sortable]="true"></p-column>
     <p-column styleClass="col-button center">
         <ng-template pTemplate="header">

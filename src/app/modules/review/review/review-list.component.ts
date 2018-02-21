@@ -6,8 +6,8 @@ import { ReviewGraphQLService } from './review-graphql.service';
     selector: 'ps-review-list',
     templateUrl: './review-list.component.html'
 })
-export class ReviewListComponent extends CoreListComponent {
-
+export class ReviewListComponent extends CoreListComponent
+{
     columnsSearch: string[] = [
         'id', 'object_name', 'customer_email'
     ];
@@ -17,5 +17,17 @@ export class ReviewListComponent extends CoreListComponent {
         protected graphQL: ReviewGraphQLService
     ) {
         super(injector, graphQL);
+    }
+
+    // overwite method to get statuses
+    getCustomArgumentsGetRecords(args: Object): Object
+    {
+        args['sql'].push({
+            command: 'orderBy',
+            operator: 'desc',
+            column: 'review_review.id'
+        });
+
+        return args;
     }
 }

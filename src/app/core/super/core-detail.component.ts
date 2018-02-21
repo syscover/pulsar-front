@@ -270,8 +270,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                     variables: args
                 });
         }
-        if (this.dataRoute.action === 'create-lang') {
-
+        if (this.dataRoute.action === 'create-lang')
+        {
             // remove id to avoid confict with duplicate id
             delete args['object']['ix'];
 
@@ -287,8 +287,8 @@ export class CoreDetailComponent extends CoreComponent implements OnInit {
                     variables: args
                 });
         }
-        if (this.dataRoute.action === 'edit') {
-
+        if (this.dataRoute.action === 'edit') 
+        {
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsEditPostRecord(args, object);
 
