@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit
                 } 
                 else 
                 {
-                    this.router.navigate([`/`]);
+                    this.router.navigate(['/apps/dashboard']);
                 }
             }, (error) => {
                 this.loading = false;

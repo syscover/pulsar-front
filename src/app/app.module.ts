@@ -17,13 +17,22 @@ import { FuseSampleModule } from './main/content/apps/sample/sample.module';
 import { AdminModule } from './main/content/apps/admin/admin.module';
 
 const appRoutes: Routes = [
+    { 
+        path: '', 
+        redirectTo: 'apps/auth/login', 
+        pathMatch: 'full' 
+    },
     {
         path        : 'apps',
         loadChildren: './main/content/apps/apps.module#AppsModule'
     },
     {
+        path        : 'pages',
+        loadChildren: './main/content/pages/pages.module#FusePagesModule'
+    },
+    {
         path      : '**',
-        redirectTo: 'apss/sample/sample'
+        redirectTo: 'pages/errors/error-404'
     }
 ];
 

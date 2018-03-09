@@ -7,15 +7,16 @@ import { fuseAnimations } from './../../../../../core/animations';
 
 @Component({
     selector: 'dh2-country-detail',
-    templateUrl: './country-detail.component.html'
+    templateUrl: './country-detail.component.html',
+    animations: fuseAnimations
 })
 export class CountryDetailComponent extends CoreDetailComponent {
 
-    /* zones: SelectItem[] = [
-        { value: 'territorial_areas_1', label: 'Territorial Areas 1' },
-        { value: 'territorial_areas_2', label: 'Territorial Areas 2' },
-        { value: 'territorial_areas_3', label: 'Territorial Areas 3' }
-    ]; */
+    zones: any[] = [
+        { id: 'territorial_areas_1', name: 'Territorial Areas 1' },
+        { id: 'territorial_areas_2', name: 'Territorial Areas 2' },
+        { id: 'territorial_areas_3', name: 'Territorial Areas 3' }
+    ];
 
     constructor(
         protected injector: Injector,

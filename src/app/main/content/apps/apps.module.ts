@@ -19,6 +19,11 @@ const routes = [
         loadChildren: './auth/auth.module#AuthModule',
     },
     {
+        path        : 'dashboard',
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        canLoad     : [AuthorizationService]
+    },
+    {
         path        : 'admin',
         loadChildren: './admin/admin.module#AdminModule',
         canLoad     : [AuthorizationService]

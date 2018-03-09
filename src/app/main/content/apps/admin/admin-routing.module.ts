@@ -1,6 +1,6 @@
-import { AuthorizationService } from './../../core/services/authorization.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorizationService } from './../../core/services/authorization.service';
 
 
 // import { DataContainerComponent } from './../../shared/components/data-container/data-container.component';

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { SharedModule } from '../core/modules/shared.module';
-
 import { FuseMainComponent } from './main.component';
 import { FuseContentComponent } from './content/content.component';
 import { FuseFooterComponent } from './footer/footer.component';

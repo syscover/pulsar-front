@@ -9,13 +9,19 @@ export const locale = {
         },
         'APPS': {
             'ACTIONS': 'Acciones',
+            'ADD': 'Añadir',
             'DELETE': 'Borrar',
+            'DETAIL': 'Detalle',
             'EDIT': 'Editar',
+            'ID': 'Id',
             'NAME': 'Nombre',
             'NEW.M': 'Nuevo',
             'NEW.F': 'Nueva',
+            'PREFIX': 'Prefix',
+            'SAVE': 'Guardar',
             'SEARCH': 'Buscar',
             'SLUG': 'Slug',
+            'SORT': 'Orden',
             'TRANSLATE': 'Traducir',
             'TRANSLATIONS': 'Traducciones'
         }

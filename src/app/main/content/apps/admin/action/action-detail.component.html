@@ -26,10 +26,10 @@
                             {{ object.name }}
                         </div>
                         <div class="h2" *ngIf="dataRoute.action ==='create'">
-                            New Product
+                            {{ 'APPS.NEW.F' | translate }} {{ 'ADMIN.ACTION' | translate }}
                         </div>
                         <div class="subtitle secondary-text">
-                            <span>Action Detail</span>
+                            <span>{{ 'APPS.DETAIL' | translate }}</span>
                         </div>
                     </div>
                 </div>
@@ -39,14 +39,14 @@
                         class="save-product-button mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.invalid"
                         *ngIf="dataRoute.action ==='create'" (click)="postRecord(object)">
-                    <span>ADD</span>
+                    <span>{{ 'APPS.ADD' | translate }}</span>
                 </button>
     
                 <button mat-raised-button
                         class="save-product-button mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.invalid || fg.pristine"
                         *ngIf="dataRoute.action ==='edit'" (click)="postRecord(object)">
-                    <span>SAVE</span>
+                    <span>{{ 'APPS.SAVE' | translate }}</span>
                 </button>
             </div>
             <!-- / HEADER -->
@@ -62,22 +62,18 @@
                     
                         <input type="hidden" formControlName="ix">
 
-                        <div fxLayout="row wrap" fxLayoutGap="15px">
+                        <div fxLayout="row">
                             <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="Id" formControlName="id" required>
+                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
                             </mat-form-field>
-                            <mat-form-field class="col-12 col-md-4">
-                                    <input matInput placeholder="Id" formControlName="id" required>
-                                </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
                             <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="Name" formControlName="name" required>
+                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                             </mat-form-field>
                         </div>
                         
-
                     </form>
                 </div>
                 <!-- / CONTENT -->
@@ -89,48 +85,3 @@
     <!-- / CENTER -->
     
 </div>
-    
-
-
-
-
-
-
-
-<!-- <div class="container-fluid form-group">
-    <h1>Action</h1> -->
-
-    <!-- <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
-
-        <input type="hidden" formControlName="ix">
-
-        <div class="row">
-            <ps-input   [form]="fg" 
-                        [errors]="formErrors"
-                        label="ID."
-                        type="text"
-                        name="id" class="col-sm-6 col-md-3"></ps-input>
-        </div>
-        <div class="row">
-            <ps-input   [form]="fg" 
-                        [errors]="formErrors"
-                        label="Name"
-                        type="text"
-                        name="name" class="col-12"></ps-input>
-        </div>
-
-        
-        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
-            <ps-button  type="submit" 
-                        icon="fa-check" 
-                        label="Save" 
-                        class="col-sm-10 col-md-3"></ps-button>
-
-            <ps-button  type="button" 
-                        icon="ui-icon-clear" 
-                        label="Cancel" 
-                        [routerLink]="[baseUri]"
-                        class="col-sm-10 col-md-3"></ps-button>
-        </div>
-    </form> -->
-<!-- </div> -->
