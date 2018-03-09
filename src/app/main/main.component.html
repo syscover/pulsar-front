@@ -1,36 +1,72 @@
-<div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}" (click)="onLayoutClick()">
+<mat-sidenav-container>
 
-    <div #layoutContainer class="layout-container" 
-            [ngClass]="{'menu-layout-static': ! isOverlay(),
-            'menu-layout-overlay': isOverlay(),
-            'layout-menu-overlay-active': overlayMenuActive,
-            'menu-layout-horizontal': isHorizontal(),
-            'menu-layout-slim': isSlim(),
-            'layout-menu-static-inactive': staticMenuDesktopInactive,
-            'layout-menu-static-active': staticMenuMobileActive}">
+    <div id="fuse-main-content">
 
-        <ps-topbar></ps-topbar>
+        <!-- TOOLBAR: Above -->
+        <ng-container *ngIf="fuseSettings.layout.toolbar === 'above'">
+            <fuse-toolbar class="above" [ngClass]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
+        </ng-container>
+        <!-- / TOOLBAR: Above -->
 
-        <div class="layout-menu" [ngClass]="{'layout-menu-dark':darkMenu}" (click)="onMenuClick($event)">
-            <div #layoutMenuScroller class="nano">
-                <div class="nano-content menu-scroll-content">
-                    <ps-profile *ngIf="profileMode=='inline' && ! isHorizontal()"></ps-profile>
+        <!-- NAVBAR: Top -->
+        <fuse-navbar-horizontal class="top-navbar" fxHide fxShow.gt-md
+                                [ngClass]="fuseSettings.colorClasses.navbar"
+                                *ngIf="fuseSettings.layout.navigation === 'top'">
+        </fuse-navbar-horizontal>
+        <!-- / NAVBAR: Top -->
 
-                    <ps-menu    [packages]="packages"
-                                [reset]="resetMenu"></ps-menu>
-                    
-                </div>
+        <div id="wrapper">
+
+            <!-- NAVBAR: Left -->
+            <fuse-navbar-vertical [folded]="fuseSettings.layout.navigationFolded"
+                                  class="left-navbar"
+                                  [ngClass]="fuseSettings.colorClasses.navbar"
+                                  *ngIf="fuseSettings.layout.navigation === 'left' || fuseSettings.layout.navigation === 'top'">
+            </fuse-navbar-vertical>
+            <!-- / NAVBAR: Left -->
+
+            <div class="content-wrapper">
+
+                <!-- TOOLBAR: Below -->
+                <ng-container *ngIf="fuseSettings.layout.toolbar === 'below'">
+                    <fuse-toolbar class="below" [ngClass]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
+                </ng-container>
+                <!-- / TOOLBAR: Below -->
+
+                <fuse-content></fuse-content>
+
+                <!-- FOOTER: Below -->
+                <ng-container *ngIf="fuseSettings.layout.footer === 'below'">
+                    <fuse-footer class="below" [ngClass]="fuseSettings.colorClasses.footer"></fuse-footer>
+                </ng-container>
+                <!-- / FOOTER: Below -->
+
             </div>
+
+            <!-- NAVBAR: Right -->
+            <fuse-navbar-vertical [folded]="fuseSettings.layout.navigationFolded"
+                                  class="right-navbar"
+                                  [ngClass]="fuseSettings.colorClasses.navbar"
+                                  *ngIf="fuseSettings.layout.navigation === 'right'">
+            </fuse-navbar-vertical>
+            <!-- / NAVBAR: Right -->
+
         </div>
-        
-        <div class="layout-main">
-            <div class="layout-content">
-                <router-outlet></router-outlet>
-                <ps-footer></ps-footer>
-            </div>
-        </div>
-        
-        <div class="layout-mask"></div>
+
+        <!-- FOOTER: Above -->
+        <ng-container *ngIf="fuseSettings.layout.footer === 'above'">
+            <fuse-footer class="above" [ngClass]="fuseSettings.colorClasses.footer"></fuse-footer>
+        </ng-container>
+        <!-- FOOTER: Above -->
+
     </div>
 
-</div>
+    <!-- QUICK PANEL -->
+    <mat-sidenav fuseMatSidenavHelper="quick-panel" align="end">
+        <fuse-quick-panel></fuse-quick-panel>
+    </mat-sidenav>
+    <!-- / QUICK PANEL -->
+
+</mat-sidenav-container>
+
+<!-- <fuse-theme-options></fuse-theme-options> -->

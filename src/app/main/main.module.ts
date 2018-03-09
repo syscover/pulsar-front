@@ -1,44 +1,45 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MainRoutingModule } from './main-routing.module';
-import { MainComponent } from './main.component';
-import { TopbarComponent } from './topbar/topbar.component';
-import { ProfileComponent } from './profile/profile.component';
-import { MenuComponent, SubMenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
-import { CoreService } from './../core/super/core.service';
-import { GrowlModule } from 'primeng/primeng';
-import { MessageService } from 'primeng/components/common/messageservice';
+import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../core/modules/shared.module';
+
+import { FuseMainComponent } from './main.component';
+import { FuseContentComponent } from './content/content.component';
+import { FuseFooterComponent } from './footer/footer.component';
+import { FuseNavbarVerticalComponent } from './navbar/vertical/navbar-vertical.component';
+import { FuseToolbarComponent } from './toolbar/toolbar.component';
+import { FuseNavigationModule } from '../core/components/navigation/navigation.module';
+import { FuseNavbarVerticalToggleDirective } from './navbar/vertical/navbar-vertical-toggle.directive';
+import { FuseNavbarHorizontalComponent } from './navbar/horizontal/navbar-horizontal.component';
+import { FuseQuickPanelComponent } from './quick-panel/quick-panel.component';
+import { FuseThemeOptionsComponent } from '../core/components/theme-options/theme-options.component';
+import { FuseShortcutsModule } from '../core/components/shortcuts/shortcuts.module';
+import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        GrowlModule,
-        MainRoutingModule
-    ],
     declarations: [
-        MainComponent,
-        TopbarComponent,
-        ProfileComponent,
-        MenuComponent,
-        SubMenuComponent,
-        FooterComponent
+        FuseContentComponent,
+        FuseFooterComponent,
+        FuseMainComponent,
+        FuseNavbarVerticalComponent,
+        FuseNavbarHorizontalComponent,
+        FuseToolbarComponent,
+        FuseNavbarVerticalToggleDirective,
+        FuseThemeOptionsComponent,
+        FuseQuickPanelComponent
     ],
-    providers: [
-        CoreService,
-        MessageService
+    imports     : [
+        SharedModule,
+        RouterModule,
+        FuseNavigationModule,
+        FuseShortcutsModule,
+        FuseSearchBarModule
     ],
-    exports: [
-        CommonModule,
-        MainComponent,
-        TopbarComponent,
-        ProfileComponent,
-        MenuComponent,
-        SubMenuComponent,
-        FooterComponent
+    exports     : [
+        FuseMainComponent
     ]
 })
 
-export class MainModule {
-    constructor() {}
+export class FuseMainModule
+{
 }

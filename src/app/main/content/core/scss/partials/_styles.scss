@@ -1,0 +1,17 @@
+.new-button {
+    text-transform: uppercase;
+}
+.translations-opt {
+    .flag-icon {
+        margin-right: 10px;
+    }
+}
+#login {
+    .mat-spinner {
+        display: inline-block;
+        margin-left: 20px;
+        circle {
+            stroke: #fff !important;
+        }
+    }
+}

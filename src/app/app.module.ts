@@ -1,43 +1,57 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CoreModule } from './main/content/core/core.module';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MainModule } from './main/main.module';
-// import { RouteReuseStrategy } from '@angular/router';
-// import { CustomReuseStrategy } from './shared/router/custom-reuse-srtrategy';
-import { PulsarFormsModule } from './shared/components/forms/pulsar-forms.module';
-import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import 'hammerjs';
+import { SharedModule } from './core/modules/shared.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './main/login/login.component';
+import { FuseMainModule } from './main/main.module';
+import { FuseSplashScreenService } from './core/services/splash-screen.service';
+import { FuseConfigService } from './core/services/config.service';
+import { FuseNavigationService } from './core/components/navigation/navigation.service';
+import { FuseSampleModule } from './main/content/apps/sample/sample.module';
 
-// TODO, Ver como recolocar componentes o servicios compartidos entre módulos y que perteneces a una sección
-import { PackageGraphQLService } from './modules/admin/package/package-graphql.service';
-import { FieldGraphQLService } from './modules/admin/field/field-graphql.service';
+import { AdminModule } from './main/content/apps/admin/admin.module';
+
+const appRoutes: Routes = [
+    {
+        path        : 'apps',
+        loadChildren: './main/content/apps/apps.module#AppsModule'
+    },
+    {
+        path      : '**',
+        redirectTo: 'apss/sample/sample'
+    }
+];
 
 @NgModule({
     declarations: [
-        AppComponent,
-        LoginComponent
+        AppComponent
     ],
-    imports: [
+    imports     : [
         BrowserModule,
+        HttpClientModule,
         BrowserAnimationsModule,
-        FormsModule,
-        PulsarFormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
+        RouterModule.forRoot(appRoutes),
+        SharedModule,
+        TranslateModule.forRoot(),
+        FuseMainModule,
+
         CoreModule,
-        MainModule
+        FuseSampleModule
     ],
-    providers: [
-        // { provide: RouteReuseStrategy, useClass: CustomReuseStrategy }
-        PackageGraphQLService,
-        FieldGraphQLService
+    providers   : [
+        FuseSplashScreenService,
+        FuseConfigService,
+        FuseNavigationService
     ],
-    bootstrap: [
+    bootstrap   : [
         AppComponent
     ]
 })
-
-export class AppModule { }
+export class AppModule
+{
+}

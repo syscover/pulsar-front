@@ -1,0 +1,52 @@
+@import "src/app/core/scss/fuse";
+
+:host {
+    .header {
+        .search-input-wrapper {
+            max-width: 480px;
+        }
+        @include media-breakpoint-down(xs) {
+            height: 176px !important;
+            min-height: 176px !important;
+            max-height: 176px !important;
+        }
+    }
+    .mat-header-row {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 1;
+    }
+    .mat-column-actions,
+    .mat-column-translations {
+        display: flex;
+        justify-content: center;
+    }
+    .top-bg {
+        @include media-breakpoint-down(xs) {
+            height: 240px;
+        }
+    }
+    .loading-shape {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 56px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .translations-btn {
+        margin: 4px;
+        mat-icon {
+            color: #fbfbfb;
+        }
+    }
+    .uncompleted-translations button {
+        background-color: #e26363;
+    }
+}
+

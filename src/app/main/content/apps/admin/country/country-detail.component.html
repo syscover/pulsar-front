@@ -1,0 +1,119 @@
+
+
+
+
+
+
+<!-- <div class="container-fluid form-group">
+    <h1>Country</h1>
+
+    <form [formGroup]="fg" (ngSubmit)="postRecord(object)" novalidate>
+
+        <input type="hidden" formControlName="ix">
+        <input type="hidden" formControlName="lang_id">
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="ID."
+                        type="text"
+                        name="id" 
+                        class="col-sm-6 col-md-3 mr-md-auto"></ps-input>
+
+            <ps-lang-label  [lang]="lang" class="col-sm-6 mr-md-auto col-md-3"></ps-lang-label>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Name"
+                        type="text"
+                        name="name" 
+                        class="col-12"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg" 
+                        [errors]="formErrors"
+                        label="Slug"
+                        type="text"
+                        name="slug" 
+                        class="col-12"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="prefix"
+                        type="text"
+                        label="Prefix" 
+                        class="col-sm-12 col-md-4"></ps-input>
+
+            <ps-spinner [form]="fg" 
+                        [errors]="formErrors"
+                        label="Sort"
+                        [min]="0"
+                        name="sort" 
+                        class="col-sm-12 col-md-4"></ps-spinner>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_1"
+                        type="text"
+                        label="Territorial Area 1" 
+                        class="col-sm-12 col-md-6"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_2"
+                        type="text"
+                        label="Territorial Area 2" 
+                        class="col-sm-12 col-md-6"></ps-input>
+        </div>
+
+        <div class="row">
+            <ps-input   [form]="fg"
+                        [errors]="formErrors"
+                        name="territorial_area_3"
+                        type="text"
+                        label="Territorial Area 3" 
+                        class="col-sm-12 col-md-6"></ps-input>
+        </div>
+
+        <div class="row">
+                <ps-multi-select    [form]="fg"
+                                    [errors]="formErrors"
+                                    label="Select a enabled zones"
+                                    [options]="zones"
+                                    name="zones"
+                                    class="col-sm-12 col-md-6">
+            </ps-multi-select>
+        </div>
+
+        
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons">
+            <ps-button  type="submit" 
+                        icon="fa-check" 
+                        label="Save" 
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        [routerLink]="[baseUri]"
+                        class="col-sm-10 col-md-3"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        *ngIf="dataRoute.action === 'edit'"
+                        label="Delete translation" 
+                        (click)="deleteRecord(object)" 
+                        className="red-btn"
+                        class="col-sm-10 col-md-3"></ps-button>
+        </div>
+    </form>
+ </div> -->
