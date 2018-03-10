@@ -114,7 +114,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.lang_id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>

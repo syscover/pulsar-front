@@ -62,10 +62,11 @@
                     
                         <input type="hidden" formControlName="ix">
 
-                        <div fxLayout="row wrap" fxLayoutGap="15px">
+                        <div fxLayout="row wrap">
                             <mat-form-field class="col-12 col-md-4">
                                 <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
                             </mat-form-field>
+                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                         </div>
 
                         <div fxLayout="row">
@@ -86,25 +87,25 @@
                                 <input type="number" matInput placeholder="{{ 'APPS.PREFIX' | translate }}">
                             </mat-form-field>
                             <mat-form-field class="col-md-4">
-                                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number" required>
+                                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
                             <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1" required>
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
                             <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2" required>
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
                             <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3" required>
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
                             </mat-form-field>
                         </div>
 
