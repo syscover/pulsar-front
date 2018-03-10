@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { animate } from '@angular/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
@@ -10,8 +10,8 @@ import { fuseAnimations } from './../../../../../core/animations';
     templateUrl: './country-detail.component.html',
     animations: fuseAnimations
 })
-export class CountryDetailComponent extends CoreDetailComponent {
-
+export class CountryDetailComponent extends CoreDetailComponent implements OnInit
+{
     zones: any[] = [
         { id: 'territorial_areas_1', name: 'Territorial Areas 1' },
         { id: 'territorial_areas_2', name: 'Territorial Areas 2' },
@@ -23,6 +23,19 @@ export class CountryDetailComponent extends CoreDetailComponent {
         protected graphQL: CountryGraphQLService
     ) {
         super(injector, graphQL);
+    }
+
+    ngOnInit() 
+    {
+        super.ngOnInit();
+
+        // load translations for component
+        this.translateService.get(['ADMIN.COUNTRY']).subscribe(response => {
+            this.translations = Object.assign(this.translations, response);
+            this.translations['COMPONENT.OBJECT_NAME'] = this.translations['ADMIN.COUNTRY'];
+        });
+
+        this.init();
     }
 
     createForm() {

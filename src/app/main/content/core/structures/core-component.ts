@@ -1,23 +1,26 @@
 import { Injector, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-// import { ConfirmationService, DataTable } from 'primeng/primeng';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 import { Core } from './core';
 import { HttpService } from './../services/http.service';
 import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
+import { FuseConfirmDialogComponent } from './../../../../core/components/confirm-dialog/confirm-dialog.component';
+
 
 export abstract class CoreComponent extends Core 
 {
-    // reference of datatable element of list views
-    // @ViewChild(('dataTableObjects')) dataTable: DataTable;
-
     protected router: Router;
     protected route: ActivatedRoute;
     protected httpService: HttpService;
+    protected translateService: TranslateService;
     protected params: Params;
-    protected langs: Lang[];            // activated application lang
-    // protected confirmationService: ConfirmationService;
+    protected langs: Lang[];                        // activated application lang
+    protected snackBar: MatSnackBar;
+    protected translations: Object = {};            // translations for used in component
+    protected dialog: MatDialog;
 
     // baseUri to set component urls in templete, this property must to be public because is used in template
     baseUri: string;
@@ -30,14 +33,16 @@ export abstract class CoreComponent extends Core
 
     constructor(
         protected injector: Injector,
-        protected graphQL: GraphQLSchema
+        protected graphQL: GraphQLSchema,
     ) {
         super(injector);
 
         this.router = this.injector.get(Router);
         this.route = this.injector.get(ActivatedRoute);
         this.httpService = this.injector.get(HttpService);
-        // this.confirmationService = this.injector.get(ConfirmationService);
+        this.translateService = this.injector.get(TranslateService);
+        this.snackBar = this.injector.get(MatSnackBar);
+        this.dialog = this.injector.get(MatDialog);
 
         // set object properties
         this.setBaseUri();
@@ -79,6 +84,13 @@ export abstract class CoreComponent extends Core
         args = this.getCustomArgumentsDeleteRecord(object, object);
 
         if (this.env.debug) console.log('DEBUG - Args sending to delete object: ', args);
+
+        let dialogRef = this.dialog.open(FuseConfirmDialogComponent, {
+            
+            data: { 
+                question: '¿quieres borrar el commponente tal y cual?'
+            }
+          });
 
         // confirm to delete object
         /* this.confirmationService.confirm({

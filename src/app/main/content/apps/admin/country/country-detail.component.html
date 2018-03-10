@@ -34,20 +34,39 @@
                     </div>
                 </div>
                 <!-- / APP TITLE -->
-    
-                <button mat-raised-button
-                        class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid"
-                        *ngIf="dataRoute.action ==='create'" (click)="postRecord(object)">
-                    <span>{{ 'APPS.ADD' | translate }}</span>
-                </button>
-    
-                <button mat-raised-button
-                        class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || fg.pristine"
-                        *ngIf="dataRoute.action ==='edit'" (click)="postRecord(object)">
-                    <span>{{ 'APPS.SAVE' | translate }}</span>
-                </button>
+
+                <div fxLayoutGap="30px">
+                    <button mat-raised-button
+                            class="action-btn mat-white-bg mt-16 mt-sm-0"
+                            [disabled]="fg.invalid"
+                            *ngIf="dataRoute.action ==='create'" 
+                            (click)="postRecord(object)">
+                        <span>{{ 'APPS.ADD' | translate }}</span>
+                    </button>
+
+                    <button mat-raised-button
+                            class="action-btn mat-white-bg mt-16 mt-sm-0"
+                            [disabled]="fg.invalid"
+                            *ngIf="dataRoute.action ==='create-lang'" 
+                            (click)="postRecord(object)">
+                        <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                    </button>
+        
+                    <button mat-raised-button
+                            class="action-btn mat-white-bg mt-16 mt-sm-0"
+                            [disabled]="fg.invalid || fg.pristine"
+                            *ngIf="dataRoute.action ==='edit'" 
+                            (click)="postRecord(object)">
+                        <span>{{ 'APPS.SAVE' | translate }}</span>
+                    </button>
+
+                    <button mat-raised-button
+                            class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                            *ngIf="dataRoute.action ==='edit'" 
+                            (click)="deleteRecord(object)">
+                        <span>{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                    </button>
+                </div>
             </div>
             <!-- / HEADER -->
 

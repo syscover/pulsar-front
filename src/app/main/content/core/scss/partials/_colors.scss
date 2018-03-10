@@ -1,0 +1,98 @@
+// Material colors map
+$matColorsMap: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    red: $mat-red,
+    pink: $mat-pink,
+    purple: $mat-purple,
+    deep-purple: $mat-deep-purple,
+    indigo: $mat-indigo,
+    blue: $mat-blue,
+    light-blue: $mat-light-blue,
+    cyan: $mat-cyan,
+    teal: $mat-teal,
+    green: $mat-green,
+    light-green: $mat-light-green,
+    lime: $mat-lime,
+    yellow: $mat-yellow,
+    amber: $mat-amber,
+    orange: $mat-orange,
+    deep-orange: $mat-deep-orange,
+    brown: $mat-brown,
+    grey: $mat-grey,
+    blue-grey: $mat-blue-grey,
+    white: $mat-white,
+    black: $mat-black,
+    fuse-dark: $mat-fusedark
+);
+
+// Material color hues list
+$matColorHues: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A700;
+
+// Text color levels generator mixin
+@mixin generateTextColorLevels($baseTextColor) {
+
+    // If the base text color is black...
+    @if (rgba(black, 1) == rgba($baseTextColor, 1)) {
+
+        &.primary-text,
+        .primary-text {
+            color: rgba(0, 0, 0, 1) !important;
+        }
+    }
+        // If the base text color is white...
+    @else {
+
+        &.primary-text,
+        .primary-text {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+    }
+}
+
+// Color classes generator mixin
+@mixin generateColorClasses($colorName, $color, $contrastColor, $hue) {
+
+    .mat-#{$colorName}#{$hue}-bg {
+        background-color: $color !important;
+        color: $contrastColor !important;
+
+        // Generate text color levels
+        // based on current contrast color
+        @include generateTextColorLevels($contrastColor);
+
+        &[disabled] {
+            background-color: rgba($color, .12) !important;
+            color: rgba($contrastColor, .26) !important;
+        }
+    }
+
+    .#{$colorName}#{$hue}-fg {
+        color: $color !important;
+
+        // Generate text color levels
+        // based on current contrast color
+        @include generateTextColorLevels($color);
+    }
+}
+
+// Generate the color classes...
+@each $colorName, $colorMap in $matColorsMap {
+
+    @each $hue in $matColorHues {
+
+        $color: map-get($colorMap, $hue);
+        $contrastColor: map-get(map-get($colorMap, 'contrast'), $hue);
+
+        @if ($color != null and $contrastColor != null) {
+
+            @include generateColorClasses($colorName, $color, $contrastColor, '-#{$hue}');
+
+            // Run the generator one more time for default values (500)
+            @if ($hue == 500) {
+                @include generateColorClasses($colorName, $color, $contrastColor, '');
+            }
+        }
+    }
+}

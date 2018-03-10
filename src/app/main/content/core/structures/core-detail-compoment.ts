@@ -1,4 +1,4 @@
-import { Injector, HostBinding, OnInit } from '@angular/core';
+import { Injector, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -8,9 +8,10 @@ import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
 import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
 import { environment } from './../../../../../environments/environment';
+import './../functions/capitalize.function';
 import * as _ from 'lodash';
 
-export abstract class CoreDetailComponent extends CoreComponent implements OnInit 
+export abstract class CoreDetailComponent extends CoreComponent implements OnInit
 {
     loading = false;
     dataRoute: DataRoute; // static dataRoute Object pass from route module
@@ -19,7 +20,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     fb: FormBuilder;
     lang: Lang; // Current lang for objects that has multiple language
     object: Object = {}; // set empty object
-
+    
     constructor(
         protected injector: Injector,
         protected graphQL: GraphQLSchema
@@ -37,6 +38,11 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     ngOnInit() 
     {
+        // load translations for component
+        this.translateService.get(['APPS.SAVED', 'APPS.OK']).subscribe(response => {
+            this.translations = Object.assign(this.translations, response);
+        });
+
         this.init();
     }
 
@@ -252,7 +258,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         this.loading = true;
 
-        let obs: Observable<any>; // Observable
+        let record$: Observable<any>; // Observable
         let args = {}; // arguments for observable
 
         if (this.fg.get('id')) 
@@ -274,7 +280,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (environment.debug) console.log('DEBUG - args sending to create object: ', args);
 
-            obs = this.httpService
+            record$ = this.httpService
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationAddObject,
@@ -292,7 +298,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
-            obs = this.httpService
+            record$ = this.httpService
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationAddObject,
@@ -307,7 +313,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (environment.debug) console.log('DEBUG - args sending to edit object: ', args);
 
-            obs = this.httpService
+            record$ = this.httpService
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationUpdateObject,
@@ -315,12 +321,24 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 });
         }
 
-        obs.subscribe(data => {
-            if (! routeRedirect) 
+        record$.subscribe(data => {
+            this.snackBar.open(
+                (this.translations['COMPONENT.OBJECT_NAME'] + ' ' + this.translations['APPS.SAVED']).toLocaleLowerCase().capitalize(), 
+                this.translations['APPS.OK'], 
+                {
+                    verticalPosition: 'top',
+                    duration        : 3000
+                }
+            );
+
+            if (! routeRedirect)
+            {
                 this.router.navigate([this.baseUri]); 
-            else 
+            }
+            else
+            {
                 this.router.navigate([routeRedirect]);
-            
+            }
         });
     }
 

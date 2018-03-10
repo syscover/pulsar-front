@@ -19,7 +19,7 @@ import { FlagIconComponent } from './../components/flag-icon.component';
         FlagIconComponent,
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe
-    ]
+    ],
 })
 export class SharedModule
 { }

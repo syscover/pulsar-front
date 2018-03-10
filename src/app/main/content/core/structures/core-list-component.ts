@@ -50,12 +50,14 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     ngAfterViewInit() 
     {
+        this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
+
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
             this.sort.sortChange,
             Observable.
                 fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(250)
+                .debounceTime(300)
                 .distinctUntilChanged()
         )
         .takeUntil(this.ngUnsubscribe)
@@ -66,7 +68,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             this.paginator.page, 
             Observable
                 .fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(250)
+                .debounceTime(300)
                 .distinctUntilChanged()
             )
             .pipe(
@@ -161,8 +163,13 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         }
 
         // set search by text
-        if (searchText) {
-            for (const column of this.columnsSearch) {
+        if (searchText) 
+        {
+            // set search text
+            localStorage.setItem(this.graphQL.model, searchText);
+
+            for (const column of this.columnsSearch) 
+            {
                  args['sql'].push({
                     command: 'orWhere',
                     column: column,
@@ -170,6 +177,10 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                     value: `%${searchText}%`
                 });
             }
+        }
+        else
+        {
+            localStorage.removeItem(this.graphQL.model);
         }
 
         return this.getCustomArgumentsGetRecords(args);
