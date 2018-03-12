@@ -7,11 +7,18 @@ export const locale = {
             'PREVIOUS_PAGE' : 'Previous page',
             'OF_LABEL' : 'of',
         },
+        'CONFIRM': {
+            'TITLE' : 'Confirm',
+            'QUESTION' : 'Do you want to confirm this operation?',
+            'OK' : 'Confirm',
+            'CANCEL' : 'Cancel',
+        },
         'APPS': {
             'ACTIONS': 'Actions',
             'ADD': 'ADD',
             'DELETE': 'Delete',
             'DELETE_TRANSLATION': 'Delete translation',
+            'DELETED': 'Deleted',
             'DETAIL': 'Detail',
             'EDIT': 'Edit',
             'ID': 'Id',

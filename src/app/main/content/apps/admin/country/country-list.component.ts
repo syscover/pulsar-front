@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { fuseAnimations } from './../../../../../core/animations';
 import { CountryGraphQLService } from './country-graphql.service';
@@ -14,6 +14,7 @@ export class CountryListComponent extends CoreListComponent
     columnsSearch: string[] = ['admin_country.id', 'admin_country.name', 'admin_country.slug'];
     displayedColumns = ['id', 'name', 'slug', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    objectTranslation = 'ADMIN.COUNTRY';
 
     constructor(
         protected injector: Injector,

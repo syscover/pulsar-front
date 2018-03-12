@@ -50,8 +50,7 @@
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
             </div>
 
-            <mat-table  #table 
-                        class="example-table"
+            <mat-table  #table
                         [dataSource]="dataSource"
                         fusePerfectScrollbar
                         matSort
@@ -118,7 +117,7 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item>
+                            <button mat-menu-item (click)="deleteRecord(row)">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>

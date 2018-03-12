@@ -50,9 +50,7 @@
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
             </div>
 
-            <mat-table  #table 
-                        class="example-table"
-                        [dataSource]="dataSource"
+            <mat-table  [dataSource]="dataSource"
                         fusePerfectScrollbar
                         matSort
                         matSortDisableClear>

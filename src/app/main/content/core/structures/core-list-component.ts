@@ -18,7 +18,8 @@ import { GraphQLSchema } from './graphql-schema';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnDestroy
 {
-    protected ngUnsubscribe = new Subject();    // Create Observable to unsubscribe
+    ngUnsubscribe = new Subject();              // Create Observable to unsubscribe
+    refreshTable = new Subject();               // Create Observable to unsubscribe
     objects: any[] = [];                        // property that can to be overwrite in child class
     totalRecords: number;                       // total records in datatable
     filteredRecords: number;                    // filtered records over total
@@ -28,6 +29,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     resultsLength = 0;                          // total results
     isLoadingResults = true;                    // flag to know if data is loading
     filters: any[];
+    
 
     // view data table components
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,6 +52,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     ngAfterViewInit() 
     {
+        // get model reference to get search text
         this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
 
         // If the user changes the sort order or filter by text, reset back to the first page.
@@ -64,45 +67,47 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         .subscribe(() => this.paginator.pageIndex = 0);
 
         merge(
+            this.refreshTable,
             this.sort.sortChange, 
             this.paginator.page, 
             Observable
                 .fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(300)
                 .distinctUntilChanged()
-            )
-            .pipe(
-                startWith({}),
-                switchMap(() => {
-                    this.isLoadingResults = true;
+        )
+        .pipe(
+            startWith({}),
+            switchMap(() => {
+                this.isLoadingResults = true;
 
-                    console.log('busqueda', this.filter.nativeElement.value);
+                console.log('busqueda', this.filter.nativeElement.value);
 
-                    return this.getRecords(
-                        this.sort.active, 
-                        this.sort.direction, 
-                        this.paginator.pageIndex * this.paginator.pageSize,
-                        this.paginator.pageSize,
-                        this.filter.nativeElement.value
-                    );
-                }),
-                map(data => {
-                    this.isLoadingResults = false;
-                    this.resultsLength = data['data']['coreObjectsPagination']['filtered'];
+                // throw a new obserbable
+                return this.getRecords(
+                    this.sort.active, 
+                    this.sort.direction, 
+                    this.paginator.pageIndex * this.paginator.pageSize,
+                    this.paginator.pageSize,
+                    this.filter.nativeElement.value
+                );
+            }),
+            map(data => {
+                this.isLoadingResults = false;
+                this.resultsLength = data['data']['coreObjectsPagination']['filtered'];
 
-                    return data['data']['coreObjectsPagination']['objects'];
-                }),
-                catchError((error) => {
-                    console.log('DEBUG - Error GraphQL response in data list: ', error);
-                    this.isLoadingResults = false;
-                    return observableOf([]);
-                })
-            )
-            .takeUntil(this.ngUnsubscribe)
-            .subscribe(data => {
-                if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data);
-                this.dataSource.data = data;
-            });
+                return data['data']['coreObjectsPagination']['objects'];
+            }),
+            catchError((error) => {
+                console.log('DEBUG - Error GraphQL response in data list: ', error);
+                this.isLoadingResults = false;
+                return observableOf([]);
+            })
+        )
+        .takeUntil(this.ngUnsubscribe)
+        .subscribe(data => {
+            if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data);
+            this.dataSource.data = data;
+        });
     }
 
     /**

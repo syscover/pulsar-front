@@ -38,11 +38,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     ngOnInit() 
     {
-        // load translations for component
-        this.translateService.get(['APPS.SAVED', 'APPS.OK']).subscribe(response => {
-            this.translations = Object.assign(this.translations, response);
-        });
-
+        super.ngOnInit();
         this.init();
     }
 
@@ -323,7 +319,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         record$.subscribe(data => {
             this.snackBar.open(
-                (this.translations['COMPONENT.OBJECT_NAME'] + ' ' + this.translations['APPS.SAVED']).toLocaleLowerCase().capitalize(), 
+                (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED']).toLocaleLowerCase().capitalize(), 
                 this.translations['APPS.OK'], 
                 {
                     verticalPosition: 'top',

@@ -1,4 +1,4 @@
-import { Injector, ViewChild } from '@angular/core';
+import { Injector, ViewChild, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,10 +7,9 @@ import { HttpService } from './../services/http.service';
 import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
-import { FuseConfirmDialogComponent } from './../../../../core/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 
-
-export abstract class CoreComponent extends Core 
+export abstract class CoreComponent extends Core implements OnInit
 {
     protected router: Router;
     protected route: ActivatedRoute;
@@ -21,7 +20,7 @@ export abstract class CoreComponent extends Core
     protected snackBar: MatSnackBar;
     protected translations: Object = {};            // translations for used in component
     protected dialog: MatDialog;
-
+    
     // baseUri to set component urls in templete, this property must to be public because is used in template
     baseUri: string;
     // base languague of application, this variable is required for multi-language objects
@@ -30,6 +29,9 @@ export abstract class CoreComponent extends Core
     // path of package and resource
     packagePath: string;
     resourcePath: string;
+    
+    // translation key from current object
+    objectTranslation: string;
 
     constructor(
         protected injector: Injector,
@@ -49,6 +51,17 @@ export abstract class CoreComponent extends Core
         this.params = this.route.snapshot.params;
         this.langs = this.configService.get('langs');
         this.baseLang = this.configService.get('base_lang');
+    }
+
+    ngOnInit() 
+    {
+        const keys = ['APPS.SAVED', 'APPS.OK', 'APPS.DELETE', 'APPS.DELETED'];
+        if (this.objectTranslation) keys.push(this.objectTranslation);
+
+        // load translations for component
+        this.translateService.get(keys).subscribe(response => {
+            this.translations = Object.assign(this.translations, response);
+        }); 
     }
 
     protected setBaseUri(baseUri?: string) 
@@ -85,17 +98,15 @@ export abstract class CoreComponent extends Core
 
         if (this.env.debug) console.log('DEBUG - Args sending to delete object: ', args);
 
-        let dialogRef = this.dialog.open(FuseConfirmDialogComponent, {
-            
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
             data: { 
-                question: '¿quieres borrar el commponente tal y cual?'
+                title: this.translations['APPS.DELETE'] + ' ' + this.translations[this.objectTranslation]
             }
-          });
+        });
 
-        // confirm to delete object
-        /* this.confirmationService.confirm({
-            message: 'Are you sure that you want delete this object?',
-            accept: () => {
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) 
+            {
                 this.httpService
                     .apolloClient()
                     .mutate({
@@ -103,19 +114,27 @@ export abstract class CoreComponent extends Core
                         variables: args
                     })
                     .subscribe((response) => {
+                        this.snackBar.open(
+                            (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED']).toLocaleLowerCase().capitalize(), 
+                            this.translations['APPS.OK'], 
+                            {
+                                verticalPosition: 'top',
+                                duration        : 3000
+                            }
+                        );
+
                         if (routeRedirect) 
                         {
                             this.router.navigate([routeRedirect]);
                         } 
                         else 
                         {
-                            if (this.dataTable) 
+                            // check if has dataSource property to know if a CoreListComponent, intanceOf don't work by circular dependency error
+                            if (this['filter'] && this['refreshTable']) 
                             {
-                                // delete object and call onLazyLoad event on datatable
-                                // to reload data
-                                this.dataTable.onLazyLoad.emit(
-                                    this.dataTable.createLazyLoadMetadata()
-                                );
+                                // delete filter and refreshtable
+                                this['filter'].nativeElement.value = '';
+                                this['refreshTable'].next();
                             } 
                             else 
                             {
@@ -125,7 +144,7 @@ export abstract class CoreComponent extends Core
                         }
                     });
             }
-        }); */
+        });
     }
 
     // method to be overwrite
