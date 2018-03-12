@@ -24,8 +24,7 @@
             <!-- / APP TITLE -->
 
             <!-- SEARCH -->
-            <div class="search-input-wrapper mx-12 m-md-0"
-                    fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
                 <label for="search" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
@@ -67,7 +66,7 @@
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
-                <!-- Column -->
+                <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">
@@ -79,13 +78,14 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item>
+                            <button mat-menu-item (click)="deleteRecord(row)">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>
                         </mat-menu>
                     </mat-cell>
                 </ng-container>
+                <!-- / ACTIONS -->
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

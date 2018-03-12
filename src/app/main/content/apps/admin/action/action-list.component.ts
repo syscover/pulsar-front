@@ -11,6 +11,7 @@ import { ActionGraphQLService } from './action-graphql.service';
 })
 export class ActionListComponent extends CoreListComponent
 {
+    objectTranslation = 'ADMIN.ACTION';
     columnsSearch: string[] = ['id', 'name'];
     displayedColumns = ['id', 'name', 'actions'];
 

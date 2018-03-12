@@ -24,8 +24,7 @@
             <!-- / APP TITLE -->
 
             <!-- SEARCH -->
-            <div class="search-input-wrapper mx-12 m-md-0"
-                    fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
                 <label for="search" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
@@ -50,8 +49,7 @@
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
             </div>
 
-            <mat-table  #table
-                        [dataSource]="dataSource"
+            <mat-table  [dataSource]="dataSource"
                         fusePerfectScrollbar
                         matSort
                         matSortDisableClear>
@@ -74,7 +72,7 @@
                     <mat-cell *matCellDef="let row">{{ row.slug }}</mat-cell>
                 </ng-container>
 
-                <!-- Langs -->
+                <!-- LANGS -->
                 <ng-container matColumnDef="translations">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.TRANSLATIONS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">
@@ -104,8 +102,9 @@
                         </div>
                     </mat-cell>
                 </ng-container>
+                <!-- / LANGS -->
 
-                <!-- Actions -->
+                <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">
@@ -124,6 +123,7 @@
                         </mat-menu>
                     </mat-cell>
                 </ng-container>
+                <!-- / ACTIONS -->
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
