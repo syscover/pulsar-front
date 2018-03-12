@@ -12,6 +12,9 @@ import { fuseAnimations } from './../../../../../core/animations';
 })
 export class ActionDetailComponent extends CoreDetailComponent
 {
+    objectTranslation = 'ADMIN.ACTION';
+    objectTranslationGender = 'F';
+
     constructor(
         protected injector: Injector,
         protected graphQL: ActionGraphQLService

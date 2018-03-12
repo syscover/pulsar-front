@@ -12,6 +12,7 @@ import { CountryGraphQLService } from './country-graphql.service';
 export class CountryListComponent extends CoreListComponent 
 {
     objectTranslation = 'ADMIN.COUNTRY';
+    objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_country.id', 'admin_country.name', 'admin_country.slug'];
     displayedColumns = ['id', 'name', 'slug', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];

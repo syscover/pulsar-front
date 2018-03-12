@@ -13,6 +13,7 @@ import { fuseAnimations } from './../../../../../core/animations';
 export class CountryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'ADMIN.COUNTRY';
+    objectTranslationGender = 'M';
     zones: any[] = [
         { id: 'territorial_areas_1', name: 'Territorial Areas 1' },
         { id: 'territorial_areas_2', name: 'Territorial Areas 2' },

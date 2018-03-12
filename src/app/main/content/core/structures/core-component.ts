@@ -32,6 +32,7 @@ export abstract class CoreComponent extends Core implements OnInit
     
     // translation key from current object
     objectTranslation: string;
+    objectTranslationGender: string;
 
     constructor(
         protected injector: Injector,
@@ -55,7 +56,7 @@ export abstract class CoreComponent extends Core implements OnInit
 
     ngOnInit() 
     {
-        const keys = ['APPS.SAVED', 'APPS.OK', 'APPS.DELETE', 'APPS.DELETED'];
+        const keys = ['APPS.SAVED', 'APPS.OK', 'APPS.DELETE', 'APPS.DELETED.F', 'APPS.DELETED.M'];
         if (this.objectTranslation) keys.push(this.objectTranslation);
 
         // load translations for component
@@ -115,7 +116,7 @@ export abstract class CoreComponent extends Core implements OnInit
                     })
                     .subscribe((response) => {
                         this.snackBar.open(
-                            (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED']).toLocaleLowerCase().capitalize(), 
+                            (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
                             this.translations['APPS.OK'], 
                             {
                                 verticalPosition: 'top',
