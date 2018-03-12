@@ -17,10 +17,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ConfirmationDialogComponent implements OnInit
 {
-    private title: string;
-    private question: string;
-    private ok: string;
-    private cancel: string;
+    title: string;
+    question: string;
+    ok: string;
+    cancel: string;
 
     constructor(
         public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
