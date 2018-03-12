@@ -56,13 +56,24 @@ export abstract class CoreComponent extends Core implements OnInit
 
     ngOnInit() 
     {
-        const keys = ['APPS.SAVED', 'APPS.OK', 'APPS.DELETE', 'APPS.DELETED.F', 'APPS.DELETED.M'];
+        const keys = ['APPS'];
         if (this.objectTranslation) keys.push(this.objectTranslation);
 
         // load translations for component
-        this.translateService.get(keys).subscribe(response => {
-            this.translations = Object.assign(this.translations, response);
-        }); 
+        this.translateService.get(keys)
+            .map(translations => {
+                if (translations['APPS'])
+                {
+                    for (const index in translations['APPS'])
+                    {
+                        if (index) translations['APPS.' + index] = translations['APPS'][index];
+                    }
+                    delete translations.APPS;
+                    return translations;
+                }
+            }).subscribe(response => {
+                this.translations = Object.assign(this.translations, response);
+            });
     }
 
     protected setBaseUri(baseUri?: string) 

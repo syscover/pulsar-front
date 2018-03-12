@@ -79,9 +79,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             startWith({}),
             switchMap(() => {
                 this.isLoadingResults = true;
-
-                console.log('busqueda', this.filter.nativeElement.value);
-
+                
                 // throw a new obserbable
                 return this.getRecords(
                     this.sort.active, 

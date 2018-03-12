@@ -319,7 +319,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         record$.subscribe(data => {
             this.snackBar.open(
-                (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED']).toLocaleLowerCase().capitalize(), 
+                (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
                 this.translations['APPS.OK'], 
                 {
                     verticalPosition: 'top',
