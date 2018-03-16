@@ -6,7 +6,7 @@ Material Design Admin Template with Angular 5+ and Angular Material 2
 
 Share your ideas, discuss Fuse and help each other.
 
-[Click here](https://join.slack.com/t/fuse-theme/shared_invite/enQtMzA1NDE4NzYwMjcyLWQxODE4ODM1MWU4MWJjMDhlMGEwYzM4Mzg3N2E4YzVlZThhZjNlOTQ1Y2Q5OTBlNDNkMzJhZDIwMjgxOWQ3YWU) to join our Slack workspace.
+[Click here](http://fusetheme.com/community) to see our Community page.
 
 ## Development server
 
