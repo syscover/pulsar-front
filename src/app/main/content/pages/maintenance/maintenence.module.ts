@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../../../core/modules/shared.module';
 import { RouterModule } from '@angular/router';
+
+import { FuseSharedModule } from '@fuse/shared.module';
 
 import { FuseMaintenanceComponent } from './maintenance.component';
 
@@ -16,12 +17,11 @@ const routes = [
         FuseMaintenanceComponent
     ],
     imports     : [
-        SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+
+        FuseSharedModule
     ]
 })
-
 export class MaintenanceModule
 {
-
 }

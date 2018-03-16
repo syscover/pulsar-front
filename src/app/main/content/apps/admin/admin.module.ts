@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { SharedModule as FuseShareModule } from './../../../../core/modules/shared.module';
+import { FuseTranslationLoaderService } from './../../../../../@fuse/services/translation-loader.service';
 import { SharedModule } from './../../core/modules/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
-import { FuseTranslationLoaderService } from './../../../../core/services/translation-loader.service';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
@@ -55,7 +54,6 @@ import { UserGraphQLService } from './user/user-graphql.service'; */
 
 @NgModule({
     imports: [
-        FuseShareModule,
         SharedModule,
         AdminRoutingModule
     ],

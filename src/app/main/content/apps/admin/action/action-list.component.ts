@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
+import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { fuseAnimations } from './../../../../../core/animations';
 import { ActionGraphQLService } from './action-graphql.service';
 
 @Component({

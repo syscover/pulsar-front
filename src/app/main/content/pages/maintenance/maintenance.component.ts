@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { FuseConfigService } from '../../../../core/services/config.service';
-import { fuseAnimations } from '../../../../core/animations';
+import { FuseConfigService } from '@fuse/services/config.service';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
     selector   : 'fuse-maintenance',
@@ -9,23 +9,18 @@ import { fuseAnimations } from '../../../../core/animations';
     styleUrls  : ['./maintenance.component.scss'],
     animations : fuseAnimations
 })
-export class FuseMaintenanceComponent implements OnInit
+export class FuseMaintenanceComponent
 {
     constructor(
         private fuseConfig: FuseConfigService
     )
     {
-        this.fuseConfig.setSettings({
+        this.fuseConfig.setConfig({
             layout: {
                 navigation: 'none',
                 toolbar   : 'none',
                 footer    : 'none'
             }
         });
-    }
-
-    ngOnInit()
-    {
-
     }
 }

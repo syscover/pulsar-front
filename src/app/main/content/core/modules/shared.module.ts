@@ -1,10 +1,12 @@
-import { MaterialModule } from './../../../../core/modules/material.module';
+import { FuseSharedModule } from './../../../../../@fuse/shared.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from './material.module';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 import { ActionTranslationObjectPipe } from './../pipes/action-trasnlation-object.pipe';
 import { CheckTranslationObjectPipe } from './../pipes/check-translation-object.pipe';
 import { FlagIconComponent } from './../components/flag-icon.component';
+
 
 @NgModule({
     declarations: [
@@ -15,11 +17,14 @@ import { FlagIconComponent } from './../components/flag-icon.component';
     ],
     providers: [],
     imports: [
-        CommonModule,
+        FuseSharedModule,
+        TranslateModule,
         MaterialModule
     ],
     exports: [
-        CommonModule,
+        FuseSharedModule,
+        TranslateModule,
+        MaterialModule,
         FlagIconComponent,
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe

@@ -1,28 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { FuseConfigService } from '../../../../../core/services/config.service';
+import { FuseConfigService } from '@fuse/services/config.service';
 
 @Component({
     selector   : 'fuse-error-404',
     templateUrl: './error-404.component.html',
     styleUrls  : ['./error-404.component.scss']
 })
-export class FuseError404Component implements OnInit
+export class FuseError404Component
 {
     constructor(
         private fuseConfig: FuseConfigService
     )
     {
-        this.fuseConfig.setSettings({
+        this.fuseConfig.setConfig({
             layout: {
                 navigation: 'none',
                 toolbar   : 'none',
                 footer    : 'none'
             }
         });
-    }
-
-    ngOnInit()
-    {
     }
 }
