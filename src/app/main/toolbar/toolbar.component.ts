@@ -6,6 +6,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { AuthenticationService } from './../content/core/services/authentication.service';
+import { User } from './../content/apps/admin/admin.models';
 
 @Component({
     selector   : 'fuse-toolbar',
@@ -21,6 +22,7 @@ export class FuseToolbarComponent
     showLoadingBar: boolean;
     horizontalNav: boolean;
     noNav: boolean;
+    user: User;
 
     constructor(
         private router: Router,
@@ -30,6 +32,8 @@ export class FuseToolbarComponent
         private authenticationService: AuthenticationService
     )
     {
+        this.user = this.authenticationService.user();
+
         this.userStatusOptions = [
             {
                 'title': 'Online',

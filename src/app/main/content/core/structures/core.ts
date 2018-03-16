@@ -4,7 +4,7 @@ import { environment } from './../../../../../environments/environment';
 
 export abstract class Core
 {
-    protected configService: ConfigService;
+    configService: ConfigService;
     graphqlUri: string;
     apiUrl: string;
     env: any = environment;
