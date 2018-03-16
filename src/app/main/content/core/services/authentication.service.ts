@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpService } from './http.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpService } from './http.service';
 import { User } from './../../apps/admin/admin.models';
 
 @Injectable()
@@ -30,6 +30,7 @@ export class AuthenticationService extends HttpService
     logout() 
     {
         localStorage.removeItem('access_token');
+        this.apollo.getClient().resetStore();
     }
 
     check() 

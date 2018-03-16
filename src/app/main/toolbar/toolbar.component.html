@@ -7,7 +7,8 @@
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
             <button mat-button class="toggle-button-navbar mat-icon-button"
-                    fuseNavbarVertical="toggleBar" fxHide.gt-md>
+                    *ngIf="!noNav"
+                    (click)="toggleSidebarOpened('navbar')" fxHide.gt-md>
                 <mat-icon>menu</mat-icon>
             </button>
 
@@ -48,7 +49,7 @@
                     <span>Inbox</span>
                 </button>
 
-                <button mat-menu-item (click)="logout()">
+                <button mat-menu-item class="" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Logout</span>
                 </button>

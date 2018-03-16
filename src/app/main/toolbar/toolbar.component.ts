@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { FuseConfigService } from '../../core/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
+
+import { FuseConfigService } from '@fuse/services/config.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+
 import { AuthenticationService } from './../content/core/services/authentication.service';
-import { Apollo } from 'apollo-angular';
 
 @Component({
     selector   : 'fuse-toolbar',
@@ -18,13 +20,14 @@ export class FuseToolbarComponent
     selectedLanguage: any;
     showLoadingBar: boolean;
     horizontalNav: boolean;
+    noNav: boolean;
 
     constructor(
         private router: Router,
         private fuseConfig: FuseConfigService,
+        private sidebarService: FuseSidebarService,
         private translate: TranslateService,
-        private authenticationService: AuthenticationService,
-        private apollo: Apollo
+        private authenticationService: AuthenticationService
     )
     {
         this.userStatusOptions = [
@@ -55,7 +58,6 @@ export class FuseToolbarComponent
             }
         ];
 
-
         this.languages = [
             {
                 'id'   : 'es',
@@ -83,10 +85,16 @@ export class FuseToolbarComponent
                 }
             });
 
-        this.fuseConfig.onSettingsChanged.subscribe((settings) => {
+        this.fuseConfig.onConfigChanged.subscribe((settings) => {
             this.horizontalNav = settings.layout.navigation === 'top';
+            this.noNav = settings.layout.navigation === 'none';
         });
 
+    }
+
+    toggleSidebarOpened(key)
+    {
+        this.sidebarService.getSidebar(key).toggleOpen();
     }
 
     search(value)
@@ -107,7 +115,6 @@ export class FuseToolbarComponent
     logout() 
     {
         this.authenticationService.logout();
-        this.apollo.getClient().resetStore();
         this.router.navigate(['/apps/auth/login']);
     }
 }
