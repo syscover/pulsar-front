@@ -10,6 +10,7 @@ import { BootstrapService } from './services/bootstrap.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorizationService } from './services/authorization.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { ValidationMessageService } from './services/validation-message.service';
 
 @NgModule({
     declarations: [],
@@ -19,6 +20,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
         ApolloService,
         AuthenticationService,
         AuthorizationService,
+        ValidationMessageService,
         BootstrapService,
         {
             provide: APP_INITIALIZER,
@@ -43,8 +45,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
             }
         })
     ],
-    exports: [
-    ]
+    exports: []
 })
 export class CoreModule
 { 

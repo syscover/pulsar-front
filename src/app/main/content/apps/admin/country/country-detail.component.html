@@ -10,137 +10,150 @@
         <!-- HEADER -->
         <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
 
-                <!-- APP TITLE -->
-                <div fxLayout="row" fxLayoutAlign="start center">
-    
-                    <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
-                        <mat-icon>arrow_back</mat-icon>
-                    </button>
-    
-                    <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                        <mat-icon>public</mat-icon>
-                    </div>
-    
-                    <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                        <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                            {{ object.name }}
-                        </div>
-                        <div class="h2" *ngIf="dataRoute.action ==='create'">
-                            {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.COUNTRY' | translate }}
-                        </div>
-                        <div class="subtitle secondary-text">
-                            <span>{{ 'APPS.DETAIL' | translate }}</span>
-                        </div>
-                    </div>
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>public</mat-icon>
                 </div>
-                <!-- / APP TITLE -->
 
-                <div fxLayoutGap="30px">
-                    <button mat-raised-button
-                            class="action-btn mat-white-bg mt-16 mt-sm-0"
-                            [disabled]="fg.invalid"
-                            *ngIf="dataRoute.action ==='create'" 
-                            (click)="postRecord(object)">
-                        <span>{{ 'APPS.ADD' | translate }}</span>
-                    </button>
-
-                    <button mat-raised-button
-                            class="action-btn mat-white-bg mt-16 mt-sm-0"
-                            [disabled]="fg.invalid"
-                            *ngIf="dataRoute.action ==='create-lang'" 
-                            (click)="postRecord(object)">
-                        <span>{{ 'APPS.TRANSLATE' | translate }}</span>
-                    </button>
-        
-                    <button mat-raised-button
-                            class="action-btn mat-white-bg mt-16 mt-sm-0"
-                            [disabled]="fg.invalid || fg.pristine"
-                            *ngIf="dataRoute.action ==='edit'" 
-                            (click)="postRecord(object)">
-                        <span>{{ 'APPS.SAVE' | translate }}</span>
-                    </button>
-
-                    <button mat-raised-button
-                            class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
-                            *ngIf="dataRoute.action ==='edit'" 
-                            (click)="deleteRecord(object)">
-                        <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
-                        <span *ngIf="lang.id === baseLang">{{ 'APPS.DELETE' | translate }}</span>
-                    </button>
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.COUNTRY' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
                 </div>
             </div>
-            <!-- / HEADER -->
+            <!-- / APP TITLE -->
 
-            <!-- CONTENT CARD -->
-            <div class="content-card mat-white-bg p-24">
+            <div fxLayoutGap="30px">
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.pristine"
+                        *ngIf="dataRoute.action ==='create'">
+                    <span>{{ 'APPS.ADD' | translate }}</span>
+                </button>
 
-                <!-- CONTENT -->
-                <div class="content">
-                    <form   [formGroup]="fg" 
-                            fxLayout="column"
-                            fxFlex>
-                    
-                        <input type="hidden" formControlName="ix">
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid"
+                        *ngIf="dataRoute.action ==='create-lang'">
+                    <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                </button>
+    
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || fg.pristine"
+                        *ngIf="dataRoute.action ==='edit'">
+                    <span>{{ 'APPS.SAVE' | translate }}</span>
+                </button>
 
-                        <div fxLayout="row wrap">
-                            <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
-                            </mat-form-field>
-                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
-                        </div>
+                <button mat-raised-button
+                        class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang" 
+                        (click)="deleteRecord(object)">
+                    <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                </button>
+            </div>
+        </div>
+        <!-- / HEADER -->
 
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            </mat-form-field>
-                        </div>
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
 
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
-                            </mat-form-field>
-                        </div>
+            <!-- CONTENT -->
+            <div class="content">
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+                
+                    <input type="hidden" formControlName="ix">
 
-                        <div fxLayout="row wrap" fxLayoutGap="15px">
-                            <mat-form-field class="col-md-4">
-                                <span matPrefix>+ &nbsp;</span>
-                                <input type="number" matInput placeholder="{{ 'APPS.PREFIX' | translate }}">
-                            </mat-form-field>
-                            <mat-form-field class="col-md-4">
-                                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
-                            </mat-form-field>
-                        </div>
-
-                        <mat-form-field>
-                            <mat-select placeholder="Zones" formControlName="zones" multiple>
-                                <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
-                            </mat-select>
+                    <div fxLayout="row wrap">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                            <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
+                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                    </div>
 
-                    </form>
-                </div>
-                <!-- / CONTENT -->
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <mat-error>{{ formErrors?.slug }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutGap="15px">
+                        <mat-form-field class="col-md-4">
+                            <span matPrefix>+ &nbsp;</span>
+                            <input matInput placeholder="{{ 'APPS.PREFIX' | translate }}" formControlName="prefix" type="number">
+                            <mat-error>{{ formErrors?.prefix }}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                            <mat-error>{{ formErrors?.sort }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
+                            <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
+                            <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
+                            <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field>
+                        <mat-select placeholder="Zones" formControlName="zones" multiple>
+                            <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
+                            <mat-error>{{ formErrors?.zones }}</mat-error>
+                        </mat-select>
+                    </mat-form-field>
+
+                </form>
             </div>
-            <!-- / CONTENT CARD -->
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
 
     </div>
     <!-- / CENTER -->

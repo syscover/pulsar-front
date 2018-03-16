@@ -10,76 +10,84 @@
         <!-- HEADER -->
         <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
 
-                <!-- APP TITLE -->
-                <div fxLayout="row" fxLayoutAlign="start center">
-    
-                    <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
-                        <mat-icon>arrow_back</mat-icon>
-                    </button>
-    
-                    <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                        <mat-icon>flash_on</mat-icon>
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>flash_on</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
                     </div>
-    
-                    <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                        <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                            {{ object.name }}
-                        </div>
-                        <div class="h2" *ngIf="dataRoute.action ==='create'">
-                            {{ 'APPS.NEW.F' | translate }} {{ 'ADMIN.ACTION' | translate }}
-                        </div>
-                        <div class="subtitle secondary-text">
-                            <span>{{ 'APPS.DETAIL' | translate }}</span>
-                        </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.F' | translate }} {{ 'ADMIN.ACTION' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
                     </div>
                 </div>
-                <!-- / APP TITLE -->
-    
-                <button mat-raised-button
-                        class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid"
-                        *ngIf="dataRoute.action ==='create'" (click)="postRecord(object)">
-                    <span>{{ 'APPS.ADD' | translate }}</span>
-                </button>
-    
-                <button mat-raised-button
-                        class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || fg.pristine"
-                        *ngIf="dataRoute.action ==='edit'" (click)="postRecord(object)">
-                    <span>{{ 'APPS.SAVE' | translate }}</span>
-                </button>
             </div>
-            <!-- / HEADER -->
+            <!-- / APP TITLE -->
 
-            <!-- CONTENT CARD -->
-            <div class="content-card mat-white-bg p-24">
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.pristine"
+                    *ngIf="dataRoute.action ==='create'">
+                <span>{{ 'APPS.ADD' | translate }}</span>
+            </button>
 
-                <!-- CONTENT -->
-                <div class="content">
-                    <form   [formGroup]="fg" 
-                            fxLayout="column"
-                            fxFlex>
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine"
+                    *ngIf="dataRoute.action ==='edit'">
+                <span>{{ 'APPS.SAVE' | translate }}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+                
+                    <input type="hidden" formControlName="ix">
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                            <mat-error>{{ formErrors?.id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
                     
-                        <input type="hidden" formControlName="ix">
-
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field fxFlex class="col-12">
-                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            </mat-form-field>
-                        </div>
-                        
-                    </form>
-                </div>
-                <!-- / CONTENT -->
-
+                </form>
             </div>
-            <!-- / CONTENT CARD -->
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
 
     </div>
     <!-- / CENTER -->

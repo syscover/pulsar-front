@@ -7,6 +7,7 @@ import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
 import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
+import { ValidationMessageService } from './../services/validation-message.service';
 import { environment } from './../../../../../environments/environment';
 import './../functions/capitalize.function';
 import * as _ from 'lodash';
@@ -15,11 +16,12 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 {
     loading = false;
     dataRoute: DataRoute; // static dataRoute Object pass from route module
-    formErrors: Object;
+    formErrors: any = {};
     fg: FormGroup;
     fb: FormBuilder;
     lang: Lang; // Current lang for objects that has multiple language
     object: Object = {}; // set empty object
+    validationMessageService: ValidationMessageService;
     
     constructor(
         protected injector: Injector,
@@ -28,6 +30,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     {
         super(injector, graphQL);
         this.fb = injector.get(FormBuilder);
+        this.validationMessageService = injector.get(ValidationMessageService);
 
         // set object properties
         this.dataRoute = <DataRoute>this.route.snapshot.data;
@@ -39,6 +42,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     ngOnInit() 
     {
         super.ngOnInit();
+        this.validationMessageService.subscribeForm(this.fg, this.formErrors);
         this.init();
     }
 
@@ -244,7 +248,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     postRecord(object: any, routeRedirect?: string, params = []) {
 
         // set errors from current form, this variable is binded to all form elements
-        this.formErrors = setErrorsOnSubmitFormGroup(this.fg);
+        this.formErrors = this.validationMessageService.setErrors(this.fg); 
 
         if (this.fg.invalid) {
             // TODO, show general error
