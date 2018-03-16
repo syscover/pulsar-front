@@ -1,4 +1,3 @@
-import { CoreModule } from './main/content/core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,15 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
-import { SharedModule } from './core/modules/shared.module';
+
+import { FuseModule } from '@fuse/fuse.module';
+import { FuseSharedModule } from '@fuse/shared.module';
+
+import { fuseConfig } from './fuse-config';
+
 import { AppComponent } from './app.component';
 import { FuseMainModule } from './main/main.module';
-import { FuseSplashScreenService } from './core/services/splash-screen.service';
-import { FuseConfigService } from './core/services/config.service';
-import { FuseNavigationService } from './core/components/navigation/navigation.service';
-import { FuseSampleModule } from './main/content/apps/sample/sample.module';
 
-import { AdminModule } from './main/content/apps/admin/admin.module';
+import { FuseSampleModule } from './main/content/apps/sample/sample.module';
+import { CoreModule } from './main/content/core/core.module';
 
 const appRoutes: Routes = [
     { 
@@ -42,20 +43,19 @@ const appRoutes: Routes = [
     ],
     imports     : [
         BrowserModule,
-        HttpClientModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         RouterModule.forRoot(appRoutes),
-        SharedModule,
         TranslateModule.forRoot(),
+
+        // Fuse Main and Shared modules
+        FuseModule.forRoot(fuseConfig),
+        FuseSharedModule,
         FuseMainModule,
 
-        CoreModule,
-        FuseSampleModule
-    ],
-    providers   : [
-        FuseSplashScreenService,
-        FuseConfigService,
-        FuseNavigationService
+        // Pulsar
+        FuseSampleModule,
+        CoreModule
     ],
     bootstrap   : [
         AppComponent

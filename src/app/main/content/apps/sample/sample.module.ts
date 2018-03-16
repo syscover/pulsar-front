@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SharedModule } from '../../../../core/modules/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { FuseSharedModule } from '@fuse/shared.module';
 
 import { FuseSampleComponent } from './sample.component';
 
@@ -17,8 +19,11 @@ const routes = [
         FuseSampleComponent
     ],
     imports     : [
-        SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+
+        TranslateModule,
+
+        FuseSharedModule
     ],
     exports     : [
         FuseSampleComponent
