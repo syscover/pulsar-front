@@ -1,43 +1,46 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../core/modules/shared.module';
+import { MatSidenavModule } from '@angular/material';
+
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseNavigationModule, FuseSearchBarModule, FuseShortcutsModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+
+import { FuseContentModule } from 'app/main/content/content.module';
+import { FuseFooterModule } from 'app/main/footer/footer.module';
+import { FuseNavbarModule } from 'app/main/navbar/navbar.module';
+import { FuseQuickPanelModule } from 'app/main/quick-panel/quick-panel.module';
+import { FuseToolbarModule } from 'app/main/toolbar/toolbar.module';
+
 import { FuseMainComponent } from './main.component';
-import { FuseContentComponent } from './content/content.component';
-import { FuseFooterComponent } from './footer/footer.component';
-import { FuseNavbarVerticalComponent } from './navbar/vertical/navbar-vertical.component';
-import { FuseToolbarComponent } from './toolbar/toolbar.component';
-import { FuseNavigationModule } from '../core/components/navigation/navigation.module';
-import { FuseNavbarVerticalToggleDirective } from './navbar/vertical/navbar-vertical-toggle.directive';
-import { FuseNavbarHorizontalComponent } from './navbar/horizontal/navbar-horizontal.component';
-import { FuseQuickPanelComponent } from './quick-panel/quick-panel.component';
-import { FuseThemeOptionsComponent } from '../core/components/theme-options/theme-options.component';
-import { FuseShortcutsModule } from '../core/components/shortcuts/shortcuts.module';
-import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.module';
+
 
 @NgModule({
     declarations: [
-        FuseContentComponent,
-        FuseFooterComponent,
         FuseMainComponent,
-        FuseNavbarVerticalComponent,
-        FuseNavbarHorizontalComponent,
-        FuseToolbarComponent,
-        FuseNavbarVerticalToggleDirective,
-        FuseThemeOptionsComponent,
-        FuseQuickPanelComponent
     ],
     imports     : [
-        SharedModule,
         RouterModule,
+
+        MatSidenavModule,
+
+        FuseSharedModule,
+
+        FuseThemeOptionsModule,
         FuseNavigationModule,
+        FuseSearchBarModule,
         FuseShortcutsModule,
-        FuseSearchBarModule
+        FuseSidebarModule,
+
+        FuseContentModule,
+        FuseFooterModule,
+        FuseNavbarModule,
+        FuseQuickPanelModule,
+        FuseToolbarModule,
     ],
     exports     : [
         FuseMainComponent
     ]
 })
-
 export class FuseMainModule
 {
 }

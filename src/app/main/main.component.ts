@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { FuseConfigService } from '../core/services/config.service';
-import { Platform } from '@angular/cdk/platform';
+import { Component, ElementRef, HostBinding, Inject, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
+import { Subscription } from 'rxjs/Subscription';
+
+import { FuseConfigService } from '@fuse/services/config.service';
 
 @Component({
     selector     : 'fuse-main',
@@ -10,9 +11,9 @@ import { DOCUMENT } from '@angular/common';
     styleUrls    : ['./main.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FuseMainComponent implements OnInit, OnDestroy
+export class FuseMainComponent implements OnDestroy
 {
-    onSettingsChanged: Subscription;
+    onConfigChanged: Subscription;
     fuseSettings: any;
     @HostBinding('attr.fuse-layout-mode') layoutMode;
 
@@ -24,8 +25,8 @@ export class FuseMainComponent implements OnInit, OnDestroy
         @Inject(DOCUMENT) private document: any
     )
     {
-        this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+        this.onConfigChanged =
+            this.fuseConfig.onConfigChanged
                 .subscribe(
                     (newSettings) => {
                         this.fuseSettings = newSettings;
@@ -39,13 +40,9 @@ export class FuseMainComponent implements OnInit, OnDestroy
         }
     }
 
-    ngOnInit()
-    {
-    }
-
     ngOnDestroy()
     {
-        this.onSettingsChanged.unsubscribe();
+        this.onConfigChanged.unsubscribe();
     }
 
     addClass(className: string)

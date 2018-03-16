@@ -1,10 +1,12 @@
-import { Component, HostBinding, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { fuseAnimations } from '../../core/animations';
-import { FuseConfigService } from '../../core/services/config.service';
+
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+
+import { fuseAnimations } from '@fuse/animations/index';
+import { FuseConfigService } from '@fuse/services/config.service';
 
 @Component({
     selector   : 'fuse-content',
@@ -12,9 +14,9 @@ import 'rxjs/add/operator/map';
     styleUrls  : ['./content.component.scss'],
     animations : fuseAnimations
 })
-export class FuseContentComponent implements OnInit, OnDestroy
+export class FuseContentComponent implements OnDestroy
 {
-    onSettingsChanged: Subscription;
+    onConfigChanged: Subscription;
     fuseSettings: any;
 
     @HostBinding('@routerTransitionUp') routeAnimationUp = false;
@@ -53,8 +55,8 @@ export class FuseContentComponent implements OnInit, OnDestroy
                 }
             });
 
-        this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+        this.onConfigChanged =
+            this.fuseConfig.onConfigChanged
                 .subscribe(
                     (newSettings) => {
                         this.fuseSettings = newSettings;
@@ -62,13 +64,8 @@ export class FuseContentComponent implements OnInit, OnDestroy
                 );
     }
 
-    ngOnInit()
-    {
-
-    }
-
     ngOnDestroy()
     {
-        this.onSettingsChanged.unsubscribe();
+        this.onConfigChanged.unsubscribe();
     }
 }
