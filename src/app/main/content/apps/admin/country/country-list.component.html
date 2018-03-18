@@ -68,8 +68,8 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="slug">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SLUG' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.slug }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SLUG' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.slug }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

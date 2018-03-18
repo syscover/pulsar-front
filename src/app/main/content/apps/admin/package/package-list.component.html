@@ -68,20 +68,20 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="root">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.root }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-block">{{ 'ADMIN.ROOT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-block">{{ row.root }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="sort">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SORT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.sort }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SORT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.sort }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.ACTIVE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
                         <mat-icon *ngIf="row.active">done</mat-icon>
                     </mat-cell>
                 </ng-container>
