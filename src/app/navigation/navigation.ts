@@ -12,6 +12,14 @@ export const navigation = [
                 'type' : 'collapse',
                 'icon' : 'art_track',
                 'children' : [
+                    {
+                        'id'        : 'articles',
+                        'title'     : 'Articles',
+                        'translate' : 'NAV.ARTICLES',
+                        'type'      : 'item',
+                        'icon'      : 'library_books',
+                        'url'       : '/apps/cms/article'
+                    },
                 ]
             },
             {

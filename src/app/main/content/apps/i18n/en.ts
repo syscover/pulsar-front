@@ -33,8 +33,10 @@ export const locale = {
             'SAVED.F': 'Saved',
             'SAVED.M': 'Saved',
             'SEARCH': 'Search',
+            'SECTION': 'Section',
             'SLUG': 'Slug',
             'SORT': 'Sort',
+            'STATUS': 'Status',
             'TRANSLATE': 'Translate',
             'TRANSLATIONS': 'Translations'
         },

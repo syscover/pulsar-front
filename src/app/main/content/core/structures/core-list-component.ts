@@ -90,10 +90,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 );
             }),
             map(data => {
-                this.isLoadingResults = false;
-                this.resultsLength = data['data']['coreObjectsPagination']['filtered'];
-
-                return data['data']['coreObjectsPagination']['objects'];
+                return data['data'];
             }),
             catchError((error) => {
                 console.log('DEBUG - Error GraphQL response in data list: ', error);
@@ -104,7 +101,18 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         .takeUntil(this.ngUnsubscribe)
         .subscribe(data => {
             if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data);
-            this.dataSource.data = data;
+            
+            // set number of results
+            this.resultsLength = data['coreObjectsPagination']['filtered'];
+            
+            // set relations data
+            this.setRelationsData(data);
+
+            // set data source
+            this.dataSource.data = data['coreObjectsPagination']['objects'];
+            
+            // hide loader data table
+            this.isLoadingResults = false;
         });
     }
 

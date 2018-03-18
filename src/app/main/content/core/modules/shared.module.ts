@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 import { ActionTranslationObjectPipe } from './../pipes/action-trasnlation-object.pipe';
 import { CheckTranslationObjectPipe } from './../pipes/check-translation-object.pipe';
+import { CollectionObjectValuePipe } from './../pipes/collection-object-value.pipe';
 import { FlagIconComponent } from './../components/flag-icon.component';
 
 
@@ -13,7 +14,8 @@ import { FlagIconComponent } from './../components/flag-icon.component';
         FlagIconComponent,
         ConfirmationDialogComponent,
         ActionTranslationObjectPipe,
-        CheckTranslationObjectPipe
+        CheckTranslationObjectPipe,
+        CollectionObjectValuePipe,
     ],
     providers: [],
     imports: [
@@ -27,7 +29,8 @@ import { FlagIconComponent } from './../components/flag-icon.component';
         MaterialModule,
         FlagIconComponent,
         ActionTranslationObjectPipe,
-        CheckTranslationObjectPipe
+        CheckTranslationObjectPipe,
+        CollectionObjectValuePipe
     ],
     entryComponents: [
         ConfirmationDialogComponent
