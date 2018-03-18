@@ -6,6 +6,15 @@ export const navigation = [
         'type'      : 'group',
         'children'  : [
             {
+                'id'   : 'cms',
+                'title': 'CMS',
+                'translate': 'NAV.CMS',
+                'type' : 'collapse',
+                'icon' : 'art_track',
+                'children' : [
+                ]
+            },
+            {
                 'id'       : 'administration',
                 'title'    : 'Administration',
                 'translate': 'NAV.ADMINISTRATION',

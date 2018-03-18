@@ -5,6 +5,7 @@ export const locale = {
             'ACTIONS': 'Actions',
             'ADMINISTRATION': 'Administration',
             'APPLICATIONS': 'Applications',
+            'CMS': 'CMS',
             'COUNTRIES': 'Countries',
             'PACKAGES': 'Packages',
             'PERMISSIONS': 'Permissions',
