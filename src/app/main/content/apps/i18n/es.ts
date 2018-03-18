@@ -15,6 +15,7 @@ export const locale = {
         },
         'APPS': {
             'ACTIONS': 'Acciones',
+            'ACTIVE': 'Activo',
             'ADD': 'Añadir',
             'DELETE': 'Borrar',
             'DELETE_TRANSLATION': 'Borrar traducción',

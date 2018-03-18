@@ -21,6 +21,14 @@ export const navigation = [
                         'url'       : '/apps/admin/country'
                     },
                     {
+                        'id'        : 'packages',
+                        'title'     : 'Packages',
+                        'translate' : 'NAV.PACKAGES',
+                        'type'      : 'item',
+                        'icon'      : 'view_module',
+                        'url'       : '/apps/admin/package'
+                    },
+                    {
                         'id'       : 'permissions',
                         'title'    : 'Permissions',
                         'translate': 'NAV.PERMISSIONS',
