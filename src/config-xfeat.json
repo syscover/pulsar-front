@@ -1,0 +1,11 @@
+{
+    "graphqlUri": "http://xfeat.local/graphql",
+    "apiUrl": "http://xfeat.local",
+    "froalaKey": "yjuqtbB3tvyzp=="
+}
+
+{
+    "graphqlUri": "https://dev.xfeat.com/graphql",
+    "apiUrl": "https://dev.xfeat.com",
+    "froalaKey": "OviupfA2wzA-13=="
+}

@@ -98,7 +98,7 @@
                                     <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                                 </div>
             
-                                <div fxLayout="row wrap" fxLayoutGap="15px">
+                                <div fxLayout="row wrap" class="justify-content-between">
                                     <mat-form-field class="col-md-6">
                                         <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
@@ -106,11 +106,11 @@
 
                                     <mat-form-field class="col-md-5">
                                         <input matInput placeholder="{{ 'CMS.AUTHOR' | translate }}" formControlName="author_name" required>
-                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                        <mat-error>{{ formErrors?.author_name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row wrap" fxLayoutGap="15px">
+                                <div fxLayout="row wrap" class="justify-content-between">
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
                                             <mat-option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</mat-option>
@@ -119,10 +119,28 @@
                                     </mat-form-field>
                                     
                                     <mat-form-field class="col-12 col-md-5">
-                                        <input matInput [matDatepicker]="publish" formControlName="publish">
+                                        <input matInput placeholder="{{ 'CMS.PUBLISH' | translate }}" [matDatepicker]="publish" formControlName="publish">
                                         <mat-datepicker-toggle matSuffix [for]="publish"></mat-datepicker-toggle>
                                         <mat-datepicker #publish></mat-datepicker>
-                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                        <mat-error>{{ formErrors?.publish }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (change)="handleChangeSection($event)">
+                                            <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.section_id }}</mat-error>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id">
+                                            <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.family_id }}</mat-error>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                 

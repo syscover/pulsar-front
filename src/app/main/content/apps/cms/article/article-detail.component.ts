@@ -41,8 +41,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     family: Family;
     imageUploadURL: string;
 
-    private _sections: Section[];
-    private _families: Family[];
     private _attachmentFamilies: AttachmentFamily[];
 
     // custom fields
@@ -130,19 +128,21 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         this.handleGetCustomFields();
     } */
 
-    /* handleChangeSection($event) {
-        // change family if, change section
-        if ($event.value) {
-            this.section = _.find(this._sections, {id: $event.value});
+    handleChangeSection($event) 
+    {
+        if ($event.value) 
+        {
+            this.section = _.find(this.sections, {id: $event.value});
 
-            this.loadAttachmentFamilies();
+            //this.loadAttachmentFamilies();
 
             // TODO, trigger event instead call function
-            if (this.section.family) {
+            if (this.section.family) 
+            {
                 this.handleChangeFamily({value: this.section.family.id});
             }
         }
-    } */
+    }
 
     /* private loadAttachmentFamilies() {
         // load attachment families depend of article familie
@@ -162,19 +162,19 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         }
     } */
 
-    /* handleChangeFamily($event) {
+    handleChangeFamily($event)
+    {
         this.fieldValues = [];
         this.fields = [];
 
-        if ($event.value) {
-            // set family object, to change morphology of form
-            this.family = _.find(this._families, {id: $event.value});
-
+        if ($event.value) 
+        {
+            this.family = _.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
 
-            this.handleGetCustomFields();
+            //this.handleGetCustomFields();
         }
-    } */
+    }
 
     // get custom fields that has this object
     /* handleGetCustomFields() {
@@ -284,18 +284,10 @@ export class ArticleDetailComponent extends CoreDetailComponent {
 
     setRelationsData(data) {
         // cms sections
-        /* this._sections = data['cmsSections'];
-        this.sections = _.map(this._sections, obj => {
-            return { value: obj.id, label: obj.name };
-        }); */
-        // this.sections.unshift({ label: 'Select a section', value: '' });
+        this.sections = data['cmsSections'];
 
         // cms families
-        /* this._families = data['cmsFamilies'];
-        this.families = _.map(this._families, obj => {
-            return { value: obj.id, label: obj.name };
-        }); */
-        // this.families.unshift({ label: 'Select a family', value: '' });
+        this.families = data['cmsFamilies'];
 
         // cms categories
         /* this.categories = _.map(<Category[]>data['cmsCategories'], obj => {

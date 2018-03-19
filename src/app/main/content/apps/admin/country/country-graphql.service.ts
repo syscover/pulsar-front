@@ -49,7 +49,8 @@ export class CountryGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() {
+    init() 
+    {
         // model of backoffice relative at this GraphQL service
         this.model = 'Syscover\\Admin\\Models\\Country';
         this.table = 'admin_country';

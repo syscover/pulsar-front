@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { ArticleGraphQLService } from './article-graphql.service';

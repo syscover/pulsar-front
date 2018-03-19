@@ -7,8 +7,10 @@ import { locale as spanish } from './i18n/es';
 
 import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
+import { FamilyListComponent } from './family/family-list.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
+import { FamilyGraphQLService } from './family/family-graphql.service';
 
 @NgModule({
     imports: [
@@ -19,9 +21,11 @@ import { ArticleGraphQLService } from './article/article-graphql.service';
     declarations: [
         ArticleListComponent,
         ArticleDetailComponent,
+        FamilyListComponent
     ],
     providers: [
-        ArticleGraphQLService
+        ArticleGraphQLService,
+        FamilyGraphQLService
     ]
 })
 

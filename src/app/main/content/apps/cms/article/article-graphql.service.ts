@@ -76,7 +76,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
             }
         }`;
 
-    init() {
+    init() 
+    {
         this.model = 'Syscover\\Cms\\Models\\Article';
         this.table = 'cms_article';
 

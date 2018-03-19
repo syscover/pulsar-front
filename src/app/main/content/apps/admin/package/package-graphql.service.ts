@@ -49,7 +49,8 @@ export class PackageGraphQLService extends GraphQLSchema {
             }
         }`;
 
-    init() {
+    init() 
+    {
         this.model = 'Syscover\\Admin\\Models\\Package';
         this.table = 'admin_package';
 
