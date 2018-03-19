@@ -11,10 +11,10 @@ import { FamilyGraphQLService } from './family-graphql.service';
 })
 export class FamilyListComponent extends CoreListComponent 
 {
-    objectTranslation = 'CMS.FAMILY';
+    objectTranslation = 'APPS.FAMILY';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['id', 'name'];
-    displayedColumns = ['id', 'name'];
+    displayedColumns = ['id', 'name', 'actions'];
 
     constructor(
         protected injector: Injector,

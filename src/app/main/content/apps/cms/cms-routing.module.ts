@@ -4,6 +4,8 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
+import { FamilyListComponent } from './family/family-list.component';
+import { FamilyDetailComponent } from './family/family-detail.component';
 
 const routes: Routes = [
     {
@@ -17,6 +19,10 @@ const routes: Routes = [
             { path: 'article/create/:lang_id/:id',                      component: ArticleDetailComponent,              data: { action: 'create-lang' }},
             { path: 'article/show/:lang_id/:id',                        component: ArticleDetailComponent,              data: { action: 'edit' }},
 
+            // Families
+            { path: 'family',                                           component: FamilyListComponent },
+            { path: 'family/create',                                    component: FamilyDetailComponent,               data: { action: 'create' }},
+            { path: 'family/show/:id',                                  component: FamilyDetailComponent,               data: { action: 'edit' }},
         ]  
     }
 ];

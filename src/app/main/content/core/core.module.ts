@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 import { ApolloService } from './services/apollo.service';
@@ -38,10 +38,9 @@ import { ValidationMessageService } from './services/validation-message.service'
         HttpLinkModule,
         ApolloModule,
         JwtModule.forRoot({
-            jwtOptionsProvider: {
-                provide: JWT_OPTIONS,
-                useFactory: jwtOptionsFactory,
-                deps: []
+            config: {
+                tokenGetter: tokenGetter,
+                whitelistedDomains: [/.*/]
             }
         })
     ],
@@ -58,13 +57,9 @@ export class CoreModule
     }
 }
 
-export function jwtOptionsFactory() {
-    return {
-        tokenGetter: () => {
-            return localStorage.getItem('access_token');
-        },
-        whitelistedDomains: [/.*/]
-    };
+export function tokenGetter() 
+{
+    return localStorage.getItem('access_token');
 }
 
 export function BootstrapLoader(bootstrapService: BootstrapService) 

@@ -8,6 +8,7 @@ export const locale = {
             'ARTICLES': 'Articles',
             'CMS': 'CMS',
             'COUNTRIES': 'Countries',
+            'FAMILIES': 'Families',
             'PACKAGES': 'Packages',
             'PERMISSIONS': 'Permissions',
 

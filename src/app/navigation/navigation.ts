@@ -20,6 +20,14 @@ export const navigation = [
                         'icon'      : 'library_books',
                         'url'       : '/apps/cms/article'
                     },
+                    {
+                        'id'        : 'families',
+                        'title'     : 'Families',
+                        'translate' : 'NAV.FAMILIES',
+                        'type'      : 'item',
+                        'icon'      : 'class',
+                        'url'       : '/apps/cms/family'
+                    },
                 ]
             },
             {

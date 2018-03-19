@@ -8,6 +8,7 @@ import { locale as spanish } from './i18n/es';
 import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
+import { FamilyDetailComponent } from './family/family-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
 import { FamilyGraphQLService } from './family/family-graphql.service';
@@ -21,7 +22,8 @@ import { FamilyGraphQLService } from './family/family-graphql.service';
     declarations: [
         ArticleListComponent,
         ArticleDetailComponent,
-        FamilyListComponent
+        FamilyListComponent,
+        FamilyDetailComponent
     ],
     providers: [
         ArticleGraphQLService,
