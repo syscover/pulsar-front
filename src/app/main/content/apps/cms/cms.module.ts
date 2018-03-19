@@ -6,7 +6,7 @@ import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
 import { ArticleListComponent } from './article/article-list.component';
-// import { ArticleDetailComponent } from './article/article-detail.component';
+import { ArticleDetailComponent } from './article/article-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
 
@@ -18,7 +18,7 @@ import { ArticleGraphQLService } from './article/article-graphql.service';
     exports: [ ],
     declarations: [
         ArticleListComponent,
-        // ArticleDetailComponent,
+        ArticleDetailComponent,
     ],
     providers: [
         ArticleGraphQLService

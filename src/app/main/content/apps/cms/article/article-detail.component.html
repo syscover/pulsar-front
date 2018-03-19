@@ -1,0 +1,143 @@
+<div class="page-layout carded fullwidth tabable" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>library_books</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'CMS.ARTICLE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div fxLayoutGap="30px">
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.pristine"
+                        *ngIf="dataRoute.action ==='create'">
+                    <span>{{ 'APPS.ADD' | translate }}</span>
+                </button>
+
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid"
+                        *ngIf="dataRoute.action ==='create-lang'">
+                    <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                </button>
+    
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || fg.pristine"
+                        *ngIf="dataRoute.action ==='edit'">
+                    <span>{{ 'APPS.SAVE' | translate }}</span>
+                </button>
+
+                <button mat-raised-button
+                        class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang" 
+                        (click)="deleteRecord(object)">
+                    <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                </button>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            <div class="content">
+                
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+
+                    <mat-tab-group>
+                        <mat-tab label="Basic Info">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <input type="hidden" formControlName="ix">
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                                    </mat-form-field>
+                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                                </div>
+            
+                                <div fxLayout="row wrap" fxLayoutGap="15px">
+                                    <mat-form-field class="col-md-6">
+                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-md-5">
+                                        <input matInput placeholder="{{ 'CMS.AUTHOR' | translate }}" formControlName="author_name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" fxLayoutGap="15px">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
+                                            <mat-option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.status_id }}</mat-error>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput [matDatepicker]="publish" formControlName="publish">
+                                        <mat-datepicker-toggle matSuffix [for]="publish"></mat-datepicker-toggle>
+                                        <mat-datepicker #publish></mat-datepicker>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                
+
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

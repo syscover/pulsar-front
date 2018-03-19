@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'CMS': {
             'ARTICLE': 'Article',
+            'AUTHOR': 'Author',
             'PUBLISH': 'Publish',
         }
     }

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
 import { ArticleListComponent } from './article/article-list.component';
-// import { ActionDetailComponent } from './article/article-detail.component';
+import { ArticleDetailComponent } from './article/article-detail.component';
 
 const routes: Routes = [
     {
@@ -13,9 +13,9 @@ const routes: Routes = [
 
             // Articles
             { path: 'article',                                          component: ArticleListComponent },
-            /* { path: 'article/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
-            { path: 'article/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
-            { path: 'article/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }}, */
+            { path: 'article/create',                                   component: ArticleDetailComponent,              data: { action: 'create' }},
+            { path: 'article/create/:lang_id/:id',                      component: ArticleDetailComponent,              data: { action: 'create-lang' }},
+            { path: 'article/show/:lang_id/:id',                        component: ArticleDetailComponent,              data: { action: 'edit' }},
 
         ]  
     }

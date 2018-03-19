@@ -1,11 +1,10 @@
-import { Injector, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { Injector, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
-import { takeUntil } from 'rxjs/operators/takeUntil';
 import { of as observableOf } from 'rxjs/observable/of';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -16,9 +15,8 @@ import { Observable } from 'rxjs/Observable';
 import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
 
-export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnDestroy
+export abstract class CoreListComponent extends CoreComponent implements AfterViewInit
 {
-    ngUnsubscribe = new Subject();              // Create Observable to unsubscribe
     refreshTable = new Subject();               // Create Observable to unsubscribe
     objects: any[] = [];                        // property that can to be overwrite in child class
     totalRecords: number;                       // total records in datatable
@@ -30,7 +28,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     isLoadingResults = true;                    // flag to know if data is loading
     filters: any[];
     
-
     // view data table components
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -41,13 +38,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         protected graphQL: GraphQLSchema
     ) {
         super(injector, graphQL);
-    }
-
-    ngOnDestroy() 
-    {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
-        if (this.env.debug) console.log('DEBUG - Core list component destroyed');
     }
 
     ngAfterViewInit() 

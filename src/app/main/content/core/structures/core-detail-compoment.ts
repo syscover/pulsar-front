@@ -9,12 +9,12 @@ import { DataRoute } from './data-route';
 import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
 import { ValidationMessageService } from './../services/validation-message.service';
 import { environment } from './../../../../../environments/environment';
+import 'rxjs/add/operator/takeUntil';
 import './../functions/capitalize.function';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit
 {
-    loading = false;
     dataRoute: DataRoute; // static dataRoute Object pass from route module
     formErrors: any = {};
     fg: FormGroup;
@@ -129,7 +129,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // function to get record in edit action or create lang action
     getRecord(params: Params) {
-        const ob = this.httpService
+        this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -138,6 +138,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 variables: this.argumentsGetRecord(params)
             })
             .valueChanges
+            .takeUntil(this.ngUnsubscribe)
             .subscribe(({data}) => {
                 if (environment.debug) console.log('DEBUG - response of query to get object: ', data);
 
@@ -146,8 +147,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
                 // instance data on object list
                 this.setData(data['coreObject']);
-
-                ob.unsubscribe();
             });
     }
 
@@ -195,7 +194,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // instante custom arguments, for example in field-detail.component.ts
     // default merge relations arguments with argumens
-    getCustomArgumentsGetRecord(args: Object, params: Params): any {
+    getCustomArgumentsGetRecord(args: Object, params: Params): any 
+    {
         return Object.assign({}, args, this.argumentsRelationsObject());
     }
 
@@ -203,8 +203,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
      * Function to get relations object, normally used to create object
      */
     relationsObject(): void {
-        if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') {
-
+        if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') 
+        {
             const args = this.argumentsRelationsObject();
             let options;
 
@@ -228,6 +228,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 .apolloClient()
                 .watchQuery(options)
                 .valueChanges
+                .takeUntil(this.ngUnsubscribe)
                 .subscribe(({data}) => {
                     this.setRelationsData(data);
                 });
@@ -255,8 +256,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             console.log(this.fg);
             return; // has any validation error when emit submit event
         }
-
-        this.loading = true;
 
         let record$: Observable<any>; // Observable
         let args = {}; // arguments for observable

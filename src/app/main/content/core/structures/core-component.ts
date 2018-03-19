@@ -1,4 +1,4 @@
-import { Injector, ViewChild, OnInit } from '@angular/core';
+import { Injector, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,8 +8,9 @@ import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
+import { Subject } from 'rxjs/Subject';
 
-export abstract class CoreComponent extends Core implements OnInit
+export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
     protected router: Router;
     protected route: ActivatedRoute;
@@ -20,6 +21,7 @@ export abstract class CoreComponent extends Core implements OnInit
     protected snackBar: MatSnackBar;
     protected translations: Object = {};            // translations for used in component
     protected dialog: MatDialog;
+    protected ngUnsubscribe = new Subject();        // create Observable to unsubscribe
     
     // baseUri to set component urls in templete, this property must to be public because is used in template
     baseUri: string;
@@ -74,6 +76,13 @@ export abstract class CoreComponent extends Core implements OnInit
             }).subscribe(response => {
                 this.translations = Object.assign(this.translations, response);
             });
+    }
+
+    ngOnDestroy() 
+    {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+        if (this.env.debug) console.log('DEBUG - Core list component destroyed');
     }
 
     protected setBaseUri(baseUri?: string) 

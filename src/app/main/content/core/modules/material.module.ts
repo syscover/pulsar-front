@@ -31,9 +31,11 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatStepperModule
+    MatStepperModule,
+    DateAdapter
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -108,5 +110,18 @@ import { CdkTableModule } from '@angular/cdk/table';
 })
 export class MaterialModule
 {
-
+    constructor(
+        private translateService: TranslateService,
+        private dateAdapter: DateAdapter<Date>
+    ) {
+        // set current lang to datepicker
+        this.dateAdapter.setLocale(this.translateService.currentLang);
+        
+        // set new lang in datepicker when languague is changed
+        translateService
+            .onLangChange
+            .subscribe((event: TranslationChangeEvent) => {
+                this.dateAdapter.setLocale(event.lang);
+            });
+    }
 }
