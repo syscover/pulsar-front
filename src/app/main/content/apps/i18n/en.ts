@@ -27,6 +27,7 @@ export const locale = {
             'EDIT': 'Edit',
             'FAMILY': 'Family',
             'FAMILIES': 'Families',
+            'FIELDS': 'Fields',
             'ID': 'Id',
             'LINK': 'Link',
             'NAME': 'Name',

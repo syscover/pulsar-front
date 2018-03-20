@@ -95,7 +95,7 @@
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
-                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
             
                                 <div fxLayout="row wrap" class="justify-content-between">
@@ -143,8 +143,47 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                
 
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <input matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
+                                        <mat-error>{{ formErrors?.title }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <input matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                                        <mat-error>{{ formErrors?.slug }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Basic Info">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                    </mat-form-field>
+                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
+                                </div>
+                
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Basic Info">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                YYYYY
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Basic Info">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                BBBBB
                             </div>
                         </mat-tab>
                     </mat-tab-group>
