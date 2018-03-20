@@ -126,13 +126,15 @@
                     <div fxLayout="row" class="justify-content-between">
                         <mat-form-field class="col-12 col-md-5">
                             <mat-select placeholder="{{ 'CMS.EXCERPT_EDITOR' | translate }}" formControlName="excerpt_editor_id">
-                                <mat-option *ngFor="let editor of editors" [value]="editor.id">{{ editor.name }}</mat-option>
+                                <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
+                                <mat-option *ngFor="let editor of editors" [value]="+editor.id">{{ editor.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
 
                         <mat-form-field class="col-12 col-md-5">
                             <mat-select placeholder="{{ 'CMS.ARTICLE_EDITOR' | translate }}" formControlName="article_editor_id">
-                                <mat-option *ngFor="let editor of editors" [value]="editor.id">{{ editor.name }}</mat-option>
+                                <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
+                                <mat-option *ngFor="let editor of editors" [value]="+editor.id">{{ editor.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -140,6 +142,7 @@
                     <div fxLayout="row" class="justify-content-between">
                         <mat-form-field class="col-12 col-md-5">
                             <mat-select placeholder="{{ 'CMS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
+                                <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
                                 <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>

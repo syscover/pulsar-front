@@ -32,6 +32,7 @@ export const locale = {
             'NAME': 'Name',
             'NEW.M': 'New',
             'NEW.F': 'New',
+            'NONE': 'None',
             'OK': 'Ok',
             'PREFIX': 'Prefix',
             'SAVE': 'Save',

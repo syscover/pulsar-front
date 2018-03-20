@@ -40,7 +40,8 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             article_parent: false,
             attachments: false,
             excerpt_editor_id: null,
-            article_editor_id: null,
+            article_editor_id
+: null,
             field_group_id: null
         });
     }
