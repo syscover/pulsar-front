@@ -5,10 +5,10 @@ import { Lang } from './../../apps/admin/admin.models';
     selector: 'dh2-flag-icon',
     styles: [`
         :host {
-             display: flex;
-             align-items: center;
-             margin-bottom: 20px;
-             height: 45.5px
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            height: 45.5px
         }
         .flag-icon {
             margin-right: 10px;

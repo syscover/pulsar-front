@@ -1,6 +1,5 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { animate } from '@angular/animations';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { CountryGraphQLService } from './country-graphql.service';

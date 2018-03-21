@@ -1,7 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Params } from '@angular/router';
-import { animate } from '@angular/animations';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { FamilyGraphQLService } from './family-graphql.service';
@@ -40,8 +39,7 @@ export class FamilyDetailComponent extends CoreDetailComponent {
             article_parent: false,
             attachments: false,
             excerpt_editor_id: null,
-            article_editor_id
-: null,
+            article_editor_id: null,
             field_group_id: null
         });
     }
