@@ -18,6 +18,7 @@ import { GraphQLSchema } from './graphql-schema';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
 {
+    startTable = new Subject();                 // Create Observable to start table
     refreshTable = new Subject();               // Create Observable to unsubscribe
     objects: any[] = [];                        // property that can to be overwrite in child class
     totalRecords: number;                       // total records in datatable
@@ -28,7 +29,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     resultsLength = 0;                          // total results
     isLoadingResults = true;                    // flag to know if data is loading
     filters: any[];
-    clearFilter$ = new Subject();               // create Observable to clear filter
     
     // view data table components
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,28 +53,27 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
             this.sort.sortChange,
-            this.clearFilter$,
             Observable.
                 fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(400)
+                .debounceTime(500)
                 .distinctUntilChanged()
         )
         .takeUntil(this.ngUnsubscribe)
         .subscribe(() => this.paginator.pageIndex = 0);
 
         merge(
+            this.startTable.debounceTime(800),
             this.refreshTable,
-            this.sort.sortChange, 
+            this.sort.sortChange.debounceTime(400), 
             this.paginator.page, 
-            this.clearFilter$,
             Observable
                 .fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(400)
                 .distinctUntilChanged()
         )
         .pipe(
-            startWith({}),
-            debounceTime(600), // delay petition to avoid overwritte jwt with other request
+            // comment startWith({}) to start table with "this.startTable.debounceTime(300)" to avoid overwirtes tokens from JWT
+            // startWith({}), 
             switchMap(() => {
                 this.isLoadingResults = true;
  
@@ -112,6 +111,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             // hide loader data table
             this.isLoadingResults = false;
         });
+
+        this.startTable.next();
     }
 
     /*
@@ -120,7 +121,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     clearFilter() 
     {
         this.filter.nativeElement.value = '';
-        this.clearFilter$.next();
+        this.refreshTable.next();
     }
 
     /**
