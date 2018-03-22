@@ -11,7 +11,7 @@ export const locale = {
             'FAMILIES': 'Families',
             'PACKAGES': 'Packages',
             'PERMISSIONS': 'Permissions',
-
+            
             'SAMPLE'        : {
                 'TITLE': 'Sample',
                 'BADGE': '25'

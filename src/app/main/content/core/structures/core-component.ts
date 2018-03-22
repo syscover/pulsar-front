@@ -73,7 +73,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
                     delete translations.APPS;
                     return translations;
                 }
-            }).subscribe(response => {
+            })
+            .subscribe(response => {
                 this.translations = Object.assign(this.translations, response);
             });
     }

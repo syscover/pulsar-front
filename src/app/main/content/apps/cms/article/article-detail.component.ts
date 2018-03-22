@@ -284,15 +284,12 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     setRelationsData(data) {
         // cms sections
         this.sections = data['cmsSections'];
-
         // cms families
         this.families = data['cmsFamilies'];
-
+        // cms articles
+        this.articles = data['cmsArticles'];
         // cms categories
-        /* this.categories = _.map(<Category[]>data['cmsCategories'], obj => {
-            return { value: obj.id, label: obj.name };
-        }); */
-
+        this.categories = data['cmsCategories'];
         // cms statuses
         this.statuses = data['cmsStatuses'];
 
@@ -306,12 +303,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             author_id: user.id,
             author_name: user.name + ' ' + user.surname
         });
-
-        // cms articles
-        /* this.articles = _.map(<Article[]>data['cmsArticles'], obj => {
-            return { value: obj.id, label: obj.id + ' - ' + obj.name };
-        }); */
-        // this.articles.unshift({ label: 'Select a article', value: '' });
     }
 
     /* handleCheckSlug($event) {

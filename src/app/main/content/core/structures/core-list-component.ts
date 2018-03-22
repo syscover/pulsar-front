@@ -1,8 +1,9 @@
-import { Injector, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Injector, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { debounceTime } from 'rxjs/operators/debounceTime';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
 import { of as observableOf } from 'rxjs/observable/of';
@@ -15,7 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
 
-export abstract class CoreListComponent extends CoreComponent implements AfterViewInit
+export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
 {
     refreshTable = new Subject();               // Create Observable to unsubscribe
     objects: any[] = [];                        // property that can to be overwrite in child class
@@ -27,6 +28,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     resultsLength = 0;                          // total results
     isLoadingResults = true;                    // flag to know if data is loading
     filters: any[];
+    clearFilter$ = new Subject();               // create Observable to clear filter
     
     // view data table components
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -40,17 +42,21 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         super(injector, graphQL);
     }
 
-    ngAfterViewInit() 
+    ngOnInit() 
     {
         // get model reference to get search text
         this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
+    }
 
+    ngAfterViewInit() 
+    {
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
             this.sort.sortChange,
+            this.clearFilter$,
             Observable.
                 fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(300)
+                .debounceTime(400)
                 .distinctUntilChanged()
         )
         .takeUntil(this.ngUnsubscribe)
@@ -60,16 +66,18 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             this.refreshTable,
             this.sort.sortChange, 
             this.paginator.page, 
+            this.clearFilter$,
             Observable
                 .fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(300)
+                .debounceTime(400)
                 .distinctUntilChanged()
         )
         .pipe(
             startWith({}),
+            debounceTime(600), // delay petition to avoid overwritte jwt with other request
             switchMap(() => {
                 this.isLoadingResults = true;
-                
+ 
                 // throw a new obserbable
                 return this.getRecords(
                     this.sort.active, 
@@ -104,6 +112,15 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             // hide loader data table
             this.isLoadingResults = false;
         });
+    }
+
+    /*
+    * Clear input search
+    */
+    clearFilter() 
+    {
+        this.filter.nativeElement.value = '';
+        this.clearFilter$.next();
     }
 
     /**

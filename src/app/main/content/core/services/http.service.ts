@@ -15,13 +15,7 @@ export class HttpService extends Core
     protected httpClient: HttpClient;
     protected apollo: Apollo;
     protected router: Router;
-    private handleError = (err) => {
-        console.log(err);
-        if (err.status === 401) this.router.navigate(['/pulsar/login']); // redirect to login if token is invalid
-       
-        return Observable.throw('Error Observable.throw: ' + err.statusText);
-    }
-
+    
     constructor(
         protected injector: Injector
     ) {
@@ -38,6 +32,13 @@ export class HttpService extends Core
     apolloClient() 
     {
         return this.apollo;
+    }
+
+    private handleError = (err) => {
+        console.log(err);
+        if (err.status === 401) this.router.navigate(['/pulsar/login']); // redirect to login if token is invalid
+       
+        return Observable.throw('Error Observable.throw: ' + err.statusText);
     }
 
     /* proxyGet(action: string, params?: Params): Observable<any> 

@@ -86,7 +86,7 @@
                         fxFlex>
 
                     <mat-tab-group [dynamicHeight]="true">
-                        <mat-tab label="Basic Info">
+                        <mat-tab label="{{ 'APPS.PROPERTIES' | translate }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <input type="hidden" formControlName="ix">
@@ -149,6 +149,23 @@
                                     <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
                                 </div>
 
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
+                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                        <mat-datepicker #date></mat-datepicker>
+                                        <mat-error>{{ formErrors?.date }}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
+                                            <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
+                                            <mat-option *ngFor="let article of articles" [value]="article.id">{{ article.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.parent_id }}</mat-error>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
                                         <input matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
@@ -163,6 +180,14 @@
                                     </mat-form-field>
                                 </div>
 
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <mat-select placeholder="{{ 'CMS.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.categories_id }}</mat-error>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">
