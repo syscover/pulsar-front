@@ -6,6 +6,8 @@ import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
+import { SectionListComponent } from './section/section-list.component';
+import { SectionDetailComponent } from './section/section-detail.component';
 
 const routes: Routes = [
     {
@@ -18,6 +20,11 @@ const routes: Routes = [
             { path: 'article/create',                                   component: ArticleDetailComponent,              data: { action: 'create' }},
             { path: 'article/create/:lang_id/:id',                      component: ArticleDetailComponent,              data: { action: 'create-lang' }},
             { path: 'article/show/:lang_id/:id',                        component: ArticleDetailComponent,              data: { action: 'edit' }},
+
+            // Sections
+            { path: 'section',                                          component: SectionListComponent },
+            { path: 'section/create',                                   component: SectionDetailComponent,              data: { action: 'create' }},
+            { path: 'section/show/:id',                                 component: SectionDetailComponent,              data: { action: 'edit' }},
 
             // Families
             { path: 'family',                                           component: FamilyListComponent },

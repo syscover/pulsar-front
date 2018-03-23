@@ -6,6 +6,7 @@ export const locale = {
             'ADMINISTRATION': 'Administración',
             'APPLICATIONS': 'Aplicaciones',
             'ARTICLES': 'Artículos',
+            'ATTACHMENT_FAMILIES': 'Familias de adjuntos',
             'CMS': 'CMS',
             'COUNTRIES': 'Países',
             'FAMILIES': 'Familias',
@@ -13,6 +14,7 @@ export const locale = {
             'PACKAGES': 'Paquetes',
             'PERMISSIONS': 'Permisos',
             'RESOURCES': 'Recursos',
+            'SECTIONS': 'Secciones',
             
             'SAMPLE'        : {
                 'TITLE': 'Ejemplo',

@@ -9,9 +9,12 @@ import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
+import { SectionListComponent } from './section/section-list.component';
+import { SectionDetailComponent } from './section/section-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
 import { FamilyGraphQLService } from './family/family-graphql.service';
+import { SectionGraphQLService } from './section/section-graphql.service';
 
 @NgModule({
     imports: [
@@ -23,11 +26,14 @@ import { FamilyGraphQLService } from './family/family-graphql.service';
         ArticleListComponent,
         ArticleDetailComponent,
         FamilyListComponent,
-        FamilyDetailComponent
+        FamilyDetailComponent,
+        SectionListComponent,
+        SectionDetailComponent
     ],
     providers: [
         ArticleGraphQLService,
-        FamilyGraphQLService
+        FamilyGraphQLService,
+        SectionGraphQLService
     ]
 })
 

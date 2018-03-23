@@ -11,6 +11,7 @@ export const locale = {
             'FAMILY': 'Familia',
             'FIELD_GROUP': 'Grupo de campos',
             'PUBLISH': 'Publicar',
+            'SECTION': 'Sección',
             'TAGS': 'Etiquetas',
             'TITLE': 'Título',
         }

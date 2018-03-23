@@ -30,13 +30,21 @@ export const navigation = [
                         'url'       : '/apps/cms/article'
                     },
                     {
+                        'id'        : 'sections',
+                        'title'     : 'Sections',
+                        'translate' : 'NAV.SECTIONS',
+                        'type'      : 'item',
+                        'icon'      : 'power',
+                        'url'       : '/apps/cms/section'
+                    },
+                    {
                         'id'        : 'families',
                         'title'     : 'Families',
                         'translate' : 'NAV.FAMILIES',
                         'type'      : 'item',
                         'icon'      : 'class',
                         'url'       : '/apps/cms/family'
-                    },
+                    }
                 ]
             },
             {

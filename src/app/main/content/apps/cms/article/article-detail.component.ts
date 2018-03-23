@@ -281,17 +281,17 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         };
     }
 
-    setRelationsData(data) {
+    setRelationsData(data: any) {
         // cms sections
-        this.sections = data['cmsSections'];
+        this.sections = data.cmsSections;
         // cms families
-        this.families = data['cmsFamilies'];
+        this.families = data.cmsFamilies;
         // cms articles
-        this.articles = data['cmsArticles'];
+        this.articles = data.cmsArticles;
         // cms categories
-        this.categories = data['cmsCategories'];
+        this.categories = data.cmsCategories;
         // cms statuses
-        this.statuses = data['cmsStatuses'];
+        this.statuses = data.cmsStatuses;
 
         // admin attachment families
         // this objects are manage in loadAttachmentFamilies method

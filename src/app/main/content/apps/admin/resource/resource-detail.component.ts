@@ -36,6 +36,6 @@ export class ResourceDetailComponent extends CoreDetailComponent {
     setRelationsData(data: any) 
     {
         // admin packages
-        this.packages = data['adminPackages'];
+        this.packages = data.adminPackages;
     }
 }

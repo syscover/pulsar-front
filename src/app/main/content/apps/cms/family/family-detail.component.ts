@@ -1,6 +1,5 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { Params } from '@angular/router';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { FamilyGraphQLService } from './family-graphql.service';
@@ -13,8 +12,8 @@ import * as _ from 'lodash';
     templateUrl: './family-detail.component.html',
     animations: fuseAnimations
 })
-export class FamilyDetailComponent extends CoreDetailComponent {
-
+export class FamilyDetailComponent extends CoreDetailComponent 
+{
     editors: Editor[] = [];
     fieldGroups: FieldGroup[] = [];
 
