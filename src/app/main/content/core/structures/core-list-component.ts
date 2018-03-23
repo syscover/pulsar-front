@@ -44,6 +44,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     ngOnInit() 
     {
+        super.ngOnInit();
+        
         // get model reference to get search text
         this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
     }

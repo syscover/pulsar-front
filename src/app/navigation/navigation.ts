@@ -6,6 +6,15 @@ export const navigation = [
         'type'      : 'group',
         'children'  : [
             {
+                'id'   : 'market',
+                'title': 'Market',
+                'translate': 'NAV.MARKET',
+                'type' : 'collapse',
+                'icon' : 'store_mall_directory',
+                'children' : [
+                ]
+            },
+            {
                 'id'   : 'cms',
                 'title': 'CMS',
                 'translate': 'NAV.CMS',
@@ -67,7 +76,15 @@ export const navigation = [
                                 'type' : 'item',
                                 'icon' : 'flash_on',
                                 'url'  : '/apps/admin/action'
-                            }
+                            },
+                            {
+                                'id'   : 'resources',
+                                'title': 'Resources',
+                                'translate': 'NAV.RESOURCES',
+                                'type' : 'item',
+                                'icon' : 'rounded_corner',
+                                'url'  : '/apps/admin/resource'
+                            },
                         ]
                     }
                 ]

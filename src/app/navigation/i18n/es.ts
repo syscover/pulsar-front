@@ -9,8 +9,10 @@ export const locale = {
             'CMS': 'CMS',
             'COUNTRIES': 'Países',
             'FAMILIES': 'Familias',
+            'MARKET': 'Market',
             'PACKAGES': 'Paquetes',
             'PERMISSIONS': 'Permisos',
+            'RESOURCES': 'Recursos',
             
             'SAMPLE'        : {
                 'TITLE': 'Ejemplo',

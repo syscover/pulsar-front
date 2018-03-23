@@ -11,10 +11,13 @@ import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { ResourceListComponent } from './resource/resource-list.component';
+import { ResourceDetailComponent } from './resource/resource-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
+import { ResourceGraphQLService } from './resource/resource-graphql.service';
 
 @NgModule({
     imports: [
@@ -28,12 +31,15 @@ import { PackageGraphQLService } from './package/package-graphql.service';
         CountryListComponent,
         CountryDetailComponent,
         PackageListComponent,
-        PackageDetailComponent
+        PackageDetailComponent,
+        ResourceListComponent,
+        ResourceDetailComponent
     ],
     providers: [
         ActionGraphQLService,
         CountryGraphQLService,
         PackageGraphQLService,
+        ResourceGraphQLService
     ]
 })
 

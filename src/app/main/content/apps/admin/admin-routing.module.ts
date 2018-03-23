@@ -2,35 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
-/*
-import { UserListComponent } from './user/user-list.component';
-import { UserDetailComponent } from './user/user-detail.component';
-import { LangListComponent } from './lang/lang-list.component';
-import { LangDetailComponent } from './lang/lang-detail.component';
-import { CronJobListComponent } from './cron-job/cron-job-list.component';
-import { CronJobDetailComponent } from './cron-job/cron-job-detail.component';
-import { FieldGroupListComponent } from './field-group/field-group-list.component';
-import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
-import { FieldListComponent } from './field/field-list.component';
-import { FieldDetailComponent } from './field/field-detail.component';
-import { FieldValueListComponent } from './field-value/field-value-list.component';
-import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
-import { AttachmentMimeListComponent } from './attachment-mime/attachment-mime-list.component';
-import { AttachmentMimeDetailComponent } from './attachment-mime/attachment-mime-detail.component';
-import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
-import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
-import { ProfileListComponent } from './profile/profile-list.component';
-import { ProfileDetailComponent } from './profile/profile-detail.component';
-import { ResourceListComponent } from './resource/resource-list.component';
-import { ResourceDetailComponent } from './resource/resource-detail.component'; */
-
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
-
+import { ResourceListComponent } from './resource/resource-list.component';
+import { ResourceDetailComponent } from './resource/resource-detail.component';
 
 /*
 
@@ -77,11 +56,6 @@ import { PackageDetailComponent } from './package/package-detail.component';
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
         { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
 
-        // Resources
-        { path: 'resource',                                         component: ResourceListComponent },
-        { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
-        { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},
-
         // Profiles
         { path: 'profile',                                          component: ProfileListComponent },
         { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
@@ -111,9 +85,14 @@ const routes: Routes = [
             { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
 
             // Packages
-            { path: 'package',                                           component: PackageListComponent },
-            { path: 'package/create',                                    component: PackageDetailComponent,             data: { action: 'create' }},
-            { path: 'package/show/:id',                                  component: PackageDetailComponent,             data: { action: 'edit' }},
+            { path: 'package',                                          component: PackageListComponent },
+            { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
+            { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
+
+            // Packages
+            { path: 'resource',                                         component: ResourceListComponent },
+            { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
+            { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},
         ]  
     }
 ];

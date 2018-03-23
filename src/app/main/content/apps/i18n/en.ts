@@ -38,6 +38,7 @@ export const locale = {
             'OK': 'Ok',
             'PREFIX': 'Prefix',
             'PROPERTIES': 'Properties',
+            'RESOURCE': 'Resource',
             'SAVE': 'Save',
             'SAVED.F': 'Saved',
             'SAVED.M': 'Saved',
