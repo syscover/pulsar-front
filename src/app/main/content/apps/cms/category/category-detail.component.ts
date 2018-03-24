@@ -1,18 +1,16 @@
-import { SectionDetailComponent } from './../section/section-detail.component';
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { CategoryGraphQLService } from './category-graphql.service';
 import { Section } from './../cms.models';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-category-detail',
     templateUrl: './category-detail.component.html',
     animations: fuseAnimations
 })
-export class CategoryDetailComponent extends CoreDetailComponent 
+export class CategoryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'CMS.CATEGORY';
     objectTranslationGender = 'F';
@@ -20,7 +18,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: CategoryGraphQLService
+        graphQL: CategoryGraphQLService
     ) {
         super(injector, graphQL);
     }
