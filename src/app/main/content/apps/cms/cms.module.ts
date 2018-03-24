@@ -7,12 +7,14 @@ import { locale as spanish } from './i18n/es';
 
 import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
+import { CategoryListComponent } from './category/category-list.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 import { SectionListComponent } from './section/section-list.component';
 import { SectionDetailComponent } from './section/section-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
+import { CategoryGraphQLService } from './category/category-graphql.service';
 import { FamilyGraphQLService } from './family/family-graphql.service';
 import { SectionGraphQLService } from './section/section-graphql.service';
 
@@ -25,6 +27,7 @@ import { SectionGraphQLService } from './section/section-graphql.service';
     declarations: [
         ArticleListComponent,
         ArticleDetailComponent,
+        CategoryListComponent,
         FamilyListComponent,
         FamilyDetailComponent,
         SectionListComponent,
@@ -32,6 +35,7 @@ import { SectionGraphQLService } from './section/section-graphql.service';
     ],
     providers: [
         ArticleGraphQLService,
+        CategoryGraphQLService,
         FamilyGraphQLService,
         SectionGraphQLService
     ]

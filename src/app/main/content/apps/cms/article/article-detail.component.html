@@ -182,7 +182,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <mat-select placeholder="{{ 'CMS.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
+                                        <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
                                             <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
                                             <mat-error>{{ formErrors?.categories_id }}</mat-error>
                                         </mat-select>

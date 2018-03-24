@@ -6,7 +6,7 @@ export const locale = {
             'ARTICLE_EDITOR': 'Article editor',
             'ARTICLE_PARENT': 'Article parent',
             'AUTHOR': 'Author',
-            'CATEGORIES': 'Categories',
+            'CATEGORY': 'Category',
             'EXCERPT_EDITOR': 'Excerpt editor',
             'FAMILY': 'Family',
             'FIELD_GROUP': 'Field group',

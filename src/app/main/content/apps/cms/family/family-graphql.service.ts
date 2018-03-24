@@ -98,4 +98,3 @@ export class FamilyGraphQLService extends GraphQLSchema
         super.init();
     }
 }
-

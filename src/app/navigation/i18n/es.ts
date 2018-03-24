@@ -8,6 +8,7 @@ export const locale = {
             'ARTICLES': 'Artículos',
             'ATTACHMENT_FAMILIES': 'Familias de adjuntos',
             'CMS': 'CMS',
+            'CATEGORIES': 'Categorías',
             'COUNTRIES': 'Países',
             'FAMILIES': 'Familias',
             'MARKET': 'Market',

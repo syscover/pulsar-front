@@ -44,6 +44,14 @@ export const navigation = [
                         'type'      : 'item',
                         'icon'      : 'class',
                         'url'       : '/apps/cms/family'
+                    },
+                    {
+                        'id'        : 'categories',
+                        'title'     : 'Categories',
+                        'translate' : 'NAV.CATEGORIES',
+                        'type'      : 'item',
+                        'icon'      : 'chrome_reader_mode',
+                        'url'       : '/apps/cms/category'
                     }
                 ]
             },
