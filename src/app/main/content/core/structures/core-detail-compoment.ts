@@ -2,6 +2,7 @@ import { Injector, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
@@ -9,7 +10,6 @@ import { DataRoute } from './data-route';
 import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
 import { ValidationMessageService } from './../services/validation-message.service';
 import { environment } from './../../../../../environments/environment';
-import 'rxjs/add/operator/takeUntil';
 import './../functions/capitalize.function';
 import * as _ from 'lodash';
 
@@ -20,7 +20,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     fg: FormGroup;
     fb: FormBuilder;
     lang: Lang; // Current lang for objects that has multiple language
-    object: Object = {}; // set empty object
+    object: any = {}; // set empty object
     validationMessageService: ValidationMessageService;
     
     constructor(
@@ -320,25 +320,53 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 });
         }
 
-        record$.subscribe(data => {
-            this.snackBar.open(
-                (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
-                this.translations['APPS.OK'], 
+        record$
+            .subscribe(data => {
+                // manage errors
+                if (data.errors)
                 {
-                    verticalPosition: 'top',
-                    duration        : 3000
+                    let message = null;
+                    if (data.errors[0].errorInfo)
+                    {
+                        message =   data.errors[0].errorInfo[2] 
+                                    + '\nSQLSTATE: ' + data.errors[0].errorInfo[0] 
+                                    + '\nCODE: ' + data.errors[0].errorInfo[1];
+                    }
+                    else
+                    {
+                        message =   data.errors[0].message;
+                    }
+                    this.snackBar.open(
+                        message, 
+                        this.translations['APPS.ERROR'], 
+                        {
+                            verticalPosition: 'top',
+                            duration        : 5000,
+                            panelClass      : ['red-snackbar', 'multi-line-snackbar']
+                        }
+                    );
                 }
-            );
-
-            if (! routeRedirect)
-            {
-                this.router.navigate([this.baseUri]); 
-            }
-            else
-            {
-                this.router.navigate([routeRedirect]);
-            }
-        });
+                else
+                {
+                    this.snackBar.open(
+                        (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
+                        this.translations['APPS.OK'], 
+                        {
+                            verticalPosition: 'top',
+                            duration        : 3000,
+                        }
+                    );
+    
+                    if (! routeRedirect)
+                    {
+                        this.router.navigate([this.baseUri]); 
+                    }
+                    else
+                    {
+                        this.router.navigate([routeRedirect]);
+                    }
+                }
+            });
     }
 
     /**

@@ -26,6 +26,7 @@ export const locale = {
             'DELETED.M': 'Deleted',
             'DETAIL': 'Detail',
             'EDIT': 'Edit',
+            'ERROR': 'Error',
             'FAMILY': 'Family',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',

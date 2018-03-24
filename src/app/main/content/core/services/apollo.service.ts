@@ -65,6 +65,14 @@ export class ApolloService
         this.apollo.create({
             link: this.httpLink.create({ uri: graphqlUri }),
             cache: cache,
+            defaultOptions: {
+                watchQuery: {
+                    errorPolicy: 'all'
+                },
+                mutate: {
+                    errorPolicy: 'all'
+                }
+            }
         });
     }
 }

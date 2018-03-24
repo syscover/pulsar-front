@@ -39,3 +39,11 @@ div.header-section {
 .filter-close-icon .mat-icon {
     line-height: 1.5 !important;
 }
+
+
+.multi-line-snackbar {
+    white-space: pre-line;
+}
+.red-snackbar .mat-simple-snackbar-action {
+    color: red;
+}

@@ -14,6 +14,8 @@ import * as _ from 'lodash';
 })
 export class FamilyDetailComponent extends CoreDetailComponent 
 {
+    objectTranslation = 'CMS.FAMILY';
+    objectTranslationGender = 'F';
     editors: Editor[] = [];
     fieldGroups: FieldGroup[] = [];
 

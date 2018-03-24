@@ -15,6 +15,8 @@ import * as _ from 'lodash';
 })
 export class SectionDetailComponent extends CoreDetailComponent 
 {
+    objectTranslation = 'CMS.SECTION';
+    objectTranslationGender = 'F';
     families: Family[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
 
@@ -62,9 +64,12 @@ export class SectionDetailComponent extends CoreDetailComponent
 
     beforePatchValueEdit()
     {
-        const object = Object.assign({}, this.object);
-        object['attachment_families'] = object['attachment_families'].map((item) => +item);
-        this.object = object;
+        if (this.object.attachment_families)
+        {
+            const object = Object.assign({}, this.object);
+            object.attachment_families = object.attachment_families.map((item) => +item);
+            this.object = object;
+        }
     }
 
     setRelationsData(data: any) 
