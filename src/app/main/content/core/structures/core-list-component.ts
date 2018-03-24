@@ -1,5 +1,7 @@
 import { Injector, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
@@ -11,8 +13,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
 
@@ -90,11 +90,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             }),
             map(data => {
                 return data['data'];
-            }),
-            catchError((error) => {
-                console.log('DEBUG - Error GraphQL response in data list: ', error);
-                this.isLoadingResults = false;
-                return observableOf([]);
             })
         )
         .takeUntil(this.ngUnsubscribe)

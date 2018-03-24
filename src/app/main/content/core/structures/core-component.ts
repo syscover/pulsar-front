@@ -6,7 +6,6 @@ import { Core } from './core';
 import { HttpService } from './../services/http.service';
 import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
-import { environment } from './../../../../../environments/environment';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 import { Subject } from 'rxjs/Subject';
 

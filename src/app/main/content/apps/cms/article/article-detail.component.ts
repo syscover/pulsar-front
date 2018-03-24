@@ -12,7 +12,6 @@ import { MatDatepicker } from '@angular/material';
 // import { DynamicFormService } from './../../../shared/components/forms/dynamic-form/dynamic-form.service';
 // import { AuthService } from './../../../core/auth/auth.service';
 // import { ConfigService } from '../../../core/services/config.service';
-// import { environment } from './../../../../environments/environment';
 // import gql from 'graphql-tag';
 
 @Component({
@@ -304,30 +303,5 @@ export class ArticleDetailComponent extends CoreDetailComponent {
             author_name: user.name + ' ' + user.surname
         });
     }
-
-    /* handleCheckSlug($event) {
-        const ob = this.objectService
-            .apolloClient()
-            .watchQuery({
-                fetchPolicy: 'network-only',
-                query: gql`
-                    query MarketProductSlug ($model:String! $slug:String! $id:Int) {
-                        adminCheckSlug (model:$model slug:$slug id:$id)
-                    }
-                `,
-                variables: {
-                    model: 'Syscover\\Cms\\Models\\Article',
-                    slug: $event.target.value,
-                    id: this.object.id ? this.object.id : null
-                }
-            })
-            .valueChanges
-            .subscribe(({data}) => {
-                if (environment.debug) console.log('DEBUG - response of query article slug: ', data);
-
-                this.fg.controls['slug'].setValue(data['adminCheckSlug']);
-                ob.unsubscribe();
-            });
-    } */
 }
 

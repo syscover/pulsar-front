@@ -9,7 +9,6 @@ import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
 import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
 import { ValidationMessageService } from './../services/validation-message.service';
-import { environment } from './../../../../../environments/environment';
 import './../functions/capitalize.function';
 import * as _ from 'lodash';
 
@@ -140,7 +139,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             .valueChanges
             .takeUntil(this.ngUnsubscribe)
             .subscribe(({data}) => {
-                if (environment.debug) console.log('DEBUG - response of query to get object: ', data);
+                if (this.env.debug) console.log('DEBUG - response of query to get object: ', data);
 
                 // instance data in relations fields of object
                 this.setRelationsData(data);
@@ -187,7 +186,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         args = this.getCustomArgumentsGetRecord(args, params);
 
-        if (environment.debug) console.log('DEBUG - arguments to get object: ', args);
+        if (this.env.debug) console.log('DEBUG - arguments to get object: ', args);
 
         return args;
     }
@@ -222,7 +221,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 };
             }
 
-            if (environment.debug) console.log('DEBUG - options of relations to create object: ', options);
+            if (this.env.debug) console.log('DEBUG - options of relations to create object: ', options);
 
             this.httpService
                 .apolloClient()
@@ -277,7 +276,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsCreatePostRecord(args, object);
 
-            if (environment.debug) console.log('DEBUG - args sending to create object: ', args);
+            if (this.env.debug) console.log('DEBUG - args sending to create object: ', args);
 
             record$ = this.httpService
                 .apolloClient()
@@ -295,7 +294,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsCreateLangPostRecord(args, object);
 
-            if (environment.debug) console.log('DEBUG - args sending to create lang object: ', args);
+            if (this.env.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
             record$ = this.httpService
                 .apolloClient()
@@ -310,7 +309,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsEditPostRecord(args, object);
 
-            if (environment.debug) console.log('DEBUG - args sending to edit object: ', args);
+            if (this.env.debug) console.log('DEBUG - args sending to edit object: ', args);
 
             record$ = this.httpService
                 .apolloClient()
