@@ -8,6 +8,7 @@ import { locale as spanish } from './i18n/es';
 import { ArticleListComponent } from './article/article-list.component';
 import { ArticleDetailComponent } from './article/article-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 import { SectionListComponent } from './section/section-list.component';
@@ -28,6 +29,7 @@ import { SectionGraphQLService } from './section/section-graphql.service';
         ArticleListComponent,
         ArticleDetailComponent,
         CategoryListComponent,
+        CategoryDetailComponent,
         FamilyListComponent,
         FamilyDetailComponent,
         SectionListComponent,

@@ -72,7 +72,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="cms_section.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SECTION' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.section.name }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.section?.name }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

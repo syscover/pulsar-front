@@ -26,7 +26,8 @@ export class FamilyDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() {
+    createForm() 
+    {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             name: [null, Validators.required ],
