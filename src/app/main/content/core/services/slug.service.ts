@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs/Observable';
+import { first } from 'rxjs/operators/first';
 import { environment } from './../../../../../environments/environment';
 
 @Injectable()
@@ -11,9 +12,9 @@ export class SlugService
         private httpService: HttpService
     ) {}
 
-    public checkSlug(model: string, slug: string, id?: any, field?: string)
+    public async checkSlug(model: string, slug: string, id?: any, field?: string)
     {
-        return this.httpService
+        return await this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -29,6 +30,10 @@ export class SlugService
                     field: field,
                 }
             })
-            .valueChanges;
+            .valueChanges
+            .pipe(
+                first()
+            )
+            .toPromise();
     }
 }
