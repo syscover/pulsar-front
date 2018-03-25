@@ -1,4 +1,5 @@
 import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { from } from 'rxjs/observable/from';
@@ -7,17 +8,20 @@ import { SlugService } from './../services/slug.service';
 import { environment } from './../../../../../environments/environment';
 
 @Directive({
-  selector: '[dh2Slug]'
+    selector: '[dh2Slug]',
+    providers: [
+        SlugService
+    ]
 })
 export class SlugDirective implements AfterViewInit
 {
-    @Input('fg') fg;
-    @Input('graphQL') graphQL;
+    @Input('model') model;
     @Input('target') target = 'slug';
 
     constructor(
-        private slugService: SlugService,
-        private element: ElementRef
+        private element: ElementRef,
+        private control: NgControl,
+        private slugService: SlugService
     ) {
     }
 
@@ -32,7 +36,7 @@ export class SlugDirective implements AfterViewInit
                     if (event.target.value)
                     {
                         return this.slugService.checkSlug(
-                            this.graphQL.model,
+                            this.model,
                             event.target.value
                         );
                     }
@@ -48,7 +52,7 @@ export class SlugDirective implements AfterViewInit
             .subscribe(data => {
                 if (environment.debug) console.log('DEBUG - Data from slug Query: ', data);
                 
-                this.fg.controls[this.target].setValue(data.slug);    
+                this.control.control.parent.controls[this.target].setValue(data.slug);
             });
     }
 }

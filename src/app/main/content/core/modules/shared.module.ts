@@ -7,6 +7,7 @@ import { ActionTranslationObjectPipe } from './../pipes/action-trasnlation-objec
 import { CheckTranslationObjectPipe } from './../pipes/check-translation-object.pipe';
 import { CollectionObjectValuePipe } from './../pipes/collection-object-value.pipe';
 import { FlagIconComponent } from './../components/flag-icon.component';
+import { SlugDirective } from './../directives/slug.directive';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FlagIconComponent } from './../components/flag-icon.component';
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
         CollectionObjectValuePipe,
+        SlugDirective
     ],
     providers: [],
     imports: [
@@ -30,7 +32,8 @@ import { FlagIconComponent } from './../components/flag-icon.component';
         FlagIconComponent,
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
-        CollectionObjectValuePipe
+        CollectionObjectValuePipe,
+        SlugDirective
     ],
     entryComponents: [
         ConfirmationDialogComponent
