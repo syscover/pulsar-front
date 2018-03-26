@@ -1,7 +1,7 @@
-import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, OnDestroy } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { merge } from 'rxjs/observable/merge';
 import { from } from 'rxjs/observable/from';
@@ -15,14 +15,14 @@ import { environment } from './../../../../../environments/environment';
         SlugService
     ]
 })
-export class SlugDirective implements AfterViewInit
+export class SlugDirective implements AfterViewInit, OnDestroy
 {
     @Input('model') model;
     @Input('target') target = 'slug';
 
-    run = false;
-    // buffer: string;
-    // bufferManager = new Subject();
+    private ngUnsubscribe = new Subject();
+    private run = false;
+    private buffer: any;
 
     constructor(
         private element: ElementRef,
@@ -31,42 +31,62 @@ export class SlugDirective implements AfterViewInit
     ) {
     }
 
-    async ngAfterViewInit() 
+    ngAfterViewInit() 
     {
-        const response = 
-            merge(
-                Observable
-                .fromEvent(this.element.nativeElement, 'keyup')
-                .debounceTime(400)
-                .distinctUntilChanged() // ,
-                // this.manageBuffer
-            )
+        Observable
+            .fromEvent(this.element.nativeElement, 'keyup')
+            .debounceTime(400)
+            .distinctUntilChanged()
             .pipe(
                 switchMap(async (event: any) => {
-
+                    // check if there ara value and there isn't a request in progress
                     if (event.target.value && ! this.run) 
                     {
                         this.run = true;
-                        const data = await this.slugService.checkSlug(
+                        let data;
+                        data = await this.slugService.checkSlug(
                             this.model,
                             event.target.value
                         );
+
+                        // check buffer
+                        while (this.buffer) 
+                        {
+                            const bufferValue = this.buffer.target.value;
+                            data = await this.slugService.checkSlug(
+                                this.model,
+                                bufferValue
+                            );
+                            if (bufferValue === this.buffer.target.value) this.buffer = undefined;
+                        }
                         this.run = false;
+                        
+                        if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
+                        if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
 
                         return data;
                     }
+                    else if (event.target.value && this.run) 
+                    {
+                        // add event tu buffer
+                        this.buffer = event;
+                        return from([]);
+                    }
+                    // only for empty values
                     else
                     {
                         return from([]);
-                    } 
-                }),
-                map((data: any) => {
-                    return data.data;
+                    }
                 })
             )
-            .subscribe(data => {
-                if (environment.debug) console.log('DEBUG - Data from slug Query: ', data);
-                if (data) this.control.control.parent.controls[this.target].setValue(data.slug);
-            });
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe();
+    }
+
+    ngOnDestroy() 
+    {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+        if (environment.debug) console.log('DEBUG - SlugDirective destroyed');
     }
 }
