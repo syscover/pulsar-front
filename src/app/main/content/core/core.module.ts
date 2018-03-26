@@ -10,6 +10,7 @@ import { BootstrapService } from './services/bootstrap.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorizationService } from './services/authorization.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { HttpSynchronousService } from './services/http-synchronous.service';
 import { ValidationMessageService } from './services/validation-message.service';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ValidationMessageService } from './services/validation-message.service'
     providers: [
         ConfigService,
         HttpService,
+        HttpSynchronousService,
         ApolloService,
         AuthenticationService,
         AuthorizationService,

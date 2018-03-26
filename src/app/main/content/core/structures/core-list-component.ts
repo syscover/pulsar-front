@@ -7,14 +7,15 @@ import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { map } from 'rxjs/operators/map';
-import { catchError } from 'rxjs/operators/catchError';
-import { of as observableOf } from 'rxjs/observable/of';
+import { first } from 'rxjs/operators/first';
+import { from } from 'rxjs/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
+import { HttpSynchronousService } from './../services/http-synchronous.service';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
 {
@@ -35,23 +36,10 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('filter') filter: ElementRef;
 
-    constructor(
-        protected injector: Injector,
-        protected graphQL: GraphQLSchema
-    ) {
-        super(injector, graphQL);
-    }
-
-    ngOnInit() 
-    {
-        super.ngOnInit();
-        
-        // get model reference to get search text
-        this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
-    }
-
-    ngAfterViewInit() 
-    {
+    private httpSynchronousService: HttpSynchronousService;
+    private running = false; // boolean true when is consulting through Http
+    private buffer: any;
+    private registerSubscriptions = async () => {
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
             this.sort.sortChange,
@@ -64,9 +52,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         .subscribe(() => this.paginator.pageIndex = 0);
 
         merge(
-            this.startTable.debounceTime(800),
             this.refreshTable,
-            this.sort.sortChange.debounceTime(400), 
+            this.sort.sortChange,
             this.paginator.page, 
             Observable
                 .fromEvent(this.filter.nativeElement, 'keyup')
@@ -74,42 +61,122 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 .distinctUntilChanged()
         )
         .pipe(
-            // comment startWith({}) to start table with "this.startTable.debounceTime(300)" to avoid overwirtes tokens from JWT
-            // startWith({}), 
-            switchMap(() => {
-                this.isLoadingResults = true;
- 
-                // throw a new obserbable
-                return this.getRecords(
-                    this.sort.active, 
-                    this.sort.direction, 
-                    this.paginator.pageIndex * this.paginator.pageSize,
-                    this.paginator.pageSize,
-                    this.filter.nativeElement.value
-                );
-            }),
-            map(data => {
-                return data['data'];
+            switchMap(async () => {
+                await this.loadDataSource();
             })
         )
         .takeUntil(this.ngUnsubscribe)
-        .subscribe(data => {
-            if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data);
-            
-            // set number of results
-            this.resultsLength = data['coreObjectsPagination']['filtered'];
-            
-            // set relations data
-            this.setRelationsData(data);
-
-            // set data source
-            this.dataSource.data = data['coreObjectsPagination']['objects'];
-            
-            // hide loader data table
-            this.isLoadingResults = false;
+        .subscribe(() => {
+            // this response is asynchronous, fron this section can't recover response data from promise
         });
 
-        this.startTable.next();
+
+        await this.startTable
+            .pipe(
+                startWith({}), 
+                switchMap(async () => {
+                    await this.loadDataSource();
+                }),
+                first()
+            )
+            .toPromise();
+    }
+
+    private loadDataSource = async () => 
+    {
+        const parameters = {
+            sort: this.sort.active,
+            order: this.sort.direction,
+            offset: this.paginator.pageIndex * this.paginator.pageSize,
+            limit: this.paginator.pageSize,
+            searchText: this.filter.nativeElement.value
+        };
+        
+        // check if there ara value and there isn't a request in progress
+        if (! this.running) 
+        {
+            this.isLoadingResults = true; // flag to show loading shape
+            this.running = true;
+            let data;
+            data = await this.getRecords(
+                parameters.sort, 
+                parameters.order, 
+                parameters.offset,
+                parameters.limit,
+                parameters.searchText
+            );
+
+            // check buffer
+            while (this.buffer) 
+            {
+                const bufferValue = this.buffer;
+                data = await this.getRecords(
+                    bufferValue.sort, 
+                    bufferValue.order, 
+                    bufferValue.offset,
+                    bufferValue.limit,
+                    bufferValue.searchText
+                );
+                if (JSON.stringify(bufferValue) === JSON.stringify(this.buffer)) this.buffer = undefined;
+            }
+            this.running = false;
+
+            if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
+
+            // set number of results
+            this.resultsLength = data.data.coreObjectsPagination.filtered;
+
+            // set relations data
+            this.setRelationsData(data.data);
+
+            // set data source
+            this.dataSource.data = data.data.coreObjectsPagination.objects;
+
+            // hide loader data table
+            this.isLoadingResults = false;
+        }
+        else if (this.isLoadingResults) 
+        {
+            // add event tu buffer
+            this.buffer = parameters;
+            return from([]);
+        }
+    }
+
+    constructor(
+        protected injector: Injector,
+        protected graphQL: GraphQLSchema
+    ) {
+        super(injector, graphQL);
+
+        // get Http Organizer, to avoid overwritte token in request
+        this.httpSynchronousService = this.injector.get(HttpSynchronousService);
+    }
+
+    ngAfterViewInit() 
+    {
+        this.initDataTable();    
+    }
+
+    ngOnInit() 
+    {
+        super.ngOnInit();
+        
+        // get model reference to get search text
+        this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);
+    }
+
+    async initDataTable () {
+        if (this.httpSynchronousService.running) 
+        {
+            this.httpSynchronousService.buffer = this.registerSubscriptions;
+        }
+        else
+        {
+            this.httpSynchronousService.running = true;
+            await this.registerSubscriptions();
+            this.httpSynchronousService.running = false;
+        }
     }
 
     /*
@@ -129,21 +196,25 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
      * @param offset    current page number
      * @param limit     number of records to take
      */
-    getRecords(sort: string, order: string, offset: number, limit: number, searchText: string) 
+    async getRecords(sort: string, order: string, offset: number, limit: number, searchText: string) 
     {
         // set params
         const args = this.argumentsGetRecords(sort, order, offset, limit, searchText);
 
         if (this.env.debug) console.log('DEBUG - Args pass to Query Objects Pagination: ', args);
 
-        return this.httpService
+        return await this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
                 query: this.graphQL.queryPaginationObject,
                 variables: args
             })
-            .valueChanges;
+            .valueChanges
+            .pipe(
+                first()
+            )
+            .toPromise();
     }
 
     argumentsGetRecords(sort: string, order: string, offset: number, limit: number, searchText: string): Object 

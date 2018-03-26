@@ -12,7 +12,7 @@ export class SlugService
         private httpService: HttpService
     ) {}
 
-    public async checkSlug(model: string, slug: string, id?: any, field?: string)
+    async checkSlug(model: string, slug: string, id?: any, field?: string)
     {
         return await this.httpService
             .apolloClient()

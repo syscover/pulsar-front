@@ -21,15 +21,14 @@ export class SlugDirective implements AfterViewInit, OnDestroy
     @Input('target') target = 'slug';
 
     private ngUnsubscribe = new Subject();
-    private run = false;
+    private running = false; // boolean true when is consulting through Http
     private buffer: any;
 
     constructor(
         private element: ElementRef,
         private control: NgControl,
         private slugService: SlugService
-    ) {
-    }
+    ) { }
 
     ngAfterViewInit() 
     {
@@ -40,9 +39,9 @@ export class SlugDirective implements AfterViewInit, OnDestroy
             .pipe(
                 switchMap(async (event: any) => {
                     // check if there ara value and there isn't a request in progress
-                    if (event.target.value && ! this.run) 
+                    if (event.target.value && ! this.running) 
                     {
-                        this.run = true;
+                        this.running = true;
                         let data;
                         data = await this.slugService.checkSlug(
                             this.model,
@@ -59,14 +58,14 @@ export class SlugDirective implements AfterViewInit, OnDestroy
                             );
                             if (bufferValue === this.buffer.target.value) this.buffer = undefined;
                         }
-                        this.run = false;
+                        this.running = false;
                         
                         if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
                         if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
 
                         return data;
                     }
-                    else if (event.target.value && this.run) 
+                    else if (event.target.value && this.running) 
                     {
                         // add event tu buffer
                         this.buffer = event;

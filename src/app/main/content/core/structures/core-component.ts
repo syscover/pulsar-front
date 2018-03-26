@@ -82,7 +82,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();
-        if (this.env.debug) console.log('DEBUG - Core list component destroyed');
+        if (this.env.debug) console.log('DEBUG - Core component destroyed');
     }
 
     protected setBaseUri(baseUri?: string) 
