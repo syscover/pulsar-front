@@ -34,7 +34,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
     {
         Observable
             .fromEvent(this.element.nativeElement, 'keyup')
-            .debounceTime(400)
+            .debounceTime(250)
             .distinctUntilChanged()
             .pipe(
                 switchMap(async (event: any) => {

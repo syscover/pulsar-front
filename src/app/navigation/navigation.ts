@@ -79,6 +79,65 @@ export const navigation = [
                         'url'       : '/apps/admin/package'
                     },
                     {
+                        'id'       : 'custom_fields',
+                        'title'    : 'Custom fields',
+                        'translate': 'NAV.CUSTOM_FIELDS',
+                        'type'     : 'collapse',
+                        'icon'     : 'text_fields',
+                        'children' : [
+                            {
+                                'id'   : 'fields',
+                                'title': 'Fields',
+                                'translate': 'NAV.FIELDS',
+                                'type' : 'item',
+                                'icon' : 'format_list_bulleted',
+                                'url'  : '/apps/admin/field'
+                            },
+                            {
+                                'id'   : 'field_groups',
+                                'title': 'Field groups',
+                                'translate': 'NAV.FIELD_GROUPS',
+                                'type' : 'item',
+                                'icon' : 'dvr',
+                                'url'  : '/apps/admin/field-group'
+                            }
+                        ]
+                    },
+                    {
+                        'id'       : 'attachments',
+                        'title'    : 'Attachemnts',
+                        'translate': 'NAV.ATTACHMENTS',
+                        'type'     : 'collapse',
+                        'icon'     : 'attachment',
+                        'children' : [
+                            {
+                                'id'   : 'attachment_families',
+                                'title': 'Attachment families',
+                                'translate': 'NAV.ATTACHMENT_FAMILIES',
+                                'type' : 'item',
+                                'icon' : 'photo',
+                                'url'  : '/apps/admin/attachmen-families'
+                            },
+                            {
+                                'id'   : 'attachment_mimes',
+                                'title': 'Attachment mimes',
+                                'translate': 'NAV.ATTACHMENT_MIMES',
+                                'type' : 'item',
+                                'icon' : 'camera_alt',
+                                'url'  : '/apps/admin/attachment-mimes'
+                            },
+                            {
+                                'id'   : 'attachment_library',
+                                'title': 'Attachment library',
+                                'translate': 'NAV.ATTACHMENT_LIBRARY',
+                                'type' : 'item',
+                                'icon' : 'photo_library',
+                                'url'  : '/apps/admin/attachment-library'
+                            }
+                        ]
+                    },
+
+                    {
                         'id'       : 'permissions',
                         'title'    : 'Permissions',
                         'translate': 'NAV.PERMISSIONS',
