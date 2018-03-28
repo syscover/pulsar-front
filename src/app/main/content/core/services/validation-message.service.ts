@@ -1,28 +1,61 @@
-
 import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { merge } from 'rxjs/observable/merge';
+import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 
 @Injectable()
-export class ValidationMessageService 
+export class ValidationMessageService
 {
+    private translations: any;
+
+    constructor(private translateService: TranslateService) 
+    {
+        this.translateService.onLangChange.subscribe((e: Event) => {
+            this.getAndInitTranslations();
+        });
+
+        this.getAndInitTranslations();
+    }
+
+    getAndInitTranslations()
+    {
+        // load translations for component
+        this.translateService
+            .get(['VALIDATIONS'])
+            .map(translations => {
+                if (translations['VALIDATIONS'])
+                {
+                    for (const index in translations['VALIDATIONS'])
+                    {
+                        if (index) translations['VALIDATIONS.' + index] = translations['VALIDATIONS'][index];
+                    }
+                    delete translations.APPS;
+                    return translations;
+                }
+            })
+            .subscribe(response => {
+                console.log(response);
+                this.translations = response;
+            });
+    }
+
     getMessage(error: string, formControl?: AbstractControl): string {
         switch (error) {
             case 'required':
-                return 'This field is required.';
+                return this.translations['VALIDATIONS.REQUIRED'];
 
             case 'minlength':
-                return `This field must be at least ${formControl.errors[error]['requiredLength']} characters.`;
+                return this.translateService.instant('VALIDATIONS.MINLENGTH', {'minlength': formControl.errors[error]['requiredLength']});
 
             case 'maxlength':
                 return `This field may not be greater than ${formControl.errors[error]['requiredLength']} characters.`;
 
             case 'email':
-                return 'This field must be a valid email address.';
+                return this.translations['VALIDATIONS.EMAIL'];
 
             default:
-                return 'Error not contemplated';
+                return this.translations['VALIDATIONS.DEFAULT'];
         }
     }
 

@@ -32,13 +32,17 @@ export const locale = {
             'FIELDS': 'Campos',
             'ID': 'Id',
             'LINK': 'Enlace',
+            'LOGIN': 'Iniciar sesión',
+            'LOGIN_TO_YOUR_ACCOUNT': 'Accede a tu cuenta',
             'NAME': 'Nombre',
             'NEW.M': 'Nuevo',
             'NEW.F': 'Nueva',
             'NONE': 'Ninguna',
             'OK': 'Ok',
+            'PASSWORD': 'Contraseña',
             'PREFIX': 'Prefix',
             'PROPERTIES': 'Propiedades',
+            'REMEMBER_ME': 'Recuérdame',
             'RESOURCE': 'Recurso',
             'SAVE': 'Guardar',
             'SAVED.F': 'Guardada',
@@ -50,7 +54,14 @@ export const locale = {
             'SORT': 'Orden',
             'STATUS': 'Estado',
             'TRANSLATE': 'Traducir',
-            'TRANSLATIONS': 'Traducciones'
+            'TRANSLATIONS': 'Traducciones',
+            'USER': 'Usuario',
+        },
+        'VALIDATIONS': {
+            'DEFAULT': 'Error no contemplado.',
+            'EMAIL': 'Este campo debe ser un email válido.',
+            'MINLENGTH': 'Este campo debe tener al menos {{ minlength }} caracteres.',
+            'REQUIRED': 'Este campo es requerido.'
         }
     }
 };

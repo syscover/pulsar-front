@@ -1,3 +1,4 @@
+import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private validationMessageService: ValidationMessageService
     )
     {
         this.fuseConfig.setConfig({
@@ -41,14 +43,19 @@ export class LoginComponent implements OnInit
 
     ngOnInit()
     {
+        const remenberme = localStorage.getItem('remember_me') ? JSON.parse(localStorage.getItem('remember_me')) : null;
+
         this.loginForm = this.formBuilder.group({
-            user    : ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required]
+            user        : [remenberme && remenberme.user ? remenberme.user : null, [Validators.required, Validators.email, Validators.minLength(2)]],
+            password    : [remenberme && remenberme.password ? remenberme.password : null, Validators.required],
+            remember_me : false
         });
 
-        this.loginForm.valueChanges.subscribe(() => {
+        this.validationMessageService.subscribeForm(this.loginForm, this.loginFormErrors);
+
+        /* this.loginForm.valueChanges.subscribe(() => {
             this.onLoginFormValuesChanged();
-        });
+        }); */
     }
 
     onLoginFormValuesChanged()
@@ -85,6 +92,15 @@ export class LoginComponent implements OnInit
 
                 localStorage.setItem('access_token', response['access_token']);
 
+                // remenber me function
+                if (this.loginForm.value.remember_me) 
+                {
+                    localStorage.setItem('remember_me', JSON.stringify({
+                        user: this.loginForm.value.user,
+                        password: this.loginForm.value.password,
+                    }));
+                }
+                
                 // redirect to admin or retrieve the url you wanted to go
                 if (this.authenticationService.redirectUrl) 
                 {
@@ -96,7 +112,8 @@ export class LoginComponent implements OnInit
                 }
             }, (error) => {
                 this.loading = false;
-                console.log(error);
+                
+
                 // this.msgs = [];
                 // this.msgs.push({severity: 'error', summary: 'Authentication error', detail: 'Your user or password is incorrect'});
             });

@@ -1,15 +1,15 @@
-import {TranslateService} from '@ngx-translate/core';
-import {MatPaginatorIntl} from '@angular/material';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class CustomMatPaginatorIntlService extends MatPaginatorIntl 
 {
-    constructor(private translate: TranslateService) 
+    constructor(private translateService: TranslateService) 
     {
         super();
 
-        this.translate.onLangChange.subscribe((e: Event) => {
+        this.translateService.onLangChange.subscribe((e: Event) => {
             this.getAndInitTranslations();
         });
 
@@ -18,7 +18,7 @@ export class CustomMatPaginatorIntlService extends MatPaginatorIntl
 
     getAndInitTranslations() 
     {
-        this.translate.get(['PAGINATOR.ITEMS_PER_PAGE', 'PAGINATOR.NEXT_PAGE', 'PAGINATOR.PREVIOUS_PAGE', 'PAGINATOR.OF_LABEL']).subscribe(translation => {
+        this.translateService.get(['APPS.ITEMS_PER_PAGE', 'PAGINATOR.NEXT_PAGE', 'PAGINATOR.PREVIOUS_PAGE', 'PAGINATOR.OF_LABEL']).subscribe(translation => {
             this.itemsPerPageLabel = translation['PAGINATOR.ITEMS_PER_PAGE'];
             this.nextPageLabel = translation['PAGINATOR.NEXT_PAGE'];
             this.previousPageLabel = translation['PAGINATOR.PREVIOUS_PAGE'];

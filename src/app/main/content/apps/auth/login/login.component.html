@@ -26,30 +26,32 @@
                 <span>F</span>
             </div>
 
-            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+            <div class="title uppercase">{{ 'APPS.LOGIN_TO_YOUR_ACCOUNT' | translate }}</div>
 
             <form name="loginForm" [formGroup]="loginForm" novalidate>
 
                 <mat-form-field class="mb-12">
-                    <input matInput placeholder="User" formControlName="user">
-                    <mat-error *ngIf="loginFormErrors.user.required">
+                    <input matInput placeholder="{{ 'APPS.USER' | translate }}" formControlName="user">
+                    <mat-error>{{ loginFormErrors?.user }}</mat-error>
+                    <!-- <mat-error *ngIf="loginFormErrors.user.required">
                         Email is required
                     </mat-error>
                     <mat-error *ngIf="!loginFormErrors.user.required && loginFormErrors.user.email">
                         Please enter a valid email address
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
 
                 <mat-form-field class="mb-12">
-                    <input matInput type="password" placeholder="Password" formControlName="password">
-                    <mat-error *ngIf="loginFormErrors.password.required">
+                    <input matInput type="password" placeholder="{{ 'APPS.PASSWORD' | translate }}" formControlName="password">
+                    <mat-error>{{ loginFormErrors?.password }}</mat-error>
+                    <!-- <mat-error *ngIf="loginFormErrors.password.required">
                         Password is required
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
 
                 <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
-                    <mat-checkbox class="remember-me" aria-label="Remember Me">
-                        Remember Me
+                    <mat-checkbox class="remember-me" formControlName="remember_me">
+                        {{ 'APPS.REMEMBER_ME' | translate }}
                     </mat-checkbox>
 
                     <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
@@ -58,7 +60,7 @@
                 </div>
 
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" [disabled]="loginForm.invalid" (click)="login(object)">
-                    <span >LOGIN</span> <mat-spinner *ngIf="loading"  mode="indeterminate" diameter="17"></mat-spinner>
+                    <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span> <mat-spinner *ngIf="loading"  mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 
             </form>

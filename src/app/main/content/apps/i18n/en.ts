@@ -32,13 +32,17 @@ export const locale = {
             'FIELDS': 'Fields',
             'ID': 'Id',
             'LINK': 'Link',
+            'LOGIN': 'Login',
+            'LOGIN_TO_YOUR_ACCOUNT': 'Login to your account',
             'NAME': 'Name',
             'NEW.M': 'New',
             'NEW.F': 'New',
             'NONE': 'None',
             'OK': 'Ok',
+            'PASSWORD': 'Password',
             'PREFIX': 'Prefix',
             'PROPERTIES': 'Properties',
+            'REMEMBER_ME': 'Remember me',
             'RESOURCE': 'Resource',
             'SAVE': 'Save',
             'SAVED.F': 'Saved',
@@ -50,8 +54,14 @@ export const locale = {
             'SORT': 'Sort',
             'STATUS': 'Status',
             'TRANSLATE': 'Translate',
-            'TRANSLATIONS': 'Translations'
+            'TRANSLATIONS': 'Translations',
+            'USER': 'User',
         },
-
+        'VALIDATIONS': {
+            'DEFAULT': 'Error not contemplated.',
+            'EMAIL': 'This field must be a valid email address.',
+            'MINLENGTH': 'This field must be at least {{ minlength }} characters.',
+            'REQUIRED': 'This field is required.',
+        }
     }
 };

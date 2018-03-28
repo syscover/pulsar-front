@@ -61,7 +61,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         if (this.objectTranslation) keys.push(this.objectTranslation);
 
         // load translations for component
-        this.translateService.get(keys)
+        this.translateService
+            .get(keys)
             .map(translations => {
                 if (translations['APPS'])
                 {
