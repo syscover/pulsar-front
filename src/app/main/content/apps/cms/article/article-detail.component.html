@@ -168,14 +168,14 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
+                                        <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
                                         <mat-error>{{ formErrors?.title }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                                        <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>

@@ -49,7 +49,7 @@ export class ValidationMessageService
                 return this.translateService.instant('VALIDATIONS.MINLENGTH', {'minlength': formControl.errors[error]['requiredLength']});
 
             case 'maxlength':
-                return `This field may not be greater than ${formControl.errors[error]['requiredLength']} characters.`;
+                return this.translateService.instant('VALIDATIONS.MAXLENGTH', {'maxlength': formControl.errors[error]['requiredLength']});
 
             case 'email':
                 return this.translations['VALIDATIONS.EMAIL'];

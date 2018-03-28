@@ -15,6 +15,7 @@ import { AuthenticationService } from './../../../core/services/authentication.s
 })
 export class LoginComponent implements OnInit
 {
+    loginError = false;
     loginForm: FormGroup;
     loginFormErrors: any;
     loading = false;
@@ -46,43 +47,18 @@ export class LoginComponent implements OnInit
         const remenberme = localStorage.getItem('remember_me') ? JSON.parse(localStorage.getItem('remember_me')) : null;
 
         this.loginForm = this.formBuilder.group({
-            user        : [remenberme && remenberme.user ? remenberme.user : null, [Validators.required, Validators.email, Validators.minLength(2)]],
+            user        : [remenberme && remenberme.user ? remenberme.user : null, [Validators.required, Validators.email]],
             password    : [remenberme && remenberme.password ? remenberme.password : null, Validators.required],
             remember_me : false
         });
 
         this.validationMessageService.subscribeForm(this.loginForm, this.loginFormErrors);
-
-        /* this.loginForm.valueChanges.subscribe(() => {
-            this.onLoginFormValuesChanged();
-        }); */
-    }
-
-    onLoginFormValuesChanged()
-    {
-        for (const field in this.loginFormErrors)
-        {
-            if (! this.loginFormErrors.hasOwnProperty(field))
-            {
-                continue;
-            }
-
-            // Clear previous errors
-            this.loginFormErrors[field] = {};
-
-            // Get the control
-            const control = this.loginForm.get(field);
-
-            if ( control && control.dirty && ! control.valid )
-            {
-                this.loginFormErrors[field] = control.errors;
-            }
-        }
     }
 
     login() 
     {
         this.loading = true;
+        this.loginError = false;
 
         this.authenticationService
             .login(this.loginForm.value)
@@ -112,10 +88,7 @@ export class LoginComponent implements OnInit
                 }
             }, (error) => {
                 this.loading = false;
-                
-
-                // this.msgs = [];
-                // this.msgs.push({severity: 'error', summary: 'Authentication error', detail: 'Your user or password is incorrect'});
+                this.loginError = true;
             });
     }
 }

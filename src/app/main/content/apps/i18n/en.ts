@@ -33,7 +33,6 @@ export const locale = {
             'ID': 'Id',
             'LINK': 'Link',
             'LOGIN': 'Login',
-            'LOGIN_TO_YOUR_ACCOUNT': 'Login to your account',
             'NAME': 'Name',
             'NEW.M': 'New',
             'NEW.F': 'New',
@@ -60,6 +59,8 @@ export const locale = {
         'VALIDATIONS': {
             'DEFAULT': 'Error not contemplated.',
             'EMAIL': 'This field must be a valid email address.',
+            'LOGIN': 'The user or password is incorrect.',
+            'MAXLENGTH' : 'This field may not be greater than {{ maxlength }} characters.',
             'MINLENGTH': 'This field must be at least {{ minlength }} characters.',
             'REQUIRED': 'This field is required.',
         }
