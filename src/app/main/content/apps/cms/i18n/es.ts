@@ -2,6 +2,7 @@ export const locale = {
     lang: 'es',
     data: {
         'CMS': {
+            'ADD_TAG': 'Añadir etiqueta',
             'ARTICLE': 'Artículo',
             'ARTICLE_EDITOR': 'Editor del artículo',
             'ARTICLE_PARENT': 'Artículo padre',

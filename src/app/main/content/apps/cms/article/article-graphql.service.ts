@@ -101,6 +101,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 date
                 title
                 slug
+                categories_id
                 categories {
                     id
                     name

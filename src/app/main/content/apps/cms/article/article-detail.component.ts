@@ -6,8 +6,10 @@ import { ArticleGraphQLService } from './article-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
-import * as _ from 'lodash';
 import { MatDatepicker } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import * as _ from 'lodash';
 // import { AttachmentFilesLibraryComponent } from './../../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 // import { DynamicFormService } from './../../../shared/components/forms/dynamic-form/dynamic-form.service';
 // import { AuthService } from './../../../core/auth/auth.service';
@@ -30,6 +32,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     statuses: Status[] = [];
     articles: Article[] = [];
     categories: Category[] = [];
+    tags: String[] = [];
     @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
 
 
@@ -40,6 +43,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     section: Section;
     family: Family;
     imageUploadURL: string;
+    separatorKeysCodes = [ENTER, COMMA];
 
     private _attachmentFamilies: AttachmentFamily[];
 
@@ -94,6 +98,34 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         });
     }
 
+    addTag(event: MatChipInputEvent): void
+    {
+        const input = event.input;
+        const value = event.value;
+
+        // Add tag
+        if ( value )
+        {
+            this.tags.push(value);
+        }
+
+        // Reset the input value
+        if ( input )
+        {
+            input.value = '';
+        }
+    }
+
+    removeTag(tag)
+    {
+        const index = this.tags.indexOf(tag);
+
+        if ( index >= 0 )
+        {
+            this.tags.splice(index, 1);
+        }
+    }
+
     /* beforePatchValueEdit() {
         // set section object and load attachment families
         this.section = _.find(this._sections, {id: this.object.section_id});
@@ -114,9 +146,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     } */
 
     /* afterPatchValueEdit() {
-        // set categories extracting ids
-        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
-
+        
         // set tags extracting name field
         this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
 
@@ -134,7 +164,7 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         {
             this.section = _.find(this.sections, {id: $event.value});
 
-            //this.loadAttachmentFamilies();
+            // this.loadAttachmentFamilies();
 
             // TODO, trigger event instead call function
             if (this.section.family) 

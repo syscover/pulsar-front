@@ -201,6 +201,21 @@
                                 </div>
 
                                 <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <mat-chip-list #tagList formControlName="tags">
+                                            <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
+                                                {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                        <input  placeholder="{{ 'CMS.ADD_TAG' | translate }}" 
+                                                [matChipInputFor]="tagList"
+                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                [matChipInputAddOnBlur]="true"
+                                                (matChipInputTokenEnd)="addTag($event)">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
                                     <mat-form-field class="col-md-4">
                                         <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
                                         <mat-error>{{ formErrors?.sort }}</mat-error>
