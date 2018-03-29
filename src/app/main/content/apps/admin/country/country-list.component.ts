@@ -7,7 +7,7 @@ import { CountryGraphQLService } from './country-graphql.service';
     selector: 'dh2-country-list',
     templateUrl: './country-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/core-list-component.scss']
+    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
 export class CountryListComponent extends CoreListComponent 
 {

@@ -1,4 +1,4 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
@@ -17,7 +17,9 @@ import { MatDatepicker } from '@angular/material';
 @Component({
     selector: 'dh2-article-detail',
     templateUrl: './article-detail.component.html',
-    animations: fuseAnimations
+    animations: fuseAnimations,
+    styleUrls: ['./../../../core/scss/improvements/perfect-scroll-bar.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ArticleDetailComponent extends CoreDetailComponent {
 

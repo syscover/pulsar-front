@@ -8,7 +8,7 @@ import { ResourceGraphQLService } from './resource-graphql.service';
     selector: 'dh2-resource-list',
     templateUrl: './resource-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/core-list-component.scss']
+    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
 export class ResourceListComponent extends CoreListComponent {
 

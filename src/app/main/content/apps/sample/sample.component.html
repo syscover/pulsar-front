@@ -1,11 +1,59 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div id="product" class="page-layout carded fullwidth" fusePerfectScrollbar>
 
-    <h2>{{'SAMPLE.HELLO' | translate}} 22</h2>
-
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Favorite food" value="Sushi">
-    </mat-form-field>
-
-    <button mat-raised-button color="accent" class="ml-24" routerLink="/apps/admin/action">Cancel</button>
-
-</div>
+        <!-- TOP BACKGROUND -->
+        <div class="top-bg mat-accent-bg"></div>
+        <!-- / TOP BACKGROUND -->
+    
+        <!-- CENTER -->
+        <div class="center">
+    
+            <!-- HEADER -->
+            <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+    
+                <!-- APP TITLE -->
+                <div fxLayout="row" fxLayoutAlign="start center">
+    
+                    <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/e-commerce/products'">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+    
+                    
+                    
+                </div>
+                <!-- / APP TITLE -->
+    
+                
+            </div>
+            <!-- / HEADER -->
+    
+            <!-- CONTENT CARD -->
+            <div class="content-card mat-white-bg">
+    
+                <!-- CONTENT -->
+                <div class="content">
+    
+                    <form name="productForm" class="product" fxLayout="column" fxFlex>
+    
+                        <mat-tab-group>
+    
+                            <mat-tab label="Basic Info">
+                                <div class="tab-content p-24" fusePerfectScrollbar>
+    
+                                    hola mundo <br>
+                                    hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>
+                                    hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>hola mundo <br>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </form>
+    
+                </div>
+                <!-- / CONTENT -->
+    
+            </div>
+            <!-- / CONTENT CARD -->
+    
+        </div>
+        <!-- / CENTER -->
+    </div>
+    

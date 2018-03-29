@@ -6,6 +6,7 @@ import { FuseConfigService } from '../../../../../../@fuse/services/config.servi
 import { fuseAnimations } from '../../../../../../@fuse/animations';
 import { environment } from './../../../../../../environments/environment';
 import { AuthenticationService } from './../../../core/services/authentication.service';
+import './../../../core/functions/random.function';
 
 @Component({
     selector   : 'dh2-login',
@@ -19,6 +20,17 @@ export class LoginComponent implements OnInit
     loginForm: FormGroup;
     loginFormErrors: any;
     loading = false;
+    welcomeIntroduction = [
+        'AUTH.WELCOME_INTRODUCTION_01',
+        'AUTH.WELCOME_INTRODUCTION_02',
+        'AUTH.WELCOME_INTRODUCTION_03',
+        'AUTH.WELCOME_INTRODUCTION_04',
+        'AUTH.WELCOME_INTRODUCTION_05',
+        'AUTH.WELCOME_INTRODUCTION_06',
+        'AUTH.WELCOME_INTRODUCTION_07',
+        'AUTH.WELCOME_INTRODUCTION_08'
+    ];
+    welcomeMessage;
 
     constructor(
         private fuseConfig: FuseConfigService,
@@ -40,6 +52,8 @@ export class LoginComponent implements OnInit
             user    : {},
             password: {}
         };
+
+        this.welcomeMessage = this.welcomeIntroduction.random();
     }
 
     ngOnInit()

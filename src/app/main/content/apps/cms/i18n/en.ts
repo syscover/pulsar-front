@@ -10,6 +10,7 @@ export const locale = {
             'EXCERPT_EDITOR': 'Excerpt editor',
             'FAMILY': 'Family',
             'FIELD_GROUP': 'Field group',
+            'NEW_WINDOW': 'New window',
             'PUBLISH': 'Publish',
             'SECTION': 'Section',
             'TAGS': 'Tags',

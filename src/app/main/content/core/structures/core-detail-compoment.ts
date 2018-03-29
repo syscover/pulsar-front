@@ -7,7 +7,6 @@ import { CoreComponent } from './core-component';
 import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
-import { setErrorsOnSubmitFormGroup } from './../functions/validations.function';
 import { ValidationMessageService } from './../services/validation-message.service';
 import './../functions/capitalize.function';
 import * as _ from 'lodash';

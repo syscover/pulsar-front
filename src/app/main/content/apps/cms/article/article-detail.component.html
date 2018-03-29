@@ -1,4 +1,4 @@
-<div class="page-layout carded fullwidth tabable" fusePerfectScrollbar>
+<div  class="page-layout carded fullwidth tabable" fusePerfectScrollbar>
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg mat-accent-bg"></div>
@@ -85,7 +85,8 @@
                         fxLayout="column"
                         fxFlex>
 
-                    <mat-tab-group [dynamicHeight]="true">
+                    <mat-tab-group>
+
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
@@ -188,6 +189,24 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
+
+                                <div fxLayout="row" class="justify-content-between">
+                                    <mat-form-field class="col-9">
+                                        <input matInput placeholder="{{ 'APPS.LINK' | translate }}" formControlName="link">
+                                        <mat-error>{{ formErrors?.link }}</mat-error>
+                                    </mat-form-field>
+                                    <div class="col-2 py-20">
+                                        <mat-checkbox formControlName="blank">{{ 'CMS.NEW_WINDOW' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                                        <mat-error>{{ formErrors?.sort }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">
@@ -198,7 +217,6 @@
                                     </mat-form-field>
                                     <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
-                
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">

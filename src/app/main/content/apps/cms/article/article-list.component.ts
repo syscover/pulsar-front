@@ -9,7 +9,7 @@ import { Status } from './../cms.models';
     selector: 'dh2-article-list',
     templateUrl: './article-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/core-list-component.scss']
+    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
 export class ArticleListComponent extends CoreListComponent 
 {

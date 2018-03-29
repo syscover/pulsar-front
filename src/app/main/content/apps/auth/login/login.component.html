@@ -10,9 +10,8 @@
             {{ 'AUTH.WELCOME' | translate }}
         </div>
 
-        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}" [innerHTML]="'AUTH.WELCOME_INTRODUCTION' | translate">
+        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}" [innerHTML]="welcomeMessage | translate">
         </div>
-
     </div>
 
     <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
