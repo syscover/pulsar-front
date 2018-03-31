@@ -70,6 +70,10 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         this.imageUploadURL = `${this.apiUrl}/api/v1/admin/wysiwyg/upload`;
     }
 
+    addEvent(type: string, event: any) {
+        console.log(`${type}: ${event.value}`);
+      }
+
     createForm() {
         this.fg = this.fb.group({
             ix: null,

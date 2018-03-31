@@ -87,4 +87,5 @@ export class Article
     data_lang: string;
     data: any;
     attachments: Attachment[];
+    created_at: any;
 }

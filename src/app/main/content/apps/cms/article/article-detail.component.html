@@ -114,15 +114,13 @@
                                 <div fxLayout="row wrap" class="justify-content-between">
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
-                                            <mat-option *ngFor="let status of statuses" [value]="status.id">{{ status.name }}</mat-option>
+                                            <mat-option *ngFor="let status of statuses" [value]="+status.id">{{ status.name }}</mat-option>
                                             <mat-error>{{ formErrors?.status_id }}</mat-error>
                                         </mat-select>
                                     </mat-form-field>
-                                    
+
                                     <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'CMS.PUBLISH' | translate }}" [matDatepicker]="publish" formControlName="publish">
-                                        <mat-datepicker-toggle matSuffix [for]="publish"></mat-datepicker-toggle>
-                                        <mat-datepicker #publish></mat-datepicker>
+                                        <input matInput placeholder="{{ 'CMS.PUBLISH' | translate }}" formControlName="publish" type="datetime-local">
                                         <mat-error>{{ formErrors?.publish }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -151,10 +149,14 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-12 col-md-5">
+                                    <!-- <mat-form-field class="col-12 col-md-5">
                                         <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
                                         <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
                                         <mat-datepicker #date></mat-datepicker>
+                                        <mat-error>{{ formErrors?.date }}</mat-error>
+                                    </mat-form-field> -->
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" formControlName="date" type="datetime-local">
                                         <mat-error>{{ formErrors?.date }}</mat-error>
                                     </mat-form-field>
                                     
@@ -226,12 +228,7 @@
                         </mat-tab>
                         <mat-tab label="Basic Info">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <div fxLayout="row wrap">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
-                                    </mat-form-field>
-                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
-                                </div>
+                                XXXXXX
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">

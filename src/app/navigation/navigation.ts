@@ -71,6 +71,14 @@ export const navigation = [
                         'url'       : '/apps/admin/country'
                     },
                     {
+                        'id'        : 'languagues',
+                        'title'     : 'Languages',
+                        'translate' : 'NAV.LANGUAGES',
+                        'type'      : 'item',
+                        'icon'      : 'translate',
+                        'url'       : '/apps/admin/lang'
+                    },
+                    {
                         'id'        : 'packages',
                         'title'     : 'Packages',
                         'translate' : 'NAV.PACKAGES',
