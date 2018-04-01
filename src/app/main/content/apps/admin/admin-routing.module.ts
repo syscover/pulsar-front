@@ -6,6 +6,8 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { LangListComponent } from './lang/lang-list.component';
+import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
@@ -18,11 +20,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
         { path: 'user',                                             component: UserListComponent },
         { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
         { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
-
-        // Langs
-        { path: 'lang',                                             component: LangListComponent },
-        { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create' }},
-        { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit' }},
 
         // Cron jobs
         { path: 'cron-job',                                         component: CronJobListComponent },
@@ -84,12 +81,17 @@ const routes: Routes = [
             { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
             { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
 
+            // Langs
+            { path: 'lang',                                             component: LangListComponent },
+            { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create' }},
+            { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit' }},
+
             // Packages
             { path: 'package',                                          component: PackageListComponent },
             { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
             { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
 
-            // Packages
+            // Resources
             { path: 'resource',                                         component: ResourceListComponent },
             { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
             { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},

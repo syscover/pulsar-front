@@ -26,7 +26,7 @@ export class LangDetailComponent extends CoreDetailComponent
             ix: null,
             id: [null, [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
             name: [null, Validators.required],
-            icon: [null, Validators.required],
+            icon: null,
             sort: null,
             active: false
         });

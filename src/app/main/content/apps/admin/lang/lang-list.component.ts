@@ -14,7 +14,7 @@ export class LangListComponent extends CoreListComponent
     objectTranslation = 'ADMIN.LANGUAGE';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['id', 'name'];
-    displayedColumns = ['id', 'name', 'actions'];
+    displayedColumns = ['id', 'name', 'active', 'actions'];
 
     constructor(
         protected injector: Injector,
