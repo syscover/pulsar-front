@@ -35,7 +35,6 @@ export class ValidationMessageService
                 }
             })
             .subscribe(response => {
-                console.log(response);
                 this.translations = response;
             });
     }

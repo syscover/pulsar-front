@@ -8,7 +8,7 @@ import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
 import { ValidationMessageService } from './../services/validation-message.service';
-import './../functions/capitalize.function';
+import './../functions/string-capitalize.function';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit

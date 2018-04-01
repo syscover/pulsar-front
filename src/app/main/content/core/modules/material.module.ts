@@ -116,7 +116,7 @@ export class MaterialModule
     ) {
         // set current lang to datepicker
         this.dateAdapter.setLocale(this.translateService.currentLang);
-        
+
         // set new lang in datepicker when languague is changed
         translateService
             .onLangChange

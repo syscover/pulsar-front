@@ -6,7 +6,7 @@ import { FuseConfigService } from '../../../../../../@fuse/services/config.servi
 import { fuseAnimations } from '../../../../../../@fuse/animations';
 import { environment } from './../../../../../../environments/environment';
 import { AuthenticationService } from './../../../core/services/authentication.service';
-import './../../../core/functions/random.function';
+import './../../../core/functions/array-random.function';
 
 @Component({
     selector   : 'dh2-login',
