@@ -10,6 +10,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { ProfileListComponent } from './profile/profile-list.component';
+import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 
@@ -53,11 +55,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
         { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
 
-        // Profiles
-        { path: 'profile',                                          component: ProfileListComponent },
-        { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
-        { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
-
         // Wildcard route
         // { path: '',                                                 redirectTo: 'action' },
         // { path: '',                                                 redirectTo: 'dashboard' },
@@ -90,6 +87,11 @@ const routes: Routes = [
             { path: 'package',                                          component: PackageListComponent },
             { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
             { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
+
+            // Profiles
+            { path: 'profile',                                          component: ProfileListComponent },
+            { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
+            { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
 
             // Resources
             { path: 'resource',                                         component: ResourceListComponent },

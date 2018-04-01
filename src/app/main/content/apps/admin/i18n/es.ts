@@ -7,6 +7,7 @@ export const locale = {
             'ICON': 'Icono',
             'LANGUAGE': 'Idioma',
             'PACKAGE': 'Paquete',
+            'PROFILE': 'Perfil',
             'ROOT': 'Raíz',
             'TERRITORIAL_AREA_1': 'Area rerritorial 1',
             'TERRITORIAL_AREA_2': 'Area rerritorial 2',

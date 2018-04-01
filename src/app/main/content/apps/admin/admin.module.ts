@@ -13,6 +13,8 @@ import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { ProfileListComponent } from './profile/profile-list.component';
+import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 
@@ -20,6 +22,7 @@ import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
+import { ProfileGraphQLService } from './profile/profile-graphql.service';
 import { ResourceGraphQLService } from './resource/resource-graphql.service';
 
 @NgModule({
@@ -37,6 +40,8 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         LangDetailComponent,
         PackageListComponent,
         PackageDetailComponent,
+        ProfileListComponent,
+        ProfileDetailComponent,
         ResourceListComponent,
         ResourceDetailComponent
     ],
@@ -45,6 +50,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         CountryGraphQLService,
         LangGraphQLService,
         PackageGraphQLService,
+        ProfileGraphQLService,
         ResourceGraphQLService
     ]
 })

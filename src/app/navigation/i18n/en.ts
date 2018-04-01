@@ -21,6 +21,7 @@ export const locale = {
             'MARKET': 'Market',
             'PACKAGES': 'Packages',
             'PERMISSIONS': 'Permissions',
+            'PROFILES': 'Profiles',
             'RESOURCES': 'Resources',
             'SECTIONS': 'Sections',
             

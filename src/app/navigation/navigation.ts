@@ -153,12 +153,12 @@ export const navigation = [
                         'icon'     : 'fingerprint',
                         'children' : [
                             {
-                                'id'   : 'actions',
-                                'title': 'Actions',
-                                'translate': 'NAV.ACTIONS',
+                                'id'   : 'profiles',
+                                'title': 'Profiles',
+                                'translate': 'NAV.PROFILES',
                                 'type' : 'item',
-                                'icon' : 'flash_on',
-                                'url'  : '/apps/admin/action'
+                                'icon' : 'perm_identity',
+                                'url'  : '/apps/admin/profile'
                             },
                             {
                                 'id'   : 'resources',
@@ -168,6 +168,14 @@ export const navigation = [
                                 'icon' : 'rounded_corner',
                                 'url'  : '/apps/admin/resource'
                             },
+                            {
+                                'id'   : 'actions',
+                                'title': 'Actions',
+                                'translate': 'NAV.ACTIONS',
+                                'type' : 'item',
+                                'icon' : 'flash_on',
+                                'url'  : '/apps/admin/action'
+                            }
                         ]
                     }
                 ]
