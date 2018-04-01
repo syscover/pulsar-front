@@ -8,7 +8,7 @@ import { Section, Family, Article, Category, Status } from './../cms.models';
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { MatDatepicker } from '@angular/material';
 import { MatChipInputEvent } from '@angular/material';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import './../../../core/functions/date-to-json.function';
 import * as _ from 'lodash';
 // import { AttachmentFilesLibraryComponent } from './../../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 // import { DynamicFormService } from './../../../shared/components/forms/dynamic-form/dynamic-form.service';
@@ -43,7 +43,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     section: Section;
     family: Family;
     imageUploadURL: string;
-    separatorKeysCodes = [ENTER, COMMA];
 
     private _attachmentFamilies: AttachmentFamily[];
 
@@ -69,10 +68,6 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         // set froala upload image url
         this.imageUploadURL = `${this.apiUrl}/api/v1/admin/wysiwyg/upload`;
     }
-
-    addEvent(type: string, event: any) {
-        console.log(`${type}: ${event.value}`);
-      }
 
     createForm() {
         this.fg = this.fb.group({

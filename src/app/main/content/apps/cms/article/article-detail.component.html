@@ -80,6 +80,7 @@
             <div class="content">
                 
                 <form   id="formDetail"
+                        class="col-12"
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)"
                         fxLayout="column"
@@ -149,16 +150,16 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <!-- <mat-form-field class="col-12 col-md-5">
+                                    <mat-form-field class="col-12 col-md-5">
                                         <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
                                         <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
                                         <mat-datepicker #date></mat-datepicker>
                                         <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field> -->
-                                    <mat-form-field class="col-12 col-md-5">
+                                    </mat-form-field>
+                                    <!-- <mat-form-field class="col-12 col-md-5">
                                         <input matInput placeholder="{{ 'APPS.DATE' | translate }}" formControlName="date" type="datetime-local">
                                         <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field>
+                                    </mat-form-field> -->
                                     
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
@@ -192,12 +193,13 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row" class="justify-content-between">
-                                    <mat-form-field class="col-9">
+                                <div fxLayout="row" class="justify-content-between flex-wrap">
+                                    <mat-form-field class="col-12 col-md-9">
                                         <input matInput placeholder="{{ 'APPS.LINK' | translate }}" formControlName="link">
                                         <mat-error>{{ formErrors?.link }}</mat-error>
                                     </mat-form-field>
-                                    <div class="col-2 py-20">
+
+                                    <div class="col-12 col-md-2 py-20">
                                         <mat-checkbox formControlName="blank">{{ 'CMS.NEW_WINDOW' | translate }}</mat-checkbox>
                                     </div>
                                 </div>
@@ -228,19 +230,39 @@
                         </mat-tab>
                         <mat-tab label="Basic Info">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                XXXXXX
+                                
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                YYYYY
+                                
                             </div>
                         </mat-tab>
                         <mat-tab label="Basic Info">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                BBBBB
+                                
                             </div>
                         </mat-tab>
+                        <mat-tab label="Basic Info">
+                                <div class="tab-content p-24" fusePerfectScrollbar>
+                                    
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Basic Info">
+                                    <div class="tab-content p-24" fusePerfectScrollbar>
+                                        
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Basic Info">
+                                        <div class="tab-content p-24" fusePerfectScrollbar>
+                                            
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Basic Info">
+                                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                                
+                                            </div>
+                                        </mat-tab>
                     </mat-tab-group>
                 </form>
             </div>
