@@ -137,30 +137,24 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id">
+                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (change)="handleChangeFamily($event)">
+                                            <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
                                             <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
                                             <mat-error>{{ formErrors?.family_id }}</mat-error>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                <!-- HEADER -->
+                                <div    fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section"
+                                        *ngIf=" family?.article_parent || family?.date || family?.title || family?.slug || 
+                                                family?.categories || family?.link || family?.tags || family?.sort">
                                     <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
                                     <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
                                 </div>
+                                <!-- / HEADER -->
 
-                                <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
-                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-                                        <mat-datepicker #date></mat-datepicker>
-                                        <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field>
-                                    <!-- <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" formControlName="date" type="datetime-local">
-                                        <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field> -->
-                                    
+                                <div fxLayout="row" *ngIf="family?.article_parent">
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
                                             <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
@@ -170,21 +164,30 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="family?.date">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
+                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                        <mat-datepicker #date></mat-datepicker>
+                                        <mat-error>{{ formErrors?.date }}</mat-error>
+                                    </mat-form-field>                                    
+                                </div>
+
+                                <div fxLayout="row" *ngIf="family?.title">
                                     <mat-form-field class="col-12">
                                         <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
                                         <mat-error>{{ formErrors?.title }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="family?.slug">
                                     <mat-form-field class="col-12">
                                         <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="family?.categories">
                                     <mat-form-field class="col-12">
                                         <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
                                             <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
@@ -193,7 +196,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row" class="justify-content-between flex-wrap">
+                                <div fxLayout="row" class="justify-content-between flex-wrap" *ngIf="family?.link">
                                     <mat-form-field class="col-12 col-md-9">
                                         <input matInput placeholder="{{ 'APPS.LINK' | translate }}" formControlName="link">
                                         <mat-error>{{ formErrors?.link }}</mat-error>
@@ -204,10 +207,10 @@
                                     </div>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="family?.tags">
                                     <mat-form-field class="col-12">
                                         <mat-chip-list #tagList formControlName="tags">
-                                            <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
+                                            <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tags, tag)">
                                                 {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
                                         </mat-chip-list>
@@ -215,11 +218,11 @@
                                                 [matChipInputFor]="tagList"
                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                                 [matChipInputAddOnBlur]="true"
-                                                (matChipInputTokenEnd)="addTag($event)">
+                                                (matChipInputTokenEnd)="addTag(tags, $event)">
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="family?.sort">
                                     <mat-form-field class="col-md-4">
                                         <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
                                         <mat-error>{{ formErrors?.sort }}</mat-error>
@@ -243,26 +246,6 @@
                                 
                             </div>
                         </mat-tab>
-                        <mat-tab label="Basic Info">
-                                <div class="tab-content p-24" fusePerfectScrollbar>
-                                    
-                                </div>
-                            </mat-tab>
-                            <mat-tab label="Basic Info">
-                                    <div class="tab-content p-24" fusePerfectScrollbar>
-                                        
-                                    </div>
-                                </mat-tab>
-                                <mat-tab label="Basic Info">
-                                        <div class="tab-content p-24" fusePerfectScrollbar>
-                                            
-                                        </div>
-                                    </mat-tab>
-                                    <mat-tab label="Basic Info">
-                                            <div class="tab-content p-24" fusePerfectScrollbar>
-                                                
-                                            </div>
-                                        </mat-tab>
                     </mat-tab-group>
                 </form>
             </div>

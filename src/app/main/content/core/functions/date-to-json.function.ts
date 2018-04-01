@@ -1,5 +1,4 @@
 Date.prototype.toJSON = function () {
-    
     const timezoneOffsetInHours = -(this.getTimezoneOffset() / 60); // UTC minus local time
     const sign = timezoneOffsetInHours >= 0 ? '+' : '-';
     const leadingZero = (timezoneOffsetInHours < 10) ? '0' : '';

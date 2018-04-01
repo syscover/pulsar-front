@@ -8,7 +8,10 @@ import { Section, Family, Article, Category, Status } from './../cms.models';
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { MatDatepicker } from '@angular/material';
 import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import './../../../core/functions/date-to-json.function';
+import { applyMixins } from './../../../core/functions/apply-mixins.function';
+import { Chipable } from './../../../core/traits/chipable.trait';
 import * as _ from 'lodash';
 // import { AttachmentFilesLibraryComponent } from './../../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
 // import { DynamicFormService } from './../../../shared/components/forms/dynamic-form/dynamic-form.service';
@@ -23,7 +26,7 @@ import * as _ from 'lodash';
     styleUrls: ['./../../../core/scss/improvements/perfect-scroll-bar.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ArticleDetailComponent extends CoreDetailComponent {
+export class ArticleDetailComponent extends CoreDetailComponent implements Chipable {
 
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';
@@ -41,14 +44,19 @@ export class ArticleDetailComponent extends CoreDetailComponent {
     attachmentFamilies: AttachmentFamily[] = [];
     imageStyles: Object = new Object;
     section: Section;
-    family: Family;
+    family: Family; // family for adapt article form
     imageUploadURL: string;
+    separatorKeysCodes = [ENTER, COMMA];
 
     private _attachmentFamilies: AttachmentFamily[];
 
     // custom fields
     fields: Field[];
     fieldValues: FieldValue[];
+
+    addTag: (tagContainer: Array<String>, event: MatChipInputEvent) => void;
+    removeTag: (tagContainer: Array<String>, tag) => void;
+
 
     // @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
     // @ViewChild('familiesInput') private familiesInput: DropdownComponent;
@@ -97,52 +105,25 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         });
     }
 
-    addTag(event: MatChipInputEvent): void
-    {
-        const input = event.input;
-        const value = event.value;
-
-        // Add tag
-        if ( value )
-        {
-            this.tags.push(value);
-        }
-
-        // Reset the input value
-        if ( input )
-        {
-            input.value = '';
-        }
-    }
-
-    removeTag(tag)
-    {
-        const index = this.tags.indexOf(tag);
-
-        if ( index >= 0 )
-        {
-            this.tags.splice(index, 1);
-        }
-    }
-
-    /* beforePatchValueEdit() {
+    
+    beforePatchValueEdit() {
         // set section object and load attachment families
-        this.section = _.find(this._sections, {id: this.object.section_id});
-        this.loadAttachmentFamilies();
+        /* this.section = _.find(this._sections, {id: this.object.section_id});
+        this.loadAttachmentFamilies(); */
 
         // set family object, to change morphology of form
-        this.family = _.find(this._families, {id: this.object.family_id});
+        this.family = _.find(this.families, {id: this.object.family_id});
 
         // create copy object for change readonly properties
-        const objectInput = Object.assign({}, this.object);
+        // const objectInput = Object.assign({}, this.object);
 
         // change publish and date format to Date, for calendar component
-        objectInput['publish'] = new Date(this.object.publish);
-        if (this.object.date) objectInput['date'] = new Date(this.object.date);
+        /* objectInput['publish'] = new Date(this.object.publish);
+        if (this.object.date) objectInput['date'] = new Date(this.object.date); */
 
         // overwrite object with object cloned
-        this.object = objectInput;
-    } */
+        // this.object = objectInput;
+    }
 
     /* afterPatchValueEdit() {
         
@@ -200,8 +181,12 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         {
             this.family = _.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
-
+            
             //this.handleGetCustomFields();
+        }
+        else
+        {
+            this.family = null;
         }
     }
 
@@ -335,4 +320,5 @@ export class ArticleDetailComponent extends CoreDetailComponent {
         });
     }
 }
-
+// multiple inheritance
+applyMixins(ArticleDetailComponent, [Chipable]);
