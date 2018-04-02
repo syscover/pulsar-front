@@ -109,10 +109,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 link
                 blank
                 sort
-                tags {
-                    id
-                    name
-                }
+                tags 
                 excerpt
                 article
                 data_lang

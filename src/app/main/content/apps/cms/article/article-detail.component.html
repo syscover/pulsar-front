@@ -88,7 +88,7 @@
 
                     <mat-tab-group>
 
-                        <mat-tab label="{{ 'APPS.PROPERTIES' | translate }}">
+                        <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <input type="hidden" formControlName="ix">
@@ -209,8 +209,8 @@
 
                                 <div fxLayout="row" *ngIf="family?.tags">
                                     <mat-form-field class="col-12">
-                                        <mat-chip-list #tagList formControlName="tags">
-                                            <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tags, tag)">
+                                        <mat-chip-list #tagList>
+                                            <mat-chip *ngFor="let tag of fg.controls['tags'].value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
                                                 {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
                                         </mat-chip-list>
@@ -218,7 +218,8 @@
                                                 [matChipInputFor]="tagList"
                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                                 [matChipInputAddOnBlur]="true"
-                                                (matChipInputTokenEnd)="addTag(tags, $event)">
+                                                (matChipInputTokenEnd)="addTag(fg, 'tags', $event)">
+                                        <mat-error>{{ formErrors?.tags }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -231,17 +232,39 @@
 
                             </div>
                         </mat-tab>
-                        <mat-tab label="Basic Info">
+                        <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}" *ngIf="family?.excerpt_editor_id">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                
+                                <div fxLayout="row" [ngSwitch]="family.excerpt_editor_id">
+
+                                    <mat-form-field class="col-12" *ngSwitchCase="1">
+                                        <textarea   matInput 
+                                                    placeholder="{{ 'CMS.EXCERPT' | translate }}" 
+                                                    matTextareaAutosize 
+                                                    matAutosizeMinRows="2" 
+                                                    formControlName="excerpt"></textarea>
+                                        <mat-error>{{ formErrors?.excerpt }}</mat-error>
+                                    </mat-form-field>
+
+                                </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="Basic Info">
+                        <mat-tab label="{{ 'CMS.ARTICLE' | translate | uppercase }}" *ngIf="family?.article_editor_id">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                
+                                <div fxLayout="row" [ngSwitch]="family.article_editor_id">
+
+                                    <mat-form-field class="col-12" *ngSwitchCase="1">
+                                        <textarea   matInput 
+                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}" 
+                                                    matTextareaAutosize 
+                                                    matAutosizeMinRows="2" 
+                                                    formControlName="article"></textarea>
+                                        <mat-error>{{ formErrors?.article }}</mat-error>
+                                    </mat-form-field>
+
+                                </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="Basic Info">
+                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}" *ngIf="family?.attachments">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 
                             </div>

@@ -1,5 +1,5 @@
 import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ArticleGraphQLService } from './article-graphql.service';
@@ -54,8 +54,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     fields: Field[];
     fieldValues: FieldValue[];
 
-    addTag: (tagContainer: Array<String>, event: MatChipInputEvent) => void;
-    removeTag: (tagContainer: Array<String>, tag) => void;
+    addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
+    removeTag: (formGroup: FormGroup, name: string, tag) => void;
 
 
     // @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;

@@ -8,6 +8,7 @@ export const locale = {
             'ARTICLE_PARENT': 'Artículo padre',
             'AUTHOR': 'Autor',
             'CATEGORY': 'Categoría',
+            'EXCERPT': 'Entrada',
             'EXCERPT_EDITOR': 'Editor de entrada',
             'FAMILY': 'Familia',
             'FIELD_GROUP': 'Grupo de campos',
