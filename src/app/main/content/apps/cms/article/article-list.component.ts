@@ -11,7 +11,7 @@ import { Status } from './../cms.models';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class ArticleListComponent extends CoreListComponent 
+export class ArticleListComponent extends CoreListComponent
 {
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';

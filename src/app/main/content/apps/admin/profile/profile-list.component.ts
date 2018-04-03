@@ -10,8 +10,8 @@ import { ProfileGraphQLService } from './profile-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class ProfileListComponent extends CoreListComponent {
-
+export class ProfileListComponent extends CoreListComponent
+{
     objectTranslation = 'ADMIN.PROFILE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['id', 'name'];

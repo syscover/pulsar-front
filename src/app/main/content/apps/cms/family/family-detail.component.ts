@@ -12,7 +12,7 @@ import * as _ from 'lodash';
     templateUrl: './family-detail.component.html',
     animations: fuseAnimations
 })
-export class FamilyDetailComponent extends CoreDetailComponent 
+export class FamilyDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'CMS.FAMILY';
     objectTranslationGender = 'F';

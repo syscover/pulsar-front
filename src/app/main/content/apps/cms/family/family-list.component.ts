@@ -9,7 +9,7 @@ import { FamilyGraphQLService } from './family-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class FamilyListComponent extends CoreListComponent 
+export class FamilyListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.FAMILY';
     objectTranslationGender = 'F';

@@ -13,7 +13,7 @@ import * as _ from 'lodash';
     templateUrl: './section-detail.component.html',
     animations: fuseAnimations
 })
-export class SectionDetailComponent extends CoreDetailComponent 
+export class SectionDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'CMS.SECTION';
     objectTranslationGender = 'F';

@@ -10,8 +10,8 @@ import { ResourceGraphQLService } from './resource-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class ResourceListComponent extends CoreListComponent {
-
+export class ResourceListComponent extends CoreListComponent 
+{
     objectTranslation = 'APPS.RESOURCE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_resource.id', 'admin_resource.name', 'admin_package.name'];

@@ -9,7 +9,7 @@ import { CategoryGraphQLService } from './category-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class CategoryListComponent extends CoreListComponent 
+export class CategoryListComponent extends CoreListComponent
 {
     objectTranslation = 'CMS.CATEGORY';
     objectTranslationGender = 'F';

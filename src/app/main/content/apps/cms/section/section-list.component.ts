@@ -9,7 +9,7 @@ import { SectionGraphQLService } from './section-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class SectionListComponent extends CoreListComponent 
+export class SectionListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.SECTION';
     objectTranslationGender = 'F';

@@ -70,7 +70,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             // this response is asynchronous, fron this section can't recover response data from promise
         });
 
-
         await this.startTable
             .pipe(
                 startWith({}), 
@@ -93,10 +92,11 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         };
         
         // check if there ara value and there isn't a request in progress
-        if (! this.running) 
-        {
+        // if (! this.running)
+        // if (true)
+        // {
             this.isLoadingResults = true; // flag to show loading shape
-            this.running = true;
+            // this.running = true;
             let data;
             data = await this.getRecords(
                 parameters.sort, 
@@ -107,7 +107,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             );
 
             // check buffer
-            while (this.buffer) 
+            /* while (this.buffer)
             {
                 const bufferValue = this.buffer;
                 data = await this.getRecords(
@@ -119,7 +119,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 );
                 if (JSON.stringify(bufferValue) === JSON.stringify(this.buffer)) this.buffer = undefined;
             }
-            this.running = false;
+            this.running = false; */
 
             if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
 
@@ -134,13 +134,13 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
             // hide loader data table
             this.isLoadingResults = false;
-        }
+        /* }
         else if (this.isLoadingResults) 
         {
             // add event tu buffer
             this.buffer = parameters;
             return from([]);
-        }
+        } */
     }
 
     constructor(

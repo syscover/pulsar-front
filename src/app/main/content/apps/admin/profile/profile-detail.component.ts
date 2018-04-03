@@ -9,8 +9,8 @@ import { ProfileGraphQLService } from './profile-graphql.service';
     templateUrl: 'profile-detail.component.html',
     animations: fuseAnimations
 })
-export class ProfileDetailComponent extends CoreDetailComponent {
-
+export class ProfileDetailComponent extends CoreDetailComponent
+{
     objectTranslation = 'ADMIN.PROFILE';
     objectTranslationGender = 'M';
 

@@ -10,8 +10,8 @@ import { Package } from './../admin.models';
     templateUrl: 'resource-detail.component.html',
     animations: fuseAnimations
 })
-export class ResourceDetailComponent extends CoreDetailComponent {
-
+export class ResourceDetailComponent extends CoreDetailComponent 
+{
     objectTranslation = 'APPS.RESOURCE';
     objectTranslationGender = 'M';
     packages: Package[] = [];

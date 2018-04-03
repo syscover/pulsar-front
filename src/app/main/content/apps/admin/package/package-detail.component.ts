@@ -9,8 +9,8 @@ import { PackageGraphQLService } from './package-graphql.service';
     templateUrl: 'package-detail.component.html',
     animations: fuseAnimations
 })
-export class PackageDetailComponent extends CoreDetailComponent {
-
+export class PackageDetailComponent extends CoreDetailComponent 
+{
     objectTranslation = 'ADMIN.PACKAGE';
     objectTranslationGender = 'M';
 

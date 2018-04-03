@@ -26,8 +26,8 @@ import * as _ from 'lodash';
     styleUrls: ['./../../../core/scss/improvements/perfect-scroll-bar.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ArticleDetailComponent extends CoreDetailComponent implements Chipable {
-
+export class ArticleDetailComponent extends CoreDetailComponent implements Chipable
+{
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';
     sections: Section[] = [];
@@ -127,9 +127,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
 
     /* afterPatchValueEdit() {
         
-        // set tags extracting name field
-        this.fg.controls['tags'].setValue(_.map(this.object.tags, 'name'));
-
         // TODO establece author cuando tengamos los usuarios relacionados
         // set tags extracting name field
         // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);

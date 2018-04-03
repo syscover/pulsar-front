@@ -10,8 +10,8 @@ import { PackageGraphQLService } from './package-graphql.service';
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class PackageListComponent extends CoreListComponent {
-
+export class PackageListComponent extends CoreListComponent 
+{
     objectTranslation = 'ADMIN.PACKAGE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['id', 'name', 'root'];
