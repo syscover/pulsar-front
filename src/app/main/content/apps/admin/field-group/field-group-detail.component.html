@@ -18,7 +18,7 @@
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>view_module</mat-icon>
+                    <mat-icon>dvr</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.PACKAGE' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.FIELD_GROUP' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -81,24 +81,13 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <input matInput placeholder="{{ 'ADMIN.ROOT' | translate }}" formControlName="root" required>
-                            <mat-error>{{ formErrors?.root }}</mat-error>
+                            <mat-select placeholder="{{ 'APPS.RESOURCE' | translate }}" formControlName="resource_id" required>
+                                <mat-option *ngFor="let resource of resources" [value]="resource.id">{{ resource.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.resource_id }}</mat-error>
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-sm-6">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number" required>
-                            <mat-error>{{ formErrors?.sort }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <div class="col-6 py-20">
-                            <mat-checkbox formControlName="active" labelPosition="before">{{ 'APPS.ACTIVE' | translate }}</mat-checkbox>
-                        </div>
-                    </div>
-                    
                 </form>
             </div>
             <!-- / CONTENT -->

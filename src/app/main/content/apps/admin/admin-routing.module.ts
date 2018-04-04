@@ -6,6 +6,8 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { FieldGroupListComponent } from './field-group/field-group-list.component';
+import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -16,8 +18,6 @@ import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 
 /*
-
-
         // Users
         { path: 'user',                                             component: UserListComponent },
         { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
@@ -27,11 +27,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
         { path: 'cron-job',                                         component: CronJobListComponent },
         { path: 'cron-job/create',                                  component: CronJobDetailComponent,              data: { action: 'create' }},
         { path: 'cron-job/show/:id',                                component: CronJobDetailComponent,              data: { action: 'edit' }},
-
-        // Field groups
-        { path: 'field-group',                                      component: FieldGroupListComponent },
-        { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create' }},
-        { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit' }},
 
         // Fields
         { path: 'field',                                            component: FieldListComponent },
@@ -77,6 +72,11 @@ const routes: Routes = [
             { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
             { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
             { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
+
+            // Field groups
+            { path: 'field-group',                                      component: FieldGroupListComponent },
+            { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create' }},
+            { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit' }},
 
             // Langs
             { path: 'lang',                                             component: LangListComponent },

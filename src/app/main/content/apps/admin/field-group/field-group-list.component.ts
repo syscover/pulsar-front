@@ -11,10 +11,10 @@ import { FieldGroupGraphQLService } from './field-group-graphql.service';
 })
 export class FieldGroupListComponent extends CoreListComponent
 {
-    objectTranslation = 'ADMIN.PACKAGE';
+    objectTranslation = 'ADMIN.FIELD_GROUP';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_field_group.id', 'admin_field_group.name', 'admin_resource.name'];
-    displayedColumns = ['id', 'name', 'resource', 'actions'];
+    displayedColumns = ['admin_field_group.id', 'admin_field_group.name', 'admin_resource.name', 'actions'];
 
     constructor(
         protected injector: Injector,

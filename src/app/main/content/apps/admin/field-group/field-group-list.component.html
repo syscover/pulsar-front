@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">view_module</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PACKAGES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">dvr</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.FIELD_GROUPS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.PACKAGE' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.FIELD_GROUP' | translate }}</span>
             </button>
 
         </div>
@@ -58,35 +58,21 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="id">
+                <ng-container matColumnDef="admin_field_group.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="name">
+                <ng-container matColumnDef="admin_field_group.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="root">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-block">{{ 'ADMIN.ROOT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-block">{{ row.root }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="sort">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SORT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.sort }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
-                        <mat-icon *ngIf="row.active">done</mat-icon>
-                    </mat-cell>
+                <ng-container matColumnDef="admin_resource.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-block">{{ 'APPS.RESOURCE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-block">{{ row.resource.name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

@@ -72,7 +72,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
         await this.startTable
             .pipe(
-                startWith({}), 
+                startWith({}),
                 switchMap(async () => {
                     await this.loadDataSource();
                 }),
@@ -91,28 +91,57 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             searchText: this.filter.nativeElement.value
         };
         
-        this.isLoadingResults = true; // flag to show loading shape
-        const data: any = await this.getRecords(
-            parameters.sort, 
-            parameters.order, 
-            parameters.offset,
-            parameters.limit,
-            parameters.searchText
-        );
+            // check if there ara value and there isn't a request in progress
+            if (! this.running)
+            {
+                this.isLoadingResults = true; // flag to show loading shape
+                this.running = true;
+                let data;
 
-        if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
+                data = await this.getRecords(
+                    parameters.sort, 
+                    parameters.order, 
+                    parameters.offset,
+                    parameters.limit,
+                    parameters.searchText
+                );
 
-        // set number of results
-        this.resultsLength = data.data.coreObjectsPagination.filtered;
+                // check buffer
+                while (this.buffer)
+                {
+                    const bufferValue = this.buffer;
+                    data = await this.getRecords(
+                        bufferValue.sort, 
+                        bufferValue.order, 
+                        bufferValue.offset,
+                        bufferValue.limit,
+                        bufferValue.searchText
+                    );
+                    // compare buffer to reset
+                    if (JSON.stringify(bufferValue) === JSON.stringify(this.buffer)) this.buffer = undefined;
+                }
+                this.running = false;
 
-        // set relations data
-        this.setRelationsData(data.data);
+                if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
 
-        // set data source
-        this.dataSource.data = data.data.coreObjectsPagination.objects;
+                // set number of results
+                this.resultsLength = data.data.coreObjectsPagination.filtered;
 
-        // hide loader data table
-        this.isLoadingResults = false;
+                // set relations data
+                this.setRelationsData(data.data);
+
+                // set data source
+                this.dataSource.data = data.data.coreObjectsPagination.objects;
+
+                // hide loader data table
+                this.isLoadingResults = false;
+            }
+            else if (this.isLoadingResults) 
+            {
+                // add event tu buffer
+                this.buffer = parameters;
+                return from([]);
+            }
     }
 
     constructor(

@@ -9,6 +9,8 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
+import { FieldGroupListComponent } from './field-group/field-group-list.component';
+import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -20,6 +22,7 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
+import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
@@ -36,6 +39,8 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         ActionDetailComponent,
         CountryListComponent,
         CountryDetailComponent,
+        FieldGroupListComponent,
+        FieldGroupDetailComponent,
         LangListComponent,
         LangDetailComponent,
         PackageListComponent,
@@ -48,6 +53,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     providers: [
         ActionGraphQLService,
         CountryGraphQLService,
+        FieldGroupGraphQLService,
         LangGraphQLService,
         PackageGraphQLService,
         ProfileGraphQLService,

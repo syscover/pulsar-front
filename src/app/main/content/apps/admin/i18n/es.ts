@@ -4,6 +4,7 @@ export const locale = {
         'ADMIN': {
             'ACTION': 'Acción',
             'COUNTRY': 'País',
+            'FIELD_GROUP': 'Grupo de campo',
             'ICON': 'Icono',
             'LANGUAGE': 'Idioma',
             'PACKAGE': 'Paquete',
