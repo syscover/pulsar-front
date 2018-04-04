@@ -16,6 +16,15 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     objectTranslation = 'ADMIN.FIELD_GROUP';
     objectTranslationGender = 'M';
     resources: Resource[] = [];
+    sizes: any[] = [];
+    formats: any[] = [
+        { id: 'jpg', label: 'jpg' },
+        { id: 'png', label: 'png' },
+        { id: 'gif', label: 'gif' },
+        { id: 'tif', label: 'tif' },
+        { id: 'bmp', label: 'bmp' },
+        { id: 'data-url', label: 'data-url' }
+    ];
 
     constructor(
         protected injector: Injector,
@@ -28,16 +37,24 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
+            resource_id: [null, Validators.required],
             name: [null, Validators.required],
-            resource_id: [null, Validators.required]
+            width: null,
+            height: null,
+            sizes: null,
+            quality: null,
+            format: []
         });
     }
 
     argumentsRelationsObject(): Object 
     {
         return {
-            configFieldGroupResources : {
-                key: 'pulsar-admin.field_group_resources'
+            configSizes : {
+                key: 'pulsar-admin.sizes'
+            },
+            configAttachmentResources : {
+                key: 'pulsar-admin.attachment_resources'
             }
         };
     }
@@ -45,9 +62,14 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     setRelationsData(data: any) 
     {
         // admin resources
-        const resourcesAllowed = data.configFieldGroupResources;
+        const resourcesAllowed = data.configAttachmentResources;
         this.resources = _.filter(<Resource[]>data.adminResources, obj => {
             return _.find(resourcesAllowed, {id: obj.id}) ? true : false;
+        });
+
+        // set sizes
+        this.sizes = _.map(<any[]>data['configSizes'], obj => {
+            return { value: obj.id, label: obj.name };
         });
     }
 }

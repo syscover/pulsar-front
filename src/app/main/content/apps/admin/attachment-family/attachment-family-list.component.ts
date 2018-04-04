@@ -12,7 +12,7 @@ import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.serv
 export class AttachmentFamilyListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.ATTACHMENT_FAMILY';
-    objectTranslationGender = 'M';
+    objectTranslationGender = 'F';
     columnsSearch: string[] = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name'];
     displayedColumns = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name', 'actions'];
 

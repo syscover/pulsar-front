@@ -124,7 +124,7 @@ export const navigation = [
                                 'translate': 'NAV.ATTACHMENT_FAMILIES',
                                 'type' : 'item',
                                 'icon' : 'photo',
-                                'url'  : '/apps/admin/attachmen-families'
+                                'url'  : '/apps/admin/attachment-family'
                             },
                             {
                                 'id'   : 'attachment_mimes',

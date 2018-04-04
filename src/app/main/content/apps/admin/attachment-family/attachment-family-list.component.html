@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.ATTACHMENT_FAMILY' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'ADMIN.ATTACHMENT_FAMILY' | translate }}</span>
             </button>
 
         </div>
@@ -58,13 +58,13 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_field_group.id">
+                <ng-container matColumnDef="admin_attachment_family.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_field_group.name">
+                <ng-container matColumnDef="admin_attachment_family.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
