@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'ADMIN': {
             'ACTION': 'Action',
+            'ATTACHMENT_FAMILY': 'Attachmen family',
             'COUNTRY': 'Country',
             'FIELD_GROUP': 'Field group',
             'ICON': 'Icon',

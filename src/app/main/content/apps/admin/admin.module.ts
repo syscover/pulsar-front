@@ -1,3 +1,4 @@
+import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { NgModule } from '@angular/core';
 import { FuseTranslationLoaderService } from './../../../../../@fuse/services/translation-loader.service';
 import { SharedModule } from './../../core/modules/shared.module';
@@ -7,6 +8,8 @@ import { locale as spanish } from './i18n/es';
 
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
+import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
+import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
@@ -37,6 +40,8 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     declarations: [
         ActionListComponent,
         ActionDetailComponent,
+        AttachmentFamilyListComponent,
+        AttachmentFamilyDetailComponent,
         CountryListComponent,
         CountryDetailComponent,
         FieldGroupListComponent,
@@ -52,6 +57,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     ],
     providers: [
         ActionGraphQLService,
+        AttachmentFamilyGraphQLService,
         CountryGraphQLService,
         FieldGroupGraphQLService,
         LangGraphQLService,

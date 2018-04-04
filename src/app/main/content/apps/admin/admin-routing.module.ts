@@ -4,6 +4,8 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
+import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
+import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
@@ -40,11 +42,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
         { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
         { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
 
-        // Attachment families
-        { path: 'attachment-family',                                component: AttachmentFamilyListComponent },
-        { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create' }},
-        { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit' }},
-
         // Attachment mimes
         { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
@@ -66,6 +63,11 @@ const routes: Routes = [
             { path: 'action',                                           component: ActionListComponent },
             { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create' }},
             { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit' }},
+
+            // Attachment families
+            { path: 'attachment-family',                                component: AttachmentFamilyListComponent },
+            { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create' }},
+            { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit' }},
 
             // Countries
             { path: 'country',                                          component: CountryListComponent },
