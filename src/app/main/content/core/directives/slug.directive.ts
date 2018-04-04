@@ -39,39 +39,18 @@ export class SlugDirective implements AfterViewInit, OnDestroy
             .pipe(
                 switchMap(async (event: any) => {
                     // check if there ara value and there isn't a request in progress
-                    if (event.target.value && ! this.running) 
+                    if (event.target.value) 
                     {
-                        this.running = true;
-                        let data;
-                        data = await this.slugService.checkSlug(
+                        const data: any = await this.slugService.checkSlug(
                             this.model,
                             event.target.value
                         );
 
-                        // check buffer
-                        while (this.buffer) 
-                        {
-                            const bufferValue = this.buffer.target.value;
-                            data = await this.slugService.checkSlug(
-                                this.model,
-                                bufferValue
-                            );
-                            if (bufferValue === this.buffer.target.value) this.buffer = undefined;
-                        }
-                        this.running = false;
-                        
                         if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
                         if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
 
                         return data;
                     }
-                    else if (event.target.value && this.running) 
-                    {
-                        // add event tu buffer
-                        this.buffer = event;
-                        return from([]);
-                    }
-                    // only for empty values
                     else
                     {
                         return from([]);
