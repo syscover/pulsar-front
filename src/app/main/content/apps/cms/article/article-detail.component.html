@@ -138,7 +138,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (change)="handleChangeFamily($event)">
-                                            <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
+                                            <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                             <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
                                             <mat-error>{{ formErrors?.family_id }}</mat-error>
                                         </mat-select>
@@ -157,7 +157,7 @@
                                 <div fxLayout="row" *ngIf="family?.article_parent">
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
-                                            <mat-option>{{ 'APPS.NONE' | translate }}</mat-option>
+                                            <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                             <mat-option *ngFor="let article of articles" [value]="article.id">{{ article.name }}</mat-option>
                                             <mat-error>{{ formErrors?.parent_id }}</mat-error>
                                         </mat-select>

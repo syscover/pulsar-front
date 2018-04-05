@@ -18,12 +18,12 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     resources: Resource[] = [];
     sizes: any[] = [];
     formats: any[] = [
-        { id: 'jpg', label: 'jpg' },
-        { id: 'png', label: 'png' },
-        { id: 'gif', label: 'gif' },
-        { id: 'tif', label: 'tif' },
-        { id: 'bmp', label: 'bmp' },
-        { id: 'data-url', label: 'data-url' }
+        { id: 'jpg', name: 'jpg' },
+        { id: 'png', name: 'png' },
+        { id: 'gif', name: 'gif' },
+        { id: 'tif', name: 'tif' },
+        { id: 'bmp', name: 'bmp' },
+        { id: 'data-url', name: 'data-url' }
     ];
 
     constructor(
@@ -68,8 +68,6 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
         });
 
         // set sizes
-        this.sizes = _.map(<any[]>data['configSizes'], obj => {
-            return { value: obj.id, label: obj.name };
-        });
+        this.sizes = data['configSizes'];
     }
 }
