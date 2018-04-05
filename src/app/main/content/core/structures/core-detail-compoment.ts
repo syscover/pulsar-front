@@ -110,13 +110,11 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 baseParams['lang_id'] = this.baseLang; // set baseLang to get object
 
                 this.getRecord(baseParams); // get baseLang object
-
             }
             else if (this.dataRoute.action === 'edit') 
             {
                 this.getRecord(this.params);
             }
-
         } 
         else 
         {
@@ -172,7 +170,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 }]
             };
 
-        } else {
+        } 
+        else 
+        {
             args = {
                 sql: [{
                     command: 'where',
@@ -200,7 +200,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     /**
      * Function to get relations object, normally used to create object
      */
-    relationsObject(): void {
+    relationsObject(): void 
+    {
         if (this.graphQL.relationsFields && this.graphQL.relationsFields !== '') 
         {
             const args = this.argumentsRelationsObject();
@@ -213,7 +214,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                     query: this.graphQL.queryRelationsObject,
                     variables: args
                 };
-            } else {
+            } 
+            else 
+            {
                 options = {
                     fetchPolicy: 'network-only',
                     query: this.graphQL.queryRelationsObject
@@ -234,7 +237,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // get arguments, for example in payment-method-detail.component.ts
-    argumentsRelationsObject(): Object {
+    argumentsRelationsObject(): Object 
+    {
         return undefined;
     }
 
@@ -244,12 +248,13 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
 
     // funtion that will be call for create object, create lang object and update object
-    postRecord(object: any, routeRedirect?: string, params = []) {
-
+    postRecord(object: any, routeRedirect?: string, params = [])
+    {
         // set errors from current form, this variable is binded to all form elements
         this.formErrors = this.validationMessageService.setErrors(this.fg); 
 
-        if (this.fg.invalid) {
+        if (this.fg.invalid) 
+        {
             // TODO, show general error
             console.log(this.fg);
             return; // has any validation error when emit submit event

@@ -1,0 +1,54 @@
+<div #attachmentLibrary id="attachment-library" [formGroup]="form">
+    <div #attachmentLibraryMask id="attachment-library-mask">
+        Arrastre aqui sus archivos ...
+    </div>
+    <div id="library-sortable" class="sortable">
+            <!-- attachment item -->
+            <dh2-attachment-item *ngFor="let attachment of getFormArrayControls(name); let i=index"
+                                [attachment]="attachment"
+                                [index]="i"
+                                [form]="form"
+                                [name]="name"
+                                [families]="families"
+                                (enableCrop)="enableCropHandler($event)"
+                                (removeItem)="removeItemHandler($event)"
+                                class="col-12 col-md-6 col-lg-4"></dh2-attachment-item>
+    </div>
+</div>
+
+<!-- cropper dialog -->
+<!-- <p-dialog   header="Cropper" 
+            appendTo="body"
+            [modal]="true" 
+            [draggable]="false"
+            [closable]="true"
+            [responsive]="true"
+            [(visible)]="displayDialog"
+            styleClass="cropper-dialog"
+            (onHide)="disableCropHandler($event)">
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="img-container col-md-12 col-lg-8">
+                <img #cropperImage class="cropper-img">
+            </div>
+            <div class="col-md-12 ml-lg-auto col-lg-3">
+                <div #cropperPreview class="img-preview preview-lg"></div>
+            </div>
+        </div>
+
+        <div class="row justify-content-sm-center justify-content-md-start action-buttons margin-top-30">
+            <ps-button  type="button" 
+                        icon="fa-check" 
+                        label="Crop" 
+                        class="col-sm-10 col-md-3"
+                        (click)="cropHandler($event)"></ps-button>
+
+            <ps-button  type="button" 
+                        icon="ui-icon-clear" 
+                        label="Cancel" 
+                        class="col-sm-10 col-md-3"
+                        (click)="displayDialog = false"></ps-button>
+        </div>
+    </div>
+</p-dialog> -->
+<!-- /cropper -->

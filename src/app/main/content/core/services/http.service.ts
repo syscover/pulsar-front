@@ -41,64 +41,6 @@ export class HttpService extends Core
         return Observable.throw('Error Observable.throw: ' + err.statusText);
     }
 
-    /* proxyGet(action: string, params?: Params): Observable<any> 
-    {
-        return this.httpClient
-            .get(this.getEndpoint(action, params), this.options)
-            .catch(this.handleError);
-    }
-
-    proxyPost(action: string, object: any, params?: Params): Observable<any> 
-    {
-        return this.httpClient
-            .post(this.getEndpoint(action, params), object, this.options)
-            .catch(this.handleError);
-    }
-
-    proxyPut(action: string, object: any, params: Params): Observable<any> 
-    {
-        return this.httpClient
-            .put(this.getEndpoint(action, params), object, this.options)
-            .catch(this.handleError);
-    }
-
-    proxyDelete(action: string, params: Params): Observable<any> 
-    {
-        return this.httpClient
-            .delete(this.getEndpoint(action, params))
-            .catch(this.handleError);
-    } */
-
-   /*  searchRecords(object: any, params?: Params): Observable<DataListResponse> 
-    {
-        return this.proxyPost('search', object, params);
-    }
-
-    getRecords(params?: Params): Observable<DataListResponse> 
-    {
-        return this.proxyGet('get', params);
-    }
-
-    getRecord(params: Params): Observable<DataListResponse> 
-    {
-        return this.proxyGet('find', params);
-    }
-
-    storeRecord(object: any, params?: Params) 
-    {
-        return this.proxyPost('store', object, params);
-    }
-
-    updateRecord(object: any, params: Params) 
-    {
-        return this.proxyPut('put', object, params);
-    }
-
-    deleteRecord(params: Params) 
-    {
-        return this.proxyDelete('delete', params);
-    } */
-
     protected setEndpoint(urlAddons: string) 
     {
         // set api URL

@@ -266,7 +266,13 @@
                         </mat-tab>
                         <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}" *ngIf="family?.attachments">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                
+                                    <dh2-attachments    #attachments
+                                                        [value]="object.attachments"
+                                                        [form]="fg"
+                                                        name="attachments"
+                                                        [endpoint]="apiUrl + '/api/v1/admin/attachment-upload'"
+                                                        [families]="attachmentFamilies">
+                                    </dh2-attachments>
                             </div>
                         </mat-tab>
                     </mat-tab-group>
