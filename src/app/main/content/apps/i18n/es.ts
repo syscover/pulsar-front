@@ -1,18 +1,6 @@
 export const locale = {
     lang: 'es',
     data: {
-        'PAGINATOR': {
-            'ITEMS_PER_PAGE' : 'Elemetos por página',
-            'NEXT_PAGE' : 'Página siguiente',
-            'PREVIOUS_PAGE' : 'Página anterior',
-            'OF_LABEL' : 'de',
-        },
-        'CONFIRM': {
-            'TITLE' : 'Confirmar',
-            'QUESTION' : '¿Desea confirmar esta operación?',
-            'OK' : 'Confirmar',
-            'CANCEL' : 'Cancelar',
-        },
         'APPS': {
             'ACTIONS': 'Acciones',
             'ACTIVE': 'Activo',
@@ -58,6 +46,23 @@ export const locale = {
             'TRANSLATIONS': 'Traducciones',
             'USER': 'Usuario',
             'WIDTH': 'Ancho',
+        },
+        'CONFIRM': {
+            'TITLE' : 'Confirmar',
+            'QUESTION' : '¿Desea confirmar esta operación?',
+            'OK' : 'Confirmar',
+            'CANCEL' : 'Cancelar',
+        },
+        'CROPPER': {
+            'CANCEL' : 'Cancelar',
+            'CROP' : 'Cortar',
+            'TITLE' : 'Cropper',
+        },
+        'PAGINATOR': {
+            'ITEMS_PER_PAGE' : 'Elemetos por página',
+            'NEXT_PAGE' : 'Página siguiente',
+            'PREVIOUS_PAGE' : 'Página anterior',
+            'OF_LABEL' : 'de',
         },
         'VALIDATIONS': {
             'DEFAULT': 'Error no contemplado.',

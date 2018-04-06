@@ -108,8 +108,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     
     beforePatchValueEdit() {
         // set section object and load attachment families
-        /* this.section = _.find(this._sections, {id: this.object.section_id});
-        this.loadAttachmentFamilies(); */
+        this.section = _.find(this.sections, {id: this.object.section_id});
+        this.loadAttachmentFamilies();
 
         // set family object, to change morphology of form
         this.family = _.find(this.families, {id: this.object.family_id});
@@ -141,7 +141,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         {
             this.section = _.find(this.sections, {id: $event.value});
 
-            // this.loadAttachmentFamilies();
+            // load families from section
+            this.loadAttachmentFamilies();
 
             // TODO, trigger event instead call function
             if (this.section.family) 
@@ -151,23 +152,28 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         }
     }
 
-    /* private loadAttachmentFamilies() {
+    private loadAttachmentFamilies() 
+    {
         // load attachment families depend of article familie
-        if (this.section.attachment_families !== null) {
+        if (this.section.attachment_families !== null) 
+        {
             this.attachmentFamilies = [];
-            for (const idAttachmentFamily of this.section.attachment_families) {
-
+            for (const idAttachmentFamily of this.section.attachment_families)
+            {
                 const af = _.find(this._attachmentFamilies, {id: +idAttachmentFamily});
                 this.attachmentFamilies.push(af);
                 this.imageStyles['ps-attachment-family-' + af.id] = af.name; // Images styles for Froala
             }
-        } else {
+        } 
+        else 
+        {
             this.attachmentFamilies = this._attachmentFamilies;
-            for (const attachemntFamily of this.attachmentFamilies) {
+            for (const attachemntFamily of this.attachmentFamilies)
+            {
                 this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
             }
         }
-    } */
+    }
 
     handleChangeFamily($event)
     {
@@ -179,7 +185,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
             this.family = _.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
             
-            //this.handleGetCustomFields();
+            // this.handleGetCustomFields();
         }
         else
         {
@@ -307,7 +313,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
 
         // admin attachment families
         // this objects are manage in loadAttachmentFamilies method
-        // this._attachmentFamilies = <AttachmentFamily[]>data['adminAttachmentFamilies'];
+        this._attachmentFamilies = data.adminAttachmentFamilies;
 
         // cms author
         const user = this.authenticationService.user();

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseSharedModule } from './../../../../../@fuse/shared.module';
 import { MaterialModule } from './material.module';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { SlugDirective } from './../directives/slug.directive';
 
 import { AttachmentItemComponent } from './../components/attachments/attachment-item/attachment-item.component';
 import { AttachmentsComponent } from './../components/attachments/attachments/attachments.component';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
+import { CropperDialogComponent } from './../components/attachments/cropper-dialog.component';
 import { FlagIconComponent } from './../components/flag-icon.component';
 import { ImageInputComponent } from './../components/image-input.component';
 
@@ -24,6 +26,7 @@ import { AttachmentsService } from './../components/attachments/attachments.serv
         AttachmentsComponent,
         AttachmentItemComponent,
         ConfirmationDialogComponent,
+        CropperDialogComponent,
         FlagIconComponent,
         ImageInputComponent,
         ActionTranslationObjectPipe,
@@ -35,11 +38,13 @@ import { AttachmentsService } from './../components/attachments/attachments.serv
         AttachmentsService
     ],
     imports: [
+        DragulaModule,
         FuseSharedModule,
         TranslateModule,
         MaterialModule
     ],
     exports: [
+        DragulaModule,
         FuseSharedModule,
         TranslateModule,
         MaterialModule,
@@ -54,7 +59,8 @@ import { AttachmentsService } from './../components/attachments/attachments.serv
         FormatSizePipe,
     ],
     entryComponents: [
-        ConfirmationDialogComponent
+        ConfirmationDialogComponent,
+        CropperDialogComponent
     ],
 })
 export class SharedModule

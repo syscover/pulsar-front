@@ -1,289 +1,296 @@
-.sortable-item {
-    display: block;
-    position: relative;
-    margin: 0;
+:host {
+    
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    
+    .sortable-item {
+        display: block;
+        position: relative;
+        margin: 0;
+    
+        height: 220px;
+        margin-bottom: 15px;
+        -webkit-transition: opacity 0.3s ease-out 0s;
+        -moz-transition: opacity 0.3s ease-out 0s;
+        -ms-transition: opacity 0.3s ease-out 0s;
+        -o-transition: opacity 0.3s ease-out 0s;
+        transition: opacity 0.3s ease-out 0s;
+    }
+    .attachment-item {
+        margin-bottom: 15px;
+        cursor: move;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 220px;
+        background-color: rgb(255,255,255);
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .attachment-img {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .attachment-img dh2-image-input {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+    }
+    .attachment-item .attachment-over {
+        position: absolute;
+        left:0;
+        right: 0;
+        bottom:0;
+        background-color: rgba(255,255,255,0.85);
+        padding:0;
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+        -webkit-box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .attachment-item:not(.covered) .attachment-over {
+        top:68%;
+    }
+    .attachment-item.covered .attachment-over {
+        top:0;
+    }
+    .attachment-over-uncovered,
+    .attachment-over-covered {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        padding:15px;
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+    }
+    .attachment-item:not(.covered) .attachment-over-uncovered {
+        max-height: none;
+        padding:15px 45px 15px 15px;
+        opacity: 1;
+    }
+    .attachment-item:not(.covered) .attachment-over-covered {
+        max-height: 0;
+        padding:0 15px 0 15px;
+        opacity: 0;
+    }
+    .attachment-item.covered .attachment-over-uncovered {
+        max-height: 0;
+        padding:0 30px 0 15px;
+        opacity:0;
+    }
+    .attachment-item.covered .attachment-over-covered {
+        max-height: none;
+        padding: 44px 15px 15px 15px;
+        opacity: 1;
+    }
+    
+    .attachment-edit-open,
+    .attachment-edit-close {
+        display: block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: rgba(96, 125, 139, 0.75);
+        border-radius: 50%;
+        color: rgb(40,40,40);
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .attachment-edit-open {
+        top: 10px;
+        right: 5px;
+    }
+    .attachment-edit-close {
+        top:5px;
+        right:5px;
+    }
+    .attachment-edit-open i,
+    .attachment-edit-close i {
+        display: block;
+        font-size: 20px;
+        line-height: 20px;
+        color: rgb(255,255,255);
+    }
+    .attachment-edit-open:hover,
+    .attachment-edit-close:hover {
+        background-color: rgb(96, 125, 139);
+        text-decoration: none !important;
+    }
+    .attachment-edit-open:hover i,
+    .attachment-edit-close:hover i {
+        color: rgb(255,255,255);
+        text-decoration: none !important;
+    }
+    
+    .attachment-title {
+        color: rgb(40,40,40);
+        font-size:18px;
+        line-height: 22px;
+        min-height: 22px;
+        margin: 0 0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .attachment-sub {
+        color: rgb(120,120,120);
+        font-size:12px;
+        line-height: 13px;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .attachment-size {
+        position: absolute;
+        top: 47px;
+        right:5px;
+        color: rgb(40,40,40);
+        font-size:12px;
+        line-height: 13px;
+        font-weight: 600;
+        margin:0;
+        padding: 0;
+    }
+    .attachment-item .form-group {
+        display: block;
+        position: relative;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+    }
+    .attachment-item .form-group:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    .attachment-item .form-control {
+        height: auto;
+    }
+    .attachment-item input {
+        display: block;
+        width:100%;
+        padding:2px 10px !important;
+        background-color: rgb(255,255,255);
+        color: rgb(40,40,40);
+        font-size: 14px;
+        line-height: 26px;
+        border: 1px solid rgb(96, 125, 139);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        outline:none !important;
+    }
+    .attachment-item select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    
+        position: relative;
+        display: block;
+        width:100%;
+        height: auto !important;
+        padding:2px 10px !important;
+        background-color: transparent;
+        color: rgb(40,40,40);
+        font-size: 14px;
+        line-height: 26px;
+        border: 1px solid rgb(96, 125, 139);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        outline:none !important;
+        z-index: 2;
+    }
+    .select-back {
+        display: none;
+    }
+    .attachment-item select ~ .select-back {
+        display: block;
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(255,255,255);
+        border-radius: 2px;
+        z-index: 1;
+    }
+    .attachment-item select ~ .select-back i {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: rgb(96, 125, 139);
+    }
+    .attachment-item button {
+        display: block;
+        cursor: pointer;
+        width:100%;
+        font-size: 14px;
+        line-height: 25px;
+        padding: 5px 10px;
+        text-align: center;
+        color: rgb(255,255,255);
+        background-color: rgb(96, 125, 139);
+        border:none;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+    }
+    .attachment-item button:hover {
+        background-color: rgb(66, 95, 109);
+    }
+    .remove-item {
+        position: absolute;
+        background-color: rgba(255,20,20,0.85);
+        top:-10px;
+        right:5px;
+        width:25px;
+        height: 25px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease-out 0s;
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .remove-item i {
+        font-size: 25px;
+        line-height: 25px;
+        color: rgb(255,255,255);
+    }
+}
 
-    height: 220px;
-    margin-bottom: 15px;
-    -webkit-transition: opacity 0.3s ease-out 0s;
-    -moz-transition: opacity 0.3s ease-out 0s;
-    -ms-transition: opacity 0.3s ease-out 0s;
-    -o-transition: opacity 0.3s ease-out 0s;
-    transition: opacity 0.3s ease-out 0s;
-}
-.attachment-item {
-    margin-bottom: 15px;
-    cursor: move;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 220px;
-    background-color: rgb(255,255,255);
-    border-radius: 2px;
-    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-.attachment-img {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.attachment-img dh2-image-input {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    margin: auto;
-}
-.attachment-item .attachment-over {
-    position: absolute;
-    left:0;
-    right: 0;
-    bottom:0;
-    background-color: rgba(255,255,255,0.85);
-    padding:0;
-    -webkit-transition: all 0.3s ease-out 0s;
-    -moz-transition: all 0.3s ease-out 0s;
-    -ms-transition: all 0.3s ease-out 0s;
-    -o-transition: all 0.3s ease-out 0s;
-    transition: all 0.3s ease-out 0s;
-    -webkit-box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-.attachment-item:not(.covered) .attachment-over {
-    top:68%;
-}
-.attachment-item.covered .attachment-over {
-    top:0;
-}
-.attachment-over-uncovered,
-.attachment-over-covered {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    padding:15px;
-    -webkit-transition: all 0.3s ease-out 0s;
-    -moz-transition: all 0.3s ease-out 0s;
-    -ms-transition: all 0.3s ease-out 0s;
-    -o-transition: all 0.3s ease-out 0s;
-    transition: all 0.3s ease-out 0s;
-}
-.attachment-item:not(.covered) .attachment-over-uncovered {
-    max-height: none;
-    padding:15px 45px 15px 15px;
-    opacity: 1;
-}
-.attachment-item:not(.covered) .attachment-over-covered {
-    max-height: 0;
-    padding:0 15px 0 15px;
-    opacity: 0;
-}
-.attachment-item.covered .attachment-over-uncovered {
-    max-height: 0;
-    padding:0 30px 0 15px;
-    opacity:0;
-}
-.attachment-item.covered .attachment-over-covered {
-    max-height: none;
-    padding: 44px 15px 15px 15px;
-    opacity: 1;
-}
-
-.attachment-edit-open,
-.attachment-edit-close {
-    display: block;
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: rgba(96, 125, 139, 0.75);
-    border-radius: 50%;
-    color: rgb(40,40,40);
-    -webkit-transition: all 0.3s ease-out 0s;
-    -moz-transition: all 0.3s ease-out 0s;
-    -ms-transition: all 0.3s ease-out 0s;
-    -o-transition: all 0.3s ease-out 0s;
-    transition: all 0.3s ease-out 0s;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-.attachment-edit-open {
-    top: 10px;
-    right: 5px;
-}
-.attachment-edit-close {
-    top:5px;
-    right:5px;
-}
-.attachment-edit-open i,
-.attachment-edit-close i {
-    display: block;
-    font-size: 20px;
-    line-height: 20px;
-    color: rgb(255,255,255);
-}
-.attachment-edit-open:hover,
-.attachment-edit-close:hover {
-    background-color: rgb(96, 125, 139);
-    text-decoration: none !important;
-}
-.attachment-edit-open:hover i,
-.attachment-edit-close:hover i {
-    color: rgb(255,255,255);
-    text-decoration: none !important;
-}
-
-.attachment-title {
-    color: rgb(40,40,40);
-    font-size:18px;
-    line-height: 22px;
-    min-height: 22px;
-    margin: 0 0 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.attachment-sub {
-    color: rgb(120,120,120);
-    font-size:12px;
-    line-height: 13px;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.attachment-size {
-    position: absolute;
-    top: 47px;
-    right:5px;
-    color: rgb(40,40,40);
-    font-size:12px;
-    line-height: 13px;
-    font-weight: 600;
-    margin:0;
-    padding: 0;
-}
-.attachment-item .form-group {
-    display: block;
-    position: relative;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    margin-bottom: 10px;
-}
-.attachment-item .form-group:last-of-type {
-    margin-bottom: 0;
-}
-
-.attachment-item .form-control {
-    height: auto;
-}
-.attachment-item input {
-    display: block;
-    width:100%;
-    padding:2px 10px !important;
-    background-color: rgb(255,255,255);
-    color: rgb(40,40,40);
-    font-size: 14px;
-    line-height: 26px;
-    border: 1px solid rgb(96, 125, 139);
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    outline:none !important;
-}
-.attachment-item select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    position: relative;
-    display: block;
-    width:100%;
-    height: auto !important;
-    padding:2px 10px !important;
-    background-color: transparent;
-    color: rgb(40,40,40);
-    font-size: 14px;
-    line-height: 26px;
-    border: 1px solid rgb(96, 125, 139);
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    outline:none !important;
-    z-index: 2;
-}
-.select-back {
-    display: none;
-}
-.attachment-item select ~ .select-back {
-    display: block;
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(255,255,255);
-    border-radius: 2px;
-    z-index: 1;
-}
-.attachment-item select ~ .select-back i {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: rgb(96, 125, 139);
-}
-.attachment-item button {
-    display: block;
-    cursor: pointer;
-    width:100%;
-    font-size: 14px;
-    line-height: 25px;
-    padding: 5px 10px;
-    text-align: center;
-    color: rgb(255,255,255);
-    background-color: rgb(96, 125, 139);
-    border:none;
-    border-radius: 2px;
-    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    -webkit-transition: all 0.3s ease-out 0s;
-    -moz-transition: all 0.3s ease-out 0s;
-    -ms-transition: all 0.3s ease-out 0s;
-    -o-transition: all 0.3s ease-out 0s;
-    transition: all 0.3s ease-out 0s;
-}
-.attachment-item button:hover {
-    background-color: rgb(66, 95, 109);
-}
-.remove-item {
-    position: absolute;
-    background-color: rgba(255,20,20,0.85);
-    top:-10px;
-    right:-12px;
-    width:25px;
-    height: 25px;
-    text-align: center;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease-out 0s;
-    z-index: 2;
-    opacity: 0;
-    visibility: hidden;
-}
-.remove-item i {
-    font-size: 25px;
-    line-height: 25px;
-    color: rgb(255,255,255);
-}
 :host:hover .attachment-item:not(.covered) ~ .remove-item {
     opacity: 1;
     visibility: visible;

@@ -19,12 +19,12 @@
                     <h4 class="attachment-title">{{ family?.name }}</h4>
                     <p class="attachment-sub">{{ attachment.get('title').value }}</p>
                     <p class="attachment-size">{{ attachment.get('size').value | formatSize }}</p>
-                    <a class="attachment-edit-open open-over">
+                    <a #openOver class="attachment-edit-open">
                         <i class="material-icons">mode_edit</i>
                     </a>
                 </div>
                 <div class="attachment-over-covered">
-                    <a class="attachment-edit-close close-over"><i class="material-icons">clear</i></a>
+                    <a #closeOver class="attachment-edit-close"><i class="material-icons">clear</i></a>
 
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Image alt" formControlName="alt">

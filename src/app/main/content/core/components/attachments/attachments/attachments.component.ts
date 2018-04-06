@@ -4,10 +4,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { AttachmentsService } from './../attachments.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
+import { CropperDialogComponent } from './../cropper-dialog.component';
 import { AttachmentFamily, Attachment } from './../../../../apps/admin/admin.models';
 import { environment } from './../../../../../../../environments/environment';
 import * as _ from 'lodash';
-import Cropper from 'cropperjs/dist/cropper.esm.js';
 
 declare const jQuery: any; // jQuery definition
 
@@ -29,16 +29,12 @@ export class AttachmentsComponent implements OnInit, OnChanges
     // View elements
     @ViewChild('attachmentLibrary')  attachmentLibrary;
     @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
-    @ViewChild('cropperImage') cropperImage;
-    @ViewChild('cropperPreview') cropperPreview;
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     items: FormArray;
     files: File[];                          // files uploaded across XMLHttpRequest
-    cropper: Cropper;                       // varible to contain copper object
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-    dialog: MatDialog;
 
     // displayDialog = false;
     progress = 0;
@@ -47,7 +43,8 @@ export class AttachmentsComponent implements OnInit, OnChanges
         private fb: FormBuilder,
         private renderer: Renderer2,
         private sanitizer: DomSanitizer,
-        private attachmentsService: AttachmentsService
+        private attachmentsService: AttachmentsService,
+        private dialog: MatDialog
     ) { }
 
     ngOnInit() 
@@ -219,7 +216,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         // set new sort
         for (let i = 0; this.attachments.controls.length > i; i++) 
         {
-            let formGroup = this.attachments.at(i) as FormGroup;
+            const formGroup = this.attachments.at(i) as FormGroup;
             formGroup.controls['sort'].setValue(i);
         }
     }
@@ -304,50 +301,15 @@ export class AttachmentsComponent implements OnInit, OnChanges
     {
         if (environment.debug) console.log('DEBUG - trigger enableCropHandler with this event: ', $event);
 
-        // instance attachment to be sent in cropHandler
-        this.attachment = $event.attachment;
-
-        // get attachment family
-        this.attachmentFamily = <AttachmentFamily>_.find(this.families, {'id': $event.family_id});
-
-        // get image from item changed and instance dialog image
-        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', $event.attachment.controls['attachment_library'].value.url);
-
-        // set crop on dialog image
-        this.cropper = new Cropper(this.cropperImage.nativeElement, {
-            aspectRatio: this.attachmentFamily.width && this.attachmentFamily.height ? this.attachmentFamily.width / this.attachmentFamily.height : NaN,
-            viewMode: 2,
-            minContainerWidth: 0,
-            preview: this.cropperPreview.nativeElement
-        });
-
         // show dialog image
-        // this.displayDialog = true;
-    }
-
-    disableCropHandler($event) 
-    {
-        this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
-        this.cropper.destroy();
-    }
-
-    cropHandler($event) 
-    {
-        this.attachmentsService
-            .setCropImage({
-                crop: this.cropper.getData('rounded'),
-                attachment_family: this.attachmentFamily,
-                attachment: this.attachment.value       // get values from formGroup
-            })
-            .subscribe(({data}) => {
-                if (environment.debug) console.log('DEBUG - response after crop image: ', data);
-
-                // set attachemnt family id
-                this.attachment.patchValue(data.adminCropAttachment.attachment);
-
-                // hide crop dialog
-                // this.displayDialog = false;
-            });
+        const dialogRef = this.dialog.open(CropperDialogComponent, {
+            data: { 
+                attachment: $event.attachment,
+                attachmentFamily: _.find(this.families, {'id': $event.family_id})
+            },
+            height: '90%',
+            width: '90%'
+        });
     }
 
     removeItemHandler($event) 
@@ -361,9 +323,10 @@ export class AttachmentsComponent implements OnInit, OnChanges
                 // file deleted
                 for (let i = 0; this.attachments.length; i++) {
 
-                    let formGroup = this.attachments.at(i) as FormGroup;
+                    const formGroup = this.attachments.at(i) as FormGroup;
 
-                    if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) {
+                    if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) 
+                    {
                         // delete attachment from FormArray
                         this.attachments.removeAt(i);
                         // break to not continue with for, beacuse lenght attachments has changed
@@ -372,11 +335,10 @@ export class AttachmentsComponent implements OnInit, OnChanges
                 }
 
                 // show placeholder if has not any item
-                if (this.attachments.length === 0) {
+                if (this.attachments.length === 0) 
+                {
                     this.enablePlaceholder();
                 }
             });
-    }
-
-    
+    } 
 }

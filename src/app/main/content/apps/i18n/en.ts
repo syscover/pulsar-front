@@ -1,18 +1,6 @@
 export const locale = {
     lang: 'en',
     data: {
-        'PAGINATOR': {
-            'ITEMS_PER_PAGE' : 'Items per page',
-            'NEXT_PAGE' : 'Next page',
-            'PREVIOUS_PAGE' : 'Previous page',
-            'OF_LABEL' : 'of',
-        },
-        'CONFIRM': {
-            'TITLE' : 'Confirm',
-            'QUESTION' : 'Do you want to confirm this operation?',
-            'OK' : 'Confirm',
-            'CANCEL' : 'Cancel',
-        },
         'APPS': {
             'ACTIONS': 'Actions',
             'ACTIVE': 'Active',
@@ -58,6 +46,23 @@ export const locale = {
             'TRANSLATIONS': 'Translations',
             'USER': 'User',
             'WIDTH': 'Width',
+        },
+        'CONFIRM': {
+            'TITLE' : 'Confirm',
+            'QUESTION' : 'Do you want to confirm this operation?',
+            'OK' : 'Confirm',
+            'CANCEL' : 'Cancel',
+        },
+        'CROPPER': {
+            'CANCEL' : 'Cancel',
+            'CROP' : 'Crop',
+            'TITLE' : 'Cropper',
+        },
+        'PAGINATOR': {
+            'ITEMS_PER_PAGE' : 'Items per page',
+            'NEXT_PAGE' : 'Next page',
+            'PREVIOUS_PAGE' : 'Previous page',
+            'OF_LABEL' : 'of',
         },
         'VALIDATIONS': {
             'DEFAULT': 'Error not contemplated.',
