@@ -2,9 +2,9 @@
     <div #attachmentLibraryMask id="attachment-library-mask">
         Arrastre aqui sus archivos ...
     </div>
-    <div id="library-sortable" class="sortable" [dragula]='"bag-one"' [dragulaModel]='getFormArrayControls(name)'>
+    <div id="library-sortable" [dragula]="'bag-one'" [dragulaModel]="this.attachments.controls">
             <!-- attachment item -->
-            <dh2-attachment-item *ngFor="let attachment of getFormArrayControls(name); let i=index"
+            <dh2-attachment-item *ngFor="let attachment of this.attachments.controls; let i=index"
                                 [attachment]="attachment"
                                 [index]="i"
                                 [form]="form"

@@ -2,14 +2,13 @@ import { Component, ViewChildren, QueryList, Input, OnInit, OnChanges, ViewChild
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { AttachmentsService } from './../attachments.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { CropperDialogComponent } from './../cropper-dialog.component';
 import { AttachmentFamily, Attachment } from './../../../../apps/admin/admin.models';
 import { environment } from './../../../../../../../environments/environment';
 import * as _ from 'lodash';
-
-declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'dh2-attachments',
@@ -44,7 +43,8 @@ export class AttachmentsComponent implements OnInit, OnChanges
         private renderer: Renderer2,
         private sanitizer: DomSanitizer,
         private attachmentsService: AttachmentsService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private dragulaService: DragulaService
     ) { }
 
     ngOnInit() 
@@ -60,6 +60,14 @@ export class AttachmentsComponent implements OnInit, OnChanges
         });
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'drop', ($event) => {
             this.dropHandler($event);
+        });
+        this.dragulaService.drop.subscribe(() => {
+            // set new sort
+            for (let i = 0; this.attachments.controls.length > i; i++) 
+            {
+                const formGroup = this.attachments.at(i) as FormGroup;
+                formGroup.controls['sort'].setValue(i);
+            }
         });
     }
 
@@ -81,13 +89,6 @@ export class AttachmentsComponent implements OnInit, OnChanges
     get attachments(): FormArray
     {
         return this.form.get(this.name) as FormArray;
-    }
-
-    // casting as FormArray for avoid error in build proccess
-    getFormArrayControls(name: string) 
-    {
-        const fa = this.form.controls[name] as FormArray;
-        return fa.controls;
     }
 
     createAttachment(attachment?) 
@@ -209,16 +210,6 @@ export class AttachmentsComponent implements OnInit, OnChanges
     private deactivateMask() 
     {
         this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active-mask');
-    }
-
-    onSortHandler($event) 
-    {
-        // set new sort
-        for (let i = 0; this.attachments.controls.length > i; i++) 
-        {
-            const formGroup = this.attachments.at(i) as FormGroup;
-            formGroup.controls['sort'].setValue(i);
-        }
     }
 
     /**

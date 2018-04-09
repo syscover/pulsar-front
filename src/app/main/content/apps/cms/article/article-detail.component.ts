@@ -57,10 +57,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
     removeTag: (formGroup: FormGroup, name: string, tag) => void;
 
-
-    // @ViewChild('attachments') private attachments: AttachmentFilesLibraryComponent;
-    // @ViewChild('familiesInput') private familiesInput: DropdownComponent;
-
     constructor(
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
