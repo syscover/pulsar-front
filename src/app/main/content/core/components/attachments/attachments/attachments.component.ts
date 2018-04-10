@@ -3,10 +3,12 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { TranslateService } from '@ngx-translate/core';
 import { AttachmentsService } from './../attachments.service';
 import { AttachmentItemComponent } from './../attachment-item/attachment-item.component';
 import { CropperDialogComponent } from './../cropper-dialog.component';
 import { AttachmentFamily, Attachment } from './../../../../apps/admin/admin.models';
+import { ConfigService } from './../../../services/config.service';
 import { environment } from './../../../../../../../environments/environment';
 import * as _ from 'lodash';
 
@@ -18,12 +20,13 @@ import * as _ from 'lodash';
 export class AttachmentsComponent implements OnInit, OnChanges
 {
     // Input elements
+    @Input() placeholder: String;
     @Input() form: FormGroup;
     @Input() name: string;                                  // name of input that contain attachmens FormArray
     @Input() value: Attachment[];                           // array of attachments to init component
     @Input() families: AttachmentFamily[] = [];             // families for AttachmentItemComponent
     @Input() endpoint: string;                              // API url where call once drop elements
-    @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
+    // @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
     // View elements
     @ViewChild('attachmentLibrary')  attachmentLibrary;
@@ -44,7 +47,9 @@ export class AttachmentsComponent implements OnInit, OnChanges
         private sanitizer: DomSanitizer,
         private attachmentsService: AttachmentsService,
         private dialog: MatDialog,
-        private dragulaService: DragulaService
+        private dragulaService: DragulaService,
+        private translateService: TranslateService,
+        private configService: ConfigService
     ) { }
 
     ngOnInit() 
@@ -65,10 +70,12 @@ export class AttachmentsComponent implements OnInit, OnChanges
             // set new sort
             for (let i = 0; this.attachments.controls.length > i; i++) 
             {
-                const formGroup = this.attachments.at(i) as FormGroup;
-                formGroup.controls['sort'].setValue(i);
+                (this.attachments.at(i) as FormGroup).controls['sort'].setValue(i);
             }
+            this.touchFormAttachments();
         });
+
+        if (! this.endpoint) this.endpoint = this.configService.get('apiUrl') + '/api/v1/admin/attachment-upload';
     }
 
     ngOnChanges() 
@@ -138,15 +145,146 @@ export class AttachmentsComponent implements OnInit, OnChanges
         this.attachments.push(attachmentFg);
     }
 
+    /**
+     * Methods to upload files
+     */
+    onFileSelect($event) 
+    {
+        this.files = [];
+
+        // get files after drop files on active area
+        const files = $event.dataTransfer ? $event.dataTransfer.files : $event.target.files;
+
+        for (let i = 0; i < files.length; i++) 
+        {
+            const file = files[i];
+            // get urls across sanitizer to avoid security cross domain
+            file.objectURL = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files[i]));
+            this.files.push(files[i]);
+        }
+
+        if (this.files && this.files.length > 0) this.upload();
+    }
+
+    upload() 
+    {
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData(); // create forma data to add files and inputs
+
+        // this.onBeforeUpload.emit({
+        //    'xhr': xhr,
+        //    'formData': formData
+        // });
+
+        // add files to formData to send to server
+        for (const file of this.files) 
+        {
+            formData.append('files[]', file, file.name);
+            if (environment.debug) console.log('DEBUG - append file: ', file);
+        }
+
+        // progress var
+        /*xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
+            if (e.lengthComputable) {
+              this.progress = Math.round((e.loaded * 100) / e.total);
+            }
+          }, false);*/
+
+        // set function  onreadystatechange that will be called
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                // this.progress = 0;
+
+                if (xhr.status >= 200 && xhr.status < 300) 
+                {
+                    const response = <any>JSON.parse(xhr.response);
+
+                    // save attachments from file uploded
+                    for (const attachment of response.data.attachmentsTmp) 
+                    {
+                        attachment.uploaded     = true;                                 // mark all attachments that have been loaded
+                        attachment.sort         = this.attachments.controls.length + 1; // set sort value
+                        this.createAttachment(attachment);                              // create formgroup and patch value
+                        this.touchFormAttachments();
+                    }
+
+                } else {
+                    // this.onError.emit({xhr: xhr, files: this.files});
+                }
+
+                // when finish xhr request, empty files array for the following uploads
+                this.files = [];
+            }
+        };
+
+        xhr.open('POST', this.endpoint, true);
+        // xhr.withCredentials = this.withCredentials;
+
+        xhr.send(formData);
+    }
+
+    enableCropHandler($event) 
+    {
+        if (environment.debug) console.log('DEBUG - trigger enableCropHandler with this event: ', $event);
+
+        // show dialog image
+        const dialogRef = this.dialog.open(CropperDialogComponent, {
+            data: { 
+                attachment: $event.attachment,
+                attachmentFamily: _.find(this.families, {'id': $event.family_id})
+            },
+            height: '90%',
+            width: '90%'
+        });
+    }
+
+    removeItemHandler($event) 
+    {
+        const attachment = $event.attachment as FormGroup;
+
+        this.attachmentsService.
+            deleteAttachment(attachment.value)
+            .subscribe(({data}) => {
+
+                // file deleted
+                for (let i = 0; this.attachments.length; i++) 
+                {
+                    const formGroup = this.attachments.at(i) as FormGroup;
+
+                    if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) 
+                    {
+                        // delete attachment from FormArray
+                        this.attachments.removeAt(i);
+
+                        this.touchFormAttachments();
+
+                        // break to not continue with for, beacuse lenght attachments has changed
+                        break;
+                    }
+                }
+
+                // show placeholder if has not any item
+                if (this.attachments.length === 0) 
+                {
+                    this.enablePlaceholder();
+                }
+            });
+    }
+
+    private touchFormAttachments()
+    {
+        this.form.markAsDirty();
+        this.form.markAsTouched();
+    }
+
+
+    // methods to manage layers
     private dragEnterHandler($event) 
     {
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) 
         {
-            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) 
-            {
-                this.activateMask();
-            }
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) this.activateMask();
         }
     }
 
@@ -155,17 +293,11 @@ export class AttachmentsComponent implements OnInit, OnChanges
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement)
         {
-            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask'))
-            {
-                this.activateMask();
-            }
+            if (! this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) this.activateMask();
         } 
         else 
         {
-            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask'))
-            {
-                this.deactivateMask();
-            }
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) this.deactivateMask();
         }
     }
 
@@ -174,10 +306,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) 
         {
-            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) 
-            {
-                this.deactivateMask();
-            }
+            if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) this.deactivateMask();
         }
     }
 
@@ -211,125 +340,4 @@ export class AttachmentsComponent implements OnInit, OnChanges
     {
         this.renderer.removeClass(this.attachmentLibraryMask.nativeElement, 'active-mask');
     }
-
-    /**
-     * Methods to upload files
-     */
-    onFileSelect($event) 
-    {
-        this.files = [];
-
-        // get files after drop files on active area
-        const files = $event.dataTransfer ? $event.dataTransfer.files : $event.target.files;
-
-        for (let i = 0; i < files.length; i++) 
-        {
-            const file = files[i];
-            // get urls across sanitizer to avoid security cross domain
-            file.objectURL = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files[i]));
-            this.files.push(files[i]);
-        }
-
-        if (this.files && this.files.length > 0) this.upload();
-    }
-
-    upload() 
-    {
-        const xhr = new XMLHttpRequest();
-        const formData = new FormData(); // create forma data to add files and inputs
-
-		/* this.onBeforeUpload.emit({
-            'xhr': xhr,
-            'formData': formData
-        }); */
-
-        // add files to formData to send to server
-        for (const file of this.files) 
-        {
-            formData.append('files[]', file, file.name);
-            if (environment.debug) console.log('DEBUG - append file: ', file);
-        }
-
-        // progress var
-        /*xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
-            if (e.lengthComputable) {
-              this.progress = Math.round((e.loaded * 100) / e.total);
-            }
-          }, false);*/
-
-        // set function  onreadystatechange that will be called
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                // this.progress = 0;
-
-                if (xhr.status >= 200 && xhr.status < 300) 
-                {
-                    const response = <any>JSON.parse(xhr.response);
-
-                    // save attachments from file uploded
-                    for (const attachment of response.data.attachmentsTmp) {
-                        attachment.uploaded     = true;        // mark all attachments that have been loaded
-                        attachment.sort         = this.attachments.controls.length + 1; // set sort value
-                        this.createAttachment(attachment);  // create formgroup and patch value
-                    }
-
-                } else {
-                    // this.onError.emit({xhr: xhr, files: this.files});
-                }
-
-                // when finish xhr request, empty files array for the following uploads
-                this.files = [];
-            }
-        };
-
-        xhr.open('POST', this.endpoint, true);
-        //xhr.withCredentials = this.withCredentials;
-
-        xhr.send(formData);
-    }
-
-    enableCropHandler($event) 
-    {
-        if (environment.debug) console.log('DEBUG - trigger enableCropHandler with this event: ', $event);
-
-        // show dialog image
-        const dialogRef = this.dialog.open(CropperDialogComponent, {
-            data: { 
-                attachment: $event.attachment,
-                attachmentFamily: _.find(this.families, {'id': $event.family_id})
-            },
-            height: '90%',
-            width: '90%'
-        });
-    }
-
-    removeItemHandler($event) 
-    {
-        const attachment = $event.attachment as FormGroup;
-
-        this.attachmentsService.
-            deleteAttachment(attachment.value)
-            .subscribe(({data}) => {
-
-                // file deleted
-                for (let i = 0; this.attachments.length; i++) {
-
-                    const formGroup = this.attachments.at(i) as FormGroup;
-
-                    if (formGroup.controls['file_name'].value === attachment.controls['file_name'].value) 
-                    {
-                        // delete attachment from FormArray
-                        this.attachments.removeAt(i);
-                        // break to not continue with for, beacuse lenght attachments has changed
-                        break;
-                    }
-                }
-
-                // show placeholder if has not any item
-                if (this.attachments.length === 0) 
-                {
-                    this.enablePlaceholder();
-                }
-            });
-    } 
 }

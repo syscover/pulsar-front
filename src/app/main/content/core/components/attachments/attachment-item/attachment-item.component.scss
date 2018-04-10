@@ -3,19 +3,6 @@
     padding-left: 15px !important;
     padding-right: 15px !important;
     
-    .sortable-item {
-        display: block;
-        position: relative;
-        margin: 0;
-    
-        height: 220px;
-        margin-bottom: 15px;
-        -webkit-transition: opacity 0.3s ease-out 0s;
-        -moz-transition: opacity 0.3s ease-out 0s;
-        -ms-transition: opacity 0.3s ease-out 0s;
-        -o-transition: opacity 0.3s ease-out 0s;
-        transition: opacity 0.3s ease-out 0s;
-    }
     .attachment-item {
         margin-bottom: 15px;
         cursor: move;

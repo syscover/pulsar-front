@@ -54,8 +54,9 @@ export class AttachmentItemComponent implements OnInit
         });
     }
 
-    changeFamilyHandler($event) {
-        this.family =  _.find(this.families, {'id': Number($event.target.value)});
+    changeFamilyHandler($event) 
+    {
+        this.family =  _.find(this.families, {'id': +$event.target.value});
     }
 
     activeCropHandler($event) 

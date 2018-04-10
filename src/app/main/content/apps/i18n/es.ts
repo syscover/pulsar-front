@@ -13,6 +13,7 @@ export const locale = {
             'DELETED.F': 'Borrada',
             'DELETED.M': 'Borrado',
             'DETAIL': 'Detalle',
+            'DRAG_FILES': 'Arrastre aquí sus archivos.',
             'EDIT': 'Editar',
             'ERROR': 'Error',
             'FAMILY': 'Famlilia',

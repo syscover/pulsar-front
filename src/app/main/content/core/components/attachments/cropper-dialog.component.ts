@@ -13,7 +13,7 @@ import { environment } from './../../../../../../environments/environment';
 
         <div mat-dialog-content class="py-12">
             <div class="image-container">
-                <img #cropperImage class="cropper-image">
+                <img #cropperImage>
             </div>
         </div>
 
@@ -21,10 +21,7 @@ import { environment } from './../../../../../../environments/environment';
             <button mat-raised-button class="mat-accent mr-16" [mat-dialog-close]="true" cdkFocusInitial (click)="cropHandler()">{{ crop }}</button>
             <button mat-raised-button [mat-dialog-close]="false">{{ cancel }}</button>
         </div>
-    `,
-    styles: [`
-        
-    `]
+    `
 })
 export class CropperDialogComponent implements OnInit, OnDestroy
 {
@@ -82,8 +79,6 @@ export class CropperDialogComponent implements OnInit, OnDestroy
 
                 // set attachemnt family id
                 this.data.attachment.patchValue(data.adminCropAttachment.attachment);
-
-                // hide crop dialog
             });
     }
 }

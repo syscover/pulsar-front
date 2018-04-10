@@ -4,7 +4,6 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { ArticleGraphQLService } from './article-graphql.service';
 import { Status } from './../cms.models';
 
-
 @Component({
     selector: 'dh2-article-list',
     templateUrl: './article-list.component.html',
