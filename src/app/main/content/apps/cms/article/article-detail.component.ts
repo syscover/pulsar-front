@@ -36,43 +36,38 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     articles: Article[] = [];
     categories: Category[] = [];
     tags: String[] = [];
-    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
-
-
-    // set empty object, overwritte object to be used in this class
     object: Article = new Article();    
     attachmentFamilies: AttachmentFamily[] = [];
     imageStyles: Object = new Object;
     section: Section;
     family: Family; // family for adapt article form
-    imageUploadURL: string;
     separatorKeysCodes = [ENTER, COMMA];
+
+    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;   
 
     private _attachmentFamilies: AttachmentFamily[];
 
+    
     // custom fields
     fields: Field[];
     fieldValues: FieldValue[];
 
-    addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
-    removeTag: (formGroup: FormGroup, name: string, tag) => void;
-
+    
     constructor(
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
         private authenticationService: AuthenticationService
-
-
+        
+        
         // protected authService: AuthService,
         // private dynamicFormService: DynamicFormService,
         // public configService: ConfigService
     ) {
         super(injector, graphQL);
-
-        // set froala upload image url
-        this.imageUploadURL = `${this.apiUrl}/api/v1/admin/wysiwyg/upload`;
     }
-
+    
+    addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
+    removeTag: (formGroup: FormGroup, name: string, tag) => void;
     createForm() {
         this.fg = this.fb.group({
             ix: null,
@@ -150,24 +145,20 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
 
     private loadAttachmentFamilies() 
     {
-        // load attachment families depend of article familie
-        if (this.section.attachment_families !== null) 
+        // load attachment families depend of article section
+        if (this.section.attachment_families) 
         {
             this.attachmentFamilies = [];
             for (const idAttachmentFamily of this.section.attachment_families)
             {
                 const af = _.find(this._attachmentFamilies, {id: +idAttachmentFamily});
                 this.attachmentFamilies.push(af);
-                this.imageStyles['ps-attachment-family-' + af.id] = af.name; // Images styles for Froala
             }
         } 
         else 
         {
-            this.attachmentFamilies = this._attachmentFamilies;
-            for (const attachemntFamily of this.attachmentFamilies)
-            {
-                this.imageStyles['ps-attachment-family-' + attachemntFamily.id] = attachemntFamily.name;
-            }
+            // reset attachment families
+            this.attachmentFamilies = [];
         }
     }
 

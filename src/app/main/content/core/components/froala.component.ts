@@ -33,27 +33,28 @@ export class FroalaComponent implements OnInit
     @Input() heightMin: number;
     @Input() heightMax: number;
     @Input() attachmentFamilies: AttachmentFamily[];
+    @Input() imageUploadURL: string;
     froalaOptions: any = {};
     value: string;
     
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (o: any) => void = noop;
 
-
-
-
-
-
-    
-    
-    
-    @Input() imageUploadURL: string;
-    @Input() imageStyles: Object;
-    
     constructor(
         private configService: ConfigService,
         private renderer: Renderer2
     ) { }
+
+    // accessor to get imageStyles with classes build from attachment families
+    get imageStyles()
+    {
+        const imageStyles = {};
+        for (const attachmentFamily of this.attachmentFamilies)
+        {
+            imageStyles['dh2-attachment-family-' + attachmentFamily.id] = attachmentFamily.name; // Images styles for Froala
+        }
+        return imageStyles;
+    }
 
     writeValue(value: string)
     {
@@ -70,6 +71,8 @@ export class FroalaComponent implements OnInit
 
     ngOnInit() 
     {
+        if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('apiUrl') + '/api/v1/admin/wysiwyg/upload';
+
         // config custom FroalaEditor
         jQuery.FroalaEditor.ICON_TEMPLATES = {
             font_awesome: '<i class="fa fa-[NAME]"></i>'
@@ -116,7 +119,7 @@ export class FroalaComponent implements OnInit
             'froalaEditor.blur' : (e, editor, response) => {
                 this.onTouchedCallback();
             },
-            'froalaEditor.input' : (e, editor, response) => {
+            'froalaEditor.contentChanged' : (e, editor, response) => {
                 this.onChangeCallback(editor.html.get());
             },
             'froalaEditor.image.uploaded' : (e, editor, response) => {
@@ -128,16 +131,16 @@ export class FroalaComponent implements OnInit
             'froalaEditor.image.inserted' : (e, editor, $img, response) => {
                 for (const image of $img) 
                 {
-                    this.renderer.addClass(image, 'ps-uploaded');
+                    this.renderer.addClass(image, 'dh2-uploaded');
                     const objResponse = JSON.parse(response);
-                    this.renderer.setAttribute(image, 'data-ps-image', JSON.stringify(objResponse.image));
+                    this.renderer.setAttribute(image, 'data-dh2-image', JSON.stringify(objResponse.image));
                 }
             },
             'froalaEditor.commands.after': (e, editor, cmd, param1, param2) => {
                 // after change style
                 if (cmd === 'imageStyle') 
                 {
-                    if (param1.indexOf('ps-attachment-family') !== -1) 
+                    if (param1.indexOf('dh2-attachment-family') !== -1) 
                     {
                         for (const image of editor.image.get()) 
                         {
@@ -149,7 +152,18 @@ export class FroalaComponent implements OnInit
                             } 
                             else 
                             {
-                                this.renderer.setStyle(image, 'width', `100%`);
+                                // check that image has any class from attachment families
+                                let hasClass = false;
+                                image.classList.forEach((value, index) => {
+                                    if (value.indexOf('dh2-attachment-family') !== -1)
+                                    {
+                                        const attachmentFamily = _.find(this.attachmentFamilies, {id: +value.split('-')[3]});
+                                        this.renderer.setStyle(image, 'width', `${attachmentFamily.width}px`);
+                                        hasClass = true;
+                                    }
+                                });
+
+                                if (! hasClass) this.renderer.setStyle(image, 'width', `100%`);
                             }
                         }
                     }
