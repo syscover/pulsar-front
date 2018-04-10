@@ -49,8 +49,8 @@ export class AttachmentItemComponent implements OnInit
             attachment: this.attachment
         });
 
-        jQuery($event.target).closest('ps-attachment-item').fadeOut(300, function () {
-            jQuery($event.target).remove();
+        jQuery($event.target.closest('dh2-attachment-item')).fadeOut(300, function () {
+            jQuery($event.target.closest('dh2-attachment-item')).remove();
         });
     }
 
