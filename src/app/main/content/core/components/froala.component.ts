@@ -1,5 +1,6 @@
 import { Component, Renderer2, Input, OnInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './../services/config.service';
 import { AttachmentFamily } from './../../apps/admin/admin.models';
 import * as _ from 'lodash';
@@ -42,7 +43,8 @@ export class FroalaComponent implements OnInit
 
     constructor(
         private configService: ConfigService,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private translateService: TranslateService
     ) { }
 
     // accessor to get imageStyles with classes build from attachment families
@@ -80,6 +82,9 @@ export class FroalaComponent implements OnInit
 
         // set froala option properties
         this.froalaOptions.key = this.configService.get('froalaKey');
+        // TODO, Detect change language, now is not possible
+        // https://github.com/froala/angular-froala-wysiwyg/issues/66
+        this.froalaOptions.language = this.translateService.currentLang;
         this.froalaOptions.placeholderText = this.placeholder;
         this.froalaOptions.heightMin = this.heightMin;
         this.froalaOptions.heightMax = this.heightMax;
