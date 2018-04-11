@@ -7,6 +7,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { navigation } from 'app/navigation/navigation';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 
+// DH2
+import { NavigationService } from './../content/core/services/navigation.service';
+
 @Component({
     selector     : 'fuse-navbar',
     templateUrl  : './navbar.component.html',
@@ -41,11 +44,12 @@ export class FuseNavbarComponent implements OnDestroy
 
     constructor(
         private sidebarService: FuseSidebarService,
-        private navigationService: FuseNavigationService
+        private navigationService: FuseNavigationService,
+        private dh2NavigationService: NavigationService
     )
     {
         // Navigation data
-        this.navigation = navigation;
+        this.navigation = dh2NavigationService.getNavigation();
 
         // Default layout
         this.layout = 'vertical';

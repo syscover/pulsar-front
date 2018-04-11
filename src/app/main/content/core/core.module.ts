@@ -6,9 +6,10 @@ import { HttpLinkModule } from 'apollo-angular-link-http';
 import { ApolloService } from './services/apollo.service';
 import { ConfigService } from './services/config.service';
 import { HttpService } from './services/http.service';
-import { BootstrapService } from './services/bootstrap.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorizationService } from './services/authorization.service';
+import { BootstrapService } from './services/bootstrap.service';
+import { NavigationService } from './services/navigation.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { HttpSynchronousService } from './services/http-synchronous.service';
 import { ValidationMessageService } from './services/validation-message.service';
@@ -16,12 +17,13 @@ import { ValidationMessageService } from './services/validation-message.service'
 @NgModule({
     declarations: [],
     providers: [
-        ConfigService,
-        HttpService,
-        HttpSynchronousService,
         ApolloService,
         AuthenticationService,
         AuthorizationService,
+        ConfigService,
+        HttpService,
+        HttpSynchronousService,
+        NavigationService,
         ValidationMessageService,
         BootstrapService,
         {
