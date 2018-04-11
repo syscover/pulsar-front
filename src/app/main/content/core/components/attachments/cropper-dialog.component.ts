@@ -46,7 +46,7 @@ export class CropperDialogComponent implements OnInit, OnDestroy
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', this.data.attachment.controls['attachment_library'].value.url);
 
         // load translations for component
-        this.translateService.get('CROPPER').subscribe(response => {
+        this.translateService.get('ATTACHMENTS').subscribe(response => {
             this.title  = this.data.title ? this.data.title : response['TITLE'];
             this.crop   = this.data.crop ? this.data.crop : response['CROP'];
             this.cancel = this.data.cancel ? this.data.cancel : response['CANCEL'];

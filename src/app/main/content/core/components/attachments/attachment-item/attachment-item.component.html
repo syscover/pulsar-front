@@ -27,16 +27,16 @@
                     <a #closeOver class="attachment-edit-close"><i class="material-icons">clear</i></a>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Image alt" formControlName="alt">
+                        <input type="text" class="form-control" placeholder="{{ 'ATTACHMENTS.IMAGE_ALT' | translate }}" formControlName="alt">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Image title" formControlName="title">
+                        <input type="text" class="form-control" placeholder="{{ 'ATTACHMENTS.IMAGE_TITLE' | translate }}" formControlName="title">
                     </div>
 
                     <div class="form-group">
                         <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
-                            <option value="">Select a family</option>
+                            <option value="">{{ 'ATTACHMENTS.SELECT_FAMILY' | translate }}</option>
                             <option *ngFor="let family of families"
                                     [value]="family.id">{{ family.name }}</option>
                         </select>
@@ -47,7 +47,7 @@
 
                     <div class="form-group">
                         <button mat-raised-button type="button" (click)="activeCropHandler($event)">
-                            <span>{{ 'CROPPER.CROP' | translate }}</span>
+                            <span>{{ 'ATTACHMENTS.CROP' | translate }}</span>
                         </button>
                     </div>
                 </div>

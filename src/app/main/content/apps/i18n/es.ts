@@ -54,11 +54,6 @@ export const locale = {
             'OK' : 'Confirmar',
             'CANCEL' : 'Cancelar',
         },
-        'CROPPER': {
-            'CANCEL' : 'Cancelar',
-            'CROP' : 'Cortar',
-            'TITLE' : 'Cropper',
-        },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Elemetos por página',
             'NEXT_PAGE' : 'Página siguiente',

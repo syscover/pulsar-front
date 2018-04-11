@@ -269,6 +269,14 @@
                                         <mat-error>{{ formErrors?.article }}</mat-error>
                                     </mat-form-field>
 
+                                    <div class="col-12" *ngSwitchCase="2">
+                                        <dh2-froala formControlName="article"
+                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}"
+                                                    [heightMin]="400"
+                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                        <mat-error>{{ formErrors?.article }}</mat-error>
+                                    </div>
+
                                 </div>
                             </div>
                         </mat-tab>
