@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './../services/config.service';
 import { AttachmentFamily } from './../../apps/admin/admin.models';
 import * as _ from 'lodash';
+declare const jQuery: any;
 const noop = () => {};
-declare const jQuery: any; // jQuery definition
 
 @Component({
     selector: 'dh2-froala',
