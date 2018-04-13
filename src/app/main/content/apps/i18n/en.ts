@@ -21,6 +21,7 @@ export const locale = {
             'FIELDS': 'Fields',
             'HEIGHT': 'Height',
             'ID': 'Id',
+            'LABEL': 'Label',
             'LINK': 'Link',
             'LOGIN': 'Login',
             'NAME': 'Name',

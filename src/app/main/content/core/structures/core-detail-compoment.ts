@@ -66,13 +66,17 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 });
             }
         }
+        this.afterSetData();
     }
 
     // method to implement actions befere patch value in edit action
     beforePatchValueEdit() {}
 
-    // method to implement actions after patch value in edit action
+    // method to implement actions after set data action
     afterPatchValueEdit() {}
+
+    // method to implement actions after patch value in edit action
+    afterSetData() {}
 
     // method that will be overwrite
     createForm() { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
 import { AttachmentsModule } from './attachments/attachments.module';
 import { ImageInputModule } from './image-input/image-input.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -18,6 +18,7 @@ import 'froala-editor/js/froala_editor.pkgd.min.js';
         FroalaEditorModule.forRoot(), 
         FroalaViewModule.forRoot(),
         ImageInputModule,
+        MatButtonModule,
         MatDialogModule
     ],
     exports: [
