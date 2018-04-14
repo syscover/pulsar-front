@@ -43,8 +43,8 @@ export class CountryGraphQLService extends GraphQLSchema
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteCountry ($lang_id:String! $id:String!) {
-            adminDeleteCountry (lang_id:$lang_id id:$id) {
+        mutation AdminDeleteCountry ($id:String! $lang_id:String!) {
+            adminDeleteCountry (id:$id lang_id:$lang_id) {
                 ${this.fields}
             }
         }`;

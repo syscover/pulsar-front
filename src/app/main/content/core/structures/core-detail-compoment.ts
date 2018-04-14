@@ -128,7 +128,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // function to get record in edit action or create lang action
-    getRecord(params: Params) {
+    getRecord(params: Params) 
+    {
         this.httpService
             .apolloClient()
             .watchQuery({
@@ -152,7 +153,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // get args, in any case that you need create a query with aditonal arguments
     // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
-    argumentsGetRecord(params: Params): any {
+    argumentsGetRecord(params: Params): any 
+    {
         let args;
 
         // set paramenters for objects that has lang_id and id
