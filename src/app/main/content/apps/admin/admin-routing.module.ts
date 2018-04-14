@@ -32,12 +32,6 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
         { path: 'cron-job/create',                                  component: CronJobDetailComponent,              data: { action: 'create' }},
         { path: 'cron-job/show/:id',                                component: CronJobDetailComponent,              data: { action: 'edit' }},
 
-        // Field Values
-        { path: 'field-value/:field_id',                            component: FieldValueListComponent },
-        { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
-        { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
-        { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
-
         // Attachment mimes
         { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
@@ -81,6 +75,12 @@ const routes: Routes = [
             { path: 'field/create',                                     component: FieldDetailComponent,                data: { action: 'create' }},
             { path: 'field/create/:lang_id/:id',                        component: FieldDetailComponent,                data: { action: 'create-lang' }},
             { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit' }},
+
+            // Field Values
+            // { path: 'field-value/:field_id',                            component: FieldValueListComponent },
+            // { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
+            // { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
+            // { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
 
             // Langs
             { path: 'lang',                                             component: LangListComponent },

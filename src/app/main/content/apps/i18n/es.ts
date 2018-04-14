@@ -47,6 +47,7 @@ export const locale = {
             'TRANSLATE': 'Traducir',
             'TRANSLATIONS': 'Traducciones',
             'USER': 'Usuario',
+            'VALUES': 'Valores',
             'WIDTH': 'Ancho',
         },
         'CONFIRM': {

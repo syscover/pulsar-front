@@ -44,8 +44,8 @@ export class ArticleListComponent extends CoreListComponent
         return args;
     }
 
-    setRelationsData(data: Object): void 
+    setRelationsData(data: any): void 
     {
-        this.statuses = data['cmsStatuses'];
+        this.statuses = data.cmsStatuses;
     }
 }

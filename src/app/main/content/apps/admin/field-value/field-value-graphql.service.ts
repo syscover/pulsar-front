@@ -6,18 +6,11 @@ import gql from 'graphql-tag';
 export class FieldGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetFieldsPagination ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput!) {
+        query AdminGetFieldsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminFieldsPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
-            }
-            adminConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on AdminConfigFieldTypeOption {
-                    id
-                    name
-                    values
-                }
             }
         }`;
 
@@ -107,7 +100,7 @@ export class FieldGraphQLService extends GraphQLSchema
                 name
             }
             coreConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on AdminConfigFieldTypeOption {
+                ... on CoreConfigOption {
                     id
                     name
                 }

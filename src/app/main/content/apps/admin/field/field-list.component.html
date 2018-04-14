@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.FIELD_GROUP' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.FIELD' | translate }}</span>
             </button>
 
         </div>
@@ -115,6 +115,10 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
+                            <button mat-menu-item [routerLink]="['/' + appPrefix + '/admin/field-value', row.id]" *ngIf="adminConfigFieldTypesId.indexOf(row.field_type_id) > -1">
+                                <mat-icon>dialpad</mat-icon>
+                                <span>{{ 'APPS.VALUES' | translate }}</span>
+                            </button>
                             <button mat-menu-item [routerLink]="[baseUri + '/show', baseLang, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
