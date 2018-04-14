@@ -115,7 +115,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="['/' + appPrefix + '/admin/field-value', row.id]" *ngIf="adminConfigFieldTypesId.indexOf(row.field_type_id) > -1">
+                            <button mat-menu-item [routerLink]="['/apps/admin/field-value', row.id]" *ngIf="adminConfigFieldTypesId.indexOf(row.field_type_id) > -1">
                                 <mat-icon>dialpad</mat-icon>
                                 <span>{{ 'APPS.VALUES' | translate }}</span>
                             </button>

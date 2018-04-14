@@ -16,6 +16,7 @@ import { FieldGroupListComponent } from './field-group/field-group-list.componen
 import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
+import { FieldValueListComponent } from './field-value/field-value-list.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -29,6 +30,7 @@ import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
+import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
@@ -51,6 +53,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         FieldGroupDetailComponent,
         FieldListComponent,
         FieldDetailComponent,
+        FieldValueListComponent,
         LangListComponent,
         LangDetailComponent,
         PackageListComponent,
@@ -66,6 +69,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         CountryGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,
+        FieldValueGraphQLService,
         LangGraphQLService,
         PackageGraphQLService,
         ProfileGraphQLService,
@@ -73,7 +77,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
     ]
 })
 
-export class AdminModule 
+export class AdminModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService

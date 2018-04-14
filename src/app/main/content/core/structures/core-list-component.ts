@@ -220,7 +220,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     argumentsGetRecords(sort: string, order: string, offset: number, limit: number, searchText: string): Object 
     {
-        const args = {}; // create empty object
+        const args: any = {}; // create empty object
 
         // set filters
         if (this.filters) args['filters'] = this.filters;
@@ -290,7 +290,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     }
 
     // instante custom arguments, for example in article-list.component.ts
-    getCustomArgumentsGetRecords(args: Object): Object 
+    getCustomArgumentsGetRecords(args: Object): Object
     {
         return args;
     }

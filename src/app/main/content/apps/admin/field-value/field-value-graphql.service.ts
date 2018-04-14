@@ -3,113 +3,69 @@ import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class FieldGraphQLService extends GraphQLSchema 
+export class FieldValueGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetFieldsPagination ($sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: adminFieldsPagination (sql:$sql) {
+        query AdminGetFieldValuesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: adminFieldValuesPagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
             }
         }`;
 
-    queryRelationsObject = gql`
-        query AdminGetRelationsField ($configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
-            ${this.relationsFields}
-        }`;
-
     queryObjects = gql`
-        query AdminGetFields ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
-            coreObjects: adminFields (sql:$sql){
+        query AdminGetFieldValues ($sql:[CoreSQLQueryInput]) {
+            coreObjects: adminFieldValues (sql:$sql){
                 ${this.fields}
             }
-            ${this.relationsFields}
         }`;
 
     queryObject = gql`
-        query AdminGetField ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
-            coreObject: adminField (sql:$sql){
+        query AdminFieldValue ($sql:[CoreSQLQueryInput]) {
+            coreObject: adminFieldValue (sql:$sql){
                 ${this.fields}
             }
-            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
-        mutation AdminAddField ($object:AdminFieldInput!) {
-            adminAddField (object:$object){
+        mutation AdminAddFieldValue ($object:AdminFieldValueInput!) {
+            adminAddFieldValue (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateField ($object:AdminFieldInput!) {
-            adminUpdateField (object:$object){
+        mutation AdminUpdateFieldValue ($object:AdminFieldValueInput!) {
+            adminUpdateFieldValue (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteField ($id:Int! $lang_id:String!) {
-            adminDeleteField (id:$id lang_id:$lang_id){
+        mutation AdminDeleteFieldValue ($field_id:Int! $id:String! $lang_id:String!) {
+            adminDeleteFieldValue (field_id:$field_id id:$id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;
 
     init() 
     {
-        this.model = 'Syscover\\Admin\\Models\\Field';
-        this.table = 'admin_field';
+        this.model = 'Syscover\\Admin\\Models\\FieldValue';
+        this.table = 'admin_field_value';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on AdminField {
+            ... on AdminFieldValue {
+                ix
                 id
-                field_group_id
-                field_group_name
-                name
-                labels {
-                    id
-                    value 
-                }
-                field_type_id
-                field_type_name
-                data_type_id
-                data_type_name
-                required
+                lang_id
+                field_id
+                counter
                 sort
-                max_length
-                pattern
-                label_class
-                component_class
-                values {
-                    id
-                    lang_id
-                    counter
-                    sort
-                    featured
-                    name
-                }
-                data_lang
-            }
-        `;
-
-        this.relationsFields = `
-            adminFieldGroups {
-                id
+                featured
                 name
-            }
-            coreConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
-            coreConfigDataTypes:coreConfig (config:$configDataTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
+                data_lang
             }
         `;
 

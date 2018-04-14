@@ -12,6 +12,7 @@ import { FieldGroupListComponent } from './field-group/field-group-list.componen
 import { FieldGroupDetailComponent } from './field-group/field-group-detail.component';
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
+import { FieldValueListComponent } from './field-value/field-value-list.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -77,7 +78,7 @@ const routes: Routes = [
             { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit' }},
 
             // Field Values
-            // { path: 'field-value/:field_id',                            component: FieldValueListComponent },
+            { path: 'field-value/:field_id',                            component: FieldValueListComponent },
             // { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
             // { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
             // { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
