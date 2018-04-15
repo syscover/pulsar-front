@@ -254,7 +254,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
 
     // funtion that will be call for create object, create lang object and update object
-    postRecord(object: any, routeRedirect?: string, params = [])
+    postRecord(object: any, routeRedirect?: string)
     {
         // set errors from current form, this variable is binded to all form elements
         this.formErrors = this.validationMessageService.setErrors(this.fg); 

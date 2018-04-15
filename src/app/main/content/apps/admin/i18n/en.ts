@@ -7,6 +7,8 @@ export const locale = {
             'COMPONENT_CLASS': 'Component class',
             'COUNTRY': 'Country',
             'DATA_TYPE': 'Data type',
+            'EDIT_ID': 'Edit Id',
+            'FEATURED': 'Featured',
             'FIELD': 'Field',
             'FIELD_GROUP': 'Field group',
             'FIELD_TYPE': 'Field type',

@@ -14,8 +14,6 @@
                 fxLayout.gt-xs="row" 
                 fxLayoutAlign.gt-xs="space-between center">
 
-                
-
             <!-- APP TITLE -->
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
@@ -43,7 +41,7 @@
             <!-- / SEARCH -->
 
             <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
+                    [routerLink]="[baseUri + '/create', field_id]"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
                 <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.VALUE' | translate }}</span>
             </button>
@@ -87,14 +85,14 @@
 
                                     <button mat-menu-item 
                                         *ngIf="(row | actionTranslationObject:lang) === 'edit'" 
-                                        [routerLink]="[baseUri + '/show', lang.id, row.id]">
+                                        [routerLink]="[baseUri + '/show', field_id, lang.id, row.id]">
                                         <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
                                         <span>{{ 'APPS.EDIT' | translate }}</span>
                                     </button>
 
                                     <button mat-menu-item 
                                         *ngIf="(row | actionTranslationObject:lang) === 'create'" 
-                                        [routerLink]="[baseUri + '/create', lang.id, row.id]">
+                                        [routerLink]="[baseUri + '/create', field_id, lang.id, row.id]">
                                         <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
                                         <span>{{ 'APPS.TRANSLATE' | translate }}</span>
                                     </button>
@@ -114,7 +112,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.lang_id, row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', field_id, row.lang_id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>

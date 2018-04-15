@@ -17,6 +17,7 @@ import { FieldGroupDetailComponent } from './field-group/field-group-detail.comp
 import { FieldListComponent } from './field/field-list.component';
 import { FieldDetailComponent } from './field/field-detail.component';
 import { FieldValueListComponent } from './field-value/field-value-list.component';
+import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -54,6 +55,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         FieldListComponent,
         FieldDetailComponent,
         FieldValueListComponent,
+        FieldValueDetailComponent,
         LangListComponent,
         LangDetailComponent,
         PackageListComponent,
