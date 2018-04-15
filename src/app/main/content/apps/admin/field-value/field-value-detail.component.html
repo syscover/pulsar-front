@@ -66,7 +66,7 @@
                 <button mat-raised-button
                         class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
                         *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang" 
-                        (click)="deleteRecord(object)">
+                        (click)="deleteRecord(object, {field_id:field_id}, baseUri + '/' + field_id)">
                     <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
                 </button>
             </div>

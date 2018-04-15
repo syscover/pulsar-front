@@ -116,7 +116,7 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item (click)="deleteRecord(row)">
+                            <button mat-menu-item (click)="deleteRecord(row, {field:field_id})">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>
