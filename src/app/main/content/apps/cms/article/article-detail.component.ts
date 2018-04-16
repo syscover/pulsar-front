@@ -4,6 +4,7 @@ import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ArticleGraphQLService } from './article-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
+import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { MatDatepicker } from '@angular/material';
@@ -14,7 +15,6 @@ import { applyMixins } from './../../../core/functions/apply-mixins.function';
 import { Chipable } from './../../../core/traits/chipable.trait';
 import * as _ from 'lodash';
 // import { AttachmentFilesLibraryComponent } from './../../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
-// import { DynamicFormService } from './../../../shared/components/forms/dynamic-form/dynamic-form.service';
 // import { AuthService } from './../../../core/auth/auth.service';
 // import { ConfigService } from '../../../core/services/config.service';
 // import gql from 'graphql-tag';
@@ -28,6 +28,7 @@ import * as _ from 'lodash';
 })
 export class ArticleDetailComponent extends CoreDetailComponent implements Chipable
 {
+    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;   
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';
     sections: Section[] = [];
@@ -42,26 +43,13 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     section: Section;
     family: Family; // family for adapt article form
     separatorKeysCodes = [ENTER, COMMA];
-
-    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;   
-
     private _attachmentFamilies: AttachmentFamily[];
-
-    
-    // custom fields
-    fields: Field[];
-    fieldValues: FieldValue[];
-
     
     constructor(
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
-        private authenticationService: AuthenticationService
-        
-        
-        // protected authService: AuthService,
-        // private dynamicFormService: DynamicFormService,
-        // public configService: ConfigService
+        private authenticationService: AuthenticationService,
+        private dynamicFormService: DynamicFormService
     ) {
         super(injector, graphQL);
     }
@@ -97,34 +85,27 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     }
 
     
-    beforePatchValueEdit() {
+    beforePatchValueEdit() 
+    {
         // set section object and load attachment families
         this.section = _.find(this.sections, {id: this.object.section_id});
         this.loadAttachmentFamilies();
 
         // set family object, to change morphology of form
         this.family = _.find(this.families, {id: this.object.family_id});
-
-        // create copy object for change readonly properties
-        // const objectInput = Object.assign({}, this.object);
-
-        // change publish and date format to Date, for calendar component
-        /* objectInput['publish'] = new Date(this.object.publish);
-        if (this.object.date) objectInput['date'] = new Date(this.object.date); */
-
-        // overwrite object with object cloned
-        // this.object = objectInput;
     }
 
-    /* afterPatchValueEdit() {
-        
+    afterPatchValueEdit() 
+    {    
+        this.family = _.find(this.families, {id: this.object.family_id});
+
         // TODO establece author cuando tengamos los usuarios relacionados
         // set tags extracting name field
         // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
 
         // manage custom fields
         this.handleGetCustomFields();
-    } */
+    }
 
     handleChangeSection($event) 
     {
@@ -164,15 +145,16 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
 
     handleChangeFamily($event)
     {
-        this.fieldValues = [];
-        this.fields = [];
+        // reset custom fields
+        // this.dynamicFormService.reset();
 
         if ($event.value) 
         {
             this.family = _.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
             
-            // this.handleGetCustomFields();
+            // load custom field again
+            this.handleGetCustomFields();
         }
         else
         {
@@ -180,33 +162,22 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         }
     }
 
-    // get custom fields that has this object
-    /* handleGetCustomFields() {
-        if (this.family.field_group_id) {
+    handleGetCustomFields() 
+    {
+        if (this.family.field_group_id) 
+        {
             this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
-
+            
             // get properties for get values of custom fields
-            const customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
-
-            this.dynamicFormService.instance(
-                this.family.field_group_id,
-                this.fg,
-                customFields,
-                (fields) => {
-                    this.fields = fields;
-                });
+            // const customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
+            
+            // load custom fields 
+          // this.dynamicFormService.instance(this.fg, this.family.field_group_id, customFields);
         }
-    } */
+    }
 
-    /* getCustomArgumentsPostRecord(args: Object, object: any) {
-        // serialize Date object to don't be changed by apollo client
-        if (args['object']['publish']) args['object']['publish'] = args['object']['publish'].toString();
-        if (args['object']['date']) args['object']['date'] = args['object']['date'].toString();
-
-        return args;
-    } */
-
-    argumentsRelationsObject(): Object {
+    argumentsRelationsObject(): Object
+    {
         const sqlArticle = [
             {
                 command: 'where',
@@ -286,7 +257,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         };
     }
 
-    setRelationsData(data: any) {
+    setRelationsData(data: any) 
+    {
         // cms sections
         this.sections = data.cmsSections;
         // cms families

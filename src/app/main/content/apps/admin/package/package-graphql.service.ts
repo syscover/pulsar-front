@@ -3,8 +3,8 @@ import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class PackageGraphQLService extends GraphQLSchema {
-
+export class PackageGraphQLService extends GraphQLSchema 
+{
     queryPaginationObject = gql`
         query AdminGetPackagesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminPackagesPagination (sql:$sql) {

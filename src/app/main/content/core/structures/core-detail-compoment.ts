@@ -130,7 +130,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     // function to get record in edit action or create lang action
     getRecord(params: Params) 
     {
-        this.httpService
+        const ob$ = this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -139,8 +139,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 variables: this.argumentsGetRecord(params)
             })
             .valueChanges
-            .takeUntil(this.ngUnsubscribe)
             .subscribe(({data}) => {
+                ob$.unsubscribe();
+
                 if (this.env.debug) console.log('DEBUG - response of query to get object: ', data);
 
                 // instance data in relations fields of object
@@ -231,12 +232,13 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (this.env.debug) console.log('DEBUG - options of relations to create object: ', options);
 
-            this.httpService
+            const ob$ = this.httpService
                 .apolloClient()
                 .watchQuery(options)
                 .valueChanges
-                .takeUntil(this.ngUnsubscribe)
                 .subscribe(({data}) => {
+                    ob$.unsubscribe();
+
                     this.setRelationsData(data);
                 });
         }

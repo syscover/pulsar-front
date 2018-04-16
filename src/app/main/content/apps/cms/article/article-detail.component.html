@@ -230,6 +230,17 @@
                                     </mat-form-field>
                                 </div>
 
+                                <!-- DYNAMIC FORM -->
+                                        <!-- <ps-form-header class="animated fadeIn fast"
+                                                        title="Custom fields"
+                                                        icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
+                                        -->
+                                        <dh2-dynamic-form   [formGroup]="fg"
+                                                            [fieldGroupId]="family?.field_group_id"
+                                                            [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
+                                                            [lang]="translateService.currentLang"></dh2-dynamic-form>
+                                <!-- / DYNAMIC FORM -->
+
                             </div>
                         </mat-tab>
                         <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}" *ngIf="family?.excerpt_editor_id">

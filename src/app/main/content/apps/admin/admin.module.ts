@@ -29,6 +29,7 @@ import { ResourceDetailComponent } from './resource/resource-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
+import { CronJobGraphQLService } from './cron-job/cron-job-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
@@ -69,6 +70,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         ActionGraphQLService,
         AttachmentFamilyGraphQLService,
         CountryGraphQLService,
+        CronJobGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,
         FieldValueGraphQLService,
