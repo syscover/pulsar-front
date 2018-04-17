@@ -14,14 +14,15 @@ export class HttpInterceptorService implements HttpInterceptor
         private router: Router,
     ) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
     {
         // clone the request to add the new header.
         // const authReq = req.clone({ headers: req.headers.set('headerName', 'headerValue')});
-        const authReq = req;
+
+        const requestWithToken = this.addToken(request);
 
         // send the newly created request
-        return next.handle(authReq)
+        return next.handle(requestWithToken)
             .do(
                 evt => {
                     if (evt instanceof HttpResponse) 
@@ -54,5 +55,35 @@ export class HttpInterceptorService implements HttpInterceptor
                 // return the error to the method that called it
                 return Observable.throw(error);
             }) as any;
+    }
+
+    // https://github.com/auth0/angular2-jwt/issues/504
+    // resolve issue of whitelistedDomains auth0/angular2-jwt 1.1.0
+    private addToken(request: HttpRequest<any>): HttpRequest<any>
+    {
+        const token = localStorage.getItem('access_token');
+        let clone: HttpRequest<any>;
+
+        if (token) 
+        {
+            clone = request.clone({
+                setHeaders: {
+                    Accept: `application/json`,
+                    'Content-Type': `application/json`,
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        } 
+        else 
+        {
+            clone = request.clone({
+                setHeaders: {
+                    Accept: `application/json`,
+                    'Content-Type': `application/json`
+                }
+            });
+        }
+
+        return clone;
     }
 }

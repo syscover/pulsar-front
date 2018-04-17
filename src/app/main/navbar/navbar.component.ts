@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { navigation } from 'app/navigation/navigation';
+// import { navigation } from 'app/navigation/navigation';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 
 // DH2

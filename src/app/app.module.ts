@@ -14,7 +14,6 @@ import { fuseConfig } from './fuse-config';
 import { AppComponent } from './app.component';
 import { FuseMainModule } from './main/main.module';
 
-import { FuseSampleModule } from './main/content/apps/sample/sample.module';
 import { CoreModule } from './main/content/core/core.module';
 
 const appRoutes: Routes = [
@@ -53,8 +52,7 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseMainModule,
 
-        // Pulsar
-        FuseSampleModule,
+        // DH2
         CoreModule
     ],
     bootstrap   : [

@@ -44,7 +44,10 @@ import { ValidationMessageService } from './services/validation-message.service'
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,
-                whitelistedDomains: [/.*/]
+                whitelistedDomains: new Array(new RegExp('^null$'))
+                // https://github.com/auth0/angular2-jwt/issues/504
+                // whitelistedDomains:  [/^null$/]
+                // whitelistedDomains: [/.*/]
             }
         })
     ],

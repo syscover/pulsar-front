@@ -21,7 +21,7 @@ export class CountryDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: CountryGraphQLService
+        public graphQL: CountryGraphQLService
     ) {
         super(injector, graphQL);
     }

@@ -11,10 +11,10 @@ import { Subject } from 'rxjs/Subject';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
+    public translateService: TranslateService;
     protected router: Router;
     protected route: ActivatedRoute;
     protected httpService: HttpService;
-    protected translateService: TranslateService;
     protected params: Params;
     protected langs: Lang[];                        // activated application lang
     protected snackBar: MatSnackBar;

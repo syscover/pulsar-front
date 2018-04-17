@@ -10,10 +10,6 @@ import { locale as spanish } from './i18n/es';
 
 const routes = [
     {
-        path        : 'sample',
-        loadChildren: './sample/sample.module#FuseSampleModule'
-    },
-    {
         path        : 'auth',
         loadChildren: './auth/auth.module#AuthModule',
     },

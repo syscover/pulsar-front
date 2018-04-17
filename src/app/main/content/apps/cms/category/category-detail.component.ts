@@ -18,7 +18,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        graphQL: CategoryGraphQLService
+        public graphQL: CategoryGraphQLService
     ) {
         super(injector, graphQL);
     }
