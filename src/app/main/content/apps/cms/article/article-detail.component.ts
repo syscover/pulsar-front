@@ -14,10 +14,6 @@ import './../../../core/functions/date-to-json.function';
 import { applyMixins } from './../../../core/functions/apply-mixins.function';
 import { Chipable } from './../../../core/traits/chipable.trait';
 import * as _ from 'lodash';
-// import { AttachmentFilesLibraryComponent } from './../../../shared/components/forms/attachment-files-library/attachment-files-library/attachment-files-library.component';
-// import { AuthService } from './../../../core/auth/auth.service';
-// import { ConfigService } from '../../../core/services/config.service';
-// import gql from 'graphql-tag';
 
 @Component({
     selector: 'dh2-article-detail',

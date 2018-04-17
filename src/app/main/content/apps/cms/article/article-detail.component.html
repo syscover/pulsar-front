@@ -116,8 +116,8 @@
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
                                             <mat-option *ngFor="let status of statuses" [value]="+status.id">{{ status.name }}</mat-option>
-                                            <mat-error>{{ formErrors?.status_id }}</mat-error>
                                         </mat-select>
+                                        <mat-error>{{ formErrors?.status_id }}</mat-error>
                                     </mat-form-field>
 
                                     <mat-form-field class="col-12 col-md-5">
@@ -130,8 +130,8 @@
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (change)="handleChangeSection($event)">
                                             <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
-                                            <mat-error>{{ formErrors?.section_id }}</mat-error>
                                         </mat-select>
+                                        <mat-error>{{ formErrors?.section_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -139,9 +139,9 @@
                                     <mat-form-field class="col-12 col-md-6">
                                         <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (change)="handleChangeFamily($event)">
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
-                                            <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
-                                            <mat-error>{{ formErrors?.family_id }}</mat-error>
+                                            <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>                                            
                                         </mat-select>
+                                        <mat-error>{{ formErrors?.family_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -191,8 +191,8 @@
                                     <mat-form-field class="col-12">
                                         <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
                                             <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-                                            <mat-error>{{ formErrors?.categories_id }}</mat-error>
                                         </mat-select>
+                                        <mat-error>{{ formErrors?.categories_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
