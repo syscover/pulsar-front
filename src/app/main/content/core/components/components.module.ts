@@ -3,35 +3,29 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatDialogModule } from '@angular/material';
 import { AttachmentsModule } from './attachments/attachments.module';
 import { ImageInputModule } from './image-input/image-input.module';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
+import { FroalaModule } from './froala/froala.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { FlagIconComponent } from './flag-icon.component';
-import { FroalaComponent } from './froala.component';
-
-import 'froala-editor/js/froala_editor.pkgd.min.js';
 
 @NgModule({
     imports: [
         AttachmentsModule,
         CommonModule,
-        FroalaEditorModule.forRoot(), 
-        FroalaViewModule.forRoot(),
+        FroalaModule,
         ImageInputModule,
         MatButtonModule,
         MatDialogModule
     ],
     exports: [
         AttachmentsModule,
+        FroalaModule,
         ImageInputModule,
         ConfirmationDialogComponent,
-        FlagIconComponent,
-        FroalaComponent
+        FlagIconComponent
     ],
     declarations: [
         ConfirmationDialogComponent,
-        FlagIconComponent,
-        FroalaComponent
+        FlagIconComponent
     ],
     entryComponents: [
         ConfirmationDialogComponent

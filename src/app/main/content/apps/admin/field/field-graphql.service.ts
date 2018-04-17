@@ -90,6 +90,7 @@ export class FieldGraphQLService extends GraphQLSchema
                 label_class
                 component_class
                 values {
+                    ix
                     id
                     lang_id
                     counter

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { merge } from 'rxjs/observable/merge';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -9,7 +9,9 @@ export class ValidationMessageService
 {
     private translations: any;
 
-    constructor(private translateService: TranslateService) 
+    constructor(
+        private translateService: TranslateService
+    ) 
     {
         this.translateService.onLangChange.subscribe((e: Event) => {
             this.getAndInitTranslations();
@@ -89,8 +91,21 @@ export class ValidationMessageService
                 data => {
                     formErrors[field] = this.onChange(formGroup.get(field));
                 }
-            );    
-        }
+            );   
+        }   
+    }
+
+    // add controls to validate and get message error
+    addControl(name: string, formControl: FormControl, formErrors: any) 
+    {
+        merge(
+            formControl.valueChanges,
+            formControl.statusChanges
+        ).subscribe(
+            data => {
+                formErrors[name] = this.onChange(formControl);
+            }
+        );  
     }
 
     onChange(formControl: AbstractControl): string 

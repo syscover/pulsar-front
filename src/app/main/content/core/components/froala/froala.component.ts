@@ -1,8 +1,8 @@
 import { Component, Renderer2, Input, OnInit, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService } from './../services/config.service';
-import { AttachmentFamily } from './../../apps/admin/admin.models';
+import { ConfigService } from './../../services/config.service';
+import { AttachmentFamily } from './../../../apps/admin/admin.models';
 import * as _ from 'lodash';
 declare const jQuery: any;
 const noop = () => {};
@@ -19,7 +19,7 @@ const noop = () => {};
     template: '<div [froalaEditor]="froalaOptions" [(froalaModel)]="value"></div>',
     styles: [`
         :host{
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         .ui-messages-error {
             position: absolute;
@@ -33,7 +33,7 @@ export class FroalaComponent implements OnInit
     @Input() placeholder: string;
     @Input() heightMin: number;
     @Input() heightMax: number;
-    @Input() attachmentFamilies: AttachmentFamily[];
+    @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() imageUploadURL: string;
     froalaOptions: any = {};
     value: string;

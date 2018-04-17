@@ -1,4 +1,3 @@
-import { GetFeildLabelPipe } from './get-field-label.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +15,7 @@ import {
     // MatExpansionModule,
     MatFormFieldModule,
     // MatGridListModule,
-    // MatIconModule,
+    MatIconModule,
     MatInputModule,
     // MatListModule,
     // MatMenuModule,
@@ -37,22 +36,34 @@ import {
     // MatStepperModule,
     // DateAdapter
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
+import { FroalaModule } from './../froala/froala.module';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { DynamicFormService } from './dynamic-form.service';
 import { FieldGraphQLService } from './../../../apps/admin/field/field-graphql.service';
 
+import { GetFieldLabelPipe } from './pipes/get-field-label.pipe';
+import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
+
 @NgModule({
     imports: [
         CommonModule,
+        FlexLayoutModule,
+        FroalaModule,
         MatFormFieldModule,
+        MatIconModule,
         MatInputModule,
-        ReactiveFormsModule
+        MatSelectModule,
+        ReactiveFormsModule,
+        TranslateModule.forChild()
     ],
     exports: [
         DynamicFormComponent,
     ],
     declarations: [
-        GetFeildLabelPipe,
+        GetFieldLabelPipe,
+        GetSelectValuesPipe,
         DynamicFormComponent
     ],
     providers: [

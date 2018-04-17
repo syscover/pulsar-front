@@ -4,7 +4,7 @@ import { HttpService } from './../../services/http.service';
 import { FieldGraphQLService } from './../../../apps/admin/field/field-graphql.service';
 import { ValidationMessageService } from './../../services/validation-message.service';
 import { Field } from './../../../apps/admin/admin.models';
-import { environment } from './../../../../../../environments/environment.prod';
+import { environment } from './../../../../../../environments/environment';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -24,11 +24,11 @@ export class DynamicFormService extends HttpService
     }
 
     // request to gel all fields from field_group_id
-    instance(fg: FormGroup, fieldGroupId: number, values: any)
+    instance(formGroup: FormGroup, fieldGroupId: number, values: any, errors: any)
     {
         if (fieldGroupId) 
         {
-            this.reset();
+            this.reset(formGroup);
 
             // get custom fields from field group
             const ob$ = this
@@ -69,7 +69,10 @@ export class DynamicFormService extends HttpService
                     const customFields = this.fb.group({});
                     for (const field of this.fields)
                     {
-                        customFields.addControl(field.name, new FormControl(null, field.required ? Validators.required : undefined));
+                        const fc = new FormControl(null, field.required ? Validators.required : undefined);
+
+                        customFields.addControl(field.name, fc);
+                        this.validationMessageService.addControl('customFields.' + field.name, fc, errors);
                     }
 
                     // check that have values
@@ -80,17 +83,10 @@ export class DynamicFormService extends HttpService
                     }
 
                     // remove customFields control if exist
-                    if (fg.get('customFields')) fg.removeControl('customFields');
+                    if (formGroup.get('customFields')) formGroup.removeControl('customFields');
 
                     // add new customFields control
-                    fg.addControl('customFields', customFields);
-
-                    // set instance form of dynamicsFormService
-                    // will be used in dynamic-form.component to assign
-                    // custom fields to your form
-                    this.form = fg;
-
-                    // this.validationMessageService.subscribeForm(this.form, formErrors);
+                    formGroup.addControl('customFields', customFields);
 
                     // execute observable
                     this.fieldsLoaded.next(this.fields);
@@ -99,11 +95,11 @@ export class DynamicFormService extends HttpService
         else 
         {
             // reset fields
-            this.reset();
+            this.reset(formGroup);
         }
     }
 
-    reset()
+    private reset(formGroup: FormGroup)
     {
         // reset fields
         this.fields = undefined;

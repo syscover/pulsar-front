@@ -159,8 +159,8 @@
                                         <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
                                             <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                             <mat-option *ngFor="let article of articles" [value]="article.id">{{ article.name }}</mat-option>
-                                            <mat-error>{{ formErrors?.parent_id }}</mat-error>
                                         </mat-select>
+                                        <mat-error>{{ formErrors?.parent_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -230,15 +230,12 @@
                                     </mat-form-field>
                                 </div>
 
-                                <!-- DYNAMIC FORM -->
-                                        <!-- <ps-form-header class="animated fadeIn fast"
-                                                        title="Custom fields"
-                                                        icon="fa ui-icon-arrow-drop-down-circle"></ps-form-header>
-                                        -->
-                                        <dh2-dynamic-form   [formGroup]="fg"
-                                                            [fieldGroupId]="family?.field_group_id"
-                                                            [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
-                                                            [lang]="translateService.currentLang"></dh2-dynamic-form>
+                                <!-- DYNAMIC FORM -->  
+                                <dh2-dynamic-form   [formGroup]="fg"
+                                                    [errors]="formErrors"
+                                                    [fieldGroupId]="family?.field_group_id"
+                                                    [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
+                                                    [lang]="translateService.currentLang"></dh2-dynamic-form>
                                 <!-- / DYNAMIC FORM -->
 
                             </div>

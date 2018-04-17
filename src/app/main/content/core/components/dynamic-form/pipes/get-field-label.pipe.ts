@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Field, Lang } from './../../../apps/admin/admin.models';
+import { Field, Lang } from './../../../../apps/admin/admin.models';
 
 @Pipe({
   name: 'getFieldLabel'
 })
-export class GetFeildLabelPipe implements PipeTransform 
+export class GetFieldLabelPipe implements PipeTransform 
 {
     transform(field: Field, lang: Lang): string 
     {

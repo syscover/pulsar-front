@@ -48,8 +48,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     constructor(
         protected injector: Injector,
         protected graphQL: ArticleGraphQLService,
-        private authenticationService: AuthenticationService,
-        private dynamicFormService: DynamicFormService
+        private authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);
     }
@@ -99,12 +98,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     {    
         this.family = _.find(this.families, {id: this.object.family_id});
 
+        // set field_group_id value
+        if (this.family.field_group_id) this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
+
         // TODO establece author cuando tengamos los usuarios relacionados
         // set tags extracting name field
         // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
-
-        // manage custom fields
-        this.handleGetCustomFields();
     }
 
     handleChangeSection($event) 
@@ -145,34 +144,17 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
 
     handleChangeFamily($event)
     {
-        // reset custom fields
-        // this.dynamicFormService.reset();
-
         if ($event.value) 
         {
             this.family = _.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
-            
-            // load custom field again
-            this.handleGetCustomFields();
+
+            // set field_group_id value
+            if (this.family.field_group_id) this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
         }
         else
         {
             this.family = null;
-        }
-    }
-
-    handleGetCustomFields() 
-    {
-        if (this.family.field_group_id) 
-        {
-            this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
-            
-            // get properties for get values of custom fields
-            // const customFields = this.object.data && this.object.data.customFields ? this.object.data.customFields : undefined;
-            
-            // load custom fields 
-          // this.dynamicFormService.instance(this.fg, this.family.field_group_id, customFields);
         }
     }
 
