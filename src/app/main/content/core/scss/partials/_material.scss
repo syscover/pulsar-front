@@ -2,9 +2,12 @@
     margin-left: 13px !important;
 }
 
-[mat-button].loading-btn, [mat-raised-button].loading-btn { 
+[mat-button].action-btn, [mat-raised-button].action-btn { 
+    text-transform: uppercase;
+    
     .mat-button-wrapper { 
         display: flex;
+        justify-content: center;
         align-items: center;
         .mat-spinner {
             circle {
@@ -12,7 +15,7 @@
             }
         }
     }
-    .mat-button-wrapper:first-child * { 
-        margin-right: 10px;
+    .mat-button-wrapper mat-spinner { 
+        margin-left: 10px;
     }
 }

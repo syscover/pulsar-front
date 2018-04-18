@@ -268,6 +268,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         {
             // TODO, show general error
             console.log(this.fg);
+
+            // disappear spinner in button
+            this.loadingButton = false;
             return; // has any validation error when emit submit event
         }
 

@@ -45,8 +45,14 @@
                     <!-- <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">Forgot Password?</a> -->
                 </div>
 
-                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" [disabled]="loginForm.invalid" (click)="login(object)">
-                    <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span> <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                <button mat-raised-button 
+                        color="accent" 
+                        class="submit-button action-btn" 
+                        aria-label="LOGIN" 
+                        [disabled]="loginForm.invalid" 
+                        (click)="login(object)">
+                        <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span>
+                        <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
                 <mat-error *ngIf="loginError">{{ 'VALIDATIONS.LOGIN' | translate }}</mat-error>
 
