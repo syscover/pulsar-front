@@ -57,10 +57,11 @@
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || fg.pristine"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0 loading-btn"
+                        [disabled]="fg.invalid || fg.pristine || loadingButton"
                         *ngIf="dataRoute.action ==='edit'">
                     <span>{{ 'APPS.SAVE' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 
                 <button mat-raised-button

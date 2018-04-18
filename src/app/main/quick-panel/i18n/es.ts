@@ -1,8 +1,8 @@
 export const locale = {
-    lang: 'en',
+    lang: 'es',
     data: {
         'QUICK_PANEL': {
-            'TODAY': 'Today'
+            'TODAY': 'Hoy'
         }
     }
 };

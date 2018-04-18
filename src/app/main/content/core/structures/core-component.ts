@@ -11,29 +11,24 @@ import { Subject } from 'rxjs/Subject';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
-    public translateService: TranslateService;
+    loadingButton = false;
+    translateService: TranslateService;
+    baseUri: string;                            // baseUri to set component urls in templete, this property must to be public because is used in template
+    baseLang: string;                           // base languague of application, this variable is required for multi-language objects
+    packagePath: string;                        // path of package and resource
+    resourcePath: string;
+    objectTranslation: string;                  // translation key from current object
+    objectTranslationGender: string;
+
     protected router: Router;
     protected route: ActivatedRoute;
     protected httpService: HttpService;
     protected params: Params;
-    protected langs: Lang[];                        // activated application lang
+    protected langs: Lang[];                    // activated application lang
     protected snackBar: MatSnackBar;
-    protected translations: Object = {};            // translations for used in component
+    protected translations: Object = {};        // translations for used in component
     protected dialog: MatDialog;
-    protected ngUnsubscribe = new Subject();        // create Observable to unsubscribe
-    
-    // baseUri to set component urls in templete, this property must to be public because is used in template
-    baseUri: string;
-    // base languague of application, this variable is required for multi-language objects
-    baseLang: string;
-
-    // path of package and resource
-    packagePath: string;
-    resourcePath: string;
-    
-    // translation key from current object
-    objectTranslation: string;
-    objectTranslationGender: string;
+    protected ngUnsubscribe = new Subject();    // create Observable to unsubscribe
 
     constructor(
         protected injector: Injector,

@@ -1,3 +1,18 @@
 .mat-checkbox-label-before .mat-checkbox-inner-container {
     margin-left: 13px !important;
 }
+
+[mat-button].loading-btn, [mat-raised-button].loading-btn { 
+    .mat-button-wrapper { 
+        display: flex;
+        align-items: center;
+        .mat-spinner {
+            circle {
+                stroke: #fff !important;
+            }
+        }
+    }
+    .mat-button-wrapper:first-child * { 
+        margin-right: 10px;
+    }
+}

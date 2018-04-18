@@ -1,10 +1,10 @@
-import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FuseConfigService } from '../../../../../../@fuse/services/config.service';
 import { fuseAnimations } from '../../../../../../@fuse/animations';
 import { environment } from './../../../../../../environments/environment';
+import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import './../../../core/functions/array-random.function';
 
@@ -12,14 +12,15 @@ import './../../../core/functions/array-random.function';
     selector   : 'dh2-login',
     templateUrl: './login.component.html',
     styleUrls  : ['./login.component.scss'],
-    animations : fuseAnimations
+    animations : fuseAnimations,
+    encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit
 {
     loginError = false;
     loginForm: FormGroup;
     loginFormErrors: any;
-    loading = false;
+    loadingButton = false;
     welcomeIntroduction = [
         'AUTH.WELCOME_INTRODUCTION_01',
         'AUTH.WELCOME_INTRODUCTION_02',
@@ -71,7 +72,7 @@ export class LoginComponent implements OnInit
 
     login() 
     {
-        this.loading = true;
+        this.loadingButton = true;
         this.loginError = false;
 
         this.authenticationService
@@ -101,7 +102,7 @@ export class LoginComponent implements OnInit
                     this.router.navigate(['/apps/dashboard']);
                 }
             }, (error) => {
-                this.loading = false;
+                this.loadingButton = false;
                 this.loginError = true;
             });
     }

@@ -11,6 +11,7 @@
         </div>
 
         <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}" [innerHTML]="welcomeMessage | translate">
+                <span class="excerpt">Nunca olvides que...</span><br><br>Alguien inteligente aprende de la experiencia de los demás
         </div>
     </div>
 
@@ -45,7 +46,7 @@
                 </div>
 
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" [disabled]="loginForm.invalid" (click)="login(object)">
-                    <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span> <mat-spinner *ngIf="loading"  mode="indeterminate" diameter="17"></mat-spinner>
+                    <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span> <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
                 <mat-error *ngIf="loginError">{{ 'VALIDATIONS.LOGIN' | translate }}</mat-error>
 

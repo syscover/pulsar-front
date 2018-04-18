@@ -6,6 +6,12 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { FuseQuickPanelComponent } from 'app/main/quick-panel/quick-panel.component';
 
+// DH2
+import { FuseTranslationLoaderService } from './../../../@fuse/services/translation-loader.service';
+import { locale as english } from './i18n/en';
+import { locale as spanish } from './i18n/es';
+import { SharedModule } from './../content/core/modules/shared.module';
+
 @NgModule({
     declarations: [
         FuseQuickPanelComponent
@@ -18,6 +24,7 @@ import { FuseQuickPanelComponent } from 'app/main/quick-panel/quick-panel.compon
         MatSlideToggleModule,
 
         FuseSharedModule,
+        SharedModule
     ],
     exports: [
         FuseQuickPanelComponent
@@ -25,4 +32,10 @@ import { FuseQuickPanelComponent } from 'app/main/quick-panel/quick-panel.compon
 })
 export class FuseQuickPanelModule
 {
+    constructor(
+        private translationLoader: FuseTranslationLoaderService
+    )
+    {
+        this.translationLoader.loadTranslations(english, spanish);
+    }
 }

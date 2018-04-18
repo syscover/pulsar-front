@@ -258,6 +258,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     // funtion that will be call for create object, create lang object and update object
     postRecord(object: any, routeRedirect?: string)
     {
+        // apperar spinner in button
+        this.loadingButton = true;
+
         // set errors from current form, this variable is binded to all form elements
         this.formErrors = this.validationMessageService.setErrors(this.fg); 
 
@@ -333,6 +336,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         record$
             .subscribe(data => {
+                // disappear spinner in button 
+                this.loadingButton = false;
+
                 // manage errors
                 if (data.errors)
                 {
