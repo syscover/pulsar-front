@@ -339,7 +339,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         record$
             .subscribe(data => {
-                // disappear spinner in button 
+                // disappear spinner in button
                 this.loadingButton = false;
 
                 // manage errors

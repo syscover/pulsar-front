@@ -37,7 +37,7 @@ export class FieldDetailComponent extends CoreDetailComponent
             name: [null, Validators.required],
             field_type_id: [null, Validators.required],
             data_type_id: [null, Validators.required],
-            required: null,
+            required: false,
             sort: null,
             max_length: null,
             pattern: null,

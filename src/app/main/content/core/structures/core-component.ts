@@ -12,6 +12,7 @@ import { Subject } from 'rxjs/Subject';
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
     loadingButton = false;
+    loadingTranslationButton = false;
     translateService: TranslateService;
     baseUri: string;                            // baseUri to set component urls in templete, this property must to be public because is used in template
     baseLang: string;                           // base languague of application, this variable is required for multi-language objects
@@ -122,8 +123,12 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         });
 
         dialogRef.afterClosed().subscribe(result => {
+
             if (result) 
             {
+                // apperar spinner in delete translate button
+                this.loadingTranslationButton = true;
+
                 this.httpService
                     .apolloClient()
                     .mutate({
@@ -131,6 +136,10 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
                         variables: args
                     })
                     .subscribe((response) => {
+                        
+                        // disappear spinner in delete translate button
+                        this.loadingTranslationButton = false;
+
                         this.snackBar.open(
                             (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
                             this.translations['APPS.OK'], 
