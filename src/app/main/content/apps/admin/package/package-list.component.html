@@ -58,31 +58,31 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="id">
+                <ng-container matColumnDef="admin_package.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="name">
+                <ng-container matColumnDef="admin_package.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="root">
+                <ng-container matColumnDef="admin_package.root">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-block">{{ 'ADMIN.ROOT' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-block">{{ row.root }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="sort">
+                <ng-container matColumnDef="admin_package.sort">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SORT' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.sort }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="active">
+                <ng-container matColumnDef="admin_package.active">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
                         <mat-icon *ngIf="row.active">done</mat-icon>

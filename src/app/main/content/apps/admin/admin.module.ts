@@ -26,6 +26,7 @@ import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
+import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
@@ -37,6 +38,7 @@ import { LangGraphQLService } from './lang/lang-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
 import { ResourceGraphQLService } from './resource/resource-graphql.service';
+import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial-area-1-graphql.service';
 
 @NgModule({
     imports: [
@@ -64,7 +66,8 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         ProfileListComponent,
         ProfileDetailComponent,
         ResourceListComponent,
-        ResourceDetailComponent
+        ResourceDetailComponent,
+        TerritorialArea1ListComponent
     ],
     providers: [
         ActionGraphQLService,
@@ -77,7 +80,8 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
         LangGraphQLService,
         PackageGraphQLService,
         ProfileGraphQLService,
-        ResourceGraphQLService
+        ResourceGraphQLService,
+        TerritorialArea1GraphQLService
     ]
 })
 

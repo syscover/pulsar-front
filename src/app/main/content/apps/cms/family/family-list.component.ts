@@ -13,8 +13,8 @@ export class FamilyListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.FAMILY';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['id', 'name'];
-    displayedColumns = ['id', 'name', 'actions'];
+    columnsSearch: string[] = ['cms_family.id', 'cms_family.name'];
+    displayedColumns = ['cms_family.id', 'cms_family.name', 'actions'];
 
     constructor(
         protected injector: Injector,

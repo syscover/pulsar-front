@@ -107,6 +107,31 @@
                 </ng-container>
                 <!-- / LANGS -->
 
+                <!-- TERRITORIES -->
+                <ng-container matColumnDef="territories">
+                    <mat-header-cell *matHeaderCellDef>{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>public</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item [routerLink]="['/apps/admin/territorial-area-1', row.id]" *ngIf="row.territorial_area_1">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_1 }}</span>
+                            </button>
+                            <button mat-menu-item [routerLink]="['/apps/admin/territorial-area-2', row.id]" *ngIf="row.territorial_area_2">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_2 }}</span>
+                            </button>
+                            <button mat-menu-item [routerLink]="['/apps/admin/territorial-area-3', row.id]" *ngIf="row.territorial_area_3">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_3 }}</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+                <!-- / TERRITORIES -->
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>

@@ -14,8 +14,8 @@ export class ProfileListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.PROFILE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['id', 'name'];
-    displayedColumns = ['id', 'name', 'actions'];
+    columnsSearch: string[] = ['admin_profile.id', 'admin_profile.name'];
+    displayedColumns = ['admin_profile.id', 'admin_profile.name', 'actions'];
 
     constructor(
         protected injector: Injector,

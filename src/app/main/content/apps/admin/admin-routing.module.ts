@@ -22,6 +22,7 @@ import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
+import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
 
 /*
         // Users
@@ -66,6 +67,11 @@ const routes: Routes = [
             { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
             { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
             { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
+
+            // Territorial areas 1
+            { path: 'territorial-area-1/:country_id',                   component: TerritorialArea1ListComponent },
+            { path: 'territorial-area-1/create/:country_id',            component: CountryDetailComponent,              data: { action: 'create' }},
+            { path: 'territorial-area-1/show/:country_id/:id',          component: CountryDetailComponent,              data: { action: 'edit' }},
 
             // Field groups
             { path: 'field-group',                                      component: FieldGroupListComponent },

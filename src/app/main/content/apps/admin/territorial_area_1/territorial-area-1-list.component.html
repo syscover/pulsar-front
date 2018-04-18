@@ -18,8 +18,11 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">perm_identity</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PROFILES' | translate }}</span>
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="['/apps/admin/country']">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">language</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'APPS.VALUES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -38,9 +41,9 @@
             <!-- / SEARCH -->
 
             <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
+                    [routerLink]="[baseUri + '/create', field_id]"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.PROFILE' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.VALUE' | translate }}</span>
             </button>
 
         </div>
@@ -58,16 +61,48 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_profile.id">
+                <ng-container matColumnDef="admin_territorial_area_1.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_profile.name">
+                <ng-container matColumnDef="admin_territorial_area_1.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
+
+                <!-- LANGS -->
+                <ng-container matColumnDef="translations">
+                    <mat-header-cell *matHeaderCellDef>{{ 'APPS.TRANSLATIONS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <div class="{{ row | checkTranslationObject:langs }}">
+                            <button mat-mini-fab class="translations-btn" [matMenuTriggerFor]="menu">
+                                <mat-icon>translate</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" class="translations-opt">
+                                <ng-container *ngFor="let lang of langs">
+
+                                    <button mat-menu-item 
+                                        *ngIf="(row | actionTranslationObject:lang) === 'edit'" 
+                                        [routerLink]="[baseUri + '/show', field_id, lang.id, row.id]">
+                                        <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
+                                        <span>{{ 'APPS.EDIT' | translate }}</span>
+                                    </button>
+
+                                    <button mat-menu-item 
+                                        *ngIf="(row | actionTranslationObject:lang) === 'create'" 
+                                        [routerLink]="[baseUri + '/create', field_id, lang.id, row.id]">
+                                        <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
+                                        <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                                    </button>
+                                    
+                                </ng-container>
+                            </mat-menu>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <!-- / LANGS -->
 
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
@@ -77,11 +112,11 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', field_id, row.lang_id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item (click)="deleteRecord(row)">
+                            <button mat-menu-item (click)="deleteRecord(row, {field:field_id})">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>

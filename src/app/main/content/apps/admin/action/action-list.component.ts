@@ -13,8 +13,8 @@ export class ActionListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.ACTION';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['id', 'name'];
-    displayedColumns = ['id', 'name', 'actions'];
+    columnsSearch: string[] = ['admin_action.id', 'admin_action.name'];
+    displayedColumns = ['admin_action.id', 'admin_action.name', 'actions'];
 
     constructor(
         protected injector: Injector,

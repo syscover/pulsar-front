@@ -14,8 +14,8 @@ export class PackageListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.PACKAGE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['id', 'name', 'root'];
-    displayedColumns = ['id', 'name', 'root', 'sort', 'active', 'actions'];
+    columnsSearch: string[] = ['admin_package.id', 'admin_package.name', 'admin_package.root'];
+    displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.sort', 'admin_package.active', 'actions'];
 
     constructor(
         protected injector: Injector,
