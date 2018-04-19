@@ -256,7 +256,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
 
     // funtion that will be call for create object, create lang object and update object
-    postRecord(object: any, routeRedirect?: string)
+    postRecord(object: any, routeRedirect?: string[])
     {
         // apperar spinner in button
         this.loadingButton = true;
@@ -368,8 +368,20 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 }
                 else
                 {
+                    let snackBarMessage;
+
+                    // set dialog message
+                    if (this.objectTranslationTranslated)
+                    {
+                        snackBarMessage = (this.objectTranslationTranslated + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                    }
+                    else
+                    {
+                        snackBarMessage = (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                    }
+                    
                     this.snackBar.open(
-                        (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.SAVED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
+                        snackBarMessage,
                         this.translations['APPS.OK'], 
                         {
                             verticalPosition: 'top',
@@ -383,7 +395,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                     }
                     else
                     {
-                        this.router.navigate([routeRedirect]);
+                        this.router.navigate(routeRedirect);
                     }
                 }
             });

@@ -6,12 +6,18 @@ import gql from 'graphql-tag';
 export class TerritorialArea1GraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetTerritorialAreas1Pagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query AdminGetTerritorialAreas1Pagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminTerritorialAreas1Pagination (filters:$filters sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
             }
+            ${this.relationsFields}
+        }`;
+
+    queryRelationsObject  = gql`
+        query AdminGetRelationsTerritorialArea1 ($sqlCountry:[CoreSQLQueryInput]) {
+            ${this.relationsFields}
         }`;
 
     queryObjects = gql`
@@ -22,10 +28,11 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query AdminTerritorialArea1 ($sql:[CoreSQLQueryInput]) {
+        query AdminTerritorialArea1 ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
             coreObject: adminTerritorialArea1 (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -43,8 +50,8 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
         }`;
 
     mutationDeleteObject = gql`
-        mutation AdminDeleteTerritorialArea1 ($field_id:Int! $id:String! $lang_id:String!) {
-            adminDeleteTerritorialArea1 (field_id:$field_id id:$id lang_id:$lang_id){
+        mutation AdminDeleteTerritorialArea1 ($id:String!) {
+            adminDeleteTerritorialArea1 (id:$id){
                 ${this.fields}
             }
         }`;
@@ -62,6 +69,23 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
                 country_id
                 name
                 slug
+            }
+        `;
+
+        this.relationsFields = `
+            adminCountry: adminCountry (sql:$sqlCountry){
+                ix
+                id
+                lang_id
+                name
+                slug
+                sort
+                prefix
+                territorial_area_1
+                territorial_area_2
+                territorial_area_3
+                zones
+                data_lang
             }
         `;
 

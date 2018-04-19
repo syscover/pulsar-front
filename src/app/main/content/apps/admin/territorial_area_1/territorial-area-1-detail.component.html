@@ -13,12 +13,12 @@
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="start center">
 
-                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="['/apps/admin/field-value', field_id]">
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="['/apps/admin/country/territorial-area-1', country.id]">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>dialpad</mat-icon>
+                    <mat-icon>language</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.VALUE' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ this.country.territorial_area_1 }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -50,29 +50,10 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || loadingButton"
-                        *ngIf="dataRoute.action ==='create-lang'">
-                    <span>{{ 'APPS.TRANSLATE' | translate }}</span>
-                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-                </button>
-    
-                <button mat-raised-button
-                        type="submit"
-                        form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.invalid || fg.pristine || loadingButton"
                         *ngIf="dataRoute.action ==='edit'">
                     <span>{{ 'APPS.SAVE' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-                </button>
-
-                <button mat-raised-button
-                        class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
-                        [disabled]="loadingTranslationButton"
-                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang" 
-                        (click)="deleteRecord(object, {field_id:field_id}, baseUri + '/' + field_id)">
-                    <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
-                    <mat-spinner *ngIf="loadingTranslationButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
             </div>
         </div>
@@ -85,7 +66,7 @@
             <div class="content">
                 <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object, [baseUri, field_id])"
+                        (ngSubmit)="postRecord(object, ['/apps/admin/country/territorial-area-1', country.id])"
                         fxLayout="column"
                         fxFlex>
                 
@@ -96,30 +77,20 @@
                             <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
-                        <div class="offset-1 col-6 offset-md-1 col-md-2 py-20">
-                            <mat-checkbox (change)="handleEnableId($event)">{{ 'ADMIN.EDIT_ID' | translate }}</mat-checkbox>
-                        </div>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
-                            <mat-error>{{ formErrors?.sort }}</mat-error>
+                            <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                            <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <div class="col-12 py-20">
-                            <mat-checkbox formControlName="featured">{{ 'ADMIN.FEATURED' | translate }}</mat-checkbox>
-                        </div>
                     </div>
 
                 </form>

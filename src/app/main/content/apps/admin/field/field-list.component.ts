@@ -25,18 +25,16 @@ export class FieldListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    getCustomArgumentsGetRecords(args: Object): Object 
+    getCustomArgumentsGetRecords(args: Object): Object
     {
-        return Object.assign(args, 
-            {
-                configFieldTypes: {
-                    key: 'pulsar-admin.field_types'
-                }
-            }
-        );
+        args['configFieldTypes'] = {
+            key: 'pulsar-admin.field_types'
+        };
+
+        return args;
     }
 
-    setRelationsData(data: any): void 
+    setRelationsData(data: any): void
     {
         this.adminConfigFieldTypesId = _.filter(data.adminConfigFieldTypes, {values: true}).map((fieldType) => {
             if (fieldType.values) return fieldType.id;

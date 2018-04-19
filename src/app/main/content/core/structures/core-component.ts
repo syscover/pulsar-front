@@ -20,6 +20,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     resourcePath: string;
     objectTranslation: string;                  // translation key from current object
     objectTranslationGender: string;
+    objectTranslationTranslated: string;        // string translated from current object
 
     protected router: Router;
     protected route: ActivatedRoute;
@@ -118,7 +119,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
             data: { 
-                title: this.translations['APPS.DELETE'] + ' ' + this.translations[this.objectTranslation]
+                title: this.translations['APPS.DELETE'] + ' ' + (this.objectTranslationTranslated ? this.objectTranslationTranslated : this.translations[this.objectTranslation])
             }
         });
 
@@ -140,8 +141,20 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
                         // disappear spinner in delete translate button
                         this.loadingTranslationButton = false;
 
+                        let snackBarMessage;
+
+                        // set dialog message
+                        if (this.objectTranslationTranslated)
+                        {
+                            snackBarMessage = (this.objectTranslationTranslated + ' YY ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                        }
+                        else
+                        {
+                            snackBarMessage = (this.translations[this.objectTranslation] + ' VV ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                        }
+
                         this.snackBar.open(
-                            (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize(), 
+                            snackBarMessage, 
                             this.translations['APPS.OK'], 
                             {
                                 verticalPosition: 'top',

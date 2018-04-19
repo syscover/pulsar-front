@@ -22,7 +22,7 @@
                     <mat-icon>arrow_back</mat-icon>
                 </button>
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">language</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'APPS.VALUES' | translate }}</span>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ country.territorial_area_1 }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,9 +41,9 @@
             <!-- / SEARCH -->
 
             <button mat-raised-button
-                    [routerLink]="[baseUri + '/create', field_id]"
+                    [routerLink]="[baseUri + '/territorial-area-1/create', country.id]"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.VALUE' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ country.territorial_area_1 }}</span>
             </button>
 
         </div>
@@ -112,7 +112,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', field_id, row.lang_id, row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/territorial-area-1/show', country.id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>

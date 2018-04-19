@@ -27,6 +27,7 @@ import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
+import { TerritorialArea1DetailComponent } from './territorial_area_1/territorial-area-1-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
@@ -67,7 +68,8 @@ import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial
         ProfileDetailComponent,
         ResourceListComponent,
         ResourceDetailComponent,
-        TerritorialArea1ListComponent
+        TerritorialArea1ListComponent,
+        TerritorialArea1DetailComponent
     ],
     providers: [
         ActionGraphQLService,

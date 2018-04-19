@@ -28,7 +28,8 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         this.fg.controls['field_id'].setValue(this.field_id);
     }
 
-    createForm() {
+    createForm()
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [{value: null, disabled: true}],
