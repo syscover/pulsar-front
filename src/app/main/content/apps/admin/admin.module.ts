@@ -40,6 +40,8 @@ import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
 import { ResourceGraphQLService } from './resource/resource-graphql.service';
 import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial-area-1-graphql.service';
+import { TerritorialArea2GraphQLService } from './territorial_area_2/territorial-area-2-graphql.service';
+import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
 
 @NgModule({
     imports: [
@@ -83,7 +85,9 @@ import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial
         PackageGraphQLService,
         ProfileGraphQLService,
         ResourceGraphQLService,
-        TerritorialArea1GraphQLService
+        TerritorialArea1GraphQLService,
+        TerritorialArea2GraphQLService,
+        TerritorialArea3GraphQLService
     ]
 })
 
