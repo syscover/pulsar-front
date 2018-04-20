@@ -1,4 +1,4 @@
-import { Directive, AfterViewInit, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -19,6 +19,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
 {
     @Input('model') model;
     @Input('target') target = 'slug';
+    @Output() checkingSlug = new EventEmitter<boolean>();
 
     private ngUnsubscribe = new Subject();
     private running = false; // boolean true when is consulting through Http
@@ -38,9 +39,11 @@ export class SlugDirective implements AfterViewInit, OnDestroy
             .distinctUntilChanged()
             .pipe(
                 switchMap(async (event: any) => {
-                    // check if there ara value and there isn't a request in progress
+                    // check if there ara value and theroe isn't a request in progress
                     if (event.target.value) 
                     {
+                        this.checkingSlug.emit(true);
+
                         const data: any = await this.slugService.checkSlug(
                             this.model,
                             event.target.value
@@ -48,6 +51,8 @@ export class SlugDirective implements AfterViewInit, OnDestroy
 
                         if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
                         if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
+
+                        this.checkingSlug.emit(false);
 
                         return data;
                     }

@@ -13,7 +13,7 @@
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="start center">
 
-                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="['/apps/admin/country/territorial-area-1', country.id]">
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="['/apps/admin/country/territorial-area-2', country.id]">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
 
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ this.country.territorial_area_1 }}
+                        {{ 'APPS.NEW.F' | translate }} {{ this.country.territorial_area_2 }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -66,7 +66,7 @@
             <div class="content">
                 <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object, ['/apps/admin/country/territorial-area-1', country.id])"
+                        (ngSubmit)="postRecord(object, ['/apps/admin/country/territorial-area-2', country.id])"
                         fxLayout="column"
                         fxFlex>
                 
@@ -76,6 +76,15 @@
                         <mat-form-field class="col-5 col-md-4">
                             <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ country.territorial_area_1 }}" formControlName="territorial_area_1_id" required>
+                                <mat-option *ngFor="let territorialArea1 of country.territorial_areas_1 | sortBy:['name']" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.territorial_area_1_id }}</mat-error>
                         </mat-form-field>
                     </div>
 

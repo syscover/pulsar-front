@@ -5,7 +5,7 @@ import { TerritorialArea3GraphQLService } from './territorial-area-3-graphql.ser
 import { Country } from './../admin.models';
 
 @Component({
-    selector: 'dh3-territorial-area-3-list',
+    selector: 'dh2-territorial-area-3-list',
     templateUrl: './territorial-area-3-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
@@ -14,8 +14,8 @@ export class TerritorialArea3ListComponent extends CoreListComponent
 {
     objectTranslationTranslated;
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['admin_territorial_area_3.id', 'admin_territorial_area_3.name', 'admin_territorial_area_3.slug'];
-    displayedColumns = ['admin_territorial_area_3.id', 'admin_territorial_area_3.name', 'actions'];
+    columnsSearch: string[] = ['admin_territorial_area_3.id', 'admin_territorial_area_3.name', 'admin_territorial_area_3.slug', 'admin_territorial_area_1.name', 'admin_territorial_area_2.name'];
+    displayedColumns = ['admin_territorial_area_3.id', 'admin_territorial_area_3.name', 'admin_territorial_area_1.name', 'admin_territorial_area_2.name', 'actions'];
     country: Country = new Country();
     filters = [
         {'command': 'where', 'column': 'admin_territorial_area_3.country_id', 'operator': '=', 'value': this.params['country_id']}

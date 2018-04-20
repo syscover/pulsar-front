@@ -2,15 +2,15 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TerritorialArea1GraphQLService } from './territorial-area-1-graphql.service';
+import { TerritorialArea2GraphQLService } from './territorial-area-2-graphql.service';
 import { Country } from './../admin.models';
 
 @Component({
-    selector: 'dh2-territorial-area-1-detail',
-    templateUrl: './territorial-area-1-detail.component.html',
+    selector: 'dh2-territorial-area-2-detail',
+    templateUrl: './territorial-area-2-detail.component.html',
     animations: fuseAnimations
 })
-export class TerritorialArea1DetailComponent extends CoreDetailComponent
+export class TerritorialArea2DetailComponent extends CoreDetailComponent
 {
     objectTranslationTranslated;
     objectTranslationGender = 'F';
@@ -19,7 +19,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: TerritorialArea1GraphQLService
+        protected graphQL: TerritorialArea2GraphQLService
     ) {
         super(injector, graphQL);
 
@@ -33,6 +33,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
             ix: null,
             id: [null, Validators.required],
             country_id: null,
+            territorial_area_1_id: [null, Validators.required],
             name: [null, Validators.required],
             slug: null
         });
@@ -64,7 +65,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
     {
         // admin country
         this.country = data.adminCountry;
-        this.objectTranslationTranslated = this.country.territorial_area_1;
+        this.objectTranslationTranslated = this.country.territorial_area_2;
     }
 
     handlerCheckingSlug(isChecking)

@@ -24,6 +24,10 @@ import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
 import { TerritorialArea1DetailComponent } from './territorial_area_1/territorial-area-1-detail.component';
+import { TerritorialArea2ListComponent } from './territorial_area_2/territorial-area-2-list.component';
+import { TerritorialArea2DetailComponent } from './territorial_area_2/territorial-area-2-detail.component';
+import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-area-3-list.component';
+import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 
 /*
         // Users
@@ -73,6 +77,16 @@ const routes: Routes = [
             { path: 'country/territorial-area-1/:country_id',           component: TerritorialArea1ListComponent },
             { path: 'country/territorial-area-1/create/:country_id',    component: TerritorialArea1DetailComponent,     data: { action: 'create' }},
             { path: 'country/territorial-area-1/show/:country_id/:id',  component: TerritorialArea1DetailComponent,     data: { action: 'edit' }},
+
+            // Territorial areas 2
+            { path: 'country/territorial-area-2/:country_id',           component: TerritorialArea2ListComponent },
+            { path: 'country/territorial-area-2/create/:country_id',    component: TerritorialArea2DetailComponent,     data: { action: 'create' }},
+            { path: 'country/territorial-area-2/show/:country_id/:id',  component: TerritorialArea2DetailComponent,     data: { action: 'edit' }},
+
+            // Territorial areas 3
+            { path: 'country/territorial-area-3/:country_id',           component: TerritorialArea3ListComponent },
+            { path: 'country/territorial-area-3/create/:country_id',    component: TerritorialArea3DetailComponent,     data: { action: 'create' }},
+            { path: 'country/territorial-area-3/show/:country_id/:id',  component: TerritorialArea3DetailComponent,     data: { action: 'edit' }},
 
             // Field groups
             { path: 'field-group',                                      component: FieldGroupListComponent },

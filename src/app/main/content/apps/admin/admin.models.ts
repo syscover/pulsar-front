@@ -31,8 +31,11 @@ export class Country
     sort: number;
     prefix: string;
     territorial_area_1: string;
+    territorial_areas_1: TerritorialArea1[];
     territorial_area_2: string;
+    territorial_areas_2: TerritorialArea2[];
     territorial_area_3: string;
+    territorial_areas_3: TerritorialArea3[];
     data_lang: string;
     data: string;
 }

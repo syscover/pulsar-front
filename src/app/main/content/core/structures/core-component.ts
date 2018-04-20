@@ -146,11 +146,11 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
                         // set dialog message
                         if (this.objectTranslationTranslated)
                         {
-                            snackBarMessage = (this.objectTranslationTranslated + ' YY ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                            snackBarMessage = (this.objectTranslationTranslated + ' ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
                         }
                         else
                         {
-                            snackBarMessage = (this.translations[this.objectTranslation] + ' VV ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
+                            snackBarMessage = (this.translations[this.objectTranslation] + ' ' + this.translations['APPS.DELETED.' + (this.objectTranslationGender ? this.objectTranslationGender : 'M')]).toLocaleLowerCase().capitalize();
                         }
 
                         this.snackBar.open(

@@ -28,6 +28,10 @@ import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
 import { TerritorialArea1DetailComponent } from './territorial_area_1/territorial-area-1-detail.component';
+import { TerritorialArea2ListComponent } from './territorial_area_2/territorial-area-2-list.component';
+import { TerritorialArea2DetailComponent } from './territorial_area_2/territorial-area-2-detail.component';
+import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-area-3-list.component';
+import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
@@ -71,7 +75,11 @@ import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial
         ResourceListComponent,
         ResourceDetailComponent,
         TerritorialArea1ListComponent,
-        TerritorialArea1DetailComponent
+        TerritorialArea1DetailComponent,
+        TerritorialArea2ListComponent,
+        TerritorialArea2DetailComponent,
+        TerritorialArea3ListComponent,
+        TerritorialArea3DetailComponent
     ],
     providers: [
         ActionGraphQLService,

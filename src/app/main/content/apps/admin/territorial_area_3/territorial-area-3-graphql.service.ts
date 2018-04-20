@@ -84,7 +84,22 @@ export class TerritorialArea3GraphQLService extends GraphQLSchema
                 sort
                 prefix
                 territorial_area_1
+                territorial_areas_1 {
+                    ix
+                    id
+                    country_id
+                    name
+                    slug
+                }
                 territorial_area_2
+                territorial_areas_2 {
+                    ix
+                    id
+                    country_id
+                    territorial_area_1_id
+                    name
+                    slug
+                }
                 territorial_area_3
                 zones
                 data_lang

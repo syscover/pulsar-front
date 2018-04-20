@@ -22,7 +22,7 @@
                     <mat-icon>arrow_back</mat-icon>
                 </button>
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">language</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ country.territorial_area_1 }}</span>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ country.territorial_area_3 }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,9 +41,9 @@
             <!-- / SEARCH -->
 
             <button mat-raised-button
-                    [routerLink]="[baseUri + '/territorial-area-1/create', country.id]"
+                    [routerLink]="[baseUri + '/territorial-area-3/create', country.id]"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ country.territorial_area_1 }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ country.territorial_area_3 }}</span>
             </button>
 
         </div>
@@ -61,21 +61,27 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_territorial_area_1.id">
+                <ng-container matColumnDef="admin_territorial_area_3.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_territorial_area_1.name">
+                <ng-container matColumnDef="admin_territorial_area_3.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_territorial_area_1.slug">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SLUG' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.slug }}</mat-cell>
+                <ng-container matColumnDef="admin_territorial_area_1.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ country.territorial_area_1 }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.territorial_area_1.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_territorial_area_2.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ country.territorial_area_2 }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.territorial_area_2.name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
@@ -86,7 +92,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/territorial-area-1/show', country.id, row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/territorial-area-3/show', country.id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
