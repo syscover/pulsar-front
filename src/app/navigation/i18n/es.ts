@@ -10,25 +10,23 @@ export const locale = {
             'ATTACHMENT_LIBRARY': 'Librería de adjuntos',
             'ATTACHMENT_MIMES': 'MIMEs de adjuntos',
             'ATTACHMENTS': 'Adjuntos',
-            'CMS': 'CMS',
             'CATEGORIES': 'Categorías',
+            'CMS': 'CMS',
             'COUNTRIES': 'Países',
+            'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Campos personalizados',
             'FAMILIES': 'Familias',
             'FIELDS': 'Campos',
             'FIELD_GROUPS': 'Grupos de campos',
+            'HOTEL': 'Hotel',
             'LANGUAGES': 'Idiomas',
             'MARKET': 'Market',
             'PACKAGES': 'Paquetes',
             'PERMISSIONS': 'Permisos',
             'PROFILES': 'Perfiles',
             'RESOURCES': 'Recursos',
-            'SECTIONS': 'Secciones',
-            
-            'SAMPLE'        : {
-                'TITLE': 'Ejemplo',
-                'BADGE': '15'
-            }
+            'REVIEW': 'Review',
+            'SECTIONS': 'Secciones'
         }
     }
 };

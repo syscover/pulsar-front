@@ -10,25 +10,23 @@ export const locale = {
             'ATTACHMENT_LIBRARY': 'Attachment library',
             'ATTACHMENT_MIMES': 'Attachment MIMEs',
             'ATTACHMENTS': 'Attachments',
-            'CMS': 'CMS',
             'CATEGORIES': 'Categories',
+            'CMS': 'CMS',
             'COUNTRIES': 'Countries',
+            'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Custom fields',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',
             'FIELD_GROUPS': 'Field groups',
+            'HOTEL': 'Hotel',
             'LANGUAGES': 'Languages',
             'MARKET': 'Market',
             'PACKAGES': 'Packages',
             'PERMISSIONS': 'Permissions',
             'PROFILES': 'Profiles',
             'RESOURCES': 'Resources',
-            'SECTIONS': 'Sections',
-            
-            'SAMPLE'        : {
-                'TITLE': 'Sample',
-                'BADGE': '25'
-            }
+            'REVIEW': 'Review',
+            'SECTIONS': 'Sections'
         }
     }
 };

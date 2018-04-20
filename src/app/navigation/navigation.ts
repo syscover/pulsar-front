@@ -6,11 +6,47 @@ export const navigation = [
         'type'      : 'group',
         'children'  : [
             {
+                'id'   : 'crm',
+                'title': 'CRM',
+                'translate': 'NAV.CRM',
+                'type' : 'collapse',
+                'icon' : 'supervisor_account',
+                'children' : [
+                ]
+            },
+            {
+                'id'   : 'booking',
+                'title': 'Booking',
+                'translate': 'NAV.BOOKING',
+                'type' : 'collapse',
+                'icon' : 'class',
+                'children' : [
+                ]
+            },
+            {
                 'id'   : 'market',
                 'title': 'Market',
                 'translate': 'NAV.MARKET',
                 'type' : 'collapse',
                 'icon' : 'store_mall_directory',
+                'children' : [
+                ]
+            },
+            {
+                'id'   : 'review',
+                'title': 'Review',
+                'translate': 'NAV.REVIEW',
+                'type' : 'collapse',
+                'icon' : 'star',
+                'children' : [
+                ]
+            },
+            {
+                'id'   : 'hotel',
+                'title': 'Hotel',
+                'translate': 'NAV.HOTEL',
+                'type' : 'collapse',
+                'icon' : 'local_hotel',
                 'children' : [
                 ]
             },
