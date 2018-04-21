@@ -19,7 +19,7 @@ export class TerritorialArea2DetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: TerritorialArea2GraphQLService
+        public graphQL: TerritorialArea2GraphQLService
     ) {
         super(injector, graphQL);
 

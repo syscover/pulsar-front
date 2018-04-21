@@ -256,7 +256,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
 
     // funtion that will be call for create object, create lang object and update object
-    postRecord(object: any, routeRedirect?: string[])
+    postRecord(object: any, routeRedirect?: any[])
     {
         // apperar spinner in button
         this.loadingButton = true;
