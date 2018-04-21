@@ -42,19 +42,43 @@ export class SlugDirective implements AfterViewInit, OnDestroy
                     // check if there ara value and theroe isn't a request in progress
                     if (event.target.value) 
                     {
-                        this.checkingSlug.emit(true);
+                        if (! this.running)
+                        {
+                            this.checkingSlug.emit(true);
+                            this.running = true;
+                            let data: any;
 
-                        const data: any = await this.slugService.checkSlug(
-                            this.model,
-                            event.target.value
-                        );
+                            data = await this.slugService.checkSlug(
+                                this.model,
+                                event.target.value
+                            );
 
-                        if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
-                        if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
+                            // check buffer
+                            while (this.buffer)
+                            {
+                                const bufferValue = this.buffer;
+                                data = await this.slugService.checkSlug(
+                                    this.model,
+                                    this.buffer
+                                );
+                                // reset buffer
+                                this.buffer = undefined;
+                            }
 
-                        this.checkingSlug.emit(false);
+                            if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
+                            if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
 
-                        return data;
+                            this.running = false;
+                            this.checkingSlug.emit(false);
+
+                            return data;
+                        }
+                        else
+                        {
+                            // add event tu buffer
+                            this.buffer = event.target.value;
+                            return from([]);
+                        }
                     }
                     else
                     {

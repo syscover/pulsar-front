@@ -109,16 +109,15 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 // check buffer
                 while (this.buffer)
                 {
-                    const bufferValue = this.buffer;
                     data = await this.getRecords(
-                        bufferValue.sort, 
-                        bufferValue.order, 
-                        bufferValue.offset,
-                        bufferValue.limit,
-                        bufferValue.searchText
+                        this.buffer.sort, 
+                        this.buffer.order, 
+                        this.buffer.offset,
+                        this.buffer.limit,
+                        this.buffer.searchText
                     );
-                    // compare buffer to reset
-                    if (JSON.stringify(bufferValue) === JSON.stringify(this.buffer)) this.buffer = undefined;
+                    // reset buffer
+                    this.buffer = undefined;
                 }
                 this.running = false;
 
