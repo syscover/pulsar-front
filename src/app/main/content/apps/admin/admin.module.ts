@@ -1,4 +1,3 @@
-import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { NgModule } from '@angular/core';
 import { FuseTranslationLoaderService } from './../../../../../@fuse/services/translation-loader.service';
 import { SharedModule } from './../../core/modules/shared.module';
@@ -34,6 +33,7 @@ import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
+import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { CronJobGraphQLService } from './cron-job/cron-job-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';

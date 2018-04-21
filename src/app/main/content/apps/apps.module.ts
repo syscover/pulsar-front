@@ -28,6 +28,11 @@ const routes = [
         loadChildren: './cms/cms.module#CmsModule',
         canLoad     : [AuthorizationService]
     },
+    {
+        path        : 'crm',
+        loadChildren: './crm/crm.module#CrmModule',
+        canLoad     : [AuthorizationService]
+    },
 ];
 
 

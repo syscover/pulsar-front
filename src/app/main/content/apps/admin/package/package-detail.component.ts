@@ -25,10 +25,10 @@ export class PackageDetailComponent extends CoreDetailComponent
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
-            name: [null, Validators.required ],
-            root: [null, Validators.required ],
+            name: [null, Validators.required],
+            root: [null, Validators.required],
             active: false,
-            sort: [null, Validators.required ]
+            sort: [null, Validators.required]
         });
     }
 }

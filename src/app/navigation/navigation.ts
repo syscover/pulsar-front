@@ -12,6 +12,14 @@ export const navigation = [
                 'type' : 'collapse',
                 'icon' : 'supervisor_account',
                 'children' : [
+                    {
+                        'id'        : 'groups',
+                        'title'     : 'Groups',
+                        'translate' : 'NAV.GROUPS',
+                        'type'      : 'item',
+                        'icon'      : 'people',
+                        'url'       : '/apps/crm/group'
+                    },
                 ]
             },
             {

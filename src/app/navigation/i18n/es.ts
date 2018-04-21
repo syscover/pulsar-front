@@ -18,6 +18,7 @@ export const locale = {
             'FAMILIES': 'Familias',
             'FIELDS': 'Campos',
             'FIELD_GROUPS': 'Grupos de campos',
+            'GROUPS': 'Groups',
             'HOTEL': 'Hotel',
             'LANGUAGES': 'Idiomas',
             'MARKET': 'Market',

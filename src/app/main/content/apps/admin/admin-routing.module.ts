@@ -43,13 +43,7 @@ import { TerritorialArea3DetailComponent } from './territorial_area_3/territoria
         // Attachment mimes
         { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
-        { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
-
-        // Wildcard route
-        // { path: '',                                                 redirectTo: 'action' },
-        // { path: '',                                                 redirectTo: 'dashboard' },
-        // { path: '**',                                               component: ErrorComponent,                      data: { error: '404' }}
-            
+        { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},            
 */
 
 const routes: Routes = [
