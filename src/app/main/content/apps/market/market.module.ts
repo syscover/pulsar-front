@@ -8,7 +8,7 @@ import { locale as spanish } from './i18n/es';
 // import { GroupListComponent } from './group/group-list.component';
 // import { GroupDetailComponent } from './group/group-detail.component';
 
-// import { GroupGraphQLService } from './group/group-graphql.service';
+import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { locale as spanish } from './i18n/es';
         // GroupDetailComponent,
     ],
     providers: [
-        // GroupGraphQLService,
+        OrderStatusGraphQLService,
     ]
 })
 
