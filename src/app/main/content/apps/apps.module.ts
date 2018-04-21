@@ -33,6 +33,16 @@ const routes = [
         loadChildren: './crm/crm.module#CrmModule',
         canLoad     : [AuthorizationService]
     },
+    {
+        path        : 'market',
+        loadChildren: './market/market.module#MarketModule',
+        canLoad     : [AuthorizationService]
+    },
+    {
+        path        : 'review',
+        loadChildren: './review/review.module#ReviewModule',
+        canLoad     : [AuthorizationService]
+    },
 ];
 
 
