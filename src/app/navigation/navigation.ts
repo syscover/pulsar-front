@@ -38,6 +38,23 @@ export const navigation = [
                 'type' : 'collapse',
                 'icon' : 'store_mall_directory',
                 'children' : [
+                    {
+                        'id'       : 'preferences',
+                        'title'    : 'Preferences',
+                        'translate': 'NAV.PREFERENCES',
+                        'type'     : 'collapse',
+                        'icon'     : 'settings',
+                        'children' : [
+                            {
+                                'id'        : 'order_statuses',
+                                'title'     : 'Order statuses',
+                                'translate' : 'NAV.ORDER_STATUSES',
+                                'type'      : 'item',
+                                'icon'      : 'cached',
+                                'url'       : '/apps/market/order-status'
+                            },
+                        ]
+                    }
                 ]
             },
             {

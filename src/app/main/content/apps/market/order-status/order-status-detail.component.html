@@ -18,7 +18,7 @@
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>public</mat-icon>
+                    <mat-icon>cached</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.COUNTRY' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.ORDER_STATUS' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -55,7 +55,7 @@
                     <span>{{ 'APPS.TRANSLATE' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
-    
+
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
@@ -88,13 +88,10 @@
                         (ngSubmit)="postRecord(object)"
                         fxLayout="column"
                         fxFlex>
-                
-                    <input type="hidden" formControlName="ix">
 
                     <div fxLayout="row wrap">
                         <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
-                            <mat-error>{{ formErrors?.id }}</mat-error>
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                         </mat-form-field>
                         <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
@@ -107,52 +104,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
-                            <mat-error>{{ formErrors?.slug }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row wrap" fxLayoutGap="25px">
-                        <mat-form-field class="col-md-4">
-                            <span matPrefix>+ &nbsp;</span>
-                            <input matInput placeholder="{{ 'APPS.PREFIX' | translate }}" formControlName="prefix" type="number">
-                            <mat-error>{{ formErrors?.prefix }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
-                            <mat-error>{{ formErrors?.sort }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
-                            <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
-                            <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
-                            <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'ADMIN.ZONES' | translate }}" formControlName="zones" multiple>
-                                <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
-                                <mat-error>{{ formErrors?.zones }}</mat-error>
-                            </mat-select>
-                        </mat-form-field>
+                        <div class="col-6 py-20">
+                            <mat-checkbox formControlName="active" labelPosition="before">{{ 'APPS.ACTIVE' | translate }}</mat-checkbox>
+                        </div>
                     </div>
 
                 </form>

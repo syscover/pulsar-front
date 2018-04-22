@@ -22,7 +22,7 @@
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">

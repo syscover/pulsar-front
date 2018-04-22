@@ -5,8 +5,8 @@ import { MarketRoutingModule } from './market-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
-// import { GroupListComponent } from './group/group-list.component';
-// import { GroupDetailComponent } from './group/group-detail.component';
+import { OrderStatusListComponent } from './order-status/order-status-list.component';
+import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 
@@ -17,8 +17,8 @@ import { OrderStatusGraphQLService } from './order-status/order-status-graphql.s
     ],
     exports: [ ],
     declarations: [
-        // GroupListComponent,
-        // GroupDetailComponent,
+        OrderStatusListComponent,
+        OrderStatusDetailComponent
     ],
     providers: [
         OrderStatusGraphQLService,

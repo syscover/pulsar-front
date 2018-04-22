@@ -2,7 +2,7 @@ export const locale = {
     lang: 'en',
     data: {
         'NARKET': {
-            // 'GROUP': 'Group',
+            'ORDER_STATUS': 'Order status',
         }
     }
 };

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
-// import { GroupListComponent } from './group/group-list.component';
-// import { GroupDetailComponent } from './group/group-detail.component';
+import { OrderStatusListComponent } from './order-status/order-status-list.component';
+import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 
 /*
         // Categories
@@ -81,10 +81,10 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Order Statuses
-            // { path: 'order-status',                                 component: OrderStatusListComponent },
-            // { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-            // { path: 'order-status/create/:lang_id/:id',             component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
-            // { path: 'order-status/show/:lang_id/:id',               component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
+            { path: 'order-status',                                 component: OrderStatusListComponent },
+            { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
+            { path: 'order-status/create/:lang_id/:id',             component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+            { path: 'order-status/show/:lang_id/:id',               component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
         ]  
     }
 ];

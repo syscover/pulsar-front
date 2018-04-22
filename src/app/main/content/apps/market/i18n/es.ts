@@ -2,7 +2,7 @@ export const locale = {
     lang: 'es',
     data: {
         'MARKET': {
-            // 'GROUP': 'Grupo',
+            'ORDER_STATUS': 'Estado de pedido',
         }
     }
 };
