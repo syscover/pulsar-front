@@ -24,6 +24,7 @@ export const locale = {
             'MARKET': 'Market',
             'ORDER_STATUSES': 'Estados de pedido',
             'PACKAGES': 'Paquetes',
+            'PAYMENT_METHODS': 'Formas de pago',
             'PERMISSIONS': 'Permisos',
             'PREFERENCES': 'Preferences',
             'PROFILES': 'Perfiles',

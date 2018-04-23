@@ -1,0 +1,11 @@
+{
+    "graphqlUri": "http://vinipad.local/graphql",
+    "apiUrl": "http://vinipad.local",
+    "froalaKey": "xgB-11A-9B-8ewsB3uuxA-9q=="
+}
+
+{
+    "graphqlUri": "https://vinipad.com/graphql",
+    "apiUrl": "https://vinipad.com",
+    "froalaKey": "gvhljtdbA6kfg=="
+}

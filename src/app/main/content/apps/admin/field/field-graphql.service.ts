@@ -22,12 +22,12 @@ export class FieldGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsField ($configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
+        query AdminGetRelationsField ($sqlFieldGroup:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query AdminGetFields ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
+        query AdminGetFields ($sql:[CoreSQLQueryInput] $sqlFieldGroup:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
             coreObjects: adminFields (sql:$sql){
                 ${this.fields}
             }
@@ -35,7 +35,7 @@ export class FieldGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query AdminGetField ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
+        query AdminGetField ($sql:[CoreSQLQueryInput] $sqlFieldGroup:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
             coreObject: adminField (sql:$sql){
                 ${this.fields}
             }
@@ -103,7 +103,7 @@ export class FieldGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            adminFieldGroups {
+            adminFieldGroups (sql:$sqlFieldGroup){
                 id
                 name
             }

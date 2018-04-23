@@ -51,6 +51,7 @@ import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
         CommonModule,
         FlexLayoutModule,
         FroalaModule,
+        MatCheckboxModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,

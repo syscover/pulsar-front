@@ -46,13 +46,21 @@ export const navigation = [
                         'icon'     : 'settings',
                         'children' : [
                             {
+                                'id'        : 'payment_methods',
+                                'title'     : 'Payment methods',
+                                'translate' : 'NAV.PAYMENT_METHODS',
+                                'type'      : 'item',
+                                'icon'      : 'credit_card',
+                                'url'       : '/apps/market/payment-method'
+                            },
+                            {
                                 'id'        : 'order_statuses',
                                 'title'     : 'Order statuses',
                                 'translate' : 'NAV.ORDER_STATUSES',
                                 'type'      : 'item',
                                 'icon'      : 'cached',
                                 'url'       : '/apps/market/order-status'
-                            },
+                            }
                         ]
                     }
                 ]

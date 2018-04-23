@@ -4,6 +4,8 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
+import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
+import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 
 /*
         // Categories
@@ -26,18 +28,6 @@ import { OrderStatusDetailComponent } from './order-status/order-status-detail.c
         { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
         { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
         { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
-
-        // Order Status
-        { path: 'order-status',                                 component: OrderStatusListComponent },
-        { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-        { path: 'order-status/create/:lang_id/:id',             component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
-        { path: 'order-status/show/:lang_id/:id',               component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
-
-        // Payment Method
-        { path: 'payment-method',                               component: PaymentMethodListComponent },
-        { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
-        { path: 'payment-method/create/:lang_id/:id',           component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
-        { path: 'payment-method/show/:lang_id/:id',             component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
         // Tax Rate Zone
         { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
@@ -85,6 +75,12 @@ const routes: Routes = [
             { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},
             { path: 'order-status/create/:lang_id/:id',             component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
             { path: 'order-status/show/:lang_id/:id',               component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
+
+            // Payment Methods
+            { path: 'payment-method',                               component: PaymentMethodListComponent },
+            { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
+            { path: 'payment-method/create/:lang_id/:id',           component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+            { path: 'payment-method/show/:lang_id/:id',             component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
         ]  
     }
 ];

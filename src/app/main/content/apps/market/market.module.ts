@@ -7,8 +7,11 @@ import { locale as spanish } from './i18n/es';
 
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
+import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
+import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
+import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 
 @NgModule({
     imports: [
@@ -18,10 +21,13 @@ import { OrderStatusGraphQLService } from './order-status/order-status-graphql.s
     exports: [ ],
     declarations: [
         OrderStatusListComponent,
-        OrderStatusDetailComponent
+        OrderStatusDetailComponent,
+        PaymentMethodListComponent,
+        PaymentMethodDetailComponent
     ],
     providers: [
         OrderStatusGraphQLService,
+        PaymentMethodGraphQLService
     ]
 })
 

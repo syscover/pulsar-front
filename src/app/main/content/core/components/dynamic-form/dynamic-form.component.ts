@@ -60,7 +60,14 @@ import * as _ from 'lodash';
                                         [class]="field.component_class ? field.component_class : 'col-12'"
                                         placeholder="{{ field | getFieldLabel:lang }}"
                                         [heightMin]="200"></dh2-froala>
-                            <mat-error>{{ formErrors?.article }}</mat-error>
+                            <mat-error>{{ errors['customFields.' + field.name] }}</mat-error>
+                        </div>
+
+                        <div fxLayout="row" *ngSwitchCase="'checkbox'">
+                            <div [class]="field.component_class ? field.component_class + ' py-20' : 'col-12 col-md-2 py-20'">
+                                <mat-checkbox [formControlName]="field.name">{{ field | getFieldLabel:lang }}</mat-checkbox>
+                                <mat-error>{{ errors['customFields.' + field.name] }}</mat-error>
+                            </div>
                         </div>
 
                         <div *ngSwitchDefault>Error field {{ field.field_type_id }} nor implemented</div>

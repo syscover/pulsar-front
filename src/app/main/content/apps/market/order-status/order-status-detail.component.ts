@@ -16,7 +16,7 @@ export class OrderStatusDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        public graphQL: OrderStatusGraphQLService
+        protected graphQL: OrderStatusGraphQLService
     ) {
         super(injector, graphQL);
     }

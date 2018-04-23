@@ -11,7 +11,7 @@ export const locale = {
             'WELCOME_INTRODUCTION_05': '<span class="excerpt">Nunca olvides que...</span><br><br>Si no sueltas el pasado, ¿con qué mano agarras el futuro?.',
             'WELCOME_INTRODUCTION_06': '<span class="excerpt">Nunca olvides que...</span><br><br>Nuestra mayor gloria no está en no caer nunca, sino en levantarnos cada vez que caemos.',
             'WELCOME_INTRODUCTION_07': '<span class="excerpt">Nunca olvides que...</span><br><br>Cuando estás inspirado por algún gran propósito, por algún extraordinario proyecto, los pensamientos rompen las barreras; la mente trasciende sus limitaciones, la conciencia se expande en todas direcciones y te encuentras en un nuevo mundo maravilloso. Las fuerzas, las facultades y los talentos dormidos cobran vida. En ese momento te das cuenta de que eres mucho más grande de lo que jamás hubieras soñado.',
-            'WELCOME_INTRODUCTION_08': '<span class="excerpt">Nunca olvides que...</span<br><br>Todo el mundo trata de realizar algo grande, sin darse cuenta de que la vida se compone de cosas pequeñas.',
+            'WELCOME_INTRODUCTION_08': '<span class="excerpt">Nunca olvides que...</span><br><br>Todo el mundo trata de realizar algo grande, sin darse cuenta de que la vida se compone de cosas pequeñas.',
         }
     }
 };

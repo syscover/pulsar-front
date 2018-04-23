@@ -98,13 +98,26 @@ export class FieldDetailComponent extends CoreDetailComponent
 
     argumentsRelationsObject(): Object 
     {
-        return {
-            configFieldTypes: {
-                key: 'pulsar-admin.field_types'
-            },
-            configDataTypes: {
-                key: 'pulsar-admin.data_types'
+        const configFieldTypes = {
+            key: 'pulsar-admin.field_types'
+        };
+
+        const configDataTypes = {
+            key: 'pulsar-admin.data_types'
+        };
+
+        const sqlFieldGroup = [
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_field_group.name'
             }
+        ];
+
+        return {
+            configFieldTypes,
+            configDataTypes,
+            sqlFieldGroup
         };
     }
 
