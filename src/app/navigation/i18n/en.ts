@@ -15,6 +15,7 @@ export const locale = {
             'COUNTRIES': 'Countries',
             'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Custom fields',
+            'CUSTOMER_CLASS_TAXES': 'Customer class taxes',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',
             'FIELD_GROUPS': 'Field groups',
@@ -27,10 +28,12 @@ export const locale = {
             'PAYMENT_METHODS': 'Payment methods',
             'PERMISSIONS': 'Permissions',
             'PREFERENCES': 'Preferences',
+            'PRODUCT_CLASS_TAXES': 'Product class taxes',
             'PROFILES': 'Profiles',
             'RESOURCES': 'Resources',
             'REVIEW': 'Review',
-            'SECTIONS': 'Sections'
+            'SECTIONS': 'Sections',
+            'TAXES': 'Taxes',
         }
     }
 };

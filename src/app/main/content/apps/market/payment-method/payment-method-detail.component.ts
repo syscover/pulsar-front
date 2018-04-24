@@ -12,8 +12,8 @@ import { OrderStatus } from './../market.models';
 })
 export class PaymentMethodDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'MARKET.ORDER_STAUS';
-    objectTranslationGender = 'M';
+    objectTranslation = 'MARKET.PAYMENT_METHOD';
+    objectTranslationGender = 'F';
     orderStatuses: OrderStatus[] = [];
 
     constructor(

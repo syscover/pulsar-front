@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
+import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
+import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
+import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
+import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+
+
 
 /*
         // Categories
@@ -18,16 +24,6 @@ import { PaymentMethodDetailComponent } from './payment-method/payment-method-d
         { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
         { path: 'group-customer-class-tax/create',              component: GroupCustomerClassTaxDetailComponent,        data: { action: 'create' }},
         { path: 'group-customer-class-tax/show/:grId/:txId',    component: GroupCustomerClassTaxDetailComponent,        data: { action: 'edit' }},
-
-        // Product Class Tax
-        { path: 'product-class-tax',                            component: ProductClassTaxListComponent },
-        { path: 'product-class-tax/create',                     component: ProductClassTaxDetailComponent,              data: { action: 'create' }},
-        { path: 'product-class-tax/show/:id',                   component: ProductClassTaxDetailComponent,              data: { action: 'edit' }},
-
-        // Customer Class Tax
-        { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
-        { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
-        { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
 
         // Tax Rate Zone
         { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
@@ -81,6 +77,16 @@ const routes: Routes = [
             { path: 'payment-method/create',                        component: PaymentMethodDetailComponent,                data: { action: 'create' }},
             { path: 'payment-method/create/:lang_id/:id',           component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
             { path: 'payment-method/show/:lang_id/:id',             component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
+
+            // Customer Class Taxes
+            { path: 'customer-class-tax',                           component: CustomerClassTaxListComponent },
+            { path: 'customer-class-tax/create',                    component: CustomerClassTaxDetailComponent,             data: { action: 'create' }},
+            { path: 'customer-class-tax/show/:id',                  component: CustomerClassTaxDetailComponent,             data: { action: 'edit' }},
+
+            // Product Class Taxes
+            { path: 'product-class-tax',                            component: ProductClassTaxListComponent },
+            { path: 'product-class-tax/create',                     component: ProductClassTaxDetailComponent,              data: { action: 'create' }},
+            { path: 'product-class-tax/show/:id',                   component: ProductClassTaxDetailComponent,              data: { action: 'edit' }},
         ]  
     }
 ];

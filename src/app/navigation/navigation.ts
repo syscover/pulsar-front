@@ -39,6 +39,31 @@ export const navigation = [
                 'icon' : 'store_mall_directory',
                 'children' : [
                     {
+                        'id'       : 'taxes',
+                        'title'    : 'Taxes',
+                        'translate': 'NAV.TAXES',
+                        'type'     : 'collapse',
+                        'icon'     : 'account_balance',
+                        'children' : [
+                            {
+                                'id'        : 'customer_class_taxes',
+                                'title'     : 'Customer class taxes',
+                                'translate' : 'NAV.CUSTOMER_CLASS_TAXES',
+                                'type'      : 'item',
+                                'icon'      : 'assignment_ind',
+                                'url'       : '/apps/market/customer-class-tax'
+                            },
+                            {
+                                'id'        : 'product_class_taxes',
+                                'title'     : 'Product class taxes',
+                                'translate' : 'NAV.PRODUCT_CLASS_TAXES',
+                                'type'      : 'item',
+                                'icon'      : 'view_agenda',
+                                'url'       : '/apps/market/product-class-tax'
+                            },
+                        ]
+                    },
+                    {
                         'id'       : 'preferences',
                         'title'    : 'Preferences',
                         'translate': 'NAV.PREFERENCES',

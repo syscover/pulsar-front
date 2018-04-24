@@ -12,7 +12,7 @@ import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 export class PaymentMethodListComponent extends CoreListComponent
 {
     objectTranslation = 'MARKET.PAYMENT_METHOD';
-    objectTranslationGender = 'M';
+    objectTranslationGender = 'F';
     columnsSearch: string[] = ['market_payment_method.id', 'market_payment_method.name'];
     displayedColumns = ['market_payment_method.id', 'market_payment_method.name', 'market_payment_method.active', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];

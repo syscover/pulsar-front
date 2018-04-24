@@ -11,7 +11,7 @@ import { OrderStatusGraphQLService } from './order-status-graphql.service';
 })
 export class OrderStatusDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'MARKET.ORDER_STAUS';
+    objectTranslation = 'MARKET.ORDER_STATUS';
     objectTranslationGender = 'M';
 
     constructor(
