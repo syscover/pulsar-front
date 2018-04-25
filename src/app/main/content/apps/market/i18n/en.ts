@@ -2,7 +2,9 @@ export const locale = {
     lang: 'en',
     data: {
         'NARKET': {
+            'CATEGORY': 'Category',
             'CUSTOMER_CLASS_TAX': 'Customer class tax',
+            'DESCRIPTION' : 'Description',
             'INSTRUCTIONS': 'Instrucctions',
             'MAXIMUN_PRICE': 'Maximum price',
             'MINIMUM_PRICE': 'Minimum price',

@@ -2,7 +2,9 @@ export const locale = {
     lang: 'es',
     data: {
         'MARKET': {
+            'CATEGORY': 'Categoría',
             'CUSTOMER_CLASS_TAX': 'Impuesto al cliente',
+            'DESCRIPTION' : 'Descripción',
             'INSTRUCTIONS': 'Instrucciones',
             'MAXIMUN_PRICE': 'Precio máximo',
             'MINIMUM_PRICE': 'Precio mínimo',

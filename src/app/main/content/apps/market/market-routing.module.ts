@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -14,12 +16,6 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
 
 
 /*
-        // Categories
-        { path: 'category',                                     component: CategoryListComponent },
-        { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
-        { path: 'category/create/:lang_id/:id',                 component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
-        { path: 'category/show/:lang_id/:id',                   component: CategoryDetailComponent,                     data: { action: 'edit' }},
-
         // Group Customer Class Tax
         { path: 'group-customer-class-tax',                     component: GroupCustomerClassTaxListComponent },
         { path: 'group-customer-class-tax/create',              component: GroupCustomerClassTaxDetailComponent,        data: { action: 'create' }},
@@ -66,6 +62,12 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthorizationService],
         children: [
+            // Categories
+            { path: 'category',                                     component: CategoryListComponent },
+            { path: 'category/create',                              component: CategoryDetailComponent,                     data: { action: 'create' }},
+            { path: 'category/create/:lang_id/:id',                 component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+            { path: 'category/show/:lang_id/:id',                   component: CategoryDetailComponent,                     data: { action: 'edit' }},
+
             // Order Statuses
             { path: 'order-status',                                 component: OrderStatusListComponent },
             { path: 'order-status/create',                          component: OrderStatusDetailComponent,                  data: { action: 'create' }},

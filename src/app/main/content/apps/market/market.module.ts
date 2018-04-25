@@ -5,6 +5,8 @@ import { MarketRoutingModule } from './market-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { CategoryListComponent } from './category/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
 import { CustomerClassTaxDetailComponent } from './customer-class-tax/customer-class-tax-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
@@ -14,6 +16,7 @@ import { PaymentMethodDetailComponent } from './payment-method/payment-method-de
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 
+import { CategoryGraphQLService } from './category/category-graphql.service';
 import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
@@ -26,6 +29,8 @@ import { ProductClassTaxGraphQLService } from './product-class-tax/product-class
     ],
     exports: [ ],
     declarations: [
+        CategoryListComponent,
+        CategoryDetailComponent,
         CustomerClassTaxListComponent,
         CustomerClassTaxDetailComponent,
         OrderStatusListComponent,
@@ -36,6 +41,7 @@ import { ProductClassTaxGraphQLService } from './product-class-tax/product-class
         ProductClassTaxDetailComponent
     ],
     providers: [
+        CategoryGraphQLService,
         CustomerClassTaxGraphQLService,
         OrderStatusGraphQLService,
         PaymentMethodGraphQLService,

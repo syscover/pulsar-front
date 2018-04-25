@@ -39,6 +39,23 @@ export const navigation = [
                 'icon' : 'store_mall_directory',
                 'children' : [
                     {
+                        'id'       : 'catalog',
+                        'title'    : 'Catalog',
+                        'translate': 'NAV.CATALOG',
+                        'type'     : 'collapse',
+                        'icon'     : 'layers',
+                        'children' : [
+                            {
+                                'id'        : 'categories',
+                                'title'     : 'Categories',
+                                'translate' : 'NAV.CATEGORIES',
+                                'type'      : 'item',
+                                'icon'      : 'chrome_reader_mode',
+                                'url'       : '/apps/market/category'
+                            }
+                        ]
+                    },
+                    {
                         'id'       : 'taxes',
                         'title'    : 'Taxes',
                         'translate': 'NAV.TAXES',
