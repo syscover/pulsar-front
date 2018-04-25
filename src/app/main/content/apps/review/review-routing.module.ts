@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
-// import { GroupListComponent } from './group/group-list.component';
-// import { GroupDetailComponent } from './group/group-detail.component';
+import { PollListComponent } from './poll/poll-list.component';
+import { PollDetailComponent } from './poll/poll-detail.component';
 
 /*
         // Questions
@@ -38,9 +38,9 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Polls
-            // { path: 'poll',                                         component: PollListComponent },
-            // { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
-            // { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
+            { path: 'poll',                                         component: PollListComponent },
+            { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
+            { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
         ]  
     }
 ];

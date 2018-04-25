@@ -1,0 +1,148 @@
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>assignment</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.F' | translate }} {{ 'REVIEW.POLL' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='create'">
+                <span>{{ 'APPS.ADD' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='edit'">
+                <span>{{ 'APPS.SAVE' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+                
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'REVIEW.EMAIL_TEMPLATE' | translate }}" formControlName="email_template">
+                            <mat-hint align="start">{{ 'REVIEW.EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
+                            <mat-error>{{ formErrors?.email_template }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'REVIEW.POLL_ROUTE' | translate }}" formControlName="poll_route">
+                            <mat-hint align="start">{{ 'REVIEW.POLL_ROUTE_DESCRIPTION' | translate }}</mat-hint>
+                            <mat-error>{{ formErrors?.poll_route }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <div class="col-12 pt-20">
+                            <mat-checkbox formControlName="send_notification">{{ 'REVIEW.SEND_NOTIFICATION' | translate }}</mat-checkbox>
+                            <div class="material-hint">{{ 'REVIEW.SEND_NOTIFICATION_DESCRIPTION' | translate }}</div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row">
+                        <div class="col-12 py-20">
+                            <mat-checkbox formControlName="validate">{{ 'REVIEW.VALIDATE_MODERATOR' | translate }}</mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'REVIEW.DEFAULT_HIGH_SCORE' | translate }}" formControlName="default_high_score" type="number" min="0">
+                            <mat-error>{{ formErrors?.default_high_score }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'REVIEW.MAILING_DAYS' | translate }}" formControlName="mailing_days" type="number" min="0">
+                            <mat-hint align="start">{{ 'REVIEW.MAILING_DAYS_DESCRIPTION' | translate }}</mat-hint>
+                            <mat-error>{{ formErrors?.mailing_days }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-12 offset-md-1 col-md-4">
+                            <input matInput placeholder="{{ 'REVIEW.EXPIRATION_DAYS' | translate }}" formControlName="expiration_days" type="number" min="0">
+                            <mat-hint align="start">{{ 'REVIEW.EXPIRATION_DAYS_DESCRIPTION' | translate }}</mat-hint>
+                            <mat-error>{{ formErrors?.expiration_days }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        
+                    </div>
+                    
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

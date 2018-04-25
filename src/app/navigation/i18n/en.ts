@@ -27,6 +27,7 @@ export const locale = {
             'PACKAGES': 'Packages',
             'PAYMENT_METHODS': 'Payment methods',
             'PERMISSIONS': 'Permissions',
+            'POLLS': 'Polls',
             'PREFERENCES': 'Preferences',
             'PRODUCT_CLASS_TAXES': 'Product class taxes',
             'PROFILES': 'Profiles',

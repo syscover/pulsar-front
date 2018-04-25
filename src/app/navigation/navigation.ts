@@ -97,6 +97,14 @@ export const navigation = [
                 'type' : 'collapse',
                 'icon' : 'star',
                 'children' : [
+                    {
+                        'id'        : 'polls',
+                        'title'     : 'Polls',
+                        'translate' : 'NAV.POLLS',
+                        'type'      : 'item',
+                        'icon'      : 'assignment',
+                        'url'       : '/apps/review/poll'
+                    }
                 ]
             },
             {

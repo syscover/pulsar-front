@@ -5,10 +5,10 @@ import { ReviewRoutingModule } from './review-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
-// import { GroupListComponent } from './group/group-list.component';
-// import { GroupDetailComponent } from './group/group-detail.component';
+import { PollListComponent } from './poll/poll-list.component';
+import { PollDetailComponent } from './poll/poll-detail.component';
 
-// import { GroupGraphQLService } from './group/group-graphql.service';
+import { PollGraphQLService } from './poll/poll-graphql.service';
 
 @NgModule({
     imports: [
@@ -17,11 +17,11 @@ import { locale as spanish } from './i18n/es';
     ],
     exports: [ ],
     declarations: [
-        // GroupListComponent,
-        // GroupDetailComponent,
+        PollListComponent,
+        PollDetailComponent
     ],
     providers: [
-        // GroupGraphQLService,
+        PollGraphQLService
     ]
 })
 
