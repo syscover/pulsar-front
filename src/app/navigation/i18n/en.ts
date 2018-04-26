@@ -34,6 +34,7 @@ export const locale = {
             'PROFILES': 'Profiles',
             'RESOURCES': 'Resources',
             'REVIEW': 'Review',
+            'REVIEWS': 'Reviews',
             'SECTIONS': 'Sections',
             'TAXES': 'Taxes',
         }

@@ -4,6 +4,8 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
+import { ReviewListComponent } from './review/review-list.component';
+import { ReviewDetailComponent } from './review/review-detail.component';
 
 /*
         // Questions
@@ -11,11 +13,6 @@ import { PollDetailComponent } from './poll/poll-detail.component';
         { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
         { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
         { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},
-
-        // Reviews
-        { path: 'review',                                       component: ReviewListComponent },
-        { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
-        { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
         // Comments
         { path: 'comment',                                       component: CommentListComponent },
@@ -37,6 +34,11 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthorizationService],
         children: [
+            // Reviews
+            { path: 'review',                                       component: ReviewListComponent },
+            { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
+            { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+
             // Polls
             { path: 'poll',                                         component: PollListComponent },
             { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},

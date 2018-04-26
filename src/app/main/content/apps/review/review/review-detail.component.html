@@ -1,0 +1,176 @@
+<div  class="page-layout carded fullwidth tabable" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>offline_pin</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
+                        {{ object.object_name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'REVIEW.REVIEW' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div fxLayoutGap="30px">
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.pristine || loadingButton"
+                        *ngIf="dataRoute.action ==='create'">
+                    <span>{{ 'APPS.ADD' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
+    
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || fg.pristine || loadingButton"
+                        *ngIf="dataRoute.action ==='edit'">
+                    <span>{{ 'APPS.SAVE' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
+
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            <div class="content">
+                
+                <form   id="formDetail"
+                        class="col-12"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="{{ 'NAV.REVIEW' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_NAME' | translate }}" formControlName="object_name" required>
+                                        <mat-error>{{ formErrors?.object_name }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-5">
+                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_EMAIL' | translate }}" formControlName="object_email" required>
+                                        <mat-error>{{ formErrors?.object_email }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_NAME' | translate }}" formControlName="customer_name" required>
+                                        <mat-error>{{ formErrors?.customer_name }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-5">
+                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_EMAIL' | translate }}" formControlName="customer_email" required>
+                                        <mat-error>{{ formErrors?.customer_email }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'REVIEW.AVERAGE' | translate }}" formControlName="average" [dh2NumberPipe]="'1.2-2'" required>
+                                        <mat-error>{{ formErrors?.average }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-6 py-20">
+                                        <mat-checkbox formControlName="completed">{{ 'APPS.COMPLETED.F' | translate }}</mat-checkbox>
+                                        <div class="material-hint">{{ 'REVIEW.COMPLETED_DESCRIPTION' | translate }}</div>
+                                    </div>
+                                    <div class="col-6 py-20">
+                                        <mat-checkbox formControlName="validated">{{ 'REVIEW.VALIDATED' | translate }}</mat-checkbox>
+                                        <div class="material-hint">{{ 'REVIEW.VALIDATED_DESCRIPTION' | translate }}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="{{ 'REVIEW.QUESTIONS' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                
+                                <ng-container formArrayName="responses">
+                                    <div fxLayout="row" class="mb-12" *ngFor="let question of questions; let i=index" [formGroupName]="i">
+                                        <input type="hidden" formControlName="id">
+                                        <input type="hidden" formControlName="question_id">
+
+                                        <ng-container [ngSwitch]="question.type_id">
+
+                                            <ng-container *ngSwitchCase="1">
+                                                <mat-form-field class="col-12 col-md-6">
+                                                    <mat-select placeholder="{{ question.name }}" formControlName="score">
+                                                        <mat-option *ngFor="let number of question.high_score | numbersArray" [value]="number">{{ number }}</mat-option>
+                                                    </mat-select>
+                                                    <mat-hint align="start">{{ question.description }}</mat-hint>
+                                                </mat-form-field>
+                                            </ng-container>
+
+                                            <ng-container *ngSwitchCase="2">
+                                                <mat-form-field class="col-12">
+                                                    <textarea   matInput 
+                                                                placeholder="{{ question.name }}" 
+                                                                matTextareaAutosize 
+                                                                matAutosizeMinRows="2" 
+                                                                formControlName="text"></textarea>
+                                                    <mat-hint align="start">{{ question.description }}</mat-hint>
+                                                </mat-form-field>
+                                            </ng-container>
+
+                                        </ng-container>
+                                    </div>    
+                                </ng-container>
+
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

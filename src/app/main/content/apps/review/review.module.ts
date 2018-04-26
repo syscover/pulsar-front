@@ -7,8 +7,11 @@ import { locale as spanish } from './i18n/es';
 
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
+import { ReviewListComponent } from './review/review-list.component';
+import { ReviewDetailComponent } from './review/review-detail.component';
 
 import { PollGraphQLService } from './poll/poll-graphql.service';
+import { ReviewGraphQLService } from './review/review-graphql.service';
 
 @NgModule({
     imports: [
@@ -18,10 +21,13 @@ import { PollGraphQLService } from './poll/poll-graphql.service';
     exports: [ ],
     declarations: [
         PollListComponent,
-        PollDetailComponent
+        PollDetailComponent,
+        ReviewListComponent,
+        ReviewDetailComponent
     ],
     providers: [
-        PollGraphQLService
+        PollGraphQLService,
+        ReviewGraphQLService
     ]
 })
 

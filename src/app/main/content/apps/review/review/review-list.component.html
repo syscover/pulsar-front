@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">assignment</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.POLLS' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">offline_pin</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.REVIEWS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'REVIEW.POLL' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'NAV.REVIEW' | translate }}</span>
             </button>
 
         </div>
@@ -58,31 +58,27 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_poll.id">
+                <ng-container matColumnDef="review_review.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="review_poll.name">
+                <ng-container matColumnDef="review_review.object_name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.object_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_poll.send_notification">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'REVIEW.SEND_NOTIFICATION' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
-                        <mat-icon *ngIf="row.send_notification">done</mat-icon>
-                    </mat-cell>
+                <ng-container matColumnDef="review_review.object_email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.object_email }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_poll.validate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'REVIEW.VALIDATE_MODERATOR' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
-                        <mat-icon *ngIf="row.validate">done</mat-icon>
-                    </mat-cell>
+                <ng-container matColumnDef="review_review.average">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">{{ 'REVIEW.AVERAGE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="align-center">{{ row.average | number:'1.2-2' }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

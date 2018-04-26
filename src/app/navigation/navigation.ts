@@ -115,6 +115,14 @@ export const navigation = [
                 'icon' : 'star',
                 'children' : [
                     {
+                        'id'        : 'reviews',
+                        'title'     : 'Reviews',
+                        'translate' : 'NAV.REVIEWS',
+                        'type'      : 'item',
+                        'icon'      : 'offline_pin',
+                        'url'       : '/apps/review/review'
+                    },
+                    {
                         'id'        : 'polls',
                         'title'     : 'Polls',
                         'translate' : 'NAV.POLLS',
