@@ -23,7 +23,7 @@ export const locale = {
             'POLL': 'Poll',
             'POLL_ROUTE': 'Poll route',
             'POLL_ROUTE_DESCRIPTION': 'Route to generate the url to access the poll from the email sent to the customer',
-            'QUESTIONS': 'Questions',
+            'QUESTION': 'Question',
             'RESPONSES': 'Responses',
             'REVIEW': 'Review',
             'SEND_NOTIFICATION': 'Send notifications',

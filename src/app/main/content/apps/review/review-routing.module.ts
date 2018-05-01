@@ -5,15 +5,13 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { PreferenceDetailComponent } from './preference/preference-detail.component';
+import { QuestionListComponent } from './question/question-list.component';
+import { QuestionDetailComponent } from './question/question-detail.component';
 import { ReviewListComponent } from './review/review-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 
 /*
-        // Questions
-        { path: 'question',                                     component: QuestionListComponent },
-        { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
-        { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
-        { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},
+        
 
         // Comments
         { path: 'comment',                                       component: CommentListComponent },
@@ -43,6 +41,12 @@ const routes: Routes = [
             { path: 'poll',                                         component: PollListComponent },
             { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
             { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
+
+            // Questions
+            { path: 'question',                                     component: QuestionListComponent },
+            { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
+            { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
+            { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},
 
             // Preferences
             { path: 'preference',                                   component: PreferenceDetailComponent,                   data: { action: 'edit' }}

@@ -32,6 +32,7 @@ export const locale = {
             'PREFERENCES': 'Preferences',
             'PRODUCT_CLASS_TAXES': 'Product class taxes',
             'PROFILES': 'Profiles',
+            'QUESTIONS': 'Questions',
             'RESOURCES': 'Resources',
             'REVIEW': 'Review',
             'REVIEWS': 'Reviews',

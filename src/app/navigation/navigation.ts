@@ -131,6 +131,14 @@ export const navigation = [
                         'url'       : '/apps/review/poll'
                     },
                     {
+                        'id'        : 'questions',
+                        'title'     : 'Questions',
+                        'translate' : 'NAV.QUESTIONS',
+                        'type'      : 'item',
+                        'icon'      : 'help',
+                        'url'       : '/apps/review/question'
+                    },
+                    {
                         'id'        : 'preferences',
                         'title'     : 'Preferences',
                         'translate' : 'NAV.PREFERENCES',
@@ -314,20 +322,6 @@ export const navigation = [
                         ]
                     }
                 ]
-            },
-            {
-                'id'   : 'sample',
-                'title': 'Sample',
-                'translate': 'NAV.SAMPLE.TITLE',
-                'type' : 'item',
-                'icon' : 'email',
-                'url'  : '/apps/sample/sample',
-                'badge': {
-                    'title': 25,
-                    'translate': 'NAV.SAMPLE.BADGE',
-                    'bg'   : '#F44336',
-                    'fg'   : '#FFFFFF'
-                }
             }
         ]
     }

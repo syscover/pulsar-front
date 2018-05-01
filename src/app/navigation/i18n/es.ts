@@ -32,6 +32,7 @@ export const locale = {
             'PREFERENCES': 'Ajustes',
             'PRODUCT_CLASS_TAXES': 'Impuestos al producto',
             'PROFILES': 'Perfiles',
+            'QUESTIONS': 'Preguntas',
             'RESOURCES': 'Recursos',
             'REVIEW': 'Review',
             'REVIEWS': 'Reviews',
