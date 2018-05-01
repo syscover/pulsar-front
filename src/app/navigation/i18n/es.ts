@@ -29,7 +29,7 @@ export const locale = {
             'PAYMENT_METHODS': 'Formas de pago',
             'PERMISSIONS': 'Permisos',
             'POLLS': 'Encuestas',
-            'PREFERENCES': 'Preferences',
+            'PREFERENCES': 'Ajustes',
             'PRODUCT_CLASS_TAXES': 'Impuestos al producto',
             'PROFILES': 'Perfiles',
             'RESOURCES': 'Recursos',

@@ -129,6 +129,14 @@ export const navigation = [
                         'type'      : 'item',
                         'icon'      : 'assignment',
                         'url'       : '/apps/review/poll'
+                    },
+                    {
+                        'id'        : 'preferences',
+                        'title'     : 'Preferences',
+                        'translate' : 'NAV.PREFERENCES',
+                        'type'      : 'item',
+                        'icon'      : 'settings',
+                        'url'       : '/apps/review/preference'
                     }
                 ]
             },

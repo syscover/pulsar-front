@@ -4,6 +4,7 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
+import { PreferenceDetailComponent } from './preference/preference-detail.component';
 import { ReviewListComponent } from './review/review-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 
@@ -24,8 +25,7 @@ import { ReviewDetailComponent } from './review/review-detail.component';
         { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},
         { path: 'object-average/show/:id',                      component: ObjectAverageDetailComponent,                data: { action: 'edit' }},
 
-        // Preferences
-        { path: 'preferences',                                  component: PreferenceDetailComponent,                   data: { action: 'edit' }},
+        
             
 */
 
@@ -43,6 +43,9 @@ const routes: Routes = [
             { path: 'poll',                                         component: PollListComponent },
             { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
             { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
+
+            // Preferences
+            { path: 'preference',                                   component: PreferenceDetailComponent,                   data: { action: 'edit' }}
         ]  
     }
 ];

@@ -128,6 +128,25 @@
                         </mat-tab>
                         <mat-tab label="{{ 'REVIEW.QUESTIONS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'REVIEW.ACTIONS' | translate }}" formControlName="action_id" required>
+                                            <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
+                                            <mat-option value="1">{{ 'REVIEW.ACTION_1' | translate }}</mat-option>
+                                            <mat-option value="2">{{ 'REVIEW.ACTION_2' | translate }}</mat-option>
+                                            <mat-option value="3">{{ 'REVIEW.ACTION_3' | translate }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.action_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">playlist_add_check</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'REVIEW.RESPONSES' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
                                 
                                 <ng-container formArrayName="responses">
                                     <div fxLayout="row" class="mb-12" *ngFor="let question of questions; let i=index" [formGroupName]="i">

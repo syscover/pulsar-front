@@ -406,26 +406,26 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsPostRecord(args: Object, object: any): Object { return args; }
+    getCustomArgumentsPostRecord(args: any, object: any): Object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsCreatePostRecord(args: Object, params: Params): Object { return args; }
+    getCustomArgumentsCreatePostRecord(args: any, params: Params): Object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsCreateLangPostRecord(args: Object, params: Params): Object { return args; }
+    getCustomArgumentsCreateLangPostRecord(args: any, params: Params): Object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsEditPostRecord(args: Object, params: Params): Object { return args; }
+    getCustomArgumentsEditPostRecord(args: any, params: Params): Object { return args; }
 }
