@@ -47,6 +47,7 @@ export const locale = {
             'SECTIONS': 'Sections',
             'SETTINGS': 'Settings',
             'SETTING': 'Setting',
+            'SHOW': 'Show',
             'SLUG': 'Slug',
             'SORT': 'Sort',
             'STATUS': 'Status',

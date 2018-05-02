@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
+import { ObjectAverageListComponent } from './object-average/object-average-list.component';
+import { ObjectAverageDetailComponent } from './object-average/object-average-detail.component';
 import { PollListComponent } from './poll/poll-list.component';
 import { PollDetailComponent } from './poll/poll-detail.component';
 import { PreferenceDetailComponent } from './preference/preference-detail.component';
@@ -16,14 +18,7 @@ import { ReviewDetailComponent } from './review/review-detail.component';
         // Comments
         { path: 'comment',                                       component: CommentListComponent },
         { path: 'comment/create',                                component: CommentDetailComponent,                       data: { action: 'create' }},
-        { path: 'comment/show/:id',                              component: CommentDetailComponent,                       data: { action: 'edit' }},
-
-        // Averages
-        { path: 'object-average',                               component: ObjectAverageListComponent },
-        { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},
-        { path: 'object-average/show/:id',                      component: ObjectAverageDetailComponent,                data: { action: 'edit' }},
-
-        
+        { path: 'comment/show/:id',                              component: CommentDetailComponent,                       data: { action: 'edit' }},  
             
 */
 
@@ -36,6 +31,11 @@ const routes: Routes = [
             { path: 'review',                                       component: ReviewListComponent },
             { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
             { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+
+            // Averages
+            { path: 'object-average',                               component: ObjectAverageListComponent },
+            // { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},
+            { path: 'object-average/show/:id',                      component: ObjectAverageDetailComponent,                data: { action: 'edit' }},
 
             // Polls
             { path: 'poll',                                         component: PollListComponent },

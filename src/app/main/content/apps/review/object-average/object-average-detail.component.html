@@ -1,0 +1,110 @@
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>assignment</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.object_name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.F' | translate }} {{ 'REVIEW.AVERAGE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+                
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ 'REVIEW.POLL' | translate }}" formControlName="poll_id" (change)="handleChangePoll($event)" required>
+                                <mat-option *ngFor="let poll of polls" [value]="poll.id">{{ poll.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.poll_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="object_name" required>
+                            <mat-error>{{ formErrors?.object_name }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- HEADER -->
+                    <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                        <mat-icon class="m-0 mr-16">trending_up</mat-icon>
+                        <div class="h2 secondary-text">{{ 'REVIEW.AVERAGES' | translate }}</div>
+                    </div>
+                    <!-- / HEADER -->
+                
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'NAV.REVIEWS' | translate }}" formControlName="reviews" type="number">
+                            <mat-hint align="start">{{ 'REVIEW.REVIEWS_DESCRIPTION' | translate }}</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-12 offset-md-1 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.TOTAL' | translate }}" formControlName="total" type="number">
+                            <mat-hint align="start">{{ 'REVIEW.TOTAL_DESCRIPTION' | translate }}</mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4 pt-20">
+                            <input matInput placeholder="{{ 'REVIEW.AVERAGE' | translate }}" formControlName="average" type="number">
+                            <mat-hint align="start">{{ 'REVIEW.AVERAGE_DESCRIPTION' | translate }}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

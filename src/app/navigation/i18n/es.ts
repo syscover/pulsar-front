@@ -10,6 +10,7 @@ export const locale = {
             'ATTACHMENT_LIBRARY': 'Librería de adjuntos',
             'ATTACHMENT_MIMES': 'MIMEs de adjuntos',
             'ATTACHMENTS': 'Adjuntos',
+            'AVERAGES': 'Medias',
             'CATALOG': 'Catalog',
             'CATEGORIES': 'Categorías',
             'CMS': 'CMS',
