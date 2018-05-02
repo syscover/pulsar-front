@@ -123,6 +123,14 @@ export const navigation = [
                         'url'       : '/apps/review/review'
                     },
                     {
+                        'id'        : 'comments',
+                        'title'     : 'Comments',
+                        'translate' : 'NAV.COMMENTS',
+                        'type'      : 'item',
+                        'icon'      : 'question_answer',
+                        'url'       : '/apps/review/comment'
+                    },
+                    {
                         'id'        : 'object_averages',
                         'title'     : 'Object averages',
                         'translate' : 'NAV.AVERAGES',

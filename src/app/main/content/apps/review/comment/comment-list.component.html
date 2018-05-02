@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">offline_pin</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.REVIEWS' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">question_answer</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.COMMENTS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -37,11 +37,7 @@
             </div>
             <!-- / SEARCH -->
 
-            <!-- <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
-                    class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'NAV.REVIEW' | translate }}</span>
-            </button> -->
+            <div></div>
 
         </div>
         <!-- / HEADER -->
@@ -58,32 +54,26 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_review.id">
+                <ng-container matColumnDef="review_comment.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="review_review.object_name">
+                <ng-container matColumnDef="review_comment.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.object_name }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_review.object_email">
+                <ng-container matColumnDef="review_comment.email">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.object_email }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="review_review.average">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">{{ 'REVIEW.AVERAGE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="align-center">{{ row.average | number:'1.2-2' }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="review_review.validated">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'REVIEW.VALIDATED.F' | translate }}</mat-header-cell>
+                <ng-container matColumnDef="review_comment.validated">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'REVIEW.VALIDATED.M' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
                         <mat-icon *ngIf="row.validated">done</mat-icon>
                     </mat-cell>

@@ -2,25 +2,26 @@ import { Component, Injector } from '@angular/core';
 import { Validators, FormArray } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ReviewGraphQLService } from './review-graphql.service';
+import { CommentGraphQLService } from './comment-graphql.service';
 import * as _ from 'lodash';
-import { Question } from './../review.models';
+import { Question, Response } from './../review.models';
 import './../../../core/functions/map-order.function';
 
 @Component({
-    selector: 'dh2-review-detail',
-    templateUrl: 'review-detail.component.html',
+    selector: 'dh2-comment-detail',
+    templateUrl: 'comment-detail.component.html',
+    styleUrls  : ['./comment-detail.component.scss'],
     animations: fuseAnimations
 })
-export class ReviewDetailComponent extends CoreDetailComponent
+export class CommentDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'REVIEW.REVIEW';
+    objectTranslation = 'REVIEW.COMMENT';
     objectTranslationGender = 'F';
     questions: Question[] = [];
-
+    
     constructor(
         protected injector: Injector,
-        protected graphQL: ReviewGraphQLService
+        protected graphQL: CommentGraphQLService
     ) {
         super(injector, graphQL);
     }
@@ -29,14 +30,14 @@ export class ReviewDetailComponent extends CoreDetailComponent
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
-            object_name: [{value: null, disabled: true}],
-            object_email: [{value: null, disabled: true}],
-            customer_name: [{value: null, disabled: true}],
-            customer_email: [{value: null, disabled: true}],
-            average: [{value: null, disabled: true}],
-            completed: [{value: null, disabled: true}],
+            review_id: [{value: null, disabled: true}],
+            date: [{value: null, disabled: false}],
+            // owner_id: [{value: null, disabled: true}],
+            name: [{value: null, disabled: true}],
+            email: [{value: null, disabled: true}],
+            text: [null, Validators.required],
             validated: [{value: null, disabled: true}],
-            action_id: [null, Validators.required],
+            action_id: null,
             responses: this.fb.array([])
         });
     }
@@ -44,7 +45,7 @@ export class ReviewDetailComponent extends CoreDetailComponent
     beforePatchValueEdit() 
     {
         // filter questions by baseLang
-        this.questions = _.sortBy(_.filter(this.object.poll.questions, obj => {
+        this.questions = _.sortBy(_.filter(this.object.review.poll.questions, obj => {
             return obj.lang_id === this.baseLang;
         }), ['sort']);
 
@@ -52,16 +53,16 @@ export class ReviewDetailComponent extends CoreDetailComponent
         this.object = Object.assign({}, this.object);
         
         // assing new responses sort according to the order of the questions
-        this.object.responses = this.object.responses.mapOrder('question_id', _.map(this.questions, 'id'));
+        this.object.responses = this.object.review.responses.mapOrder('question_id', _.map(this.questions, 'id'));
 
         // init responses formArray estructure
         for (const obj of this.questions)
         {
             this.responses.push(this.fb.group({
-                id: null,
-                question_id: null,
-                score: null,
-                text: null
+                id: {value: null, disabled: true},
+                question_id: {value: null, disabled: true},
+                score: {value: null, disabled: true},
+                text: {value: null, disabled: true}
             }));
         }
     }
@@ -69,16 +70,6 @@ export class ReviewDetailComponent extends CoreDetailComponent
     get responses(): FormArray
     {
         return this.fg.get('responses') as FormArray;
-    }
-
-    getCustomArgumentsEditPostRecord(args, object) 
-    {
-        args['action_id'] = args['object']['action_id'];
-
-        // delete action_id from object to ajust to review class
-        delete args['object']['action_id'];
-
-        return args;
     }
 }
 

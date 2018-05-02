@@ -14,6 +14,7 @@ export const locale = {
             'CATALOG': 'Catalog',
             'CATEGORIES': 'Categorías',
             'CMS': 'CMS',
+            'COMMENTS': 'Comentarios',
             'COUNTRIES': 'Países',
             'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Campos personalizados',

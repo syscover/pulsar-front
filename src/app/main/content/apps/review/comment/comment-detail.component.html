@@ -18,12 +18,12 @@
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>offline_pin</mat-icon>
+                    <mat-icon>question_answer</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
-                        {{ object.object_name }}
+                        {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'REVIEW.REVIEW' | translate }}
@@ -36,6 +36,7 @@
             <!-- / APP TITLE -->
 
             <div fxLayoutGap="30px">
+
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
@@ -75,80 +76,100 @@
 
                     <mat-tab-group>
 
-                        <mat-tab label="{{ 'NAV.REVIEW' | translate | uppercase }}">
+                        <mat-tab label="{{ 'REVIEW.COMMENT' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
-                                </div>
 
-                                <div fxLayout="row wrap">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_NAME' | translate }}" formControlName="object_name" required>
-                                        <mat-error>{{ formErrors?.object_name }}</mat-error>
-                                    </mat-form-field>
-                                    <mat-form-field class="col-12 offset-md-1 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_EMAIL' | translate }}" formControlName="object_email" required>
-                                        <mat-error>{{ formErrors?.object_email }}</mat-error>
+                                    <mat-form-field class="col-12 offset-md-3 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" formControlName="date" type="datetime-local">
+                                        <mat-error>{{ formErrors?.date }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_NAME' | translate }}" formControlName="customer_name" required>
-                                        <mat-error>{{ formErrors?.customer_name }}</mat-error>
+                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                     <mat-form-field class="col-12 offset-md-1 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_EMAIL' | translate }}" formControlName="customer_email" required>
-                                        <mat-error>{{ formErrors?.customer_email }}</mat-error>
+                                        <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="email" required>
+                                        <mat-error>{{ formErrors?.email }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.AVERAGE' | translate }}" formControlName="average" [dh2NumberPipe]="'1.2-2'" required>
-                                        <mat-error>{{ formErrors?.average }}</mat-error>
+                                    <mat-form-field class="col-12">
+                                        <textarea   matInput 
+                                                    placeholder="{{ 'REVIEW.COMMENT' | translate }}" 
+                                                    matTextareaAutosize 
+                                                    matAutosizeMinRows="2" 
+                                                    formControlName="text"></textarea>
+                                        <mat-error>{{ formErrors?.text }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <div class="col-6 py-20">
-                                        <mat-checkbox formControlName="completed">{{ 'APPS.COMPLETED.F' | translate }}</mat-checkbox>
-                                        <div class="material-hint">{{ 'REVIEW.COMPLETED_DESCRIPTION' | translate }}</div>
+                                        <mat-checkbox formControlName="validated">{{ 'REVIEW.VALIDATED.M' | translate }}</mat-checkbox>
                                     </div>
-                                    <div class="col-6 py-20">
-                                        <mat-checkbox formControlName="validated">{{ 'REVIEW.VALIDATED.F' | translate }}</mat-checkbox>
-                                        <div class="material-hint">{{ 'REVIEW.VALIDATED_DESCRIPTION' | translate }}</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </mat-tab>
-                        <mat-tab label="{{ 'NAV.QUESTIONS' | translate | uppercase }}">
-                            <div class="tab-content p-24" fusePerfectScrollbar>
-
-                                <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'REVIEW.ACTIONS' | translate }}" formControlName="action_id" required>
-                                            <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
-                                            <mat-option value="1">{{ 'REVIEW.ACTION_REVIEW_1' | translate }}</mat-option>
-                                            <mat-option value="2">{{ 'REVIEW.ACTION_REVIEW_2' | translate }}</mat-option>
-                                            <mat-option value="3">{{ 'REVIEW.ACTION_REVIEW_3' | translate }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.action_id }}</mat-error>
-                                    </mat-form-field>
                                 </div>
 
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                                    <mat-icon class="m-0 mr-16">playlist_add_check</mat-icon>
-                                    <div class="h2 secondary-text">{{ 'REVIEW.RESPONSES' | translate }}</div>
+                                    <mat-icon class="m-0 mr-16">flash_on</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'NAV.ACTIONS' | translate }}</div>
                                 </div>
                                 <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'REVIEW.ACTIONS' | translate }}" formControlName="action_id">
+                                            <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
+                                            <mat-option value="1">{{ 'REVIEW.ACTION_COMMENT_1' | translate }}</mat-option>
+                                            <mat-option value="2">{{ 'REVIEW.ACTION_COMMENT_2' | translate }}</mat-option>
+                                            <mat-option value="3">{{ 'REVIEW.ACTION_COMMENT_3' | translate }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.action_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+    
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="{{ 'REVIEW.CONVERSATION' | translate | uppercase }}">
+                            
+                            <!-- CHAT CONTENT -->
+                            <div id="chat-content" fxFlex fusePerfectScrollbar>
+
+                                <!-- CHAT MESSAGES -->
+                                <div class="chat-messages" *ngIf="object.review">
+
+                                    <!-- MESSAGE -->
+                                    <div fxLayout="row" *ngFor="let comment of object.review.comments" class="message-row" [ngClass]="{'user': comment.owner_id === 2}">
+
+                                        <div class="bubble">
+                                            <div class="message">{{ comment.text }}</div>
+                                            <div class="time secondary-text">{{ comment.date | date:'medium' }}</div>
+                                        </div>
+
+                                    </div>
+                                    <!-- / MESSAGE -->
+
+                                </div>
+                                <!-- CHAT MESSAGES -->
+
+                            </div>
+                            <!-- / CHAT CONTENT -->
+
+                        </mat-tab>
+                        <mat-tab label="{{ 'NAV.QUESTIONS' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
                                 
                                 <ng-container formArrayName="responses">
+
                                     <div fxLayout="row" class="mb-12" *ngFor="let question of questions; let i=index" [formGroupName]="i">
                                         <input type="hidden" formControlName="id">
                                         <input type="hidden" formControlName="question_id">
@@ -169,14 +190,15 @@
                                                     <textarea   matInput 
                                                                 placeholder="{{ question.name }}" 
                                                                 matTextareaAutosize 
-                                                                matAutosizeMinRows="2" 
+                                                                matAutosizeMinRows="2"
                                                                 formControlName="text"></textarea>
                                                     <mat-hint align="start">{{ question.description }}</mat-hint>
                                                 </mat-form-field>
                                             </ng-container>
 
                                         </ng-container>
-                                    </div>    
+                                    </div>
+
                                 </ng-container>
 
                             </div>

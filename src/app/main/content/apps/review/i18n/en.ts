@@ -2,13 +2,18 @@ export const locale = {
     lang: 'en',
     data: {
         'REVIEW': {
-            'ACTION_1': 'Update, validate and add score',
-            'ACTION_2': 'Update, invalidate and subtract score',
-            'ACTION_3': 'Only update review',
+            'ACTION_COMMENT_1': 'Update, validate comment and send email',
+            'ACTION_COMMENT_2': 'Update and validate comment',
+            'ACTION_COMMENT_3': 'Update but invalidate comment',
+            'ACTION_REVIEW_1': 'Update, validate and add score',
+            'ACTION_REVIEW_2': 'Update, invalidate and subtract score',
+            'ACTION_REVIEW_3': 'Only update review',
             'ACTIONS': 'Actions',
             'AVERAGE': 'Average',
             'AVERAGE_DESCRIPTION': 'Average between the total of reviews and points obtained',
             'AVERAGES': 'Averages',
+            'COMMENT': 'Comment',
+            'CONVERSATION': 'Conversation',
             'CUSTOMER_EMAIL': 'Customer email',
             'CUSTOMER_NAME': 'Customer name',
             'COMPLETED_DESCRIPTION': 'Review completed by the client',
@@ -38,7 +43,8 @@ export const locale = {
             'VALIDATE_COMMENTS_DESCRIPTION': 'Validate comments between the owner of the object and the client',
             'VALIDATE_MODERATOR': 'Validate review',
             'VALIDATE_MODERATOR_DESCRIPTION': 'Validate review by moderator',
-            'VALIDATED': 'Validated',
+            'VALIDATED.F': 'Validated',
+            'VALIDATED.M': 'Validated',
             'VALIDATED_DESCRIPTION': 'Validated by a moderator',
         }
     }
