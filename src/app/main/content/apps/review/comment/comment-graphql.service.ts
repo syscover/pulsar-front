@@ -13,11 +13,6 @@ export class CommentGraphQLService extends GraphQLSchema
             }
         }`;
 
-    /* queryRelationsObject = gql`
-        query ReviewGetRelationsComment {
-            ${this.relationsFields}
-        }`; */
-
     queryObjects = gql`
         query ReviewGetComments ($sql:[CoreSQLQueryInput]) {
             coreObjects: reviewComments (sql:$sql) {
@@ -105,13 +100,6 @@ export class CommentGraphQLService extends GraphQLSchema
                 validated
             }
         `;
-
-        /* this.relationsFields = `
-            reviewReview {
-                id
-                object_name
-            }
-        `; */
 
         super.init();
     }

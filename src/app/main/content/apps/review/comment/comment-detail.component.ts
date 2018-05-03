@@ -37,7 +37,7 @@ export class CommentDetailComponent extends CoreDetailComponent
             email: [{value: null, disabled: true}],
             text: [null, Validators.required],
             validated: [{value: null, disabled: true}],
-            action_id: null,
+            action_id: [null, Validators.required],
             responses: this.fb.array([])
         });
     }
@@ -70,6 +70,19 @@ export class CommentDetailComponent extends CoreDetailComponent
     get responses(): FormArray
     {
         return this.fg.get('responses') as FormArray;
+    }
+
+    getCustomArgumentsEditPostRecord(args, object) 
+    {
+        args['action_id'] = args['object']['action_id'];
+
+        // delete action_id from object to ajust to comment class
+        delete args['object']['action_id'];
+
+        // delete responses from object to ajust to comment class
+        delete args['object']['responses'];
+
+        return args;
     }
 }
 
