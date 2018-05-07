@@ -40,6 +40,7 @@ export const locale = {
             'REVIEWS': 'Reviews',
             'SECTIONS': 'Sections',
             'TAXES': 'Taxes',
+            'WAREHOUSES': 'Warehouses'
         }
     }
 };

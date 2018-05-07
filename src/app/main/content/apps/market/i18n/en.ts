@@ -12,6 +12,7 @@ export const locale = {
             'ORDER_STATUS_SUCCESSSFUL': 'Order status successful',
             'PAYMENT_METHOD': 'Payment method',
             'PRODUCT_CLASS_TAX': 'Product class tax',
+            'WAREHOUSE': 'Warehouse'
         }
     }
 };

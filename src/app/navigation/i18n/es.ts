@@ -40,6 +40,7 @@ export const locale = {
             'REVIEWS': 'Reviews',
             'SECTIONS': 'Secciones',
             'TAXES': 'Impuestos',
+            'WAREHOUSES': 'Almacenes'
         }
     }
 };

@@ -52,6 +52,14 @@ export const navigation = [
                                 'type'      : 'item',
                                 'icon'      : 'chrome_reader_mode',
                                 'url'       : '/apps/market/category'
+                            },
+                            {
+                                'id'        : 'warehouses',
+                                'title'     : 'Warehouses',
+                                'translate' : 'NAV.WAREHOUSES',
+                                'type'      : 'item',
+                                'icon'      : 'business',
+                                'url'       : '/apps/market/warehouse'
                             }
                         ]
                     },

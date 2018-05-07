@@ -59,7 +59,7 @@ export class PollGraphQLService extends GraphQLSchema
             ... on ReviewPoll {
                 id
                 name
-                email_template
+                review_email_template
                 poll_route
                 send_notification
                 validate

@@ -82,80 +82,80 @@
         <div class="content-card mat-white-bg p-24">
 
             <!-- CONTENT -->
-            <div class="content">
-                <form   id="formDetail"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
-                
-                    <input type="hidden" formControlName="ix">
+            <div class="content" fusePerfectScrollbar>
+                <div fxFlex fxLayout="column">
+                    <form   id="formDetail"
+                            [formGroup]="fg"
+                            (ngSubmit)="postRecord(object)">
+                    
+                        <input type="hidden" formControlName="ix">
 
-                    <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
-                            <mat-error>{{ formErrors?.id }}</mat-error>
-                        </mat-form-field>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
-                    </div>
+                        <div fxLayout="row wrap">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                                <mat-error>{{ formErrors?.id }}</mat-error>
+                            </mat-form-field>
+                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
-                            <mat-error>{{ formErrors?.slug }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                <mat-error>{{ formErrors?.slug }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row wrap" fxLayoutGap="25px">
-                        <mat-form-field class="col-md-4">
-                            <span matPrefix>+ &nbsp;</span>
-                            <input matInput placeholder="{{ 'APPS.PREFIX' | translate }}" formControlName="prefix" type="number">
-                            <mat-error>{{ formErrors?.prefix }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
-                            <mat-error>{{ formErrors?.sort }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row wrap" fxLayoutGap="25px">
+                            <mat-form-field class="col-md-4">
+                                <span matPrefix>+ &nbsp;</span>
+                                <input matInput placeholder="{{ 'APPS.PREFIX' | translate }}" formControlName="prefix" type="number">
+                                <mat-error>{{ formErrors?.prefix }}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-4">
+                                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                                <mat-error>{{ formErrors?.sort }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
-                            <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}" formControlName="territorial_area_1">
+                                <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
-                            <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}" formControlName="territorial_area_2">
+                                <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
-                            <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}" formControlName="territorial_area_3">
+                                <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'ADMIN.ZONES' | translate }}" formControlName="zones" multiple>
-                                <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
-                                <mat-error>{{ formErrors?.zones }}</mat-error>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-6">
+                                <mat-select placeholder="{{ 'ADMIN.ZONES' | translate }}" formControlName="zones" multiple>
+                                    <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
+                                    <mat-error>{{ formErrors?.zones }}</mat-error>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
             <!-- / CONTENT -->
 

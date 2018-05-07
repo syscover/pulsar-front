@@ -15,12 +15,15 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+import { WarehouseListComponent } from './warehouse/warehouse-list.component';
+import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
 import { CategoryGraphQLService } from './category/category-graphql.service';
 import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
+import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
 
 @NgModule({
     imports: [
@@ -38,14 +41,17 @@ import { ProductClassTaxGraphQLService } from './product-class-tax/product-class
         PaymentMethodListComponent,
         PaymentMethodDetailComponent,
         ProductClassTaxListComponent,
-        ProductClassTaxDetailComponent
+        ProductClassTaxDetailComponent,
+        WarehouseListComponent,
+        WarehouseDetailComponent
     ],
     providers: [
         CategoryGraphQLService,
         CustomerClassTaxGraphQLService,
         OrderStatusGraphQLService,
         PaymentMethodGraphQLService,
-        ProductClassTaxGraphQLService
+        ProductClassTaxGraphQLService,
+        WarehouseGraphQLService
     ]
 })
 

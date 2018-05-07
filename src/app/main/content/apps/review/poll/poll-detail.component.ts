@@ -26,13 +26,15 @@ export class PollDetailComponent extends CoreDetailComponent
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             name: [null, Validators.required],
-            email_template: null,
-            poll_route: null,
             send_notification: false,
             validate: false,
             default_high_score: null,
             mailing_days: null,
-            expiration_days: null
+            expiration_days: null,
+            review_email_template: null,
+            poll_route: null,
+            comment_email_template: null,
+            comment_email_subject: null
         });
     }
 }

@@ -61,78 +61,100 @@
         <div class="content-card mat-white-bg p-24">
 
             <!-- CONTENT -->
-            <div class="content">
-                <form   id="formDetail"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
-                
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'REVIEW.EMAIL_TEMPLATE' | translate }}" formControlName="email_template">
-                            <mat-hint align="start">{{ 'REVIEW.EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
-                            <mat-error>{{ formErrors?.email_template }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'REVIEW.POLL_ROUTE' | translate }}" formControlName="poll_route">
-                            <mat-hint align="start">{{ 'REVIEW.POLL_ROUTE_DESCRIPTION' | translate }}</mat-hint>
-                            <mat-error>{{ formErrors?.poll_route }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <div class="col-12 pt-20">
-                            <mat-checkbox formControlName="send_notification">{{ 'REVIEW.SEND_NOTIFICATION' | translate }}</mat-checkbox>
-                            <div class="material-hint">{{ 'REVIEW.SEND_NOTIFICATION_DESCRIPTION' | translate }}</div>
-                        </div>
-                    </div>
-
-                    <div fxLayout="row">
-                        <div class="col-12 py-20">
-                            <mat-checkbox formControlName="validate">{{ 'REVIEW.VALIDATE_MODERATOR' | translate }}</mat-checkbox>
-                            <div class="material-hint">{{ 'REVIEW.VALIDATE_MODERATOR_DESCRIPTION' | translate }}</div>
-                        </div>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'REVIEW.DEFAULT_HIGH_SCORE' | translate }}" formControlName="default_high_score" type="number" min="0">
-                            <mat-error>{{ formErrors?.default_high_score }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'REVIEW.MAILING_DAYS' | translate }}" formControlName="mailing_days" type="number" min="0">
-                            <mat-hint align="start">{{ 'REVIEW.MAILING_DAYS_DESCRIPTION' | translate }}</mat-hint>
-                            <mat-error>{{ formErrors?.mailing_days }}</mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field class="col-12 offset-md-1 col-md-4">
-                            <input matInput placeholder="{{ 'REVIEW.EXPIRATION_DAYS' | translate }}" formControlName="expiration_days" type="number" min="0">
-                            <mat-hint align="start">{{ 'REVIEW.EXPIRATION_DAYS_DESCRIPTION' | translate }}</mat-hint>
-                            <mat-error>{{ formErrors?.expiration_days }}</mat-error>
-                        </mat-form-field>
-                    </div>
+            <div class="content" fusePerfectScrollbar>
+                <div fxFlex fxLayout="column">
+                    <form   id="formDetail"
+                            [formGroup]="fg"
+                            (ngSubmit)="postRecord(object)">
                     
-                </form>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div class="col-12">
+                                <mat-checkbox formControlName="send_notification">{{ 'REVIEW.SEND_NOTIFICATION' | translate }}</mat-checkbox>
+                                <div class="material-hint">{{ 'REVIEW.SEND_NOTIFICATION_DESCRIPTION' | translate }}</div>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div class="col-12 py-24">
+                                <mat-checkbox formControlName="validate">{{ 'REVIEW.VALIDATE_MODERATOR' | translate }}</mat-checkbox>
+                                <div class="material-hint">{{ 'REVIEW.VALIDATE_MODERATOR_DESCRIPTION' | translate }}</div>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'REVIEW.DEFAULT_HIGH_SCORE' | translate }}" formControlName="default_high_score" type="number" min="0">
+                                <mat-error>{{ formErrors?.default_high_score }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'REVIEW.MAILING_DAYS' | translate }}" formControlName="mailing_days" type="number" min="0">
+                                <mat-hint align="start">{{ 'REVIEW.MAILING_DAYS_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.mailing_days }}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-12 offset-md-1 col-md-4">
+                                <input matInput placeholder="{{ 'REVIEW.EXPIRATION_DAYS' | translate }}" formControlName="expiration_days" type="number" min="0">
+                                <mat-hint align="start">{{ 'REVIEW.EXPIRATION_DAYS_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.expiration_days }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="header-section mt-48 mb-12">
+                            <mat-icon class="m-0 mr-16">aspect_ratio</mat-icon>
+                            <div class="h2 secondary-text">{{ 'REVIEW.TEMPLATES' | translate }}</div>
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'REVIEW.REVIEW_EMAIL_TEMPLATE' | translate }}" formControlName="review_email_template">
+                                <mat-hint align="start">{{ 'REVIEW.REVIEW_EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.review_email_template }}</mat-error>
+                            </mat-form-field>
+                        </div>
+    
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'REVIEW.POLL_ROUTE' | translate }}" formControlName="poll_route">
+                                <mat-hint align="start">{{ 'REVIEW.POLL_ROUTE_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.poll_route }}</mat-error>
+                            </mat-form-field>
+                        </div>
+    
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'REVIEW.COMMENT_EMAIL_TEMPLATE' | translate }}" formControlName="comment_email_template">
+                                <mat-error>{{ formErrors?.comment_email_template }}</mat-error>
+                            </mat-form-field>
+                        </div>
+    
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'REVIEW.COMMENT_EMAIL_SUBJECT' | translate }}" formControlName="comment_email_subject">
+                                <mat-hint align="start">{{ 'REVIEW.COMMENT_EMAIL_SUBJECT_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.comment_email_subject }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </form>
+                </div>
             </div>
             <!-- / CONTENT -->
 

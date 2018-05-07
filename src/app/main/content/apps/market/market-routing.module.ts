@@ -12,8 +12,8 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
-
-
+import { WarehouseListComponent } from './warehouse/warehouse-list.component';
+import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
 /*
         // Group Customer Class Tax
@@ -44,11 +44,6 @@ import { ProductClassTaxDetailComponent } from './product-class-tax/product-clas
         { path: 'cart-price-rule/show/:lang_id/:id',            component: CartPriceRuleDetailComponent,                data: { action: 'edit' }},
 
         // Catalog rule
-
-        // Warehouses
-        { path: 'warehouse',                                    component: WarehouseListComponent },
-        { path: 'warehouse/create',                             component: WarehouseDetailComponent,                    data: { action: 'create' }},
-        { path: 'warehouse/show/:id',                           component: WarehouseDetailComponent,                    data: { action: 'edit' }},
 
         // Orders
         { path: 'order',                                        component: OrderListComponent },
@@ -89,6 +84,11 @@ const routes: Routes = [
             { path: 'product-class-tax',                            component: ProductClassTaxListComponent },
             { path: 'product-class-tax/create',                     component: ProductClassTaxDetailComponent,              data: { action: 'create' }},
             { path: 'product-class-tax/show/:id',                   component: ProductClassTaxDetailComponent,              data: { action: 'edit' }},
+
+            // Warehouses
+            { path: 'warehouse',                                    component: WarehouseListComponent },
+            { path: 'warehouse/create',                             component: WarehouseDetailComponent,                    data: { action: 'create' }},
+            { path: 'warehouse/show/:id',                           component: WarehouseDetailComponent,                    data: { action: 'edit' }},
         ]  
     }
 ];
