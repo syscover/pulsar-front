@@ -16,6 +16,7 @@ export class ProductClassTaxListComponent extends CoreListComponent
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['market_product_class_tax.id', 'market_product_class_tax.name'];
     displayedColumns = ['market_product_class_tax.id', 'market_product_class_tax.name', 'actions'];
+    baseUri = '/apps/market/taxes/product-class-tax';
 
     constructor(
         protected injector: Injector,

@@ -5,6 +5,8 @@ export const locale = {
             'CATEGORY': 'Category',
             'CUSTOMER_CLASS_TAX': 'Customer class tax',
             'DESCRIPTION' : 'Description',
+            'GROUP': 'Group',
+            'GROUP_CUSTOMER_CLASS_TAX': 'Group customer',
             'INSTRUCTIONS': 'Instrucctions',
             'MAXIMUN_PRICE': 'Maximum price',
             'MINIMUM_PRICE': 'Minimum price',

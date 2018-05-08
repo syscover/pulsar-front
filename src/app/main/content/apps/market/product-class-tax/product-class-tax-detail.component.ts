@@ -13,6 +13,7 @@ export class ProductClassTaxDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'MARKET.PRODUCT_CLASS_TAX';
     objectTranslationGender = 'M';
+    baseUri = '/apps/market/taxes/product-class-tax';
 
     constructor(
         protected injector: Injector,

@@ -46,6 +46,14 @@ export const navigation = [
                         'icon'     : 'layers',
                         'children' : [
                             {
+                                'id'        : 'products',
+                                'title'     : 'Products',
+                                'translate' : 'NAV.PRODUCTS',
+                                'type'      : 'item',
+                                'icon'      : 'devices_other',
+                                'url'       : '/apps/market/product'
+                            },
+                            {
                                 'id'        : 'categories',
                                 'title'     : 'Categories',
                                 'translate' : 'NAV.CATEGORIES',
@@ -76,7 +84,15 @@ export const navigation = [
                                 'translate' : 'NAV.CUSTOMER_CLASS_TAXES',
                                 'type'      : 'item',
                                 'icon'      : 'assignment_ind',
-                                'url'       : '/apps/market/customer-class-tax'
+                                'url'       : '/apps/market/taxes/customer-class-tax'
+                            },
+                            {
+                                'id'        : 'groups_customer_class_tax',
+                                'title'     : 'Groups customer class tax',
+                                'translate' : 'NAV.GROUPS_CUSTOMERS_CLASS_TAX',
+                                'type'      : 'item',
+                                'icon'      : 'blur_circular',
+                                'url'       : '/apps/market/taxes/group-customer-class-tax'
                             },
                             {
                                 'id'        : 'product_class_taxes',
@@ -84,7 +100,7 @@ export const navigation = [
                                 'translate' : 'NAV.PRODUCT_CLASS_TAXES',
                                 'type'      : 'item',
                                 'icon'      : 'view_agenda',
-                                'url'       : '/apps/market/product-class-tax'
+                                'url'       : '/apps/market/taxes/product-class-tax'
                             },
                         ]
                     },
