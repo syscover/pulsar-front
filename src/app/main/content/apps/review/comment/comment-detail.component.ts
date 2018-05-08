@@ -35,7 +35,7 @@ export class CommentDetailComponent extends CoreDetailComponent
             // owner_id: [{value: null, disabled: true}],
             name: [{value: null, disabled: true}],
             email: [{value: null, disabled: true}],
-            text: [null, Validators.required],
+            comment: [null, Validators.required],
             validated: [{value: null, disabled: true}],
             action_id: [null, Validators.required],
             responses: this.fb.array([])

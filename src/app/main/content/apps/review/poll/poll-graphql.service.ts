@@ -59,13 +59,15 @@ export class PollGraphQLService extends GraphQLSchema
             ... on ReviewPoll {
                 id
                 name
-                review_email_template
-                poll_route
                 send_notification
                 validate
                 default_high_score
                 mailing_days
                 expiration_days
+                review_email_template
+                review_route
+                comment_email_template
+                comment_route
             }
         `;
 

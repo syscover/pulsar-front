@@ -107,8 +107,8 @@
                                                     placeholder="{{ 'REVIEW.COMMENT' | translate }}" 
                                                     matTextareaAutosize 
                                                     matAutosizeMinRows="2" 
-                                                    formControlName="text"></textarea>
-                                        <mat-error>{{ formErrors?.text }}</mat-error>
+                                                    formControlName="comment"></textarea>
+                                        <mat-error>{{ formErrors?.comment }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -151,7 +151,7 @@
                                     <div fxLayout="row" *ngFor="let comment of object.review.comments" class="message-row" [ngClass]="{'user': comment.owner_id === 2}">
 
                                         <div class="bubble">
-                                            <div class="message">{{ comment.text }}</div>
+                                            <div class="message">{{ comment.comment }}</div>
                                             <div class="time secondary-text">{{ comment.date | date:'medium' }}</div>
                                         </div>
 

@@ -89,14 +89,14 @@ export class CommentGraphQLService extends GraphQLSchema
                         owner_id
                         name
                         email
-                        text
+                        comment
                     }
                 }
                 date
                 owner_id
                 name
                 email
-                text
+                comment
                 validated
             }
         `;

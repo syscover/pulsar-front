@@ -32,9 +32,9 @@ export class PollDetailComponent extends CoreDetailComponent
             mailing_days: null,
             expiration_days: null,
             review_email_template: null,
-            poll_route: null,
+            review_route: null,
             comment_email_template: null,
-            comment_email_subject: null
+            comment_route: null
         });
     }
 }
