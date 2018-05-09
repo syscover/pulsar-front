@@ -90,7 +90,7 @@ export class ReviewGraphQLService extends GraphQLSchema
                 customer_email
                 customer_verified
                 email_subject
-                poll_url
+                review_url
                 validated
                 completed
                 average

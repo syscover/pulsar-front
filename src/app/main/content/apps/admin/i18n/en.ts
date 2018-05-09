@@ -5,7 +5,6 @@ export const locale = {
             'ACTION': 'Action',
             'ATTACHMENT_FAMILY': 'Attachmen family',
             'COMPONENT_CLASS': 'Component class',
-            'COUNTRY': 'Country',
             'DATA_TYPE': 'Data type',
             'EDIT_ID': 'Edit Id',
             'FEATURED': 'Featured',

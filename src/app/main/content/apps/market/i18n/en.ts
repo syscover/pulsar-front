@@ -14,6 +14,8 @@ export const locale = {
             'ORDER_STATUS_SUCCESSSFUL': 'Order status successful',
             'PAYMENT_METHOD': 'Payment method',
             'PRODUCT_CLASS_TAX': 'Product class tax',
+            'TAX_RATE': 'Tax rate',
+            'TAX_RATE_ZONE': 'Tax rate zone',
             'WAREHOUSE': 'Warehouse'
         }
     }

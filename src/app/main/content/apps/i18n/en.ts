@@ -9,6 +9,7 @@ export const locale = {
             'CLEAR': 'Clear',
             'COMPLETED.F': 'Completed',
             'COMPLETED.M': 'Completed',
+            'COUNTRY': 'Country',
             'DATE': 'DATE',
             'DELETE': 'Delete',
             'DELETE_TRANSLATION': 'Delete translation',
@@ -57,6 +58,7 @@ export const locale = {
             'USER': 'User',
             'VALUES': 'Values',
             'WIDTH': 'Width',
+            'ZIP': 'ZIP',
         },
         'CONFIRM': {
             'TITLE' : 'Confirm',

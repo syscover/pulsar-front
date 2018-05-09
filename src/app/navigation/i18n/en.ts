@@ -41,6 +41,7 @@ export const locale = {
             'REVIEW': 'Review',
             'REVIEWS': 'Reviews',
             'SECTIONS': 'Sections',
+            'TAX_RATE_ZONES': 'Tax rate zones',
             'TAXES': 'Taxes',
             'WAREHOUSES': 'Warehouses'
         }

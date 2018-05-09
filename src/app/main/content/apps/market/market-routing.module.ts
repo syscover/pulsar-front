@@ -14,15 +14,12 @@ import { PaymentMethodListComponent } from './payment-method/payment-method-list
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
+import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
+import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
 /*
-        // Tax Rate Zone
-        { path: 'tax-rate-zone',                                component: TaxRateZoneListComponent },
-        { path: 'tax-rate-zone/create',                         component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
-        { path: 'tax-rate-zone/show/:id',                       component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
-
         // Tax Rule
         { path: 'tax-rule',                                     component: TaxRuleListComponent },
         { path: 'tax-rule/create',                              component: TaxRuleDetailComponent,                      data: { action: 'create' }},
@@ -55,22 +52,22 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Categories
-            { path: 'category',                                         component: CategoryListComponent },
-            { path: 'category/create',                                  component: CategoryDetailComponent,                     data: { action: 'create' }},
-            { path: 'category/create/:lang_id/:id',                     component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
-            { path: 'category/show/:lang_id/:id',                       component: CategoryDetailComponent,                     data: { action: 'edit' }},
+            { path: 'category',                                                 component: CategoryListComponent },
+            { path: 'category/create',                                          component: CategoryDetailComponent,                     data: { action: 'create' }},
+            { path: 'category/create/:lang_id/:id',                             component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
+            { path: 'category/show/:lang_id/:id',                               component: CategoryDetailComponent,                     data: { action: 'edit' }},
 
             // Order Statuses
-            { path: 'order-status',                                     component: OrderStatusListComponent },
-            { path: 'order-status/create',                              component: OrderStatusDetailComponent,                  data: { action: 'create' }},
-            { path: 'order-status/create/:lang_id/:id',                 component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
-            { path: 'order-status/show/:lang_id/:id',                   component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
+            { path: 'order-status',                                             component: OrderStatusListComponent },
+            { path: 'order-status/create',                                      component: OrderStatusDetailComponent,                  data: { action: 'create' }},
+            { path: 'order-status/create/:lang_id/:id',                         component: OrderStatusDetailComponent,                  data: { action: 'create-lang' }},
+            { path: 'order-status/show/:lang_id/:id',                           component: OrderStatusDetailComponent,                  data: { action: 'edit' }},
 
             // Payment Methods
-            { path: 'payment-method',                                   component: PaymentMethodListComponent },
-            { path: 'payment-method/create',                            component: PaymentMethodDetailComponent,                data: { action: 'create' }},
-            { path: 'payment-method/create/:lang_id/:id',               component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
-            { path: 'payment-method/show/:lang_id/:id',                 component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
+            { path: 'payment-method',                                           component: PaymentMethodListComponent },
+            { path: 'payment-method/create',                                    component: PaymentMethodDetailComponent,                data: { action: 'create' }},
+            { path: 'payment-method/create/:lang_id/:id',                       component: PaymentMethodDetailComponent,                data: { action: 'create-lang' }},
+            { path: 'payment-method/show/:lang_id/:id',                         component: PaymentMethodDetailComponent,                data: { action: 'edit' }},
 
             // Customer Class Taxes
             { path: 'taxes/customer-class-tax',                                 component: CustomerClassTaxListComponent },
@@ -87,10 +84,15 @@ const routes: Routes = [
             { path: 'taxes/product-class-tax/create',                           component: ProductClassTaxDetailComponent,              data: { action: 'create' }},
             { path: 'taxes/product-class-tax/show/:id',                         component: ProductClassTaxDetailComponent,              data: { action: 'edit' }},
 
+            // Tax Rate Zone
+            { path: 'taxes/tax-rate-zone',                                      component: TaxRateZoneListComponent },
+            { path: 'taxes/tax-rate-zone/create',                               component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
+            { path: 'taxes/tax-rate-zone/show/:id',                             component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
+
             // Warehouses
-            { path: 'warehouse',                                        component: WarehouseListComponent },
-            { path: 'warehouse/create',                                 component: WarehouseDetailComponent,                    data: { action: 'create' }},
-            { path: 'warehouse/show/:id',                               component: WarehouseDetailComponent,                    data: { action: 'edit' }},
+            { path: 'warehouse',                                                component: WarehouseListComponent },
+            { path: 'warehouse/create',                                         component: WarehouseDetailComponent,                    data: { action: 'create' }},
+            { path: 'warehouse/show/:id',                                       component: WarehouseDetailComponent,                    data: { action: 'edit' }},
         ]  
     }
 ];

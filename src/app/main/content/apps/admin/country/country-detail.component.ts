@@ -11,7 +11,7 @@ import { CountryGraphQLService } from './country-graphql.service';
 })
 export class CountryDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'ADMIN.COUNTRY';
+    objectTranslation = 'APPS.COUNTRY';
     objectTranslationGender = 'M';
     zones: any[] = [
         { id: 'territorial_areas_1', name: 'Territorial Areas 1' },

@@ -102,6 +102,14 @@ export const navigation = [
                                 'icon'      : 'view_agenda',
                                 'url'       : '/apps/market/taxes/product-class-tax'
                             },
+                            {
+                                'id'        : 'tax_rate_zone',
+                                'title'     : 'Tax rate zones',
+                                'translate' : 'NAV.TAX_RATE_ZONES',
+                                'type'      : 'item',
+                                'icon'      : 'language',
+                                'url'       : '/apps/market/taxes/tax-rate-zone'
+                            },
                         ]
                     },
                     {
