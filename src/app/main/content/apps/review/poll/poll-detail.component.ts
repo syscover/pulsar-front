@@ -31,10 +31,10 @@ export class PollDetailComponent extends CoreDetailComponent
             default_high_score: null,
             mailing_days: null,
             expiration_days: null,
-            review_email_template: null,
             review_route: null,
-            comment_email_template: null,
-            comment_route: null
+            comment_route: null,
+            review_email_template: null,
+            comment_email_template: null
         });
     }
 }

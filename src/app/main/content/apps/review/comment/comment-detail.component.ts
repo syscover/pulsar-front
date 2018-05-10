@@ -32,7 +32,7 @@ export class CommentDetailComponent extends CoreDetailComponent
             id: [{value: null, disabled: true}],
             review_id: [{value: null, disabled: true}],
             date: [{value: null, disabled: false}],
-            // owner_id: [{value: null, disabled: true}],
+            // owner_type_id: [{value: null, disabled: true}],
             name: [{value: null, disabled: true}],
             email: [{value: null, disabled: true}],
             comment: [null, Validators.required],

@@ -148,7 +148,7 @@
                                 <div class="chat-messages" *ngIf="object.review">
 
                                     <!-- MESSAGE -->
-                                    <div fxLayout="row" *ngFor="let comment of object.review.comments" class="message-row" [ngClass]="{'user': comment.owner_id === 2}">
+                                    <div fxLayout="row" *ngFor="let comment of object.review.comments" class="message-row" [ngClass]="{'user': comment.owner_type_id === 2}">
 
                                         <div class="bubble">
                                             <div class="message">{{ comment.comment }}</div>

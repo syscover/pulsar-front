@@ -64,10 +64,10 @@ export class PollGraphQLService extends GraphQLSchema
                 default_high_score
                 mailing_days
                 expiration_days
-                review_email_template
                 review_route
-                comment_email_template
                 comment_route
+                review_email_template
+                comment_email_template
             }
         `;
 

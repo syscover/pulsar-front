@@ -115,6 +115,22 @@
                             </mat-form-field>
                         </div>
 
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 mt-12">
+                                <input matInput placeholder="{{ 'REVIEW.REVIEW_ROUTE' | translate }}" formControlName="review_route">
+                                <mat-hint align="start">{{ 'REVIEW.REVIEW_ROUTE_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.review_route }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'REVIEW.COMMENT_ROUTE' | translate }}" formControlName="comment_route">
+                                <mat-hint align="start">{{ 'REVIEW.COMMENT_ROUTE_DESCRIPTION' | translate }}</mat-hint>
+                                <mat-error>{{ formErrors?.comment_route }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
                         <!-- HEADER -->
                         <div fxLayout="row" fxLayoutAlign="start center" class="header-section mt-48 mb-12">
                             <mat-icon class="m-0 mr-16">aspect_ratio</mat-icon>
@@ -132,28 +148,12 @@
     
                         <div fxLayout="row">
                             <mat-form-field class="col-12 mt-12">
-                                <input matInput placeholder="{{ 'REVIEW.REVIEW_ROUTE' | translate }}" formControlName="review_route">
-                                <mat-hint align="start">{{ 'REVIEW.REVIEW_ROUTE_DESCRIPTION' | translate }}</mat-hint>
-                                <mat-error>{{ formErrors?.review_route }}</mat-error>
-                            </mat-form-field>
-                        </div>
-    
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12 mt-12">
                                 <input matInput placeholder="{{ 'REVIEW.COMMENT_EMAIL_TEMPLATE' | translate }}" formControlName="comment_email_template">
                                 <mat-hint align="start">{{ 'REVIEW.COMMENT_EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
                                 <mat-error>{{ formErrors?.comment_email_template }}</mat-error>
                             </mat-form-field>
                         </div>
     
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <input matInput placeholder="{{ 'REVIEW.COMMENT_ROUTE' | translate }}" formControlName="comment_route">
-                                <mat-hint align="start">{{ 'REVIEW.COMMENT_ROUTE_DESCRIPTION' | translate }}</mat-hint>
-                                <mat-error>{{ formErrors?.comment_route }}</mat-error>
-                            </mat-form-field>
-                        </div>
-
                     </form>
                 </div>
             </div>

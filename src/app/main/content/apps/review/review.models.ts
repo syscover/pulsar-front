@@ -93,7 +93,7 @@ export class Comment
     review_id: number;
     review: Review;
     date: any;
-    owner_id: number;
+    owner_type_id: number;
     name: string;
     email: string;
     comment: string;

@@ -86,14 +86,14 @@ export class CommentGraphQLService extends GraphQLSchema
                     comments {
                         id
                         date
-                        owner_id
+                        owner_type_id
                         name
                         email
                         comment
                     }
                 }
                 date
-                owner_id
+                owner_type_id
                 name
                 email
                 comment

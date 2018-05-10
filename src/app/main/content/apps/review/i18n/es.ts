@@ -38,7 +38,7 @@ export const locale = {
             'REVIEW_EMAIL_TEMPLATE': 'Plantilla de email para reviews',
             'REVIEW_EMAIL_TEMPLATE_DESCRIPTION': 'Plantilla de email para la encuesta del cliente',
             'REVIEW_ROUTE': 'Ruta de la review',
-            'REVIEW_ROUTE_DESCRIPTION': 'Ruta para generar la url para acceder a la encuesta desde el email enviado al cliente',
+            'REVIEW_ROUTE_DESCRIPTION': 'Ruta para generar la url para acceder a la encuesta desde el email enviado al cliente y completarla',
             'REVIEWS_DESCRIPTION': 'Número de reviews realizadas',
             'SEND_NOTIFICATION': 'Enviar notificaciones',
             'SEND_NOTIFICATION_DESCRIPTION': 'Enviar notificaciones al propietaio del objeto (Producto, hotel, etc.), de las reviews realizadas',

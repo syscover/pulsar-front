@@ -24,8 +24,10 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
 
     canLoad(route: Route): boolean 
     {
-        const url = `/${route.path}`;
-        return this.checkLogin();
+        // check if package can to be lazy loaded
+        // will be check package if is activate 
+        // see /src/app/main/content/apps/apps.module.ts
+        return true;
     }
     
     checkLogin(url?: string): boolean
