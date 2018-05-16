@@ -1,0 +1,139 @@
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon>gavel</mat-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.F' | translate }} {{ 'MARKET.TAX_RULE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='create'">
+                <span>{{ 'APPS.ADD' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='edit'">
+                <span>{{ 'APPS.SAVE' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)"
+                        fxLayout="column"
+                        fxFlex>
+                
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.TRANSLATION' | translate }}" formControlName="translation" required>
+                            <mat-error>{{ formErrors?.translation }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ 'MARKET.TAX_RATE_ZONE' | translate }}" formControlName="tax_rate_zones_id" multiple required>
+                                <mat-option *ngFor="let taxRateZone of taxRateZones" [value]="taxRateZone.id">{{ taxRateZone.name }}</mat-option>                                            
+                            </mat-select>
+                            <mat-error>{{ formErrors?.tax_rate_zones_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}" formControlName="customer_class_taxes_id" multiple required>
+                                <mat-option *ngFor="let customerClassTax of customerClassTaxes" [value]="customerClassTax.id">{{ customerClassTax.name }}</mat-option>                                            
+                            </mat-select>
+                            <mat-error>{{ formErrors?.customer_class_taxes_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_taxes_id" multiple required>
+                                <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>                                            
+                            </mat-select>
+                            <mat-error>{{ formErrors?.product_class_taxes_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row wrap">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'MARKET.PRIORITY' | translate }}" formControlName="priority" type="number">
+                            <mat-error>{{ formErrors?.priority }}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-12 offset-md-1 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                            <mat-error>{{ formErrors?.sort }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

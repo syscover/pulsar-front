@@ -42,6 +42,7 @@ export const locale = {
             'REVIEWS': 'Reviews',
             'SECTIONS': 'Secciones',
             'TAX_RATE_ZONES': 'Zonas de impuestos',
+            'TAX_RULES': 'Reglas de impuestos',
             'TAXES': 'Impuestos',
             'WAREHOUSES': 'Almacenes'
         }

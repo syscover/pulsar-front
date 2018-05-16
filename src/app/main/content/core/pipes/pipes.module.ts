@@ -5,6 +5,7 @@ import { CollectionObjectValuePipe } from './collection-object-value.pipe';
 import { FormatSizePipe } from './format-size.pipe';
 import { NumbersArrayPipe } from './numbers-array.pipe';
 import { SortByPipe } from './sort-by.pipe';
+import { ValuesArrayPipe } from './values-array.pipe';
 
 @NgModule({
     imports     : [],
@@ -14,7 +15,8 @@ import { SortByPipe } from './sort-by.pipe';
         CollectionObjectValuePipe,
         FormatSizePipe,
         NumbersArrayPipe,
-        SortByPipe
+        SortByPipe,
+        ValuesArrayPipe
     ],
     declarations: [
         ActionTranslationObjectPipe,
@@ -22,7 +24,8 @@ import { SortByPipe } from './sort-by.pipe';
         CollectionObjectValuePipe,
         FormatSizePipe,
         NumbersArrayPipe,
-        SortByPipe
+        SortByPipe,
+        ValuesArrayPipe
     ]
 })
 export class PipesModule

@@ -54,6 +54,7 @@ export const locale = {
             'STATUS': 'Estado',
             'TOTAL': 'Total',
             'TRANSLATE': 'Traducir',
+            'TRANSLATION': 'Traducción',
             'TRANSLATIONS': 'Traducciones',
             'USER': 'Usuario',
             'VALUES': 'Valores',

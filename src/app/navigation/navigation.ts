@@ -103,13 +103,21 @@ export const navigation = [
                                 'url'       : '/apps/market/taxes/product-class-tax'
                             },
                             {
-                                'id'        : 'tax_rate_zone',
+                                'id'        : 'tax_rate_zones',
                                 'title'     : 'Tax rate zones',
                                 'translate' : 'NAV.TAX_RATE_ZONES',
                                 'type'      : 'item',
                                 'icon'      : 'language',
                                 'url'       : '/apps/market/taxes/tax-rate-zone'
                             },
+                            {
+                                'id'        : 'tax_rules',
+                                'title'     : 'Tax rules',
+                                'translate' : 'NAV.TAX_RULES',
+                                'type'      : 'item',
+                                'icon'      : 'gavel',
+                                'url'       : '/apps/market/taxes/tax-rule'
+                            }
                         ]
                     },
                     {

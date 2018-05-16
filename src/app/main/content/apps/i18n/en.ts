@@ -54,6 +54,7 @@ export const locale = {
             'STATUS': 'Status',
             'TOTAL': 'Total',
             'TRANSLATE': 'Translate',
+            'TRANSLATION': 'Translation',
             'TRANSLATIONS': 'Translations',
             'USER': 'User',
             'VALUES': 'Values',

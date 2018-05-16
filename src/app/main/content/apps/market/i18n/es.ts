@@ -13,8 +13,10 @@ export const locale = {
             'ORDER_STATUS': 'Estado de pedido',
             'ORDER_STATUS_SUCCESSSFUL': 'Estado del pedido exitoso',
             'PAYMENT_METHOD': 'Forma de pago',
+            'PRIORITY': 'Prioridad',
             'PRODUCT_CLASS_TAX': 'Impuesto al producto',
             'TAX_RATE': 'Tasa',
+            'TAX_RULE': 'Regla de impuesto',
             'TAX_RATE_ZONE': 'Zona de impuestos',
             'WAREHOUSE': 'Almacén'
         }

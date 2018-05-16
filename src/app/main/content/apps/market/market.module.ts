@@ -19,6 +19,8 @@ import { ProductClassTaxListComponent } from './product-class-tax/product-class-
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
@@ -29,6 +31,7 @@ import { OrderStatusGraphQLService } from './order-status/order-status-graphql.s
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
+import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
 
 @NgModule({
@@ -52,6 +55,8 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         ProductClassTaxDetailComponent,
         TaxRateZoneListComponent,
         TaxRateZoneDetailComponent,
+        TaxRuleDetailComponent,
+        TaxRuleListComponent,
         WarehouseListComponent,
         WarehouseDetailComponent
     ],
@@ -63,6 +68,7 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         PaymentMethodGraphQLService,
         ProductClassTaxGraphQLService,
         TaxRateZoneGraphQLService,
+        TaxRuleGraphQLService,
         WarehouseGraphQLService
     ]
 })

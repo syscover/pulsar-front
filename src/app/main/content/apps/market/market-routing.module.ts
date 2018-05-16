@@ -16,15 +16,12 @@ import { ProductClassTaxListComponent } from './product-class-tax/product-class-
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
+import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
+import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
 /*
-        // Tax Rule
-        { path: 'tax-rule',                                     component: TaxRuleListComponent },
-        { path: 'tax-rule/create',                              component: TaxRuleDetailComponent,                      data: { action: 'create' }},
-        { path: 'tax-rule/show/:id',                            component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
-
         // Products
         { path: 'product',                                      component: ProductListComponent },
         { path: 'product/create',                               component: ProductDetailComponent,                      data: { action: 'create' }},
@@ -88,6 +85,11 @@ const routes: Routes = [
             { path: 'taxes/tax-rate-zone',                                      component: TaxRateZoneListComponent },
             { path: 'taxes/tax-rate-zone/create',                               component: TaxRateZoneDetailComponent,                  data: { action: 'create' }},
             { path: 'taxes/tax-rate-zone/show/:id',                             component: TaxRateZoneDetailComponent,                  data: { action: 'edit' }},
+
+            // Tax Rule
+            { path: 'taxes/tax-rule',                                           component: TaxRuleListComponent },
+            { path: 'taxes/tax-rule/create',                                    component: TaxRuleDetailComponent,                      data: { action: 'create' }},
+            { path: 'taxes/tax-rule/show/:id',                                  component: TaxRuleDetailComponent,                      data: { action: 'edit' }},
 
             // Warehouses
             { path: 'warehouse',                                                component: WarehouseListComponent },

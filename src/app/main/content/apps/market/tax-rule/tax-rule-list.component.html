@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">language</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.TAX_RATE_ZONES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">gavel</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.TAX_RULES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'MARKET.TAX_RATE_ZONE' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'MARKET.TAX_RULE' | translate }}</span>
             </button>
 
         </div>
@@ -72,7 +72,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="market_tax_rate_zone.tax_rate">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TAX_RATE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.tax_rate }}%</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.tax_rate_zones | valuesArray:'tax_rate':',':'':'%' }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

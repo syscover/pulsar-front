@@ -4,7 +4,8 @@ import * as _ from 'lodash';
 @Pipe({
     name: 'collectionObjectValue'
 })
-export class CollectionObjectValuePipe implements PipeTransform {
+export class CollectionObjectValuePipe implements PipeTransform 
+{
     transform(objects: any[], id: string, idValue: any, field: string): string 
     {
         // all config id are string

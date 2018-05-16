@@ -13,8 +13,10 @@ export const locale = {
             'ORDER_STATUS': 'Order status',
             'ORDER_STATUS_SUCCESSSFUL': 'Order status successful',
             'PAYMENT_METHOD': 'Payment method',
+            'PRIORITY': 'Priority',
             'PRODUCT_CLASS_TAX': 'Product class tax',
             'TAX_RATE': 'Tax rate',
+            'TAX_RULE': 'Tax rule',
             'TAX_RATE_ZONE': 'Tax rate zone',
             'WAREHOUSE': 'Warehouse'
         }
