@@ -5,7 +5,7 @@ export class Group
     name: string;
 }
 
-export class Type 
+export class AddressType 
 {
     id: number;
     name: string;

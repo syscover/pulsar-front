@@ -4,6 +4,7 @@ export const locale = {
         'NAV': {
             'ACTIONS': 'Acciones',
             'ADMINISTRATION': 'Administración',
+            'ADDRESS_TYPES': 'Tipos de direcciones',
             'APPLICATIONS': 'Aplicaciones',
             'ARTICLES': 'Artículos',
             'ATTACHMENT_FAMILIES': 'Familias de adjunto',

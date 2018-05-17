@@ -5,9 +5,12 @@ import { CrmRoutingModule } from './crm-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { AddressTypeListComponent } from './address-type/address-type-list.component';
+import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 
+import { AddressTypeGraphQLService } from './address-type/address-type-graphql.service';
 import { GroupGraphQLService } from './group/group-graphql.service';
 
 @NgModule({
@@ -17,10 +20,13 @@ import { GroupGraphQLService } from './group/group-graphql.service';
     ],
     exports: [ ],
     declarations: [
+        AddressTypeListComponent,
+        AddressTypeDetailComponent,
         GroupListComponent,
         GroupDetailComponent,
     ],
     providers: [
+        AddressTypeGraphQLService,
         GroupGraphQLService,
     ]
 })

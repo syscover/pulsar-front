@@ -20,6 +20,14 @@ export const navigation = [
                         'icon'      : 'people',
                         'url'       : '/apps/crm/group'
                     },
+                    {
+                        'id'        : 'address_types',
+                        'title'     : 'Address types',
+                        'translate' : 'NAV.ADDRESS_TYPES',
+                        'type'      : 'item',
+                        'icon'      : 'map',
+                        'url'       : '/apps/crm/address-type'
+                    }
                 ]
             },
             {
