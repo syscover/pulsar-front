@@ -67,7 +67,7 @@ export const navigation = [
                                 'translate' : 'NAV.ORDERS',
                                 'type'      : 'item',
                                 'icon'      : 'add_shopping_cart',
-                                'url'       : '/apps/market/sales/order'
+                                'url'       : '/apps/market/order'
                             }
                         ]
                     },
