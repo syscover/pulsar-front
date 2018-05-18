@@ -1,0 +1,114 @@
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div    class="header white-fg"
+                fxLayout="column" 
+                fxLayoutAlign="center center"
+                fxLayout.gt-xs="row" 
+                fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div    class="logo my-12 m-sm-0"
+                    fxLayout="row" 
+                    fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">how_to_reg</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.USERS' | translate }}</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+                <label for="filter" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+                    <input #filter id="filter" matInput placeholder="{{ 'APPS.SEARCH' | translate }}">
+                    <button mat-button mat-icon-button matSuffix class="filter-close-icon" *ngIf="filter?.value" (click)="clearFilter()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+
+            <button mat-raised-button
+                    [routerLink]="baseUri + '/create'"
+                    class="new-btn mat-white-bg my-12 mt-sm-0">
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.USER' | translate }}</span>
+            </button>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+            <div class="loading-shape" *ngIf="isLoadingResults">
+                <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+            </div>
+
+            <mat-table  [dataSource]="dataSource"
+                        fusePerfectScrollbar
+                        matSort
+                        matSortDisableClear>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_user.id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                </ng-container>
+        
+                <!-- Column -->
+                <ng-container matColumnDef="admin_user.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_user.surname">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.surname }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_user.email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row"><a href="mailto:{{ row.email }}">{{ row.email }}</a></mat-cell>
+                </ng-container>
+
+                <!-- ACTIONS -->
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
+                                <mat-icon>mode_edit</mat-icon>
+                                <span>{{ 'APPS.EDIT' | translate }}</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteRecord(row)">
+                                <mat-icon>delete</mat-icon>
+                                <span>{{ 'APPS.DELETE' | translate }}</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+                <!-- / ACTIONS -->
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

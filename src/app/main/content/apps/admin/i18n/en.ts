@@ -27,6 +27,7 @@ export const locale = {
             'TERRITORIAL_AREA_2': 'Territorial area 2',
             'TERRITORIAL_AREA_3': 'Territorial area 3',
             'TERRITORIES': 'Territories',
+            'USER': 'User',
             'VALUE': 'Value',
             'ZONES': 'Zones',
         }

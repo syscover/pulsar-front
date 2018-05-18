@@ -3,6 +3,8 @@ export const locale = {
     data: {
         'MARKET': {
             'CATEGORY': 'Categoría',
+            'CART_PRICE_RULE': 'Regla de carro',
+            'COUPON': 'Cupón',
             'CUSTOMER_CLASS_TAX': 'Impuesto al cliente',
             'DESCRIPTION' : 'Descripción',
             'GROUP': 'Grupo',

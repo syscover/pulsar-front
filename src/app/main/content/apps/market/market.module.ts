@@ -5,6 +5,8 @@ import { MarketRoutingModule } from './market-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { CartPriceRuleListComponent } from './cart-price-rule/cart-price-rule-list.component';
+import { CartPriceRuleDetailComponent } from './cart-price-rule/cart-price-rule-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
@@ -24,6 +26,7 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
+import { CartPriceRuleGraphQLService } from './cart-price-rule/cart-price-rule-graphql.service';
 import { CategoryGraphQLService } from './category/category-graphql.service';
 import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
 import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax/group-customer-class-tax-graphql.service';
@@ -41,6 +44,8 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
     ],
     exports: [ ],
     declarations: [
+        CartPriceRuleListComponent,
+        CartPriceRuleDetailComponent,
         CategoryListComponent,
         CategoryDetailComponent,
         CustomerClassTaxListComponent,
@@ -61,6 +66,7 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         WarehouseDetailComponent
     ],
     providers: [
+        CartPriceRuleGraphQLService,
         CategoryGraphQLService,
         CustomerClassTaxGraphQLService,
         GroupCustomerClassTaxGraphQLService,

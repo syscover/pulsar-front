@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
+import { CartPriceRuleListComponent } from './cart-price-rule/cart-price-rule-list.component';
+import { CartPriceRuleDetailComponent } from './cart-price-rule/cart-price-rule-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { CustomerClassTaxListComponent } from './customer-class-tax/customer-class-tax-list.component';
@@ -28,11 +30,7 @@ import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component
         { path: 'product/create/:lang_id/:id',                  component: ProductDetailComponent,                      data: { action: 'create-lang' }},
         { path: 'product/show/:lang_id/:id',                    component: ProductDetailComponent,                      data: { action: 'edit' }},
 
-        // Cart Price rules
-        { path: 'cart-price-rule',                              component: CartPriceRuleListComponent },
-        { path: 'cart-price-rule/create',                       component: CartPriceRuleDetailComponent,                data: { action: 'create' }},
-        { path: 'cart-price-rule/create/:lang_id/:id',          component: CartPriceRuleDetailComponent,                data: { action: 'create-lang' }},
-        { path: 'cart-price-rule/show/:lang_id/:id',            component: CartPriceRuleDetailComponent,                data: { action: 'edit' }},
+        
 
         // Catalog rule
 
@@ -53,6 +51,12 @@ const routes: Routes = [
             { path: 'category/create',                                          component: CategoryDetailComponent,                     data: { action: 'create' }},
             { path: 'category/create/:lang_id/:id',                             component: CategoryDetailComponent,                     data: { action: 'create-lang' }},
             { path: 'category/show/:lang_id/:id',                               component: CategoryDetailComponent,                     data: { action: 'edit' }},
+
+            // Cart Price rules
+            { path: 'marketing/cart-price-rule',                                component: CartPriceRuleListComponent },
+            { path: 'marketing/cart-price-rule/create',                         component: CartPriceRuleDetailComponent,                data: { action: 'create' }},
+            { path: 'marketing/cart-price-rule/create/:lang_id/:id',            component: CartPriceRuleDetailComponent,                data: { action: 'create-lang' }},
+            { path: 'marketing/cart-price-rule/show/:lang_id/:id',              component: CartPriceRuleDetailComponent,                data: { action: 'edit' }},
 
             // Order Statuses
             { path: 'order-status',                                             component: OrderStatusListComponent },

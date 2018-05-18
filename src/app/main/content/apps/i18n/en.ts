@@ -52,6 +52,7 @@ export const locale = {
             'SLUG': 'Slug',
             'SORT': 'Sort',
             'STATUS': 'Status',
+            'SURNAME': 'Surname',
             'TOTAL': 'Total',
             'TRANSLATE': 'Translate',
             'TRANSLATION': 'Translation',

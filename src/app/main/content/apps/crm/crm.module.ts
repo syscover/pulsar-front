@@ -7,10 +7,13 @@ import { locale as spanish } from './i18n/es';
 
 import { AddressTypeListComponent } from './address-type/address-type-list.component';
 import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
+import { CustomerListComponent } from './customer/customer-list.component';
+import { CustomerDetailComponent } from './customer/customer-detail.component';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 
 import { AddressTypeGraphQLService } from './address-type/address-type-graphql.service';
+import { CustomerGraphQLService } from './customer/customer-graphql.service';
 import { GroupGraphQLService } from './group/group-graphql.service';
 
 @NgModule({
@@ -22,11 +25,14 @@ import { GroupGraphQLService } from './group/group-graphql.service';
     declarations: [
         AddressTypeListComponent,
         AddressTypeDetailComponent,
+        CustomerListComponent,
+        CustomerDetailComponent,
         GroupListComponent,
         GroupDetailComponent,
     ],
     providers: [
         AddressTypeGraphQLService,
+        CustomerGraphQLService,
         GroupGraphQLService,
     ]
 })

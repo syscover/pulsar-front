@@ -3,6 +3,8 @@ export const locale = {
     data: {
         'CRM': {
             'ADDRESS_TYPE': 'Tipo de dirección',
+            'ADDRESSES': 'Direcciones',
+            'CUSTOMER': 'Cliente',
             'GROUP': 'Grupo',
         }
     }

@@ -31,6 +31,8 @@ import { TerritorialArea2ListComponent } from './territorial_area_2/territorial-
 import { TerritorialArea2DetailComponent } from './territorial_area_2/territorial-area-2-detail.component';
 import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-area-3-list.component';
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
+import { UserListComponent } from './user/user-list.component';
+import { UserDetailComponent } from './user/user-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
@@ -46,6 +48,7 @@ import { ResourceGraphQLService } from './resource/resource-graphql.service';
 import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial-area-1-graphql.service';
 import { TerritorialArea2GraphQLService } from './territorial_area_2/territorial-area-2-graphql.service';
 import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
+import { UserGraphQLService } from './user/user-graphql.service';
 
 @NgModule({
     imports: [
@@ -79,7 +82,9 @@ import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial
         TerritorialArea2ListComponent,
         TerritorialArea2DetailComponent,
         TerritorialArea3ListComponent,
-        TerritorialArea3DetailComponent
+        TerritorialArea3DetailComponent,
+        UserListComponent,
+        UserDetailComponent
     ],
     providers: [
         ActionGraphQLService,
@@ -95,7 +100,8 @@ import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial
         ResourceGraphQLService,
         TerritorialArea1GraphQLService,
         TerritorialArea2GraphQLService,
-        TerritorialArea3GraphQLService
+        TerritorialArea3GraphQLService,
+        UserGraphQLService
     ]
 })
 

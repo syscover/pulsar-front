@@ -3,8 +3,8 @@ import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class AddressTypeGraphQLService extends GraphQLSchema {
-
+export class AddressTypeGraphQLService extends GraphQLSchema 
+{
     queryPaginationObject = gql`
         query CrmGetAddressTypesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: crmAddressTypesPagination (sql:$sql) {
@@ -49,7 +49,8 @@ export class AddressTypeGraphQLService extends GraphQLSchema {
             }
         }`;
 
-    init() {
+    init() 
+    {
         this.model = 'Syscover\\Crm\\Models\\AddressType';
         this.table = 'crm_address_type';
 

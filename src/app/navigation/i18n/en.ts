@@ -12,6 +12,7 @@ export const locale = {
             'ATTACHMENT_MIMES': 'Attachment MIMEs',
             'ATTACHMENTS': 'Attachments',
             'AVERAGES': 'Averages',
+            'CART_PRICE_RULES': 'Cart price rules',
             'CATALOG': 'Catálogo',
             'CATEGORIES': 'Categories',
             'CMS': 'CMS',
@@ -20,6 +21,7 @@ export const locale = {
             'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Custom fields',
             'CUSTOMER_CLASS_TAXES': 'Customer class taxes',
+            'CUSTOMERS': 'Customers',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',
             'FIELD_GROUPS': 'Field groups',
@@ -28,7 +30,9 @@ export const locale = {
             'HOTEL': 'Hotel',
             'LANGUAGES': 'Languages',
             'MARKET': 'Market',
+            'MARKETING': 'Marketing',
             'ORDER_STATUSES': 'Order statuses',
+            'ORDERS': 'Orders',
             'PACKAGES': 'Packages',
             'PAYMENT_METHODS': 'Payment methods',
             'PERMISSIONS': 'Permissions',
@@ -41,10 +45,12 @@ export const locale = {
             'RESOURCES': 'Resources',
             'REVIEW': 'Review',
             'REVIEWS': 'Reviews',
+            'SALES': 'Sales',
             'SECTIONS': 'Sections',
             'TAX_RATE_ZONES': 'Tax rate zones',
             'TAX_RULES': 'Tax rules',
             'TAXES': 'Taxes',
+            'USERS': 'Users',
             'WAREHOUSES': 'Warehouses'
         }
     }

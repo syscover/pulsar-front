@@ -28,13 +28,10 @@ import { TerritorialArea2ListComponent } from './territorial_area_2/territorial-
 import { TerritorialArea2DetailComponent } from './territorial_area_2/territorial-area-2-detail.component';
 import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-area-3-list.component';
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
+import { UserListComponent } from './user/user-list.component';
+import { UserDetailComponent } from './user/user-detail.component';
 
 /*
-        // Users
-        { path: 'user',                                             component: UserListComponent },
-        { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
-        { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
-
         // Cron jobs
         { path: 'cron-job',                                         component: CronJobListComponent },
         { path: 'cron-job/create',                                  component: CronJobDetailComponent,              data: { action: 'create' }},
@@ -51,6 +48,11 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthorizationService],
         children: [
+            // Users
+            { path: 'user',                                             component: UserListComponent },
+            { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
+            { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
+
             // Actions
             { path: 'action',                                           component: ActionListComponent },
             { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create' }},

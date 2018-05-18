@@ -13,6 +13,14 @@ export const navigation = [
                 'icon' : 'supervisor_account',
                 'children' : [
                     {
+                        'id'        : 'customers',
+                        'title'     : 'Customer',
+                        'translate' : 'NAV.CUSTOMERS',
+                        'type'      : 'item',
+                        'icon'      : 'account_circle',
+                        'url'       : '/apps/crm/customer'
+                    },
+                    {
                         'id'        : 'groups',
                         'title'     : 'Groups',
                         'translate' : 'NAV.GROUPS',
@@ -47,6 +55,23 @@ export const navigation = [
                 'icon' : 'store_mall_directory',
                 'children' : [
                     {
+                        'id'       : 'sales',
+                        'title'    : 'Sales',
+                        'translate': 'NAV.SALES',
+                        'type'     : 'collapse',
+                        'icon'     : 'euro_symbol',
+                        'children' : [
+                            {
+                                'id'        : 'orders',
+                                'title'     : 'Orders',
+                                'translate' : 'NAV.ORDERS',
+                                'type'      : 'item',
+                                'icon'      : 'add_shopping_cart',
+                                'url'       : '/apps/market/sales/order'
+                            }
+                        ]
+                    },
+                    {
                         'id'       : 'catalog',
                         'title'    : 'Catalog',
                         'translate': 'NAV.CATALOG',
@@ -76,6 +101,23 @@ export const navigation = [
                                 'type'      : 'item',
                                 'icon'      : 'business',
                                 'url'       : '/apps/market/warehouse'
+                            }
+                        ]
+                    },
+                    {
+                        'id'       : 'marketing',
+                        'title'    : 'Marketing',
+                        'translate': 'NAV.MARKETING',
+                        'type'     : 'collapse',
+                        'icon'     : 'my_location',
+                        'children' : [
+                            {
+                                'id'        : 'cart_price_rules',
+                                'title'     : 'Cart price rules',
+                                'translate' : 'NAV.CART_PRICE_RULES',
+                                'type'      : 'item',
+                                'icon'      : 'local_grocery_store',
+                                'url'       : '/apps/market/marketing/cart-price-rule'
                             }
                         ]
                     },
@@ -269,6 +311,14 @@ export const navigation = [
                 'type'     : 'collapse',
                 'icon'     : 'settings',
                 'children' : [
+                    {
+                        'id'        : 'users',
+                        'title'     : 'Users',
+                        'translate' : 'NAV.USERS',
+                        'type'      : 'item',
+                        'icon'      : 'how_to_reg',
+                        'url'       : '/apps/admin/user'
+                    },
                     {
                         'id'        : 'countries',
                         'title'     : 'Countries',

@@ -52,6 +52,7 @@ export const locale = {
             'SLUG': 'Slug',
             'SORT': 'Orden',
             'STATUS': 'Estado',
+            'SURNAME': 'Apellidos',
             'TOTAL': 'Total',
             'TRANSLATE': 'Traducir',
             'TRANSLATION': 'Traducción',
