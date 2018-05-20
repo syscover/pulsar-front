@@ -247,25 +247,26 @@
                         </mat-tab>
                         <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}" *ngIf="family?.excerpt_editor_id">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <div fxLayout="row" [ngSwitch]="family.excerpt_editor_id">
+                                <div class="content">
+                                    <div fxLayout="row" [ngSwitch]="family.excerpt_editor_id">
 
-                                    <mat-form-field class="col-12" *ngSwitchCase="1">
-                                        <textarea   matInput 
-                                                    placeholder="{{ 'CMS.EXCERPT' | translate }}" 
-                                                    matTextareaAutosize 
-                                                    matAutosizeMinRows="2" 
-                                                    formControlName="excerpt"></textarea>
-                                        <mat-error>{{ formErrors?.excerpt }}</mat-error>
-                                    </mat-form-field>
+                                        <mat-form-field class="col-12" *ngSwitchCase="1">
+                                            <textarea   matInput 
+                                                        placeholder="{{ 'CMS.EXCERPT' | translate }}" 
+                                                        matTextareaAutosize 
+                                                        matAutosizeMinRows="2" 
+                                                        formControlName="excerpt"></textarea>
+                                            <mat-error>{{ formErrors?.excerpt }}</mat-error>
+                                        </mat-form-field>
 
-                                    <div class="col-12" *ngSwitchCase="2">
-                                        <dh2-froala formControlName="excerpt"
-                                                    placeholder="{{ 'CMS.EXCERPT' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
-                                        <mat-error>{{ formErrors?.excerpt }}</mat-error>
+                                        <div class="col-12" *ngSwitchCase="2">
+                                            <dh2-froala formControlName="excerpt"
+                                                        placeholder="{{ 'CMS.EXCERPT' | translate }}"
+                                                        [heightMin]="400"
+                                                        [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                            <mat-error>{{ formErrors?.excerpt }}</mat-error>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </mat-tab>

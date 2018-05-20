@@ -3,7 +3,8 @@ export const locale = {
     data: {
         'APPS': {
             'ACTIONS': 'Acciones',
-            'ACTIVE': 'Activo',
+            'ACTIVE.F': 'Activa',
+            'ACTIVE.M': 'Activo',
             'ADD': 'Añadir',
             'ATTACHMENTS': 'Adjuntos',
             'CLEAR': 'Limpiar',

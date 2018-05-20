@@ -3,26 +3,28 @@ import { Validators } from '@angular/forms';
 import { Params } from '@angular/router';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { GroupCustomerClassTaxGraphQLService } from './group-customer-class-tax-graphql.service';
-import { Group } from './../../crm/crm.models';
+import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-customer-class-tax-graphql.service';
+import { CustomerGroup } from './../../crm/crm.models';
 import { CustomerClassTax } from './../market.models';
+import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-group-customer-class-tax-detail',
-    templateUrl: 'group-customer-class-tax-detail.component.html',
+    selector: 'dh2-customer-group-customer-class-tax-detail',
+    templateUrl: 'customer-group-customer-class-tax-detail.component.html',
     animations: fuseAnimations
 })
-export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent
+export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'MARKET.GROUP_CUSTOMER_CLASS_TAX';
+    objectTranslation = 'MARKET.CUSTOMER_GROUP_CUSTOMER_CLASS_TAX';
     objectTranslationGender = 'M';
-    groups: Group[];
+    customerGroups: CustomerGroup[];
     customerClassTaxes: CustomerClassTax[];
-    baseUri = '/apps/market/taxes/group-customer-class-tax';
+    baseUri = '/apps/market/taxes/customer-group-customer-class-tax';
+    name: string;
 
     constructor(
         protected injector: Injector,
-        protected graphQL: GroupCustomerClassTaxGraphQLService
+        protected graphQL: CustomerGroupCustomerClassTaxGraphQLService
     ) {
         super(injector, graphQL);
     }
@@ -30,7 +32,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent
     createForm() 
     {
         this.fg = this.fb.group({
-            group_id: [null, Validators.required],
+            customer_group_id: [null, Validators.required],
             customer_class_tax_id: [null, Validators.required]
         });
     }
@@ -40,7 +42,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent
         return {
             sql: [{
                 command: 'where',
-                column: 'group_id',
+                column: 'customer_group_id',
                 operator: '=',
                 value: params['group_id']
             },
@@ -55,8 +57,11 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent
 
     setRelationsData(data: any) 
     {
-        // set crm groups
-        this.groups = data.crmGroups;
+        // set name of objecet
+        this.name = _.find(data.crmCustomerGroups, {id: data.coreObject.customer_group_id}).name;
+
+        // set crm customer groups
+        this.customerGroups = data.crmCustomerGroups;
 
         // set market customer class tax
         this.customerClassTaxes = data.marketCustomerClassTaxes;
@@ -64,7 +69,7 @@ export class GroupCustomerClassTaxDetailComponent extends CoreDetailComponent
 
     getCustomArgumentsEditPostRecord(args: Object, object: any): Object
     {
-        args['group_id'] = object.group_id;
+        args['customer_group_id'] = object.customer_group_id;
         args['customer_class_tax_id'] = object.customer_class_tax_id;
 
         return args;

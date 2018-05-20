@@ -23,7 +23,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
-                        {{ object.name }}
+                        {{ name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.CART_PRICE_RULE' | translate }}
@@ -95,6 +95,42 @@
                         </mat-form-field>
                         <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <div class="col-12">
+                            <dh2-froala formControlName="description"
+                                        placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                        [heightMin]="200"></dh2-froala>
+                            <mat-error>{{ formErrors?.description }}</mat-error>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row wrap">
+                        <div class="col-12 col-md-6 py-20">
+                            <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.F' | translate }}</mat-checkbox>
+                        </div>
+                        <div class="col-12 col-md-6 py-20">
+                            <mat-checkbox formControlName="combinable">{{ 'MARKET.COMBINABLE' | translate }}</mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="group_ids" multiple>
+                                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.group_ids }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    
 
                     
 

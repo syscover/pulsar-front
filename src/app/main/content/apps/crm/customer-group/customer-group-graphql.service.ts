@@ -3,11 +3,11 @@ import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
 @Injectable()
-export class GroupGraphQLService extends GraphQLSchema 
+export class CustomerGroupGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CrmGetGroupsPagination ($sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: crmGroupsPagination (sql:$sql) {
+        query CrmGetCustomerGroupsPagination ($sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: crmCustomerGroupsPagination (sql:$sql) {
                 total
                 filtered
                 objects (sql:$sql)
@@ -15,48 +15,48 @@ export class GroupGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query CrmGetGroups ($sql:[CoreSQLQueryInput]) {
-            coreObjects: crmGroups (sql:$sql){
+        query CrmGetCustomerGroups ($sql:[CoreSQLQueryInput]) {
+            coreObjects: crmCustomerGroups (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query CrmGetGroup ($sql:[CoreSQLQueryInput]) {
-            coreObject: crmGroup (sql:$sql){
+        query CrmGetCustomerGroup ($sql:[CoreSQLQueryInput]) {
+            coreObject: crmCustomerGroup (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     mutationAddObject = gql`
-        mutation CrmAddGroup ($object:CrmGroupInput!) {
-            crmAddGroup (object:$object){
+        mutation CrmAddCustomerGroup ($object:CrmCustomerGroupInput!) {
+            crmAddCustomerGroup (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CrmUpdateGroup ($object:CrmGroupInput!) {
-            crmUpdateGroup (object:$object){
+        mutation CrmUpdateCustomerGroup ($object:CrmCustomerGroupInput!) {
+            crmUpdateCustomerGroup (object:$object){
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation CrmDeleteGroup ($id:Int!) {
-            crmDeleteGroup (id:$id){
+        mutation CrmDeleteCustomerGroup ($id:Int!) {
+            crmDeleteCustomerGroup (id:$id){
                 ${this.fields}
             }
         }`;
 
     init() 
     {
-        this.model = 'Syscover\\Crm\\Models\\Group';
-        this.table = 'crm_group';
+        this.model = 'Syscover\\Crm\\Models\\CustomerGroup';
+        this.table = 'crm_customer_group';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
-            ... on CrmGroup {
+            ... on CrmCustomerGroup {
                     id
                     name
                 }

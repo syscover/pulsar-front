@@ -71,7 +71,7 @@ export class FieldDetailComponent extends CoreDetailComponent
             {
                 // set label field
                 this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
+                    this.object.labels.find((el) => {
                         return el['id'] === this.baseLang;
                     })['value']
                 );
@@ -83,15 +83,13 @@ export class FieldDetailComponent extends CoreDetailComponent
             {
                 // set label field
                 this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
+                    this.object.labels.find((el) => {
                         return el['id'] === this.lang.id;
                     })['value']
                 );
 
                 // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) {
-                    this.disabledForm();
-                }
+                if (this.lang.id !== this.baseLang) this.disabledForm();
             }
         }
     } 

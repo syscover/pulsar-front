@@ -97,6 +97,8 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <input type="hidden" formControlName="ix">
+                                <input type="hidden" formControlName="lang_id">
+                                <input type="hidden" formControlName="subtotal">
 
                                 <div fxLayout="row wrap">
                                     <mat-form-field class="col-12 col-md-4">
@@ -105,54 +107,34 @@
                                     <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
             
-                                <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-md-6">
-                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <input dh2Slug [model]="graphQL.modelLang" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
+                                </div>
 
-                                    <mat-form-field class="col-md-5">
-                                        <input matInput placeholder="{{ 'CMS.AUTHOR' | translate }}" formControlName="author_name" required>
-                                        <mat-error>{{ formErrors?.author_name }}</mat-error>
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <input dh2Slug [model]="graphQL.modelLang" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
-                                            <mat-option *ngFor="let status of statuses" [value]="+status.id">{{ status.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.status_id }}</mat-error>
-                                    </mat-form-field>
-
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'CMS.PUBLISH' | translate }}" formControlName="publish" type="datetime-local">
-                                        <mat-error>{{ formErrors?.publish }}</mat-error>
-                                    </mat-form-field>
+                                    
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (change)="handleChangeSection($event)">
-                                            <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.section_id }}</mat-error>
-                                    </mat-form-field>
+                                    
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (change)="handleChangeFamily($event)">
-                                            <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
-                                            <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>                                            
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.family_id }}</mat-error>
-                                    </mat-form-field>
+                                    
                                 </div>
 
                                 <!-- HEADER -->
-                                <div    fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section"
-                                        *ngIf=" family?.article_parent || family?.date || family?.title || family?.slug || 
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section"  *ngIf=" family?.article_parent || family?.date || family?.title || family?.slug || 
                                                 family?.categories || family?.link || family?.tags || family?.sort">
                                     <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
                                     <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
@@ -245,50 +227,18 @@
 
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}" *ngIf="family?.excerpt_editor_id">
+                        <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <div fxLayout="row" [ngSwitch]="family.excerpt_editor_id">
-
-                                    <mat-form-field class="col-12" *ngSwitchCase="1">
-                                        <textarea   matInput 
-                                                    placeholder="{{ 'CMS.EXCERPT' | translate }}" 
-                                                    matTextareaAutosize 
-                                                    matAutosizeMinRows="2" 
-                                                    formControlName="excerpt"></textarea>
-                                        <mat-error>{{ formErrors?.excerpt }}</mat-error>
-                                    </mat-form-field>
-
-                                    <div class="col-12" *ngSwitchCase="2">
-                                        <dh2-froala formControlName="excerpt"
-                                                    placeholder="{{ 'CMS.EXCERPT' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
-                                        <mat-error>{{ formErrors?.excerpt }}</mat-error>
-                                    </div>
+                                <div fxLayout="row">
 
                                 </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'CMS.ARTICLE' | translate | uppercase }}" *ngIf="family?.article_editor_id">
+                        <mat-tab label="{{ 'CMS.ARTICLE' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <div fxLayout="row" [ngSwitch]="family.article_editor_id">
+                                <div fxLayout="row">
 
-                                    <mat-form-field class="col-12" *ngSwitchCase="1">
-                                        <textarea   matInput 
-                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}" 
-                                                    matTextareaAutosize 
-                                                    matAutosizeMinRows="2" 
-                                                    formControlName="article"></textarea>
-                                        <mat-error>{{ formErrors?.article }}</mat-error>
-                                    </mat-form-field>
-
-                                    <div class="col-12" *ngSwitchCase="2">
-                                        <dh2-froala formControlName="article"
-                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
-                                        <mat-error>{{ formErrors?.article }}</mat-error>
-                                    </div>
+                                    
 
                                 </div>
                             </div>

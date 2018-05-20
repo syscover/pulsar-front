@@ -23,10 +23,10 @@ export const navigation = [
                     {
                         'id'        : 'groups',
                         'title'     : 'Groups',
-                        'translate' : 'NAV.GROUPS',
+                        'translate' : 'NAV.CUSTOMER_GROUPS',
                         'type'      : 'item',
                         'icon'      : 'people',
-                        'url'       : '/apps/crm/group'
+                        'url'       : '/apps/crm/customer-group'
                     },
                     {
                         'id'        : 'address_types',
@@ -137,12 +137,12 @@ export const navigation = [
                                 'url'       : '/apps/market/taxes/customer-class-tax'
                             },
                             {
-                                'id'        : 'groups_customer_class_tax',
-                                'title'     : 'Groups customer class tax',
-                                'translate' : 'NAV.GROUPS_CUSTOMERS_CLASS_TAX',
+                                'id'        : 'customer_groups_customer_class_taxes',
+                                'title'     : 'Customer groups customer class taxes',
+                                'translate' : 'NAV.CUSTOMER_GROUPS_CUSTOMER_CLASS_TAXES',
                                 'type'      : 'item',
                                 'icon'      : 'blur_circular',
-                                'url'       : '/apps/market/taxes/group-customer-class-tax'
+                                'url'       : '/apps/market/taxes/customer-group-customer-class-tax'
                             },
                             {
                                 'id'        : 'product_class_taxes',

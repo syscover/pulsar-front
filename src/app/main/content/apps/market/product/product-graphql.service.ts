@@ -84,6 +84,7 @@ export class ProductGraphQLService extends GraphQLSchema
     init() 
     {
         this.model = 'Syscover\\Market\\Models\\Product';
+        this.modelLang = 'Syscover\\Market\\Models\\ProductLang';
         this.table = 'market_product';
         this.tableLang = 'market_product_lang';
 

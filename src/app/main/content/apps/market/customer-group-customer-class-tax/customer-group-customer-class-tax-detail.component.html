@@ -23,10 +23,10 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                        {{ object.name }}
+                        {{ name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.GROUP_CUSTOMER_CLASS_TAX' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.CUSTOMER_GROUP_CUSTOMER_CLASS_TAX' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -70,10 +70,10 @@
                 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'MARKET.GROUP' | translate }}" formControlName="group_id" required>
-                                <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>                                            
+                            <mat-select placeholder="{{ 'MARKET.CUSTOMER_GROUP' | translate }}" formControlName="customer_group_id" required>
+                                <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>                                            
                             </mat-select>
-                            <mat-error>{{ formErrors?.group_id }}</mat-error>
+                            <mat-error>{{ formErrors?.customer_group_id }}</mat-error>
                         </mat-form-field>
                     </div>
 

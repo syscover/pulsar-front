@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">people</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.GROUPS' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">blur_circular</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.CUSTOMER_GROUPS_CUSTOMER_CLASS_TAXES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'CRM.GROUP' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'MARKET.CUSTOMER_GROUP_CUSTOMER_CLASS_TAX' | translate }}</span>
             </button>
 
         </div>
@@ -58,15 +58,15 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="crm_group.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                <ng-container matColumnDef="crm_customer_group.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.CUSTOMER_GROUP' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.customer_group_name }}</mat-cell>
                 </ng-container>
-        
+
                 <!-- Column -->
-                <ng-container matColumnDef="crm_group.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                <ng-container matColumnDef="market_customer_class_tax.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.customer_class_tax_name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
@@ -77,7 +77,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.customer_group_id, row.customer_class_tax_id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>

@@ -25,7 +25,7 @@ import * as _ from 'lodash';
 export class ProductDetailComponent extends CoreDetailComponent implements Chipable
 {
     @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
-    objectTranslation = 'CMS.ARTICLE';
+    objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
     
     tags: String[] = [];
@@ -50,96 +50,32 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     createForm() {
         this.fg = this.fb.group({
             ix: null,
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            parent_id: null,
-            author_id: null,
-            author_name: [{value: null, disabled: true}],
-            section_id: [null, Validators.required],
-            family_id: null,
-            field_group_id: null,
-            status_id: [null, Validators.required],
-            publish: null,
-            date: null,
-            title: null,
-            categories_id: [],
-            slug: null,
-            link: null,
-            blank: null,
-            sort: null,
-            tags: [],
-            excerpt: null,
-            article: null,
+            id: null,
+            lang_id: ['', Validators.required],
+            code: '',
+            categories_id: [[], Validators.required],
+            name: ['', Validators.required ],
+            slug: ['', Validators.required ],
+            field_group_id: '',
+            type_id: ['', Validators.required],
+            parent_id: '',
+            weight: [null, Validators.required],
+            active: '',
+            sort: [null, Validators.required],
+            price_type_id: ['', Validators.required],
+            product_class_tax_id: ['', Validators.required],
+            description: '',
+            price: null,
+            subtotal: null,
+            subtotal_format: [{value: null, disabled: true}, Validators.required ],
+            tax_format: [{value: null, disabled: true}, Validators.required ],
+            total_format: [{value: null, disabled: true}, Validators.required ],
             attachments: this.fb.array([])
         });
     }
-
     
-    
-
-    
-
-    
-
-    
-
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): Object 
     {
-        const sqlArticle = [
-            {
-                command: 'where',
-                column: 'cms_article.lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'cms_article.name'
-            }
-        ];
-
-        // set id of product if action is edit
-        if (this.params['id']) {
-            sqlArticle.push({
-                command: 'where',
-                column: 'cms_article.id',
-                operator: '<>',
-                value: this.params['id']
-            });
-        }
-
-        const sqlSection = [
-            {
-                'command': 'orderBy',
-                'operator': 'asc',
-                'column': 'cms_section.name'
-            }
-        ];
-
-        const sqlFamily = [
-            {
-                'command': 'orderBy',
-                'operator': 'asc',
-                'column': 'cms_family.name'
-            }
-        ];
-
-        const sqlAttachmentFamily = [
-            {
-                'command': 'where',
-                'column': 'admin_attachment_family.resource_id',
-                'operator': '=',
-                'value': 'cms-article'
-            },
-            {
-                'command': 'orderBy',
-                'operator': 'asc',
-                'column': 'admin_attachment_family.name'
-            }
-        ];
-
         const sqlCategory = [
             {
                 command: 'where',
@@ -149,21 +85,88 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
             }
         ];
 
-        const configStatuses = {
-            key: 'pulsar-cms.statuses',
+        const sqlAttachmentFamily = [
+            {
+                'command': 'where',
+                'column': 'admin_attachment_family.resource_id',
+                'operator': '=',
+                'value': 'market-product'
+            },
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'admin_attachment_family.name'
+            }
+        ];
+
+        const sqlProduct = [
+            {
+                'command': 'where',
+                'column': 'market_product_lang.lang_id',
+                'operator': '=',
+                'value': this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'market_product.sort'
+            }
+        ];
+
+        if (this.params['id']) {
+            sqlProduct.push({
+                command: 'where',
+                column: 'market_product.id',
+                operator: '<>',
+                value: this.params['id']
+            });
+        }
+
+        const sqlFieldGroup = [
+            {
+                command: 'where',
+                column: 'resource_id',
+                operator: '=',
+                value: 'market-product'
+            }
+        ];
+
+        const sqlStock = [
+            {
+                command: 'where',
+                column: 'product_id',
+                operator: '=',
+                value: this.params['id']
+            }
+        ];
+
+        const configProductTypes = {
+            key: 'pulsar-market.productTypes',
+            lang: this.baseLang,
+            property: 'name'
+        };
+
+        const configPriceTypes = {
+            key: 'pulsar-market.priceTypes',
             lang: this.baseLang,
             property: 'name'
         };
 
         return {
-            sqlArticle,
-            sqlSection,
-            sqlFamily,
-            sqlAttachmentFamily,
             sqlCategory,
-            configStatuses
+            sqlAttachmentFamily,
+            sqlProduct,
+            sqlFieldGroup,
+            sqlStock,
+            configProductTypes,
+            configPriceTypes
         };
     }
+
+
+
+
+
 
     setRelationsData(data: any) 
     {

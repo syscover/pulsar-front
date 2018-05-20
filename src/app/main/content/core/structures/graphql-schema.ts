@@ -2,6 +2,8 @@ export class GraphQLSchema
 { 
     // model of backoffice relative at this GraphQL service
     model: string;
+    // model land of backoffice relative at this GraphQL service
+    modelLang: string;
     // table name
     table: string;
     // table that contain multilanguage records

@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
+import { CustomerGroup } from './../../crm/crm.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -16,7 +17,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     objectTranslation = 'MARKET.CART_PRICE_RULE';
     objectTranslationGender = 'F';
     baseUri = '/apps/market/marketing/cart-price-rule';
-    // groups: SelectItem[] = [];
+    name: string;
+    customerGroups: CustomerGroup[] = [];
     // discountTypes: SelectItem[] = [];
 
     constructor(
@@ -81,6 +83,54 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         );
     }
 
+    afterSetData() 
+    {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
+        {
+            // set lang, this type of objects hasn't land_id in your table
+            this.fg.patchValue({lang_id: this.lang.id});
+
+            if (this.dataRoute.action === 'create-lang') 
+            {
+                this.name = this.object.names.find((el) => {
+                    return el['id'] === this.baseLang;
+                })['value'];
+
+                // set name field
+                this.fg.controls['name'].setValue(this.name);
+
+                // set description field
+                this.fg.controls['description'].setValue(
+                    this.object.descriptions.find((el) => {
+                        return el['id'] === this.baseLang;
+                    })['value']
+                );
+
+                // disabled inputs that hasn't containt multi language
+                this.disabledForm();
+            } 
+            else if (this.dataRoute.action === 'edit') 
+            {
+                this.name = this.object.names.find((el) => {
+                    return el['id'] === this.lang.id;
+                })['value'];
+
+                // set name field
+                this.fg.controls['name'].setValue(this.name);
+                
+                // set description field
+                this.fg.controls['description'].setValue(
+                    this.object.descriptions.find((el) => {
+                        return el['id'] === this.lang.id;
+                    })['value']
+                );
+
+                // disabled elemetns if edit diferent language that base lang
+                if (this.lang.id !== this.baseLang) this.disabledForm();
+            }
+        }
+    } 
+
     disabledForm() 
     {
         this.fg.controls['active'].disable();
@@ -101,42 +151,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         this.fg.controls['free_shipping'].disable();
     }
 
-    /* afterSetData() 
-    {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
-        {
-            // set lang, this type of objects hasn't land_id in your table
-            this.fg.patchValue({lang_id: this.lang.id});
-
-            if (this.dataRoute.action === 'create-lang') 
-            {
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
-                        return el['id'] === this.baseLang;
-                    })['value']
-                );
-
-                // disabled inputs that hasn't containt multi language
-                this.disabledForm();
-            } 
-            else if (this.dataRoute.action === 'edit') 
-            {
-                // set label field
-                this.fg.controls['label'].setValue(
-                    this.object['labels'].find((el) => {
-                        return el['id'] === this.lang.id;
-                    })['value']
-                );
-
-                // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) {
-                    this.disabledForm();
-                }
-            }
-        }
-    } 
-
+    /* 
     argumentsRelationsObject(): Object 
     {
         const configFieldTypes = {

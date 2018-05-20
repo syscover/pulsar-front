@@ -1,11 +1,5 @@
 
-export class Group 
-{
-    id: number;
-    name: string;
-}
-
-export class AddressType 
+export class CustomerGroup 
 {
     id: number;
     name: string;
@@ -53,4 +47,10 @@ export class Customer
 
     // data
     data: string;
+}
+
+export class AddressType 
+{
+    id: number;
+    name: string;
 }

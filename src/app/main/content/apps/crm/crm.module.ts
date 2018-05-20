@@ -9,12 +9,12 @@ import { AddressTypeListComponent } from './address-type/address-type-list.compo
 import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { CustomerDetailComponent } from './customer/customer-detail.component';
-import { GroupListComponent } from './group/group-list.component';
-import { GroupDetailComponent } from './group/group-detail.component';
+import { CustomerGroupListComponent } from './customer-group/customer-group-list.component';
+import { CustomerGroupDetailComponent } from './customer-group/customer-group-detail.component';
 
 import { AddressTypeGraphQLService } from './address-type/address-type-graphql.service';
 import { CustomerGraphQLService } from './customer/customer-graphql.service';
-import { GroupGraphQLService } from './group/group-graphql.service';
+import { CustomerGroupGraphQLService } from './customer-group/customer-group-graphql.service';
 
 @NgModule({
     imports: [
@@ -27,13 +27,13 @@ import { GroupGraphQLService } from './group/group-graphql.service';
         AddressTypeDetailComponent,
         CustomerListComponent,
         CustomerDetailComponent,
-        GroupListComponent,
-        GroupDetailComponent,
+        CustomerGroupListComponent,
+        CustomerGroupDetailComponent,
     ],
     providers: [
         AddressTypeGraphQLService,
         CustomerGraphQLService,
-        GroupGraphQLService,
+        CustomerGroupGraphQLService,
     ]
 })
 

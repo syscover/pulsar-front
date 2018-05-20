@@ -2,21 +2,21 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { GroupGraphQLService } from './group-graphql.service';
+import { CustomerGroupGraphQLService } from './customer-group-graphql.service';
 
 @Component({
-    selector: 'dh2-group-detail',
-    templateUrl: 'group-detail.component.html',
+    selector: 'dh2-customer-group-detail',
+    templateUrl: 'customer-group-detail.component.html',
     animations: fuseAnimations
 })
-export class GroupDetailComponent extends CoreDetailComponent 
+export class CustomerGroupDetailComponent extends CoreDetailComponent 
 {
     objectTranslation = 'CRM.GROUP';
     objectTranslationGender = 'M';
 
     constructor(
         protected injector: Injector,
-        protected graphQL: GroupGraphQLService
+        protected graphQL: CustomerGroupGraphQLService
     ) {
         super(injector, graphQL);
     }

@@ -6,8 +6,8 @@ import { AddressTypeListComponent } from './address-type/address-type-list.compo
 import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { CustomerDetailComponent } from './customer/customer-detail.component';
-import { GroupListComponent } from './group/group-list.component';
-import { GroupDetailComponent } from './group/group-detail.component';
+import { CustomerGroupListComponent } from './customer-group/customer-group-list.component';
+import { CustomerGroupDetailComponent } from './customer-group/customer-group-detail.component';
 
 const routes: Routes = [
     {
@@ -16,13 +16,13 @@ const routes: Routes = [
         children: [
             // Customers
             { path: 'customer',                         component: CustomerListComponent },
-            { path: 'customer/create',                  component: CustomerDetailComponent,     data: { action: 'create' }},
-            { path: 'customer/show/:id',                component: CustomerDetailComponent,     data: { action: 'edit' }},
+            { path: 'customer/create',                  component: CustomerDetailComponent,         data: { action: 'create' }},
+            { path: 'customer/show/:id',                component: CustomerDetailComponent,         data: { action: 'edit' }},
 
             // Groups
-            { path: 'group',                            component: GroupListComponent },
-            { path: 'group/create',                     component: GroupDetailComponent,            data: { action: 'create' }},
-            { path: 'group/show/:id',                   component: GroupDetailComponent,            data: { action: 'edit' }},
+            { path: 'customer-group',                   component: CustomerGroupListComponent },
+            { path: 'customer-group/create',            component: CustomerGroupDetailComponent,    data: { action: 'create' }},
+            { path: 'customer-group/show/:id',          component: CustomerGroupDetailComponent,    data: { action: 'edit' }},
 
             // Address Types
             { path: 'address-type',                     component: AddressTypeListComponent },
