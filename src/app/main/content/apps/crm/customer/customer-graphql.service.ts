@@ -112,7 +112,7 @@ export class CustomerGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            crmGroups {
+            crmCustomerGroups {
                 id
                 name
             }

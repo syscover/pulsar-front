@@ -36,7 +36,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
             name: [null, Validators.required],
             description: null,
             active: null,
-            group_ids: [],
+            customer_group_ids: [],
             combinable: null,
             priority: null,
             has_coupon: null,
@@ -134,7 +134,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     disabledForm() 
     {
         this.fg.controls['active'].disable();
-        this.fg.controls['group_ids'].disable();
+        this.fg.controls['customer_group_ids'].disable();
         this.fg.controls['combinable'].disable();
         this.fg.controls['priority'].disable();
         this.fg.controls['has_coupon'].disable();
@@ -151,56 +151,15 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         this.fg.controls['free_shipping'].disable();
     }
 
-    /* 
-    argumentsRelationsObject(): Object 
+    setRelationsData(data: any)
     {
-        const configFieldTypes = {
-            key: 'pulsar-admin.field_types'
-        };
+        // set crm customer groups
+        this.customerGroups = data.crmCustomerGroups;
 
-        const configDataTypes = {
-            key: 'pulsar-admin.data_types'
-        };
-
-        const sqlFieldGroup = [
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'admin_field_group.name'
-            }
-        ];
-
-        return {
-            configFieldTypes,
-            configDataTypes,
-            sqlFieldGroup
-        };
+        /* // market discount types
+        this.discountTypes = _.map(<ProductType[]>data['marketDiscountTypes'], obj => {
+            return { value: obj.id, label: obj.name };
+        });
+        this.discountTypes.unshift({ label: 'Select a product type', value: '' }); */
     }
-
-    // overwrite this method for not implement lang_id property in aguments
-    // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): any 
-    {
-        return Object.assign({}, {
-            sql: [{
-                command: 'where',
-                column: 'admin_field.id',
-                operator: '=',
-                value: params['id']
-            }]},
-            this.argumentsRelationsObject()
-        );
-    }
-
-    setRelationsData(data: any) 
-    {
-        // set field groups
-       // this.fieldGroups = data.adminFieldGroups;
-
-        // set fields types
-        //this.fieldTypes = data.coreConfigFieldTypes;
-
-        // set data types
-        //this.dataTypes = data.coreConfigDataTypes;
-    } */
 }

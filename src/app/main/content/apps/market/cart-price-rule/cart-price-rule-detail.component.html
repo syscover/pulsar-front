@@ -83,58 +83,104 @@
 
             <!-- CONTENT -->
             <div class="content">
-                <form   id="formDetail"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
-                
-                    <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
-                        </mat-form-field>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <div class="col-12">
-                            <dh2-froala formControlName="description"
-                                        placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
-                                        [heightMin]="200"></dh2-froala>
-                            <mat-error>{{ formErrors?.description }}</mat-error>
-                        </div>
-                    </div>
-
-                    <div fxLayout="row wrap">
-                        <div class="col-12 col-md-6 py-20">
-                            <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.F' | translate }}</mat-checkbox>
-                        </div>
-                        <div class="col-12 col-md-6 py-20">
-                            <mat-checkbox formControlName="combinable">{{ 'MARKET.COMBINABLE' | translate }}</mat-checkbox>
-                        </div>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="group_ids" multiple>
-                                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.group_ids }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
+                <div fxFlex fxLayout="column">
+                    <form   id="formDetail"
+                            [formGroup]="fg"
+                            (ngSubmit)="postRecord(object)">
                     
+                        <div fxLayout="row wrap">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                            </mat-form-field>
+                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                        </div>
 
-                    
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                </form>
+                        <div fxLayout="row">
+                            <div class="col-12">
+                                <dh2-froala formControlName="description"
+                                            placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                            [heightMin]="100"></dh2-froala>
+                                <mat-error>{{ formErrors?.description }}</mat-error>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div class="col-12 col-md-6 py-20">
+                                <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.F' | translate }}</mat-checkbox>
+                            </div>
+                            <div class="col-12 col-md-6 py-20">
+                                <mat-checkbox formControlName="combinable">{{ 'MARKET.COMBINABLE' | translate }}</mat-checkbox>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <mat-select placeholder="{{ 'NAV.CUSTOMER_GROUPS' | translate }}" formControlName="customer_group_ids" multiple>
+                                    <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>
+                                </mat-select>
+                                <mat-error>{{ formErrors?.customer_group_ids }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'MARKET.PRIORITY' | translate }}" formControlName="priority" type="number">
+                                <mat-error>{{ formErrors?.priority }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                            <mat-icon class="m-0 mr-16">confirmation_number</mat-icon>
+                            <div class="h2 secondary-text">{{ 'MARKET.COUPON' | translate }}</div>
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div fxLayout="row">
+                            <div class="col-12 col-md-6 py-20">
+                                <mat-checkbox formControlName="has_coupon">{{ 'MARKET.HAS_COUPON' | translate }}</mat-checkbox>
+                            </div>
+                        </div>
+
+                        <div *ngIf="fg.controls['has_coupon'].value">
+                            <div fxLayout="row">
+                                <mat-form-field class="col-12 col-md-4">
+                                    <input matInput placeholder="{{ 'MARKET.COUPON' | translate }}" formControlName="coupon_code">
+                                    <mat-error>{{ formErrors?.coupon_code }}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row wrap">
+                                <mat-form-field class="col-12 col-md-4">
+                                    <input matInput placeholder="{{ 'MARKET.COUPON_USES' | translate }}" formControlName="coupon_uses" type="number">
+                                    <mat-error>{{ formErrors?.coupon_uses }}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="col-12 offset-md-1 col-md-4">
+                                    <input matInput placeholder="{{ 'MARKET.CUSTOMER_USES' | translate }}" formControlName="customer_uses" type="number">
+                                    <mat-error>{{ formErrors?.customer_uses }}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row wrap">
+                                <mat-form-field class="col-12 col-md-4">
+                                    <input matInput placeholder="{{ 'MARKET.TOTAL_USES' | translate }}" formControlName="total_uses" type="number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        
+
+                        
+
+                    </form>
+                </div>
             </div>
             <!-- / CONTENT -->
 

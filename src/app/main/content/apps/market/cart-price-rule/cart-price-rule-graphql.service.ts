@@ -67,7 +67,7 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
                 names
                 descriptions
                 active
-                group_ids
+                customer_group_ids
                 customer_ids
                 combinable
                 priority
@@ -91,7 +91,7 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            crmGroups {
+            crmCustomerGroups {
                 id
                 name
             }
