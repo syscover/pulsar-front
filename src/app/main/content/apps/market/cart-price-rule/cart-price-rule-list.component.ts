@@ -14,8 +14,8 @@ export class CartPriceRuleListComponent extends CoreListComponent
 {
     objectTranslation = 'MARKET.CART_PRICE_RULE';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['market_cart_price_rule.id'];
-    displayedColumns = ['market_cart_price_rule.id', 'market_cart_price_rule.coupon', 'market_cart_price_rule.active', 'translations', 'actions'];
+    columnsSearch: string[] = ['market_cart_price_rule.id', 'market_cart_price_rule.names', 'market_cart_price_rule.coupon_code'];
+    displayedColumns = ['market_cart_price_rule.id', 'market_cart_price_rule.names', 'market_cart_price_rule.coupon_code', 'market_cart_price_rule.active', 'translations', 'actions'];
     baseUri = '/apps/market/marketing/cart-price-rule';
 
     constructor(

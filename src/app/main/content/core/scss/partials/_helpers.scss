@@ -12,3 +12,11 @@
     display: flex;
     justify-content: center;
 }
+
+@for $i from 1 through 100 {
+    // Set horizontal paddinghelpers
+    .px-#{$i} {
+        padding-left: #{$i}px !important; 
+        padding-right: #{$i}px !important;  
+    }
+}

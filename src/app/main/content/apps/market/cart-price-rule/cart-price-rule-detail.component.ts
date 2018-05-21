@@ -5,6 +5,8 @@ import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { CustomerGroup } from './../../crm/crm.models';
+import { DiscountType } from './../market.models';
+import './../../../core/functions/date-to-json.function';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,7 +21,9 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     baseUri = '/apps/market/marketing/cart-price-rule';
     name: string;
     customerGroups: CustomerGroup[] = [];
-    // discountTypes: SelectItem[] = [];
+    discountTypes: DiscountType[] = [];
+    amountDiscount = false;
+    percentageDiscount = false;
 
     constructor(
         protected injector: Injector,
@@ -35,11 +39,11 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
             description: null,
-            active: null,
+            active: false,
             customer_group_ids: [],
-            combinable: null,
+            combinable: false,
             priority: null,
-            has_coupon: null,
+            has_coupon: false,
             coupon_code: null,
             coupon_uses: null,
             customer_uses: null,
@@ -50,8 +54,8 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
             discount_fixed_amount: null,
             discount_percentage: null,
             maximum_discount_amount: null,
-            apply_shipping_amount: null,
-            free_shipping: null
+            apply_shipping_amount: false,
+            free_shipping: false
         });
     }
 
@@ -85,6 +89,9 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
 
     afterSetData() 
     {
+        // show fields to fill discounts
+        this.showDiscountTypeFields(this.object.discount_type_id);
+
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
         {
             // set lang, this type of objects hasn't land_id in your table
@@ -156,10 +163,33 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         // set crm customer groups
         this.customerGroups = data.crmCustomerGroups;
 
-        /* // market discount types
-        this.discountTypes = _.map(<ProductType[]>data['marketDiscountTypes'], obj => {
-            return { value: obj.id, label: obj.name };
-        });
-        this.discountTypes.unshift({ label: 'Select a product type', value: '' }); */
+        // set market discount types
+        this.discountTypes = data.marketDiscountTypes;
+    }
+
+    handleDiscountType($event)
+    {
+        this.showDiscountTypeFields($event.value);
+    }
+
+    private showDiscountTypeFields(value: number): void
+    {
+        if (value === 1)
+        {
+            this.percentageDiscount = false;
+            this.amountDiscount = false;
+        }
+        
+        if (value === 2 || value === 4)
+        {
+            this.percentageDiscount = true;
+            this.amountDiscount = false;
+        }
+
+        if (value === 3 || value === 5)
+        {
+            this.amountDiscount = true;
+            this.percentageDiscount = false;
+        }
     }
 }

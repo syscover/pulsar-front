@@ -84,7 +84,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="status_id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.STATUS' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ statuses | collectionObjectValue:'id':row.status_id:'name' }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ statuses | getCollectionObjectValue:'id':row.status_id:'name' }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

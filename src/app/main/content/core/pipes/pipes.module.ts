@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ActionTranslationObjectPipe } from './action-trasnlation-object.pipe';
 import { CheckTranslationObjectPipe } from './check-translation-object.pipe';
-import { CollectionObjectValuePipe } from './collection-object-value.pipe';
+import { GetCollectionObjectValuePipe } from './get-collection-object-value.pipe';
 import { FormatSizePipe } from './format-size.pipe';
 import { NumbersArrayPipe } from './numbers-array.pipe';
 import { SortByPipe } from './sort-by.pipe';
@@ -12,7 +12,7 @@ import { ValuesArrayPipe } from './values-array.pipe';
     exports     : [
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
-        CollectionObjectValuePipe,
+        GetCollectionObjectValuePipe,
         FormatSizePipe,
         NumbersArrayPipe,
         SortByPipe,
@@ -21,7 +21,7 @@ import { ValuesArrayPipe } from './values-array.pipe';
     declarations: [
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
-        CollectionObjectValuePipe,
+        GetCollectionObjectValuePipe,
         FormatSizePipe,
         NumbersArrayPipe,
         SortByPipe,

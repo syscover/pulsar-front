@@ -64,9 +64,15 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="market_cart_price_rule.coupon">
+                <ng-container matColumnDef="market_cart_price_rule.names">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                        <mat-cell *matCellDef="let row">{{ row.names | getCollectionObjectValue:'id':baseLang:'value' }}</mat-cell>
+                    </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_cart_price_rule.coupon_code">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.COUPON' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.coupon }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.coupon_code }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->

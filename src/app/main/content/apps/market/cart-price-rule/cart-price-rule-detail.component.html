@@ -82,7 +82,7 @@
         <div class="content-card mat-white-bg p-24">
 
             <!-- CONTENT -->
-            <div class="content">
+            <div class="content px-3">
                 <div fxFlex fxLayout="column">
                     <form   id="formDetail"
                             [formGroup]="fg"
@@ -138,6 +138,25 @@
 
                         <!-- HEADER -->
                         <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                            <mat-icon class="m-0 mr-16">event</mat-icon>
+                            <div class="h2 secondary-text">{{ 'MARKET.SCHEDULE' | translate }}</div>
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div fxLayout="row wrap" class="justify-content-between">
+                            <mat-form-field class="col-12 col-md-5">
+                                <input matInput placeholder="{{ 'MARKET.ENABLE_FROM' | translate }}" formControlName="enable_from" type="datetime-local">
+                                <mat-error>{{ formErrors?.enable_from }}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-12 col-md-5">
+                                <input matInput placeholder="{{ 'MARKET.ENABLE_TO' | translate }}" formControlName="enable_to" type="datetime-local">
+                                <mat-error>{{ formErrors?.enable_to }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                             <mat-icon class="m-0 mr-16">confirmation_number</mat-icon>
                             <div class="h2 secondary-text">{{ 'MARKET.COUPON' | translate }}</div>
                         </div>
@@ -160,25 +179,82 @@
                             <div fxLayout="row wrap">
                                 <mat-form-field class="col-12 col-md-4">
                                     <input matInput placeholder="{{ 'MARKET.COUPON_USES' | translate }}" formControlName="coupon_uses" type="number">
+                                    <mat-hint align="start">{{ 'MARKET.COUPON_USES_DESCRIPTION' | translate }}</mat-hint>
                                     <mat-error>{{ formErrors?.coupon_uses }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="col-12 offset-md-1 col-md-4">
                                     <input matInput placeholder="{{ 'MARKET.CUSTOMER_USES' | translate }}" formControlName="customer_uses" type="number">
+                                    <mat-hint align="start">{{ 'MARKET.CUSTOMER_USES_DESCRIPTION' | translate }}</mat-hint>
                                     <mat-error>{{ formErrors?.customer_uses }}</mat-error>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row wrap">
-                                <mat-form-field class="col-12 col-md-4">
+                                <mat-form-field class="col-12 col-md-4 mt-12">
                                     <input matInput placeholder="{{ 'MARKET.TOTAL_USES' | translate }}" formControlName="total_uses" type="number">
                                 </mat-form-field>
                             </div>
                         </div>
 
-                        
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                            <mat-icon class="m-0 mr-16">money_off</mat-icon>
+                            <div class="h2 secondary-text">{{ 'MARKET.DISCOUNTS' | translate }}</div>
+                        </div>
+                        <!-- / HEADER -->
 
-                        
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <mat-select placeholder="{{ 'MARKET.DISCOUNT_TYPES' | translate }}" formControlName="discount_type_id" (change)="handleDiscountType($event)">
+                                    <mat-option *ngFor="let discountType of discountTypes" [value]="+discountType.id">{{ discountType.name }}</mat-option>
+                                </mat-select>
+                                <mat-error>{{ formErrors?.discount_type_id }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
+                        <div *ngIf="percentageDiscount">
+                            <div fxLayout="row wrap">
+                                <mat-form-field class="col-12 col-md-4">
+                                    <span matSuffix>%</span>
+                                    <input matInput placeholder="{{ 'MARKET.DISCOUNT_PERCENTAGE' | translate }}" formControlName="discount_percentage" type="number">
+                                    <mat-error>{{ formErrors?.discount_percentage }}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="col-12 offset-md-1 col-md-4">
+                                    <span matSuffix>€</span>
+                                    <input matInput placeholder="{{ 'MARKET.MAXIMUN_DISCOUNT_AMOUNT' | translate }}" formControlName="maximum_discount_amount" type="number">
+                                    <mat-error>{{ formErrors?.maximum_discount_amount }}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row">
+                                <div class="col-12 py-20">
+                                    <mat-checkbox formControlName="apply_shipping_amount">{{ 'MARKET.APPLY_SHIPPING_AMOUNT' | translate }}</mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="amountDiscount">
+                            <div fxLayout="row">
+                                <mat-form-field class="col-12 col-md-4">
+                                    <span matSuffix>€</span>
+                                    <input matInput placeholder="{{ 'MARKET.DISCOUNT_FIXED_AMOUNT' | translate }}" formControlName="discount_fixed_amount" type="number">
+                                    <mat-error>{{ formErrors?.discount_fixed_amount }}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                            <mat-icon class="m-0 mr-16">local_shipping</mat-icon>
+                            <div class="h2 secondary-text">{{ 'MARKET.SHIPPING' | translate }}</div>
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div fxLayout="row">
+                            <div class="col-12 py-20">
+                                <mat-checkbox formControlName="free_shipping">{{ 'MARKET.FREE_SHIPPING' | translate }}</mat-checkbox>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
