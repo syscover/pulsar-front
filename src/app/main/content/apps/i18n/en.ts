@@ -25,6 +25,7 @@ export const locale = {
             'FAMILY': 'Family',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',
+            'GENERATE_PASSWORD': 'Generate password',
             'HEIGHT': 'Height',
             'ID': 'Id',
             'LABEL': 'Label',
@@ -40,6 +41,7 @@ export const locale = {
             'PREFIX': 'Prefix',
             'PROPERTIES': 'Properties',
             'REMEMBER_ME': 'Remember me',
+            'REPEAT_PASSWORD': 'Repeat your password',
             'RESOURCE': 'Resource',
             'SAVE': 'Save',
             'SAVED.F': 'Saved',
@@ -50,6 +52,7 @@ export const locale = {
             'SETTINGS': 'Settings',
             'SETTING': 'Setting',
             'SHOW': 'Show',
+            'SHOW_PASSWORD': 'Show password',
             'SLUG': 'Slug',
             'SORT': 'Sort',
             'STATUS': 'Status',
@@ -82,6 +85,7 @@ export const locale = {
             'MAXLENGTH' : 'This field may not be greater than {{ maxlength }} characters.',
             'MINLENGTH': 'This field must be at least {{ minlength }} characters.',
             'REQUIRED': 'This field is required.',
+            'NOT_EQUAL': 'Field {{ fieldname }} is not the same as field {{ matchfieldname }}'
         }
     }
 };

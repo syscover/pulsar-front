@@ -205,7 +205,7 @@
 
                         <div fxLayout="row">
                             <mat-form-field class="col-12">
-                                <mat-select placeholder="{{ 'MARKET.DISCOUNT_TYPES' | translate }}" formControlName="discount_type_id" (change)="handleDiscountType($event)">
+                                <mat-select placeholder="{{ 'MARKET.DISCOUNT_TYPES' | translate }}" formControlName="discount_type_id" (change)="handleDiscountType($event)" required>
                                     <mat-option *ngFor="let discountType of discountTypes" [value]="+discountType.id">{{ discountType.name }}</mat-option>
                                 </mat-select>
                                 <mat-error>{{ formErrors?.discount_type_id }}</mat-error>

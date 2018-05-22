@@ -41,8 +41,10 @@ export class ValidationMessageService
             });
     }
 
-    getMessage(error: string, formControl?: AbstractControl): string {
-        switch (error) {
+    getMessage(error: string, formControl?: AbstractControl): string 
+    {
+        switch (error) 
+        {
             case 'required':
                 return this.translations['VALIDATIONS.REQUIRED'];
 
@@ -54,6 +56,9 @@ export class ValidationMessageService
 
             case 'email':
                 return this.translations['VALIDATIONS.EMAIL'];
+
+            case 'notequal':
+                return this.translateService.instant('VALIDATIONS.NOT_EQUAL', {'fieldname': formControl.errors[error]['fieldName'], 'matchfieldname': formControl.errors[error]['matchFieldName']});
 
             default:
                 return this.translations['VALIDATIONS.DEFAULT'];
