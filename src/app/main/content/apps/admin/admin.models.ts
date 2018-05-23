@@ -6,7 +6,7 @@ export class User
     lang_id: string;
     email: string;
     profile_id: number;
-    access: boolean;
+    active: boolean;
     user: string;
     password: string;
 }

@@ -2,11 +2,9 @@ export const locale = {
     lang: 'en',
     data: {
         'ADMIN': {
-            'ACCESS': 'Access',
             'ACTION': 'Action',
             'ATTACHMENT_FAMILY': 'Attachmen family',
             'COMPONENT_CLASS': 'Component class',
-            'DATA_ACCESS': 'Data access',
             'DATA_TYPE': 'Data type',
             'EDIT_ID': 'Edit Id',
             'FEATURED': 'Featured',

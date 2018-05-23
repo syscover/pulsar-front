@@ -15,7 +15,7 @@ export class UserListComponent extends CoreListComponent
     objectTranslation = 'ADMIN.USER';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email'];
-    displayedColumns = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email', 'actions'];
+    displayedColumns = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email', 'admin_user.active', 'actions'];
 
     constructor(
         protected injector: Injector,

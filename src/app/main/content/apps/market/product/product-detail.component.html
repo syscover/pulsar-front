@@ -121,6 +121,25 @@
                                     </mat-form-field>
                                 </div>
 
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <mat-select placeholder="{{ 'MARKET.PRODUCT_TYPE' | translate }}" formControlName="type_id" required>
+                                            <mat-option *ngFor="let productType of productTypes" [value]="+productType.id">{{ productType.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.type_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <div class="col-12 col-md-4 py-20">
+                                        <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
+                                    </div>
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                                        <mat-error>{{ formErrors?.sort }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row wrap" class="justify-content-between">
                                     
                                 </div>
@@ -134,88 +153,11 @@
                                 </div>
 
                                 <!-- HEADER -->
-                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section"  *ngIf=" family?.article_parent || family?.date || family?.title || family?.slug || 
-                                                family?.categories || family?.link || family?.tags || family?.sort">
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                                     <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
                                     <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
                                 </div>
                                 <!-- / HEADER -->
-
-                                <div fxLayout="row" *ngIf="family?.article_parent">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
-                                            <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
-                                            <mat-option *ngFor="let article of articles" [value]="article.id">{{ article.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.parent_id }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.date">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
-                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-                                        <mat-datepicker #date></mat-datepicker>
-                                        <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field>                                    
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.title">
-                                    <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
-                                        <mat-error>{{ formErrors?.title }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.slug">
-                                    <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
-                                        <mat-error>{{ formErrors?.slug }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.categories">
-                                    <mat-form-field class="col-12">
-                                        <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
-                                            <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.categories_id }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row" class="justify-content-between flex-wrap" *ngIf="family?.link">
-                                    <mat-form-field class="col-12 col-md-9">
-                                        <input matInput placeholder="{{ 'APPS.LINK' | translate }}" formControlName="link">
-                                        <mat-error>{{ formErrors?.link }}</mat-error>
-                                    </mat-form-field>
-
-                                    <div class="col-12 col-md-2 py-20">
-                                        <mat-checkbox formControlName="blank">{{ 'CMS.NEW_WINDOW' | translate }}</mat-checkbox>
-                                    </div>
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.tags">
-                                    <mat-form-field class="col-12">
-                                        <mat-chip-list #tagList>
-                                            <mat-chip *ngFor="let tag of fg.controls['tags'].value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
-                                                {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
-                                            </mat-chip>
-                                        </mat-chip-list>
-                                        <input  placeholder="{{ 'CMS.ADD_TAG' | translate }}"
-                                                [matChipInputFor]="tagList"
-                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                                [matChipInputAddOnBlur]="true"
-                                                (matChipInputTokenEnd)="addTag(fg, 'tags', $event)">
-                                        <mat-error>{{ formErrors?.tags }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row" *ngIf="family?.sort">
-                                    <mat-form-field class="col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
-                                        <mat-error>{{ formErrors?.sort }}</mat-error>
-                                    </mat-form-field>
-                                </div>
 
                                 <!-- DYNAMIC FORM -->  
                                 <dh2-dynamic-form   [formGroup]="fg"
@@ -227,14 +169,14 @@
 
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'CMS.EXCERPT' | translate | uppercase }}">
+                        <mat-tab label="{{ 'APPS.DESCRIPTION' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
 
                                 </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'CMS.ARTICLE' | translate | uppercase }}">
+                        <mat-tab label="{{ 'MARKET.STOCK' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
 
@@ -243,7 +185,7 @@
                                 </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}" *ngIf="family?.attachments">
+                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                     <dh2-attachments    name="attachments"
                                                         placeholder="{{ 'APPS.DRAG_FILES' | translate }}" 

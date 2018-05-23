@@ -4,6 +4,7 @@ import { SharedModule } from './../../core/modules/shared.module';
 import { CrmRoutingModule } from './crm-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
+import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
 
 import { AddressTypeListComponent } from './address-type/address-type-list.component';
 import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
@@ -19,7 +20,8 @@ import { CustomerGroupGraphQLService } from './customer-group/customer-group-gra
 @NgModule({
     imports: [
         SharedModule,
-        CrmRoutingModule
+        CrmRoutingModule,
+        NgxMaterialPasswordStrengthModule
     ],
     exports: [ ],
     declarations: [

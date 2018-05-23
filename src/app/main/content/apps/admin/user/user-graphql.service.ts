@@ -70,7 +70,7 @@ export class UserGraphQLService extends GraphQLSchema
                 lang_id
                 email
                 profile_id
-                access
+                active
                 user
                 profile {
                     id

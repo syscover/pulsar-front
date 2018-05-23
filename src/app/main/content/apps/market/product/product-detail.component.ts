@@ -5,6 +5,8 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { ProductGraphQLService } from './product-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
+import { ProductType } from './../market.models';
+
 
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { MatDatepicker } from '@angular/material';
@@ -27,9 +29,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
     objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
-    
+    productTypes: ProductType[] = [];
+
+
+
+
+
     tags: String[] = [];
-    
     attachmentFamilies: AttachmentFamily[] = [];
     imageStyles: Object = new Object;
     
@@ -51,25 +57,25 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
         this.fg = this.fb.group({
             ix: null,
             id: null,
-            lang_id: ['', Validators.required],
-            code: '',
+            lang_id: [null, Validators.required],
+            code: null,
             categories_id: [[], Validators.required],
-            name: ['', Validators.required ],
-            slug: ['', Validators.required ],
-            field_group_id: '',
-            type_id: ['', Validators.required],
-            parent_id: '',
+            name: [null, Validators.required],
+            slug: [null, Validators.required],
+            field_group_id: null,
+            type_id: [null, Validators.required],
+            parent_id: null,
             weight: [null, Validators.required],
-            active: '',
+            active: false,
             sort: [null, Validators.required],
-            price_type_id: ['', Validators.required],
-            product_class_tax_id: ['', Validators.required],
-            description: '',
+            price_type_id: [null, Validators.required],
+            product_class_tax_id: [null, Validators.required],
+            description: null,
             price: null,
             subtotal: null,
-            subtotal_format: [{value: null, disabled: true}, Validators.required ],
-            tax_format: [{value: null, disabled: true}, Validators.required ],
-            total_format: [{value: null, disabled: true}, Validators.required ],
+            subtotal_format: [{value: null, disabled: true}, Validators.required],
+            tax_format: [{value: null, disabled: true}, Validators.required],
+            total_format: [{value: null, disabled: true}, Validators.required],
             attachments: this.fb.array([])
         });
     }
@@ -170,27 +176,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
 
     setRelationsData(data: any) 
     {
-        /* // cms sections
-        this.sections = data.cmsSections;
-        // cms families
-        this.families = data.cmsFamilies;
-        // cms articles
-        this.articles = data.cmsArticles;
-        // cms categories
-        this.categories = data.cmsCategories;
-        // cms statuses
-        this.statuses = data.cmsStatuses;
-
-        // admin attachment families
-        // this objects are manage in loadAttachmentFamilies method
-        this._attachmentFamilies = data.adminAttachmentFamilies;
-
-        // cms author
-        const user = this.authenticationService.user();
-        this.fg.patchValue({
-            author_id: user.id,
-            author_name: user.name + ' ' + user.surname
-        }); */
+        // market product types
+        this.productTypes = data.marketProductTypes;
     }
 }
 // multiple inheritance

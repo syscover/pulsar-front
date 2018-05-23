@@ -15,7 +15,7 @@ export class CustomerListComponent extends CoreListComponent
     objectTranslation = 'CRM.CUSTOMER';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email'];
-    displayedColumns = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email', 'actions'];
+    displayedColumns = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email', 'crm_customer.active', 'actions'];
 
     constructor(
         protected injector: Injector,

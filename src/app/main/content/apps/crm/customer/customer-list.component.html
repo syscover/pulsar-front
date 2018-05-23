@@ -81,6 +81,14 @@
                     <mat-cell *matCellDef="let row"><a href="mailto:{{ row.email }}">{{ row.email }}</a></mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="crm_customer.active">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex align-center">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex align-center">
+                        <mat-icon *ngIf="row.active">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
