@@ -46,6 +46,11 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent
                 column: 'lang_id',
                 operator: '=',
                 value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_country.name'
             }
         ];
 

@@ -123,6 +123,7 @@ export class CustomerGraphQLService extends GraphQLSchema
                 territorial_area_1
                 territorial_area_2
                 territorial_area_3
+                zones
             }
         `;
 

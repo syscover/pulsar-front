@@ -178,11 +178,42 @@
                                 </div>
 
                                 <div fxLayout="row">
+                                    
+
                                     <div class="col-12 col-md-6">
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="locality">
-                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (change)="handleChangeCountry($event)">
+                                                    <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>                                            
+                                                </mat-select>
+                                                <mat-error>{{ formErrors?.country_id }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row" *ngIf="showTerritorialAreas1">
+                                            <mat-form-field class="col-12">
+                                                <mat-select placeholder="{{ ta1Name }}" formControlName="territorial_area_1_id">
+                                                    <mat-option *ngFor="let territorialArea1 of territorialAreas1" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>                                            
+                                                </mat-select>
+                                                <mat-error>{{ formErrors?.territorial_area_1_id }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row" *ngIf="showTerritorialAreas2">
+                                            <mat-form-field class="col-12">
+                                                <mat-select placeholder="{{ ta2Name }}" formControlName="territorial_area_2_id">
+                                                    <mat-option *ngFor="let territorialArea2 of territorialAreas2" [value]="territorialArea2.id">{{ territorialArea2.name }}</mat-option>                                            
+                                                </mat-select>
+                                                <mat-error>{{ formErrors?.territorial_area_2_id }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row" *ngIf="showTerritorialAreas3">
+                                            <mat-form-field class="col-12">
+                                                <mat-select placeholder="{{ ta3Name }}" formControlName="territorial_area_3_id">
+                                                    <mat-option *ngFor="let territorialArea3 of territorialAreas3" [value]="territorialArea3.id">{{ territorialArea3.name }}</mat-option>                                            
+                                                </mat-select>
+                                                <mat-error>{{ formErrors?.territorial_area_3_id }}</mat-error>
                                             </mat-form-field>
                                         </div>
 

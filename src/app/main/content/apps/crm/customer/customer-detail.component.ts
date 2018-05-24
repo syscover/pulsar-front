@@ -1,3 +1,4 @@
+import { TerritorialArea1GraphQLService } from './../../admin/territorial_area_1/territorial-area-1-graphql.service';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
@@ -5,7 +6,10 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { CustomerGraphQLService } from './customer-graphql.service';
 import { notEqual } from './../../../core/validations/not-equal.validation';
 import { CustomerGroup } from './../crm.models';
+import { Country } from './../../admin/admin.models';
 import * as passwordGenerator from 'generate-password-browser';
+import { applyMixins } from './../../../core/functions/apply-mixins.function';
+import { Territories } from './../../../core/traits/territories.trait';
 
 @Component({
     selector: 'dh2-customer-detail',
@@ -17,10 +21,12 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     objectTranslation = 'CRM.CUSTOMER';
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
+    countries: Country[] = [];
 
     constructor(
         protected injector: Injector,
-        protected graphQL: CustomerGraphQLService
+        protected graphQL: CustomerGraphQLService,
+        protected territorialArea1GraphQLService: TerritorialArea1GraphQLService;
     ) {
         super(injector, graphQL);
     }
@@ -34,12 +40,16 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
             tin: null,
             name: null,
             surname: null,
-            address: null,
             email: [null, Validators.required],
+            active: false,
             user: [null, Validators.required],
             password: null,
             repeat_password: null,
-            active: false,
+            address: null,
+            country_id: null,
+            territorial_area_1_id: null,
+            territorial_area_2_id: null,
+            territorial_area_3_id: null,
             zip: null,
             locality: null,
             latitude: null,
@@ -78,14 +88,36 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         return args;
     }
 
+    argumentsRelationsObject(): Object
+    {
+        const sqlCountry = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_country.name'
+            }
+        ];
+
+        return {
+            sqlCountry
+        };
+    }
+
     setRelationsData(data: any) 
     {
         // set crm customer groups
         this.customerGroups = data.crmCustomerGroups;
 
-        /* // set countries
-        this.countries = data['adminCountries'];
+        // set admin countries
+        this.countries = data.adminCountries;
 
+        /* 
         // set adresses
         this.addresses = data['crmAddresses']; */
     }
@@ -102,3 +134,5 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     }
 }
 
+// multiple inheritance
+applyMixins(CustomerDetailComponent, [Territories]);
