@@ -5,7 +5,7 @@ export const locale = {
             'ADDRESS_TYPE': 'Address type',
             'ADDRESSES': 'Addresses',
             'CUSTOMER': 'Customer',
-            'GROUP': 'Group',
+            'CUSTOMER_GROUP': 'Customer group'
         }
     }
 };

@@ -21,7 +21,7 @@ export const locale = {
             'CRM': 'CRM',
             'CUSTOM_FIELDS': 'Campos personalizados',
             'CUSTOMER_CLASS_TAXES': 'Impuestos al cliente',
-            'CUSTOMER_GROUPS': 'Grupos de cliente', 
+            'CUSTOMER_GROUPS': 'Grupos de cliente',
             'CUSTOMER_GROUPS_CUSTOMER_CLASS_TAXES': 'Grupos de clientes',
             'CUSTOMERS': 'Clientes',
             'FAMILIES': 'Familias',

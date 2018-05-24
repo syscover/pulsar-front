@@ -19,7 +19,7 @@
                     fxLayout="row" 
                     fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">people</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.GROUPS' | translate }}</span>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.CUSTOMER_GROUPS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'CRM.GROUP' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'CRM.CUSTOMER_GROUP' | translate }}</span>
             </button>
 
         </div>

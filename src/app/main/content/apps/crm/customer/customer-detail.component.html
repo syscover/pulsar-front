@@ -82,6 +82,15 @@
                                 </div>
 
                                 <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'CRM.CUSTOMER_GROUP' | translate }}" formControlName="group_id" required>
+                                            <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.group_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
                                     <mat-form-field class="col-12">
                                         <input matInput placeholder="{{ 'APPS.COMPANY' | translate }}" formControlName="company">
                                         <mat-error>{{ formErrors?.company }}</mat-error>
@@ -166,6 +175,45 @@
                                         <input matInput placeholder="{{ 'APPS.ADDRESS' | translate }}" formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>
                                     </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-6">
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="locality">
+                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'APPS.ZIP' | translate }}" formControlName="zip">
+                                                <mat-error>{{ formErrors?.zip }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="locality">
+                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <input matInput placeholder="{{ 'APPS.LATITUDE' | translate }}" formControlName="latitude">
+                                                <mat-error>{{ formErrors?.latitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <input matInput placeholder="{{ 'APPS.LONGITUDE' | translate }}" formControlName="longitude">
+                                                <mat-error>{{ formErrors?.longitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
                                 </div>
             
                             </div>

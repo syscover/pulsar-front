@@ -4,6 +4,7 @@ import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { CustomerGraphQLService } from './customer-graphql.service';
 import { notEqual } from './../../../core/validations/not-equal.validation';
+import { CustomerGroup } from './../crm.models';
 import * as passwordGenerator from 'generate-password-browser';
 
 @Component({
@@ -15,6 +16,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
 {
     objectTranslation = 'CRM.CUSTOMER';
     objectTranslationGender = 'M';
+    customerGroups: CustomerGroup[] = [];
 
     constructor(
         protected injector: Injector,
@@ -37,7 +39,11 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
             user: [null, Validators.required],
             password: null,
             repeat_password: null,
-            active: false
+            active: false,
+            zip: null,
+            locality: null,
+            latitude: null,
+            longitude: null
         });
     }
 
@@ -70,6 +76,18 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         delete args['object']['repeat_password'];
 
         return args;
+    }
+
+    setRelationsData(data: any) 
+    {
+        // set crm customer groups
+        this.customerGroups = data.crmCustomerGroups;
+
+        /* // set countries
+        this.countries = data['adminCountries'];
+
+        // set adresses
+        this.addresses = data['crmAddresses']; */
     }
 
     generatePassword()
