@@ -31,6 +31,8 @@ export const locale = {
             'ORDER_STATUS': 'Estado de pedido',
             'ORDER_STATUS_SUCCESSSFUL': 'Estado del pedido exitoso',
             'PAYMENT_METHOD': 'Forma de pago',
+            'PRICE_TYPE': 'Tipo de precio',
+            'PRICES_TAXES': 'Precios e impuestos',
             'PRIORITY': 'Prioridad',
             'PRODUCT': 'Producto',
             'PRODUCT_CLASS_TAX': 'Impuesto al producto',
@@ -42,7 +44,8 @@ export const locale = {
             'TAX_RULE': 'Regla de impuesto',
             'TAX_RATE_ZONE': 'Zona de impuestos',
             'TOTAL_USES': 'Total de usos',
-            'WAREHOUSE': 'Almacén'
+            'WAREHOUSE': 'Almacén',
+            'WEIGHT': 'Peso'
         }
     }
 };

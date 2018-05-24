@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { ProductGraphQLService } from './product-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
-import { ProductType } from './../market.models';
+import { ProductType, PriceType, ProductClassTax } from './../market.models';
 
 
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
@@ -30,6 +30,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
     productTypes: ProductType[] = [];
+    priceTypes: PriceType[] = [];
+    productClassTaxes: ProductClassTax[] = [];
 
 
 
@@ -169,15 +171,16 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
         };
     }
 
-
-
-
-
-
     setRelationsData(data: any) 
     {
         // market product types
         this.productTypes = data.marketProductTypes;
+
+        // market price types
+        this.priceTypes = data.marketPriceTypes;
+
+        // market product class taxes
+        this.productClassTaxes = data.marketProductClassTaxes;
     }
 }
 // multiple inheritance

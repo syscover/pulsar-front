@@ -130,8 +130,17 @@
                                     </mat-form-field>
                                 </div>
 
+                                <!-- producto types transportable, them it must to have a weight -->
+                                <div fxLayout="row" *ngIf="fg.controls['type_id'].value === 2 || fg.controls['type_id'].value === 3">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <mat-icon matSuffix>line_weight</mat-icon>
+                                        <input matInput placeholder="{{ 'MARKET.WEIGHT' | translate }}" formControlName="weight" type="number">
+                                        <mat-error>{{ formErrors?.weight }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row wrap">
-                                    <div class="col-12 col-md-4 py-20">
+                                    <div class="col-12 col-md-5 py-20">
                                         <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
                                     </div>
                                     <mat-form-field class="col-12 col-md-4">
@@ -150,6 +159,31 @@
 
                                 <div fxLayout="row">
                                     
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">euro_symbol</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'MARKET.PRICES_TAXES' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <mat-select placeholder="{{ 'MARKET.PRICE_TYPE' | translate }}" formControlName="price_type_id" required>
+                                            <mat-option *ngFor="let priceType of priceTypes" [value]="+priceType.id">{{ priceType.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.price_type_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" required>
+                                            <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>
+                                    </mat-form-field>
                                 </div>
 
                                 <!-- HEADER -->

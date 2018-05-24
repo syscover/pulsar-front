@@ -220,7 +220,7 @@
                                     <mat-error>{{ formErrors?.discount_percentage }}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field class="col-12 offset-md-1 col-md-4">
-                                    <span matSuffix>€</span>
+                                    <mat-icon matSuffix>euro_symbol</mat-icon>
                                     <input matInput placeholder="{{ 'MARKET.MAXIMUN_DISCOUNT_AMOUNT' | translate }}" formControlName="maximum_discount_amount" type="number">
                                     <mat-error>{{ formErrors?.maximum_discount_amount }}</mat-error>
                                 </mat-form-field>
@@ -236,7 +236,7 @@
                         <div *ngIf="amountDiscount">
                             <div fxLayout="row">
                                 <mat-form-field class="col-12 col-md-4">
-                                    <span matSuffix>€</span>
+                                    <mat-icon matSuffix>euro_symbol</mat-icon>
                                     <input matInput placeholder="{{ 'MARKET.DISCOUNT_FIXED_AMOUNT' | translate }}" formControlName="discount_fixed_amount" type="number">
                                     <mat-error>{{ formErrors?.discount_fixed_amount }}</mat-error>
                                 </mat-form-field>

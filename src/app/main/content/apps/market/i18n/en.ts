@@ -31,6 +31,8 @@ export const locale = {
             'ORDER_STATUS': 'Order status',
             'ORDER_STATUS_SUCCESSSFUL': 'Order status successful',
             'PAYMENT_METHOD': 'Payment method',
+            'PRICE_TYPE': 'Price type',
+            'PRICES_TAXES': 'Prices and taxes',
             'PRIORITY': 'Priority',
             'PRODUCT': 'Product',
             'PRODUCT_CLASS_TAX': 'Product class tax',
@@ -42,7 +44,8 @@ export const locale = {
             'TAX_RULE': 'Tax rule',
             'TAX_RATE_ZONE': 'Tax rate zone',
             'TOTAL_USES': 'Total uses',
-            'WAREHOUSE': 'Warehouse'
+            'WAREHOUSE': 'Warehouse',
+            'WEIGHT': 'Weight'
         }
     }
 };
