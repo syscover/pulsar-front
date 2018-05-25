@@ -26,7 +26,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     constructor(
         protected injector: Injector,
         protected graphQL: CustomerGraphQLService,
-        protected territorialArea1GraphQLService: TerritorialArea1GraphQLService;
+        protected territorialArea1GraphQLService: TerritorialArea1GraphQLService
     ) {
         super(injector, graphQL);
     }

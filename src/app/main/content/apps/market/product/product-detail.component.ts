@@ -5,7 +5,9 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { ProductGraphQLService } from './product-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
-import { ProductType, PriceType, ProductClassTax } from './../market.models';
+import { ProductType, PriceType, ProductClassTax, Category } from './../market.models';
+import * as _ from 'lodash';
+import gql from 'graphql-tag';
 
 
 import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
@@ -15,7 +17,7 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import './../../../core/functions/date-to-json.function';
 import { applyMixins } from './../../../core/functions/apply-mixins.function';
 import { Chipable } from './../../../core/traits/chipable.trait';
-import * as _ from 'lodash';
+
 
 @Component({
     selector: 'dh2-product-detail',
@@ -32,6 +34,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     productTypes: ProductType[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
+    categories: Category[] = [];
 
 
 
@@ -181,6 +184,75 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
 
         // market product class taxes
         this.productClassTaxes = data.marketProductClassTaxes;
+
+        // market product category
+        this.categories = data.marketCategories;
+    }
+
+    afterPatchValueEdit()
+    {
+        // set market categories extracting ids
+        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+
+        this.handleGetProductTaxes(
+            this.fg.controls['subtotal'].value,
+            true, // force to calulate price without tax
+            // callback, all http petition must to be sequential to pass JWT
+            () => {
+                // get fields if object has field group
+                if (this.object.field_group_id) {
+                    // set FormGroup with custom FormControls
+                    // this.handleGetCustomFields();
+                }
+            }
+        ); // calculate tax prices
+    }
+
+    // get taxes for product
+    handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void 
+    {
+        // subtotal is defined when load element
+        const price = subtotal ? subtotal : this.fg.controls['price'].value;
+
+        if (! price) 
+        {
+            if (callback) callback();
+            return;
+        }
+
+        const args = {
+            price: price,
+            productClassTax: this.fg.controls['product_class_tax_id'].value
+        };
+
+        // force to calualte price without tax, when show product the price always
+        // is without tax because is subtotal the refernece price, this flag is activated in
+        // function setData os this component
+        if (forceCalculatePriceWithoutTax) args['productTaxPrices'] = 1;
+
+        const ob = this.httpService
+            .apolloClient()
+            .watchQuery({
+                fetchPolicy: 'network-only',
+                query: gql`
+                    query MarketProductTaxes ($price:Float! $productClassTax:Int $productTaxPrices:Int) {
+                        marketProductTaxes (price:$price productClassTax:$productClassTax productTaxPrices:$productTaxPrices)
+                    }
+                `,
+                variables: args
+            })
+            .valueChanges
+            .subscribe(({data}: any) => {
+                ob.unsubscribe();
+                if (this.env.debug) console.log('DEBUG - response of marketProductTaxes query: ', data);
+
+                this.fg.controls['subtotal'].setValue(data.marketProductTaxes.subtotal);
+                this.fg.controls['subtotal_format'].setValue(data.marketProductTaxes.subtotalFormat);
+                this.fg.controls['tax_format'].setValue(data.marketProductTaxes.taxAmountFormat);
+                this.fg.controls['total_format'].setValue(data.marketProductTaxes.totalFormat);
+
+                if (callback) callback();
+            });
     }
 }
 // multiple inheritance

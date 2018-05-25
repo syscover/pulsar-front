@@ -17,9 +17,32 @@
 }
 
 @for $i from 1 through 100 {
-    // Set horizontal paddinghelpers
+    // Set horizontal padding helpers
     .px-#{$i} {
         padding-left: #{$i}px !important; 
         padding-right: #{$i}px !important;  
+    }
+
+    // Set vertical padding helpers
+    .py-#{$i} {
+        padding-top: #{$i}px !important; 
+        padding-bottom: #{$i}px !important;  
+    }
+
+    // Set horizontal margin helpers
+    .mx-#{$i} {
+        margin-left: #{$i}px !important; 
+        margin-right: #{$i}px !important;  
+    }
+
+    // Set vertical margin helpers
+    .my-#{$i} {
+        margin-top: #{$i}px !important; 
+        margin-bottom: #{$i}px !important;  
+    }
+
+    // Set right margin helpers
+    .mr-#{$i} {
+        margin-right: #{$i}px !important; 
     }
 }
