@@ -260,8 +260,9 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-4">
+                                    <mat-form-field class="col-12 col-md-5">
                                         <mat-select placeholder="{{ 'APPS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
+                                            <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                             <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.field_group_id }}</mat-error>
@@ -288,8 +289,6 @@
                         <mat-tab label="{{ 'MARKET.STOCK' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
-
-                                    
 
                                 </div>
                             </div>

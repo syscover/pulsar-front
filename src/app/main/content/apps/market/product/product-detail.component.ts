@@ -10,15 +10,6 @@ import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
 
-
-import { MatDatepicker } from '@angular/material';
-import { MatChipInputEvent } from '@angular/material';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import './../../../core/functions/date-to-json.function';
-import { applyMixins } from './../../../core/functions/apply-mixins.function';
-import { Chipable } from './../../../core/traits/chipable.trait';
-
-
 @Component({
     selector: 'dh2-product-detail',
     templateUrl: './product-detail.component.html',
@@ -26,9 +17,8 @@ import { Chipable } from './../../../core/traits/chipable.trait';
     styleUrls: ['./../../../core/scss/improvements/perfect-scroll-bar.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProductDetailComponent extends CoreDetailComponent implements Chipable
+export class ProductDetailComponent extends CoreDetailComponent
 {
-    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
     objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
     productTypes: ProductType[] = [];
@@ -37,19 +27,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     categories: Category[] = [];
     products: Product[] = [];
     fieldGroups: FieldGroup[] = [];
-
-
-
-
-
-    tags: String[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
-    imageStyles: Object = new Object;
-    
-    
-    separatorKeysCodes = [ENTER, COMMA];
-    private _attachmentFamilies: AttachmentFamily[];
-    
+
+    imageStyles: Object = new Object;    
+
     constructor(
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
@@ -58,8 +39,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
         super(injector, graphQL);
     }
     
-    addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
-    removeTag: (formGroup: FormGroup, name: string, tag) => void;
     createForm() {
         this.fg = this.fb.group({
             ix: null,
@@ -263,5 +242,3 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
             });
     }
 }
-// multiple inheritance
-// applyMixins(ArticleDetailComponent, [Chipable]);
