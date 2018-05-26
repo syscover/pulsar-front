@@ -11,7 +11,6 @@ export const locale = {
             'EXCERPT': 'Entrada',
             'EXCERPT_EDITOR': 'Editor de entrada',
             'FAMILY': 'Familia',
-            'FIELD_GROUP': 'Grupo de campos',
             'NEW_WINDOW': 'Nueva ventana',
             'PUBLISH': 'Publicar',
             'SECTION': 'Sección',

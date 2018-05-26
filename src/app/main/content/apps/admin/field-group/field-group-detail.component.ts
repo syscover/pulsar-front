@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 })
 export class FieldGroupDetailComponent extends CoreDetailComponent 
 {
-    objectTranslation = 'ADMIN.FIELD_GROUP';
+    objectTranslation = 'APPS.FIELD_GROUP';
     objectTranslationGender = 'M';
     resources: Resource[] = [];
 

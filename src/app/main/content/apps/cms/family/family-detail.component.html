@@ -143,7 +143,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'CMS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
+                            <mat-select placeholder="{{ 'APPS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                 <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
                             </mat-select>

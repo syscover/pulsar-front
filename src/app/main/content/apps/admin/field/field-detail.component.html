@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.FIELD_GROUP' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'APPS.FIELD_GROUP' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -98,7 +98,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'ADMIN.FIELD_GROUP' | translate }}" formControlName="field_group_id" required>
+                            <mat-select placeholder="{{ 'APPS.FIELD_GROUP' | translate }}" formControlName="field_group_id" required>
                                 <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.field_group_id }}</mat-error>

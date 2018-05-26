@@ -5,12 +5,12 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { ProductGraphQLService } from './product-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
-import { ProductType, PriceType, ProductClassTax, Category } from './../market.models';
+import { Product, ProductType, PriceType, ProductClassTax, Category } from './../market.models';
+import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
 
 
-import { User, Field, FieldValue, AttachmentFamily } from './../../admin/admin.models';
 import { MatDatepicker } from '@angular/material';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -35,6 +35,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
     categories: Category[] = [];
+    products: Product[] = [];
+    fieldGroups: FieldGroup[] = [];
 
 
 
@@ -187,6 +189,12 @@ export class ProductDetailComponent extends CoreDetailComponent implements Chipa
 
         // market product category
         this.categories = data.marketCategories;
+
+        // market admin field groups
+        this.fieldGroups = data.adminFieldGroups;
+
+        // market products
+        this.products = data.marketProducts;
     }
 
     afterPatchValueEdit()

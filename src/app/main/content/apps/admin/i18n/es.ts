@@ -9,7 +9,6 @@ export const locale = {
             'EDIT_ID': 'Editar Id',
             'FEATURED': 'Destacado',
             'FIELD': 'Campo',
-            'FIELD_GROUP': 'Grupo de campo',
             'FIELD_TYPE': 'Tipo de campo',
             'FORMATS': 'Formatos',
             'ICON': 'Icono',

@@ -27,6 +27,7 @@ export const locale = {
             'ERROR': 'Error',
             'FAMILY': 'Famlilia',
             'FAMILIES': 'Familias',
+            'FIELD_GROUP': 'Grupo de campos',
             'FIELDS': 'Campos',
             'GENERATE_PASSWORD': 'Generar contraseña',
             'GEOLOCATION': 'Geolocalización',

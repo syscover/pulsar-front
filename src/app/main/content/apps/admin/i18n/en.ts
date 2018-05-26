@@ -9,7 +9,6 @@ export const locale = {
             'EDIT_ID': 'Edit Id',
             'FEATURED': 'Featured',
             'FIELD': 'Field',
-            'FIELD_GROUP': 'Field group',
             'FIELD_TYPE': 'Field type',
             'FORMATS': 'Formats',
             'ICON': 'Icon',

@@ -107,12 +107,21 @@
                                     <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
 
-                                <div fxLayout="row">
-                                        <mat-form-field class="col-12 col-md-6">
-                                            <input matInput placeholder="{{ 'MARKET.SKU' | translate }}" formControlName="code">
-                                            <mat-error>{{ formErrors?.code }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <input matInput placeholder="{{ 'MARKET.SKU' | translate }}" formControlName="code">
+                                        <mat-error>{{ formErrors?.code }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-12 offset-md-1 col-md-5">
+                                        <mat-select placeholder="{{ 'MARKET.PARENT_PRODUCT' | translate }}" formControlName="parent_id">
+                                            <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
+                                            <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-hint align="start">{{ 'MARKET.PARENT_PRODUCT_DESCRIPTION' | translate }}</mat-hint>
+                                        <mat-error>{{ formErrors?.parent_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-8">
@@ -206,7 +215,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-6" *ngIf="fg.controls['price_type_id'].value === 1">
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number">
+                                                <mat-error>{{ formErrors?.price }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
                                                 <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal_format">
@@ -229,16 +246,27 @@
                                         </div>
 
                                     </div>
+                                    <div class="col-6" *ngIf="fg.controls['price_type_id'].value === 2">
+                                        Precio indefinido
+                                    </div>
 
                                 </div>
                                 
-
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                                     <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
                                     <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
                                 </div>
                                 <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <mat-select placeholder="{{ 'APPS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
+                                            <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.field_group_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
                                 <!-- DYNAMIC FORM -->  
                                 <dh2-dynamic-form   [formGroup]="fg"
