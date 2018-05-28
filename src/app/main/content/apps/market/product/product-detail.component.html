@@ -254,8 +254,8 @@
                                 
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                                    <mat-icon class="m-0 mr-16">featured_play_list</mat-icon>
-                                    <div class="h2 secondary-text">{{ 'APPS.FIELDS' | translate }}</div>
+                                    <mat-icon class="m-0 mr-16">subtitles</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'NAV.CUSTOM_FIELDS' | translate }}</div>
                                 </div>
                                 <!-- / HEADER -->
 
@@ -272,7 +272,7 @@
                                 <!-- DYNAMIC FORM -->  
                                 <dh2-dynamic-form   [formGroup]="fg"
                                                     [errors]="formErrors"
-                                                    [fieldGroupId]="family?.field_group_id"
+                                                    [fieldGroupId]="this.fg.controls['field_group_id']?.value"
                                                     [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
                                                     [lang]="translateService.currentLang"></dh2-dynamic-form>
                                 <!-- / DYNAMIC FORM -->

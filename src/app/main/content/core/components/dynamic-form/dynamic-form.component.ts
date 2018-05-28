@@ -8,14 +8,6 @@ import * as _ from 'lodash';
     selector: 'dh2-dynamic-form',
     template: `
         <ng-container *ngIf="formGroup?.get('customFields')">
-
-            <!-- HEADER -->
-            <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                <mat-icon class="m-0 mr-16">subtitles</mat-icon>
-                <div class="h2 secondary-text">{{ 'NAV.CUSTOM_FIELDS' | translate }}</div>
-            </div>
-            <!-- / HEADER -->
-            
             <div [formGroup]="formGroup.get('customFields')">
                 
                 <ng-container *ngFor="let field of fields">

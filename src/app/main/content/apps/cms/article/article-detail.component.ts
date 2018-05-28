@@ -51,7 +51,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     
     addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
     removeTag: (formGroup: FormGroup, name: string, tag) => void;
-    createForm() {
+    createForm()
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [{value: null, disabled: true}],
@@ -78,7 +79,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
             attachments: this.fb.array([])
         });
     }
-
     
     beforePatchValueEdit() 
     {

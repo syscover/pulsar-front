@@ -235,6 +235,13 @@
                                     </mat-form-field>
                                 </div>
 
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section" *ngIf="fg?.get('customFields')">
+                                    <mat-icon class="m-0 mr-16">subtitles</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'NAV.CUSTOM_FIELDS' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
                                 <!-- DYNAMIC FORM -->  
                                 <dh2-dynamic-form   [formGroup]="fg"
                                                     [errors]="formErrors"
