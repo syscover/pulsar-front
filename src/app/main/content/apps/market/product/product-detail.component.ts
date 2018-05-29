@@ -28,6 +28,7 @@ export class ProductDetailComponent extends CoreDetailComponent
     products: Product[] = [];
     fieldGroups: FieldGroup[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
+    loadingPrice = false;
 
     imageStyles: Object = new Object;    
 
@@ -198,14 +199,31 @@ export class ProductDetailComponent extends CoreDetailComponent
     // get taxes for product
     handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void 
     {
-        // subtotal is defined when load element
-        const price = subtotal ? subtotal : this.fg.controls['price'].value;
+        let price;
 
+        if (subtotal) 
+        {
+            price = subtotal;
+        }
+        else if (this.fg.controls['price'].value)
+        {
+            price = this.fg.controls['price'].value;
+        }
+        else
+        {
+            price = this.fg.controls['subtotal'].value;
+            forceCalculatePriceWithoutTax = true;
+        }
+
+        // if has not price, exit of method
         if (! price) 
         {
             if (callback) callback();
             return;
         }
+
+        // active loading spinner
+        if (this.fg.controls['price'].value) this.loadingPrice = true;
 
         const args = {
             price: price,
@@ -239,6 +257,11 @@ export class ProductDetailComponent extends CoreDetailComponent
                 this.fg.controls['total_format'].setValue(data.marketProductTaxes.totalFormat);
 
                 if (callback) callback();
+
+                // reset price field
+                if (this.fg.controls['price'].value) this.fg.controls['price'].setValue(null);
+
+                this.loadingPrice = false;
             });
     }
 }

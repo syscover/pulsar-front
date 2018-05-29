@@ -158,8 +158,8 @@
                                 <!-- producto types transportable, them it must to have a weight -->
                                 <div fxLayout="row" *ngIf="fg.controls['type_id'].value === 2 || fg.controls['type_id'].value === 3">
                                     <mat-form-field class="col-12 col-md-4">
-                                        <mat-icon matSuffix>line_weight</mat-icon>
                                         <input matInput placeholder="{{ 'MARKET.WEIGHT' | translate }}" formControlName="weight" type="number">
+                                        <mat-icon matSuffix>line_weight</mat-icon>
                                         <mat-error>{{ formErrors?.weight }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -207,7 +207,7 @@
         
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12 col-md-5">
-                                                <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" required>
+                                                <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (change)="handleGetProductTaxes()" required>
                                                     <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
                                                 </mat-select>
                                                 <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>
@@ -219,7 +219,8 @@
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number">
+                                                <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number" (change)="handleGetProductTaxes()">
+                                                <mat-spinner *ngIf="loadingPrice" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
                                                 <mat-error>{{ formErrors?.price }}</mat-error>
                                             </mat-form-field>
                                         </div>
