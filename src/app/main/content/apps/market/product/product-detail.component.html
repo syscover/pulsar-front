@@ -124,7 +124,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-8">
+                                    <mat-form-field class="col-12">
                                         <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
                                             <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
                                         </mat-select>
@@ -283,14 +283,67 @@
                         <mat-tab label="{{ 'APPS.DESCRIPTION' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
-
+                                    <div class="col-12">
+                                        <dh2-froala formControlName="description"
+                                                    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                                    [heightMin]="400"
+                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                        <mat-error>{{ formErrors?.description }}</mat-error>
+                                    </div>
                                 </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="{{ 'MARKET.STOCK' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
+                                    <div class="col-12">
 
+                                        <mat-table [dataSource]="dataSource"
+                                                    fusePerfectScrollbar
+                                                    matSort 
+                                                    matSortDisableClear>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="warehouse_id">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.warehouse_id }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="warehouse_name">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>alamcen</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.warehouse_name }}</mat-cell>
+                                            </ng-container>
+                                            
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="stock">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.stock }}</mat-cell>
+                                            </ng-container>
+                                            
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="minimum_stock">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>minimo</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.minimum_stock }}</mat-cell>
+                                            </ng-container>
+                                            
+                                            <!-- ACTIONS -->
+                                            <ng-container matColumnDef="actions">
+                                                <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">XX</mat-cell>
+                                            </ng-container>
+
+
+                                            
+                                            
+
+                                            
+
+                                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                        </mat-table>
+
+                                    </div>
                                 </div>
                             </div>
                         </mat-tab>

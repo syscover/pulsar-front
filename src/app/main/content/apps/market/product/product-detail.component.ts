@@ -1,11 +1,12 @@
 import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
+import { MatSort, MatTableDataSource } from '@angular/material';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ProductGraphQLService } from './product-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
-import { Product, ProductType, PriceType, ProductClassTax, Category } from './../market.models';
+import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Warehouse } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
@@ -14,7 +15,9 @@ import gql from 'graphql-tag';
     selector: 'dh2-product-detail',
     templateUrl: './product-detail.component.html',
     animations: fuseAnimations,
-    styleUrls: ['./../../../core/scss/improvements/perfect-scroll-bar.scss'],
+    styleUrls: [
+        './../../../core/scss/improvements/perfect-scroll-bar.scss'
+    ],
     encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailComponent extends CoreDetailComponent
@@ -30,7 +33,11 @@ export class ProductDetailComponent extends CoreDetailComponent
     attachmentFamilies: AttachmentFamily[] = [];
     loadingPrice = false;
 
-    imageStyles: Object = new Object;    
+    // stocks
+    displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
+    stocksData: any[] = [];
+    dataSource = new MatTableDataSource();
+    @ViewChild(MatSort) sort: MatSort;
 
     constructor(
         protected injector: Injector,
@@ -43,7 +50,7 @@ export class ProductDetailComponent extends CoreDetailComponent
     createForm() {
         this.fg = this.fb.group({
             ix: null,
-            id: null,
+            id: [{value: null, disabled: true}],
             lang_id: [null, Validators.required],
             code: null,
             categories_id: [[], Validators.required],
@@ -175,6 +182,25 @@ export class ProductDetailComponent extends CoreDetailComponent
 
         // market products
         this.products = data.marketProducts;
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
+
+        // market stock data
+        for (const warehouse of data.marketWarehouses)
+        {
+            const stock = _.find(data.marketStocks, {warehouse_id: warehouse.id});
+            this.stocksData.push({
+                warehouse_id: warehouse.id,
+                warehouse_name: warehouse.name,
+                product_id: data.coreObject.id,
+                stock: stock ? stock.stock : 0,
+                minimum_stock: stock ? stock.minimum_stock : 0,
+            });
+        }
+
+        this.dataSource.sort = this.sort;
+        this.dataSource.data = this.stocksData;
     }
 
     afterPatchValueEdit()

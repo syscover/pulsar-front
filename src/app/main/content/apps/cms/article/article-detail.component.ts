@@ -35,7 +35,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     tags: String[] = [];
     object: Article = new Article();    
     attachmentFamilies: AttachmentFamily[] = [];
-    imageStyles: Object = new Object;
     section: Section;
     family: Family; // family for adapt article form
     separatorKeysCodes = [ENTER, COMMA];
