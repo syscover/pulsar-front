@@ -94,7 +94,7 @@ export class ProductGraphQLService extends GraphQLSchema
                 ix
                 id
                 lang_id
-                code
+                sku
                 name
                 slug
                 categories {
@@ -167,7 +167,7 @@ export class ProductGraphQLService extends GraphQLSchema
                 id
                 lang_id
                 name
-                code
+                sku
             }
             adminFieldGroups (sql:$sqlFieldGroup){
                 id

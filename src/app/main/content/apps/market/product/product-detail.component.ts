@@ -51,12 +51,13 @@ export class ProductDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
     
-    createForm() {
+    createForm() 
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [{value: null, disabled: true}],
             lang_id: [null, Validators.required],
-            code: null,
+            sku: null,
             categories_id: [[], Validators.required],
             name: [null, Validators.required],
             slug: [null, Validators.required],
@@ -76,6 +77,42 @@ export class ProductDetailComponent extends CoreDetailComponent
             total_format: [{value: null, disabled: true}, Validators.required],
             attachments: this.fb.array([])
         });
+    }
+
+    disabledForm() 
+    {
+        this.fg.controls['sku'].disable();
+        this.fg.controls['categories_id'].disable();
+        this.fg.controls['field_group_id'].disable();
+        this.fg.controls['type_id'].disable();
+        this.fg.controls['parent_id'].disable();
+        this.fg.controls['weight'].disable();
+        this.fg.controls['active'].disable();
+        this.fg.controls['sort'].disable();
+        this.fg.controls['price_type_id'].disable();
+        this.fg.controls['product_class_tax_id'].disable();
+        this.fg.controls['price'].disable();
+        this.fg.controls['subtotal'].disable();
+        this.fg.controls['subtotal_format'].disable();
+        this.fg.controls['tax_format'].disable();
+        this.fg.controls['total_format'].disable();
+    }
+
+    afterSetData() 
+    {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
+        {
+            if (this.dataRoute.action === 'create-lang') 
+            {
+                // disabled inputs that hasn't containt multi language
+                this.disabledForm();
+            } 
+            else if (this.dataRoute.action === 'edit') 
+            {
+                // disabled elements if edit diferent language that base lang
+                if (this.lang.id !== this.baseLang) this.disabledForm();
+            }
+        }
     }
     
     argumentsRelationsObject(): Object 

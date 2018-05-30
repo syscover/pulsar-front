@@ -88,11 +88,11 @@ export class FieldDetailComponent extends CoreDetailComponent
                     })['value']
                 );
 
-                // disabled elemetns if edit diferent language that base lang
+                // disabled elements if edit diferent language that base lang
                 if (this.lang.id !== this.baseLang) this.disabledForm();
             }
         }
-    } 
+    }
 
     argumentsRelationsObject(): Object 
     {
