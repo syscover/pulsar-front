@@ -1,11 +1,13 @@
 import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ProductGraphQLService } from './product-graphql.service';
+import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
+import { ProductStockDialogComponent } from './product-stock-dialog.component';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Warehouse } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
@@ -38,10 +40,12 @@ export class ProductDetailComponent extends CoreDetailComponent
     stocksData: any[] = [];
     dataSource = new MatTableDataSource();
     @ViewChild(MatSort) sort: MatSort;
+    dialog: MatDialog;
 
     constructor(
         protected injector: Injector,
         protected graphQL: ProductGraphQLService,
+        private graphQLStock: StockGraphQLService,
         private authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);
@@ -289,5 +293,50 @@ export class ProductDetailComponent extends CoreDetailComponent
 
                 this.loadingPrice = false;
             });
+    }
+
+    editStock(stockData: any)
+    {
+        if (this.env.debug) console.log('DEBUG - Edit stock with this arguments: ', stockData);
+
+        const dialogRef = this.dialog.open(ProductStockDialogComponent, {
+            data: { 
+                stockData: stockData
+            },
+            width: '80vw'
+        });
+
+        dialogRef.afterClosed().subscribe(newStockData => {
+
+            if (newStockData) 
+            {
+                if (this.env.debug) console.log('DEBUG - Update stock with this arguments: ', newStockData);
+
+                const ob$ = this.httpService
+                    .apolloClient()
+                    .mutate({
+                        mutation: this.graphQLStock.mutationSetStock,
+                        variables: {
+                            object: {
+                                warehouse_id: newStockData.warehouse_id,
+                                product_id: newStockData.product_id,
+                                stock: newStockData.stock,
+                                minimum_stock: newStockData.minimum_stock
+                            }
+                        }
+                    })
+                    .subscribe((response) => {
+                        ob$.unsubscribe();
+
+                        // Find stock index using _.findIndex (thanks @AJ Richardson for comment)
+                        const index = _.findIndex(this.stocksData, { warehouse_id: newStockData.warehouse_id, product_id: newStockData.product_id });
+
+                        // Replace stock at index using native splice
+                        this.stocksData.splice(index, 1, newStockData);
+
+                        this.dataSource.data = this.stocksData;
+                    });
+            }
+        });
     }
 }

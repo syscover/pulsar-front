@@ -8,6 +8,7 @@ export const locale = {
             'ADD': 'Añadir',
             'ADDRESS': 'Dirección',
             'ATTACHMENTS': 'Adjuntos',
+            'CANCEL': 'Cancelar',
             'CLEAR': 'Limpiar',
             'COMPANY': 'Empresa',
             'COMPLETED.F': 'Completada',

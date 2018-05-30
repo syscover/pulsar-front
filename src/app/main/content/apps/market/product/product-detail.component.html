@@ -174,18 +174,6 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row wrap" class="justify-content-between">
-                                    
-                                </div>
-
-                                <div fxLayout="row">
-                                    
-                                </div>
-
-                                <div fxLayout="row">
-                                    
-                                </div>
-
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                                     <mat-icon class="m-0 mr-16">euro_symbol</mat-icon>
@@ -311,33 +299,31 @@
 
                                             <!-- Column -->
                                             <ng-container matColumnDef="warehouse_name">
-                                                <mat-header-cell *matHeaderCellDef mat-sort-header>alamcen</mat-header-cell>
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.WAREHOUSE' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row">{{ row.warehouse_name }}</mat-cell>
                                             </ng-container>
                                             
                                             <!-- Column -->
                                             <ng-container matColumnDef="stock">
-                                                <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.STOCK' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row">{{ row.stock }}</mat-cell>
                                             </ng-container>
                                             
                                             <!-- Column -->
                                             <ng-container matColumnDef="minimum_stock">
-                                                <mat-header-cell *matHeaderCellDef mat-sort-header>minimo</mat-header-cell>
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.MINIMUM_STOCK' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row">{{ row.minimum_stock }}</mat-cell>
                                             </ng-container>
                                             
                                             <!-- ACTIONS -->
                                             <ng-container matColumnDef="actions">
-                                                <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
-                                                <mat-cell *matCellDef="let row">XX</mat-cell>
+                                                <mat-header-cell *matHeaderCellDef class="align-center">{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" class="align-center">
+                                                    <button mat-icon-button type="button" matTooltip="{{ 'APPS.EDIT' | translate }}" (click)="editStock(row)">
+                                                        <mat-icon>mode_edit</mat-icon>
+                                                    </button>
+                                                </mat-cell>
                                             </ng-container>
-
-
-                                            
-                                            
-
-                                            
 
                                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -349,12 +335,12 @@
                         </mat-tab>
                         <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                    <dh2-attachments    name="attachments"
-                                                        placeholder="{{ 'APPS.DRAG_FILES' | translate }}" 
-                                                        [value]="object.attachments"
-                                                        [form]="fg"
-                                                        [families]="attachmentFamilies">
-                                    </dh2-attachments>
+                                <dh2-attachments    name="attachments"
+                                                    placeholder="{{ 'APPS.DRAG_FILES' | translate }}" 
+                                                    [value]="object.attachments"
+                                                    [form]="fg"
+                                                    [families]="attachmentFamilies">
+                                </dh2-attachments>
                             </div>
                         </mat-tab>
                     </mat-tab-group>

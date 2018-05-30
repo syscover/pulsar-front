@@ -27,6 +27,7 @@ export const locale = {
             'MAXIMUN_DISCOUNT_AMOUNT': 'Cantidad máxima de descuento',
             'MAXIMUN_PRICE': 'Precio máximo',
             'MINIMUM_PRICE': 'Precio mínimo',
+            'MINIMUM_STOCK': 'Stock mínimo',
             'ORDER': 'Pedido',
             'ORDER_STATUS': 'Estado de pedido',
             'ORDER_STATUS_SUCCESSSFUL': 'Estado del pedido exitoso',
