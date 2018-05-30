@@ -15,7 +15,7 @@ export class ProductListComponent extends CoreListComponent
     objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['market_product.id', 'market_product_lang.name'];
-    displayedColumns = ['market_product.id', 'market_product_lang.name', 'translations', 'actions'];
+    displayedColumns = ['market_product.id', 'market_product_lang.name', 'market_product.active', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(

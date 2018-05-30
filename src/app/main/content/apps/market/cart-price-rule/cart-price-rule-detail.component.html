@@ -136,66 +136,83 @@
                             </mat-form-field>
                         </div>
 
-                        <!-- HEADER -->
-                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                            <mat-icon class="m-0 mr-16">event</mat-icon>
-                            <div class="h2 secondary-text">{{ 'MARKET.SCHEDULE' | translate }}</div>
-                        </div>
-                        <!-- / HEADER -->
+                        <mat-accordion [multi]="true">
+                            <!-- SCHEDULE -->
+                            <mat-expansion-panel [expanded]="dataRoute.action ==='edit' && (fg.get('enable_from').value || fg.get('enable_to').value)">
 
-                        <div fxLayout="row wrap" class="justify-content-between">
-                            <mat-form-field class="col-12 col-md-5">
-                                <input matInput placeholder="{{ 'MARKET.ENABLE_FROM' | translate }}" formControlName="enable_from" type="datetime-local">
-                                <mat-error>{{ formErrors?.enable_from }}</mat-error>
-                            </mat-form-field>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <mat-icon class="m-0 mr-16">event</mat-icon> {{ 'MARKET.SCHEDULE' | translate }}
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                            {{ 'MARKET.SCHEDULE_DESCRIPTION' | translate }}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
 
-                            <mat-form-field class="col-12 col-md-5">
-                                <input matInput placeholder="{{ 'MARKET.ENABLE_TO' | translate }}" formControlName="enable_to" type="datetime-local">
-                                <mat-error>{{ formErrors?.enable_to }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'MARKET.ENABLE_FROM' | translate }}" formControlName="enable_from" type="datetime-local">
+                                        <mat-error>{{ formErrors?.enable_from }}</mat-error>
+                                    </mat-form-field>
+        
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'MARKET.ENABLE_TO' | translate }}" formControlName="enable_to" type="datetime-local">
+                                        <mat-error>{{ formErrors?.enable_to }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                        <!-- HEADER -->
-                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                            <mat-icon class="m-0 mr-16">confirmation_number</mat-icon>
-                            <div class="h2 secondary-text">{{ 'MARKET.COUPON' | translate }}</div>
-                        </div>
-                        <!-- / HEADER -->
+                            </mat-expansion-panel>
+                            <!-- / SCHEDULE -->
+                            <!-- COUPON -->
+                            <mat-expansion-panel [expanded]="dataRoute.action ==='edit' && fg.get('has_coupon').value">
 
-                        <div fxLayout="row">
-                            <div class="col-12 col-md-6 py-20">
-                                <mat-checkbox formControlName="has_coupon">{{ 'MARKET.HAS_COUPON' | translate }}</mat-checkbox>
-                            </div>
-                        </div>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <mat-icon class="m-0 mr-16">confirmation_number</mat-icon> {{ 'MARKET.COUPON' | translate }}
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                            {{ 'MARKET.COUPON_DESCRIPTION' | translate }}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
 
-                        <div *ngIf="fg.controls['has_coupon'].value">
-                            <div fxLayout="row">
-                                <mat-form-field class="col-12 col-md-4">
-                                    <input matInput placeholder="{{ 'MARKET.COUPON' | translate }}" formControlName="coupon_code">
-                                    <mat-error>{{ formErrors?.coupon_code }}</mat-error>
-                                </mat-form-field>
-                            </div>
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_coupon">{{ 'MARKET.HAS_COUPON' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+        
+                                <div *ngIf="fg.get('has_coupon').value">
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12 col-md-4">
+                                            <input matInput placeholder="{{ 'MARKET.COUPON' | translate }}" formControlName="coupon_code">
+                                            <mat-error>{{ formErrors?.coupon_code }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+        
+                                    <div fxLayout="row wrap">
+                                        <mat-form-field class="col-12 col-md-4">
+                                            <input matInput placeholder="{{ 'MARKET.COUPON_USES' | translate }}" formControlName="coupon_uses" type="number">
+                                            <mat-hint align="start">{{ 'MARKET.COUPON_USES_DESCRIPTION' | translate }}</mat-hint>
+                                            <mat-error>{{ formErrors?.coupon_uses }}</mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field class="col-12 offset-md-1 col-md-4">
+                                            <input matInput placeholder="{{ 'MARKET.CUSTOMER_USES' | translate }}" formControlName="customer_uses" type="number">
+                                            <mat-hint align="start">{{ 'MARKET.CUSTOMER_USES_DESCRIPTION' | translate }}</mat-hint>
+                                            <mat-error>{{ formErrors?.customer_uses }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+        
+                                    <div fxLayout="row wrap">
+                                        <mat-form-field class="col-12 col-md-4 mt-12">
+                                            <input matInput placeholder="{{ 'MARKET.TOTAL_USES' | translate }}" formControlName="total_uses" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
 
-                            <div fxLayout="row wrap">
-                                <mat-form-field class="col-12 col-md-4">
-                                    <input matInput placeholder="{{ 'MARKET.COUPON_USES' | translate }}" formControlName="coupon_uses" type="number">
-                                    <mat-hint align="start">{{ 'MARKET.COUPON_USES_DESCRIPTION' | translate }}</mat-hint>
-                                    <mat-error>{{ formErrors?.coupon_uses }}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="col-12 offset-md-1 col-md-4">
-                                    <input matInput placeholder="{{ 'MARKET.CUSTOMER_USES' | translate }}" formControlName="customer_uses" type="number">
-                                    <mat-hint align="start">{{ 'MARKET.CUSTOMER_USES_DESCRIPTION' | translate }}</mat-hint>
-                                    <mat-error>{{ formErrors?.customer_uses }}</mat-error>
-                                </mat-form-field>
-                            </div>
-
-                            <div fxLayout="row wrap">
-                                <mat-form-field class="col-12 col-md-4 mt-12">
-                                    <input matInput placeholder="{{ 'MARKET.TOTAL_USES' | translate }}" formControlName="total_uses" type="number">
-                                </mat-form-field>
-                            </div>
-                        </div>
-
+                            </mat-expansion-panel>
+                            <!-- / COUPON -->
+                        </mat-accordion>
+                        
                         <!-- HEADER -->
                         <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                             <mat-icon class="m-0 mr-16">money_off</mat-icon>
