@@ -22,6 +22,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
     countries: Country[] = [];
+    inputType = 'password';
 
     constructor(
         protected injector: Injector,

@@ -44,7 +44,7 @@ export class ProductDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: ProductGraphQLService,
+        public graphQL: ProductGraphQLService,
         private graphQLStock: StockGraphQLService,
         private authenticationService: AuthenticationService
     ) {
