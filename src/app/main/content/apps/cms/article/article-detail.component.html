@@ -236,7 +236,7 @@
                                 </div>
 
                                 <!-- HEADER -->
-                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section" *ngIf="fg?.get('customFields')">
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section" *ngIf="fg?.get('custom_fields')">
                                     <mat-icon class="m-0 mr-16">subtitles</mat-icon>
                                     <div class="h2 secondary-text">{{ 'NAV.CUSTOM_FIELDS' | translate }}</div>
                                 </div>
@@ -246,7 +246,7 @@
                                 <dh2-dynamic-form   [formGroup]="fg"
                                                     [errors]="formErrors"
                                                     [fieldGroupId]="family?.field_group_id"
-                                                    [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
+                                                    [values]="object.data && object.data.custom_fields ? object.data.custom_fields : undefined"
                                                     [lang]="translateService.currentLang"></dh2-dynamic-form>
                                 <!-- / DYNAMIC FORM -->
 

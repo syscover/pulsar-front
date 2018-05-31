@@ -259,10 +259,11 @@
                                 </div>
 
                                 <!-- DYNAMIC FORM -->  
-                                <dh2-dynamic-form   [formGroup]="fg"
+                                <dh2-dynamic-form   [start]="startCustomFields"
+                                                    [formGroup]="fg"
                                                     [errors]="formErrors"
                                                     [fieldGroupId]="this.fg.controls['field_group_id']?.value"
-                                                    [values]="object.data && object.data.customFields ? object.data.customFields : undefined"
+                                                    [values]="object.data && object.data.custom_fields ? object.data.custom_fields : undefined"
                                                     [lang]="translateService.currentLang"></dh2-dynamic-form>
                                 <!-- / DYNAMIC FORM -->
 

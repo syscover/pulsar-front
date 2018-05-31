@@ -34,6 +34,7 @@ export class ProductDetailComponent extends CoreDetailComponent
     fieldGroups: FieldGroup[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     loadingPrice = false;
+    startCustomFields = false;
 
     // stocks
     displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
@@ -254,11 +255,8 @@ export class ProductDetailComponent extends CoreDetailComponent
             true, // force to calulate price without tax
             // callback, all http petition must to be sequential to pass JWT
             () => {
-                // get fields if object has field group
-                if (this.object.field_group_id) {
-                    // set FormGroup with custom FormControls
-                    // this.handleGetCustomFields();
-                }
+                // allo start dh2-dynamic-form component to avoid failures in the JWT
+                this.startCustomFields = true;
             }
         ); // calculate tax prices
     }

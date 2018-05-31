@@ -72,7 +72,7 @@ export class DynamicFormService extends HttpService
                         const fc = new FormControl(null, field.required ? Validators.required : undefined);
 
                         customFields.addControl(field.name, fc);
-                        this.validationMessageService.addControl('customFields.' + field.name, fc, errors);
+                        this.validationMessageService.addControl('custom_fields.' + field.name, fc, errors);
                     }
 
                     // check that have values
@@ -82,11 +82,11 @@ export class DynamicFormService extends HttpService
                         customFields.patchValue(values);
                     }
 
-                    // remove customFields control if exist
-                    if (formGroup.get('customFields')) formGroup.removeControl('customFields');
+                    // remove custom_fields control if exist
+                    if (formGroup.get('custom_fields')) formGroup.removeControl('custom_fields');
 
-                    // add new customFields control
-                    formGroup.addControl('customFields', customFields);
+                    // add new custom_fields control
+                    formGroup.addControl('custom_fields', customFields);
 
                     // execute observable
                     this.fieldsLoaded.next(this.fields);
@@ -104,8 +104,8 @@ export class DynamicFormService extends HttpService
         // reset fields
         this.fields = undefined;
 
-        // remove customFields control if exist
-        if (this.form && this.form.get('customFields')) this.form.removeControl('customFields');
+        // remove custom_fields control if exist
+        if (this.form && this.form.get('custom_fields')) this.form.removeControl('custom_fields');
 
         // execute observable
         this.fieldsLoaded.next(this.fields);
