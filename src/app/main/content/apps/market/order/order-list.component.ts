@@ -14,13 +14,25 @@ export class OrderListComponent extends CoreListComponent
 {
     objectTranslation = 'MARKET.ORDER';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email'];
-    displayedColumns = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email', 'actions'];
+    columnsSearch: string[] = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name'];
+    displayedColumns = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name', 'actions'];
 
     constructor(
         protected injector: Injector,
         protected graphQL: OrderGraphQLService
     ) {
         super(injector, graphQL);
+    }
+
+    // overwite method to get statuses
+    getCustomArgumentsGetRecords(args: Object): Object
+    {    
+        args['sql'].push({
+            command: 'orderBy',
+            operator: 'desc',
+            column: 'market_order.id'
+        });
+
+        return args;
     }
 }

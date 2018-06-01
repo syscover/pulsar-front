@@ -18,7 +18,7 @@ import { Territories } from './../../../core/traits/territories.trait';
 })
 export class CustomerDetailComponent extends CoreDetailComponent  implements OnInit
 {
-    objectTranslation = 'CRM.CUSTOMER';
+    objectTranslation = 'APPS.CUSTOMER';
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
     countries: Country[] = [];

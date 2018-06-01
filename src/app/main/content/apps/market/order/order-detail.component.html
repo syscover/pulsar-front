@@ -18,7 +18,7 @@
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>account_circle</mat-icon>
+                    <mat-icon>add_shopping_cart</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'CRM.CUSTOMER' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.ORDER' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -75,13 +75,39 @@
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" class="d-flex justify-content-between">
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
+
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input matInput placeholder="{{ 'APPS.IP' | translate }}" formControlName="ip">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id" required>
+                                            <mat-option *ngFor="let orderStatus of orderStatuses" [value]="orderStatus.id">{{ orderStatus.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.status_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-6">
+                                        <mat-select placeholder="{{ 'MARKET.PAYMENT_METHOD' | translate }}" formControlName="payment_method_id" required>
+                                            <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{ paymentMethod.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.payment_method_id }}</mat-error>
+                                    </mat-form-field>
                                 </div>
             
-                                <div fxLayout="row">
+
+
+
+
+                               <!--  <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-5">
                                         <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
@@ -97,11 +123,11 @@
                                         <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="email" required>
                                         <mat-error>{{ formErrors?.email }}</mat-error>
                                     </mat-form-field>
-                                </div>
+                                </div> -->
             
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'CRM.ADDRESSES' | translate | uppercase }}">
+                        <mat-tab label="{{ 'APPS.CUSTOMER' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 
                             </div>

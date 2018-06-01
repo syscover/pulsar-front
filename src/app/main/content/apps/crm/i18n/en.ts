@@ -4,7 +4,6 @@ export const locale = {
         'CRM': {
             'ADDRESS_TYPE': 'Address type',
             'ADDRESSES': 'Addresses',
-            'CUSTOMER': 'Customer',
             'CUSTOMER_GROUP': 'Customer group'
         }
     }

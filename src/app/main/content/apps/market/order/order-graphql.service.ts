@@ -14,6 +14,11 @@ export class OrderGraphQLService extends GraphQLSchema
             }
         }`;
 
+    queryRelationsObject  = gql`
+        query MarketGetRelationsOrder ($sqlOrderStatus:[CoreSQLQueryInput] $sqlPaymentMethod:[CoreSQLQueryInput]) {
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
         query MarketGetOrders ($sql:[CoreSQLQueryInput]) {
             coreObjects: marketOrders (sql:$sql){
@@ -22,9 +27,7 @@ export class OrderGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query MarketGetOrder (
-            $sql:[CoreSQLQueryInput]
-        ) {
+        query MarketGetOrder ($sql:[CoreSQLQueryInput] $sqlOrderStatus:[CoreSQLQueryInput] $sqlPaymentMethod:[CoreSQLQueryInput]) {
             coreObject: marketOrder (sql:$sql){
                 ${this.fields}
             }
@@ -86,7 +89,7 @@ export class OrderGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            marketOrderStatuses {
+            marketOrderStatuses (sql:$sqlOrderStatus) {
                 ix
                 id
                 lang_id
@@ -94,7 +97,7 @@ export class OrderGraphQLService extends GraphQLSchema
                 active
                 data_lang
             }
-            marketPaymentMethods {
+            marketPaymentMethods (sql:$sqlPaymentMethod) {
                 ix
                 id
                 lang_id

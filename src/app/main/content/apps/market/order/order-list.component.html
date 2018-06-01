@@ -58,27 +58,33 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="crm_customer.id">
+                <ng-container matColumnDef="market_order.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="crm_customer.name">
+                <ng-container matColumnDef="market_order.customer_name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.customer_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="crm_customer.surname">
+                <ng-container matColumnDef="market_order.customer_surname">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.surname }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.customer_surname }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="crm_customer.email">
+                <ng-container matColumnDef="market_order.customer_email">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row"><a href="mailto:{{ row.email }}">{{ row.email }}</a></mat-cell>
+                    <mat-cell *matCellDef="let row"><a href="mailto:{{ row.customer_email }}">{{ row.email }}</a></mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_order_status.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.STATUS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.market_order_status_name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

@@ -12,7 +12,7 @@ import { CustomerGraphQLService } from './customer-graphql.service';
 })
 export class CustomerListComponent extends CoreListComponent 
 {
-    objectTranslation = 'CRM.CUSTOMER';
+    objectTranslation = 'APPS.CUSTOMER';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email'];
     displayedColumns = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email', 'crm_customer.active', 'actions'];
