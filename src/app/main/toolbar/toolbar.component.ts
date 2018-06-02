@@ -5,6 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
+import { navigation } from 'app/navigation/navigation';
+
+// DH2
 import { AuthenticationService } from './../content/core/services/authentication.service';
 import { User } from './../content/apps/admin/admin.models';
 
@@ -22,6 +25,7 @@ export class FuseToolbarComponent
     showLoadingBar: boolean;
     horizontalNav: boolean;
     noNav: boolean;
+    navigation: any;
     user: User;
 
     constructor(
@@ -32,6 +36,7 @@ export class FuseToolbarComponent
         private authenticationService: AuthenticationService
     )
     {
+        // DH2
         this.user = this.authenticationService.user();
 
         this.userStatusOptions = [
@@ -62,10 +67,11 @@ export class FuseToolbarComponent
             }
         ];
 
+        // DH2
         this.languages = [
             {
                 'id'   : 'es',
-                'title': 'Spanish',
+                'title': 'Español',
                 'flag' : 'es'
             },
             {
@@ -94,6 +100,7 @@ export class FuseToolbarComponent
             this.noNav = settings.layout.navigation === 'none';
         });
 
+        this.navigation = navigation;
     }
 
     toggleSidebarOpened(key)

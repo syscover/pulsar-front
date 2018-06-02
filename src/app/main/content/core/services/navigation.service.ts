@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { navigation } from 'app/navigation/navigation';
 import { ConfigService } from './config.service';
+import { Package } from './../../apps/admin/admin.models';
 import { environment } from './../../../../../environments/environment';
 import * as _ from 'lodash';
 
@@ -19,12 +20,12 @@ export class NavigationService
 
     getNavigation()
     {
-        const packages  = this.configService.get('packages');
+        const packages: Package[] = this.configService.get('packages');
         const menuItems = [];
         
         for (const item of this.navigation[0].children) 
         {     
-            const pkg = _.find(packages, {root: item.id});
+            const pkg = <Package>_.find(packages, {root: item.id});
             if (pkg && pkg.active) menuItems.push(item);
         }
 

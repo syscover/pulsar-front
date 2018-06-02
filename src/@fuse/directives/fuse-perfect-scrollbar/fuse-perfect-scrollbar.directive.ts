@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import PerfectScrollbar from 'perfect-scrollbar';
 

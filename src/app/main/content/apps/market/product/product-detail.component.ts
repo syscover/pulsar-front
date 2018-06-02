@@ -231,7 +231,7 @@ export class ProductDetailComponent extends CoreDetailComponent
         // market stock data
         for (const warehouse of data.marketWarehouses)
         {
-            const stock = _.find(data.marketStocks, {warehouse_id: warehouse.id});
+            const stock = <Stock>_.find(data.marketStocks, {warehouse_id: warehouse.id});
             this.stocksData.push({
                 warehouse_id: warehouse.id,
                 warehouse_name: warehouse.name,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { merge } from 'rxjs/observable/merge';
 import { TranslateService } from '@ngx-translate/core';
+import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
 
 @Injectable()

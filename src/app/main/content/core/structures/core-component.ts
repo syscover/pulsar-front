@@ -8,6 +8,7 @@ import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {

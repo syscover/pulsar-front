@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 })
 export class SortByPipe implements PipeTransform 
 {
-    transform(collection: any[], pattern: any[]): string 
+    transform(collection: any[], pattern: any[]): any[] 
     {
         return _.sortBy(collection, pattern);
     }

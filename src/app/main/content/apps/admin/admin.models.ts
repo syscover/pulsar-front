@@ -36,6 +36,7 @@ export class Country
     territorial_areas_2: TerritorialArea2[];
     territorial_area_3: string;
     territorial_areas_3: TerritorialArea3[];
+    zones: string[];
     data_lang: string;
     data: string;
 }
@@ -110,6 +111,7 @@ export class FieldType
 {
     id: string;
     name: string;
+    values: boolean;
 }
 
 export class DataType

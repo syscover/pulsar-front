@@ -2,6 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { FieldGraphQLService } from './field-graphql.service';
+import { FieldType } from './../admin.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -36,7 +37,7 @@ export class FieldListComponent extends CoreListComponent
 
     setRelationsData(data: any): void
     {
-        this.adminConfigFieldTypesId = _.filter(data.adminConfigFieldTypes, {values: true}).map((fieldType) => {
+        this.adminConfigFieldTypesId = _.filter(data.adminConfigFieldTypes, {values: true}).map((fieldType: FieldType) => {
             if (fieldType.values) return fieldType.id;
         });
     }

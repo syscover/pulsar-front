@@ -11,11 +11,13 @@
             "check-space"
         ],
         "curly": false,
+        "deprecation": {
+            "severity": "warn"
+        },
         "eofline": true,
         "forin": true,
         "import-blacklist": [
             true,
-            "rxjs",
             "rxjs/Rx"
         ],
         "import-spacing": true,
@@ -27,7 +29,7 @@
         "label-position": true,
         "max-line-length": [
             true,
-            250
+            180
         ],
         "member-access": false,
         "member-ordering": [
@@ -109,29 +111,15 @@
             "check-separator",
             "check-type"
         ],
-        "directive-selector": [
-            true,
-            "attribute",
-            "dh2",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "dh2",
-            "kebab-case"
-        ],
+        "no-output-on-prefix": true,
         "use-input-property-decorator": true,
         "use-output-property-decorator": true,
         "use-host-property-decorator": true,
-        "no-input-rename": false,
-        "no-output-rename": false,
+        "no-input-rename": true,
+        "no-output-rename": true,
         "use-life-cycle-interface": true,
         "use-pipe-transform-interface": true,
         "component-class-suffix": true,
-        "directive-class-suffix": true,
-        "no-access-missing-member": true,
-        "templates-use-public": true,
-        "invoke-injectable": true
+        "directive-class-suffix": true
     }
 }

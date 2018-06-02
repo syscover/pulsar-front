@@ -6,7 +6,7 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 
 import { locale as navigationEnglish } from './navigation/i18n/en';
-import { locale as navigationTurkish } from './navigation/i18n/es';
+import { locale as navigationSpanish } from './navigation/i18n/es';
 
 @Component({
     selector   : 'fuse-root',
@@ -29,7 +29,7 @@ export class AppComponent
         this.translate.setDefaultLang('es');
 
         // Set the navigation translations
-        this.fuseTranslationLoader.loadTranslations(navigationEnglish, navigationTurkish);
+        this.fuseTranslationLoader.loadTranslations(navigationEnglish, navigationSpanish);
 
         // Use a language
         this.translate.use('es');

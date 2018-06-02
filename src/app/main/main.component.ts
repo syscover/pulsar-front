@@ -1,9 +1,11 @@
 import { Component, ElementRef, HostBinding, Inject, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { FuseConfigService } from '@fuse/services/config.service';
+
+import { navigation } from 'app/navigation/navigation';
 
 @Component({
     selector     : 'fuse-main',
@@ -15,6 +17,8 @@ export class FuseMainComponent implements OnDestroy
 {
     onConfigChanged: Subscription;
     fuseSettings: any;
+    navigation: any;
+
     @HostBinding('attr.fuse-layout-mode') layoutMode;
 
     constructor(
@@ -38,6 +42,8 @@ export class FuseMainComponent implements OnDestroy
         {
             this.document.body.className += ' is-mobile';
         }
+
+        this.navigation = navigation;
     }
 
     ngOnDestroy()

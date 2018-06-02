@@ -51,7 +51,7 @@ const appRoutes: Routes = [
         FuseModule.forRoot(fuseConfig),
         FuseSharedModule,
         FuseMainModule,
-
+        
         // DH2
         CoreModule
     ],

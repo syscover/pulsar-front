@@ -1,9 +1,8 @@
 import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations/index';
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -31,29 +30,29 @@ export class FuseContentComponent implements OnDestroy
         private fuseConfig: FuseConfigService
     )
     {
-        this.router.events
-            .filter((event) => event instanceof NavigationEnd)
-            .map(() => this.activatedRoute)
-            .subscribe((event) => {
-                switch ( this.fuseSettings.routerAnimation )
-                {
-                    case 'fadeIn':
-                        this.routeAnimationFade = !this.routeAnimationFade;
-                        break;
-                    case 'slideUp':
-                        this.routeAnimationUp = !this.routeAnimationUp;
-                        break;
-                    case 'slideDown':
-                        this.routeAnimationDown = !this.routeAnimationDown;
-                        break;
-                    case 'slideRight':
-                        this.routeAnimationRight = !this.routeAnimationRight;
-                        break;
-                    case 'slideLeft':
-                        this.routeAnimationLeft = !this.routeAnimationLeft;
-                        break;
-                }
-            });
+        this.router.events.pipe(
+            filter((event) => event instanceof NavigationEnd),
+            map(() => this.activatedRoute)
+        ).subscribe((event) => {
+            switch ( this.fuseSettings.routerAnimation )
+            {
+                case 'fadeIn':
+                    this.routeAnimationFade = !this.routeAnimationFade;
+                    break;
+                case 'slideUp':
+                    this.routeAnimationUp = !this.routeAnimationUp;
+                    break;
+                case 'slideDown':
+                    this.routeAnimationDown = !this.routeAnimationDown;
+                    break;
+                case 'slideRight':
+                    this.routeAnimationRight = !this.routeAnimationRight;
+                    break;
+                case 'slideLeft':
+                    this.routeAnimationLeft = !this.routeAnimationLeft;
+                    break;
+            }
+        });
 
         this.onConfigChanged =
             this.fuseConfig.onConfigChanged

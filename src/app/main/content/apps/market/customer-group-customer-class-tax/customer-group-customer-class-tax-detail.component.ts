@@ -58,7 +58,7 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
     setRelationsData(data: any) 
     {
         // set name of objecet
-        this.name = _.find(data.crmCustomerGroups, {id: data.coreObject.customer_group_id}).name;
+        this.name = (<CustomerGroup>_.find(data.crmCustomerGroups, {id: data.coreObject.customer_group_id})).name;
 
         // set crm customer groups
         this.customerGroups = data.crmCustomerGroups;
