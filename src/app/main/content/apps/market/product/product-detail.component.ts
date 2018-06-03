@@ -1,14 +1,13 @@
 import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Validators, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ProductGraphQLService } from './product-graphql.service';
 import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
-import { DynamicFormService } from './../../../core/components/dynamic-form/dynamic-form.service';
 import { ProductStockDialogComponent } from './product-stock-dialog.component';
-import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Warehouse } from './../market.models';
+import { Product, ProductType, PriceType, ProductClassTax, Category, Stock } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
@@ -46,8 +45,7 @@ export class ProductDetailComponent extends CoreDetailComponent
     constructor(
         protected injector: Injector,
         public graphQL: ProductGraphQLService,
-        private graphQLStock: StockGraphQLService,
-        private authenticationService: AuthenticationService
+        private graphQLStock: StockGraphQLService
     ) {
         super(injector, graphQL);
     }

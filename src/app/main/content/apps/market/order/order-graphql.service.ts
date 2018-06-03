@@ -76,6 +76,13 @@ export class OrderGraphQLService extends GraphQLSchema
                     quantity
                     subtotal
                 }
+                discounts {
+                    id
+                    names
+                    coupon_code
+                    free_shipping
+                    discount_amount
+                }
                 customer_company
                 customer_tin
                 customer_name
@@ -83,6 +90,8 @@ export class OrderGraphQLService extends GraphQLSchema
                 customer_email
                 customer_mobile
                 subtotal
+                subtotal_with_discounts
+                discount_amount
                 tax_amount
                 shipping_amount
                 total

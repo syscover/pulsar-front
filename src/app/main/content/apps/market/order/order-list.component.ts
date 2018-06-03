@@ -1,4 +1,3 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
@@ -14,8 +13,8 @@ export class OrderListComponent extends CoreListComponent
 {
     objectTranslation = 'MARKET.ORDER';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name'];
-    displayedColumns = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name', 'actions'];
+    columnsSearch: string[] = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name', 'market_order.total'];
+    displayedColumns = ['market_order.id', 'market_order.customer_name', 'market_order.customer_email', 'market_order_status.name', 'market_order.total', 'actions'];
 
     constructor(
         protected injector: Injector,

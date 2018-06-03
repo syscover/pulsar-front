@@ -42,6 +42,7 @@ export const locale = {
             'PRODUCT': 'Producto',
             'PRODUCT_CLASS_TAX': 'Impuesto al producto',
             'PRODUCT_TYPE': 'Tipo de producto',
+            'QUANTITY': 'Cantidad',
             'SCHEDULE': 'Programar',
             'SCHEDULE_DESCRIPTION': 'Programa la validez de esta regla',
             'SHIPPING': 'Transporte',

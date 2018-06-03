@@ -66,13 +66,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="market_order.customer_name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.customer_name }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="market_order.customer_surname">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.customer_surname }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.customer_name }} {{ row.customer_surname }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
@@ -85,6 +79,12 @@
                 <ng-container matColumnDef="market_order_status.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.STATUS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.market_order_status_name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_order.total">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TOTAL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.total | currencyFormat }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

@@ -75,7 +75,7 @@
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row" class="d-flex justify-content-between">
+                                <div fxLayout="row" class="d-flex justify-content-between flex-wrap">
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
@@ -110,12 +110,108 @@
                                 </div>
                                 <!-- / HEADER -->
 
+                                <div fxLayout="row">
+                                    <div class="col-12">
+
+                                        <mat-table [dataSource]="dataSourceOrderRow"
+                                                   fusePerfectScrollbar
+                                                   matSort
+                                                   matSortDisableClear>
+
+                                            <!-- Column -->
+                                            <!--<ng-container matColumnDef="warehouse_id">-->
+                                                <!--<mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>-->
+                                                <!--<mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>-->
+                                            <!--</ng-container>-->
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="name">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.name"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="quantity">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.QUANTITY' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.quantity }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="subtotal">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.SUBTOTAL' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.subtotal | currencyFormat }}</mat-cell>
+                                            </ng-container>
+
+                                            <!--&lt;!&ndash; Column &ndash;&gt;-->
+                                            <!--<ng-container matColumnDef="minimum_stock">-->
+                                                <!--<mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.MINIMUM_STOCK' | translate }}</mat-header-cell>-->
+                                                <!--<mat-cell *matCellDef="let row">{{ row.minimum_stock }}</mat-cell>-->
+                                            <!--</ng-container>-->
+
+                                            <!--&lt;!&ndash; ACTIONS &ndash;&gt;-->
+                                            <!--<ng-container matColumnDef="actions">-->
+                                                <!--<mat-header-cell *matHeaderCellDef class="align-center">{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>-->
+                                                <!--<mat-cell *matCellDef="let row" class="align-center">-->
+                                                    <!--<button mat-icon-button type="button" (click)="editStock(row)">-->
+                                                        <!--<mat-icon>mode_edit</mat-icon>-->
+                                                    <!--</button>-->
+                                                <!--</mat-cell>-->
+                                            <!--</ng-container>-->
+
+                                            <mat-header-row *matHeaderRowDef="displayedColumnsOrderRow"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumnsOrderRow;"></mat-row>
+                                        </mat-table>
+
+                                    </div>
+                                </div>
+
+
+
+
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                                     <mat-icon class="m-0 mr-16">local_grocery_store</mat-icon>
                                     <div class="h2 secondary-text">{{ 'NAV.CART_PRICE_RULES' | translate }}</div>
                                 </div>
                                 <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <div class="col-12">
+
+                                        <mat-table [dataSource]="dataSourceOrderDiscount"
+                                                   fusePerfectScrollbar
+                                                   matSort
+                                                   matSortDisableClear>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="names">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.names | getCollectionObjectValue:'id':baseLang:'value' }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="coupon_code">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.COUPON' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.coupon_code }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="free_shipping">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex align-center">{{ 'MARKET.FREE_SHIPPING' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" class="d-none d-sm-flex align-center">
+                                                    <mat-icon *ngIf="row.free_shipping">done</mat-icon>
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <mat-header-row *matHeaderRowDef="displayedColumnsOrderDiscount"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumnsOrderDiscount;"></mat-row>
+                                        </mat-table>
+
+                                    </div>
+                                </div>
+
+
+
             
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
@@ -124,46 +220,51 @@
                                 </div>
                                 <!-- / HEADER -->
 
-                                <div class="col-12 col-md-6">
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal').value | currencyFormat">
-                                            <mat-error>{{ formErrors?.subtotal }}</mat-error>
-                                        </mat-form-field>
+                                <div fxLayout="row">
+
+                                    <div class="col-12 col-md-6">
+
+                                        <div fxLayout="row" *ngIf="fg.get('discount_amount').value > 0">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'APPS.DISCOUNT' | translate }}" formControlName="discount_amount" [value]="fg.get('discount_amount').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.discount_amount }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.subtotal }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'MARKET.TAX' | translate }}" formControlName="tax_amount" [value]="fg.get('tax_amount').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.tax_amount }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'MARKET.SHIPPING' | translate }}" formControlName="shipping_amount" [value]="fg.get('shipping_amount').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.shipping_amount }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'MARKET.TOTAL' | translate }}" formControlName="total" [value]="fg.get('total').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.total }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
                                     </div>
 
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'MARKET.TAX' | translate }}" formControlName="tax_amount" [value]="fg.get('tax_amount').value | currencyFormat">
-                                            <mat-error>{{ formErrors?.tax_amount }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'MARKET.SHIPPING' | translate }}" formControlName="shipping_amount" [value]="fg.get('shipping_amount').value | currencyFormat">
-                                            <mat-error>{{ formErrors?.shipping_amount }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'MARKET.TOTAL' | translate }}" formControlName="total" [value]="fg.get('total').value | currencyFormat">
-                                            <mat-error>{{ formErrors?.total }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
                                 </div>
-
-
-                                <div class="col-12 col-md-6">
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="discount_amount" [value]="fg.get('discount_amount').value | currencyFormat">
-                                            <mat-error>{{ formErrors?.discount_amount }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-
 
 
                                <!--  <div fxLayout="row">

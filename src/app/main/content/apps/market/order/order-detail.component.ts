@@ -1,10 +1,11 @@
-import { OrderStatus, PaymentMethod } from './../market.models';
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { OrderGraphQLService } from './order-graphql.service';
-import { Status } from './../../cms/cms.models';
+import { OrderStatus, PaymentMethod } from './../market.models';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-order-detail',
@@ -17,6 +18,16 @@ export class OrderDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
     orderStatuses: OrderStatus[] = [];
     paymentMethods: PaymentMethod[] = [];
+
+    // Products
+    displayedColumnsOrderRow = ['name', 'quantity', 'subtotal'];
+    dataSourceOrderRow = new MatTableDataSource();
+    @ViewChild(MatSort) sortRow: MatSort;
+
+    // Discounts
+    displayedColumnsOrderDiscount = ['names', 'coupon_code', 'free_shipping'];
+    dataSourceOrderDiscount = new MatTableDataSource();
+    @ViewChild(MatSort) sortDiscount: MatSort;
 
     constructor(
         protected injector: Injector,
@@ -34,6 +45,7 @@ export class OrderDetailComponent extends CoreDetailComponent
             payment_method_id: [null, Validators.required],
 
             subtotal: [{value: null, disabled: true}],
+            discount_amount: [{value: null, disabled: true}],
             tax_amount: [{value: null, disabled: true}],
             shipping_amount: [{value: null, disabled: true}],
             total: [{value: null, disabled: true}],
@@ -87,5 +99,13 @@ export class OrderDetailComponent extends CoreDetailComponent
 
         // market payment methods
         this.paymentMethods = data.marketPaymentMethods;
+
+        // market order rows
+        this.dataSourceOrderRow.sort = this.sortRow;
+        this.dataSourceOrderRow.data = data.coreObject.rows;
+
+        // market order discounts
+        this.dataSourceOrderDiscount.sort = this.sortDiscount;
+        this.dataSourceOrderDiscount.data = data.coreObject.discounts;
     }
 }

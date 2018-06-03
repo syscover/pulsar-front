@@ -153,12 +153,71 @@ export class Order
     id: number;
     date: any;
     payment_method_id: number;
+    tracking_id: string;
     status_id: number;
+    rows: OrderRow[];
+    discounts: CustomerDiscountHistory[];
     ip: string;
     data: string;
     comments: string;
     transaction_id: string;
-    tracking_id: string;
+    discount_amount: number;
+    subtotal_with_discounts: number;
+    tax_amount: number;
+    cart_items_total_without_discounts: number;
+    subtotal: number;
+    shipping_amount: number;
+    total: number;
+    has_gift: boolean;
+    gift_from: string;
+    gift_to: string;
+    gift_message: string;
+    customer_id: number;
+    customer_group_id: number;
+    customer_company: string;
+    customer_tin: string;
+    customer_name: string;
+    customer_surname: string;
+    customer_email: string;
+    customer_mobile: string;
+    customer_phone: string;
+    has_invoice: boolean;
+    invoiced: boolean;
+    invoice_number: string;
+    invoice_company: string;
+    invoice_tin: string;
+    invoice_name: string;
+    invoice_surname: string;
+    invoice_email: string;
+    invoice_mobile: string;
+    invoice_phone: string;
+    invoice_country_id: string;
+    invoice_territorial_area_1_id: string;
+    invoice_territorial_area_2_id: string;
+    invoice_territorial_area_3_id: string;
+    invoice_zip: string;
+    invoice_locality: string;
+    invoice_address: string;
+    invoice_latitude: string;
+    invoice_longitude: string;
+    invoice_comments: string;
+    has_shipping: boolean;
+    shipping_company: string;
+    shipping_name: string;
+    shipping_surname: string;
+    shipping_email: string;
+    shipping_mobile: string;
+    shipping_phone: string;
+    shipping_country_id: string;
+    shipping_territorial_area_1_id: string;
+    shipping_territorial_area_2_id: string;
+    shipping_territorial_area_3_id: string;
+    shipping_zip: string;
+    shipping_locality: string;
+    shipping_address: string;
+    shipping_latitude: string;
+    shipping_longitude: string;
+    shipping_comments: string;
 }
 
 export class OrderRow 
@@ -169,7 +228,27 @@ export class OrderRow
     product_id: number;
     name: string;
     description: string;
+    data: string;
     price: number;
+    quantity: number;
+    subtotal: number;
+    total_without_discounts: number;
+    discount_subtotal_percentage:  number;
+    discount_total_percentage:  number;
+    discount_subtotal_percentage_amount:  number;
+    discount_total_percentage_amount:  number;
+    discount_subtotal_fixed_amount:  number;
+    discount_total_fixed_amount:  number;
+    discount_amount:  number;
+    subtotal_with_discounts: number;
+    tax_rules: string;
+    tax_amount: number;
+    total: number;
+    has_gift: boolean;
+    gift_from: string;
+    gift_to: string;
+    gift_message: string;
+    gift_comments: string;
 }
 
 export class DiscountType 
@@ -184,7 +263,7 @@ export class CartPriceRurle
     names: string;
     descriptions: string;
     active: boolean;
-    group_ids: string;
+    customer_group_ids: string;
     customer_ids: string;
     combinable: boolean;
     priority: number;
@@ -204,4 +283,27 @@ export class CartPriceRurle
     free_shipping: boolean;
     product_rules: string;
     data_lang: string;
+}
+
+export class CustomerDiscountHistory
+{
+    id: number;
+    customer_id: number;
+    order_id: number;
+    applied: boolean;
+    rule_type: string;
+    rule_id: number;
+    names: string;
+    descriptions: string;
+    has_coupon: boolean;
+    coupon_code: string;
+    discount_type_id: number;
+    discount_fixed_amount: number;
+    discount_percentage: number;
+    maximum_discount_amount: number;
+    apply_shipping_amount: boolean;
+    free_shipping: boolean;
+    discount_amount: number;
+    data_lang: string;
+    price_rule: string;
 }

@@ -23,6 +23,7 @@ export const locale = {
             'DELETED.M': 'Deleted',
             'DESCRIPTION' : 'Description',
             'DETAIL': 'Detail',
+            'DISCOUNT': 'Discount',
             'DRAG_FILES': 'Drag your files here.',
             'EDIT': 'Edit',
             'EMAIL': 'Email',
