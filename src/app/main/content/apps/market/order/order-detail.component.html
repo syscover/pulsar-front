@@ -124,6 +124,45 @@
                                 </div>
                                 <!-- / HEADER -->
 
+                                <div class="col-12 col-md-6">
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal').value | currencyFormat">
+                                            <mat-error>{{ formErrors?.subtotal }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'MARKET.TAX' | translate }}" formControlName="tax_amount" [value]="fg.get('tax_amount').value | currencyFormat">
+                                            <mat-error>{{ formErrors?.tax_amount }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'MARKET.SHIPPING' | translate }}" formControlName="shipping_amount" [value]="fg.get('shipping_amount').value | currencyFormat">
+                                            <mat-error>{{ formErrors?.shipping_amount }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'MARKET.TOTAL' | translate }}" formControlName="total" [value]="fg.get('total').value | currencyFormat">
+                                            <mat-error>{{ formErrors?.total }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6">
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="discount_amount" [value]="fg.get('discount_amount').value | currencyFormat">
+                                            <mat-error>{{ formErrors?.discount_amount }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
 
 
 

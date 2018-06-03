@@ -33,6 +33,11 @@ export class OrderDetailComponent extends CoreDetailComponent
             status_id: [null, Validators.required],
             payment_method_id: [null, Validators.required],
 
+            subtotal: [{value: null, disabled: true}],
+            tax_amount: [{value: null, disabled: true}],
+            shipping_amount: [{value: null, disabled: true}],
+            total: [{value: null, disabled: true}],
+
 
             date: [{value: null, disabled: true}, Validators.required ],
             transaction_id: [{value: null, disabled: true}],
@@ -43,9 +48,9 @@ export class OrderDetailComponent extends CoreDetailComponent
             customer_surname: null,
             customer_email: null,
             customer_mobile: null,
-            shipping_amount: [{value: null, disabled: true}],
-            subtotal: [{value: null, disabled: true}],
-            total: [{value: null, disabled: true}],
+            
+            
+            
         });
     }
 

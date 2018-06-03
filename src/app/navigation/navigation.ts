@@ -38,7 +38,7 @@ export const navigation = [
                     }
                 ]
             },
-            {
+            /* {
                 'id'   : 'booking',
                 'title': 'Booking',
                 'translate': 'NAV.BOOKING',
@@ -46,7 +46,7 @@ export const navigation = [
                 'icon' : 'class',
                 'children' : [
                 ]
-            },
+            }, */
             {
                 'id'   : 'market',
                 'title': 'Market',

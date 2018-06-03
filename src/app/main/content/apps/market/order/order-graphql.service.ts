@@ -82,8 +82,9 @@ export class OrderGraphQLService extends GraphQLSchema
                 customer_surname
                 customer_email
                 customer_mobile
-                shipping_amount
                 subtotal
+                tax_amount
+                shipping_amount
                 total
             }
         `;
