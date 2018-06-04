@@ -23,7 +23,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
-                        {{ object.name }}
+                        {{ object.id }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.ORDER' | translate }}
@@ -116,6 +116,7 @@
                                 </div>
 
                                 <mat-accordion [multi]="true">
+
                                     <!-- PRODUCTS -->
                                     <mat-expansion-panel [expanded]="dataSourceOrderRow.data?.length > 0">
                                         <mat-expansion-panel-header>
