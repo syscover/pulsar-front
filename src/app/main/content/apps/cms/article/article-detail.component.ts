@@ -24,7 +24,6 @@ import * as _ from 'lodash';
 })
 export class ArticleDetailComponent extends CoreDetailComponent implements Chipable
 {
-    @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';
     sections: Section[] = [];

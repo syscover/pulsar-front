@@ -70,21 +70,21 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="publish">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-lg-block">{{ 'CMS.PUBLISH' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-lg-block">{{ row.publish | date:'dd/MM/y' }}</mat-cell>
+                <ng-container matColumnDef="cms_article.publish">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-lg-flex">{{ 'CMS.PUBLISH' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-lg-flex">{{ row.publish | date:'dd/MM/y' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="cms_section.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SECTION' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.section.name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex">{{ 'APPS.SECTION' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.section.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="status_id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.STATUS' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ statuses | getCollectionObjectValue:'id':row.status_id:'name' }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex">{{ 'APPS.STATUS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ statuses | getCollectionObjectValue:'id':row.status_id:'name' }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

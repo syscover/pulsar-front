@@ -70,6 +70,12 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="market_product.subtotal">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'MARKET.SUBTOTAL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.subtotal | currencyFormat }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="market_product.active">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex align-center">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex align-center">

@@ -41,8 +41,10 @@ export class OrderDetailComponent extends CoreDetailComponent
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             ip: [{value: null, disabled: true}],
+            date: [{value: null, disabled: true}],
             status_id: [null, Validators.required],
             payment_method_id: [null, Validators.required],
+            transaction_id: [{value: null, disabled: true}],
 
             subtotal: [{value: null, disabled: true}],
             discount_amount: [{value: null, disabled: true}],
@@ -51,8 +53,8 @@ export class OrderDetailComponent extends CoreDetailComponent
             total: [{value: null, disabled: true}],
 
 
-            date: [{value: null, disabled: true}, Validators.required ],
-            transaction_id: [{value: null, disabled: true}],
+
+
             tracking_id: null,
             customer_company: null,
             customer_tin: null,

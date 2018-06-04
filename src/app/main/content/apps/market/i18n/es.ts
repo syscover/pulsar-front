@@ -53,6 +53,7 @@ export const locale = {
             'TAX_RATE': 'Tasa de impuesto',
             'TAX_RULE': 'Regla de impuesto',
             'TAX_RATE_ZONE': 'Zona de impuestos',
+            'TRANSACTION_ID': 'Id de transacción',
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total de usos',
             'WAREHOUSE': 'Almacén',

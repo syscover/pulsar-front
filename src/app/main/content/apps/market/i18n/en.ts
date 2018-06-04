@@ -53,6 +53,7 @@ export const locale = {
             'TAX_RATE': 'Tax rate',
             'TAX_RULE': 'Tax rule',
             'TAX_RATE_ZONE': 'Tax rate zone',
+            'TRANSACTION_ID': 'Transaction id',
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total uses',
             'WAREHOUSE': 'Warehouse',
