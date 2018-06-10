@@ -39,32 +39,40 @@ export class OrderDetailComponent extends CoreDetailComponent
     createForm() 
     {
         this.fg = this.fb.group({
+
             id: [{value: null, disabled: true}],
             ip: [{value: null, disabled: true}],
             date: [{value: null, disabled: true}],
             status_id: [null, Validators.required],
             payment_method_id: [null, Validators.required],
             transaction_id: [{value: null, disabled: true}],
+            comments: null,
 
+            subtotal_with_discounts: [{value: null, disabled: true}],
             subtotal: [{value: null, disabled: true}],
             discount_amount: [{value: null, disabled: true}],
             tax_amount: [{value: null, disabled: true}],
             shipping_amount: [{value: null, disabled: true}],
             total: [{value: null, disabled: true}],
 
-
-
-
-            tracking_id: null,
-            customer_company: null,
-            customer_tin: null,
+            customer_id: null,
             customer_name: null,
             customer_surname: null,
-            customer_email: null,
+            customer_company: null,
+            customer_tin: null,
+            customer_email: [null, Validators.required],
             customer_mobile: null,
-            
-            
-            
+
+            has_gift: false,
+            gift_from: null,
+            gift_to: null,
+            gift_message: null,
+            gift_comments: null,
+
+
+            tracking_id: null
+
+
         });
     }
 

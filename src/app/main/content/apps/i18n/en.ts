@@ -43,6 +43,7 @@ export const locale = {
             'LOCALITY': 'Locality',
             'LOGIN': 'Login',
             'LONGITUDE': 'Longitude',
+            'MOBILE': 'Mobile',
             'NAME': 'Name',
             'NEW.F': 'New',
             'NEW.M': 'New',

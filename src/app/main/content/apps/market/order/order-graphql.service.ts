@@ -70,6 +70,7 @@ export class OrderGraphQLService extends GraphQLSchema
                 ip
                 transaction_id
                 tracking_id
+                comments
                 rows {
                     id
                     name
@@ -95,6 +96,11 @@ export class OrderGraphQLService extends GraphQLSchema
                 tax_amount
                 shipping_amount
                 total
+                has_gift
+                gift_from
+                gift_to
+                gift_message
+                gift_comments
             }
         `;
 

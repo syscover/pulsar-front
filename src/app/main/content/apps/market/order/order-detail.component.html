@@ -75,44 +75,65 @@
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row" class="d-flex justify-content-between flex-wrap">
-                                    <mat-form-field class="col-12 col-md-3">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
-                                    </mat-form-field>
+                                <div fxLayout="row wrap">
 
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.IP' | translate }}" formControlName="ip">
-                                    </mat-form-field>
-                                </div>
+                                    <div class="col-12 col-md-6">
 
-                                <div fxLayout="row" class="d-flex justify-content-between flex-wrap">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id" required>
-                                            <mat-option *ngFor="let orderStatus of orderStatuses" [value]="orderStatus.id">{{ orderStatus.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.status_id }}</mat-error>
-                                    </mat-form-field>
+                                        <mat-form-field class="col-12 col-md-6">
+                                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                        </mat-form-field>
 
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
+                                            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                            <mat-datepicker #date></mat-datepicker>
+                                            <mat-error>{{ formErrors?.date }}</mat-error>
+                                        </mat-form-field>
 
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
-                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-                                        <mat-datepicker #date></mat-datepicker>
-                                        <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field>
-                                </div>
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id" required>
+                                                <mat-option *ngFor="let orderStatus of orderStatuses" [value]="orderStatus.id">{{ orderStatus.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.status_id }}</mat-error>
+                                        </mat-form-field>
 
-                                <div fxLayout="row" class="d-flex justify-content-between flex-wrap">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <mat-select placeholder="{{ 'MARKET.PAYMENT_METHOD' | translate }}" formControlName="payment_method_id" required>
-                                            <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{ paymentMethod.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.payment_method_id }}</mat-error>
-                                    </mat-form-field>
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <mat-select placeholder="{{ 'MARKET.PAYMENT_METHOD' | translate }}" formControlName="payment_method_id" required>
+                                                <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{ paymentMethod.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.payment_method_id }}</mat-error>
+                                        </mat-form-field>
 
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'MARKET.TRANSACTION_ID' | translate }}" formControlName="transaction_id">
-                                    </mat-form-field>
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <textarea   matInput
+                                                        placeholder="{{ 'MARKET.COMMENTS' | translate }}"
+                                                        matAutosizeMinRows="5"
+                                                        formControlName="comments"></textarea>
+                                            <mat-error>{{ formErrors?.comments }}</mat-error>
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <input matInput placeholder="{{ 'APPS.IP' | translate }}" formControlName="ip">
+                                        </mat-form-field>
+
+                                        <mat-form-field class="col-12 col-md-10">
+                                            <input matInput placeholder="{{ 'MARKET.TRANSACTION_ID' | translate }}" formControlName="transaction_id">
+                                        </mat-form-field>
+
+                                        <p style="color:rgba(0, 0, 0, 0.38)">{{ 'MARKET.LOGS' | translate }}</p>
+                                        <mat-list dense class="col-12 col-md-10" style="max-height: 145px; overflow: auto; border-bottom: #e0e0e0 solid 1px; margin-bottom: 23px">
+                                            <mat-list-item>-- hola</mat-list-item>
+                                            <mat-list-item>-- hola</mat-list-item>
+                                            <mat-list-item>-- hola</mat-list-item>
+                                            <mat-list-item>-- hola</mat-list-item>
+                                            <mat-list-item>-- hola</mat-list-item>
+                                        </mat-list>
+
+                                    </div>
+
                                 </div>
 
                                 <mat-accordion [multi]="true">
@@ -216,9 +237,16 @@
                                 </div>
                                 <!-- / HEADER -->
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
 
                                     <div class="col-12 col-md-6">
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal').value | currencyFormat">
+                                                <mat-error>{{ formErrors?.subtotal }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
 
                                         <div fxLayout="row" *ngIf="fg.get('discount_amount').value > 0">
                                             <mat-form-field class="col-12 col-md-6">
@@ -232,7 +260,7 @@
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12 col-md-6">
-                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal').value | currencyFormat">
+                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL_WITH_DISCOUNTS' | translate }}" formControlName="subtotal" [value]="fg.get('subtotal_with_discounts').value | currencyFormat">
                                                 <mat-error>{{ formErrors?.subtotal }}</mat-error>
                                             </mat-form-field>
                                         </div>
@@ -261,31 +289,94 @@
                                     </div>
 
                                 </div>
-
-
-                               <!--  <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                                        <mat-error>{{ formErrors?.name }}</mat-error>
-                                    </mat-form-field>
-                                    <mat-form-field class="col-12 offset-md-1 col-md-6">
-                                        <input matInput placeholder="{{ 'APPS.SURNAME' | translate }}" formControlName="surname" required>
-                                        <mat-error>{{ formErrors?.surname }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="email" required>
-                                        <mat-error>{{ formErrors?.email }}</mat-error>
-                                    </mat-form-field>
-                                </div> -->
             
                             </div>
                         </mat-tab>
                         <mat-tab label="{{ 'APPS.CUSTOMER' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="customer_name">
+                                        <mat-error>{{ formErrors?.customer_name }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-6">
+                                        <input matInput placeholder="{{ 'APPS.SURNAME' | translate }}" formControlName="customer_surname">
+                                        <mat-error>{{ formErrors?.customer_surname }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.COMPANY' | translate }}" formControlName="customer_company">
+                                        <mat-error>{{ formErrors?.customer_company }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-6">
+                                        <input matInput placeholder="{{ 'APPS.TIN' | translate }}" formControlName="customer_tin">
+                                        <mat-error>{{ formErrors?.customer_tin }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="customer_email" required>
+                                        <mat-error>{{ formErrors?.customer_email }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-6">
+                                        <input matInput placeholder="{{ 'APPS.MOBILE' | translate }}" formControlName="customer_mobile">
+                                        <mat-error>{{ formErrors?.customer_mobile }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="{{ 'MARKET.SHIPPING' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="customer_name" required>
+                                        <mat-error>{{ formErrors?.customer_name }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 offset-md-1 col-md-6">
+                                        <input matInput placeholder="{{ 'APPS.SURNAME' | translate }}" formControlName="customer_surname" required>
+                                        <mat-error>{{ formErrors?.customer_surname }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="{{ 'MARKET.GIFT' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'MARKET.GIFT_FROM' | translate }}" formControlName="gift_from">
+                                        <mat-error>{{ formErrors?.gift_from }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 col-md-5">
+                                        <input matInput placeholder="{{ 'MARKET.GIFT_TO' | translate }}" formControlName="gift_to">
+                                        <mat-error>{{ formErrors?.gift_to }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field class="col-12 col-md-5">
+                                            <textarea   matInput
+                                                        placeholder="{{ 'MARKET.MESSAGE' | translate }}"
+                                                        matAutosizeMinRows="10"
+                                                        formControlName="gift_message"></textarea>
+                                        <mat-error>{{ formErrors?.gift_message }}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-12 col-md-5">
+                                            <textarea   matInput
+                                                        placeholder="{{ 'MARKET.COMMENTS' | translate }}"
+                                                        matAutosizeMinRows="10"
+                                                        formControlName="gift_comments"></textarea>
+                                        <mat-error>{{ formErrors?.gift_comments }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                             </div>
                         </mat-tab>
                     </mat-tab-group>
