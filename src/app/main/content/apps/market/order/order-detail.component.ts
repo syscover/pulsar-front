@@ -5,6 +5,7 @@ import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { OrderGraphQLService } from './order-graphql.service';
 import { OrderStatus, PaymentMethod } from './../market.models';
+import { CustomerGroup } from '../../crm/crm.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -18,6 +19,7 @@ export class OrderDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
     orderStatuses: OrderStatus[] = [];
     paymentMethods: PaymentMethod[] = [];
+    customerGroups: CustomerGroup[] = [];
 
     // Products
     displayedColumnsOrderRow = ['name', 'quantity', 'subtotal'];
@@ -55,23 +57,52 @@ export class OrderDetailComponent extends CoreDetailComponent
             shipping_amount: [{value: null, disabled: true}],
             total: [{value: null, disabled: true}],
 
-            customer_id: null,
+            customer_id: [{value: null, disabled: true}],
+            customer_group_id: [{value: null, disabled: true}],
             customer_name: null,
             customer_surname: null,
             customer_company: null,
             customer_tin: null,
             customer_email: [null, Validators.required],
             customer_mobile: null,
+            customer_phone: null,
+
+            has_shipping: false,
+            shipping_tracking_id: null,
+            shipping_company: null,
+            shipping_name: null,
+            shipping_surname: null,
+            shipping_email: null,
+            shipping_mobile: null,
+            shipping_phone: null,
+            shipping_country_id: null,
+
+            has_invoice: false,
+            invoiced: false,
+            invoice_number: null,
+            invoice_company: null,
+            invoice_tin: null,
+            invoice_name: null,
+            invoice_surname: null,
+            invoice_email: null,
+            invoice_mobile: null,
+            invoice_phone: null,
+            invoice_country_id: null,
+            invoice_territorial_area_1_id: null,
+            invoice_territorial_area_2_id: null,
+            invoice_territorial_area_3_id: null,
+            invoice_zip: null,
+            invoice_locality: null,
+            invoice_address: null,
+            invoice_latitude: null,
+            invoice_longitude: null,
+            invoice_comments: null,
 
             has_gift: false,
             gift_from: null,
             gift_to: null,
             gift_message: null,
             gift_comments: null,
-
-
-            tracking_id: null
-
 
         });
     }
@@ -109,6 +140,9 @@ export class OrderDetailComponent extends CoreDetailComponent
 
         // market payment methods
         this.paymentMethods = data.marketPaymentMethods;
+
+        // crm customer groups
+        this.customerGroups = data.crmCustomerGroups;
 
         // market order rows
         this.dataSourceOrderRow.sort = this.sortRow;

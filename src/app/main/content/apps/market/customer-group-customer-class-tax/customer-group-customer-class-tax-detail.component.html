@@ -70,7 +70,7 @@
                 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'MARKET.CUSTOMER_GROUP' | translate }}" formControlName="customer_group_id" required>
+                            <mat-select placeholder="{{ 'APPS.CUSTOMER_GROUP' | translate }}" formControlName="customer_group_id" required>
                                 <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>                                            
                             </mat-select>
                             <mat-error>{{ formErrors?.customer_group_id }}</mat-error>

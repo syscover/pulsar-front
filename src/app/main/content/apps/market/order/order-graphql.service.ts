@@ -69,7 +69,6 @@ export class OrderGraphQLService extends GraphQLSchema
                 status_id
                 ip
                 transaction_id
-                tracking_id
                 comments
                 rows {
                     id
@@ -84,6 +83,8 @@ export class OrderGraphQLService extends GraphQLSchema
                     free_shipping
                     discount_amount
                 }
+                customer_id
+                customer_group_id
                 customer_company
                 customer_tin
                 customer_name
@@ -96,6 +97,44 @@ export class OrderGraphQLService extends GraphQLSchema
                 tax_amount
                 shipping_amount
                 total
+                has_shipping
+                shipping_tracking_id
+                shipping_company
+                shipping_name
+                shipping_surname
+                shipping_email
+                shipping_mobile
+                shipping_phone
+                shipping_country_id
+                shipping_territorial_area_1_id
+                shipping_territorial_area_2_id
+                shipping_territorial_area_3_id
+                shipping_zip
+                shipping_locality
+                shipping_address
+                shipping_latitude
+                shipping_longitude
+                shipping_comments
+                has_invoice
+                invoiced
+                invoice_number
+                invoice_company
+                invoice_tin
+                invoice_name
+                invoice_surname
+                invoice_email
+                invoice_mobile
+                invoice_phone
+                invoice_country_id
+                invoice_territorial_area_1_id
+                invoice_territorial_area_2_id
+                invoice_territorial_area_3_id
+                invoice_zip
+                invoice_locality
+                invoice_address
+                invoice_latitude
+                invoice_longitude
+                invoice_comments
                 has_gift
                 gift_from
                 gift_to
@@ -120,6 +159,10 @@ export class OrderGraphQLService extends GraphQLSchema
                 name
                 sort
                 active
+            }
+            crmCustomerGroups {
+                id
+                name
             }
         `;
 

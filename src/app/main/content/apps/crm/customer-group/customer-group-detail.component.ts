@@ -11,7 +11,7 @@ import { CustomerGroupGraphQLService } from './customer-group-graphql.service';
 })
 export class CustomerGroupDetailComponent extends CoreDetailComponent 
 {
-    objectTranslation = 'CRM.CUSTOMER_GROUP';
+    objectTranslation = 'APPS.CUSTOMER_GROUP';
     objectTranslationGender = 'M';
 
     constructor(
