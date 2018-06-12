@@ -111,8 +111,7 @@ export class OrderDetailComponent extends CoreDetailComponent
             gift_from: null,
             gift_to: null,
             gift_message: null,
-            gift_comments: null,
-
+            gift_comments: null
         });
     }
 

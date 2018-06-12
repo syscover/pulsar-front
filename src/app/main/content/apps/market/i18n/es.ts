@@ -33,6 +33,8 @@ export const locale = {
             'HAS_SHIPPING': 'Con envío',
             'INSTRUCTIONS': 'Instrucciones',
             'INVOICE': 'Factura',
+            'INVOICE_NUMBER': 'Número de factura',
+            'INVOICED': 'Facturado',
             'LOGS': 'Registros',
             'MAXIMUN_DISCOUNT_AMOUNT': 'Cantidad máxima de descuento',
             'MAXIMUN_PRICE': 'Precio máximo',

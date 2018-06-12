@@ -487,12 +487,47 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row wrap" class="justify-content-between mb-20">
-                                    <div class="col-12">
+                                    <div class="col-12 col-md-6">
                                         <mat-checkbox formControlName="has_invoice">{{ 'MARKET.HAS_INVOICE' | translate }}</mat-checkbox>
+                                    </div>
+                                    <div class="col-12 col-md-6" *ngIf="this.fg.get('has_invoice')?.value">
+                                        <mat-checkbox formControlName="invoiced">{{ 'MARKET.INVOICED' | translate }}</mat-checkbox>
                                     </div>
                                 </div>
 
                                 <div *ngIf="this.fg.get('has_invoice')?.value">
+
+                                    <div fxLayout="row wrap">
+                                        <div class="col-12 col-md-6">
+
+                                            <div fxLayout="row wrap">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'MARKET.INVOICE_NUMBER' | translate }}" formControlName="invoice_number" autocomplete="off">
+                                                    <mat-error>{{ formErrors?.invoice_number }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="invoice_email">
+                                                    <mat-error>{{ formErrors?.invoice_email }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div fxLayout="row wrap">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <textarea   matInput
+                                                                class="h-88"
+                                                                placeholder="{{ 'MARKET.COMMENTS' | translate }}"
+                                                                matAutosizeMinRows="5"
+                                                                formControlName="invoice_comments"></textarea>
+                                                    <mat-error>{{ formErrors?.invoice_comments }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div fxLayout="row">
                                         <mat-form-field class="col-12 col-md-5">
@@ -516,13 +551,6 @@
                                         </mat-form-field>
                                     </div>
 
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12 col-md-5">
-                                            <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="invoice_email" required>
-                                            <mat-error>{{ formErrors?.invoice_email }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
-
                                     <div fxLayout="row wrap">
                                         <mat-form-field class="col-12 col-md-5">
                                             <input matInput placeholder="{{ 'APPS.MOBILE' | translate }}" formControlName="invoice_mobile">
@@ -532,6 +560,50 @@
                                             <input matInput placeholder="{{ 'APPS.PHONE' | translate }}" formControlName="invoice_phone">
                                             <mat-error>{{ formErrors?.invoice_phone }}</mat-error>
                                         </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'APPS.ADDRESS' | translate }}" formControlName="invoice_address">
+                                            <mat-error>{{ formErrors?.invoice_address }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row wrap">
+                                        <div class="col-12 col-md-6">
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-6">
+                                                    <input matInput placeholder="{{ 'APPS.ZIP' | translate }}" formControlName="invoice_zip">
+                                                    <mat-error>{{ formErrors?.invoice_zip }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-6">
+                                                    <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="invoice_locality">
+                                                    <mat-error>{{ formErrors?.invoice_locality }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.LATITUDE' | translate }}" formControlName="invoice_latitude">
+                                                    <mat-error>{{ formErrors?.invoice_latitude }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.LONGITUDE' | translate }}" formControlName="invoice_longitude">
+                                                    <mat-error>{{ formErrors?.invoice_longitude }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            MAPA
+                                        </div>
                                     </div>
 
                                 </div>

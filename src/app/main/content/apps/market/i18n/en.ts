@@ -33,6 +33,8 @@ export const locale = {
             'HAS_SHIPPING': 'Has shipping',
             'INSTRUCTIONS': 'Instrucctions',
             'INVOICE': 'Invoice',
+            'INVOICE_NUMBER': 'Invoice number',
+            'INVOICED': 'Invoiced',
             'LOGS': 'Logs',
             'MAXIMUN_DISCOUNT_AMOUNT': 'Maximun discount amount',
             'MAXIMUN_PRICE': 'Maximum price',
