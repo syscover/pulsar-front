@@ -17,32 +17,57 @@
 }
 
 @for $i from 1 through 100 {
-    // Set horizontal padding helpers
+    // PADDING
     .px-#{$i} {
-        padding-left: #{$i}px !important; 
-        padding-right: #{$i}px !important;  
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
     }
-
-    // Set vertical padding helpers
     .py-#{$i} {
-        padding-top: #{$i}px !important; 
-        padding-bottom: #{$i}px !important;  
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+    }
+    .pt-#{$i} {
+        padding-top: #{$i}px !important;
+    }
+    .pr-#{$i} {
+        padding-right: #{$i}px !important;
+    }
+    .pb-#{$i} {
+        padding-bottom: #{$i}px !important;
+    }
+    .pl-#{$i} {
+        padding-left: #{$i}px !important;
     }
 
-    // Set horizontal margin helpers
+    // MARGIN
     .mx-#{$i} {
-        margin-left: #{$i}px !important; 
-        margin-right: #{$i}px !important;  
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
     }
-
-    // Set vertical margin helpers
     .my-#{$i} {
-        margin-top: #{$i}px !important; 
-        margin-bottom: #{$i}px !important;  
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+    }
+    .mt-#{$i} {
+        margin-top: #{$i}px !important;
+    }
+    .mr-#{$i} {
+        margin-right: #{$i}px !important;
+    }
+    .mb-#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+    .ml-#{$i} {
+        margin-left: #{$i}px !important;
     }
 
-    // Set right margin helpers
-    .mr-#{$i} {
-        margin-right: #{$i}px !important; 
+    // FONT SIZE
+    .font-#{$i} {
+        font-size: #{$i}px !important;
+    }
+
+    // HEIGHT
+    .h-#{$i} {
+        height: #{$i}px !important;
     }
 }

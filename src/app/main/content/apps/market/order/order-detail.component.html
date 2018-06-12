@@ -351,7 +351,13 @@
 
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'MARKET.SHIPPING' | translate | uppercase }}">
+                        <mat-tab>
+
+                            <ng-template mat-tab-label>
+                                {{ 'MARKET.SHIPPING' | translate | uppercase }}
+                                <mat-icon class="font-17" *ngIf="this.fg.get('has_shipping')?.value">done</mat-icon>
+                            </ng-template>
+
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row wrap" class="justify-content-between mb-20">
@@ -362,18 +368,36 @@
 
                                 <div *ngIf="this.fg.get('has_shipping')?.value">
 
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12 col-md-5">
-                                            <input matInput placeholder="{{ 'MARKET.TRACKING_ID' | translate }}" formControlName="shipping_tracking_id">
-                                            <mat-error>{{ formErrors?.shipping_tracking_id }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
+                                    <div fxLayout="row wrap">
+                                        <div class="col-12 col-md-6">
 
-                                    <div fxLayout="row">
-                                        <mat-form-field class="col-12 col-md-5">
-                                            <input matInput placeholder="{{ 'APPS.COMPANY' | translate }}" formControlName="shipping_company">
-                                            <mat-error>{{ formErrors?.shipping_company }}</mat-error>
-                                        </mat-form-field>
+                                            <div fxLayout="row wrap">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'MARKET.TRACKING_ID' | translate }}" formControlName="shipping_tracking_id" autocomplete="off">
+                                                    <mat-error>{{ formErrors?.shipping_tracking_id }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.COMPANY' | translate }}" formControlName="shipping_company">
+                                                    <mat-error>{{ formErrors?.shipping_company }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div fxLayout="row wrap">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <textarea   matInput
+                                                                class="h-88"
+                                                                placeholder="{{ 'MARKET.COMMENTS' | translate }}"
+                                                                matAutosizeMinRows="5"
+                                                                formControlName="shipping_comments"></textarea>
+                                                    <mat-error>{{ formErrors?.shipping_comments }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div fxLayout="row wrap">
@@ -405,11 +429,61 @@
                                         </mat-form-field>
                                     </div>
 
+                                    <div fxLayout="row">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'APPS.ADDRESS' | translate }}" formControlName="shipping_address">
+                                            <mat-error>{{ formErrors?.shipping_address }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row wrap">
+                                        <div class="col-12 col-md-6">
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-6">
+                                                    <input matInput placeholder="{{ 'APPS.ZIP' | translate }}" formControlName="shipping_zip">
+                                                    <mat-error>{{ formErrors?.shipping_zip }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-6">
+                                                    <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="shipping_locality">
+                                                    <mat-error>{{ formErrors?.shipping_locality }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.LATITUDE' | translate }}" formControlName="shipping_latitude">
+                                                    <mat-error>{{ formErrors?.shipping_latitude }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div fxLayout="row">
+                                                <mat-form-field class="col-12 col-md-10">
+                                                    <input matInput placeholder="{{ 'APPS.LONGITUDE' | translate }}" formControlName="shipping_longitude">
+                                                    <mat-error>{{ formErrors?.shipping_longitude }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            MAPA
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
                         </mat-tab>
-                        <mat-tab label="{{ 'MARKET.INVOICE' | translate | uppercase }}">
+                        <mat-tab>
+
+                            <ng-template mat-tab-label>
+                                {{ 'MARKET.INVOICE' | translate | uppercase }}
+                                <mat-icon class="font-17" *ngIf="this.fg.get('has_invoice')?.value">done</mat-icon>
+                            </ng-template>
+
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row wrap" class="justify-content-between mb-20">
@@ -465,6 +539,12 @@
                             </div>
                         </mat-tab>
                         <mat-tab label="{{ 'MARKET.GIFT' | translate | uppercase }}">
+
+                            <ng-template mat-tab-label>
+                                {{ 'MARKET.GIFT' | translate | uppercase }}
+                                <mat-icon class="font-17" *ngIf="this.fg.get('has_gift')?.value">done</mat-icon>
+                            </ng-template>
+
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row wrap" class="justify-content-between mb-20">

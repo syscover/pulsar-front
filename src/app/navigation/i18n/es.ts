@@ -13,7 +13,7 @@ export const locale = {
             'ATTACHMENTS': 'Adjuntos',
             'AVERAGES': 'Medias',
             'CART_PRICE_RULES': 'Reglas de carro',
-            'CATALOG': 'Catalog',
+            'CATALOG': 'Catálogo',
             'CATEGORIES': 'Categorías',
             'CMS': 'CMS',
             'COMMENTS': 'Comentarios',
