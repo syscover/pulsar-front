@@ -24,6 +24,9 @@ export class Territories
     handleChangeCountry($event)
     {
         const country = _.find(this.countries, {id: $event.value});
+
+        console.log(country);
+
         if (country.zones && Array.isArray(country.zones)) 
         {
             this.showTerritorialAreas1 = false;

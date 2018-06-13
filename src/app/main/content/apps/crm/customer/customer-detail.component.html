@@ -180,6 +180,46 @@
                                 <div fxLayout="row">
                                     <div class="col-12 col-md-6">
 
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12">
+                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (change)="handleChangeCountryXX($event)">
+                                                    <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
+                                                </mat-select>
+                                                <mat-error>{{ formErrors?.country_id }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'APPS.ZIP' | translate }}" formControlName="zip">
+                                                <mat-error>{{ formErrors?.zip }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-6">
+                                                <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="locality">
+                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-10">
+                                                <input matInput placeholder="{{ 'APPS.LATITUDE' | translate }}" formControlName="latitude">
+                                                <mat-error>{{ formErrors?.latitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field class="col-12 col-md-10">
+                                                <input matInput placeholder="{{ 'APPS.LONGITUDE' | translate }}" formControlName="longitude">
+                                                <mat-error>{{ formErrors?.longitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        MAPA
                                     </div>
                                 
                                     <!-- 
@@ -218,35 +258,7 @@
                                                 <mat-error>{{ formErrors?.territorial_area_3_id }}</mat-error>
                                             </mat-form-field>
                                         </div>
-
-                                        <div fxLayout="row">
-                                            <mat-form-field class="col-12 col-md-6">
-                                                <input matInput placeholder="{{ 'APPS.ZIP' | translate }}" formControlName="zip">
-                                                <mat-error>{{ formErrors?.zip }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div fxLayout="row">
-                                            <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'APPS.LOCALITY' | translate }}" formControlName="locality">
-                                                <mat-error>{{ formErrors?.locality }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div fxLayout="row">
-                                            <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'APPS.LATITUDE' | translate }}" formControlName="latitude">
-                                                <mat-error>{{ formErrors?.latitude }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div fxLayout="row">
-                                            <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'APPS.LONGITUDE' | translate }}" formControlName="longitude">
-                                                <mat-error>{{ formErrors?.longitude }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
-                                    </div> -->
+                                    -->
                                 </div>             
                             </div>
                         </mat-tab>

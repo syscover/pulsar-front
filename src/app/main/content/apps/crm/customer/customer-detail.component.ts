@@ -133,7 +133,12 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         this.fg.controls['password'].setValue(password);
         this.fg.controls['repeat_password'].setValue(password);
     }
+
+    handleChangeCountryXX($event)
+    {
+        console.log('hola');
+    }
 }
 
 // multiple inheritance
-applyMixins(CustomerDetailComponent, [Territories]);
+// applyMixins(CustomerDetailComponent, [Territories]);
