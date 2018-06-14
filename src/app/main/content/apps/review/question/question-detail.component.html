@@ -98,7 +98,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'REVIEW.POLL' | translate }}" formControlName="poll_id" (change)="handleChangePoll($event)" required>
+                            <mat-select placeholder="{{ 'REVIEW.POLL' | translate }}" formControlName="poll_id" (selectionChange)="handleChangePoll($event)" required>
                                 <mat-option *ngFor="let poll of polls" [value]="poll.id">{{ poll.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.poll_id }}</mat-error>
@@ -107,7 +107,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'REVIEW.QUESTION_TYPE' | translate }}" formControlName="type_id" (change)="handleChangeType($event)" required>
+                            <mat-select placeholder="{{ 'REVIEW.QUESTION_TYPE' | translate }}" formControlName="type_id" (selectionChange)="handleChangeType($event)" required>
                                 <mat-option *ngFor="let questionType of questionTypes" [value]="+questionType.id">{{ questionType.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.type_id }}</mat-error>

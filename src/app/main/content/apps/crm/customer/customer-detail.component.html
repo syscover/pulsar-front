@@ -182,7 +182,7 @@
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (change)="handleChangeCountryXX($event)">
+                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (selectionChange)="handleChangeCountry($event)">
                                                     <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
                                                 </mat-select>
                                                 <mat-error>{{ formErrors?.country_id }}</mat-error>
@@ -225,7 +225,7 @@
                                     <!-- 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (change)="handleChangeCountry($event)">
+                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (selectionChange)="handleChangeCountry($event)">
                                                     <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>                                            
                                                 </mat-select>
                                                 <mat-error>{{ formErrors?.country_id }}</mat-error>

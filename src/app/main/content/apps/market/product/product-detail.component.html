@@ -193,7 +193,7 @@
         
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12 col-md-5">
-                                                <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (change)="handleGetProductTaxes()" required>
+                                                <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
                                                     <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
                                                 </mat-select>
                                                 <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>

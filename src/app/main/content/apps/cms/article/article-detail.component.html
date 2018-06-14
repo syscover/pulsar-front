@@ -133,7 +133,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (change)="handleChangeSection($event)">
+                                        <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (selectionChange)="handleChangeSection($event)">
                                             <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.section_id }}</mat-error>
@@ -142,7 +142,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (change)="handleChangeFamily($event)">
+                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (selectionChange)="handleChangeFamily($event)">
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                             <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>                                            
                                         </mat-select>

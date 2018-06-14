@@ -31,7 +31,7 @@
                 <label for="filter" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
-                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+                <mat-form-field floatLabel="never" fxFlex="1 0 auto" class="search-form-field">
                     <input #filter id="filter" matInput placeholder="{{ 'APPS.SEARCH' | translate }}">
                     <button mat-button mat-icon-button matSuffix class="filter-close-icon" *ngIf="filter?.value" (click)="clearFilter()">
                         <mat-icon>close</mat-icon>
