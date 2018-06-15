@@ -16,7 +16,7 @@ import { Lang } from './../../apps/admin/admin.models';
     `],
     template: `
         <ng-container *ngIf="lang">
-            <span class="flag-icon flag-icon-{{ lang.icon }}" [ngStyle]="{'width': width, 'height': 'calc(' + width + ' / 1.33)'}"></span> {{ lang.name }}
+            <span class="flag-icon flag-icon-{{ lang.icon }}" [ngStyle]="{'width': width, 'height': 'calc(' + width + ')'}"></span> {{ lang.name }}
         </ng-container>
     `
 })

@@ -66,10 +66,13 @@ export class ApolloService
             link: this.httpLink.create({ uri: graphqlUri }),
             cache: cache,
             defaultOptions: {
-                watchQuery: {
+                mutate: {
                     errorPolicy: 'all'
                 },
-                mutate: {
+                query: {
+                    errorPolicy: 'all'
+                },
+                watchQuery: {
                     errorPolicy: 'all'
                 }
             }

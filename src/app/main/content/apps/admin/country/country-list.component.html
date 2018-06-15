@@ -71,8 +71,8 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_country.slug">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-block">{{ 'APPS.SLUG' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-block">{{ row.slug }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex">{{ 'APPS.SLUG' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.slug }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->
@@ -111,7 +111,7 @@
                 <ng-container matColumnDef="territories">
                     <mat-header-cell *matHeaderCellDef class="align-center">{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="align-center">
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="row.territorial_area_1 || row.territorial_area_2 || row.territorial_area_3">
                             <mat-icon>public</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">

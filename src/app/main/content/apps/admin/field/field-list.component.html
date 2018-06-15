@@ -70,9 +70,15 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="admin_field.field_type_name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.TYPE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.field_type_name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="admin_field_group.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-block">{{ 'APPS.RESOURCE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-block">{{ row.field_type_name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.GROUP' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.field_group_name }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

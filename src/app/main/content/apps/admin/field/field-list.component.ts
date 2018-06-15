@@ -15,8 +15,8 @@ export class FieldListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.FIELD';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['admin_field.id', 'admin_field.name', 'admin_field_group.name'];
-    displayedColumns = ['admin_field.id', 'admin_field.name', 'admin_field_group.name', 'translations', 'actions'];
+    columnsSearch: string[] = ['admin_field.id', 'admin_field.name', 'admin_field_group.name', 'admin_field.field_type_name'];
+    displayedColumns = ['admin_field.id', 'admin_field.name', 'admin_field.field_type_name', 'admin_field_group.name', 'translations', 'actions'];
     adminConfigFieldTypesId: any[] = [];
 
     constructor(

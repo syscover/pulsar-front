@@ -40,7 +40,6 @@ import * as _ from 'lodash';
                         <div fxLayout="row" *ngSwitchCase="'select-multiple'">
                             <mat-form-field [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
                                 <mat-select placeholder="{{ field | getFieldLabel:lang }}" [formControlName]="field.name" [required]="field.required" multiple>
-                                    <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                     <mat-option *ngFor="let value of field.values | getSelectValues:lang" [value]="value.id">{{ value.name }}</mat-option>
                                 </mat-select>
                                 <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
