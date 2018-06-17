@@ -2,9 +2,9 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from '../../../apps/admin/admin.models';
-import * as _ from 'lodash';
 import { environment } from '../../../../../../environments/environment';
 import gql from 'graphql-tag';
+import * as _ from 'lodash';
 
 /* tslint:disable:max-line-length */
 @Component({

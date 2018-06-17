@@ -14,6 +14,7 @@ import { fuseConfig } from './fuse-config';
 import { AppComponent } from './app.component';
 import { FuseMainModule } from './main/main.module';
 
+// DH2
 import { CoreModule } from './main/content/core/core.module';
 
 const appRoutes: Routes = [

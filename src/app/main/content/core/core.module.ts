@@ -1,5 +1,6 @@
 import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {AgmCoreModule, MapsAPILoader} from '@agm/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
@@ -13,6 +14,7 @@ import { NavigationService } from './services/navigation.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { HttpSynchronousService } from './services/http-synchronous.service';
 import { ValidationMessageService } from './services/validation-message.service';
+import {GoogleMapsLoaderService} from './services/google-maps-loader.service';
 
 @NgModule({
     declarations: [],
@@ -26,6 +28,10 @@ import { ValidationMessageService } from './services/validation-message.service'
         NavigationService,
         ValidationMessageService,
         BootstrapService,
+        {
+            provide: MapsAPILoader,
+            useClass: GoogleMapsLoaderService
+        },
         {
             provide: APP_INITIALIZER,
             useFactory: BootstrapLoader,
@@ -41,6 +47,9 @@ import { ValidationMessageService } from './services/validation-message.service'
     imports: [
         HttpLinkModule,
         ApolloModule,
+        AgmCoreModule.forRoot({
+            libraries: ['places']
+        }),
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

@@ -7,6 +7,7 @@ import { FroalaModule } from './froala/froala.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { FlagIconComponent } from './flag-icon.component';
 import { TerritoriesModule } from './territories/territories.module';
+import { LocationMapModule } from './location-map/location-map.module';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { TerritoriesModule } from './territories/territories.module';
         CommonModule,
         FroalaModule,
         ImageInputModule,
+        LocationMapModule,
         MatButtonModule,
         MatDialogModule,
         MatFormFieldModule,
@@ -26,6 +28,7 @@ import { TerritoriesModule } from './territories/territories.module';
         FlagIconComponent,
         FroalaModule,
         ImageInputModule,
+        LocationMapModule,
         TerritoriesModule
     ],
     declarations: [

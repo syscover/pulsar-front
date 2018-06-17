@@ -1,17 +1,20 @@
 {
     "graphqlUri": "http://ruralka.local/graphql",
     "apiUrl": "http://ruralka.local",
-    "froalaKey": "tJ-7B-22B-16qC-13yrB1yytyu=="
+    "froalaKey": "tJ-7B-22B-16qC-13yrB1yytyu==",
+    "googleMapsApiKey": ""
 }
 
 {
     "graphqlUri": "https://dev.ruralka.com/graphql",
     "apiUrl": "https://dev.ruralka.com",
-    "froalaKey": "grtpbhngA6kfg=="
+    "froalaKey": "grtpbhngA6kfg==",
+    "googleMapsApiKey": ""
 }
 
 {
     "graphqlUri": "https://ruralka.com/graphql",
     "apiUrl": "https://ruralka.com",
-    "froalaKey": "grtpbhngA6kfg=="
+    "froalaKey": "grtpbhngA6kfg==",
+    "googleMapsApiKey": ""
 }

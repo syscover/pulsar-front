@@ -63,6 +63,7 @@ export const locale = {
             'SAVED.F': 'Guardada',
             'SAVED.M': 'Guardado',
             'SEARCH': 'Buscar',
+            'SEARCH_LOCATION': 'Búsqueda por ubicación',
             'SECTION': 'Sección',
             'SECTIONS': 'Secciones',
             'SETTINGS': 'Ajustes',

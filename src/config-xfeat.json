@@ -1,11 +1,13 @@
 {
     "graphqlUri": "http://xfeat.local/graphql",
     "apiUrl": "http://xfeat.local",
-    "froalaKey": "yjuqtbB3tvyzp=="
+    "froalaKey": "yjuqtbB3tvyzp==",
+    "googleMapsApiKey": ""
 }
 
 {
     "graphqlUri": "https://dev.xfeat.com/graphql",
     "apiUrl": "https://dev.xfeat.com",
-    "froalaKey": "OviupfA2wzA-13=="
+    "froalaKey": "OviupfA2wzA-13==",
+    "googleMapsApiKey": ""
 }
