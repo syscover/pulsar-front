@@ -23,7 +23,7 @@ import {startWith} from 'rxjs/operators/startWith';
     `,
 })
 
-export class SearchListComponent implements OnInit
+export class SearchListComponent_DELETE implements OnInit
 {
     // se ha intentado encapsular el conmponente de búsqueda, pero hay que enlazarlo con todos los observables
     constructor() {}

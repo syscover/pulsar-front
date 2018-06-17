@@ -6,7 +6,7 @@ import { ImageInputModule } from './image-input/image-input.module';
 import { FroalaModule } from './froala/froala.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { FlagIconComponent } from './flag-icon.component';
-import { SearchListComponent } from './search-list.component';
+import { TerritoriesModule } from './territories/territories.module';
 
 @NgModule({
     imports: [
@@ -17,7 +17,8 @@ import { SearchListComponent } from './search-list.component';
         MatButtonModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatIconModule
+        MatIconModule,
+        TerritoriesModule
     ],
     exports: [
         AttachmentsModule,
@@ -25,12 +26,11 @@ import { SearchListComponent } from './search-list.component';
         FlagIconComponent,
         FroalaModule,
         ImageInputModule,
-        SearchListComponent
+        TerritoriesModule
     ],
     declarations: [
         ConfirmationDialogComponent,
-        FlagIconComponent,
-        SearchListComponent
+        FlagIconComponent
     ],
     entryComponents: [
         ConfirmationDialogComponent

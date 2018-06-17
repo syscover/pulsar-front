@@ -1,40 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
-    // MatAutocompleteModule,
-    // MatButtonModule,
-    // MatButtonToggleModule,
     MatCheckboxModule,
-    // MatToolbarModule,
-    // MatTooltipModule,
-    // MatCardModule,
-    // MatChipsModule,
-    // MatDatepickerModule,
-    // MatDialogModule,
-    // MatExpansionModule,
     MatFormFieldModule,
-    // MatGridListModule,
     MatIconModule,
     MatInputModule,
-    // MatListModule,
-    // MatMenuModule,
-    // MatNativeDateModule,
-    // MatPaginatorModule,
-    // MatProgressBarModule,
-    // MatProgressSpinnerModule,
-    MatRadioModule,
-    // MatRippleModule,
-    MatSelectModule,
-    // MatSidenavModule,
-    // MatSliderModule,
-    // MatSlideToggleModule,
-    // MatSnackBarModule,
-    // MatSortModule,
-    // MatTableModule,
-    // MatTabsModule,
-    // MatStepperModule,
-    // DateAdapter
+    MatSelectModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';

@@ -180,14 +180,18 @@
                                 <div fxLayout="row">
                                     <div class="col-12 col-md-6">
 
-                                        <div fxLayout="row">
-                                            <mat-form-field class="col-12">
-                                                <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (selectionChange)="handleChangeCountry($event)">
-                                                    <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
-                                                </mat-select>
-                                                <mat-error>{{ formErrors?.country_id }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
+                                        <dh2-territories    [formGroup]="fg"
+                                                            [formErrors]="formErrors"
+                                                            [countries]="countries"></dh2-territories>
+
+                                        <!--<div fxLayout="row">-->
+                                            <!--<mat-form-field class="col">-->
+                                                <!--<mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" (selectionChange)="handleChangeCountry($event)">-->
+                                                    <!--<mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>-->
+                                                <!--</mat-select>-->
+                                                <!--<mat-error>{{ formErrors?.country_id }}</mat-error>-->
+                                            <!--</mat-form-field>-->
+                                        <!--</div>-->
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12 col-md-6">

@@ -1,4 +1,3 @@
-import { TerritorialArea1GraphQLService } from './../../admin/territorial_area_1/territorial-area-1-graphql.service';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
@@ -8,8 +7,6 @@ import { notEqual } from './../../../core/validations/not-equal.validation';
 import { CustomerGroup } from './../crm.models';
 import { Country } from './../../admin/admin.models';
 import * as passwordGenerator from 'generate-password-browser';
-import { applyMixins } from './../../../core/functions/apply-mixins.function';
-import { Territories } from './../../../core/traits/territories.trait';
 
 @Component({
     selector: 'dh2-customer-detail',
@@ -21,13 +18,14 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     objectTranslation = 'APPS.CUSTOMER';
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
-    countries: Country[] = [];
     inputType = 'password';
+
+    // properties for territories
+    countries: Country[] = [];
 
     constructor(
         protected injector: Injector,
-        protected graphQL: CustomerGraphQLService,
-        protected territorialArea1GraphQLService: TerritorialArea1GraphQLService
+        protected graphQL: CustomerGraphQLService
     ) {
         super(injector, graphQL);
     }
@@ -133,9 +131,4 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         this.fg.controls['password'].setValue(password);
         this.fg.controls['repeat_password'].setValue(password);
     }
-
-    handleChangeCountry($event){}
 }
-
-// multiple inheritance
-applyMixins(CustomerDetailComponent, [Territories]);
