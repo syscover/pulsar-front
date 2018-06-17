@@ -6,28 +6,35 @@ import { environment } from '../../../../../../environments/environment';
 @Component({
     selector: 'dh2-location-map',
     styles: [`
+        :host{
+            justify-content: center;
+        }
         agm-map {
             height: 500px;
         }
         .search-box {
+            width: 60% !important;
             position: absolute;
             z-index: 1;
-            width: 100%;
             background-color: rgba(255, 255, 255, 0.8);
         }
     `],
     template: `        
-        <div fxLayout="row" class="search-box justify-content-center">
-            <mat-form-field class="col-11">
-                <input  matInput
-                        #search
-                        placeholder="{{ 'APPS.SEARCH_LOCATION' | translate }}">
-            </mat-form-field>
+        <div class="d-flex justify-content-center">
+            <div fxLayout="row" class="search-box justify-content-center">
+                <mat-form-field class="col-11">
+                    <input  matInput
+                            #search
+                            placeholder="{{ 'APPS.SEARCH_LOCATION' | translate }}">
+                </mat-form-field>
+            </div>
         </div>
+        
         <agm-map    [latitude]="formGroup.get(latitudeControlName).value ? formGroup.get(latitudeControlName).value : dedaultLatitude" 
                     [longitude]="formGroup.get(longitudeControlName).value ? formGroup.get(longitudeControlName).value : dedaultLongitude"
                     [mapTypeControl]="true"
                     [mapTypeControlOptions]="mapTypeControlOptions">
+            
             <agm-marker #marker
                         [latitude]="formGroup.get(latitudeControlName).value ? formGroup.get(latitudeControlName).value : dedaultLatitude" 
                         [longitude]="formGroup.get(longitudeControlName).value ? formGroup.get(longitudeControlName).value : dedaultLongitude"
@@ -83,11 +90,8 @@ export class LocationMapComponent implements OnInit
                 });
             });
 
-            console.log(this.marker.nativeElement);
-
             this.mapTypeControlOptions = {
-                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                position: google.maps.ControlPosition.BOTTOM_LEFT
+                position: google.maps.ControlPosition.TOP_LEFT
             };
         });
     }
