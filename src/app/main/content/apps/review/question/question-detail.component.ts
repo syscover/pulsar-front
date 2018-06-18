@@ -74,7 +74,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
     argumentsRelationsObject(): Object 
     {
         const configQuestionTypes = {
-            key: 'pulsar-review.questionTypes',
+            key: 'pulsar-review.question_types',
             lang: this.baseLang,
             property: 'name'
         };
