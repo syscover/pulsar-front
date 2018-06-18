@@ -18,13 +18,13 @@
                 </button>
 
                 <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>library_books</mat-icon>
+                    <mat-icon>devices_other</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'" [innerHTML]="object.name"></div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.M' | translate }} {{ 'CMS.ARTICLE' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'MARKET.PRODUCT' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -213,21 +213,21 @@
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal_format">
+                                                <input matInput placeholder="{{ 'MARKET.SUBTOTAL' | translate }}" formControlName="subtotal_format" required>
                                                 <mat-error>{{ formErrors?.subtotal_format }}</mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'MARKET.TAX' | translate }}" formControlName="tax_format">
+                                                <input matInput placeholder="{{ 'MARKET.TAX' | translate }}" formControlName="tax_format" required>
                                                 <mat-error>{{ formErrors?.tax_format }}</mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div fxLayout="row">
                                             <mat-form-field class="col-12">
-                                                <input matInput placeholder="{{ 'MARKET.TOTAL' | translate }}" formControlName="total_format">
+                                                <input matInput placeholder="{{ 'MARKET.TOTAL' | translate }}" formControlName="total_format" required>
                                                 <mat-error>{{ formErrors?.total_format }}</mat-error>
                                             </mat-form-field>
                                         </div>

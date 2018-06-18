@@ -62,7 +62,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     argumentsRelationsObject(): Object
     {
         const configDiscountTypes = {
-            key: 'pulsar-market.discountTypes',
+            key: 'pulsar-market.discount_types',
             lang: this.baseLang,
             property: 'name'
         };

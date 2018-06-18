@@ -63,9 +63,9 @@ export class ProductDetailComponent extends CoreDetailComponent
             field_group_id: null,
             type_id: [null, Validators.required],
             parent_id: null,
-            weight: [null, Validators.required],
+            weight: [0],
             active: false,
-            sort: [null, Validators.required],
+            sort: null,
             price_type_id: [null, Validators.required],
             product_class_tax_id: [null, Validators.required],
             description: null,
@@ -181,13 +181,13 @@ export class ProductDetailComponent extends CoreDetailComponent
         ];
 
         const configProductTypes = {
-            key: 'pulsar-market.productTypes',
+            key: 'pulsar-market.product_types',
             lang: this.baseLang,
             property: 'name'
         };
 
         const configPriceTypes = {
-            key: 'pulsar-market.priceTypes',
+            key: 'pulsar-market.price_types',
             lang: this.baseLang,
             property: 'name'
         };
@@ -296,15 +296,15 @@ export class ProductDetailComponent extends CoreDetailComponent
         // force to calualte price without tax, when show product the price always
         // is without tax because is subtotal the refernece price, this flag is activated in
         // function setData os this component
-        if (forceCalculatePriceWithoutTax) args['productTaxPrices'] = 1;
+        if (forceCalculatePriceWithoutTax) args['product_tax_prices'] = 1;
 
         const ob = this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
                 query: gql`
-                    query MarketProductTaxes ($price:Float! $productClassTax:Int $productTaxPrices:Int) {
-                        marketProductTaxes (price:$price productClassTax:$productClassTax productTaxPrices:$productTaxPrices)
+                    query MarketProductTaxes ($price:Float! $productClassTax:Int $product_tax_prices:Int) {
+                        marketProductTaxes (price:$price productClassTax:$productClassTax product_tax_prices:$product_tax_prices)
                     }
                 `,
                 variables: args
