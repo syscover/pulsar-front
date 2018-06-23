@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 
-import { navigation } from 'app/navigation/navigation';
+// DH2
+import { NavigationService } from './content/core/services/navigation.service';
 
 @Component({
     selector     : 'fuse-main',
@@ -26,7 +27,8 @@ export class FuseMainComponent implements OnDestroy
         private _elementRef: ElementRef,
         private fuseConfig: FuseConfigService,
         private platform: Platform,
-        @Inject(DOCUMENT) private document: any
+        @Inject(DOCUMENT) private document: any,
+        private dh2NavigationService: NavigationService
     )
     {
         this.onConfigChanged =
@@ -43,7 +45,7 @@ export class FuseMainComponent implements OnDestroy
             this.document.body.className += ' is-mobile';
         }
 
-        this.navigation = navigation;
+        this.navigation = dh2NavigationService.getNavigation();
     }
 
     ngOnDestroy()

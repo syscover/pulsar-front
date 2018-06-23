@@ -5,10 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { navigation } from 'app/navigation/navigation';
-
 // DH2
 import { AuthenticationService } from './../content/core/services/authentication.service';
+import { NavigationService } from './../content/core/services/navigation.service';
 import { User } from './../content/apps/admin/admin.models';
 
 @Component({
@@ -33,7 +32,8 @@ export class FuseToolbarComponent
         private fuseConfig: FuseConfigService,
         private sidebarService: FuseSidebarService,
         private translate: TranslateService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private dh2NavigationService: NavigationService
     )
     {
         // DH2
@@ -100,7 +100,7 @@ export class FuseToolbarComponent
             this.noNav = settings.layout.navigation === 'none';
         });
 
-        this.navigation = navigation;
+        this.navigation = dh2NavigationService.getNavigation();
     }
 
     toggleSidebarOpened(key)

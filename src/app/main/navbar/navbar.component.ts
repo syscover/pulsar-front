@@ -6,9 +6,11 @@ import { Subscription } from 'rxjs';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { navigation } from 'app/navigation/navigation';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarComponent } from '@fuse/components/sidebar/sidebar.component';
+
+// DH2
+import { NavigationService } from './../content/core/services/navigation.service';
 
 @Component({
     selector     : 'fuse-navbar',
@@ -45,11 +47,12 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
     constructor(
         private sidebarService: FuseSidebarService,
         private navigationService: FuseNavigationService,
-        private router: Router
+        private router: Router,
+        private dh2NavigationService: NavigationService
     )
     {
         // Navigation data
-        this.navigation = navigation;
+        this.navigation = dh2NavigationService.getNavigation();
 
         // Default layout
         this.layout = 'vertical';

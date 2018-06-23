@@ -29,7 +29,7 @@ export class NavigationService
             if (pkg && pkg.active) menuItems.push(item);
         }
 
-        if (environment.debug) console.log('DEBUG - menu intens: ', menuItems);
+        if (environment.debug) console.log('DEBUG - menu items: ', menuItems);
 
         this.navigation[0].children = menuItems;
         
