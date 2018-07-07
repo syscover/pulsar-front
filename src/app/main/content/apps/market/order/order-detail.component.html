@@ -172,6 +172,16 @@
                                                         <mat-cell *matCellDef="let row">{{ row.subtotal | currencyFormat }}</mat-cell>
                                                     </ng-container>
 
+                                                    <!-- Column -->
+                                                    <ng-container matColumnDef="data">
+                                                        <mat-header-cell *matHeaderCellDef class="justify-content-center">#</mat-header-cell>
+                                                        <mat-cell *matCellDef="let row" class="justify-content-center">
+                                                            <button *ngIf="row.data?.info" mat-icon-button type="button" (click)="showInfo(row.data.info)">
+                                                                <mat-icon>info</mat-icon>
+                                                            </button>
+                                                        </mat-cell>
+                                                    </ng-container>
+
                                                     <mat-header-row *matHeaderRowDef="displayedColumnsOrderRow"></mat-header-row>
                                                     <mat-row *matRowDef="let row; columns: displayedColumnsOrderRow;"></mat-row>
                                                 </mat-table>

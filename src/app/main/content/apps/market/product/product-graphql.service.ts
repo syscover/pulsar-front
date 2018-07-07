@@ -54,10 +54,6 @@ export class ProductGraphQLService extends GraphQLSchema
                 stock
                 minimum_stock
             }
-            marketWarehouses {
-                id
-                name
-            }
         }`;
 
     mutationAddObject = gql`
@@ -194,6 +190,10 @@ export class ProductGraphQLService extends GraphQLSchema
                     id
                     name
                 }
+            }
+            marketWarehouses {
+                id
+                name
             }
         `;
 

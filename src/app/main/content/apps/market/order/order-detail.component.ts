@@ -4,9 +4,11 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { OrderGraphQLService } from './order-graphql.service';
+import { OrderRowInfoDialogComponent } from './order-row-info-dialog.component';
 import { OrderStatus, PaymentMethod } from './../market.models';
 import { CustomerGroup } from '../../crm/crm.models';
 import * as _ from 'lodash';
+
 
 @Component({
     selector: 'dh2-order-detail',
@@ -22,7 +24,7 @@ export class OrderDetailComponent extends CoreDetailComponent
     customerGroups: CustomerGroup[] = [];
 
     // Products
-    displayedColumnsOrderRow = ['name', 'quantity', 'subtotal'];
+    displayedColumnsOrderRow = ['name', 'quantity', 'subtotal', 'data'];
     dataSourceOrderRow = new MatTableDataSource();
     @ViewChild(MatSort) sortRow: MatSort;
 
@@ -159,5 +161,17 @@ export class OrderDetailComponent extends CoreDetailComponent
         // market order discounts
         this.dataSourceOrderDiscount.sort = this.sortDiscount;
         this.dataSourceOrderDiscount.data = data.coreObject.discounts;
+    }
+
+    showInfo(info: any)
+    {
+        if (this.env.debug) console.log('DEBUG - Show info order row: ', info);
+
+        this.dialog.open(OrderRowInfoDialogComponent, {
+            data: {
+                info: info
+            },
+            width: '80vw'
+        });
     }
 }

@@ -15,6 +15,7 @@ import { CustomerGroupCustomerClassTaxListComponent } from './customer-group-cus
 import { CustomerGroupCustomerClassTaxDetailComponent } from './customer-group-customer-class-tax/customer-group-customer-class-tax-detail.component';
 import { OrderListComponent } from './order/order-list.component';
 import { OrderDetailComponent } from './order/order-detail.component';
+import { OrderRowInfoDialogComponent } from './order/order-row-info-dialog.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
@@ -62,6 +63,7 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         CustomerGroupCustomerClassTaxDetailComponent,
         OrderListComponent,
         OrderDetailComponent,
+        OrderRowInfoDialogComponent,
         OrderStatusListComponent,
         OrderStatusDetailComponent,
         PaymentMethodListComponent,
@@ -94,7 +96,8 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         WarehouseGraphQLService
     ],
     entryComponents: [
-        ProductStockDialogComponent
+        ProductStockDialogComponent,
+        OrderRowInfoDialogComponent
     ]
 })
 

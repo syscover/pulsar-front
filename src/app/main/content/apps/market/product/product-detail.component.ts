@@ -1,11 +1,10 @@
-import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
+import {Component, Injector, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { fuseAnimations } from './../../../../../../@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { ProductGraphQLService } from './product-graphql.service';
 import { StockGraphQLService } from './../stock/stock-graphql.service';
-import { AuthenticationService } from './../../../core/services/authentication.service';
 import { ProductStockDialogComponent } from './product-stock-dialog.component';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
@@ -21,7 +20,7 @@ import gql from 'graphql-tag';
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class ProductDetailComponent extends CoreDetailComponent
+export class ProductDetailComponent extends CoreDetailComponent implements OnInit
 {
     objectTranslation = 'MARKET.PRODUCT';
     objectTranslationGender = 'M';
@@ -48,6 +47,16 @@ export class ProductDetailComponent extends CoreDetailComponent
         private graphQLStock: StockGraphQLService
     ) {
         super(injector, graphQL);
+    }
+
+    ngOnInit()
+    {
+        super.ngOnInit();
+        if (this.dataRoute.action === 'create')
+        {
+            // allow start dh2-dynamic-form component to avoid failures in the JWT
+            this.startCustomFields = true;
+        }
     }
     
     createForm() 
@@ -253,7 +262,7 @@ export class ProductDetailComponent extends CoreDetailComponent
             true, // force to calulate price without tax
             // callback, all http petition must to be sequential to pass JWT
             () => {
-                // allo start dh2-dynamic-form component to avoid failures in the JWT
+                // allow start dh2-dynamic-form component to avoid failures in the JWT
                 this.startCustomFields = true;
             }
         ); // calculate tax prices
