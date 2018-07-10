@@ -24,4 +24,16 @@ export class CartPriceRuleListComponent extends CoreListComponent
     ) {
         super(injector, graphQL);
     }
+
+    // overwite method to get statuses
+    getCustomArgumentsGetRecords(args: Object): Object
+    {
+        args['sql'].push({
+            command: 'orderBy',
+            operator: 'desc',
+            column: 'market_cart_price_rule.id'
+        });
+
+        return args;
+    }
 }

@@ -13,8 +13,8 @@ export class OrderListComponent extends CoreListComponent
 {
     objectTranslation = 'MARKET.ORDER';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['market_order.id', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_order_status.name', 'market_order.total'];
-    displayedColumns = ['market_order.id', 'market_order.customer_name', 'market_order.customer_email', 'market_order_status.name', 'market_order.total', 'actions'];
+    columnsSearch: string[] = ['market_order.id', 'market_order.date', 'market_order.customer_name', 'market_order.customer_surname', 'market_order.customer_email', 'market_payment_method.name', 'market_order_status.name', 'market_order.total', 'market_order_row.data'];
+    displayedColumns = ['market_order.id', 'market_order.date', 'market_order.customer_name', 'market_order.customer_email', 'market_payment_method.name', 'market_order_status.name', 'market_order.total', 'actions'];
 
     constructor(
         protected injector: Injector,

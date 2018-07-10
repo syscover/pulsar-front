@@ -66,6 +66,10 @@ export class OrderGraphQLService extends GraphQLSchema
                 id
                 date
                 payment_method_id
+                payment_methods {
+                    id
+                    name
+                }
                 status_id
                 ip
                 transaction_id
