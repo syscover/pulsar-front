@@ -70,4 +70,9 @@
     .h-#{$i} {
         height: #{$i}px !important;
     }
+
+    // MAX-WIDTH
+    .mw-#{$i * 10} {
+        max-width: #{$i * 10}px !important;
+    }
 }

@@ -21,6 +21,7 @@
     .mat-column-translations {
         display: flex;
         justify-content: center;
+        max-width: 80px;
     }
     .top-bg {
         @include media-breakpoint-down(xs) {

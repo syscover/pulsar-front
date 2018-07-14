@@ -9,14 +9,14 @@
 
         <!-- HEADER -->
         <div    class="header white-fg"
-                fxLayout="column" 
+                fxLayout="column"
                 fxLayoutAlign="center center"
-                fxLayout.gt-xs="row" 
+                fxLayout.gt-xs="row"
                 fxLayoutAlign.gt-xs="space-between center">
 
             <!-- APP TITLE -->
             <div    class="logo my-12 m-sm-0"
-                    fxLayout="row" 
+                    fxLayout="row"
                     fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">add_shopping_cart</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.ORDERS' | translate }}</span>
@@ -59,20 +59,20 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_order.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_order.date">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.DATE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.date | date:'dd/MM/y' }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex mw-120">{{ 'APPS.DATE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex mw-120">{{ row.date | date:'dd/MM/y' }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
                 <ng-container matColumnDef="market_order.customer_name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.customer_name }} {{ row.customer_surname }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.customer_name }} {{ row.customer_surname }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
@@ -83,20 +83,20 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_payment_method.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.PAYMENT_METHOD' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.market_payment_method_name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-lg-flex mw-120">{{ 'MARKET.PAYMENT_METHOD' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-lg-flex mw-120">{{ row.market_payment_method_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_order_status.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.STATUS' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.market_order_status_name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-140">{{ 'APPS.STATUS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-140">{{ row.market_order_status_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_order.total">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TOTAL' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.total | currencyFormat }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">{{ 'MARKET.TOTAL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.total | currencyFormat }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
