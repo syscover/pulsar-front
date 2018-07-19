@@ -307,3 +307,9 @@ export class CustomerDiscountHistory
     data_lang: string;
     price_rule: string;
 }
+
+export class Log {
+    time: any;
+    message: string;
+    status_id: number;
+}

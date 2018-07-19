@@ -1,15 +1,18 @@
 /* TEXT */
 .uppercase {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 .lowercase {
-    text-transform: lowercase;
+    text-transform: lowercase !important;
 }
 .capitalize {
-    text-transform: capitalize;
+    text-transform: capitalize !important;
+}
+.bold {
+    font-weight: bold !important;
 }
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .align-center {
     display: flex;

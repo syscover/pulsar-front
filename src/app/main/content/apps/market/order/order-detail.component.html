@@ -125,11 +125,10 @@
 
                                         <p style="color:rgba(0, 0, 0, 0.38)">{{ 'MARKET.LOGS' | translate }}</p>
                                         <mat-list dense class="col-12 col-md-10" style="max-height: 145px; overflow: auto; border-bottom: #e0e0e0 solid 1px; margin-bottom: 23px">
-                                            <mat-list-item>-- hola</mat-list-item>
-                                            <mat-list-item>-- hola</mat-list-item>
-                                            <mat-list-item>-- hola</mat-list-item>
-                                            <mat-list-item>-- hola</mat-list-item>
-                                            <mat-list-item>-- hola</mat-list-item>
+                                            <mat-list-item *ngFor="let log of logs">
+                                                <span class="bold" matLine>{{ log.time | date:'dd/MM/y H:mm:ss' }}</span>
+                                                <span matLine>{{ log.message }}</span>
+                                            </mat-list-item>
                                         </mat-list>
 
                                     </div>

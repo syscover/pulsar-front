@@ -145,6 +145,7 @@ export class OrderGraphQLService extends GraphQLSchema
                 gift_to
                 gift_message
                 gift_comments
+                data
             }
         `;
 

@@ -11,7 +11,7 @@ export class Customer
     lang_id: string;
     remember_token: string;
     group_id: number;
-    date: number;
+    date: any;
     company: string;
     tin: string;
     gender_id: number;
