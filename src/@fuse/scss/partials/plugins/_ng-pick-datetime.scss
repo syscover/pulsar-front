@@ -146,6 +146,7 @@ owl-date-time {
         padding: .25em;
         background-color: rgba(0, 0, 0, .1);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .owl-calendar-wrapper {

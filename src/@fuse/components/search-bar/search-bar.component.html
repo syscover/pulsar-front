@@ -1,11 +1,11 @@
 <div class="fuse-search-bar" [ngClass]="{'expanded':!collapsed}">
 
-    <div class="fuse-search-bar-content" [ngClass]="toolbarColor">
+    <div class="fuse-search-bar-content" [ngClass]="fuseConfig.layout.toolbar.background">
 
         <label for="fuse-search-bar-input">
             <button mat-icon-button class="fuse-search-bar-expander" aria-label="Expand Search Bar" (click)="expand()"
                     *ngIf="collapsed">
-                <mat-icon class="s-24">search</mat-icon>
+                <mat-icon class="s-24 secondary-text">search</mat-icon>
             </button>
             <!--<span class="fuse-search-bar-loader" fxLayout="row" fxLayoutAlign="center center" *ngIf="!collapsed">
                 <mat-progress-spinner color="mat-accent" mode="indeterminate"></mat-progress-spinner>
@@ -17,7 +17,7 @@
 
         <button mat-icon-button class="fuse-search-bar-collapser" (click)="collapse()"
                 aria-label="Collapse Search Bar">
-            <mat-icon class="s-24">close</mat-icon>
+            <mat-icon class="s-24 secondary-text">close</mat-icon>
         </button>
 
     </div>

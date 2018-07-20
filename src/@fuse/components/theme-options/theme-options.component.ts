@@ -1,10 +1,12 @@
-import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { style, animate, AnimationBuilder, AnimationPlayer } from '@angular/animations';
-import { Subscription } from 'rxjs';
+import { Component, HostBinding, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 @Component({
     selector   : 'fuse-theme-options',
@@ -14,50 +16,118 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 })
 export class FuseThemeOptionsComponent implements OnInit, OnDestroy
 {
-    @Input() navigation;
-    @ViewChild('openButton') openButton;
-    @ViewChild('panel') panel;
-    @ViewChild('overlay') overlay: ElementRef;
+    fuseConfig: any;
+    form: FormGroup;
 
-    public player: AnimationPlayer;
-    config: any;
+    @HostBinding('class.bar-closed')
+    barClosed: boolean;
 
-    onConfigChanged: Subscription;
+    // Private
+    private _unsubscribeAll: Subject<any>;
 
-    @HostBinding('class.bar-closed') barClosed: boolean;
-
+    /**
+     * Constructor
+     *
+     * @param {FormBuilder} _formBuilder
+     * @param {FuseConfigService} _fuseConfigService
+     * @param {FuseNavigationService} _fuseNavigationService
+     * @param {FuseSidebarService} _fuseSidebarService
+     * @param {Renderer2} _renderer
+     */
     constructor(
-        private animationBuilder: AnimationBuilder,
-        private fuseConfig: FuseConfigService,
-        private navigationService: FuseNavigationService,
-        private renderer: Renderer2
+        private _formBuilder: FormBuilder,
+        private _fuseConfigService: FuseConfigService,
+        private _fuseNavigationService: FuseNavigationService,
+        private _fuseSidebarService: FuseSidebarService,
+        private _renderer: Renderer2
     )
     {
+        // Set the defaults
         this.barClosed = true;
 
-        this.onConfigChanged =
-            this.fuseConfig.onConfigChanged
-                .subscribe(
-                    (newConfig) => {
-                        this.config = newConfig;
-                    }
-                );
+        // Set the private defaults
+        this._unsubscribeAll = new Subject();
     }
 
-    ngOnInit()
+    // -----------------------------------------------------------------------------------------------------
+    // @ Lifecycle hooks
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * On init
+     */
+    ngOnInit(): void
     {
-        this.renderer.listen(this.overlay.nativeElement, 'click', () => {
-            this.closeBar();
+        // Build the config form
+        // noinspection TypeScriptValidateTypes
+        this.form = this._formBuilder.group({
+            layout          : this._formBuilder.group({
+                style    : new FormControl(),
+                width    : new FormControl(),
+                navbar   : this._formBuilder.group({
+                    background: new FormControl(),
+                    folded    : new FormControl(),
+                    hidden    : new FormControl(),
+                    position  : new FormControl(),
+                    variant   : new FormControl()
+                }),
+                toolbar  : this._formBuilder.group({
+                    background: new FormControl(),
+                    hidden    : new FormControl(),
+                    position  : new FormControl()
+                }),
+                footer   : this._formBuilder.group({
+                    background: new FormControl(),
+                    hidden    : new FormControl(),
+                    position  : new FormControl()
+                }),
+                sidepanel: this._formBuilder.group({
+                    hidden: new FormControl(),
+                    position  : new FormControl()
+                })
+            }),
+            customScrollbars: new FormControl()
         });
 
-        // Get the nav model and add customize nav item
-        // that opens the bar programmatically
-        const nav: any = this.navigation;
+        // Subscribe to the config changes
+        this._fuseConfigService.config
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((config) => {
 
-        nav.push({
+                // Update the stored config
+                this.fuseConfig = config;
+
+                // Set the config form values without emitting an event
+                // so that we don't end up with an infinite loop
+                this.form.setValue(config, {emitEvent: false});
+            });
+
+        // Subscribe to the specific form value changes (layout.style)
+        this.form.get('layout.style').valueChanges
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((value) => {
+
+                // Reset the form values based on the
+                // selected layout style
+                this._resetFormValues(value);
+
+            });
+
+        // Subscribe to the form value changes
+        this.form.valueChanges
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((config) => {
+
+                // Update the config
+                this._fuseConfigService.config = config;
+            });
+
+        // Add customize nav item that opens the bar programmatically
+        const customFunctionNavItem = {
             'id'      : 'custom-function',
             'title'   : 'Custom Function',
             'type'    : 'group',
+            'icon'    : 'settings',
             'children': [
                 {
                     'id'      : 'customize',
@@ -65,50 +135,173 @@ export class FuseThemeOptionsComponent implements OnInit, OnDestroy
                     'type'    : 'item',
                     'icon'    : 'settings',
                     'function': () => {
-                        this.openBar();
+                        this.toggleSidebarOpen('themeOptionsPanel');
                     }
                 }
             ]
-        });
+        };
+
+        this._fuseNavigationService.addNavigationItem(customFunctionNavItem, 'end');
     }
 
-    ngOnDestroy()
+    /**
+     * On destroy
+     */
+    ngOnDestroy(): void
     {
-        this.onConfigChanged.unsubscribe();
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
+
+        // Remove the custom function menu
+        this._fuseNavigationService.removeNavigationItem('custom-function');
     }
 
-    onSettingsChange()
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Reset the form values based on the
+     * selected layout style
+     *
+     * @param value
+     * @private
+     */
+    private _resetFormValues(value): void
     {
-        this.fuseConfig.setConfig(this.config);
+        switch ( value )
+        {
+            // Vertical Layout #1
+            case 'vertical-layout-1':
+            {
+                this.form.patchValue({
+                    layout: {
+                        width  : 'fullwidth',
+                        navbar : {
+                            background: 'mat-fuse-dark-700-bg',
+                            folded    : false,
+                            hidden    : false,
+                            position  : 'left',
+                            variant   : 'vertical-style-1'
+                        },
+                        toolbar: {
+                            background: 'mat-white-500-bg',
+                            hidden    : false,
+                            position  : 'below-static'
+                        },
+                        footer : {
+                            background: 'mat-fuse-dark-900-bg',
+                            hidden    : false,
+                            position  : 'below-static'
+                        }
+                    }
+                });
+
+                break;
+            }
+
+            // Vertical Layout #2
+            case 'vertical-layout-2':
+            {
+                this.form.patchValue({
+                    layout: {
+                        width  : 'fullwidth',
+                        navbar : {
+                            background: 'mat-fuse-dark-700-bg',
+                            folded    : false,
+                            hidden    : false,
+                            position  : 'left',
+                            variant   : 'vertical-style-1'
+                        },
+                        toolbar: {
+                            background: 'mat-white-500-bg',
+                            hidden    : false,
+                            position  : 'below'
+                        },
+                        footer : {
+                            background: 'mat-fuse-dark-900-bg',
+                            hidden    : false,
+                            position  : 'below'
+                        }
+                    }
+                });
+
+                break;
+            }
+
+            // Vertical Layout #3
+            case 'vertical-layout-3':
+            {
+                this.form.patchValue({
+                    layout: {
+                        width  : 'fullwidth',
+                        navbar : {
+                            background: 'mat-fuse-dark-700-bg',
+                            folded    : false,
+                            hidden    : false,
+                            position  : 'left',
+                            layout    : 'vertical-style-1'
+                        },
+                        toolbar: {
+                            background: 'mat-white-500-bg',
+                            hidden    : false,
+                            position  : 'above-static'
+                        },
+                        footer : {
+                            background: 'mat-fuse-dark-900-bg',
+                            hidden    : false,
+                            position  : 'above-static'
+                        }
+                    }
+                });
+
+                break;
+            }
+
+            // Horizontal Layout #1
+            case 'horizontal-layout-1':
+            {
+                this.form.patchValue({
+                    layout: {
+                        width  : 'fullwidth',
+                        navbar : {
+                            background: 'mat-fuse-dark-700-bg',
+                            folded    : false,
+                            hidden    : false,
+                            position  : 'top',
+                            variant   : 'vertical-style-1'
+                        },
+                        toolbar: {
+                            background: 'mat-white-500-bg',
+                            hidden    : false,
+                            position  : 'above'
+                        },
+                        footer : {
+                            background: 'mat-fuse-dark-900-bg',
+                            hidden    : false,
+                            position  : 'above-fixed'
+                        }
+                    }
+                });
+
+                break;
+            }
+        }
     }
 
-    closeBar()
+    // -----------------------------------------------------------------------------------------------------
+    // @ Public methods
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * Toggle sidebar open
+     *
+     * @param key
+     */
+    toggleSidebarOpen(key): void
     {
-        this.player =
-            this.animationBuilder
-                .build([
-                    style({transform: 'translate3d(0,0,0)'}),
-                    animate('400ms ease', style({transform: 'translate3d(100%,0,0)'}))
-                ]).create(this.panel.nativeElement);
-
-        this.player.play();
-
-        this.player.onDone(() => {
-            this.barClosed = true;
-        });
+        this._fuseSidebarService.getSidebar(key).toggleOpen();
     }
 
-    openBar()
-    {
-        this.barClosed = false;
-
-        this.player =
-            this.animationBuilder
-                .build([
-                    style({transform: 'translate3d(100%,0,0)'}),
-                    animate('400ms ease', style({transform: 'translate3d(0,0,0)'}))
-                ]).create(this.panel.nativeElement);
-
-        this.player.play();
-    }
 }

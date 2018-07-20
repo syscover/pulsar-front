@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { FuseSidebarComponent } from './sidebar.component';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class FuseSidebarService
 {
     // Private
