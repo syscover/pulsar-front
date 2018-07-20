@@ -26,5 +26,5 @@ if ( environment.hmr )
 }
 else
 {
-    bootstrap();
+    bootstrap().catch(err => console.log(err));
 }
