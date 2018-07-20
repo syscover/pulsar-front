@@ -1,4 +1,7 @@
-export const navigation = [
+import { FuseNavigation } from '@fuse/types';
+
+// DH2
+export const navigation: FuseNavigation[] = [
     {
         'id'        : 'applications',
         'title'     : 'Applications',
@@ -9,7 +12,7 @@ export const navigation = [
                 'id'   : 'crm',
                 'title': 'CRM',
                 'translate': 'NAV.CRM',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'supervisor_account',
                 'children' : [
                     {
@@ -42,7 +45,7 @@ export const navigation = [
                 'id'   : 'booking',
                 'title': 'Booking',
                 'translate': 'NAV.BOOKING',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'class',
                 'children' : [
                 ]
@@ -51,14 +54,14 @@ export const navigation = [
                 'id'   : 'market',
                 'title': 'Market',
                 'translate': 'NAV.MARKET',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'store_mall_directory',
                 'children' : [
                     {
                         'id'       : 'sales',
                         'title'    : 'Sales',
                         'translate': 'NAV.SALES',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'euro_symbol',
                         'children' : [
                             {
@@ -75,7 +78,7 @@ export const navigation = [
                         'id'       : 'catalog',
                         'title'    : 'Catalog',
                         'translate': 'NAV.CATALOG',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'layers',
                         'children' : [
                             {
@@ -108,7 +111,7 @@ export const navigation = [
                         'id'       : 'marketing',
                         'title'    : 'Marketing',
                         'translate': 'NAV.MARKETING',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'my_location',
                         'children' : [
                             {
@@ -125,7 +128,7 @@ export const navigation = [
                         'id'       : 'taxes',
                         'title'    : 'Taxes',
                         'translate': 'NAV.TAXES',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'account_balance',
                         'children' : [
                             {
@@ -174,7 +177,7 @@ export const navigation = [
                         'id'       : 'preferences',
                         'title'    : 'Preferences',
                         'translate': 'NAV.PREFERENCES',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'settings',
                         'children' : [
                             {
@@ -201,7 +204,7 @@ export const navigation = [
                 'id'   : 'review',
                 'title': 'Review',
                 'translate': 'NAV.REVIEW',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'star',
                 'children' : [
                     {
@@ -258,7 +261,7 @@ export const navigation = [
                 'id'   : 'hotel',
                 'title': 'Hotel',
                 'translate': 'NAV.HOTEL',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'local_hotel',
                 'children' : [
                 ]
@@ -267,7 +270,7 @@ export const navigation = [
                 'id'   : 'cms',
                 'title': 'CMS',
                 'translate': 'NAV.CMS',
-                'type' : 'collapse',
+                'type' : 'collapsable',
                 'icon' : 'art_track',
                 'children' : [
                     {
@@ -308,7 +311,7 @@ export const navigation = [
                 'id'       : 'administration',
                 'title'    : 'Administration',
                 'translate': 'NAV.ADMINISTRATION',
-                'type'     : 'collapse',
+                'type'     : 'collapsable',
                 'icon'     : 'settings',
                 'children' : [
                     {
@@ -347,7 +350,7 @@ export const navigation = [
                         'id'       : 'custom_fields',
                         'title'    : 'Custom fields',
                         'translate': 'NAV.CUSTOM_FIELDS',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'text_fields',
                         'children' : [
                             {
@@ -372,7 +375,7 @@ export const navigation = [
                         'id'       : 'attachments',
                         'title'    : 'Attachemnts',
                         'translate': 'NAV.ATTACHMENTS',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'attachment',
                         'children' : [
                             {
@@ -406,7 +409,7 @@ export const navigation = [
                         'id'       : 'permissions',
                         'title'    : 'Permissions',
                         'translate': 'NAV.PERMISSIONS',
-                        'type'     : 'collapse',
+                        'type'     : 'collapsable',
                         'icon'     : 'fingerprint',
                         'children' : [
                             {
@@ -440,3 +443,4 @@ export const navigation = [
         ]
     }
 ];
+

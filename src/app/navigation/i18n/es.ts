@@ -52,6 +52,10 @@ export const locale = {
             'TAXES': 'Impuestos',
             'USERS': 'Usuarios',
             'WAREHOUSES': 'Almacenes'
+        },
+        'TOOLBAR': {
+            'MY_PROFILE': 'Mi Perfil',
+            'LOGOUT': 'Cerrar sesión'
         }
     }
 };

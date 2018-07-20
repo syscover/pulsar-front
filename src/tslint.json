@@ -6,7 +6,8 @@
             "attribute",
             [
                 "fuse",
-                "dh2"
+                "dh2",
+                ""
             ],
             "camelCase"
         ],
@@ -15,7 +16,8 @@
             "element",
             [
                 "fuse",
-                "dh2"
+                "dh2",
+                ""
             ],
             [
                 "kebab-case",

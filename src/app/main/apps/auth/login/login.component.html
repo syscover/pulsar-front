@@ -1,0 +1,62 @@
+<div id="login" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/dh2/logos/digital_h2-mini.svg">
+        </div>
+
+        <div class="title" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            {{ 'AUTH.WELCOME' | translate }}
+        </div>
+
+        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}" [innerHTML]="welcomeMessage | translate">
+                <span class="excerpt">Nunca olvides que...</span><br><br>Alguien inteligente aprende de la experiencia de los demás
+        </div>
+    </div>
+
+    <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+            [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <img src="assets/images/dh2/logos/digital_h2-mini-negative.svg">
+            </div>
+
+            <div class="title uppercase">{{ 'AUTH.LOGIN_TO_YOUR_ACCOUNT' | translate }}</div>
+
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field class="mb-12">
+                    <input matInput placeholder="{{ 'APPS.USER' | translate }}" formControlName="user">
+                    <mat-error>{{ loginFormErrors?.user }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="mb-12">
+                    <input matInput type="password" placeholder="{{ 'APPS.PASSWORD' | translate }}" formControlName="password">
+                    <mat-error>{{ loginFormErrors?.password }}</mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" formControlName="remember_me">
+                        {{ 'APPS.REMEMBER_ME' | translate }}
+                    </mat-checkbox>
+                    <!-- <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">Forgot Password?</a> -->
+                </div>
+
+                <button mat-raised-button 
+                        color="accent" 
+                        class="submit-button action-btn" 
+                        aria-label="LOGIN" 
+                        [disabled]="loginForm.invalid" 
+                        (click)="login(object)">
+                        <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span>
+                        <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
+                <mat-error *ngIf="loginError">{{ 'VALIDATIONS.LOGIN' | translate }}</mat-error>
+
+            </form>
+        </div>
+    </div>
+</div>

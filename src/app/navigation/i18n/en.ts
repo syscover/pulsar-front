@@ -13,7 +13,7 @@ export const locale = {
             'ATTACHMENTS': 'Attachments',
             'AVERAGES': 'Averages',
             'CART_PRICE_RULES': 'Cart price rules',
-            'CATALOG': 'Catálogo',
+            'CATALOG': 'Catalog',
             'CATEGORIES': 'Categories',
             'CMS': 'CMS',
             'COMMENTS': 'Comments',
@@ -52,6 +52,10 @@ export const locale = {
             'TAXES': 'Taxes',
             'USERS': 'Users',
             'WAREHOUSES': 'Warehouses'
+        },
+        'TOOLBAR': {
+            'MY_PROFILE': 'My profile',
+            'LOGOUT': 'Logout'
         }
     }
 };
