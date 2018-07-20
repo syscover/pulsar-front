@@ -3,33 +3,37 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
-import { fuseConfig } from './fuse-config';
+import { fuseConfig } from 'app/fuse-config';
 
-import { AppComponent } from './app.component';
-import { FuseMainModule } from './main/main.module';
+import { AppComponent } from 'app/app.component';
+import { LayoutModule } from 'app/layout/layout.module';
 
 // DH2
-import { CoreModule } from './main/content/core/core.module';
+import { CoreModule } from 'app/main/core/core.module';
 
+// DH2
 const appRoutes: Routes = [
-    { 
-        path: '', 
-        redirectTo: 'apps/auth/login', 
-        pathMatch: 'full' 
+    {
+        path: '',
+        redirectTo: 'apps/auth/login',
+        pathMatch: 'full'
     },
     {
         path        : 'apps',
-        loadChildren: './main/content/apps/apps.module#AppsModule'
+        loadChildren: 'app/main/apps/apps.module#AppsModule'
     },
     {
         path        : 'pages',
-        loadChildren: './main/content/pages/pages.module#FusePagesModule'
+        loadChildren: 'app/main/pages/pages.module#FusePagesModule'
     },
     {
         path      : '**',
@@ -46,13 +50,26 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
+
         TranslateModule.forRoot(),
 
-        // Fuse Main and Shared modules
+        // Material moment date module
+        MatMomentDateModule,
+
+        // Material
+        MatButtonModule,
+        MatIconModule,
+
+        // Fuse modules
         FuseModule.forRoot(fuseConfig),
+        FuseProgressBarModule,
         FuseSharedModule,
-        FuseMainModule,
-        
+        FuseSidebarModule,
+        FuseThemeOptionsModule,
+
+        // App modules
+        LayoutModule,
+
         // DH2
         CoreModule
     ],
