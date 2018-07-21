@@ -29,12 +29,10 @@
                         ],
                         "styles": [
                             "./node_modules/flag-icon-css/css/flag-icon.min.css",
-                            "./node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
                             "./node_modules/cropperjs/dist/cropper.min.css",
                             "./node_modules/dragula/dist/dragula.css",
                             "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
                             "./node_modules/froala-editor/css/froala_style.min.css",
-                            "./node_modules/font-awesome/css/font-awesome.min.css",
                             "src/styles.scss"
                         ],
                         "scripts": [
@@ -60,6 +58,18 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true
+                        },
+                        "ec": {
+                            "sourceMap": true,
+                            "extractCss": true
+                        },
+                        "hmr": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.hmr.ts"
+                                }
+                            ]
                         }
                     }
                 },
@@ -74,12 +84,10 @@
                         },
                         "hmr": {
                             "hmr": true,
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.hmr.ts"
-                                }
-                            ]
+                            "browserTarget": "fuse:build:hmr"
+                        },
+                        "ec": {
+                            "browserTarget": "fuse:build:ec"
                         }
                     }
                 },
