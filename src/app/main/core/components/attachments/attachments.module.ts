@@ -19,7 +19,7 @@ import { AttachmentsService } from './attachments.service';
 @NgModule({
     imports: [
         CommonModule,
-        DragulaModule,
+        DragulaModule.forRoot(),
         FormsModule,
         ImageInputModule,
         MatButtonModule,

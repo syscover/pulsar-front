@@ -2,7 +2,7 @@
     <div #attachmentLibraryMask id="attachment-library-mask">
         {{ placeholder }}
     </div>
-    <div id="library-sortable" [dragula]="'bag-one'" [dragulaModel]="this.attachments.controls">
+    <div id="library-sortable" dragula="bag-one" [(dragulaModel)]="this.attachments.controls">
             <!-- attachment item -->
             <dh2-attachment-item *ngFor="let attachment of this.attachments.controls; let i=index"
                                 [attachment]="attachment"

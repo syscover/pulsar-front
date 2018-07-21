@@ -52,7 +52,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         private configService: ConfigService
     ) { }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragenter', ($event) => {
             this.dragEnterHandler($event);
@@ -67,7 +67,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
             this.dropHandler($event);
         });
 
-        this.dragulaService.drop('').subscribe(() => {
+        this.dragulaService.drop('bag-one').subscribe(() => {
             // set new sort
             for (let i = 0; this.attachments.controls.length > i; i++) 
             {
@@ -79,14 +79,14 @@ export class AttachmentsComponent implements OnInit, OnChanges
         if (! this.endpoint) this.endpoint = this.configService.get('apiUrl') + '/api/v1/admin/attachment-upload';
     }
 
-    ngOnChanges() 
+    ngOnChanges(): void
     {
         // set value from component, to init with values only 
         // when the component is created or change value input
         if (this.value) this.setValue(this.value);
     }
 
-    setValue(attachments: Attachment[]) 
+    setValue(attachments: Attachment[]): void
     {
         // create and set attachments FormGroup
         for (const attachment of attachments) this.createAttachment(attachment);
