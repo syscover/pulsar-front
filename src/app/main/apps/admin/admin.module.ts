@@ -38,7 +38,6 @@ import { UserDetailComponent } from './user/user-detail.component';
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
-import { CronJobGraphQLService } from './cron-job/cron-job-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
@@ -92,7 +91,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
         ActionGraphQLService,
         AttachmentFamilyGraphQLService,
         CountryGraphQLService,
-        CronJobGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,
         FieldValueGraphQLService,

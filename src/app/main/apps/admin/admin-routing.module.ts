@@ -32,11 +32,6 @@ import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
 /*
-        // Cron jobs
-        { path: 'cron-job',                                         component: CronJobListComponent },
-        { path: 'cron-job/create',                                  component: CronJobDetailComponent,              data: { action: 'create' }},
-        { path: 'cron-job/show/:id',                                component: CronJobDetailComponent,              data: { action: 'edit' }},
-
         // Attachment mimes
         { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
         { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
