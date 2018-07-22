@@ -24,6 +24,7 @@ export const locale = {
             'CUSTOMER_GROUPS': 'Grupos de cliente',
             'CUSTOMER_GROUPS_CUSTOMER_CLASS_TAXES': 'Grupos de clientes',
             'CUSTOMERS': 'Clientes',
+            'DASHBOARD': 'Escritorio',
             'FAMILIES': 'Familias',
             'FIELDS': 'Campos',
             'FIELD_GROUPS': 'Grupos de campos',
