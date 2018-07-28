@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
+@Injectable()
 export class ReviewGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
         query ReviewGetReviewsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: reviewReviewsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql) {
                     ${this.fields}
                 }
+                filtered
             }
         }`;
 
@@ -56,7 +57,7 @@ export class ReviewGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Review\\Models\\Review';
         this.table = 'review_review';

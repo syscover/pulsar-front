@@ -9,8 +9,8 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminFieldGroupsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\FieldGroup';
         this.table = 'admin_field_group';

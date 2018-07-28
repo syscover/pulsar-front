@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
+@Injectable()
 export class PreferenceGraphQLService extends GraphQLSchema 
 {
     queryObject = gql`
@@ -19,7 +20,7 @@ export class PreferenceGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `

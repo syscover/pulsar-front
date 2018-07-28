@@ -9,8 +9,8 @@ export class FieldGraphQLService extends GraphQLSchema
         query AdminGetFieldsPagination ($sql:[CoreSQLQueryInput] $configFieldTypes:CoreConfigInput!) {
             coreObjectsPagination: adminFieldsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
             adminConfigFieldTypes:coreConfig (config:$configFieldTypes) {
                 ... on AdminConfigFieldTypeOption {
@@ -63,7 +63,7 @@ export class FieldGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Field';
         this.table = 'admin_field';

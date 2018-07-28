@@ -9,8 +9,8 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminAttachmentFamiliesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\AttachmentFamily';
         this.table = 'admin_attachment_family';

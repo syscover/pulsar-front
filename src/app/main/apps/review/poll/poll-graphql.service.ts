@@ -9,8 +9,8 @@ export class PollGraphQLService extends GraphQLSchema
         query ReviewGetPollsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: reviewPollsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class PollGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Review\\Models\\Poll';
         this.table = 'review_poll';

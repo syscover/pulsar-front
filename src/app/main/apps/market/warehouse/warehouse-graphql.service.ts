@@ -9,8 +9,8 @@ export class WarehouseGraphQLService extends GraphQLSchema
         query MarketGetWarehousesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketWarehousesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -55,7 +55,7 @@ export class WarehouseGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\Warehouse';
         this.table = 'market_warehouse';

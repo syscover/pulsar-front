@@ -9,8 +9,8 @@ export class ResourceGraphQLService extends GraphQLSchema
         query AdminGetResourcesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminResourcesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class ResourceGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Resource';
         this.table = 'admin_resource';

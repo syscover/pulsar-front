@@ -9,8 +9,8 @@ export class PackageGraphQLService extends GraphQLSchema
         query AdminGetPackagesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminPackagesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class PackageGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Package';
         this.table = 'admin_package';

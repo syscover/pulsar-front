@@ -9,8 +9,8 @@ export class SectionGraphQLService extends GraphQLSchema
         query CmsGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: cmsSectionsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class SectionGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Cms\\Models\\Section';
         this.table = 'cms_section';

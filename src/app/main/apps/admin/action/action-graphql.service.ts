@@ -9,8 +9,8 @@ export class ActionGraphQLService extends GraphQLSchema
         query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminActionsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 

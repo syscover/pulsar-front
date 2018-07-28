@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
+@Injectable()
 export class ObjectAverageGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
         query ReviewGetObjectAveragesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: reviewObjectAveragesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -54,7 +55,7 @@ export class ObjectAverageGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Review\\Models\\ObjectAverage';
         this.table = 'review_object_average';

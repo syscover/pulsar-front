@@ -9,8 +9,8 @@ export class OrderStatusGraphQLService extends GraphQLSchema
         query MarketGetOrderStatusesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketOrderStatusesPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class OrderStatusGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\OrderStatus';
         this.table = 'market_order_status';

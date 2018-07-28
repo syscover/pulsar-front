@@ -9,8 +9,8 @@ export class CustomerClassTaxGraphQLService extends GraphQLSchema
         query MarketGetCustomerClassTaxesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketCustomerClassTaxesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class CustomerClassTaxGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\CustomerClassTax';
         this.table = 'market_customer_class_tax';

@@ -12,7 +12,7 @@ export class StockGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\Stock';
         this.table = 'market_stock';

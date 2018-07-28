@@ -9,8 +9,8 @@ export class UserGraphQLService extends GraphQLSchema
         query AdminGetUsersPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminUsersPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class UserGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\User';
         this.table = 'admin_user';

@@ -9,8 +9,8 @@ export class CountryGraphQLService extends GraphQLSchema
         query AdminGetCountriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminCountriesPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class CountryGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         // model of backoffice relative at this GraphQL service
         this.model = 'Syscover\\Admin\\Models\\Country';

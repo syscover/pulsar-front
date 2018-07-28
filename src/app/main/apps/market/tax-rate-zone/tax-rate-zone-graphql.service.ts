@@ -9,8 +9,8 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
         query MarketGetTaxRateZonesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketTaxRateZonesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -55,7 +55,7 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init()
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\TaxRateZone';
         this.table = 'market_tax_rate_zone';

@@ -9,8 +9,8 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         query MarketGetPaymentMethodsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketPaymentMethodsPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\PaymentMethod';
         this.table = 'market_payment_method';

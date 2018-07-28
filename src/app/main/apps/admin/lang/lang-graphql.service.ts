@@ -9,8 +9,8 @@ export class LangGraphQLService extends GraphQLSchema
         query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminLangsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class LangGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Lang';
         this.table = 'admin_lang';

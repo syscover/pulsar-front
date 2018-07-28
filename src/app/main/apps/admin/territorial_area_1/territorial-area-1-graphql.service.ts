@@ -9,8 +9,8 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
         query AdminGetTerritorialAreas1Pagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminTerritorialAreas1Pagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
             ${this.relationsFields}
         }`;
@@ -56,7 +56,7 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\TerritorialArea1';
         this.table = 'admin_territorial_area_1';

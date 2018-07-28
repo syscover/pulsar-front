@@ -9,8 +9,8 @@ export class FamilyGraphQLService extends GraphQLSchema
         query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: cmsFamiliesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -56,7 +56,7 @@ export class FamilyGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Cms\\Models\\Family';
         this.table = 'cms_family';

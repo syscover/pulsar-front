@@ -9,8 +9,8 @@ export class ProductGraphQLService extends GraphQLSchema
         query MarketGetProductsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketProductsPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -77,7 +77,7 @@ export class ProductGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\Product';
         this.modelLang = 'Syscover\\Market\\Models\\ProductLang';

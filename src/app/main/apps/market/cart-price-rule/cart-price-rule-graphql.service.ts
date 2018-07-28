@@ -9,8 +9,8 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
         query MarketGetCartPriceRulesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketCartPriceRulesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -55,7 +55,7 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\CartPriceRule';
         this.table = 'market_cart_price_rule';

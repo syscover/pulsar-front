@@ -9,8 +9,8 @@ export class CustomerGroupGraphQLService extends GraphQLSchema
         query CrmGetCustomerGroupsPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: crmCustomerGroupsPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class CustomerGroupGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Crm\\Models\\CustomerGroup';
         this.table = 'crm_customer_group';

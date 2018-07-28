@@ -9,8 +9,8 @@ export class TaxRuleGraphQLService extends GraphQLSchema
         query MarketGetTaxRulesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketTaxRulesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -55,7 +55,7 @@ export class TaxRuleGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\TaxRule';
         this.table = 'market_tax_rule';

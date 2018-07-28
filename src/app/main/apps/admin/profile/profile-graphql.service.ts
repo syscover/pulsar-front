@@ -9,8 +9,8 @@ export class ProfileGraphQLService extends GraphQLSchema
         query AdminGetProfilesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminProfilesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class ProfileGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Profile';
         this.table = 'admin_profile';

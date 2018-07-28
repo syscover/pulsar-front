@@ -9,8 +9,8 @@ export class CategoryGraphQLService extends GraphQLSchema
         query MarketGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketCategoriesPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class CategoryGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init()
+    init(): void
     {
         this.model = 'Syscover\\Market\\Models\\Category';
         this.table = 'market_category';

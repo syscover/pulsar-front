@@ -9,8 +9,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
         query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
             cmsStatuses: coreConfig (config:$config) {
                 ... on CoreConfigOption {
@@ -76,7 +76,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Cms\\Models\\Article';
         this.table = 'cms_article';

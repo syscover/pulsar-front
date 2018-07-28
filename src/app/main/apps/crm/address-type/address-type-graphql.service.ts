@@ -9,8 +9,8 @@ export class AddressTypeGraphQLService extends GraphQLSchema
         query CrmGetAddressTypesPagination ($sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: crmAddressTypesPagination (sql:$sql) {
                 total
-                filtered
                 objects (sql:$sql)
+                filtered
             }
         }`;
 
@@ -49,7 +49,7 @@ export class AddressTypeGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Crm\\Models\\AddressType';
         this.table = 'crm_address_type';
