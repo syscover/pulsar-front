@@ -59,8 +59,8 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="cms_article.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
@@ -78,7 +78,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="cms_section.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex">{{ 'APPS.SECTION' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.section.name }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.cms_section_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
