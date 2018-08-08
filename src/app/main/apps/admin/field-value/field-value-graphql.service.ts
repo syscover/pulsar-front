@@ -9,7 +9,7 @@ export class FieldValueGraphQLService extends GraphQLSchema
         query AdminGetFieldValuesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminFieldValuesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;

@@ -9,7 +9,7 @@ export class CategoryGraphQLService extends GraphQLSchema
         query MarketGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketCategoriesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;

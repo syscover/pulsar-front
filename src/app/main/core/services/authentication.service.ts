@@ -27,13 +27,13 @@ export class AuthenticationService extends HttpService
                 }, this.options);
     }
 
-    logout() 
+    logout(): void
     {
         localStorage.removeItem('access_token');
         this.apollo.getClient().resetStore();
     }
 
-    check() 
+    check(): boolean
     {
         const token: string = this.jwtHelperService.tokenGetter();
         if (! token) 
@@ -44,7 +44,7 @@ export class AuthenticationService extends HttpService
         return ! tokenExpired;
     }
 
-    user() 
+    user(): User
     {
         return <User>this
             .jwtHelperService

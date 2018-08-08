@@ -9,7 +9,7 @@ export class TerritorialArea2GraphQLService extends GraphQLSchema
         query AdminGetTerritorialAreas2Pagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
             coreObjectsPagination: adminTerritorialAreas2Pagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
             ${this.relationsFields}

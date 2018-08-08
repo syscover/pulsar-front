@@ -59,8 +59,8 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_tax_rate_zone.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
@@ -73,6 +73,18 @@
                 <ng-container matColumnDef="market_tax_rate_zone.tax_rate">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TAX_RATE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.tax_rate_zones | valuesArray:'tax_rate':',':'':'%' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_tax_rate_zone.priority">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.PRIORITY' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.priority }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_tax_rate_zone.sort">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SORT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.sort }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

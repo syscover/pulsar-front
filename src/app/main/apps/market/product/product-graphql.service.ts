@@ -9,7 +9,7 @@ export class ProductGraphQLService extends GraphQLSchema
         query MarketGetProductsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketProductsPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;

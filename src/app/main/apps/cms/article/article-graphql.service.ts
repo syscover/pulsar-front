@@ -9,7 +9,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
         query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
             coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
             cmsStatuses: coreConfig (config:$config) {

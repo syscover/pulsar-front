@@ -68,7 +68,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
             categories_id: [],
             slug: null,
             link: null,
-            blank: null,
+            blank: false,
             sort: null,
             tags: [],
             excerpt: null,

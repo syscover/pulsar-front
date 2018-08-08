@@ -9,7 +9,7 @@ export class OrderStatusGraphQLService extends GraphQLSchema
         query MarketGetOrderStatusesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketOrderStatusesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;

@@ -9,7 +9,7 @@ export class CategoryGraphQLService extends GraphQLSchema
         query CmsGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: cmsCategoriesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;

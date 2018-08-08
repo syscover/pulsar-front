@@ -9,7 +9,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         query MarketGetPaymentMethodsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
             coreObjectsPagination: marketPaymentMethodsPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;
