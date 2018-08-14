@@ -59,14 +59,20 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_tax_rate_zone.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
                 <ng-container matColumnDef="market_tax_rate_zone.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_tax_rate_zone.zip">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.ZIP' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.zip }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->

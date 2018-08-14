@@ -14,7 +14,7 @@ export class TaxRateZoneListComponent extends CoreListComponent
     objectTranslation = 'MARKET.TAX_RATE_ZONE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['market_tax_rate_zone.id', 'market_tax_rate_zone.name', 'market_tax_rate_zone.zip', 'market_tax_rate_zone.tax_rate'];
-    displayedColumns = ['market_tax_rate_zone.id', 'market_tax_rate_zone.name', 'market_tax_rate_zone.tax_rate', 'actions'];
+    displayedColumns = ['market_tax_rate_zone.id', 'market_tax_rate_zone.name', 'market_tax_rate_zone.zip', 'market_tax_rate_zone.tax_rate', 'actions'];
     baseUri = '/apps/market/taxes/tax-rate-zone';
 
     constructor(
