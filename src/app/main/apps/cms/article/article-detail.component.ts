@@ -236,12 +236,16 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     {
         // cms sections
         this.sections = data.cmsSections;
+
         // cms families
         this.families = data.cmsFamilies;
+
         // cms articles
         this.articles = data.cmsArticles;
+
         // cms categories
         this.categories = data.cmsCategories;
+
         // cms statuses
         this.statuses = data.cmsStatuses;
 

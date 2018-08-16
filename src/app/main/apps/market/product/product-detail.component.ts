@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import { Component, Injector, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
@@ -6,13 +6,13 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { ProductGraphQLService } from './product-graphql.service';
 import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { ProductStockDialogComponent } from './product-stock-dialog.component';
-import { Product, ProductType, PriceType, ProductClassTax, Category, Stock } from './../market.models';
+import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
 import gql from 'graphql-tag';
 
 @Component({
-    selector: 'dh2-product-detail',
+    selector: 'dh2-market-product-detail',
     templateUrl: './product-detail.component.html',
     animations: fuseAnimations,
     styleUrls: [
@@ -28,6 +28,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
     categories: Category[] = [];
+    sections: Section[] = [];
     products: Product[] = [];
     fieldGroups: FieldGroup[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
@@ -49,7 +50,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         super(injector, graphQL);
     }
 
-    ngOnInit()
+    ngOnInit(): void
     {
         super.ngOnInit();
         if (this.dataRoute.action === 'create')
@@ -59,7 +60,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         }
     }
     
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -67,6 +68,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             lang_id: [null, Validators.required],
             sku: null,
             categories_id: [[], Validators.required],
+            sections_id: [],
             name: [null, Validators.required],
             slug: [null, Validators.required],
             field_group_id: null,
@@ -87,10 +89,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         });
     }
 
-    disabledForm() 
+    disabledForm(): void
     {
         this.fg.controls['sku'].disable();
         this.fg.controls['categories_id'].disable();
+        this.fg.controls['sections_id'].disable();
         this.fg.controls['field_group_id'].disable();
         this.fg.controls['type_id'].disable();
         this.fg.controls['parent_id'].disable();
@@ -106,7 +109,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.fg.controls['total_format'].disable();
     }
 
-    afterSetData() 
+    afterSetData(): void
     {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
         {
@@ -212,7 +215,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // market product types
         this.productTypes = data.marketProductTypes;
@@ -225,6 +228,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
         // market product category
         this.categories = data.marketCategories;
+
+        // market product section
+        this.sections = data.marketSections;
 
         // market admin field groups
         this.fieldGroups = data.adminFieldGroups;
@@ -252,10 +258,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.dataSource.data = this.stocksData;
     }
 
-    afterPatchValueEdit()
+    afterPatchValueEdit(): void
     {
         // set market categories extracting ids
         this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+
+        // set market sections extracting ids
+        this.fg.controls['sections_id'].setValue(_.map(this.object.sections, 'id'));
 
         this.handleGetProductTaxes(
             this.fg.controls['subtotal'].value,
@@ -337,7 +346,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             });
     }
 
-    editStock(stockData: any)
+    editStock(stockData: any): void
     {
         if (this.env.debug) console.log('DEBUG - Edit stock with this arguments: ', stockData);
 

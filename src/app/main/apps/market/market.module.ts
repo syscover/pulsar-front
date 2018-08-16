@@ -25,6 +25,8 @@ import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
 import { ProductStockDialogComponent } from './product/product-stock-dialog.component';
+import { SectionListComponent } from './section/section-list.component';
+import { SectionDetailComponent } from './section/section-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
 import { TaxRateZoneDetailComponent } from './tax-rate-zone/tax-rate-zone-detail.component';
 import { TaxRuleListComponent } from './tax-rule/tax-rule-list.component';
@@ -41,6 +43,7 @@ import { OrderStatusGraphQLService } from './order-status/order-status-graphql.s
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { ProductGraphQLService } from './product/product-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
+import { SectionGraphQLService } from './section/section-graphql.service';
 import { StockGraphQLService } from './stock/stock-graphql.service';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
@@ -73,6 +76,8 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         ProductClassTaxListComponent,
         ProductClassTaxDetailComponent,
         ProductStockDialogComponent,
+        SectionListComponent,
+        SectionDetailComponent,
         TaxRateZoneListComponent,
         TaxRateZoneDetailComponent,
         TaxRuleDetailComponent,
@@ -90,6 +95,7 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         PaymentMethodGraphQLService,
         ProductGraphQLService,
         ProductClassTaxGraphQLService,
+        SectionGraphQLService,
         StockGraphQLService,
         TaxRateZoneGraphQLService,
         TaxRuleGraphQLService,

@@ -55,6 +55,7 @@ export const locale = {
             'PRODUCT_CLASS_TAX': 'Product class tax',
             'PRODUCT_TYPE': 'Product type',
             'QUANTITY': 'Quantity',
+            'SECTION': 'Section',
             'SCHEDULE': 'Schedule',
             'SCHEDULE_DESCRIPTION': 'Program the validity of this rule',
             'SHIPPING': 'Shipping',

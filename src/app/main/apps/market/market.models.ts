@@ -103,6 +103,7 @@ export class Product
     code: string;
     lang: Lang;
     categories: Category[];
+    sections: Section[];
     name: string;
     slug: string;
     description: string;
@@ -118,6 +119,13 @@ export class Product
     attachments: Attachment[];
     data_lang: string;
     data: string;
+}
+
+export class Section
+{
+    ix: number;
+    id: string;
+    name: string;
 }
 
 export class Warehouse 

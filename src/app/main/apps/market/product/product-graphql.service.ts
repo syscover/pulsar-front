@@ -99,6 +99,11 @@ export class ProductGraphQLService extends GraphQLSchema
                     lang_id
                     name
                 }
+                sections {
+                    ix
+                    id
+                    name
+                }
                 field_group_id
                 type_id
                 parent_id
@@ -152,6 +157,11 @@ export class ProductGraphQLService extends GraphQLSchema
                 ix
                 id
                 lang_id
+                name
+            }
+            marketSections {
+                ix
+                id
                 name
             }
             marketProductClassTaxes {

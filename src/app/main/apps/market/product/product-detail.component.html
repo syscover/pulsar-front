@@ -129,6 +129,15 @@
                                         <mat-error>{{ formErrors?.categories_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <mat-select placeholder="{{ 'NAV.SECTIONS' | translate }}" formControlName="sections_id" multiple>
+                                            <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.sections_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
             
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">

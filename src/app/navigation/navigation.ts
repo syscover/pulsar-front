@@ -106,6 +106,14 @@ export const navigation: FuseNavigation[] = [
                                 'url'       : '/apps/market/category'
                             },
                             {
+                                'id'        : 'sections',
+                                'title'     : 'Sections',
+                                'translate' : 'NAV.SECTIONS',
+                                'type'      : 'item',
+                                'icon'      : 'power',
+                                'url'       : '/apps/market/section'
+                            },
+                            {
                                 'id'        : 'warehouses',
                                 'title'     : 'Warehouses',
                                 'translate' : 'NAV.WAREHOUSES',

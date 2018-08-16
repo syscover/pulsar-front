@@ -3,7 +3,6 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { SectionGraphQLService } from './section-graphql.service';
-import { FieldGroup } from './../../admin/admin.models';
 import { Family } from './../cms.models';
 import { AttachmentFamily } from './../../admin/admin.models';
 import * as _ from 'lodash';
@@ -27,7 +26,8 @@ export class SectionDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() {
+    createForm(): void
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [null, [
@@ -62,7 +62,7 @@ export class SectionDetailComponent extends CoreDetailComponent
         };
     }
 
-    beforePatchValueEdit()
+    beforePatchValueEdit(): void
     {
         if (this.object.attachment_families)
         {
@@ -72,7 +72,7 @@ export class SectionDetailComponent extends CoreDetailComponent
         }
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // cms families
         this.families = data.cmsFamilies;

@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">business</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.WAREHOUSES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">power</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.SECTIONS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'MARKET.WAREHOUSE' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'MARKET.SECTION' | translate }}</span>
             </button>
 
         </div>
@@ -58,23 +58,15 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="market_warehouse.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
+                <ng-container matColumnDef="market_section.id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="market_warehouse.name">
+                <ng-container matColumnDef="market_section.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="market_warehouse.active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
-                        <mat-icon *ngIf="row.active">done</mat-icon>
-                    </mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
