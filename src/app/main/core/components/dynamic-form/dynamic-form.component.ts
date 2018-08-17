@@ -61,6 +61,13 @@ import * as _ from 'lodash';
                             </div>
                         </div>
 
+                        <div fxLayout="row" *ngSwitchCase="'datetime-local'">
+                            <mat-form-field [class]="field.component_class ? field.component_class : 'col-12 col-md-4'">
+                                <input type="datetime-local" matInput placeholder="{{ field | getFieldLabel:lang }}" [formControlName]="field.name" [required]="field.required">
+                                <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
                         <div *ngSwitchDefault>Error field {{ field.field_type_id }} nor implemented</div>
                     </ng-container>
                 </ng-container>
