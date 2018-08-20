@@ -13,8 +13,8 @@ export class AttachmentFamilyListComponent extends CoreListComponent
 {
     objectTranslation = 'ADMIN.ATTACHMENT_FAMILY';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name'];
-    displayedColumns = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name', 'actions'];
+    columnsSearch: string[] = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_attachment_family.width', 'admin_attachment_family.height', 'admin_resource.name'];
+    displayedColumns = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_attachment_family.width', 'admin_attachment_family.height', 'admin_resource.name', 'actions'];
 
     constructor(
         protected injector: Injector,
