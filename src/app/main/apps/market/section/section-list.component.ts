@@ -14,7 +14,8 @@ export class SectionListComponent extends CoreListComponent
     objectTranslation = 'APPS.SECTION';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['market_section.id', 'market_section.name'];
-    displayedColumns = ['market_section.id', 'market_section.name', 'actions'];
+    displayedColumns = ['market_section.id', 'market_section.name', 'translations', 'actions'];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(
         protected injector: Injector,

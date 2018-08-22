@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { CategoryGraphQLService } from './category-graphql.service';
 
 @Component({
-    selector: 'dh2-category-list',
+    selector: 'dh2-market-category-list',
     templateUrl: './category-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

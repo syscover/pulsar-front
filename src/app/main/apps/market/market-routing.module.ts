@@ -54,7 +54,8 @@ const routes: Routes = [
             // Sections
             { path: 'section',                                                          component: SectionListComponent },
             { path: 'section/create',                                                   component: SectionDetailComponent,                          data: { action: 'create' }},
-            { path: 'section/show/:id',                                                 component: SectionDetailComponent,                          data: { action: 'edit' }},
+            { path: 'section/create/:lang_id/:id',                                      component: SectionDetailComponent,                          data: { action: 'create-lang' }},
+            { path: 'section/show/:lang_id/:id',                                        component: SectionDetailComponent,                          data: { action: 'edit' }},
 
             // Cart Price rules
             { path: 'marketing/cart-price-rule',                                        component: CartPriceRuleListComponent },

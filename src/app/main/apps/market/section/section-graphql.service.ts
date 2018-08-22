@@ -6,10 +6,10 @@ import gql from 'graphql-tag';
 export class SectionGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
-            coreObjectsPagination: marketSectionsPagination (sql:$sql) {
+        query MarketGetSectionsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+            coreObjectsPagination: marketSectionsPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`;
@@ -59,7 +59,9 @@ export class SectionGraphQLService extends GraphQLSchema
             ... on MarketSection {
                 ix
                 id
+                lang_id
                 name
+                slug
             }
         `;
 

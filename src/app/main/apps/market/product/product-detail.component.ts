@@ -134,34 +134,39 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 column: 'lang_id',
                 operator: '=',
                 value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_category.name'
             }
         ];
 
         const sqlAttachmentFamily = [
             {
-                'command': 'where',
-                'column': 'admin_attachment_family.resource_id',
-                'operator': '=',
-                'value': 'market-product'
+                command: 'where',
+                column: 'admin_attachment_family.resource_id',
+                operator: '=',
+                value: 'market-product'
             },
             {
-                'command': 'orderBy',
-                'operator': 'asc',
-                'column': 'admin_attachment_family.name'
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_attachment_family.name'
             }
         ];
 
         const sqlProduct = [
             {
-                'command': 'where',
-                'column': 'market_product_lang.lang_id',
-                'operator': '=',
-                'value': this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+                command: 'where',
+                column: 'market_product_lang.lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
             },
             {
-                'command': 'orderBy',
-                'operator': 'asc',
-                'column': 'market_product.sort'
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_product.sort'
             }
         ];
 
@@ -226,7 +231,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         // market product class taxes
         this.productClassTaxes = data.marketProductClassTaxes;
 
-        // market product category
+        // market category
         this.categories = data.marketCategories;
 
         // market product section

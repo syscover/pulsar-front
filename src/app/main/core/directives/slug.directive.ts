@@ -3,9 +3,7 @@ import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { merge } from 'rxjs/observable/merge';
 import { from } from 'rxjs/observable/from';
-import { map } from 'rxjs/operators/map';
 import { SlugService } from './../services/slug.service';
 import { environment } from 'environments/environment';
 
@@ -18,6 +16,7 @@ import { environment } from 'environments/environment';
 export class SlugDirective implements AfterViewInit, OnDestroy
 {
     @Input('model') model;
+    @Input('object') object: any;
     @Input('target') target = 'slug';
     @Output() checkingSlug = new EventEmitter<boolean>();
 
@@ -31,7 +30,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
         private slugService: SlugService
     ) { }
 
-    ngAfterViewInit() 
+    ngAfterViewInit(): void
     {
         Observable
             .fromEvent(this.element.nativeElement, 'keyup')
@@ -50,7 +49,8 @@ export class SlugDirective implements AfterViewInit, OnDestroy
 
                             data = await this.slugService.checkSlug(
                                 this.model,
-                                event.target.value
+                                event.target.value,
+                                this.object
                             );
 
                             // check buffer
@@ -59,7 +59,8 @@ export class SlugDirective implements AfterViewInit, OnDestroy
                                 const bufferValue = this.buffer;
                                 data = await this.slugService.checkSlug(
                                     this.model,
-                                    this.buffer
+                                    this.buffer,
+                                    this.object
                                 );
                                 // reset buffer
                                 this.buffer = undefined;
@@ -90,7 +91,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
             .subscribe();
     }
 
-    ngOnDestroy() 
+    ngOnDestroy(): void
     {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();

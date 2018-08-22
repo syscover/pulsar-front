@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import gql from 'graphql-tag';
-import { Observable } from 'rxjs/Observable';
 import { first } from 'rxjs/operators/first';
-import { environment } from 'environments/environment';
 
 @Injectable()
 export class SlugService
@@ -12,7 +10,7 @@ export class SlugService
         private httpService: HttpService
     ) {}
 
-    async checkSlug(model: string, slug: string, id?: any, field?: string)
+    async checkSlug(model: string, slug: string, object?: any, field?: string)
     {
         return await this.httpService
             .apolloClient()
@@ -26,7 +24,7 @@ export class SlugService
                 variables: {
                     model: model,
                     slug: slug,
-                    id: id,
+                    id: object ? object.ix ? object.ix : object.id : undefined,
                     field: field,
                 }
             })

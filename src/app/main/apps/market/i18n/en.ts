@@ -44,6 +44,8 @@ export const locale = {
             'ORDER': 'Order',
             'ORDER_STATUS': 'Order status',
             'ORDER_STATUS_SUCCESSSFUL': 'Order status successful',
+            'PARENT_CATEGORY': 'Parent category',
+            'PARENT_CATEGORY_DESCRIPTION': 'Select a category only when it is a subcategory',
             'PARENT_PRODUCT': 'Parent product',
             'PARENT_PRODUCT_DESCRIPTION': 'Select a product only when it is a subproduct',
             'PAYMENT_METHOD': 'Payment method',

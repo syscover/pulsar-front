@@ -14,6 +14,11 @@ export class CategoryGraphQLService extends GraphQLSchema
             }
         }`;
 
+    queryRelationsObject  = gql`
+        query MarketGetRelationsCategory ($sqlCategory:[CoreSQLQueryInput]) {
+            ${this.relationsFields}
+        }`;
+
     queryObjects = gql`
         query MarketGetCategories ($sql:[CoreSQLQueryInput]) {
             coreObjects: marketCategories (sql:$sql){
@@ -22,10 +27,11 @@ export class CategoryGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query MarketGetCategory ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCategory ($sql:[CoreSQLQueryInput] $sqlCategory:[CoreSQLQueryInput]) {
             coreObject: marketCategory (sql:$sql){
                 ${this.fields}
             }
+            ${this.relationsFields}
         }`;
 
     mutationAddObject = gql`
@@ -66,6 +72,15 @@ export class CategoryGraphQLService extends GraphQLSchema
                 active
                 description
                 data_lang
+            }
+        `;
+
+        this.relationsFields = `
+            marketCategories (sql:$sqlCategory) {
+                ix
+                id
+                lang_id
+                name
             }
         `;
 

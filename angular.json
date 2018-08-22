@@ -28,7 +28,7 @@
                             "src/config.json"
                         ],
                         "styles": [
-                            "./node_modules/flag-icon-css/css/flag-icon.min.css",
+                            "./node_modules/flag-icon-css-2/css/flag-icon.css",
                             "./node_modules/cropperjs/dist/cropper.min.css",
                             "./node_modules/dragula/dist/dragula.css",
                             "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",

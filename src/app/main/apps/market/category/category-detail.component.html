@@ -95,6 +95,17 @@
                     </div>
 
                     <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-6">
+                            <mat-select placeholder="{{ 'MARKET.PARENT_CATEGORY' | translate }}" formControlName="parent_id">
+                                <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
+                                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                            </mat-select>
+                            <mat-hint align="start">{{ 'MARKET.PARENT_CATEGORY_DESCRIPTION' | translate }}</mat-hint>
+                            <mat-error>{{ formErrors?.parent_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
                         <mat-form-field class="col-12">
                             <input dh2Slug [model]="graphQL.model" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
