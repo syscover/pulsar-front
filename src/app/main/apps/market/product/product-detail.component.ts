@@ -142,6 +142,20 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }
         ];
 
+        const sqlSection = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_section.name'
+            }
+        ];
+
         const sqlAttachmentFamily = [
             {
                 command: 'where',
@@ -211,6 +225,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
         return {
             sqlCategory,
+            sqlSection,
             sqlAttachmentFamily,
             sqlProduct,
             sqlFieldGroup,

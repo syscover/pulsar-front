@@ -17,6 +17,7 @@ export class ProductGraphQLService extends GraphQLSchema
     queryRelationsObject  = gql`
         query MarketGetRelationsProduct (
             $sqlCategory:[CoreSQLQueryInput]
+            $sqlSection:[CoreSQLQueryInput]
             $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlFieldGroup:[CoreSQLQueryInput]
             $sqlProduct:[CoreSQLQueryInput]
@@ -37,6 +38,7 @@ export class ProductGraphQLService extends GraphQLSchema
         query MarketGetProduct (
             $sql:[CoreSQLQueryInput]
             $sqlCategory:[CoreSQLQueryInput]
+            $sqlSection:[CoreSQLQueryInput]
             $sqlAttachmentFamily:[CoreSQLQueryInput]
             $sqlFieldGroup:[CoreSQLQueryInput]
             $sqlProduct:[CoreSQLQueryInput]
@@ -159,10 +161,12 @@ export class ProductGraphQLService extends GraphQLSchema
                 lang_id
                 name
             }
-            marketSections {
+            marketSections (sql:$sqlSection) {
                 ix
                 id
+                lang_id
                 name
+                slug
             }
             marketProductClassTaxes {
                 id
