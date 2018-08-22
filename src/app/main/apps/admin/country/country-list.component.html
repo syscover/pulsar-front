@@ -109,8 +109,8 @@
 
                 <!-- TERRITORIES -->
                 <ng-container matColumnDef="territories">
-                    <mat-header-cell *matHeaderCellDef class="align-center">{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="align-center">
+                    <mat-header-cell *matHeaderCellDef class="align-center mw-120">{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="align-center mw-120">
                         <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="row.territorial_area_1 || row.territorial_area_2 || row.territorial_area_3">
                             <mat-icon>public</mat-icon>
                         </button>
