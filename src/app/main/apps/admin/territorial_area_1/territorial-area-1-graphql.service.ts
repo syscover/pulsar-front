@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class TerritorialArea1GraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetTerritorialAreas1Pagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+        query AdminGetTerritorialAreas1Pagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObjectsPagination: adminTerritorialAreas1Pagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -16,19 +16,19 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject  = gql`
-        query AdminGetRelationsTerritorialArea1 ($sqlCountry:[CoreSQLQueryInput]) {
+        query AdminGetRelationsTerritorialArea1 ($sqlCountry:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query AdminGetTerritorialAreas1 ($sql:[CoreSQLQueryInput]) {
+        query AdminGetTerritorialAreas1 ($sql:[CoreSQLInput]) {
             coreObjects: adminTerritorialAreas1 (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query AdminTerritorialArea1 ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+        query AdminTerritorialArea1 ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: adminTerritorialArea1 (sql:$sql){
                 ${this.fields}
             }

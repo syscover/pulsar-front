@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CustomerGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CrmGetCustomersPagination ($sql:[CoreSQLQueryInput]) {
+        query CrmGetCustomersPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: crmCustomersPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,19 +15,19 @@ export class CustomerGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query CrmGetRelationsCustomer ($sqlCountry:[CoreSQLQueryInput]){
+        query CrmGetRelationsCustomer ($sqlCountry:[CoreSQLInput]){
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CrmGetCustomers ($sql:[CoreSQLQueryInput]) {
+        query CrmGetCustomers ($sql:[CoreSQLInput]) {
             coreObjects: crmCustomers (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query CrmGetCustomer ($sql:[CoreSQLQueryInput] $sqlAddress:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+        query CrmGetCustomer ($sql:[CoreSQLInput] $sqlAddress:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: crmCustomer (sql:$sql){
                 ${this.fields}
             }

@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class ReviewGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query ReviewGetReviewsPagination ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetReviewsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: reviewReviewsPagination (sql:$sql) {
                 total
                 objects (sql:$sql) {
@@ -26,14 +26,14 @@ export class ReviewGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query ReviewGetReviews ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetReviews ($sql:[CoreSQLInput]) {
             coreObjects: reviewReviews (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query ReviewGetReview ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetReview ($sql:[CoreSQLInput]) {
             coreObject: reviewReview (sql:$sql) {
                 ${this.fields}
             }

@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class PaymentMethodGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetPaymentMethodsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query MarketGetPaymentMethodsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: marketPaymentMethodsPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -15,12 +15,12 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query MarketGetRelationsPaymentMethod ($sqlOrderStatus:[CoreSQLQueryInput]) {
+        query MarketGetRelationsPaymentMethod ($sqlOrderStatus:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query MarketGetPaymentMethods ($sql:[CoreSQLQueryInput] $sqlOrderStatus:[CoreSQLQueryInput]) {
+        query MarketGetPaymentMethods ($sql:[CoreSQLInput] $sqlOrderStatus:[CoreSQLInput]) {
             coreObjects: marketPaymentMethods (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query MarketGetPaymentMethod ($sql:[CoreSQLQueryInput] $sqlOrderStatus:[CoreSQLQueryInput]) {
+        query MarketGetPaymentMethod ($sql:[CoreSQLInput] $sqlOrderStatus:[CoreSQLInput]) {
             coreObject: marketPaymentMethod (sql:$sql){
                 ${this.fields}
             }

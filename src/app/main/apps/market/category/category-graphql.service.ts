@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CategoryGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query MarketGetCategoriesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: marketCategoriesPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -15,19 +15,19 @@ export class CategoryGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject  = gql`
-        query MarketGetRelationsCategory ($sqlCategory:[CoreSQLQueryInput]) {
+        query MarketGetRelationsCategory ($sqlCategory:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query MarketGetCategories ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCategories ($sql:[CoreSQLInput]) {
             coreObjects: marketCategories (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetCategory ($sql:[CoreSQLQueryInput] $sqlCategory:[CoreSQLQueryInput]) {
+        query MarketGetCategory ($sql:[CoreSQLInput] $sqlCategory:[CoreSQLInput]) {
             coreObject: marketCategory (sql:$sql){
                 ${this.fields}
             }

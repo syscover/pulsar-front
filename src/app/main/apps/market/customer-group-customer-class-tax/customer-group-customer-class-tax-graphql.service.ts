@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
 {
     queryPaginationObject = gql`
-        query MarketGetCustomerGroupsCustomerClassTaxesPagination ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCustomerGroupsCustomerClassTaxesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketCustomerGroupsCustomerClassTaxesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,7 +20,7 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query MarketGetCustomerGroupsCustomerClassTaxes ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCustomerGroupsCustomerClassTaxes ($sql:[CoreSQLInput]) {
             coreObjects: marketCustomerGroupsCustomerClassTaxes (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query MarketGetCustomerGroupCustomerClassTax ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCustomerGroupCustomerClassTax ($sql:[CoreSQLInput]) {
             coreObject: marketCustomerGroupCustomerClassTax (sql:$sql){
                 ${this.fields}
             }

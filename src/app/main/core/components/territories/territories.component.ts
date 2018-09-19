@@ -212,7 +212,7 @@ export class TerritoriesComponent implements OnChanges
 
         if (ta.indexOf('territorial_areas_1') > -1)
         {
-            fnArguments += ' $ta1Sql:[CoreSQLQueryInput]';
+            fnArguments += ' $ta1Sql:[CoreSQLInput]';
             graphQLQuery += `
                 territorialAreas1: adminTerritorialAreas1 (sql:$ta1Sql) {
                     ... on AdminTerritorialArea1 {
@@ -241,7 +241,7 @@ export class TerritoriesComponent implements OnChanges
 
         if (ta.indexOf('territorial_areas_2') > -1)
         {
-            fnArguments += ' $ta2Sql:[CoreSQLQueryInput]';
+            fnArguments += ' $ta2Sql:[CoreSQLInput]';
             graphQLQuery += `
                 territorialAreas2: adminTerritorialAreas2 (sql:$ta2Sql) {
                    ... on AdminTerritorialArea2 {
@@ -286,7 +286,7 @@ export class TerritoriesComponent implements OnChanges
 
         if (ta.indexOf('territorial_areas_3') > -1)
         {
-            fnArguments += ' $ta3Sql:[CoreSQLQueryInput]';
+            fnArguments += ' $ta3Sql:[CoreSQLInput]';
             graphQLQuery += `
                 territorialAreas3: adminTerritorialAreas3 (sql:$ta3Sql) {
                     ... on AdminTerritorialArea3 {

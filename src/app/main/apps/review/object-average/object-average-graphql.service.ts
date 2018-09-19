@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class ObjectAverageGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query ReviewGetObjectAveragesPagination ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetObjectAveragesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: reviewObjectAveragesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,14 +20,14 @@ export class ObjectAverageGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query ReviewGetObjectAverages ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetObjectAverages ($sql:[CoreSQLInput]) {
             coreObjects: reviewObjectAverages (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query ReviewGetObjectAverage ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetObjectAverage ($sql:[CoreSQLInput]) {
             coreObject: reviewObjectAverage (sql:$sql) {
                 ${this.fields}
             }

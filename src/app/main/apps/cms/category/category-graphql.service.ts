@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CategoryGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CmsGetCategoriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query CmsGetCategoriesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: cmsCategoriesPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -20,14 +20,14 @@ export class CategoryGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query CmsGetCategories ($sql:[CoreSQLQueryInput]) {
+        query CmsGetCategories ($sql:[CoreSQLInput]) {
             coreObjects: cmsCategories (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query CmsGetCategory ($sql:[CoreSQLQueryInput]) {
+        query CmsGetCategory ($sql:[CoreSQLInput]) {
             coreObject: cmsCategory (sql:$sql){
                 ${this.fields}
             }

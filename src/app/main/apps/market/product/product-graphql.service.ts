@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class ProductGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetProductsPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query MarketGetProductsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: marketProductsPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -16,11 +16,11 @@ export class ProductGraphQLService extends GraphQLSchema
 
     queryRelationsObject  = gql`
         query MarketGetRelationsProduct (
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlSection:[CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlFieldGroup:[CoreSQLQueryInput]
-            $sqlProduct:[CoreSQLQueryInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlSection:[CoreSQLInput]
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlFieldGroup:[CoreSQLInput]
+            $sqlProduct:[CoreSQLInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
         ) {
@@ -28,7 +28,7 @@ export class ProductGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query MarketGetProducts ($sql:[CoreSQLQueryInput]) {
+        query MarketGetProducts ($sql:[CoreSQLInput]) {
             coreObjects: marketProducts (sql:$sql){
                 ${this.fields}
             }
@@ -36,13 +36,13 @@ export class ProductGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query MarketGetProduct (
-            $sql:[CoreSQLQueryInput]
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlSection:[CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlFieldGroup:[CoreSQLQueryInput]
-            $sqlProduct:[CoreSQLQueryInput]
-            $sqlStock:[CoreSQLQueryInput]
+            $sql:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlSection:[CoreSQLInput]
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlFieldGroup:[CoreSQLInput]
+            $sqlProduct:[CoreSQLInput]
+            $sqlStock:[CoreSQLInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
         ) {

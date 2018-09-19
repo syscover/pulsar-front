@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CountryGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetCountriesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query AdminGetCountriesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: adminCountriesPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -15,14 +15,14 @@ export class CountryGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetCountries ($sql:[CoreSQLQueryInput]) {
+        query AdminGetCountries ($sql:[CoreSQLInput]) {
             coreObjects: adminCountries (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query AdminGetCountry ($sql:[CoreSQLQueryInput]) {
+        query AdminGetCountry ($sql:[CoreSQLInput]) {
             coreObject: adminCountry (sql:$sql){
                 ${this.fields}
             }

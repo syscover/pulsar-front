@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class PollGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query ReviewGetPollsPagination ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetPollsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: reviewPollsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,14 +15,14 @@ export class PollGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query ReviewGetPolls ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetPolls ($sql:[CoreSQLInput]) {
             coreObjects: reviewPolls (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query ReviewGetPoll ($sql:[CoreSQLQueryInput]) {
+        query ReviewGetPoll ($sql:[CoreSQLInput]) {
             coreObject: reviewPoll (sql:$sql) {
                 ${this.fields}
             }

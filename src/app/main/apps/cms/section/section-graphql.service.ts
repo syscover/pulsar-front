@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class SectionGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CmsGetSectionsPagination ($sql:[CoreSQLQueryInput]) {
+        query CmsGetSectionsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: cmsSectionsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,12 +15,12 @@ export class SectionGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query CmsGetRelationsSection ($sqlAttachmentFamily:[CoreSQLQueryInput]) {
+        query CmsGetRelationsSection ($sqlAttachmentFamily:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CmsGetSections ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
+        query CmsGetSections ($sql:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
             coreObjects: cmsSections (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class SectionGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query CmsGetSection ($sql:[CoreSQLQueryInput] $sqlAttachmentFamily:[CoreSQLQueryInput]) {
+        query CmsGetSection ($sql:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
             coreObject: cmsSection (sql:$sql){
                 ${this.fields}
             }

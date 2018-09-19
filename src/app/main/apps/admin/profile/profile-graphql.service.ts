@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class ProfileGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetProfilesPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetProfilesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminProfilesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,14 +15,14 @@ export class ProfileGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetProfiles ($sql:[CoreSQLQueryInput]) {
+        query AdminGetProfiles ($sql:[CoreSQLInput]) {
             coreObjects: adminProfiles (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query AdminGetProfile ($sql:[CoreSQLQueryInput]) {
+        query AdminGetProfile ($sql:[CoreSQLInput]) {
             coreObject: adminProfile (sql:$sql){
                 ${this.fields}
             }

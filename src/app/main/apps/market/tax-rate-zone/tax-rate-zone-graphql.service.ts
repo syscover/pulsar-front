@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class TaxRateZoneGraphQLService extends GraphQLSchema
 {
     queryPaginationObject = gql`
-        query MarketGetTaxRateZonesPagination ($sql:[CoreSQLQueryInput]) {
+        query MarketGetTaxRateZonesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketTaxRateZonesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,19 +15,19 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query MarketRelationsTaxRateZone ($sqlCountry:[CoreSQLQueryInput]) {
+        query MarketRelationsTaxRateZone ($sqlCountry:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query MarketGetTaxRateZones ($sql:[CoreSQLQueryInput]) {
+        query MarketGetTaxRateZones ($sql:[CoreSQLInput]) {
             coreObjects: marketTaxRateZones (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetTaxRateZone ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+        query MarketGetTaxRateZone ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: marketTaxRateZone (sql:$sql){
                 ${this.fields}
             }

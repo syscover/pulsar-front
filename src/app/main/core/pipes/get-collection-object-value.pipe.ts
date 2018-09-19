@@ -9,7 +9,7 @@ export class GetCollectionObjectValuePipe implements PipeTransform
     transform(objects: any[], id: string, idValue: any, field: string): string 
     {
         // all config id are string
-        const object = _.find(objects, [id, idValue.toString()]);
+        const object = _.find(objects, [id, idValue]);
         return object[field];
     }
 }

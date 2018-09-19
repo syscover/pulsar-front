@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class FamilyGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CmsGetFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+        query CmsGetFamiliesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: cmsFamiliesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,12 +15,12 @@ export class FamilyGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query CmsGetRelationsFamily ($configEditors:CoreConfigInput! $sqlFieldGroup:[CoreSQLQueryInput]) {
+        query CmsGetRelationsFamily ($configEditors:CoreConfigInput! $sqlFieldGroup:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CmsGetFamilies ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
+        query CmsGetFamilies ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
             coreObjects: cmsFamilies (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class FamilyGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query CmsGetFamily ($sql:[CoreSQLQueryInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLQueryInput]) {
+        query CmsGetFamily ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
             coreObject: cmsFamily (sql:$sql){
                 ${this.fields}
             }

@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class CartPriceRuleGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetCartPriceRulesPagination ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCartPriceRulesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketCartPriceRulesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,14 +20,14 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query MarketGetCartPriceRules ($sql:[CoreSQLQueryInput]) {
+        query MarketGetCartPriceRules ($sql:[CoreSQLInput]) {
             coreObjects: marketCartPriceRules (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetCartPriceRule ($sql:[CoreSQLQueryInput] $configDiscountTypes:CoreConfigInput!) {
+        query MarketGetCartPriceRule ($sql:[CoreSQLInput] $configDiscountTypes:CoreConfigInput!) {
             coreObject: marketCartPriceRule (sql:$sql){
                 ${this.fields}
             }

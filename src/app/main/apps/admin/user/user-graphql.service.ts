@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class UserGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetUsersPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetUsersPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminUsersPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,7 +20,7 @@ export class UserGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetUsers ($sql:[CoreSQLQueryInput]) {
+        query AdminGetUsers ($sql:[CoreSQLInput]) {
             coreObjects: adminUsers (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class UserGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query AdminGetUser ($sql:[CoreSQLQueryInput]) {
+        query AdminGetUser ($sql:[CoreSQLInput]) {
             coreObject: adminUser (sql:$sql){
                 ${this.fields}
             }

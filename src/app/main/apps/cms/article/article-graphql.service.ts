@@ -6,34 +6,29 @@ import gql from 'graphql-tag';
 export class ArticleGraphQLService extends GraphQLSchema {
 
     queryPaginationObject = gql`
-        query CmsGetArticlesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput] $config:CoreConfigInput!) {
+        query CmsGetArticlesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput] $config:CoreConfigInput!) {
             coreObjectsPagination: cmsArticlesPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
                 filtered
             }
-            cmsStatuses: coreConfig (config:$config) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            cmsStatuses: coreConfig (config:$config)
         }`;
 
     queryRelationsObject  = gql`
         query CmsGetRelationsArticle (
-            $sqlSection: [CoreSQLQueryInput]
-            $sqlFamily: [CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlArticle:[CoreSQLQueryInput]
+            $sqlSection: [CoreSQLInput]
+            $sqlFamily: [CoreSQLInput]
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlArticle:[CoreSQLInput]
             $configStatuses:CoreConfigInput!
         ) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query CmsGetArticles ($sql:[CoreSQLQueryInput]) {
+        query CmsGetArticles ($sql:[CoreSQLInput]) {
             coreObjects: cmsArticles (sql:$sql){
                 ${this.fields}
             }
@@ -41,12 +36,12 @@ export class ArticleGraphQLService extends GraphQLSchema {
 
     queryObject = gql`
         query CmsGetArticle (
-            $sql:[CoreSQLQueryInput]
-            $sqlSection: [CoreSQLQueryInput]
-            $sqlFamily: [CoreSQLQueryInput]
-            $sqlAttachmentFamily:[CoreSQLQueryInput]
-            $sqlCategory:[CoreSQLQueryInput]
-            $sqlArticle:[CoreSQLQueryInput]
+            $sql:[CoreSQLInput]
+            $sqlSection: [CoreSQLInput]
+            $sqlFamily: [CoreSQLInput]
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlArticle:[CoreSQLInput]
             $configStatuses:CoreConfigInput!
         ) {
             coreObject: cmsArticle (sql:$sql){

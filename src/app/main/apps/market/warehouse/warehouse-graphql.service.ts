@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class WarehouseGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetWarehousesPagination ($sql:[CoreSQLQueryInput]) {
+        query MarketGetWarehousesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketWarehousesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,19 +15,19 @@ export class WarehouseGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query marketGetRelationsWarehouse ($sqlCountry:[CoreSQLQueryInput]){
+        query marketGetRelationsWarehouse ($sqlCountry:[CoreSQLInput]){
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
-        query MarketGetWarehouses ($sql:[CoreSQLQueryInput]) {
+        query MarketGetWarehouses ($sql:[CoreSQLInput]) {
             coreObjects: marketWarehouses (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetWarehouse ($sql:[CoreSQLQueryInput] $sqlCountry:[CoreSQLQueryInput]) {
+        query MarketGetWarehouse ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: marketWarehouse (sql:$sql){
                 ${this.fields}
             }

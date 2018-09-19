@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class TaxRuleGraphQLService extends GraphQLSchema
 {
     queryPaginationObject = gql`
-        query MarketGetTaxRulesPagination ($sql:[CoreSQLQueryInput]) {
+        query MarketGetTaxRulesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketTaxRulesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,14 +20,14 @@ export class TaxRuleGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query MarketGetTaxRules ($sql:[CoreSQLQueryInput]) {
+        query MarketGetTaxRules ($sql:[CoreSQLInput]) {
             coreObjects: marketTaxRules (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetTaxRule ($sql:[CoreSQLQueryInput]) {
+        query MarketGetTaxRule ($sql:[CoreSQLInput]) {
             coreObject: marketTaxRule (sql:$sql){
                 ${this.fields}
             }

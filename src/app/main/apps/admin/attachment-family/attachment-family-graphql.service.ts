@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class AttachmentFamilyGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAttachmentFamiliesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminAttachmentFamiliesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,7 +20,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetAttachmentFamilies ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAttachmentFamilies ($sql:[CoreSQLInput]) {
             coreObjects: adminAttachmentFamilies (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query AdminGetAttachmentFamily ($sql:[CoreSQLQueryInput] $configSizes:CoreConfigInput $configAttachmentResources:CoreConfigInput!) {
+        query AdminGetAttachmentFamily ($sql:[CoreSQLInput] $configSizes:CoreConfigInput $configAttachmentResources:CoreConfigInput!) {
             coreObject: adminAttachmentFamily (sql:$sql){
                 ${this.fields}
             }

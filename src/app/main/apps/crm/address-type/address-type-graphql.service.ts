@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class AddressTypeGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query CrmGetAddressTypesPagination ($sql:[CoreSQLQueryInput]) {
+        query CrmGetAddressTypesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: crmAddressTypesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,14 +15,14 @@ export class AddressTypeGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query CrmGetAddressTypes ($sql:[CoreSQLQueryInput]) {
+        query CrmGetAddressTypes ($sql:[CoreSQLInput]) {
             coreObjects: crmAddressTypes (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query CrmGetAddressType ($sql:[CoreSQLQueryInput]) {
+        query CrmGetAddressType ($sql:[CoreSQLInput]) {
             coreObject: crmAddressType (sql:$sql){
                 ${this.fields}
             }

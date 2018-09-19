@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class FieldGroupGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetFieldGroupsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetFieldGroupsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminFieldGroupsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -20,7 +20,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetFieldGroups ($sql:[CoreSQLQueryInput]) {
+        query AdminGetFieldGroups ($sql:[CoreSQLInput]) {
             coreObjects: adminFieldGroups (sql:$sql){
                 ${this.fields}
             }
@@ -28,7 +28,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query AdminGetFieldGroup ($sql:[CoreSQLQueryInput] $configFieldGroupResources:CoreConfigInput) {
+        query AdminGetFieldGroup ($sql:[CoreSQLInput] $configFieldGroupResources:CoreConfigInput) {
             coreObject: adminFieldGroup (sql:$sql){
                 ${this.fields}
             }

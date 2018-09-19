@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class LangGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetLangsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetLangsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminLangsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,14 +15,14 @@ export class LangGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetLangs ($sql:[CoreSQLQueryInput]) {
+        query AdminGetLangs ($sql:[CoreSQLInput]) {
             coreObjects: adminLangs (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query AdminGetLang ($sql:[CoreSQLQueryInput]) {
+        query AdminGetLang ($sql:[CoreSQLInput]) {
             coreObject: adminLang (sql:$sql){
                 ${this.fields}
             }

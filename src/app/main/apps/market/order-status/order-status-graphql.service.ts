@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class OrderStatusGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetOrderStatusesPagination ($filters:[CoreSQLQueryInput] $sql:[CoreSQLQueryInput]) {
+        query MarketGetOrderStatusesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
             coreObjectsPagination: marketOrderStatusesPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
@@ -15,14 +15,14 @@ export class OrderStatusGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query MarketGetOrderStatuses ($sql:[CoreSQLQueryInput]) {
+        query MarketGetOrderStatuses ($sql:[CoreSQLInput]) {
             coreObjects: marketOrderStatuses (sql:$sql){
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetOrderStatus ($sql:[CoreSQLQueryInput]) {
+        query MarketGetOrderStatus ($sql:[CoreSQLInput]) {
             coreObject: marketOrderStatus (sql:$sql){
                 ${this.fields}
             }
