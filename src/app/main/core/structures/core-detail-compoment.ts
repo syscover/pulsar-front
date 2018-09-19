@@ -299,7 +299,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             record$ = this.httpService
                 .apolloClient()
                 .mutate({
-                    mutation: this.graphQL.mutationAddObject,
+                    mutation: this.graphQL.mutationCreateObject,
                     variables: args
                 });
         }
@@ -317,7 +317,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             record$ = this.httpService
                 .apolloClient()
                 .mutate({
-                    mutation: this.graphQL.mutationAddObject,
+                    mutation: this.graphQL.mutationCreateObject,
                     variables: args
                 });
         }

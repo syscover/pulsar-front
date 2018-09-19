@@ -34,7 +34,7 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation MarketAddTaxRateZone ($object:MarketTaxRateZoneInput!) {
             marketAddTaxRateZone (object:$object){
                 ${this.fields}

@@ -35,7 +35,7 @@ export class FamilyGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation CmsAddFamily ($object:CmsFamilyInput!) {
             cmsAddFamily (object:$object){
                 ${this.fields}

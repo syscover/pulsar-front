@@ -28,7 +28,7 @@ export class ProfileGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddProfile ($object:AdminProfileInput!) {
             adminAddProfile (object:$object){
                 ${this.fields}

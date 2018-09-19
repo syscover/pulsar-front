@@ -232,7 +232,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // cms sections
         this.sections = data.cmsSections;

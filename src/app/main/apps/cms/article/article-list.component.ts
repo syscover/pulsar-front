@@ -14,7 +14,7 @@ export class ArticleListComponent extends CoreListComponent
 {
     objectTranslation = 'CMS.ARTICLE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_article.slug', 'cms_section.name'];
+    columnsSearch: string[] = ['cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_article.slug', 'cms_section.id', 'cms_section.name'];
     displayedColumns = ['cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_section.name', 'status_id', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
     statuses: Status[] = [];

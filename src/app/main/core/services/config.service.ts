@@ -19,7 +19,7 @@ export class ConfigService
         }
     }
 
-    public set(config: Object) 
+    public set(config: Object): void
     {
         this.config = config;
     }

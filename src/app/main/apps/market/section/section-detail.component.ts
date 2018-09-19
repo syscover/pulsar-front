@@ -16,7 +16,7 @@ export class SectionDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: SectionGraphQLService
+        public graphQL: SectionGraphQLService
     ) {
         super(injector, graphQL);
     }

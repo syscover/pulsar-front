@@ -35,7 +35,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation MarketAddAction ($object:MarketPaymentMethodInput!) {
             marketAddPaymentMethod (object:$object){
                 ${this.fields}

@@ -35,7 +35,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
             adminAddAttachmentFamily (object:$object){
                 ${this.fields}

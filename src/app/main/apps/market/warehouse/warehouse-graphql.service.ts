@@ -34,7 +34,7 @@ export class WarehouseGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation MarketAddWarehouse ($object:MarketWarehouseInput!) {
             marketAddWarehouse (object:$object){
                 ${this.fields}

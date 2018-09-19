@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 export class ActionGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetActionsPagination ($sql:[CoreSQLQueryInput]) {
+        query AdminGetActionsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminActionsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
@@ -15,22 +15,22 @@ export class ActionGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetActions ($sql:[CoreSQLQueryInput]) {
+        query AdminGetActions ($sql:[CoreSQLInput]) {
             coreObjects: adminActions (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query AdminGetAction ($sql:[CoreSQLQueryInput]) {
+        query AdminGetAction ($sql:[CoreSQLInput]) {
             coreObject: adminAction (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
-    mutationAddObject = gql`
-        mutation AdminAddAction ($object:AdminActionInput!) {
-            adminAddAction (object:$object){
+    mutationCreateObject = gql`
+        mutation AdminCreateAction ($object:AdminActionInput!) {
+            adminCreateAction (object:$object){
                 ${this.fields}
             }
         }`;

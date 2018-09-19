@@ -28,7 +28,7 @@ export class CustomerClassTaxGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation MarketAddCustomerClassTax ($object:MarketCustomerClassTaxInput!) {
             marketAddCustomerClassTax (object:$object){
                 ${this.fields}

@@ -57,7 +57,7 @@ export class CustomerGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation CrmAddCustomer ($object:CrmCustomerInput!) {
             crmAddCustomer (object:$object){
                 ${this.fields}

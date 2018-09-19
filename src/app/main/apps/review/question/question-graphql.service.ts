@@ -37,7 +37,7 @@ export class QuestionGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation ReviewAddQuestion ($object:ReviewQuestionInput!) {
             reviewAddQuestion (object:$object){
                 ${this.fields}

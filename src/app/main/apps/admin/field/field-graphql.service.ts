@@ -42,7 +42,7 @@ export class FieldGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddField ($object:AdminFieldInput!) {
             adminAddField (object:$object){
                 ${this.fields}

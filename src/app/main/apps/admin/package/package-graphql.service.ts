@@ -28,7 +28,7 @@ export class PackageGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddPackage ($object:AdminPackageInput!) {
             adminAddPackage (object:$object){
                 ${this.fields}

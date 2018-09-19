@@ -1,6 +1,6 @@
 {
-    "graphqlUri": "http://reservaycata.local/graphql",
-    "apiUrl": "http://reservaycata.local",
-    "froalaKey": "mC3D4C2B1vA1E1E1B4B8C7B5E1D5D4idrkB-13hmA-9dA-7I-7td1E5okfgk==",
-    "googleMapsApiKey": "AIzaSyBwDJh5mESIJmyAQUfQoEAvI2XeQqSXCiM"
+    "graphqlUri": "http://api.pulsar.local/graphql",
+    "apiUrl": "http://api.pulsar.local",
+    "froalaKey": "6rrlrA-7maugpgptogA-21ogF6nab==",
+    "googleMapsApiKey": ""
 }

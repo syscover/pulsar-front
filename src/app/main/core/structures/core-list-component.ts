@@ -153,12 +153,12 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         this.httpSynchronousService = this.injector.get(HttpSynchronousService);
     }
 
-    ngAfterViewInit() 
+    ngAfterViewInit(): void
     {
         this.initDataTable();    
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         super.ngOnInit();
         

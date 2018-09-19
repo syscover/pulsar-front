@@ -28,7 +28,7 @@ export class PollGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation ReviewAddPoll ($object:ReviewPollInput!) {
             reviewAddPoll (object:$object){
                 ${this.fields}

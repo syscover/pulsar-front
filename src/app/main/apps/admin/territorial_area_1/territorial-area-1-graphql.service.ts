@@ -35,7 +35,7 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddTerritorialArea1 ($object:AdminTerritorialArea1Input!) {
             adminAddTerritorialArea1 (object:$object){
                 ${this.fields}

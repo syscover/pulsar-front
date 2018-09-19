@@ -1,4 +1,3 @@
-
 import { Injectable, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from './../../services/http.service';
@@ -25,7 +24,7 @@ export class DynamicFormService extends HttpService
     }
 
     // request to gel all fields from field_group_id
-    instance(formGroup: FormGroup, fieldGroupId: number, values: any, errors: any)
+    instance(formGroup: FormGroup, fieldGroupId: number, values: any, errors: any): void
     {
         if (fieldGroupId) 
         {
@@ -100,7 +99,7 @@ export class DynamicFormService extends HttpService
         }
     }
 
-    private reset(formGroup: FormGroup)
+    private reset(formGroup: FormGroup): void
     {
         // reset fields
         this.fields = undefined;

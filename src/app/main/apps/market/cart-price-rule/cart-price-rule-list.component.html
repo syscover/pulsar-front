@@ -74,6 +74,12 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.COUPON' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.coupon_code }}</mat-cell>
                 </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_cart_price_rule.total_uses">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TOTAL_USES' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.total_uses }}</mat-cell>
+                </ng-container>
         
                 <!-- Column -->
                 <ng-container matColumnDef="market_cart_price_rule.active">

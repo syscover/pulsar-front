@@ -23,7 +23,7 @@ export class GraphQLSchema
     queryObject: any;
 
     // Query to add object
-    mutationAddObject: any;
+    mutationCreateObject: any;
     // Query to update object
     mutationUpdateObject: any;
     // Query to delete object

@@ -40,7 +40,7 @@ export class ReviewGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation ReviewAddReview ($object:ReviewReviewInput!) {
             reviewAddReview (object:$object){
                 ${this.fields}

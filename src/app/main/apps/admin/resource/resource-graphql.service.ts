@@ -35,7 +35,7 @@ export class ResourceGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddResource ($object:AdminResourceInput!) {
             adminAddResource (object:$object){
                 ${this.fields}

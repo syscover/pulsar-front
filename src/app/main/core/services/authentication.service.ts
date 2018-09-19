@@ -17,26 +17,28 @@ export class AuthenticationService extends HttpService
         this.setEndpoint('/api/v1/login'); // set api URL
     }
 
-    login(user: User) 
+    login(user: any)
     {
         // send credentials to server
         return this.httpClient
             .post(this.getEndpoint('login'), {
                     user: user.user,
-                    password: user.password
+                    password: user.password,
+                    remember_me: user.remember_me
                 }, this.options);
     }
 
     logout(): void
     {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('user_logged');
         this.apollo.getClient().resetStore();
     }
 
     check(): boolean
     {
         const token: string = this.jwtHelperService.tokenGetter();
-        if (! token) 
+        if (! token)
         {
             return false;
         }
@@ -46,8 +48,11 @@ export class AuthenticationService extends HttpService
 
     user(): User
     {
-        return <User>this
-            .jwtHelperService
-            .decodeToken(localStorage.getItem('access_token'));
+        if (localStorage.getItem('user_logged'))
+        {
+            return <User>JSON.parse(atob(localStorage.getItem('user_logged')));
+        }
+
+        return null;
     }
 }

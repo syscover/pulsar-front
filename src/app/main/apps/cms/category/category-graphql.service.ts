@@ -34,7 +34,7 @@ export class CategoryGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation CmsAddCategory ($object:CmsCategoryInput!) {
             cmsAddCategory (object:$object){
                 ${this.fields}

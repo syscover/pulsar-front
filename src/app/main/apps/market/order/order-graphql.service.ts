@@ -34,7 +34,7 @@ export class OrderGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation MarketAddOrder ($object:MarketOrderInput!) {
             marketAddOrder (object:$object){
                 ${this.fields}

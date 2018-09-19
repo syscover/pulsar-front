@@ -55,7 +55,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation CmsAddArticle ($object:CmsArticleInput!) {
             cmsAddArticle (object:$object){
                 ${this.fields}

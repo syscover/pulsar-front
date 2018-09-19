@@ -35,7 +35,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
             ${this.relationsFields}
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation AdminAddFieldGroup ($object:AdminFieldGroupInput!) {
             adminAddFieldGroup (object:$object){
                 ${this.fields}

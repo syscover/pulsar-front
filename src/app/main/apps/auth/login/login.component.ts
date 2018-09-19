@@ -84,10 +84,14 @@ export class LoginComponent implements OnInit
 
                 if (environment.debug) console.log('DEBUG - response after login: ', response);
 
+                // set token
                 localStorage.setItem('access_token', response['access_token']);
 
+                // set logged user
+                localStorage.setItem('user_logged',  btoa(JSON.stringify(response['user'])));
+
                 // remenber me function
-                if (this.loginForm.value.remember_me) 
+                if (this.loginForm.value.remember_me)
                 {
                     localStorage.setItem('remember_me', JSON.stringify({
                         user: this.loginForm.value.user,

@@ -102,7 +102,7 @@ export class DynamicFormComponent implements OnInit, OnChanges
         private dynamicFormService: DynamicFormService
     ) { }
 
-    ngOnChanges()
+    ngOnChanges(): void
     {
         // only instance dynamic forms when change the fieldGroupId
         if (this.fieldGroupId !== this._fieldGroupId && this.start)
@@ -114,7 +114,7 @@ export class DynamicFormComponent implements OnInit, OnChanges
         }
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         this.dynamicFormService
             .fieldsLoaded 

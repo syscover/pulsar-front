@@ -7,8 +7,6 @@ import { OrderGraphQLService } from './order-graphql.service';
 import { OrderRowInfoDialogComponent } from './order-row-info-dialog.component';
 import { OrderStatus, PaymentMethod, Log } from './../market.models';
 import { CustomerGroup } from '../../crm/crm.models';
-import * as _ from 'lodash';
-
 
 @Component({
     selector: 'dh2-order-detail',
@@ -41,7 +39,7 @@ export class OrderDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
 

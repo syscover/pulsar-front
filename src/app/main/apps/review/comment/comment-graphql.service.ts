@@ -28,7 +28,7 @@ export class CommentGraphQLService extends GraphQLSchema
             }
         }`;
 
-    mutationAddObject = gql`
+    mutationCreateObject = gql`
         mutation ReviewAddComment ($object:ReviewCommentInput!) {
             reviewAddComment (object:$object){
                 ${this.fields}
