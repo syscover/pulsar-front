@@ -83,11 +83,10 @@
 
             <!-- CONTENT -->
             <div class="content">
-                <form   id="formDetail"
+                <div fxFlex fxLayout="column">
+                    <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
+                        (ngSubmit)="postRecord(object)">
                 
                     <div fxLayout="row wrap">
                         <mat-form-field class="col-12 col-md-4">
@@ -177,6 +176,7 @@
                     </div>
 
                 </form>
+                </div>
             </div>
             <!-- / CONTENT -->
 

@@ -28,17 +28,18 @@ export class FieldListComponent extends CoreListComponent
 
     getCustomArgumentsGetRecords(args: Object): Object
     {
-        args['configFieldTypes'] = {
-            key: 'pulsar-admin.field_types'
+        return {
+            configFieldTypes: {
+                key: 'pulsar-admin.field_types'
+            }
         };
-
-        return args;
     }
 
     setRelationsData(data: any): void
     {
-        this.adminConfigFieldTypesId = _.filter(data.adminConfigFieldTypes, {values: true}).map((fieldType: FieldType) => {
-            if (fieldType.values) return fieldType.id;
-        });
+        this.adminConfigFieldTypesId = _.filter(data.adminConfigFieldTypes, {values: true})
+            .map((fieldType: FieldType) => {
+                if (fieldType.values) return fieldType.id;
+            });
     }
 }

@@ -12,13 +12,7 @@ export class FieldGraphQLService extends GraphQLSchema
                 objects (sql:$sql)
                 filtered
             }
-            adminConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on AdminConfigFieldTypeOption {
-                    id
-                    name
-                    values
-                }
-            }
+            adminConfigFieldTypes:coreConfig (config:$configFieldTypes)
         }`;
 
     queryRelationsObject = gql`
@@ -107,18 +101,8 @@ export class FieldGraphQLService extends GraphQLSchema
                 id
                 name
             }
-            coreConfigFieldTypes:coreConfig (config:$configFieldTypes) {
-                ... on AdminConfigFieldTypeOption {
-                    id
-                    name
-                }
-            }
-            coreConfigDataTypes:coreConfig (config:$configDataTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            coreConfigFieldTypes:coreConfig (config:$configFieldTypes)
+            coreConfigDataTypes:coreConfig (config:$configDataTypes)
         `;
 
         super.init();
