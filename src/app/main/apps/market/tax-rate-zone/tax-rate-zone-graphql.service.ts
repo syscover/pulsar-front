@@ -35,8 +35,8 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketAddTaxRateZone ($object:MarketTaxRateZoneInput!) {
-            marketAddTaxRateZone (object:$object){
+        mutation MarketCreateTaxRateZone ($object:MarketTaxRateZoneInput!) {
+            marketCreateTaxRateZone (object:$object){
                 ${this.fields}
             }
         }`;

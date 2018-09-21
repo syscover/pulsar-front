@@ -59,8 +59,8 @@ export class ProductGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketAddProduct ($object:MarketProductInput!) {
-            marketAddProduct (object:$object){
+        mutation MarketCreateProduct ($object:MarketProductInput!) {
+            marketCreateProduct (object:$object){
                 ${this.fields}
             }
         }`;

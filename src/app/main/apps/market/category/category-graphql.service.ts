@@ -35,8 +35,8 @@ export class CategoryGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketAddCategory ($object:MarketCategoryInput!) {
-            marketAddCategory (object:$object){
+        mutation MarketCreateCategory ($object:MarketCategoryInput!) {
+            marketCreateCategory (object:$object){
                 ${this.fields}
             }
         }`;

@@ -51,8 +51,8 @@ export class ArticleGraphQLService extends GraphQLSchema {
         }`;
 
     mutationCreateObject = gql`
-        mutation CmsAddArticle ($object:CmsArticleInput!) {
-            cmsAddArticle (object:$object){
+        mutation CmsCreateArticle ($object:CmsArticleInput!) {
+            cmsCreateArticle (object:$object){
                 ${this.fields}
             }
         }`;
@@ -177,12 +177,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
                 lang_id
                 name
             }
-            cmsStatuses: coreConfig (config:$configStatuses) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            cmsStatuses: coreConfig (config:$configStatuses)
             adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
                 id
                 name

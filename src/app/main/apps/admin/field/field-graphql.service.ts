@@ -43,8 +43,8 @@ export class FieldGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminAddField ($object:AdminFieldInput!) {
-            adminAddField (object:$object){
+        mutation AdminCreateField ($object:AdminFieldInput!) {
+            adminCreateField (object:$object){
                 ${this.fields}
             }
         }`;

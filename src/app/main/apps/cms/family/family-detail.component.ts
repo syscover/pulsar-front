@@ -5,7 +5,6 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { FamilyGraphQLService } from './family-graphql.service';
 import { FieldGroup } from './../../admin/admin.models';
 import { Editor } from './../cms.models';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-family-detail',

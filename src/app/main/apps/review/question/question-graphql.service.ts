@@ -38,8 +38,8 @@ export class QuestionGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation ReviewAddQuestion ($object:ReviewQuestionInput!) {
-            reviewAddQuestion (object:$object){
+        mutation ReviewCreateQuestion ($object:ReviewQuestionInput!) {
+            reviewCreateQuestion (object:$object){
                 ${this.fields}
             }
         }`;

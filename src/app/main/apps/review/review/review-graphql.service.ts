@@ -41,8 +41,8 @@ export class ReviewGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation ReviewAddReview ($object:ReviewReviewInput!) {
-            reviewAddReview (object:$object){
+        mutation ReviewCreateReview ($object:ReviewReviewInput!) {
+            reviewCreateReview (object:$object){
                 ${this.fields}
             }
         }`;

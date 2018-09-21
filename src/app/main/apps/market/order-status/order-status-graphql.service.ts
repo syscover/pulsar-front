@@ -29,8 +29,8 @@ export class OrderStatusGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketAddOrderStatus ($object:MarketOrderStatusInput!) {
-            marketAddOrderStatus (object:$object){
+        mutation MarketCreateOrderStatus ($object:MarketOrderStatusInput!) {
+            marketCreateOrderStatus (object:$object){
                 ${this.fields}
             }
         }`;

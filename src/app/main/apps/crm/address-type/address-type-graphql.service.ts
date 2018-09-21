@@ -29,8 +29,8 @@ export class AddressTypeGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation CrmAddAddressType ($object:CrmAddressTypeInput!) {
-            crmAddAddressType (object:$object){
+        mutation CrmCreateAddressType ($object:CrmAddressTypeInput!) {
+            crmCreateAddressType (object:$object){
                 ${this.fields}
             }
         }`;

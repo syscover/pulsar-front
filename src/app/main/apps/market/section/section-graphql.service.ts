@@ -29,8 +29,8 @@ export class SectionGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketAddSection ($object:MarketSectionInput!) {
-            marketAddSection (object:$object){
+        mutation MarketCreateSection ($object:MarketSectionInput!) {
+            marketCreateSection (object:$object){
                 ${this.fields}
             }
         }`;

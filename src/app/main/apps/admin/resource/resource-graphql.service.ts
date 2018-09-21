@@ -36,8 +36,8 @@ export class ResourceGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminAddResource ($object:AdminResourceInput!) {
-            adminAddResource (object:$object){
+        mutation AdminCreateResource ($object:AdminResourceInput!) {
+            adminCreateResource (object:$object){
                 ${this.fields}
             }
         }`;

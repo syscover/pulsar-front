@@ -36,8 +36,8 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminAddAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
-            adminAddAttachmentFamily (object:$object){
+        mutation AdminCreateAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
+            adminCreateAttachmentFamily (object:$object){
                 ${this.fields}
             }
         }`;
@@ -84,18 +84,8 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
                     id
                     name
                 }
-                configSizes:coreConfig (config:$configSizes) {
-                    ... on CoreConfigOption {
-                        id
-                        name
-                    }
-                }
-                configAttachmentResources:coreConfig (config:$configAttachmentResources) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+                configSizes:coreConfig (config:$configSizes)
+                configAttachmentResources:coreConfig (config:$configAttachmentResources)
             `;
 
         super.init();

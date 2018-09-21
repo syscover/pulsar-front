@@ -36,8 +36,8 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminAddFieldGroup ($object:AdminFieldGroupInput!) {
-            adminAddFieldGroup (object:$object){
+        mutation AdminCreateFieldGroup ($object:AdminFieldGroupInput!) {
+            adminCreateFieldGroup (object:$object){
                 ${this.fields}
             }
         }`;
@@ -75,12 +75,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            configFieldGroupResources:coreConfig (config:$configFieldGroupResources) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            configFieldGroupResources:coreConfig (config:$configFieldGroupResources)
             adminResources {
                 id
                 name

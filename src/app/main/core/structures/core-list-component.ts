@@ -91,56 +91,56 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             searchText: this.filter.nativeElement.value
         };
         
-            // check if there ara value and there isn't a request in progress
-            if (! this.running)
-            {
-                this.isLoadingResults = true; // flag to show loading shape
-                this.running = true;
-                let data;
+        // check if there ara value and there isn't a request in progress
+        if (! this.running)
+        {
+            this.isLoadingResults = true; // flag to show loading shape
+            this.running = true;
+            let data;
 
+            data = await this.getRecords(
+                parameters.sort,
+                parameters.order,
+                parameters.offset,
+                parameters.limit,
+                parameters.searchText
+            );
+
+            // check buffer
+            while (this.buffer)
+            {
                 data = await this.getRecords(
-                    parameters.sort, 
-                    parameters.order, 
-                    parameters.offset,
-                    parameters.limit,
-                    parameters.searchText
+                    this.buffer.sort,
+                    this.buffer.order,
+                    this.buffer.offset,
+                    this.buffer.limit,
+                    this.buffer.searchText
                 );
-
-                // check buffer
-                while (this.buffer)
-                {
-                    data = await this.getRecords(
-                        this.buffer.sort, 
-                        this.buffer.order, 
-                        this.buffer.offset,
-                        this.buffer.limit,
-                        this.buffer.searchText
-                    );
-                    // reset buffer
-                    this.buffer = undefined;
-                }
-                this.running = false;
-
-                if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
-
-                // set number of results
-                this.resultsLength = data.data.coreObjectsPagination.filtered;
-
-                // set relations data
-                this.setRelationsData(data.data);
-
-                // set data source
-                this.dataSource.data = data.data.coreObjectsPagination.objects;
-
-                // hide loader data table
-                this.isLoadingResults = false;
+                // reset buffer
+                this.buffer = undefined;
             }
-            else if (this.isLoadingResults) 
-            {
-                // add event tu buffer
-                this.buffer = parameters;
-                return from([]);
-            }
+            this.running = false;
+
+            if (this.env.debug) console.log('DEBUG - Data from Query Objects Pagination: ', data.data);
+
+            // set number of results
+            this.resultsLength = data.data.coreObjectsPagination.filtered;
+
+            // set relations data
+            this.setRelationsData(data.data);
+
+            // set data source
+            this.dataSource.data = data.data.coreObjectsPagination.objects;
+
+            // hide loader data table
+            this.isLoadingResults = false;
+        }
+        else if (this.isLoadingResults)
+        {
+            // add event tu buffer
+            this.buffer = parameters;
+            return from([]);
+        }
     }
 
     constructor(

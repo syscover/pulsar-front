@@ -30,7 +30,11 @@ export class ApolloService
 
                 const trackId = false;
 
-                if (o.__typename === 'CoreTranslationField' || o.__typename === 'CoreConfigOption') 
+                // include especial types that require create a uid
+                if (
+                    o.__typename === 'CoreTranslationField' // ||
+                    // o.__typename === 'CoreConfigOption' // Type deleted
+                )
                 {
                     const uid = guid();
                     if (trackId) console.log(`Apollo ID for type ${o.__typename}:`, uid);

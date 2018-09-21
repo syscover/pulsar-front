@@ -36,8 +36,8 @@ export class UserGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminAddUser ($object:AdminUserInput!) {
-            adminAddUser (object:$object){
+        mutation AdminCreateUser ($object:AdminUserInput!) {
+            adminCreateUser (object:$object){
                 ${this.fields}
             }
         }`;

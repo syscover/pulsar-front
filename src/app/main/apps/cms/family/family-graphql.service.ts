@@ -36,8 +36,8 @@ export class FamilyGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation CmsAddFamily ($object:CmsFamilyInput!) {
-            cmsAddFamily (object:$object){
+        mutation CmsCreateFamily ($object:CmsFamilyInput!) {
+            cmsCreateFamily (object:$object){
                 ${this.fields}
             }
         }`;
@@ -83,12 +83,7 @@ export class FamilyGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            coreConfig (config:$configEditors) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            coreConfig (config:$configEditors)
             adminFieldGroups (sql:$sqlFieldGroup) {
                 id
                 name

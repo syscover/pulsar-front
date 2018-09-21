@@ -35,8 +35,8 @@ export class ObjectAverageGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation ReviewAddObjectAverage ($object:ReviewAverageInput!) {
-            reviewAddObjectAverage (object:$object){
+        mutation ReviewCreateObjectAverage ($object:ReviewAverageInput!) {
+            reviewCreateObjectAverage (object:$object){
                 ${this.fields}
             }
         }`;
