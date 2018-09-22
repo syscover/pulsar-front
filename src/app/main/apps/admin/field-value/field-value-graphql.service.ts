@@ -6,10 +6,10 @@ import gql from 'graphql-tag';
 export class FieldValueGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query AdminGetFieldValuesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
-            coreObjectsPagination: adminFieldValuesPagination (filters:$filters sql:$sql) {
+        query AdminGetFieldValuesPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput]) {
+            coreObjectsPagination: adminFieldValuesPagination (sql:$sql filters:$filters) {
                 total
-                objects (filters:$filters sql:$sql)
+                objects (sql:$sql filters:$filters)
                 filtered
             }
         }`;
