@@ -95,12 +95,7 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
                 id
                 name
             }
-            marketDiscountTypes: coreConfig (config:$configDiscountTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            marketDiscountTypes: coreConfig (config:$configDiscountTypes)
         `;
 
         super.init();

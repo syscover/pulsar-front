@@ -179,7 +179,7 @@ export class ProductGraphQLService extends GraphQLSchema
                 name
                 sku
             }
-            adminFieldGroups (sql:$sqlFieldGroup){
+            adminFieldGroups (sql:$sqlFieldGroup) {
                 id
                 name
             }
@@ -193,18 +193,8 @@ export class ProductGraphQLService extends GraphQLSchema
                 quality
                 format
             }
-            marketProductTypes: coreConfig (config:$configProductTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
-            marketPriceTypes: coreConfig (config:$configPriceTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            marketProductTypes: coreConfig (config:$configProductTypes)
+            marketPriceTypes: coreConfig (config:$configPriceTypes)
             marketWarehouses {
                 id
                 name

@@ -32,29 +32,6 @@ export class CustomerGraphQLService extends GraphQLSchema
                 ${this.fields}
             }
             ${this.relationsFields}
-            crmAddresses (sql:$sqlAddress){
-                id
-                type_id
-                type {
-                    id
-                    name
-                }
-                alias
-                company
-                tin
-                name
-                surname
-                email
-                address
-                country_id
-                territorial_area_1_id
-                territorial_area_2_id
-                territorial_area_3_id
-                zip
-                locality
-                latitude
-                longitude
-            }
         }`;
 
     mutationCreateObject = gql`
@@ -99,6 +76,29 @@ export class CustomerGraphQLService extends GraphQLSchema
                     email
                     user
                     active
+                    addresses {
+                        id
+                        type_id
+                        type {
+                            id
+                            name
+                        }
+                        alias
+                        company
+                        tin
+                        name
+                        surname
+                        email
+                        address
+                        country_id
+                        territorial_area_1_id
+                        territorial_area_2_id
+                        territorial_area_3_id
+                        zip
+                        locality
+                        latitude
+                        longitude
+                    }
                     country_id
                     territorial_area_1_id
                     territorial_area_2_id

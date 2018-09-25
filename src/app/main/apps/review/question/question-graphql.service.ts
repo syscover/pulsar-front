@@ -91,12 +91,7 @@ export class QuestionGraphQLService extends GraphQLSchema
                 name
                 default_high_score
             }
-            reviewQuestionTypes: coreConfig (config:$configQuestionTypes) {
-                ... on CoreConfigOption {
-                    id
-                    name
-                }
-            }
+            reviewQuestionTypes: coreConfig (config:$configQuestionTypes)
         `;
 
         super.init();
