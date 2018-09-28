@@ -41,7 +41,7 @@ export class CropperDialogComponent implements OnInit, OnDestroy
     ) 
     { }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', this.data.attachment.controls['attachment_library'].value.url);
 
@@ -60,13 +60,13 @@ export class CropperDialogComponent implements OnInit, OnDestroy
         });
     }
 
-    ngOnDestroy()
+    ngOnDestroy(): void
     {
         this.renderer.setProperty(this.cropperImage.nativeElement, 'src', '');
         this.cropper.destroy();
     }
 
-    cropHandler()
+    cropHandler(): void
     {
         this.attachmentsService
             .setCropImage({
