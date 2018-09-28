@@ -43,8 +43,8 @@ export class SectionGraphQLService extends GraphQLSchema
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeleteSection ($id:String!) {
-            marketDeleteSection (id:$id){
+        mutation MarketDeleteSection ($id:String! $lang_id:String!) {
+            marketDeleteSection (id:$id lang_id:$lang_id){
                 ${this.fields}
             }
         }`;

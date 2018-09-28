@@ -261,17 +261,21 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         // admin attachment families
         this.attachmentFamilies = data.adminAttachmentFamilies;
 
-        // market stock data
-        for (const warehouse of data.marketWarehouses)
+        // only set ware house in edit action
+        if (this.dataRoute.action === 'edit')
         {
-            const stock = <Stock>_.find(data.marketStocks, {warehouse_id: warehouse.id});
-            this.stocksData.push({
-                warehouse_id: warehouse.id,
-                warehouse_name: warehouse.name,
-                product_id: data.coreObject.id,
-                stock: stock ? stock.stock : 0,
-                minimum_stock: stock ? stock.minimum_stock : 0,
-            });
+            // market stock data
+            for (const warehouse of data.marketWarehouses)
+            {
+                const stock = <Stock>_.find(data.marketStocks, {warehouse_id: warehouse.id});
+                this.stocksData.push({
+                    warehouse_id: warehouse.id,
+                    warehouse_name: warehouse.name,
+                    product_id: data.coreObject.id,
+                    stock: stock ? stock.stock : 0,
+                    minimum_stock: stock ? stock.minimum_stock : 0,
+                });
+            }
         }
 
         this.dataSource.sort = this.sort;

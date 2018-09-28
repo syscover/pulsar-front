@@ -45,7 +45,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // Function that can to be overwrite in child class
-    setData(response?) 
+    setData(response?): void
     {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
         {
@@ -70,18 +70,18 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // method to implement actions befere patch value in edit action
-    beforePatchValueEdit() {}
+    beforePatchValueEdit(): void {}
 
     // method to implement actions after set data action
-    afterPatchValueEdit() {}
+    afterPatchValueEdit(): void {}
 
     // method to implement actions after patch value in edit action
-    afterSetData() {}
+    afterSetData(): void {}
 
     // method that will be overwrite
-    createForm() { }
+    createForm(): void { }
 
-    init() 
+    init(): void
     {
         if (this.dataRoute.action === 'create') 
         {
