@@ -1,4 +1,4 @@
-<div class="navbar-top mat-indigo-700-bg">
+<div class="navbar-top" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
     <div class="logo">
         <img class="logo-icon" src="assets/images/logos/fuse.svg">
@@ -22,13 +22,14 @@
 </div>
 
 
-<div class="navbar-scroll-container" fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
+<div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground"
+     fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
 
-    <div class="user mat-indigo-700-bg" fxLayout="column">
+    <div class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
         <div class="h3 username">Charlie Adams</div>
         <div class="h5 email hint-text mt-8">adams.charlie@mail.com</div>
-        <div class="avatar-container" [ngClass]="fuseConfig.layout.navbar.background">
+        <div class="avatar-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground">
             <img class="avatar" src="assets/images/avatars/Velazquez.jpg">
         </div>
 
