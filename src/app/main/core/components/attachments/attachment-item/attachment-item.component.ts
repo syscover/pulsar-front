@@ -40,7 +40,7 @@ export class AttachmentItemComponent implements OnInit
             this.renderer.removeClass($event.target.closest('.attachment-item'), 'covered');
         });
       
-        this.family = _.find(this.families, {'id': this.attachment.get('family_id').value});
+        this.family = <AttachmentFamily>_.find(this.families, {'id': this.attachment.get('family_id').value});
     }
 
     removeItemHandler($event) 

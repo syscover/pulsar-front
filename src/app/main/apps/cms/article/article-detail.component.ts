@@ -77,7 +77,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         });
     }
     
-    beforePatchValueEdit() 
+    beforePatchValueEdit(): void
     {
         // set section object and load attachment families
         this.section = _.find(this.sections, {id: this.object.section_id});
@@ -87,7 +87,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         this.family = _.find(this.families, {id: this.object.family_id});
     }
 
-    afterPatchValueEdit() 
+    afterPatchValueEdit(): void
     {    
         this.family = _.find(this.families, {id: this.object.family_id});
 
@@ -99,11 +99,11 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         // this.fg.controls['author_name'].setValue(this.object.author.name + ' ' + this.object.author.surname);
     }
 
-    handleChangeSection($event) 
+    handleChangeSection($event): void
     {
         if ($event.value) 
         {
-            this.section = _.find(this.sections, {id: $event.value});
+            this.section = <Section>_.find(this.sections, {id: $event.value});
 
             // load families from section
             this.loadAttachmentFamilies();
@@ -116,7 +116,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         }
     }
 
-    private loadAttachmentFamilies() 
+    private loadAttachmentFamilies(): void
     {
         // load attachment families depend of article section
         if (this.section.attachment_families) 
@@ -135,11 +135,11 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         }
     }
 
-    handleChangeFamily($event)
+    handleChangeFamily($event): void
     {
         if ($event.value) 
         {
-            this.family = _.find(this.families, {id: $event.value});
+            this.family = <Family>_.find(this.families, {id: $event.value});
             this.fg.controls['family_id'].setValue(this.family.id);
 
             // set field_group_id value

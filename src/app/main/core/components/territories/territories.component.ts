@@ -76,12 +76,12 @@ export class TerritoriesComponent implements OnChanges
     )
     {}
 
-    ngOnChanges()
+    ngOnChanges(): void
     {
         // check if component is loaded
         if (this.isLoadedComponent) return;
 
-        this.country = _.find(this.countries, {id: this.formGroup.get(this.countryControlName).value});
+        this.country = <Country>_.find(this.countries, {id: this.formGroup.get(this.countryControlName).value});
 
         // check the country exist
         if (! this.country) return;
@@ -126,14 +126,14 @@ export class TerritoriesComponent implements OnChanges
         }
     }
 
-    handleChangeCountry($event)
+    handleChangeCountry($event): void
     {
         this.showTerritorialAreas1 = false;
         this.showTerritorialAreas2 = false;
         this.showTerritorialAreas3 = false;
 
         // get country select
-        this.country = _.find(this.countries, {id: $event.value});
+        this.country = <Country>_.find(this.countries, {id: $event.value});
 
         if (this.country)
         {
@@ -161,7 +161,7 @@ export class TerritoriesComponent implements OnChanges
         }
     }
 
-    handleChangeTerritorialArea1($event)
+    handleChangeTerritorialArea1($event): void
     {
         this.showTerritorialAreas2 = false;
         this.showTerritorialAreas3 = false;
@@ -186,7 +186,7 @@ export class TerritoriesComponent implements OnChanges
         }
     }
 
-    handleChangeTerritorialArea2($event)
+    handleChangeTerritorialArea2($event): void
     {
         this.showTerritorialAreas3 = false;
 
@@ -200,7 +200,7 @@ export class TerritoriesComponent implements OnChanges
         }
     }
 
-    load(...ta: any[])
+    load(...ta: any[]): void
     {
         // if first element is array, set array like argument
         if (Array.isArray(ta[0])) ta = ta[0];

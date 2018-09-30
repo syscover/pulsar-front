@@ -29,7 +29,7 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
         this.fg.controls['country_id'].setValue(this.params['country_id']);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -64,24 +64,24 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin country
         this.country = data.adminCountry;
         this.objectTranslationTranslated = this.country.territorial_area_3;
     }
 
-    beforePatchValueEdit()
+    beforePatchValueEdit(): void
     {
         this.handlerChangeTerritorialArea1({ value: this.object.territorial_area_1_id });
     }
 
-    handlerChangeTerritorialArea1(event)
+    handlerChangeTerritorialArea1(event): void
     {
-        this.territorialAreas2 = _.filter(this.country.territorial_areas_2, { 'territorial_area_1_id': event.value });
+        this.territorialAreas2 = <TerritorialArea2[]> _.filter(this.country.territorial_areas_2, { 'territorial_area_1_id': event.value });
     }
 
-    handlerCheckingSlug(isChecking)
+    handlerCheckingSlug(isChecking): void
     {
         this.slugLoader = isChecking;
     }

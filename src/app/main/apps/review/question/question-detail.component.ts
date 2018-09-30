@@ -26,7 +26,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -41,21 +41,21 @@ export class QuestionDetailComponent extends CoreDetailComponent
         });
     }
 
-    handleChangePoll($event)
+    handleChangePoll($event): void
     {
         if ($event.value) 
         {
-            const poll = _.find(this.polls, {id: $event.value});
-            if (poll) this.fg.controls['high_score'].setValue(poll.default_high_score);
+            const poll: Poll = <Poll>_.find(this.polls, {id: $event.value});
+            if (poll) this.fg.controls['high_score'].setValue(<number>poll.default_high_score);
         }    
     }
 
-    handleChangeType($event)
+    handleChangeType($event): void
     {
         if ($event.value === 1) this.showHighScore = true; else this.showHighScore = false;
     }
 
-    beforePatchValueEdit() 
+    beforePatchValueEdit(): void
     {
         // only for questions with type score and has average
         if (this.dataRoute.action === 'edit' && this.object.average)
@@ -84,7 +84,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set review polls
         this.polls = data.reviewPolls;
