@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="px-8 px-mat-16">
+            <div class="px-8 px-md-16">
                 <fuse-shortcuts [navigation]="navigation"></fuse-shortcuts>
             </div>
 
@@ -28,6 +28,7 @@
             <button mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
+                    <!-- DH2 -->
                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/profile.jpg">
                     <span class="username mr-12" fxHide fxShow.gt-sm>{{ user?.name }}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
@@ -46,6 +47,7 @@
                     <span>Inbox</span>
                 </button>
 
+                <!-- DH2 -->
                 <button mat-menu-item class="" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>{{ 'TOOLBAR.LOGOUT' | translate }}</span>
@@ -85,7 +87,7 @@
                     class="quick-panel-toggle-button"
                     (click)="toggleSidebarOpen('quickPanel')"
                     aria-label="Toggle quick panel">
-                <mat-icon class="icon">format_list_bulleted</mat-icon>
+                <mat-icon class="secondary-text">format_list_bulleted</mat-icon>
             </button>
 
             <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
