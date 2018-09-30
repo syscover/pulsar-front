@@ -6,10 +6,10 @@ import gql from 'graphql-tag';
 export class CategoryGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query MarketGetCategoriesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
-            coreObjectsPagination: marketCategoriesPagination (filters:$filters sql:$sql) {
+        query MarketGetCategoriesPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput]) {
+            coreObjectsPagination: marketCategoriesPagination (sql:$sql filters:$filters) {
                 total
-                objects (filters:$filters sql:$sql)
+                objects (sql:$sql filters:$filters)
                 filtered
             }
         }`;

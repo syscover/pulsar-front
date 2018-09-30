@@ -23,10 +23,10 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                        {{ object.name }}
+                        {{ object.mime }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'ADMIN.ATTACHMENT_FAMILY' | translate }}
+                        {{ 'APPS.NEW.M' | translate }} {{ 'ADMIN.ATTACHMENT_MIME' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -85,45 +85,8 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field class="col-12 col-md-5">
-                            <span matSuffix>px</span>
-                            <input matInput placeholder="{{ 'APPS.WIDTH' | translate }}" formControlName="width" type="number">
-                            <mat-error>{{ formErrors?.width }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-12 col-md-5">
-                            <span matSuffix>px</span>
-                            <input matInput placeholder="{{ 'APPS.HEIGHT' | translate }}" formControlName="height" type="number">
-                            <mat-error>{{ formErrors?.height }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'ADMIN.SIZES' | translate }}" formControlName="sizes" multiple>
-                                <mat-option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.sizes }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-12 col-md-5">
-                            <span matSuffix>%</span>
-                            <input matInput placeholder="{{ 'ADMIN.QUALITY' | translate }}" formControlName="quality" min="1" max="100" type="number">
-                            <mat-error>{{ formErrors?.quality }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'ADMIN.FORMATS' | translate }}" formControlName="format">
-                                <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
-                                <mat-option *ngFor="let format of formats" [value]="format.id">{{ format.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.format }}</mat-error>
+                            <input matInput placeholder="{{ 'APPS.MIME' | translate }}" formControlName="mime" required>
+                            <mat-error>{{ formErrors?.mime }}</mat-error>
                         </mat-form-field>
                     </div>
 

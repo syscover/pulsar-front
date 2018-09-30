@@ -4,6 +4,7 @@ export const locale = {
         'ADMIN': {
             'ACTION': 'Action',
             'ATTACHMENT_FAMILY': 'Attachmen family',
+            'ATTACHMENT_MIME': 'Attachmen MIME',
             'COMPONENT_CLASS': 'Component class',
             'DATA_TYPE': 'Data type',
             'EDIT_ID': 'Edit Id',

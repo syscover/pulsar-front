@@ -68,11 +68,15 @@ export class ObjectAverageGraphQLService extends GraphQLSchema
                 poll {
                     id
                     name
-                    email_template
                     send_notification
+                    validate
                     default_high_score
                     mailing_days
                     expiration_days
+                    review_route
+                    comment_route
+                    review_email_template
+                    comment_email_template
                 }
                 object_id
                 object_type

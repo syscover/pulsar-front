@@ -408,7 +408,7 @@ export const navigation: FuseNavigation[] = [
                                 'translate': 'NAV.ATTACHMENT_MIMES',
                                 'type' : 'item',
                                 'icon' : 'camera_alt',
-                                'url'  : '/apps/admin/attachment-mimes'
+                                'url'  : '/apps/admin/attachment-mime'
                             },
                             {
                                 'id'   : 'attachment_library',

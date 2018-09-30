@@ -48,6 +48,7 @@ export const locale = {
             'LOGIN': 'Login',
             'LONGITUDE': 'Longitude',
             'MOBILE': 'Mobile',
+            'MIME': 'MIME',
             'NAME': 'Name',
             'NEW.F': 'New',
             'NEW.M': 'New',

@@ -9,13 +9,7 @@ export class ReviewGraphQLService extends GraphQLSchema
         query ReviewGetReviewsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: reviewReviewsPagination (sql:$sql) {
                 total
-                objects (sql:$sql) {
-                    id
-                    object_name
-                    object_email
-                    average
-                    validated
-                }
+                objects (sql:$sql)
                 filtered
             }
         }`;

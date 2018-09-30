@@ -30,10 +30,10 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [null, Validators.required],
+            id: [{value: null, disabled: true}],
             group_id: [null, Validators.required],
             company: null,
             tin: null,
@@ -56,7 +56,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         });
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {   
         super.ngOnInit();
 
@@ -71,7 +71,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         }
     }
 
-    getCustomArgumentsCreatePostRecord(args, object)
+    getCustomArgumentsCreatePostRecord(args, object): Object
     { 
         // delete repeat_password from object to ajust to user class
         delete args['object']['repeat_password'];
@@ -79,9 +79,9 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         return args;
     }
 
-    getCustomArgumentsEditPostRecord(args, object) 
+    getCustomArgumentsEditPostRecord(args, object): Object
     {
-        // delete repeat_password from object to ajust to user class
+        // delete repeat_password from object to adjust to user class
         delete args['object']['repeat_password'];
 
         return args;
@@ -108,7 +108,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set crm customer groups
         this.customerGroups = data.crmCustomerGroups;
@@ -121,7 +121,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         this.addresses = data['crmAddresses']; */
     }
 
-    generatePassword()
+    generatePassword(): void
     {
         const password = passwordGenerator.generate({
             length: 10,

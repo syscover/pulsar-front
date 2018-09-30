@@ -28,11 +28,11 @@ export class FieldListComponent extends CoreListComponent
 
     getCustomArgumentsGetRecords(args: Object): Object
     {
-        return {
-            configFieldTypes: {
-                key: 'pulsar-admin.field_types'
-            }
+        args['configFieldTypes'] = {
+            key: 'pulsar-admin.field_types'
         };
+
+        return args;
     }
 
     setRelationsData(data: any): void

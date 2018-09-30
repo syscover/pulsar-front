@@ -10,6 +10,8 @@ import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
 import { AttachmentFamilyListComponent } from './attachment-family/attachment-family-list.component';
 import { AttachmentFamilyDetailComponent } from './attachment-family/attachment-family-detail.component';
+import { AttachmentMimeListComponent } from './attachment-mime/attachment-mime-list.component';
+import { AttachmentMimeDetailComponent } from './attachment-mime/attachment-mime-detail.component';
 import { CountryListComponent } from './country/country-list.component';
 import { CountryDetailComponent } from './country/country-detail.component';
 import { FieldGroupListComponent } from './field-group/field-group-list.component';
@@ -37,6 +39,7 @@ import { UserDetailComponent } from './user/user-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
 import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
+import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { CountryGraphQLService } from './country/country-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
@@ -62,6 +65,8 @@ import { UserGraphQLService } from './user/user-graphql.service';
         ActionDetailComponent,
         AttachmentFamilyListComponent,
         AttachmentFamilyDetailComponent,
+        AttachmentMimeListComponent,
+        AttachmentMimeDetailComponent,
         CountryListComponent,
         CountryDetailComponent,
         FieldGroupListComponent,
@@ -90,6 +95,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
     providers: [
         ActionGraphQLService,
         AttachmentFamilyGraphQLService,
+        AttachmentMimeGraphQLService,
         CountryGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,

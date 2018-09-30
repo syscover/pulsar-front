@@ -6,10 +6,10 @@ import gql from 'graphql-tag';
 export class QuestionGraphQLService extends GraphQLSchema 
 {
     queryPaginationObject = gql`
-        query ReviewGetQuestionsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
-            coreObjectsPagination: reviewQuestionsPagination (filters:$filters sql:$sql) {
+        query ReviewGetQuestionsPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput]) {
+            coreObjectsPagination: reviewQuestionsPagination (sql:$sql filters:$filters) {
                 total
-                objects (sql:$sql)
+                objects (sql:$sql filters:$filters)
                 filtered
             }
         }`;

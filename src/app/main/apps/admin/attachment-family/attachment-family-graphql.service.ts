@@ -20,7 +20,7 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         }`;
 
     queryObjects = gql`
-        query AdminGetAttachmentFamilies ($sql:[CoreSQLInput]) {
+        query AdminGetAttachmentFamilies ($sql:[CoreSQLInput] $configSizes:CoreConfigInput! $configAttachmentResources:CoreConfigInput!) {
             coreObjects: adminAttachmentFamilies (sql:$sql){
                 ${this.fields}
             }

@@ -37,7 +37,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         this.createForm();
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         super.ngOnInit();
         this.validationMessageService.subscribeForm(this.fg, this.formErrors);
@@ -79,7 +79,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     afterSetData(): void {}
 
     // method that will be overwrite
-    createForm(): void { }
+    createForm(): void {}
 
     init(): void
     {
