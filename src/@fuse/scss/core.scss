@@ -10,14 +10,11 @@
 // Fuse
 @import "fuse";
 
+// Theme
+@import "theme";
+
 // Include core Angular Material styles
 @include mat-core();
-
-// Setup the typography
-@include angular-material-typography($typography);
-
-// Create an Angular Material theme from the $theme map
-@include angular-material-theme($theme);
 
 // Partials
 @import "partials/reset";

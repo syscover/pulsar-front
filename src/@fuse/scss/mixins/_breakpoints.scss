@@ -25,7 +25,7 @@ $grid-breakpoints: (
 
 @mixin media-breakpoint($breakpointName) {
 
-    $mediaQuery: map_get($breakpoints, $breakpointName);
+    $mediaQuery: map-get($breakpoints, $breakpointName);
 
     @if ($mediaQuery != null) {
 

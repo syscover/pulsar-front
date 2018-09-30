@@ -64,11 +64,11 @@
             }
 
             &:hover {
-                background-color: map-get($background, hover);
+                background-color: rgba(0, 0, 0, 0.04);
             }
 
             .mat-ripple-element {
-                background-color: map-get($background, hover);
+                background-color: rgba(0, 0, 0, 0.04);
             }
 
             &.active {

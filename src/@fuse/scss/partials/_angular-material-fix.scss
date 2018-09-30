@@ -12,10 +12,6 @@
 }
 
 // Fix: "Inconsistent font sizes across elements"
-.mat-form-field-wrapper {
-    font-size: 16px;
-}
-
 .mat-checkbox {
     font-size: 16px;
 }
@@ -34,7 +30,7 @@
     background-color: rgba(0, 0, 0, 0.12);
 }
 
-// Fix: "Some idiots using table-cell and inline-table in mat-select"
+// Fix: "Table-cell and inline-table in mat-select"
 .mat-form-field {
 
     &.mat-form-field-type-mat-select {
