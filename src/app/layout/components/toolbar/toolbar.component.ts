@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,9 +16,10 @@ import { NavigationService } from 'app/main/core/services/navigation.service';
 import { User } from 'app/main/apps/admin/admin.models';
 
 @Component({
-    selector   : 'toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls  : ['./toolbar.component.scss']
+    selector     : 'toolbar',
+    templateUrl  : './toolbar.component.html',
+    styleUrls    : ['./toolbar.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ToolbarComponent implements OnInit, OnDestroy
@@ -30,6 +31,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+
+    // DH2
     user: User;
 
     // Private
@@ -46,6 +49,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
+
         // DH2
         private _router: Router,
         private _authenticationService: AuthenticationService,
