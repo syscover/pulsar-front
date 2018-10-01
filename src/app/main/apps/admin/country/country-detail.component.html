@@ -1,14 +1,14 @@
 <div class="page-layout carded fullwidth inner-scroll">
 
     <!-- TOP BACKGROUND -->
-    <div class="top-bg mat-accent-bg"></div>
+    <div class="top-bg accent"></div>
     <!-- / TOP BACKGROUND -->
 
     <!-- CENTER -->
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
 
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="start center">
@@ -39,10 +39,10 @@
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        class="action-btn fuse-white mt-16 mt-sm-0"
                         [disabled]="fg.pristine || loadingButton"
                         *ngIf="dataRoute.action ==='create'">
-                    <span>{{ 'APPS.ADD' | translate }}</span>
+                    <span>{{ 'APPS.ADD' | translate }}X</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 

@@ -39,7 +39,7 @@
 
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
-                    class="new-btn mat-white-bg my-12 mt-sm-0">
+                    class="new-btn fuse-white my-12 mt-sm-0">
                 <span>{{ 'APPS.NEW.F' | translate }} {{ 'REVIEW.POLL' | translate }}</span>
             </button>
 
@@ -47,7 +47,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card mat-white-bg">
+        <div class="content-card fuse-white">
             <div class="loading-shape" *ngIf="isLoadingResults">
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
             </div>
