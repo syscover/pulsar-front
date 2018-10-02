@@ -49,7 +49,7 @@ export class ActionGraphQLService extends GraphQLSchema
             }
         }`;
 
-    init() 
+    init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\Action';
         this.table = 'admin_action';

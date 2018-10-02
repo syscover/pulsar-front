@@ -32,6 +32,7 @@ import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
+import {OauthClientListComponent} from './oauth-client/oauth-client-list.component';
 
 const routes: Routes = [
     {
@@ -52,6 +53,12 @@ const routes: Routes = [
             { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
             { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
             { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
+
+            // Client
+            { path: 'oauth-client',                                     component: OauthClientListComponent },
+            // { path: 'oauth-client/create',                              component: CountryDetailComponent,              data: { action: 'create' }},
+            // { path: 'oauth-client/create/:id',                          component: CountryDetailComponent,              data: { action: 'create-lang' }},
+            // { path: 'oauth-client/show/:id',                            component: CountryDetailComponent,              data: { action: 'edit' }},
 
             // Country
             { path: 'country',                                          component: CountryListComponent },

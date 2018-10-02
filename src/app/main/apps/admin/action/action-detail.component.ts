@@ -21,7 +21,8 @@ export class ActionDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() {
+    createForm(): void
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [null, [Validators.required, Validators.minLength(2)]],

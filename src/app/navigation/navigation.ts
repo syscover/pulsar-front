@@ -409,14 +409,32 @@ export const navigation: FuseNavigation[] = [
                                 'type' : 'item',
                                 'icon' : 'camera_alt',
                                 'url'  : '/apps/admin/attachment-mime'
-                            },
+                            } // ,
+                            // {
+                            //     'id'   : 'attachment_library',
+                            //     'title': 'Attachment library',
+                            //     'translate': 'NAV.ATTACHMENT_LIBRARY',
+                            //     'type' : 'item',
+                            //     'icon' : 'photo_library',
+                            //     'url'  : '/apps/admin/attachment-library'
+                            // }
+                        ]
+                    },
+
+                    {
+                        'id'       : 'apis',
+                        'title'    : 'Apis',
+                        'translate': 'NAV.APIS',
+                        'type'     : 'collapsable',
+                        'icon'     : 'share',
+                        'children' : [
                             {
-                                'id'   : 'attachment_library',
-                                'title': 'Attachment library',
-                                'translate': 'NAV.ATTACHMENT_LIBRARY',
+                                'id'   : 'clients',
+                                'title': 'clients',
+                                'translate': 'NAV.CLIENTS',
                                 'type' : 'item',
-                                'icon' : 'photo_library',
-                                'url'  : '/apps/admin/attachment-library'
+                                'icon' : 'people',
+                                'url'  : '/apps/admin/oauth-client'
                             }
                         ]
                     },
