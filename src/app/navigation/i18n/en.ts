@@ -5,7 +5,7 @@ export const locale = {
             'ACTIONS': 'Actions',
             'ADMINISTRATION': 'Administration',
             'ADDRESS_TYPES': 'Address types',
-            'APIS': 'APIS',
+            'APIS': 'APIs',
             'APPLICATIONS': 'Applications',
             'ARTICLES': 'Articles',
             'ATTACHMENT_FAMILIES': 'Attachemnt families',
