@@ -23,7 +23,7 @@ export class ResourceDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -33,7 +33,7 @@ export class ResourceDetailComponent extends CoreDetailComponent
         });
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin packages
         this.packages = data.adminPackages;

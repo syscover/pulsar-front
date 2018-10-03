@@ -435,6 +435,14 @@ export const navigation: FuseNavigation[] = [
                                 'type' : 'item',
                                 'icon' : 'people',
                                 'url'  : '/apps/admin/oauth-client'
+                            },
+                            {
+                                'id'   : 'access_tokens',
+                                'title': 'Access tokens',
+                                'translate': 'NAV.ACCESS_TOKENS',
+                                'type' : 'item',
+                                'icon' : 'security',
+                                'url'  : '/apps/admin/oauth-access-token'
                             }
                         ]
                     },

@@ -27,7 +27,7 @@ export class OrderRowInfoDialogComponent implements OnInit
     ) 
     {}
 
-    ngOnInit()
+    ngOnInit(): void
     {
         this.infoData = Object.values(this.data.info);
         console.log(Object.values(this.data.info));

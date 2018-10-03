@@ -53,7 +53,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         this.baseLang = this.configService.get('base_lang');
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         const keys = ['APPS'];
         if (this.objectTranslation) keys.push(this.objectTranslation);

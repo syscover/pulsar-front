@@ -43,7 +43,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         });
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {   
         super.ngOnInit();
 

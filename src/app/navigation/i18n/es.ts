@@ -2,6 +2,7 @@ export const locale = {
     lang: 'es',
     data: {
         'NAV': {
+            'ACCESS_TOKENS': 'Tokens de acceso',
             'ACTIONS': 'Acciones',
             'ADMINISTRATION': 'Administración',
             'ADDRESS_TYPES': 'Tipos de direcciones',

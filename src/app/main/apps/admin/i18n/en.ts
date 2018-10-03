@@ -21,6 +21,7 @@ export const locale = {
             'PATTERN': 'Pattern',
             'PROFILE': 'Profile',
             'QUALITY': 'Quality',
+            'REDIRECT_URL': 'Redirect Url',
             'REQUIRED': 'Required',
             'ROOT': 'Root',
             'SECRET': 'Secret',

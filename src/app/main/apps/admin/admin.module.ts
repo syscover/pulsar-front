@@ -23,6 +23,7 @@ import { FieldValueDetailComponent } from './field-value/field-value-detail.comp
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
 import { OauthClientListComponent } from './oauth-client/oauth-client-list.component';
+import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
@@ -80,6 +81,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
         LangListComponent,
         LangDetailComponent,
         OauthClientListComponent,
+        OauthClientDetailComponent,
         PackageListComponent,
         PackageDetailComponent,
         ProfileListComponent,

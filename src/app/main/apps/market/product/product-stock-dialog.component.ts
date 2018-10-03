@@ -57,13 +57,13 @@ export class ProductStockDialogComponent implements OnInit
         });
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         this.validationMessageService.subscribeForm(this.fg, this.formErrors);
         this.fg.patchValue(this.data.stockData);
     }
 
-    postRecord()
+    postRecord(): void
     {
         if (this.fg.valid) this.dialogRef.close(this.fg.value);
     }

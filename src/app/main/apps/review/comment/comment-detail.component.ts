@@ -26,7 +26,7 @@ export class CommentDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -42,7 +42,7 @@ export class CommentDetailComponent extends CoreDetailComponent
         });
     }
 
-    beforePatchValueEdit() 
+    beforePatchValueEdit(): void
     {
         // filter questions by baseLang
         this.questions = _.sortBy(_.filter(this.object.review.poll.questions, obj => {
@@ -72,7 +72,7 @@ export class CommentDetailComponent extends CoreDetailComponent
         return this.fg.get('responses') as FormArray;
     }
 
-    getCustomArgumentsEditPostRecord(args, object) 
+    getCustomArgumentsEditPostRecord(args, object): Object
     {
         args['action_id'] = args['object']['action_id'];
 

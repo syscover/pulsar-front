@@ -18,6 +18,8 @@ import { FieldValueListComponent } from './field-value/field-value-list.componen
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
+import { OauthClientListComponent } from './oauth-client/oauth-client-list.component';
+import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
@@ -32,7 +34,6 @@ import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
-import {OauthClientListComponent} from './oauth-client/oauth-client-list.component';
 
 const routes: Routes = [
     {
@@ -54,11 +55,10 @@ const routes: Routes = [
             { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
             { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
 
-            // Client
+            // OAuth Client
             { path: 'oauth-client',                                     component: OauthClientListComponent },
-            // { path: 'oauth-client/create',                              component: CountryDetailComponent,              data: { action: 'create' }},
-            // { path: 'oauth-client/create/:id',                          component: CountryDetailComponent,              data: { action: 'create-lang' }},
-            // { path: 'oauth-client/show/:id',                            component: CountryDetailComponent,              data: { action: 'edit' }},
+            { path: 'oauth-client/create',                              component: OauthClientDetailComponent,          data: { action: 'create' }},
+            { path: 'oauth-client/show/:id',                            component: OauthClientDetailComponent,          data: { action: 'edit' }},
 
             // Country
             { path: 'country',                                          component: CountryListComponent },
