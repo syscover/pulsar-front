@@ -2,6 +2,7 @@ export const locale = {
     lang: 'es',
     data: {
         'ADMIN': {
+            'ACCESS_TOKEN': 'Token de acceso',
             'ACTION': 'Acción',
             'ATTACHMENT_FAMILY': 'Familia de adjunto',
             'ATTACHMENT_MIME': 'MIME de adjunto',

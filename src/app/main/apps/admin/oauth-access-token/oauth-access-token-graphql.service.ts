@@ -31,7 +31,14 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
     mutationCreateObject = gql`
         mutation AdminCreateOAuthAccessToken ($object:AdminOAuthAccessTokenInput!) {
             adminCreateOAuthAccessToken (object:$object){
-                ${this.fields}
+                ... on AdminOAuthPersonalAccessTokenResult {
+                    accessToken
+                    token {
+                        id
+                        user_id
+                        name
+                    }
+                }
             }
         }`;
 
@@ -52,19 +59,14 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
     init(): void
     {
         this.model = 'Syscover\\Admin\\Models\\OAuthAccessToken';
-        this.table = 'oauth_clients';
+        this.table = 'oauth_access_tokens';
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on AdminOAuthAccessToken {
-                id
+                id 
                 user_id
                 name
-                secret
-                redirect
-                personal_access_client
-                password_client
-                revoked
             }
         `;
 

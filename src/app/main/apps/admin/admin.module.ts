@@ -22,6 +22,8 @@ import { FieldValueListComponent } from './field-value/field-value-list.componen
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
+import { OauthAccessTokenListComponent } from './oauth-access-token/oauth-access-token-list.component';
+import { OauthAccessTokenDetailComponent } from './oauth-access-token/oauth-access-token-detail.component';
 import { OauthClientListComponent } from './oauth-client/oauth-client-list.component';
 import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -47,6 +49,7 @@ import { FieldGroupGraphQLService } from './field-group/field-group-graphql.serv
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
 import { LangGraphQLService } from './lang/lang-graphql.service';
+import { OauthAccessTokenGraphqlService } from './oauth-access-token/oauth-access-token-graphql.service';
 import { OAuthClientGraphqlService } from './oauth-client/oauth-client-graphql.service';
 import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
@@ -80,6 +83,8 @@ import { UserGraphQLService } from './user/user-graphql.service';
         FieldValueDetailComponent,
         LangListComponent,
         LangDetailComponent,
+        OauthAccessTokenListComponent,
+        OauthAccessTokenDetailComponent,
         OauthClientListComponent,
         OauthClientDetailComponent,
         PackageListComponent,
@@ -106,6 +111,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
         FieldGraphQLService,
         FieldValueGraphQLService,
         LangGraphQLService,
+        OauthAccessTokenGraphqlService,
         OAuthClientGraphqlService,
         PackageGraphQLService,
         ProfileGraphQLService,

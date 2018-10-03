@@ -2,24 +2,24 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { OAuthClientGraphqlService } from './oauth-client-graphql.service';
+import { OauthAccessTokenGraphqlService } from './oauth-access-token-graphql.service';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { User } from '../admin.models';
 
 @Component({
-    selector: 'dh2-oauth-client-detail',
-    templateUrl: 'oauth-client-detail.component.html',
+    selector: 'dh2-oauth-access-token-detail',
+    templateUrl: 'oauth-access-token-detail.component.html',
     animations: fuseAnimations
 })
-export class OauthClientDetailComponent extends CoreDetailComponent implements OnInit
+export class OauthAccessTokenDetailComponent extends CoreDetailComponent implements OnInit
 {
-    objectTranslation = 'ADMIN.CLIENT';
+    objectTranslation = 'ADMIN.ACCESS_TOKEN';
     objectTranslationGender = 'M';
     user: User;
 
     constructor(
         protected injector: Injector,
-        protected graphQL: OAuthClientGraphqlService,
+        protected graphQL: OauthAccessTokenGraphqlService,
         private _authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);
@@ -31,8 +31,7 @@ export class OauthClientDetailComponent extends CoreDetailComponent implements O
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
             user_id: null,
-            name: [null, Validators.required],
-            redirect: [null, Validators.required]
+            name: [null, Validators.required]
         });
     }
 

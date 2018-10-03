@@ -101,12 +101,12 @@ export class AppComponent implements OnInit, OnDestroy
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
-        /**
-         setTimeout(() => {
+
+        setTimeout(() => {
             this._translateService.setDefaultLang('en');
-            this._translateService.setDefaultLang('tr');
-         });
-         */
+            this._translateService.setDefaultLang('es');
+        });
+
 
         /**
          * ------------------------------------------------------------------

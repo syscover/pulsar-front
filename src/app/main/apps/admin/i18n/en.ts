@@ -2,6 +2,7 @@ export const locale = {
     lang: 'en',
     data: {
         'ADMIN': {
+            'ACCESS_TOKEN': 'Access token',
             'ACTION': 'Action',
             'ATTACHMENT_FAMILY': 'Attachmen family',
             'ATTACHMENT_MIME': 'Attachmen MIME',

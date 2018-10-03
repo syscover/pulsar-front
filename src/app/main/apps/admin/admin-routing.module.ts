@@ -18,6 +18,8 @@ import { FieldValueListComponent } from './field-value/field-value-list.componen
 import { FieldValueDetailComponent } from './field-value/field-value-detail.component';
 import { LangListComponent } from './lang/lang-list.component';
 import { LangDetailComponent } from './lang/lang-detail.component';
+import { OauthAccessTokenListComponent } from './oauth-access-token/oauth-access-token-list.component';
+import { OauthAccessTokenDetailComponent } from './oauth-access-token/oauth-access-token-detail.component';
 import { OauthClientListComponent } from './oauth-client/oauth-client-list.component';
 import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
@@ -54,6 +56,11 @@ const routes: Routes = [
             { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
             { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
             { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
+
+            // OAuth Client
+            { path: 'oauth-access-token',                               component: OauthAccessTokenListComponent },
+            { path: 'oauth-access-token/create',                        component: OauthAccessTokenDetailComponent,     data: { action: 'create' }},
+            { path: 'oauth-access-token/show/:id',                      component: OauthAccessTokenDetailComponent,     data: { action: 'edit' }},
 
             // OAuth Client
             { path: 'oauth-client',                                     component: OauthClientListComponent },
