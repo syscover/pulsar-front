@@ -148,6 +148,30 @@ export const navigation: FuseNavigation[] = [
                         'icon'     : 'account_balance',
                         'children' : [
                             {
+                                'id'        : 'tax_rules',
+                                'title'     : 'Tax rules',
+                                'translate' : 'NAV.TAX_RULES',
+                                'type'      : 'item',
+                                'icon'      : 'gavel',
+                                'url'       : '/apps/market/taxes/tax-rule'
+                            },
+                            {
+                                'id'        : 'tax_rate_zones',
+                                'title'     : 'Tax rate zones',
+                                'translate' : 'NAV.TAX_RATE_ZONES',
+                                'type'      : 'item',
+                                'icon'      : 'language',
+                                'url'       : '/apps/market/taxes/tax-rate-zone'
+                            },
+                            {
+                                'id'        : 'product_class_taxes',
+                                'title'     : 'Product class taxes',
+                                'translate' : 'NAV.PRODUCT_CLASS_TAXES',
+                                'type'      : 'item',
+                                'icon'      : 'view_agenda',
+                                'url'       : '/apps/market/taxes/product-class-tax'
+                            },
+                            {
                                 'id'        : 'customer_class_taxes',
                                 'title'     : 'Customer class taxes',
                                 'translate' : 'NAV.CUSTOMER_CLASS_TAXES',
@@ -162,30 +186,6 @@ export const navigation: FuseNavigation[] = [
                                 'type'      : 'item',
                                 'icon'      : 'blur_circular',
                                 'url'       : '/apps/market/taxes/customer-group-customer-class-tax'
-                            },
-                            {
-                                'id'        : 'product_class_taxes',
-                                'title'     : 'Product class taxes',
-                                'translate' : 'NAV.PRODUCT_CLASS_TAXES',
-                                'type'      : 'item',
-                                'icon'      : 'view_agenda',
-                                'url'       : '/apps/market/taxes/product-class-tax'
-                            },
-                            {
-                                'id'        : 'tax_rate_zones',
-                                'title'     : 'Tax rate zones',
-                                'translate' : 'NAV.TAX_RATE_ZONES',
-                                'type'      : 'item',
-                                'icon'      : 'language',
-                                'url'       : '/apps/market/taxes/tax-rate-zone'
-                            },
-                            {
-                                'id'        : 'tax_rules',
-                                'title'     : 'Tax rules',
-                                'translate' : 'NAV.TAX_RULES',
-                                'type'      : 'item',
-                                'icon'      : 'gavel',
-                                'url'       : '/apps/market/taxes/tax-rule'
                             }
                         ]
                     },

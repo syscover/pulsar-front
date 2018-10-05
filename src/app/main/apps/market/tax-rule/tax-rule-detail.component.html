@@ -88,7 +88,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
+                        <mat-form-field class="col-12">
                             <mat-select placeholder="{{ 'MARKET.TAX_RATE_ZONE' | translate }}" formControlName="tax_rate_zones_id" multiple required>
                                 <mat-option *ngFor="let taxRateZone of taxRateZones" [value]="taxRateZone.id">{{ taxRateZone.name }}</mat-option>                                            
                             </mat-select>

@@ -72,7 +72,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="market_tax_rate_zone.tax_rate">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TAX_RATE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.tax_rate_zones | valuesArray:'tax_rate':',':'':'%' }}</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.tax_rate_zones | valuesArray:'tax_rate':', ':'':'%' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
