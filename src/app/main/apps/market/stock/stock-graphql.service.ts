@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 export class StockGraphQLService extends GraphQLSchema 
 {
     mutationSetStock = gql`
-        mutation MarketSetStock ($object:MarketStockInput!) {
-            marketSetStock (object:$object){
+        mutation MarketSetStock ($payload:MarketStockInput!) {
+            marketSetStock (payload:$payload){
                 ${this.fields}
             }
         }`;

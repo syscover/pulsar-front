@@ -36,15 +36,15 @@ export class AttachmentFamilyGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
-            adminCreateAttachmentFamily (object:$object){
+        mutation AdminCreateAttachmentFamily ($payload:AdminAttachmentFamilyInput!) {
+            adminCreateAttachmentFamily (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateAttachmentFamily ($object:AdminAttachmentFamilyInput!) {
-            adminUpdateAttachmentFamily (object:$object){
+        mutation AdminUpdateAttachmentFamily ($payload:AdminAttachmentFamilyInput!) {
+            adminUpdateAttachmentFamily (payload:$payload){
                 ${this.fields}
             }
         }`;

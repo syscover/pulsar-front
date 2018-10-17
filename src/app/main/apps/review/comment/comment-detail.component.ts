@@ -74,13 +74,13 @@ export class CommentDetailComponent extends CoreDetailComponent
 
     getCustomArgumentsEditPostRecord(args, object): Object
     {
-        args['action_id'] = args['object']['action_id'];
+        args['action_id'] = args['payload']['action_id'];
 
         // delete action_id from object to ajust to comment class
-        delete args['object']['action_id'];
+        delete args['payload']['action_id'];
 
         // delete responses from object to ajust to comment class
-        delete args['object']['responses'];
+        delete args['payload']['responses'];
 
         return args;
     }

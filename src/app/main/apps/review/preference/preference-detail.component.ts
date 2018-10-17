@@ -59,7 +59,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
     {
         const objectInput = [];
 
-        for (const propertyName of Object.keys(args['object']))
+        for (const propertyName of Object.keys(args['payload']))
         {
             objectInput.push({
                 key: propertyName,

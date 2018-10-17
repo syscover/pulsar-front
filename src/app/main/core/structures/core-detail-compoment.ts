@@ -283,8 +283,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             this.fg.get('id').enable(); // enable is a method from AbstractControl
         }
 
-        // add object to arguments
-        args['object'] = this.fg.value;
+        // add payload to arguments
+        args['payload'] = this.fg.value;
 
         // call method that can to be overwrite by children
         args = this.getCustomArgumentsPostRecord(args, object);
@@ -307,7 +307,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         if (this.dataRoute.action === 'create-lang')
         {
             // remove id to avoid confict with duplicate id
-            delete args['object']['ix'];
+            delete args['payload']['ix'];
 
             // call method that can to be overwrite by children
             args = this.getCustomArgumentsCreateLangPostRecord(args, object);

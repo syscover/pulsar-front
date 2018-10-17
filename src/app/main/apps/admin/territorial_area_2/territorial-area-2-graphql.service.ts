@@ -36,15 +36,15 @@ export class TerritorialArea2GraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateTerritorialArea2 ($object:AdminTerritorialArea2Input!) {
-            adminCreateTerritorialArea2 (object:$object){
+        mutation AdminCreateTerritorialArea2 ($payload:AdminTerritorialArea2Input!) {
+            adminCreateTerritorialArea2 (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateTerritorialArea2 ($object:AdminTerritorialArea2Input!) {
-            adminUpdateTerritorialArea2 (object:$object){
+        mutation AdminUpdateTerritorialArea2 ($payload:AdminTerritorialArea2Input!) {
+            adminUpdateTerritorialArea2 (payload:$payload){
                 ${this.fields}
             }
         }`;

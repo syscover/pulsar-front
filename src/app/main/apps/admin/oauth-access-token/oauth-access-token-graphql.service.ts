@@ -29,8 +29,8 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateOAuthAccessToken ($object:AdminOAuthAccessTokenInput!) {
-            adminCreateOAuthAccessToken (object:$object){
+        mutation AdminCreateOAuthAccessToken ($payload:AdminOAuthAccessTokenInput!) {
+            adminCreateOAuthAccessToken (payload:$payload){
                 ... on AdminOAuthPersonalAccessTokenResult {
                     accessToken
                     token {
@@ -43,8 +43,8 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateOAuthAccessToken ($object:AdminOAuthAccessTokenInput!) {
-            adminUpdateOAuthAccessToken (object:$object) {
+        mutation AdminUpdateOAuthAccessToken ($payload:AdminOAuthAccessTokenInput!) {
+            adminUpdateOAuthAccessToken (payload:$payload) {
                 ${this.fields}
             }
         }`;

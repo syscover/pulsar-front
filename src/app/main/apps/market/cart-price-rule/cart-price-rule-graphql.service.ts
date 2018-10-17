@@ -35,15 +35,15 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateCartPriceRule ($object:MarketCartPriceRuleInput!) {
-            marketCreateCartPriceRule (object:$object){
+        mutation MarketCreateCartPriceRule ($payload:MarketCartPriceRuleInput!) {
+            marketCreateCartPriceRule (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateCartPriceRule ($object:MarketCartPriceRuleInput!) {
-            marketUpdateCartPriceRule (object:$object){
+        mutation MarketUpdateCartPriceRule ($payload:MarketCartPriceRuleInput!) {
+            marketUpdateCartPriceRule (payload:$payload){
                 ${this.fields}
             }
         }`;

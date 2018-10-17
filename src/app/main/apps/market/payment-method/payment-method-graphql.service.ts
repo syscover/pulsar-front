@@ -36,15 +36,15 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateAction ($object:MarketPaymentMethodInput!) {
-            marketCreatePaymentMethod (object:$object){
+        mutation MarketCreateAction ($payload:MarketPaymentMethodInput!) {
+            marketCreatePaymentMethod (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdatePaymentMethod ($object:MarketPaymentMethodInput!) {
-            marketUpdatePaymentMethod (object:$object){
+        mutation MarketUpdatePaymentMethod ($payload:MarketPaymentMethodInput!) {
+            marketUpdatePaymentMethod (payload:$payload){
                 ${this.fields}
             }
         }`;

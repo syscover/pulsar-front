@@ -36,15 +36,15 @@ export class SectionGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation CmsCreateSection ($object:CmsSectionInput!) {
-            cmsCreateSection (object:$object){
+        mutation CmsCreateSection ($payload:CmsSectionInput!) {
+            cmsCreateSection (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CmsUpdateSection ($object:CmsSectionInput!) {
-            cmsUpdateSection (object:$object){
+        mutation CmsUpdateSection ($payload:CmsSectionInput!) {
+            cmsUpdateSection (payload:$payload){
                 ${this.fields}
             }
         }`;

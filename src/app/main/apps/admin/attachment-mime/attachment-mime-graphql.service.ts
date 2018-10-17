@@ -36,15 +36,15 @@ export class AttachmentMimeGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateAttachmentMime ($object:AdminAttachmentMimeInput!) {
-            adminCreateAttachmentMime (object:$object){
+        mutation AdminCreateAttachmentMime ($payload:AdminAttachmentMimeInput!) {
+            adminCreateAttachmentMime (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateAttachmentMime ($object:AdminAttachmentMimeInput!) {
-            adminUpdateAttachmentMime (object:$object){
+        mutation AdminUpdateAttachmentMime ($payload:AdminAttachmentMimeInput!) {
+            adminUpdateAttachmentMime (payload:$payload){
                 ${this.fields}
             }
         }`;

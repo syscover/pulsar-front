@@ -29,15 +29,15 @@ export class CustomerGroupGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation CrmCreateCustomerGroup ($object:CrmCustomerGroupInput!) {
-            crmCreateCustomerGroup (object:$object){
+        mutation CrmCreateCustomerGroup ($payload:CrmCustomerGroupInput!) {
+            crmCreateCustomerGroup (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CrmUpdateCustomerGroup ($object:CrmCustomerGroupInput!) {
-            crmUpdateCustomerGroup (object:$object){
+        mutation CrmUpdateCustomerGroup ($payload:CrmCustomerGroupInput!) {
+            crmUpdateCustomerGroup (payload:$payload){
                 ${this.fields}
             }
         }`;

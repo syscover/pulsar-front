@@ -73,10 +73,10 @@ export class ReviewDetailComponent extends CoreDetailComponent
 
     getCustomArgumentsEditPostRecord(args, object) 
     {
-        args['action_id'] = args['object']['action_id'];
+        args['action_id'] = args['payload']['action_id'];
 
         // delete action_id from object to ajust to review class
-        delete args['object']['action_id'];
+        delete args['payload']['action_id'];
 
         return args;
     }

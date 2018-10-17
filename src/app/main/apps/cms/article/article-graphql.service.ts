@@ -51,15 +51,15 @@ export class ArticleGraphQLService extends GraphQLSchema {
         }`;
 
     mutationCreateObject = gql`
-        mutation CmsCreateArticle ($object:CmsArticleInput!) {
-            cmsCreateArticle (object:$object){
+        mutation CmsCreateArticle ($payload:CmsArticleInput!) {
+            cmsCreateArticle (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CmsUpdateArticle ($object:CmsArticleInput!) {
-            cmsUpdateArticle (object:$object){
+        mutation CmsUpdateArticle ($payload:CmsArticleInput!) {
+            cmsUpdateArticle (payload:$payload){
                 ${this.fields}
             }
         }`;

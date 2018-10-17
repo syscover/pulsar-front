@@ -29,15 +29,15 @@ export class OrderStatusGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateOrderStatus ($object:MarketOrderStatusInput!) {
-            marketCreateOrderStatus (object:$object){
+        mutation MarketCreateOrderStatus ($payload:MarketOrderStatusInput!) {
+            marketCreateOrderStatus (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateOrderStatus ($object:MarketOrderStatusInput!) {
-            marketUpdateOrderStatus (object:$object){
+        mutation MarketUpdateOrderStatus ($payload:MarketOrderStatusInput!) {
+            marketUpdateOrderStatus (payload:$payload){
                 ${this.fields}
             }
         }`;

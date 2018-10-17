@@ -29,15 +29,15 @@ export class OAuthClientGraphqlService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateOAuthClient ($object:AdminOAuthClientInput!) {
-            adminCreateOAuthClient (object:$object){
+        mutation AdminCreateOAuthClient ($payload:AdminOAuthClientInput!) {
+            adminCreateOAuthClient (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateOAuthClient ($object:AdminOAuthClientInput!) {
-            adminUpdateOAuthClient (object:$object) {
+        mutation AdminUpdateOAuthClient ($payload:AdminOAuthClientInput!) {
+            adminUpdateOAuthClient (payload:$payload) {
                 ${this.fields}
             }
         }`;

@@ -35,15 +35,15 @@ export class WarehouseGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateWarehouse ($object:MarketWarehouseInput!) {
-            marketCreateWarehouse (object:$object){
+        mutation MarketCreateWarehouse ($payload:MarketWarehouseInput!) {
+            marketCreateWarehouse (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateWarehouse ($object:MarketWarehouseInput!) {
-            marketUpdateWarehouse (object:$object){
+        mutation MarketUpdateWarehouse ($payload:MarketWarehouseInput!) {
+            marketUpdateWarehouse (payload:$payload){
                 ${this.fields}
             }
         }`;

@@ -35,15 +35,15 @@ export class TaxRuleGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateTaxRule ($object:MarketTaxRuleInput!) {
-            marketCreateTaxRule (object:$object){
+        mutation MarketCreateTaxRule ($payload:MarketTaxRuleInput!) {
+            marketCreateTaxRule (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateTaxRule ($object:MarketTaxRuleInput!) {
-            marketUpdateTaxRule (object:$object){
+        mutation MarketUpdateTaxRule ($payload:MarketTaxRuleInput!) {
+            marketUpdateTaxRule (payload:$payload){
                 ${this.fields}
             }
         }`;

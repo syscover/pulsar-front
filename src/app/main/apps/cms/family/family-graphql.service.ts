@@ -36,15 +36,15 @@ export class FamilyGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation CmsCreateFamily ($object:CmsFamilyInput!) {
-            cmsCreateFamily (object:$object){
+        mutation CmsCreateFamily ($payload:CmsFamilyInput!) {
+            cmsCreateFamily (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation CmsUpdateFamily ($object:CmsFamilyInput!) {
-            cmsUpdateFamily (object:$object){
+        mutation CmsUpdateFamily ($payload:CmsFamilyInput!) {
+            cmsUpdateFamily (payload:$payload){
                 ${this.fields}
             }
         }`;

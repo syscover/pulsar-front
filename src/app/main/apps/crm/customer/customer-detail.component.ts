@@ -74,7 +74,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     getCustomArgumentsCreatePostRecord(args, object): Object
     { 
         // delete repeat_password from object to ajust to user class
-        delete args['object']['repeat_password'];
+        delete args['payload']['repeat_password'];
 
         return args;
     }
@@ -82,7 +82,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     getCustomArgumentsEditPostRecord(args, object): Object
     {
         // delete repeat_password from object to adjust to user class
-        delete args['object']['repeat_password'];
+        delete args['payload']['repeat_password'];
 
         return args;
     }

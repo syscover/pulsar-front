@@ -36,15 +36,15 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateCustomerGroupCustomerClassTax ($object:MarketCustomerGroupCustomerClassTaxInput!) {
-            marketCreateCustomerGroupCustomerClassTax (object:$object){
+        mutation MarketCreateCustomerGroupCustomerClassTax ($payload:MarketCustomerGroupCustomerClassTaxInput!) {
+            marketCreateCustomerGroupCustomerClassTax (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int! $object:MarketCustomerGroupCustomerClassTaxInput!) {
-            marketUpdateCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id object:$object){
+        mutation MarketUpdateCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int! $payload:MarketCustomerGroupCustomerClassTaxInput!) {
+            marketUpdateCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id payload:$payload){
                 ${this.fields}
             }
         }`;

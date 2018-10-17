@@ -29,15 +29,15 @@ export class FieldValueGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateFieldValue ($object:AdminFieldValueInput!) {
-            adminCreateFieldValue (object:$object){
+        mutation AdminCreateFieldValue ($payload:AdminFieldValueInput!) {
+            adminCreateFieldValue (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateFieldValue ($object:AdminFieldValueInput!) {
-            adminUpdateFieldValue (object:$object){
+        mutation AdminUpdateFieldValue ($payload:AdminFieldValueInput!) {
+            adminUpdateFieldValue (payload:$payload){
                 ${this.fields}
             }
         }`;

@@ -29,15 +29,15 @@ export class CountryGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateCountry ($object:AdminCountryInput!) {
-            adminCreateCountry (object:$object){
+        mutation AdminCreateCountry ($payload:AdminCountryInput!) {
+            adminCreateCountry (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateCountry ($object:AdminCountryInput!) {
-            adminUpdateCountry (object:$object){
+        mutation AdminUpdateCountry ($payload:AdminCountryInput!) {
+            adminUpdateCountry (payload:$payload){
                 ${this.fields}
             }
         }`;

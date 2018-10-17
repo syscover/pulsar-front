@@ -36,15 +36,15 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateFieldGroup ($object:AdminFieldGroupInput!) {
-            adminCreateFieldGroup (object:$object){
+        mutation AdminCreateFieldGroup ($payload:AdminFieldGroupInput!) {
+            adminCreateFieldGroup (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateFieldGroup ($object:AdminFieldGroupInput!) {
-            adminUpdateFieldGroup (object:$object){
+        mutation AdminUpdateFieldGroup ($payload:AdminFieldGroupInput!) {
+            adminUpdateFieldGroup (payload:$payload){
                 ${this.fields}
             }
         }`;

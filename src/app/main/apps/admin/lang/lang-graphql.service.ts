@@ -29,15 +29,15 @@ export class LangGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateLang ($object:AdminLangInput!) {
-            adminCreateLang (object:$object){
+        mutation AdminCreateLang ($payload:AdminLangInput!) {
+            adminCreateLang (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateLang ($object:AdminLangInput!) {
-            adminUpdateLang (object:$object){
+        mutation AdminUpdateLang ($payload:AdminLangInput!) {
+            adminUpdateLang (payload:$payload){
                 ${this.fields}
             }
         }`;

@@ -29,15 +29,15 @@ export class ActionGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation AdminCreateAction ($object:AdminActionInput!) {
-            adminCreateAction (object:$object){
+        mutation AdminCreateAction ($payload:AdminActionInput!) {
+            adminCreateAction (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation AdminUpdateAction ($object:AdminActionInput!) {
-            adminUpdateAction (object:$object) {
+        mutation AdminUpdateAction ($payload:AdminActionInput!) {
+            adminUpdateAction (payload:$payload) {
                 ${this.fields}
             }
         }`;

@@ -29,15 +29,15 @@ export class ProductClassTaxGraphQLService extends GraphQLSchema
         }`;
 
     mutationCreateObject = gql`
-        mutation MarketCreateProductClassTax ($object:MarketProductClassTaxInput!) {
-            marketCreateProductClassTax (object:$object){
+        mutation MarketCreateProductClassTax ($payload:MarketProductClassTaxInput!) {
+            marketCreateProductClassTax (payload:$payload){
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
-        mutation MarketUpdateProductClassTax ($object:MarketProductClassTaxInput!) {
-            marketUpdateProductClassTax (object:$object){
+        mutation MarketUpdateProductClassTax ($payload:MarketProductClassTaxInput!) {
+            marketUpdateProductClassTax (payload:$payload){
                 ${this.fields}
             }
         }`;
