@@ -74,6 +74,7 @@ export const locale = {
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total de usos',
             'WAREHOUSE': 'Almacén',
+            'WEB_PROFILE': 'Perfil web',
             'WEIGHT': 'Peso'
         }
     }

@@ -16,6 +16,7 @@ import { OrderStatusListComponent } from './order-status/order-status-list.compo
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
+import { PaypalWebProfileListComponent } from './web-profile/paypal-web-profile-list.component';
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
@@ -104,6 +105,9 @@ const routes: Routes = [
             { path: 'warehouse',                                                        component: WarehouseListComponent },
             { path: 'warehouse/create',                                                 component: WarehouseDetailComponent,                        data: { action: 'create' }},
             { path: 'warehouse/show/:id',                                               component: WarehouseDetailComponent,                        data: { action: 'edit' }},
+
+            // PayPal Web Profiles
+            { path: 'payment-gateways/paypal-web-profile',                               component: PaypalWebProfileListComponent },
         ]  
     }
 ];

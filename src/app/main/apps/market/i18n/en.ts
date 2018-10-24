@@ -74,6 +74,7 @@ export const locale = {
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total uses',
             'WAREHOUSE': 'Warehouse',
+            'WEB_PROFILE': 'Web profile',
             'WEIGHT': 'Weight'
         }
     }

@@ -39,6 +39,9 @@ export const locale = {
             'ORDERS': 'Orders',
             'PACKAGES': 'Packages',
             'PAYMENT_METHODS': 'Payment methods',
+            'PAYMENT_GATEWAYS': 'Payment gateways',
+            'PAYPAL': 'PayPal',
+            'PAYPAL_WEB_PROFILES': 'PayPal Web profiles',
             'PERMISSIONS': 'Permissions',
             'POLLS': 'Polls',
             'PREFERENCES': 'Preferences',
@@ -55,7 +58,9 @@ export const locale = {
             'TAX_RULES': 'Tax rules',
             'TAXES': 'Taxes',
             'USERS': 'Users',
-            'WAREHOUSES': 'Warehouses'
+            'WAREHOUSES': 'Warehouses',
+            'WEB_PROFILES': 'Web profiles',
+            'WINE': 'Wine'
         },
         'TOOLBAR': {
             'MY_PROFILE': 'My profile',

@@ -141,6 +141,23 @@ export const navigation: FuseNavigation[] = [
                         ]
                     },
                     {
+                        'id'       : 'payment_gateways',
+                        'title'    : 'Payment gateways',
+                        'translate': 'NAV.PAYMENT_GATEWAYS',
+                        'type'     : 'collapsable',
+                        'icon'     : 'credit_card',
+                        'children' : [
+                            {
+                                'id'        : 'paypal',
+                                'title'     : 'PayPal',
+                                'translate' : 'NAV.PAYPAL_WEB_PROFILES',
+                                'type'      : 'item',
+                                'icon'      : ['fab', 'paypal'],
+                                'url'       : '/apps/market/payment-gateways/paypal-web-profile'
+                            }
+                        ]
+                    },
+                    {
                         'id'       : 'taxes',
                         'title'    : 'Taxes',
                         'translate': 'NAV.TAXES',
@@ -321,6 +338,16 @@ export const navigation: FuseNavigation[] = [
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/cms/category'
                     }
+                ]
+            },
+            {
+                'id'   : 'wine',
+                'title': 'Wine',
+                'translate': 'NAV.WINE',
+                'type' : 'collapsable',
+                'icon' : 'local_drink',
+                'children' : [
+
                 ]
             },
             {
