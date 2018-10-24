@@ -15,6 +15,8 @@ export class FuseNavVerticalItemComponent
     @Input()
     item: FuseNavigationItem;
 
+    public array = Array;
+
     /**
      * Constructor
      */
