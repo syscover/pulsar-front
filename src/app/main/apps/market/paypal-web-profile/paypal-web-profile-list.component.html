@@ -18,7 +18,7 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">business</mat-icon>
+                <fa-icon [icon]="['fab','paypal']" size="3x" class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.WEB_PROFILES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'MARKET.WAREHOUSE' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'PAYPAL.WEB_PROFILE' | translate }}</span>
             </button>
 
         </div>
