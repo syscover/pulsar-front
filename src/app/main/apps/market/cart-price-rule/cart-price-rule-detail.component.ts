@@ -7,7 +7,6 @@ import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { CustomerGroup } from './../../crm/crm.models';
 import { DiscountType } from './../market.models';
 import './../../../core/functions/date-to-json.function';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-cart-price-rule-detail',
@@ -32,7 +31,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -87,7 +86,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         );
     }
 
-    afterSetData() 
+    afterSetData(): void
     {
         // show fields to fill discounts
         this.showDiscountTypeFields(this.object.discount_type_id);
@@ -126,11 +125,18 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
                 this.fg.controls['name'].setValue(this.name);
                 
                 // set description field
-                this.fg.controls['description'].setValue(
-                    this.object.descriptions.find((el) => {
+                if (Array.isArray(this.object.descriptions))
+                {
+                    console.log(this.object.descriptions);
+                    const trans = this.object.descriptions.find((el) => {
                         return el['id'] === this.lang.id;
-                    })['value']
-                );
+                    });
+
+                    if (trans && trans['id'])
+                    {
+                        this.fg.controls['description'].setValue(trans['id']);
+                    }
+                }
 
                 // disabled elemetns if edit diferent language that base lang
                 if (this.lang.id !== this.baseLang) this.disabledForm();
@@ -138,7 +144,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         }
     } 
 
-    disabledForm() 
+    disabledForm(): void
     {
         this.fg.controls['active'].disable();
         this.fg.controls['customer_group_ids'].disable();
@@ -158,7 +164,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         this.fg.controls['free_shipping'].disable();
     }
 
-    setRelationsData(data: any)
+    setRelationsData(data: any): void
     {
         // set crm customer groups
         this.customerGroups = data.crmCustomerGroups;
@@ -167,7 +173,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         this.discountTypes = data.marketDiscountTypes;
     }
 
-    handleDiscountType($event)
+    handleDiscountType($event): void
     {
         this.showDiscountTypeFields($event.value);
     }

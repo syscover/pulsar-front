@@ -252,13 +252,13 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // create all elements whith graphQL data obtain from method relationsObject()
     // this function load realtion data to create object or edit object
-    setRelationsData(data: any) { }
+    setRelationsData(data: any): void { }
 
 
-    // funtion that will be call for create object, create lang object and update object
+    // function that will be call for create object, create lang object and update object
     postRecord(object: any, routeRedirect?: any[])
     {
-        // apperar spinner in button
+        // appear spinner in button
         this.loadingButton = true;
 
         // set errors from current form, this variable is binded to all form elements
