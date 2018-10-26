@@ -20,7 +20,8 @@ import { OrderStatusListComponent } from './order-status/order-status-list.compo
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
-import { PaypalWebProfileListComponent } from './web-profile/paypal-web-profile-list.component';
+import { PaypalWebProfileListComponent } from './paypal-web-profile/paypal-web-profile-list.component';
+import { PaypalWebProfileDetailComponent } from './paypal-web-profile/paypal-web-profile-detail.component';
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
@@ -42,7 +43,7 @@ import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-cu
 import { OrderGraphQLService } from './order/order-graphql.service';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
-import { PaypalWebProfileGraphqlService } from './web-profile/paypal-web-profile-graphql.service';
+import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
 import { ProductGraphQLService } from './product/product-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { SectionGraphQLService } from './section/section-graphql.service';
@@ -74,6 +75,7 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         PaymentMethodListComponent,
         PaymentMethodDetailComponent,
         PaypalWebProfileListComponent,
+        PaypalWebProfileDetailComponent,
         ProductListComponent,
         ProductDetailComponent,
         ProductClassTaxListComponent,

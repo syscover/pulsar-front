@@ -6,8 +6,8 @@
 }
 
 {
-    "graphqlUri": "https://dev.xfeat.com/graphql",
-    "apiUrl": "https://dev.xfeat.com",
+    "graphqlUri": "https://xfeat.com/graphql",
+    "apiUrl": "https://xfeat.com",
     "froalaKey": "OviupfA2wzA-13==",
     "googleMapsApiKey": ""
 }

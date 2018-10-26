@@ -16,34 +16,34 @@ export class PaypalWebProfileGraphqlService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetPaypalWebProfiles ($sql:[CoreSQLInput]) {
-            coreObjects: marketPaypalWebProfiles (sql:$sql){
+            coreObjects: marketPaypalWebProfiles (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
-        query MarketGetPaypalWebProfile ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
-            coreObject: marketPaypalWebProfile (sql:$sql){
+        query MarketGetPaypalWebProfile ($sql:[CoreSQLInput]) {
+            coreObject: marketPaypalWebProfile (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation MarketCreatePaypalWebProfile ($payload:MarketPaypalWebProfileInput!) {
-            marketCreatePaypalWebProfile (payload:$payload){
+            marketCreatePaypalWebProfile (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdatePaypalWebProfile ($payload:MarketPaypalWebProfileInput!) {
-            marketUpdatePaypalWebProfile (payload:$payload){
+            marketUpdatePaypalWebProfile (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
-        mutation MarketDeletePaypalWebProfile ($id:Int!) {
+        mutation MarketDeletePaypalWebProfile ($id:String!) {
             marketDeletePaypalWebProfile (id:$id){
                 ${this.fields}
             }
@@ -52,13 +52,32 @@ export class PaypalWebProfileGraphqlService extends GraphQLSchema
     init(): void
     {
         // this.model = 'Syscover\\Market\\Models\\PaypalWebProfile';
-        // this.table = 'market_paypal_web_profile';
+        this.table = 'market_paypal_web_profile'; // is not a table
 
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketPaypalWebProfile {
                     id
                     name
+                    temporary
+                    flow_config {
+                        landing_page_type
+                        bank_txn_pending_url
+                        user_action
+                        return_uri_http_method
+                    }
+                    input_fields {
+                        allow_note
+                        no_shipping
+                        address_override
+                    }
+                    presentation {
+                        brand_name
+                        logo_image
+                        locale_code
+                        return_url_label
+                        note_to_seller_label
+                    }
                 }
         `;
 

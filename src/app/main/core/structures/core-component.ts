@@ -84,7 +84,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         if (this.env.debug) console.log('DEBUG - Core component destroyed');
     }
 
-    protected setBaseUri(baseUri?: string) 
+    protected setBaseUri(baseUri?: string): void
     {
         // compose baseUri from snapshot route if baseUri parameter is undefined
         if (! baseUri) 

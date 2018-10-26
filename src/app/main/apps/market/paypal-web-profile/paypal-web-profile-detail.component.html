@@ -1,0 +1,269 @@
+<div class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri + '/paypal-web-profile'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <fa-icon [icon]="['fab','paypal']" size="3x"></fa-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'PAYPAL.WEB_PROFILE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='create'">
+                <span>{{ 'APPS.ADD' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="action-btn fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='edit'">
+                <span>{{ 'APPS.SAVE' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card fuse-white p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                <div fxFlex fxLayout="column">
+                    <form id="formDetail"
+                          [formGroup]="fg"
+                          (ngSubmit)="postRecord(object)">
+                
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <div class="col-12 py-20">
+                            <mat-checkbox formControlName="temporary">{{ 'PAYPAL.TEMPORARY' | translate }}</mat-checkbox>
+                        </div>
+                    </div>
+
+
+                    <mat-accordion [multi]="false">
+
+                        <!-- PRESENTATION -->
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-icon class="m-0 mr-16">devices_other</mat-icon> {{ 'PAYPAL.PRESENTATION' | translate }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div formGroupName="presentation">
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'PAYPAL.BRAND_NAME' | translate }}" formControlName="brand_name" required>
+                                            <mat-error>{{ formErrors?.brand_name }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'PAYPAL.LOGO_IMAGE' | translate }}" formControlName="logo_image" required>
+                                            <mat-error>{{ formErrors?.logo_image }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-4">
+                                        <mat-form-field class="col-12">
+                                            <mat-select placeholder="{{ 'PAYPAL.LOCALE_CODE' | translate }}" formControlName="locale_code">
+                                                <mat-option value="AU">AU</mat-option>
+                                                <mat-option value="AT">AT</mat-option>
+                                                <mat-option value="BE">BE</mat-option>
+                                                <mat-option value="ES">ES</mat-option>
+                                                <mat-option value="GB">GB</mat-option>
+                                                <mat-option value="US">US</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.locale_code }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'APPS.RETURN_URL_LABEL' | translate }}" formControlName="return_url_label" required>
+                                            <mat-error>{{ formErrors?.return_url_label }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12">
+                                            <input matInput placeholder="{{ 'APPS.NOTE_TO_SELLER_LABEL' | translate }}" formControlName="note_to_seller_label" required>
+                                            <mat-error>{{ formErrors?.note_to_seller_label }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </mat-expansion-panel>
+                        <!-- / PRESENTATION -->
+
+                        <!-- FLOW CONFIG -->
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-icon class="m-0 mr-16">local_grocery_store</mat-icon> {{ 'NAV.FLOW_CONFIG' | translate }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div formGroupName="flow_config">
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12 col-md-5">
+                                            <mat-select placeholder="{{ 'APPS.LANDING_PAGE_TYPE' | translate }}" formControlName="landing_page_type">
+                                                <mat-option value="Billing">Billing</mat-option>
+                                                <mat-option value="Login">Login</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.landing_page_type }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <div fxLayout="row">
+                                            <div class="col-12">
+                                                <mat-form-field class="col-12">
+                                                    <input matInput placeholder="{{ 'APPS.BANK_TXN_PENDING_URL' | translate }}" formControlName="bank_txn_pending_url" required>
+                                                    <mat-error>{{ formErrors?.bank_txn_pending_url }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12 col-md-5">
+                                            <mat-select placeholder="{{ 'APPS.LANDING_PAGE_TYPE' | translate }}" formControlName="user_action">
+                                                <mat-option value="continue">Continue</mat-option>
+                                                <mat-option value="commit">Commit</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.user_action }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12 col-md-5">
+                                            <mat-select placeholder="{{ 'APPS.RETURN_URI_HTTP_METHOD' | translate }}" formControlName="return_uri_http_method">
+                                                <mat-option value="GET">GET</mat-option>
+                                                <mat-option value="POST">POST</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.return_uri_http_method }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </mat-expansion-panel>
+                        <!-- /. FLOW CONFIG -->
+
+                        <!-- INPUT FIELDS -->
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-icon class="m-0 mr-16">local_grocery_store</mat-icon> {{ 'NAV.INPUT_FIELDS' | translate }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div formGroupName="input_fields">
+                                <div fxLayout="row">
+                                    <div class="col-12 py-20">
+                                        <mat-checkbox formControlName="allow_note">{{ 'APPS.ALLOW_NOTE' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12 col-md-5">
+                                            <mat-select placeholder="{{ 'APPS.NO_SHIPPING' | translate }}" formControlName="no_shipping">
+                                                <mat-option value="0">Displays the shipping address on the PayPal pages</mat-option>
+                                                <mat-option value="1">Redacts shipping address fields from the PayPal pages. For digital goods, this field is required and must be 1</mat-option>
+                                                <mat-option value="2">Gets the shipping address from the customer's account profile</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.no_shipping }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-form-field class="col-12 col-md-5">
+                                            <mat-select placeholder="{{ 'APPS.ADDRESS_OVERRIDE' | translate }}" formControlName="address_override">
+                                                <mat-option value="0">Displays the shipping address on file</mat-option>
+                                                <mat-option value="1">Displays the shipping address specified in this call. the customer cannot edit this shipping address</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.address_override }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </mat-expansion-panel>
+                        <!-- /. INPUT FIELDS -->
+
+                    </mat-accordion>
+
+
+                    
+                </form>
+                </div>
+            </div>
+            <!-- /. CONTENT -->
+
+        </div>
+        <!-- /. CONTENT CARD -->
+
+    </div>
+    <!-- /. CENTER -->
+    
+</div>

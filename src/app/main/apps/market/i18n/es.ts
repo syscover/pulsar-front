@@ -74,8 +74,15 @@ export const locale = {
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total de usos',
             'WAREHOUSE': 'Almacén',
-            'WEB_PROFILE': 'Perfil web',
             'WEIGHT': 'Peso'
+        },
+        'PAYPAL': {
+            'BRAND_NAME': 'Nombre de la marca',
+            'LOCALE_CODE': 'Código local',
+            'LOGO_IMAGE': 'Imagen del logo',
+            'PRESENTATION': 'Presentación',
+            'TEMPORARY': 'Temporal',
+            'WEB_PROFILE': 'Perfil web',
         }
     }
 };

@@ -23,7 +23,7 @@ export class WarehouseDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -48,7 +48,7 @@ export class WarehouseDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any)
+    setRelationsData(data: any): void
     {
         // set admin countries
         this.countries = data.adminCountries;

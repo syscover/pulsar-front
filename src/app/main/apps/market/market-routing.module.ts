@@ -16,7 +16,8 @@ import { OrderStatusListComponent } from './order-status/order-status-list.compo
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
 import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
-import { PaypalWebProfileListComponent } from './web-profile/paypal-web-profile-list.component';
+import { PaypalWebProfileListComponent } from './paypal-web-profile/paypal-web-profile-list.component';
+import { PaypalWebProfileDetailComponent } from './paypal-web-profile/paypal-web-profile-detail.component';
 import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
@@ -107,7 +108,9 @@ const routes: Routes = [
             { path: 'warehouse/show/:id',                                               component: WarehouseDetailComponent,                        data: { action: 'edit' }},
 
             // PayPal Web Profiles
-            { path: 'payment-gateways/paypal-web-profile',                               component: PaypalWebProfileListComponent },
+            { path: 'payment-gateways/paypal-web-profile',                              component: PaypalWebProfileListComponent },
+            { path: 'payment-gateways/paypal-web-profile/create',                       component: PaypalWebProfileDetailComponent,                 data: { action: 'create' }},
+            { path: 'payment-gateways/paypal-web-profile/show/:id',                     component: PaypalWebProfileDetailComponent,                 data: { action: 'edit' }},
         ]  
     }
 ];

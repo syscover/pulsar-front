@@ -1,7 +1,7 @@
 export const locale = {
     lang: 'en',
     data: {
-        'NARKET': {
+        'MARKET': {
             'APPLY_SHIPPING_AMOUNT': 'Apply to shipping amount',
             'CATEGORY': 'Category',
             'CART_PRICE_RULE': 'Cart price rule',
@@ -74,8 +74,15 @@ export const locale = {
             'TOTAL': 'Total',
             'TOTAL_USES': 'Total uses',
             'WAREHOUSE': 'Warehouse',
-            'WEB_PROFILE': 'Web profile',
             'WEIGHT': 'Weight'
+        },
+        'PAYPAL': {
+            'BRAND_NAME': 'Brand name',
+            'LOCALE_CODE': 'Locale code',
+            'LOGO_IMAGE': 'Logo image',
+            'PRESENTATION': 'Presentation',
+            'TEMPORARY': 'Temporary',
+            'WEB_PROFILE': 'Web profile',
         }
     }
 };
