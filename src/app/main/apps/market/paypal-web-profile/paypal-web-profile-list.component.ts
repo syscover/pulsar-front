@@ -11,7 +11,7 @@ import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.ser
 })
 export class PaypalWebProfileListComponent extends CoreListComponent
 {
-    objectTranslation = 'MARKET.WEB_PROFILE';
+    objectTranslation = 'PAYPAL.WEB_PROFILE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['market_paypal_web_profile.id', 'market_paypal_web_profile.name'];
     displayedColumns = ['market_paypal_web_profile.id', 'market_paypal_web_profile.name', 'actions'];

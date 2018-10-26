@@ -93,6 +93,7 @@ export const locale = {
             'LOCALE_CODE': 'Locale code',
             'LOGIN': 'Login',
             'LOGO_IMAGE': 'Logo image',
+            'LOGO_IMAGE_DESCRIPTION': 'Maximum 40 pixels high',
             'NO_SHIPPING': 'No shipping',
             'NO_SHIPPING_OPTION_1': 'Displays the shipping address on the PayPal pages',
             'NO_SHIPPING_OPTION_2': 'Redacts shipping address fields from the PayPal pages. For digital goods, this field is required and must be 1',

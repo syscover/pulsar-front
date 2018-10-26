@@ -11,7 +11,7 @@ import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.ser
 })
 export class PaypalWebProfileDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'MARKET.WEB_PROFILE';
+    objectTranslation = 'PAYPAL.WEB_PROFILE';
     objectTranslationGender = 'M';
 
     constructor(
@@ -34,7 +34,7 @@ export class PaypalWebProfileDetailComponent extends CoreDetailComponent
                 return_uri_http_method: [null, Validators.required]
             }),
             input_fields: this.fb.group({
-                allow_note: [null, Validators.required],
+                allow_note: [false, Validators.required],
                 no_shipping: [null, Validators.required],
                 address_override: [null, Validators.required]
             }),
