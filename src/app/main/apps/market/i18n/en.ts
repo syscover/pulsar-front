@@ -99,13 +99,15 @@ export const locale = {
             'NO_SHIPPING_OPTION_2': 'Redacts shipping address fields from the PayPal pages. For digital goods, this field is required and must be 1',
             'NO_SHIPPING_OPTION_3': 'Gets the shipping address from the customer\'s account profile',
             'NOTE_TO_SELLER_LABEL': 'Note to seller label',
+            'NOTE_TO_SELLER_LABEL_DESCRIPTION': 'For example: "Thanks for buying in *****"',
             'PRESENTATION': 'Presentation',
             'RETURN_URI_HTTP_METHOD': 'Return method http',
             'RETURN_URL_LABEL': 'Return URL label',
+            'RETURN_URL_LABEL_DESCRIPTION': 'For example: "Back to *****"',
             'TEMPORARY': 'Temporary',
             'TEMPORARY_DESCRIPTION': 'Indicates whether the profile persists for three hours or permanently',
             'USER_ACTION': 'User action',
-            'USER_ACTION_DESCRIPTION': 'Presents either the Continue or Pay Now checkout flow to the customer',
+            'USER_ACTION_DESCRIPTION': 'Presents the flow for the customer, in most cases select "Pay now"',
             'WEB_PROFILE': 'Web profile',
         }
     }

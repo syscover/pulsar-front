@@ -339,6 +339,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         record$
             .subscribe(data => {
+
+                if (this.env.debug) console.log('DEBUG - data error from postRecord method: ', data);
+
                 // disappear spinner in button
                 this.loadingButton = false;
 
@@ -348,13 +351,17 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                     let message = null;
                     if (data.errors[0].errorInfo)
                     {
-                        message =   data.errors[0].errorInfo[2] 
-                                    + '\nSQLSTATE: ' + data.errors[0].errorInfo[0] 
-                                    + '\nCODE: ' + data.errors[0].errorInfo[1];
+                        message = data.errors[0].errorInfo[2]
+                                  + '\nSQLSTATE: ' + data.errors[0].errorInfo[0]
+                                  + '\nCODE: ' + data.errors[0].errorInfo[1];
+                    }
+                    else if (data.errors[0].debugMessage)
+                    {
+                        message = data.errors[0].message + '. ' + data.errors[0].debugMessage;
                     }
                     else
                     {
-                        message =   data.errors[0].message;
+                        message = data.errors[0].message;
                     }
                     this.snackBar.open(
                         message, 

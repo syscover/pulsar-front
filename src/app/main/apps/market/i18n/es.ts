@@ -99,13 +99,15 @@ export const locale = {
             'NO_SHIPPING_OPTION_2': '2. Reduce los campos de dirección de envío de las páginas de PayPal. Para productos digitales, este campo es obligatorio y debe ser la opción 1',
             'NO_SHIPPING_OPTION_3': '3. Obtiene la dirección de envío del perfil de cuenta del cliente.',
             'NOTE_TO_SELLER_LABEL': 'Nota de la etiqueta del vendedor',
+            'NOTE_TO_SELLER_LABEL_DESCRIPTION': 'Por ejemplo: "Gracias por comprar en *****"',
             'PRESENTATION': 'Presentación',
             'RETURN_URI_HTTP_METHOD': 'Método http de retorno',
             'RETURN_URL_LABEL': 'Etiqueta URL de devolución',
+            'RETURN_URL_LABEL_DESCRIPTION': 'Por ejemplo: "Volver a *****"',
             'TEMPORARY': 'Temporal',
             'TEMPORARY_DESCRIPTION': 'Indica si el perfil persiste durante tres horas o permanentemente',
             'USER_ACTION': 'Acción de usuario',
-            'USER_ACTION_DESCRIPTION': 'Presenta el flujo de pago Continuar o Pagar ahora al cliente',
+            'USER_ACTION_DESCRIPTION': 'Presenta el flujo de pago al cliente, en la mayoría de los casos seleccionar "Pagar ahora"',
             'WEB_PROFILE': 'Perfil web',
         }
     }
