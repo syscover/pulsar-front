@@ -13,6 +13,9 @@ export class FuseNavHorizontalItemComponent
     @Input()
     item: any;
 
+    // Public
+    public array = Array;
+
     /**
      * Constructor
      */

@@ -17,7 +17,8 @@ export class NumberPipeDirective implements OnInit
         private decimalPipe: DecimalPipe
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void
+    {
         this.matForm.stateChanges.subscribe(() => {
 
             // get value with casting to number

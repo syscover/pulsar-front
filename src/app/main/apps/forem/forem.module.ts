@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { SharedModule } from './../../core/modules/shared.module';
-import { WineRoutingModule } from './wine-routing.module';
+import { ForemRoutingModule } from './forem-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
@@ -27,7 +27,7 @@ import { locale as spanish } from './i18n/es';
 @NgModule({
     imports: [
         SharedModule,
-        WineRoutingModule
+        ForemRoutingModule
     ],
     exports: [ ],
     declarations: [

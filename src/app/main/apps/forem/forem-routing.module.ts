@@ -56,4 +56,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class WineRoutingModule {}
+export class ForemRoutingModule {}

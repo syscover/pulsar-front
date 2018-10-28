@@ -60,7 +60,8 @@ export const locale = {
             'USERS': 'Usuarios',
             'WAREHOUSES': 'Almacenes',
             'WEB_PROFILES': 'Perfiles web',
-            'WINE': 'Vino'
+            'WINE': 'Vino',
+            'WINES': 'Vinos'
         },
         'TOOLBAR': {
             'MY_PROFILE': 'Mi Perfil',

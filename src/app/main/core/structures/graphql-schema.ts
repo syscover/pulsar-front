@@ -33,5 +33,5 @@ export class GraphQLSchema
         this.init();
     }
 
-    init() {}
+    init(): void {}
 }

@@ -345,9 +345,16 @@ export const navigation: FuseNavigation[] = [
                 'title': 'Wine',
                 'translate': 'NAV.WINE',
                 'type' : 'collapsable',
-                'icon' : 'local_drink',
+                'icon' : ['fas', 'wine-bottle'],
                 'children' : [
-
+                    {
+                        'id'        : 'wines',
+                        'title'     : 'Wines',
+                        'translate' : 'NAV.WINES',
+                        'type'      : 'item',
+                        'icon'      : ['fas', 'wine-glass-alt'],
+                        'url'       : '/apps/wine/wine'
+                    }
                 ]
             },
             {

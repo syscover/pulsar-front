@@ -60,7 +60,8 @@ export const locale = {
             'USERS': 'Users',
             'WAREHOUSES': 'Warehouses',
             'WEB_PROFILES': 'Web profiles',
-            'WINE': 'Wine'
+            'WINE': 'Wine',
+            'WINES': 'Wines'
         },
         'TOOLBAR': {
             'MY_PROFILE': 'My profile',

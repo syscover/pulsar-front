@@ -1,0 +1,26 @@
+<div formGroup="product">
+
+    <div fxLayout="row wrap">
+        <mat-form-field class="col-12 col-md-6">
+            <input matInput placeholder="{{ 'MARKET.SKU' | translate }}" formControlName="sku">
+            <mat-error>{{ formErrors?.sku }}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+        <mat-form-field class="col-12">
+            <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+            </mat-select>
+            <mat-error>{{ formErrors?.categories_id }}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+        <mat-form-field class="col-12">
+            <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number">
+            <mat-error>{{ formErrors?.price }}</mat-error>
+        </mat-form-field>
+    </div>
+
+</div>

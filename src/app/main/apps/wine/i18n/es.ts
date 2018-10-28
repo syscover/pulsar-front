@@ -2,7 +2,8 @@ export const locale = {
     lang: 'es',
     data: {
         'WINE': {
-            // 'ACTION_COMMENT_1': 'Actualizar, validar comentario y enviar email',
+            'WINE': 'Vino',
+            'YEAR': 'Año',
             // 'ACTION_COMMENT_2': 'Actualizar y validar comentario',
             // 'ACTION_COMMENT_3': 'Actualizar pero invalidar comentario',
             // 'ACTION_REVIEW_1': 'Actualizar, validar y añadir puntuación',

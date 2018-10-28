@@ -39,6 +39,11 @@ const routes = [
         canLoad     : [AuthorizationService]
     },
     {
+        path        : 'wine',
+        loadChildren: './wine/wine.module#WineModule',
+        canLoad     : [AuthorizationService]
+    },
+    {
         path        : 'review',
         loadChildren: './review/review.module#ReviewModule',
         canLoad     : [AuthorizationService]
