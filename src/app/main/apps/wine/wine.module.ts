@@ -8,8 +8,6 @@ import { locale as spanish } from './i18n/es';
 import { WineListComponent } from './wine/wine-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
 
-import { WineGraphqlService } from './wine/wine-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
@@ -20,9 +18,7 @@ import { WineGraphqlService } from './wine/wine-graphql.service';
         WineListComponent,
         WineDetailComponent
     ],
-    providers: [
-        WineGraphqlService
-    ]
+    providers: []
 })
 
 export class WineModule

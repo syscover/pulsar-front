@@ -145,7 +145,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     constructor(
         protected injector: Injector,
-        protected graphQL: GraphQLSchema
+        protected graphQL: any
     ) {
         super(injector, graphQL);
 

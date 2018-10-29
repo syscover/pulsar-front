@@ -23,7 +23,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     
     constructor(
         protected injector: Injector,
-        protected graphQL: GraphQLSchema
+        protected graphQL: any
     ) 
     {
         super(injector, graphQL);

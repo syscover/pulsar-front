@@ -35,7 +35,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
     constructor(
         protected injector: Injector,
-        protected graphQL: GraphQLSchema,
+        protected graphQL: any,
     ) {
         super(injector);
 

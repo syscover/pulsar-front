@@ -104,7 +104,12 @@
 
                         <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}" *ngIf="fg.controls['is_product'].value">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <dh2-marketable [categories]="categories"></dh2-marketable>
+                                <div>
+                                    <dh2-marketable fgName="product"
+                                                    [fg]="fg"
+                                                    [products]="products"
+                                                    [categories]="categories"></dh2-marketable>
+                                </div>
                             </div>
                         </mat-tab>
 

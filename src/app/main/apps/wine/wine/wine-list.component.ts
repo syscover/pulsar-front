@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { WineGraphqlService } from './wine-graphql.service';
+import { graphQL } from './wine.graphql';
 
 @Component({
     selector: 'dh2-wine-list',
@@ -17,8 +17,7 @@ export class WineListComponent extends CoreListComponent
     displayedColumns = ['wine_wine.id', 'wine_wine.name', 'wine_wine.year', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: WineGraphqlService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

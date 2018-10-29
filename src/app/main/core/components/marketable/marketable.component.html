@@ -1,26 +1,36 @@
-<div formGroup="product">
+<ng-container *ngIf="fg?.get(fgName)">
+    <div [formGroup]="fg.get(fgName)">
 
-    <div fxLayout="row wrap">
-        <mat-form-field class="col-12 col-md-6">
-            <input matInput placeholder="{{ 'MARKET.SKU' | translate }}" formControlName="sku">
-            <mat-error>{{ formErrors?.sku }}</mat-error>
-        </mat-form-field>
+        <div fxLayout="row wrap">
+            <mat-form-field class="col-12 col-md-6">
+                <input matInput placeholder="{{ 'MARKET.SKU' | translate }}" formControlName="sku">
+                <mat-error>{{ formErrors?.sku }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-12 offset-md-1 col-md-5">
+                <mat-select placeholder="{{ 'MARKET.PARENT_PRODUCT' | translate }}" formControlName="parent_id">
+                    <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
+                    <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                </mat-select>
+                <mat-hint align="start">{{ 'MARKET.PARENT_PRODUCT_DESCRIPTION' | translate }}</mat-hint>
+                <mat-error>{{ formErrors?.parent_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12">
+                <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                </mat-select>
+                <mat-error>{{ formErrors?.categories_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12">
+                <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number">
+            </mat-form-field>
+        </div>
+
     </div>
-
-    <div fxLayout="row">
-        <mat-form-field class="col-12">
-            <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
-                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-            </mat-select>
-            <mat-error>{{ formErrors?.categories_id }}</mat-error>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row">
-        <mat-form-field class="col-12">
-            <input matInput placeholder="{{ 'MARKET.PRICE' | translate }}" formControlName="price" type="number">
-            <mat-error>{{ formErrors?.price }}</mat-error>
-        </mat-form-field>
-    </div>
-
-</div>
+</ng-container>

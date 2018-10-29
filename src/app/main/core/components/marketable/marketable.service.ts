@@ -1,23 +1,19 @@
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable()
 export class MarketableService
 {
-    relationsFields: string;
+    constructor(
+        private fb: FormBuilder
+    ) {}
 
-    constructor() {
-        this.init();
-    }
-
-    init(): void {
-
-        this.relationsFields = `
-            marketCategories (sql:$sqlCategory) {
-                ix
-                id
-                lang_id
-                name
-            }
-        `;
+    getProductFormGroup(): FormGroup
+    {
+        return this.fb.group({
+            sku: null,
+            categories_id: [],
+            price: null
+        });
     }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarketableComponent } from './marketable.component';
 import {
     MatCheckboxModule,
@@ -14,11 +15,13 @@ import { MarketableService } from './marketable.service';
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         MatCheckboxModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
         MatSelectModule,
+        ReactiveFormsModule,
         TranslateModule
     ],
     exports: [
