@@ -3,8 +3,7 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
-import { Category, Product, Section } from '../../market/market.models';
-import {MarketableService} from '../../../core/components/marketable/marketable.service';
+import {Category, PriceType, Product, ProductType, Section} from '../../market/market.models';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -20,6 +19,8 @@ export class WineDetailComponent extends CoreDetailComponent
     products: Product[] = [];
     categories: Category[] = [];
     sections: Section[] = [];
+    productTypes: ProductType[] = [];
+    priceTypes: PriceType[] = [];
 
     constructor(
         protected injector: Injector
@@ -31,6 +32,7 @@ export class WineDetailComponent extends CoreDetailComponent
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
+            lang_id: [null, Validators.required],
             name: [null, Validators.required],
             year: null,
             is_product: false
@@ -81,10 +83,24 @@ export class WineDetailComponent extends CoreDetailComponent
             }
         ];
 
+        const configProductTypes = {
+            key: 'pulsar-market.product_types',
+            lang: this.baseLang,
+            property: 'name'
+        };
+
+        const configPriceTypes = {
+            key: 'pulsar-market.price_types',
+            lang: this.baseLang,
+            property: 'name'
+        };
+
         return {
             sqlProduct,
             sqlCategory,
-            sqlSection
+            sqlSection,
+            configProductTypes,
+            configPriceTypes,
         };
     }
 
@@ -96,8 +112,14 @@ export class WineDetailComponent extends CoreDetailComponent
         // market categories
         this.categories = data.marketCategories;
 
-        // market categories
+        // market sections
         this.sections = data.marketSections;
+
+        // market product types
+        this.productTypes = data.marketProductTypes;
+
+        // market price types
+        this.priceTypes = data.marketPriceTypes;
     }
 }
 

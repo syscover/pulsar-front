@@ -27,11 +27,13 @@ export const graphQL = {
             sku
         }
         marketSections (sql:$sqlSection) {
-                ix
-                id
-                lang_id
-                name
-                slug
-            }
+            ix
+            id
+            lang_id
+            name
+            slug
+        }
+        marketProductTypes: coreConfig (config:$configProductTypes)
+        marketPriceTypes: coreConfig (config:$configPriceTypes)
     `
 };

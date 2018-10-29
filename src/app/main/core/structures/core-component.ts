@@ -77,7 +77,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
             });
     }
 
-    ngOnDestroy() 
+    ngOnDestroy(): void
     {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();

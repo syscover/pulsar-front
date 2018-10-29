@@ -35,7 +35,9 @@ export const graphQL = {
     queryRelationsObject: gql`
         query WineGetRelationsWine ($sqlCategory:[CoreSQLInput] 
                                     $sqlProduct:[CoreSQLInput]
-                                    $sqlSection:[CoreSQLInput]){
+                                    $sqlSection:[CoreSQLInput]
+                                    $configProductTypes:CoreConfigInput!
+                                    $configPriceTypes:CoreConfigInput!){
             ${relationsFields}
         }`,
 

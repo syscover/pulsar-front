@@ -73,6 +73,8 @@
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
+                                <input type="hidden" formControlName="lang_id">
+
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
@@ -109,6 +111,8 @@
                                                     [fg]="fg"
                                                     [products]="products"
                                                     [sections]="sections"
+                                                    [productTypes]="productTypes"
+                                                    [priceTypes]="priceTypes"
                                                     [categories]="categories"></dh2-marketable>
                                 </div>
                             </div>

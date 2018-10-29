@@ -100,8 +100,12 @@ export const locale = {
             'CATEGORIES': 'Categorías',
             'PARENT_PRODUCT': 'Producto padre',
             'PRICE': 'Precio',
+            'PRICE_TYPE': 'Tipo de precio',
+            'PRICES_TAXES': 'Precios e impuestos',
+            'PRODUCT_TYPE': 'Tipo de producto',
             'SECTIONS': 'Secciones',
-            'SKU': 'SKU'
+            'SKU': 'SKU',
+            'WEIGHT': 'Peso'
         },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Elemetos por página',

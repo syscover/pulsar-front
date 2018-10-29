@@ -1,6 +1,8 @@
 <ng-container *ngIf="fg?.get(fgName)">
     <div [formGroup]="fg.get(fgName)">
 
+        <input type="hidden" formControlName="lang_id">
+
         <div fxLayout="row wrap">
             <mat-form-field class="col-12 col-md-6">
                 <input #inputName matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
@@ -47,6 +49,57 @@
                 <input dh2Slug [model]="modelProductLang" [value]="slugValue" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
                 <mat-error>{{ formErrors?.slug }}</mat-error>
             </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12 col-md-5">
+                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_TYPE' | translate }}" (selectionChange)="handleChangeProductType($event)" formControlName="type_id" required>
+                    <mat-option *ngFor="let productType of productTypes" [value]="+productType.id">{{ productType.name }}</mat-option>
+                </mat-select>
+                <mat-error>{{ formErrors?.type_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- product types transportable, them it must to have a weight -->
+        <div fxLayout="row" *ngIf="showWeight">
+            <mat-form-field class="col-12 col-md-4">
+                <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="weight" type="number">
+                <mat-icon matSuffix>line_weight</mat-icon>
+                <mat-error>{{ formErrors?.weight }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap">
+            <div class="col-12 col-md-5 py-20">
+                <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
+            </div>
+            <mat-form-field class="col-12 col-md-4">
+                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                <mat-error>{{ formErrors?.sort }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- HEADER -->
+        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+            <mat-icon class="m-0 mr-16">euro_symbol</mat-icon>
+            <div class="h2 secondary-text">{{ 'MARKETABLE.PRICES_TAXES' | translate }}</div>
+        </div>
+        <!-- / HEADER -->
+
+        <div fxLayout="row">
+
+            <div class="col-6">
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-5">
+                        <mat-select placeholder="{{ 'MARKETABLE.PRICE_TYPE' | translate }}" formControlName="price_type_id" required>
+                            <mat-option *ngFor="let priceType of priceTypes" [value]="+priceType.id">{{ priceType.name }}</mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.price_type_id }}</mat-error>
+                    </mat-form-field>
+
+
+                </div>
+            </div>
         </div>
 
         <div fxLayout="row">

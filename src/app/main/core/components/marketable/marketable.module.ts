@@ -10,13 +10,14 @@ import {
     MatSelectModule,
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { MarketableService } from './marketable.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
     imports: [
         CommonModule,
         DirectivesModule,
+        FlexLayoutModule,
         FormsModule,
         MatCheckboxModule,
         MatFormFieldModule,
@@ -32,9 +33,7 @@ import { DirectivesModule } from '../../directives/directives.module';
     declarations: [
         MarketableComponent
     ],
-    providers: [
-        // MarketableService
-    ]
+    providers: []
 })
 export class MarketableModule
 {
