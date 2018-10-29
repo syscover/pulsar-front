@@ -1,10 +1,10 @@
 import { Component, Injector } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
-import { Category, Product } from '../../market/market.models';
-import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import { Category, Product, Section } from '../../market/market.models';
+import {MarketableService} from '../../../core/components/marketable/marketable.service';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -19,10 +19,10 @@ export class WineDetailComponent extends CoreDetailComponent
     // marketable variables
     products: Product[] = [];
     categories: Category[] = [];
+    sections: Section[] = [];
 
     constructor(
-        protected injector: Injector,
-        private _marketableService: MarketableService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -67,9 +67,24 @@ export class WineDetailComponent extends CoreDetailComponent
             }
         ];
 
+        const sqlSection = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_section.name'
+            }
+        ];
+
         return {
             sqlProduct,
-            sqlCategory
+            sqlCategory,
+            sqlSection
         };
     }
 
@@ -80,6 +95,9 @@ export class WineDetailComponent extends CoreDetailComponent
 
         // market categories
         this.categories = data.marketCategories;
+
+        // market categories
+        this.sections = data.marketSections;
     }
 }
 

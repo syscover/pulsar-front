@@ -26,5 +26,12 @@ export const graphQL = {
             name
             sku
         }
+        marketSections (sql:$sqlSection) {
+                ix
+                id
+                lang_id
+                name
+                slug
+            }
     `
 };

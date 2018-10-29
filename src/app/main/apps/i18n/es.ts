@@ -96,6 +96,13 @@ export const locale = {
             'OK' : 'Confirmar',
             'CANCEL' : 'Cancelar',
         },
+        'MARKETABLE': {
+            'CATEGORIES': 'Categorías',
+            'PARENT_PRODUCT': 'Producto padre',
+            'PRICE': 'Precio',
+            'SECTIONS': 'Secciones',
+            'SKU': 'SKU'
+        },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Elemetos por página',
             'NEXT_PAGE' : 'Página siguiente',
