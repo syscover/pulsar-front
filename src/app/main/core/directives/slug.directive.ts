@@ -1,11 +1,13 @@
-import { Directive, AfterViewInit, ElementRef, Input, Output, OnDestroy, EventEmitter } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { from } from 'rxjs/observable/from';
+import { merge } from 'rxjs/observable/merge';
 import { SlugService } from './../services/slug.service';
 import { environment } from 'environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Directive({
     selector: '[dh2Slug]',
@@ -13,16 +15,18 @@ import { environment } from 'environments/environment';
         SlugService
     ]
 })
-export class SlugDirective implements AfterViewInit, OnDestroy
+export class SlugDirective implements AfterViewInit, OnDestroy, OnChanges
 {
     @Input('model') model;
     @Input('object') object: any;
     @Input('target') target = 'slug';
+    @Input('value') value: string;
     @Output() checkingSlug = new EventEmitter<boolean>();
 
     private ngUnsubscribe = new Subject();
     private running = false; // boolean true when is consulting through Http
     private buffer: any;
+    private value$: BehaviorSubject<string>;
 
     constructor(
         private element: ElementRef,
@@ -30,16 +34,35 @@ export class SlugDirective implements AfterViewInit, OnDestroy
         private slugService: SlugService
     ) { }
 
+    ngOnChanges(): void {
+        if (! this.value$) {
+            this.value$ = new BehaviorSubject<string>(this.value);
+        }
+        this.value$.next(this.value);
+    }
+
     ngAfterViewInit(): void
     {
-        Observable
-            .fromEvent(this.element.nativeElement, 'keyup')
+        merge(
+                Observable.fromEvent(this.element.nativeElement, 'change'),
+                this.value$
+            )
             .debounceTime(250)
             .distinctUntilChanged()
             .pipe(
                 switchMap(async (event: any) => {
-                    // check if there ara value and theroe isn't a request in progress
-                    if (event.target.value) 
+
+                    let source = null;
+                    if (typeof event === 'string' && event)
+                    {
+                        source = event;
+                    }
+                    else if (event) {
+                        source = event.target.value;
+                    }
+
+                    // check if there are value and there isn't a request in progress
+                    if (source)
                     {
                         if (! this.running)
                         {
@@ -49,7 +72,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
 
                             data = await this.slugService.checkSlug(
                                 this.model,
-                                event.target.value,
+                                source,
                                 this.object
                             );
 
@@ -67,7 +90,10 @@ export class SlugDirective implements AfterViewInit, OnDestroy
                             }
 
                             if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
-                            if (data) this.control.control.parent.controls[this.target].setValue(data.data.slug);
+                            if (data)
+                            {
+                                this.control.control.parent.controls[this.target].setValue(data.data.slug);
+                            }
 
                             this.running = false;
                             this.checkingSlug.emit(false);
@@ -77,7 +103,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy
                         else
                         {
                             // add event tu buffer
-                            this.buffer = event.target.value;
+                            this.buffer = source;
                             return from([]);
                         }
                     }
