@@ -33,6 +33,10 @@ export const graphQL = {
             name
             slug
         }
+        marketProductClassTaxes {
+            id
+            name
+        }
         marketProductTypes: coreConfig (config:$configProductTypes)
         marketPriceTypes: coreConfig (config:$configPriceTypes)
     `

@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges, Input, ChangeDetectorRef, ApplicationRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form.service';
-import { Field, Lang, FieldValue } from './../../../apps/admin/admin.models';
-import * as _ from 'lodash';
+import { Field } from './../../../apps/admin/admin.models';
 
 @Component({
     selector: 'dh2-dynamic-form',

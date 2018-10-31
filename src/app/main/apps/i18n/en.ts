@@ -102,9 +102,13 @@ export const locale = {
             'PRICE': 'Price',
             'PRICE_TYPE': 'Price type',
             'PRICES_TAXES': 'Prices and taxes',
+            'PRODUCT_CLASS_TAX': 'Product class tax',
             'PRODUCT_TYPE': 'Product type',
             'SECTIONS': 'Sections',
+            'SUBTOTAL': 'Subtotal',
             'SKU': 'SKU',
+            'TAX': 'Tax',
+            'TOTAL': 'Total',
             'WEIGHT': 'Weight'
         },
         'PAGINATOR': {

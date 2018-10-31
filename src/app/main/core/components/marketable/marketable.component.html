@@ -1,7 +1,17 @@
-<ng-container *ngIf="fg?.get(fgName)">
-    <div [formGroup]="fg.get(fgName)">
+<ng-container *ngIf="parentFgName">
+    <div [formGroup]="parentFg.get(parentFgName)">
+        <div *ngIf="true; then marketableForm"></div>
+    </div>
+</ng-container>
 
+<ng-container *ngIf="!parentFgName">
+    <div *ngIf="true; then marketableForm"></div>
+</ng-container>
+
+<ng-template #marketableForm>
+    <div [formGroup]="fg">
         <input type="hidden" formControlName="lang_id">
+        <input type="hidden" formControlName="subtotal">
 
         <div fxLayout="row wrap">
             <mat-form-field class="col-12 col-md-6">
@@ -53,7 +63,7 @@
 
         <div fxLayout="row">
             <mat-form-field class="col-12 col-md-5">
-                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_TYPE' | translate }}" (selectionChange)="handleChangeProductType($event)" formControlName="type_id" required>
+                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_TYPE' | translate }}" formControlName="type_id" required>
                     <mat-option *ngFor="let productType of productTypes" [value]="+productType.id">{{ productType.name }}</mat-option>
                 </mat-select>
                 <mat-error>{{ formErrors?.type_id }}</mat-error>
@@ -61,7 +71,7 @@
         </div>
 
         <!-- product types transportable, them it must to have a weight -->
-        <div fxLayout="row" *ngIf="showWeight">
+        <div fxLayout="row" *ngIf="fg.get('type_id').value === 2 || fg.get('type_id').value === 3">
             <mat-form-field class="col-12 col-md-4">
                 <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="weight" type="number">
                 <mat-icon matSuffix>line_weight</mat-icon>
@@ -96,17 +106,53 @@
                         </mat-select>
                         <mat-error>{{ formErrors?.price_type_id }}</mat-error>
                     </mat-form-field>
-
-
+                </div>
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-5">
+                        <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
+                            <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>
+                    </mat-form-field>
                 </div>
             </div>
-        </div>
 
-        <div fxLayout="row">
-            <mat-form-field class="col-12">
-                <input matInput placeholder="{{ 'MARKETABLE.PRICE' | translate }}" formControlName="price" type="number">
-            </mat-form-field>
-        </div>
+            <div class="col-6" *ngIf="fg.get('price_type_id').value === 1">
 
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.PRICE' | translate }}" formControlName="price" type="number" (change)="handleGetProductTaxes()">
+                        <mat-spinner *ngIf="loadingPrice" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
+                        <mat-error>{{ formErrors?.price }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.SUBTOTAL' | translate }}" formControlName="subtotal_format" required>
+                        <mat-error>{{ formErrors?.subtotal_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.TAX' | translate }}" formControlName="tax_format" required>
+                        <mat-error>{{ formErrors?.tax_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.TOTAL' | translate }}" formControlName="total_format" required>
+                        <mat-error>{{ formErrors?.total_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="col-6" *ngIf="fg.get('price_type_id').value === 2">
+                Precio indefinido
+            </div>
+
+        </div>
     </div>
-</ng-container>
+</ng-template>

@@ -1,9 +1,9 @@
-import { Component, Injector } from '@angular/core';
+import {Component, Injector, Input} from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
-import {Category, PriceType, Product, ProductType, Section} from '../../market/market.models';
+import {Category, PriceType, Product, ProductClassTax, ProductType, Section} from '../../market/market.models';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -21,6 +21,7 @@ export class WineDetailComponent extends CoreDetailComponent
     sections: Section[] = [];
     productTypes: ProductType[] = [];
     priceTypes: PriceType[] = [];
+    productClassTaxes: ProductClassTax[] = [];
 
     constructor(
         protected injector: Injector
@@ -106,6 +107,7 @@ export class WineDetailComponent extends CoreDetailComponent
 
     setRelationsData(data: any): void
     {
+        // marketable relations
         // market products
         this.products = data.marketProducts;
 
@@ -120,6 +122,9 @@ export class WineDetailComponent extends CoreDetailComponent
 
         // market price types
         this.priceTypes = data.marketPriceTypes;
+
+        // market product class taxes
+        this.productClassTaxes = data.marketProductClassTaxes;
     }
 }
 

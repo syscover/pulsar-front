@@ -7,11 +7,13 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DirectivesModule } from '../../directives/directives.module';
+import { MarketableService } from './marketable.service';
 
 @NgModule({
     imports: [
@@ -21,6 +23,7 @@ import { DirectivesModule } from '../../directives/directives.module';
         FormsModule,
         MatCheckboxModule,
         MatFormFieldModule,
+        MatProgressSpinnerModule,
         MatIconModule,
         MatInputModule,
         MatSelectModule,
@@ -33,7 +36,9 @@ import { DirectivesModule } from '../../directives/directives.module';
     declarations: [
         MarketableComponent
     ],
-    providers: []
+    providers: [
+        MarketableService
+    ]
 })
 export class MarketableModule
 {

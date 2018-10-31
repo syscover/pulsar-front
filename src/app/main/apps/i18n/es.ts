@@ -102,9 +102,13 @@ export const locale = {
             'PRICE': 'Precio',
             'PRICE_TYPE': 'Tipo de precio',
             'PRICES_TAXES': 'Precios e impuestos',
+            'PRODUCT_CLASS_TAX': 'Impuesto al producto',
             'PRODUCT_TYPE': 'Tipo de producto',
             'SECTIONS': 'Secciones',
+            'SUBTOTAL': 'Subtotal',
             'SKU': 'SKU',
+            'TAX': 'Impuestos',
+            'TOTAL': 'Total',
             'WEIGHT': 'Peso'
         },
         'PAGINATOR': {
