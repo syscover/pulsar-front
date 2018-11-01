@@ -1,17 +1,13 @@
 import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { startWith } from 'rxjs/operators/startWith';
 import { ActivatedRoute } from '@angular/router';
 import { DataRoute } from '../../structures/data-route';
 import { ConfigService } from '../../services/config.service';
 import { Lang } from '../../../apps/admin/admin.models';
-import { HttpService } from '../../services/http.service';
-import { environment } from 'environments/environment';
 import * as _ from 'lodash';
-
-import gql from 'graphql-tag';
-import {MarketableService} from './marketable.service';
+import { MarketableService } from './marketable.service';
 
 @Component({
     selector: 'dh2-marketable',
@@ -29,20 +25,18 @@ export class MarketableComponent implements OnInit
     @Input() priceTypes: PriceType[] = [];
     @Input() productClassTaxes: ProductClassTax[] = [];
     @Input() nameField = 'name';
-    @Input() loadingPrice = false;
+    loadingPrice = false;
 
     // public properties
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
     slugValue: string = null;
-    env: any = environment;
     fg: FormGroup; // Marketable form group
 
     constructor(
         private _marketable: MarketableService,
         private _fb: FormBuilder,
         private _config: ConfigService,
-        private _route: ActivatedRoute,
-        private _http: HttpService
+        private _route: ActivatedRoute
     ) {}
 
     ngOnInit(): void
@@ -55,70 +49,15 @@ export class MarketableComponent implements OnInit
     // get taxes for product
     handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void
     {
-        let price;
-
-        if (subtotal)
-        {
-            price = subtotal;
-        }
-        else if (this.fg.get('price').value)
-        {
-            price = this.fg.get('price').value;
-        }
-        else
-        {
-            price = this.fg.get('subtotal').value;
-            forceCalculatePriceWithoutTax = true;
-        }
-
-        // if has not price, exit of method
-        if (! price)
-        {
-            if (callback) callback();
-            return;
-        }
-
-        // active loading spinner
-        if (this.fg.get('price').value) this.loadingPrice = true;
-
-        const args = {
-            price: price,
-            productClassTax: this.fg.get('product_class_tax_id').value
-        };
-
-        // force to calualte price without tax, when show product the price always
-        // is without tax because is subtotal the refernece price, this flag is activated in
-        // function setData os this component
-        if (forceCalculatePriceWithoutTax) args['product_tax_prices'] = 1;
-
-        const ob = this._http
-            .apolloClient()
-            .watchQuery({
-                fetchPolicy: 'network-only',
-                query: gql`
-                    query MarketProductTaxes ($price:Float! $productClassTax:Int $product_tax_prices:Int) {
-                        marketProductTaxes (price:$price productClassTax:$productClassTax product_tax_prices:$product_tax_prices)
-                    }
-                `,
-                variables: args
-            })
-            .valueChanges
-            .subscribe(({data}: any) => {
-                ob.unsubscribe();
-                if (this.env.debug) console.log('DEBUG - response of marketProductTaxes query: ', data);
-
-                this.fg.get('subtotal').setValue(data.marketProductTaxes.subtotal);
-                this.fg.get('subtotal_format').setValue(data.marketProductTaxes.subtotalFormat);
-                this.fg.get('tax_format').setValue(data.marketProductTaxes.taxAmountFormat);
-                this.fg.get('total_format').setValue(data.marketProductTaxes.totalFormat);
-
-                if (callback) callback();
-
-                // reset price field
-                if (this.fg.get('price').value) this.fg.get('price').setValue(null);
-
-                this.loadingPrice = false;
-            });
+        this._marketable.handleGetProductTaxes(
+            this.fg,
+            subtotal,
+            forceCalculatePriceWithoutTax, // force to calulate price without tax
+            callback, // callback, all http petition must to be sequential to pass JWT
+            (value) => { // pass argument like function to respect scope
+                this.loadingPrice = value;
+            }
+        );
     }
 
     private setReactiveForm(): void

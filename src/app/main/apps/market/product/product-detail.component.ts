@@ -35,7 +35,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     productTypes: ProductType[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
-    loadingPrice = false;
 
     // stocks
     displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
@@ -275,29 +274,15 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         // set market sections extracting ids
         this.fg.controls['sections_id'].setValue(_.map(this.object.sections, 'id'));
 
-
         this._marketable.handleGetProductTaxes(
-            this.loadingPrice,
             this.fg,
-            this.fg.controls['subtotal'].value,
+            this.fg.get('subtotal').value,
             true, // force to calulate price without tax
-            // callback, all http petition must to be sequential to pass JWT
-            () => {
+            () => { // callback, all http petition must to be sequential to pass JWT
                 // allow start dh2-dynamic-form component to avoid failures in the JWT
                 this.startCustomFields = true;
             }
         );
-
-
-        // this.handleGetProductTaxes(
-        //     this.fg.controls['subtotal'].value,
-        //     true, // force to calulate price without tax
-        //     // callback, all http petition must to be sequential to pass JWT
-        //     () => {
-        //         // allow start dh2-dynamic-form component to avoid failures in the JWT
-        //         this.startCustomFields = true;
-        //     }
-        // ); // calculate tax prices
     }
 
     editStock(stockData: any): void

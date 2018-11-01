@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import gql from 'graphql-tag';
-import {HttpService} from '../../services/http.service';
+import { FormGroup } from '@angular/forms';
+import { HttpService } from '../../services/http.service';
 import { environment } from 'environments/environment';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class MarketableService
@@ -13,7 +13,7 @@ export class MarketableService
         private _http: HttpService
     ) {}
 
-    handleGetProductTaxes(loadingPrice:boolean, fg: FormGroup, subtotal?, forceCalculatePriceWithoutTax?, callback?): void
+    handleGetProductTaxes(fg: FormGroup, subtotal?: number, forceCalculatePriceWithoutTax?: boolean, callback?: Function, loadingPrice?: Function): void
     {
         let price;
 
@@ -39,7 +39,7 @@ export class MarketableService
         }
 
         // active loading spinner
-        if (fg.get('price').value) loadingPrice = true;
+        if (loadingPrice) loadingPrice(true);
 
         const args = {
             price: price,
@@ -77,7 +77,7 @@ export class MarketableService
                 // reset price field
                 if (fg.get('price').value) fg.get('price').setValue(null);
 
-                loadingPrice = false;
+                if (loadingPrice) loadingPrice(false);
             });
     }
 }
