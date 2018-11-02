@@ -18,6 +18,12 @@
     display: flex;
     justify-content: center;
 }
+[hidden] {
+    display: none !important;
+}
+.hidden {
+    display: none !important;
+}
 
 @for $i from 1 through 100 {
     // PADDING

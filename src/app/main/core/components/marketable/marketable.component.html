@@ -1,25 +1,15 @@
-<ng-container *ngIf="parentFgName">
-    <div [formGroup]="parentFg.get(parentFgName)">
-        <div *ngIf="true; then marketableForm"></div>
-    </div>
-</ng-container>
-
-<ng-container *ngIf="!parentFgName">
-    <div *ngIf="true; then marketableForm"></div>
-</ng-container>
-
-<ng-template #marketableForm>
+<ng-container>
     <div [formGroup]="fg">
-        <input type="hidden" formControlName="lang_id">
+        <input type="hidden" formControlName="lang_id" *ngIf="hiddenFields.indexOf('lang_id') === -1">
         <input type="hidden" formControlName="subtotal">
 
         <div fxLayout="row wrap">
-            <mat-form-field class="col-12 col-md-6">
+            <mat-form-field class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
                 <input #inputName matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
                 <mat-error>{{ formErrors?.sku }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field class="col-12 offset-md-1 col-md-5">
+            <mat-form-field class="col-12 offset-md-1 col-md-5" *ngIf="hiddenFields.indexOf('parent_id') === -1">
                 <mat-select placeholder="{{ 'MARKETABLE.PARENT_PRODUCT' | translate }}" formControlName="parent_id">
                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                     <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
@@ -30,7 +20,7 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field class="col-12">
+            <mat-form-field class="col-12" *ngIf="hiddenFields.indexOf('categories_id') === -1">
                 <mat-select placeholder="{{ 'MARKETABLE.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
                     <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
                 </mat-select>
@@ -39,7 +29,7 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field class="col-12">
+            <mat-form-field class="col-12" *ngIf="hiddenFields.indexOf('sections_id') === -1">
                 <mat-select placeholder="{{ 'MARKETABLE.SECTIONS' | translate }}" formControlName="sections_id" multiple>
                     <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
                 </mat-select>
@@ -47,16 +37,16 @@
             </mat-form-field>
         </div>
 
-        <div fxLayout="row">
+        <div fxLayout="row" *ngIf="hiddenFields.indexOf('name') === -1">
             <mat-form-field class="col-12">
                 <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                 <mat-error>{{ formErrors?.name }}</mat-error>
             </mat-form-field>
         </div>
 
-        <div fxLayout="row">
+        <div fxLayout="row" *ngIf="hiddenFields.indexOf('slug') === -1">
             <mat-form-field class="col-12">
-                <input dh2Slug [model]="modelProductLang" [value]="slugValue" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
                 <mat-error>{{ formErrors?.slug }}</mat-error>
             </mat-form-field>
         </div>
@@ -80,10 +70,10 @@
         </div>
 
         <div fxLayout="row wrap">
-            <div class="col-12 col-md-5 py-20">
+            <div class="col-12 col-md-5 py-20" *ngIf="hiddenFields.indexOf('active') === -1">
                 <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
             </div>
-            <mat-form-field class="col-12 col-md-4">
+            <mat-form-field class="col-12 col-md-4" *ngIf="hiddenFields.indexOf('active') === -1">
                 <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
                 <mat-error>{{ formErrors?.sort }}</mat-error>
             </mat-form-field>
@@ -155,4 +145,4 @@
 
         </div>
     </div>
-</ng-template>
+</ng-container>

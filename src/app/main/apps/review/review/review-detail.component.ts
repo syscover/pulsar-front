@@ -41,7 +41,7 @@ export class ReviewDetailComponent extends CoreDetailComponent
         });
     }
 
-    beforePatchValueEdit() 
+    beforePatchValueEdit(): void
     {
         // filter questions by baseLang
         this.questions = _.sortBy(_.filter(this.object.poll.questions, obj => {

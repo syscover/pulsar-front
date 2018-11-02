@@ -1,15 +1,29 @@
 export const graphQL = {
+
     fields: `
-        ... on MarketProduct {
-                sku
-                categories {
-                    ix
-                    id
-                    lang_id
-                    name
-                }
-                price
-            }
+        active
+        categories {
+            id
+            ix
+            lang_id
+            name
+        }
+        lang_id
+        name
+        parent_id
+        price_type_id
+        product_class_tax_id
+        sections {
+            ix
+            id
+            name
+        }
+        sku
+        slug
+        sort
+        subtotal
+        type_id
+        weight
     `,
 
     relationsFields: `

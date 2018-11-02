@@ -3,7 +3,9 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
-import {Category, PriceType, Product, ProductClassTax, ProductType, Section} from '../../market/market.models';
+import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../market/market.models';
+import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -15,16 +17,18 @@ export class WineDetailComponent extends CoreDetailComponent
     objectTranslation = 'WINE.WINE';
     objectTranslationGender = 'M';
 
-    // marketable variables
+    // ***** start - marketable variables
     products: Product[] = [];
     categories: Category[] = [];
     sections: Section[] = [];
     productTypes: ProductType[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
+    // ***** end - marketable variables
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        private _marketable: MarketableService
     ) {
         super(injector, graphQL);
     }
@@ -35,6 +39,7 @@ export class WineDetailComponent extends CoreDetailComponent
             id: [{value: null, disabled: true}],
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
+            slug: [null, Validators.required],
             year: null,
             is_product: false
         });
@@ -42,72 +47,16 @@ export class WineDetailComponent extends CoreDetailComponent
 
     argumentsRelationsObject(): Object
     {
-        const sqlProduct = [
-            {
-                command: 'where',
-                column: 'market_product_lang.lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_product.sort'
-            }
-        ];
-
-        const sqlCategory = [
-            {
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_category.name'
-            }
-        ];
-
-        const sqlSection = [
-            {
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_section.name'
-            }
-        ];
-
-        const configProductTypes = {
-            key: 'pulsar-market.product_types',
-            lang: this.baseLang,
-            property: 'name'
-        };
-
-        const configPriceTypes = {
-            key: 'pulsar-market.price_types',
-            lang: this.baseLang,
-            property: 'name'
-        };
+        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], true);
 
         return {
-            sqlProduct,
-            sqlCategory,
-            sqlSection,
-            configProductTypes,
-            configPriceTypes,
+            ...marketableArguments
         };
     }
 
     setRelationsData(data: any): void
     {
-        // marketable relations
+        // ***** start - marketable relations
         // market products
         this.products = data.marketProducts;
 
@@ -125,6 +74,22 @@ export class WineDetailComponent extends CoreDetailComponent
 
         // market product class taxes
         this.productClassTaxes = data.marketProductClassTaxes;
+        // ***** end - marketable relations
+    }
+
+    afterPatchValueEdit(): void
+    {
+        // set market categories extracting ids
+        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
+
+        // set market sections extracting ids
+        this.fg.controls['sections_id'].setValue(_.map(this.object.sections, 'id'));
+
+        this._marketable.handleGetProductTaxes(
+            this.fg,
+            this.fg.get('subtotal').value,
+            true
+        );
     }
 }
 

@@ -16,13 +16,13 @@ export class ProductGraphQLService extends GraphQLSchema
 
     queryRelationsObject  = gql`
         query MarketGetRelationsProduct (
+            $sqlProduct:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
-            $sqlAttachmentFamily:[CoreSQLInput]
-            $sqlFieldGroup:[CoreSQLInput]
-            $sqlProduct:[CoreSQLInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlFieldGroup:[CoreSQLInput]
         ) {
             ${this.relationsFields}
         }`;
@@ -37,14 +37,14 @@ export class ProductGraphQLService extends GraphQLSchema
     queryObject = gql`
         query MarketGetProduct (
             $sql:[CoreSQLInput]
+            $sqlProduct:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
-            $sqlAttachmentFamily:[CoreSQLInput]
-            $sqlFieldGroup:[CoreSQLInput]
-            $sqlProduct:[CoreSQLInput]
-            $sqlStock:[CoreSQLInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlFieldGroup:[CoreSQLInput]
+            $sqlStock:[CoreSQLInput]
         ) {
             coreObject: marketProduct (sql:$sql){
                 ${this.fields}
@@ -89,68 +89,69 @@ export class ProductGraphQLService extends GraphQLSchema
         // defaults fields that will be return, fragment necessary for return CoreObjectInterface
         this.fields = `
             ... on MarketProduct {
-                ix
-                id
-                lang_id
-                sku
-                name
-                slug
-                categories {
-                    ix
+                attachments {
+                    alt
+                    base_path
+                    extension
+                    family_id
+                    file_name
+                    height
                     id
+                    ix
+                    lang_id
+                    library_file_name
+                    library_id
+                    mime
+                    object_id
+                    object_type
+                    sort
+                    title
+                    url
+                    size
+                    width
+                    attachment_library {
+                        base_path
+                        extension
+                        file_name
+                        height
+                        id
+                        mime
+                        name
+                        size
+                        url
+                        width
+                    }
+                }
+                data
+                data_lang
+                description
+                field_group_id
+                id
+                ix
+                
+                active
+                categories {
+                    id
+                    ix
                     lang_id
                     name
                 }
+                lang_id
+                name
+                parent_id
+                price_type_id
+                product_class_tax_id
                 sections {
                     ix
                     id
                     name
                 }
-                field_group_id
-                type_id
-                parent_id
-                weight
-                active
+                sku
+                slug
                 sort
-                price_type_id
                 subtotal
-                product_class_tax_id
-                description
-                data_lang
-                data
-                attachments {
-                    ix
-                    id
-                    lang_id
-                    object_id
-                    object_type
-                    family_id
-                    sort
-                    alt
-                    title
-                    base_path
-                    file_name
-                    url
-                    mime
-                    extension
-                    size
-                    width
-                    height
-                    library_id
-                    library_file_name
-                    attachment_library {
-                        id
-                        name
-                        base_path
-                        file_name
-                        url
-                        mime
-                        extension
-                        size
-                        width
-                        height
-                    }
-                }
+                type_id
+                weight
             }
         `;
 

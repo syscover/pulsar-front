@@ -83,8 +83,15 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-12">
+                                        <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -94,6 +101,11 @@
                                         <mat-error>{{ formErrors?.year }}</mat-error>
                                     </mat-form-field>
                                 </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
                                     <div class="col-12 py-20">
@@ -101,14 +113,9 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </mat-tab>
-
-                        <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}" *ngIf="fg.controls['is_product'].value">
-                            <div class="tab-content p-24" fusePerfectScrollbar>
-
-                                <dh2-marketable parentFgName="product"
-                                                [parentFg]="fg"
+                                <dh2-marketable [hidden]="! fg.get('is_product').value"
+                                                [hiddenFields]="['lang_id', 'name', 'slug']"
+                                                [fg]="fg"
                                                 [products]="products"
                                                 [sections]="sections"
                                                 [productTypes]="productTypes"

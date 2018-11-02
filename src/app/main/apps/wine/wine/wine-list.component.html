@@ -75,6 +75,38 @@
                     <mat-cell *matCellDef="let row">{{ row.year }}</mat-cell>
                 </ng-container>
 
+                <!-- LANGS -->
+                <ng-container matColumnDef="translations">
+                    <mat-header-cell *matHeaderCellDef>{{ 'APPS.TRANSLATIONS' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <div class="{{ row | checkTranslationObject:langs }}">
+                            <button mat-mini-fab class="translations-btn" [matMenuTriggerFor]="menu">
+                                <mat-icon>translate</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" class="translations-opt">
+                                <ng-container *ngFor="let lang of langs">
+
+                                    <button mat-menu-item
+                                            *ngIf="(row | actionTranslationObject:lang) === 'edit'"
+                                            [routerLink]="[baseUri + '/show', lang.id, row.id]">
+                                        <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
+                                        <span>{{ 'APPS.EDIT' | translate }}</span>
+                                    </button>
+
+                                    <button mat-menu-item
+                                            *ngIf="(row | actionTranslationObject:lang) === 'create'"
+                                            [routerLink]="[baseUri + '/create', lang.id, row.id]">
+                                        <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
+                                        <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                                    </button>
+
+                                </ng-container>
+                            </mat-menu>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <!-- / LANGS -->
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>

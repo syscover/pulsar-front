@@ -2,25 +2,32 @@ import gql from 'graphql-tag';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 
 const fields = `
-            ... on WineWine {
-                    id
-                    name
-                    year
-                }
-        `;
+    ... on WineWine {
+            data
+            data_lang
+            id
+            is_product
+            ix
+            lang_id
+            name
+            slug
+            year
+            
+            ${marketableGraphQL.fields}
+        }
+`;
 
 const relationsFields = `
-            ${marketableGraphQL.relationsFields}
-        `;
+    ${marketableGraphQL.relationsFields}
+`;
 
 export const graphQL = {
 
     model: 'Syscover\\Wine\\Models\\Wine',
-
+    modelLang: 'Syscover\\Wine\\Models\\WineLang',
     table: 'wine_wine',
-
+    tableLang: 'wine_wine_lang',
     fields,
-
     relationsFields,
 
     queryPaginationObject: gql`
@@ -33,11 +40,13 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query WineGetRelationsWine ($sqlCategory:[CoreSQLInput] 
-                                    $sqlProduct:[CoreSQLInput]
-                                    $sqlSection:[CoreSQLInput]
-                                    $configProductTypes:CoreConfigInput!
-                                    $configPriceTypes:CoreConfigInput!){
+        query WineGetRelationsWine (
+            $sqlProduct:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput] 
+            $sqlSection:[CoreSQLInput]
+            $configProductTypes:CoreConfigInput!
+            $configPriceTypes:CoreConfigInput!
+        ){
             ${relationsFields}
         }`,
 
@@ -49,7 +58,14 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query WineGetWine ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
+        query WineGetWine (
+            $sql:[CoreSQLInput] 
+            $sqlProduct:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlSection:[CoreSQLInput]
+            $configProductTypes:CoreConfigInput!
+            $configPriceTypes:CoreConfigInput!
+        ) {
             coreObject: wineWine (sql:$sql){
                 ${fields}
             }

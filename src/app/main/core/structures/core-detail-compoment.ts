@@ -110,7 +110,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             if (this.dataRoute.action === 'create-lang') 
             {
                 // create copy object for change readonly properties
-                const baseParams = _.clone(this.params); // clone objet because params properties are read-only, you can use Object.assign({}, this.params)
+                const baseParams = _.clone(this.params); // clone object because params properties are read-only, you can use Object.assign({}, this.params)
                 baseParams['lang_id'] = this.baseLang; // set baseLang to get object
 
                 this.getRecord(baseParams); // get baseLang object
@@ -197,7 +197,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         return args;
     }
 
-    // instante custom arguments, for example in field-detail.component.ts
+    // instance custom arguments, for example in field-detail.component.ts
     // default merge relations arguments with argumens
     getCustomArgumentsGetRecord(args: Object, params: Params): any 
     {

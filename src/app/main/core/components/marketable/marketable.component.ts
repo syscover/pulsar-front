@@ -6,8 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataRoute } from '../../structures/data-route';
 import { ConfigService } from '../../services/config.service';
 import { Lang } from '../../../apps/admin/admin.models';
-import * as _ from 'lodash';
 import { MarketableService } from './marketable.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-marketable',
@@ -16,8 +16,8 @@ import { MarketableService } from './marketable.service';
 export class MarketableComponent implements OnInit
 {
     @ViewChild('inputName') inputName: ElementRef;
-    @Input() parentFgName: string;
-    @Input() parentFg: FormGroup; // FormGroup from parent component
+    @Input() fg: FormGroup; // FormGroup from parent component
+    @Input() hiddenFields: string[] = [];
     @Input() products: Product[] = [];
     @Input() categories: Category[] = [];
     @Input() sections: Section[] = [];
@@ -29,8 +29,6 @@ export class MarketableComponent implements OnInit
 
     // public properties
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
-    slugValue: string = null;
-    fg: FormGroup; // Marketable form group
 
     constructor(
         private _marketable: MarketableService,
@@ -42,8 +40,7 @@ export class MarketableComponent implements OnInit
     ngOnInit(): void
     {
         this.setReactiveForm();
-        this.subscribeChangeName();
-        this.setLang();
+        // this.setLang();
     }
 
     // get taxes for product
@@ -62,7 +59,7 @@ export class MarketableComponent implements OnInit
 
     private setReactiveForm(): void
     {
-        this.fg = this._fb.group({
+        const marketableFg = this._fb.group({
             active: false,
             categories_id: [[], Validators.required],
             lang_id: [null, Validators.required],
@@ -80,51 +77,17 @@ export class MarketableComponent implements OnInit
             tax_format: [{value: null, disabled: true}, Validators.required],
             total_format: [{value: null, disabled: true}, Validators.required],
             type_id: [null, Validators.required],
-            weight: [0],
+            weight: [0]
         });
 
-        if (this.parentFgName)
+        // add marketable controls to parentFg
+        for (const control in marketableFg.controls)
         {
-            this.parentFg.addControl(this.parentFgName, this.fg);
-        }
-        else
-        {
-            // add marketable controls to parentFg
-            for (const control in this.fg.controls)
+            // check if field has to add to form group
+            if (this.hiddenFields.indexOf(control) === -1)
             {
-                if (control) this.parentFg.addControl(control, this.fg.get(control));
+                if (control) this.fg.addControl(control, marketableFg.get(control));
             }
-
-            // set parentFg like fg to take the reference in template
-            // <div [formGroup]="fg">
-            this.fg = this.parentFg;
-        }
-    }
-
-    private subscribeChangeName(): void
-    {
-        if (this.parentFgName)
-        {
-            // subscribe to name marketable changes
-            this.parentFg.get(this.nameField)
-                .valueChanges
-                .pipe(
-                    startWith(
-                        this.parentFg
-                            .get(this.nameField)
-                            .value
-                    )
-                )
-                .subscribe(val => {
-                    // set name
-                    this.parentFg
-                        .get(this.parentFgName)
-                        .get('name')
-                        .setValue(val);
-
-                    // set slug, use slugValue to detect chage in dh2Slug directive
-                    this.slugValue = val;
-                });
         }
     }
 

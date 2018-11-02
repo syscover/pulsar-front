@@ -7,9 +7,8 @@ import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { ProductStockDialogComponent } from './product-stock-dialog.component';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
+import { MarketableService } from '../../../core/components/marketable/marketable.service';
 import * as _ from 'lodash';
-import gql from 'graphql-tag';
-import {MarketableService} from '../../../core/components/marketable/marketable.service';
 
 @Component({
     selector: 'dh2-market-product-detail',
@@ -28,13 +27,14 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     attachmentFamilies: AttachmentFamily[] = [];
     startCustomFields = false;
 
-    // marketable variables
+    // ***** start - marketable variables
     products: Product[] = [];
     categories: Category[] = [];
     sections: Section[] = [];
     productTypes: ProductType[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
+    // ***** end - marketable variables
 
     // stocks
     displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
@@ -112,33 +112,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     
     argumentsRelationsObject(): Object 
     {
-        const sqlCategory = [
-            {
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_category.name'
-            }
-        ];
-
-        const sqlSection = [
-            {
-                command: 'where',
-                column: 'lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_section.name'
-            }
-        ];
+        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id']);
 
         const sqlAttachmentFamily = [
             {
@@ -153,29 +127,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 column: 'admin_attachment_family.name'
             }
         ];
-
-        const sqlProduct = [
-            {
-                command: 'where',
-                column: 'market_product_lang.lang_id',
-                operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
-            },
-            {
-                command: 'orderBy',
-                operator: 'asc',
-                column: 'market_product.sort'
-            }
-        ];
-
-        if (this.params['id']) {
-            sqlProduct.push({
-                command: 'where',
-                column: 'market_product.id',
-                operator: '<>',
-                value: this.params['id']
-            });
-        }
 
         const sqlFieldGroup = [
             {
@@ -195,32 +146,26 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }
         ];
 
-        const configProductTypes = {
-            key: 'pulsar-market.product_types',
-            lang: this.baseLang,
-            property: 'name'
-        };
-
-        const configPriceTypes = {
-            key: 'pulsar-market.price_types',
-            lang: this.baseLang,
-            property: 'name'
-        };
-
         return {
-            sqlCategory,
-            sqlSection,
+            ...marketableArguments,
             sqlAttachmentFamily,
-            sqlProduct,
             sqlFieldGroup,
-            sqlStock,
-            configProductTypes,
-            configPriceTypes
+            sqlStock
         };
     }
 
     setRelationsData(data: any): void
     {
+        // ***** start - marketable relations
+        // market products
+        this.products = data.marketProducts;
+
+        // market category
+        this.categories = data.marketCategories;
+
+        // market product section
+        this.sections = data.marketSections;
+
         // market product types
         this.productTypes = data.marketProductTypes;
 
@@ -229,18 +174,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
         // market product class taxes
         this.productClassTaxes = data.marketProductClassTaxes;
+        // ***** end - marketable relations
 
-        // market category
-        this.categories = data.marketCategories;
-
-        // market product section
-        this.sections = data.marketSections;
 
         // market admin field groups
         this.fieldGroups = data.adminFieldGroups;
-
-        // market products
-        this.products = data.marketProducts;
 
         // admin attachment families
         this.attachmentFamilies = data.adminAttachmentFamilies;

@@ -80,4 +80,78 @@ export class MarketableService
                 if (loadingPrice) loadingPrice(false);
             });
     }
+
+    getArgumentsRelations(baseLang: string, lang_id: string, id?: string, isInherited: boolean = false): Object
+    {
+        const sqlProduct = [
+            {
+                command: 'where',
+                column: 'market_product_lang.lang_id',
+                operator: '=',
+                value: lang_id ? lang_id : baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_product.sort'
+            }
+        ];
+
+        if (id) {
+            sqlProduct.push({
+                command: 'where',
+                column: isInherited ? 'market_product.object_id' : 'market_product.id',
+                operator: '<>',
+                value: id
+            });
+        }
+
+        const sqlCategory = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: lang_id ? lang_id : baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_category.name'
+            }
+        ];
+
+        const sqlSection = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: lang_id ? lang_id : baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'market_section.name'
+            }
+        ];
+
+        const configProductTypes = {
+            key: 'pulsar-market.product_types',
+            lang: lang_id ? lang_id : baseLang,
+            property: 'name'
+        };
+
+        const configPriceTypes = {
+            key: 'pulsar-market.price_types',
+            lang: lang_id ? lang_id : baseLang,
+            property: 'name'
+        };
+
+        return {
+            sqlProduct,
+            sqlCategory,
+            sqlSection,
+            configProductTypes,
+            configPriceTypes
+        };
+    }
 }

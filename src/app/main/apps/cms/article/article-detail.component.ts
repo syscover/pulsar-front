@@ -48,7 +48,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     
     addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
     removeTag: (formGroup: FormGroup, name: string, tag) => void;
-    createForm()
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
