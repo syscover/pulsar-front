@@ -44,7 +44,6 @@ import { OrderGraphQLService } from './order/order-graphql.service';
 import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
-import { ProductGraphQLService } from './product/product-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { SectionGraphQLService } from './section/section-graphql.service';
 import { StockGraphQLService } from './stock/stock-graphql.service';
@@ -99,7 +98,6 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         OrderStatusGraphQLService,
         PaymentMethodGraphQLService,
         PaypalWebProfileGraphqlService,
-        ProductGraphQLService,
         ProductClassTaxGraphQLService,
         SectionGraphQLService,
         StockGraphQLService,

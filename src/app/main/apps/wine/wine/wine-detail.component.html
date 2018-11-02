@@ -39,7 +39,7 @@
                     type="submit"
                     form="formDetail"
                     class="action-btn fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton"
+                    [disabled]="fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='create'">
                 <span>{{ 'APPS.ADD' | translate }}</span>
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -48,11 +48,30 @@
             <button mat-raised-button
                     type="submit"
                     form="formDetail"
+                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || loadingButton"
+                    *ngIf="dataRoute.action ==='create-lang'">
+                <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
                     class="action-btn fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='edit'">
                 <span>{{ 'APPS.SAVE' | translate }}</span>
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                    [disabled]="loadingTranslationButton"
+                    *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang"
+                    (click)="deleteRecord(object)">
+                <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                <mat-spinner *ngIf="loadingTranslationButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
         </div>
         <!-- / HEADER -->
@@ -79,18 +98,20 @@
                                     <mat-form-field class="col-12 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
+                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <input dh2Slug [model]="modelWineLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <input dh2Slug [model]="modelWineLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -104,6 +125,20 @@
                             </div>
                         </mat-tab>
 
+                        <mat-tab label="{{ 'APPS.DESCRIPTION' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <dh2-froala formControlName="tasting_note"
+                                                    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                                    [heightMin]="400"
+                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                        <mat-error>{{ formErrors?.tasting_note }}</mat-error>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+
                         <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
@@ -113,8 +148,8 @@
                                     </div>
                                 </div>
 
-                                <dh2-marketable [hidden]="! fg.get('is_product').value"
-                                                [hiddenFields]="['lang_id', 'name', 'slug']"
+                                <dh2-marketable [hiddenFields]="['lang_id', 'name', 'slug']"
+                                                [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
                                                 [products]="products"
                                                 [sections]="sections"

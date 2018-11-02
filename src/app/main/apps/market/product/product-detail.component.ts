@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewChild, ViewEncapsulation } from '@angu
 import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ProductGraphQLService } from './product-graphql.service';
+import { graphQL } from './product.graphql';
 import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { ProductStockDialogComponent } from './product-stock-dialog.component';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
@@ -44,12 +44,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     dialog: MatDialog;
 
     constructor(
-        protected injector: Injector,
-        public graphQL: ProductGraphQLService,
-        private graphQLStock: StockGraphQLService,
+        private _injector: Injector,
+        private _graphQLStock: StockGraphQLService,
         private _marketable: MarketableService
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
     ngOnInit(): void
@@ -243,7 +242,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 const ob$ = this.httpService
                     .apolloClient()
                     .mutate({
-                        mutation: this.graphQLStock.mutationSetStock,
+                        mutation: this._graphQLStock.mutationSetStock,
                         variables: {
                             object: {
                                 warehouse_id: newStockData.warehouse_id,

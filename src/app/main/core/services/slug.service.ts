@@ -10,22 +10,36 @@ export class SlugService
         private httpService: HttpService
     ) {}
 
-    async checkSlug(model: string, slug: string, object?: any, field?: string)
+    async checkSlug(model: string, slug: string, object?: any, column?: string)
     {
         return await this.httpService
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
                 query: gql`
-                    query CoreSlug ($model:String! $slug:String! $id:String $field:String) {
-                        slug: coreSlug (model:$model slug:$slug id:$id field:$field)
+                    query CoreSlug (
+                        $model:String! 
+                        $slug:String! 
+                        $id:String 
+                        $column:String 
+                        $lang_id:String
+                    ) 
+                    {
+                        slug: coreSlug (
+                            model:$model 
+                            slug:$slug 
+                            id:$id
+                            column:$column
+                            lang_id:$lang_id
+                        )
                     }
                 `,
                 variables: {
                     model: model,
                     slug: slug,
                     id: object ? object.ix ? object.ix : object.id : undefined,
-                    field: field,
+                    column: column,
+                    lang_id: object.lang_id ? object.lang_id : undefined
                 }
             })
             .valueChanges

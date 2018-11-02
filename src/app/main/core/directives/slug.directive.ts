@@ -1,4 +1,4 @@
-import { Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
+import {Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit} from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -15,12 +15,12 @@ import { BehaviorSubject } from 'rxjs';
         SlugService
     ]
 })
-export class SlugDirective implements AfterViewInit, OnDestroy, OnChanges
+export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy
 {
-    @Input('model') model;
-    @Input('object') object: any;
-    @Input('target') target = 'slug';
-    @Input('value') value: string;
+    @Input() model;
+    @Input() object: any;
+    @Input() column = 'slug';
+    @Input() value: string;
     @Output() checkingSlug = new EventEmitter<boolean>();
 
     private ngUnsubscribe = new Subject();
@@ -35,10 +35,11 @@ export class SlugDirective implements AfterViewInit, OnDestroy, OnChanges
     ) { }
 
     ngOnChanges(): void {
-        if (! this.value$) {
-            this.value$ = new BehaviorSubject<string>(this.value);
-        }
-        this.value$.next(this.value);
+        if (this.value$) this.value$.next(this.value);
+    }
+
+    ngOnInit(): void {
+        this.value$ = new BehaviorSubject<string>(this.value);
     }
 
     ngAfterViewInit(): void
@@ -70,21 +71,25 @@ export class SlugDirective implements AfterViewInit, OnDestroy, OnChanges
                             this.running = true;
                             let data: any;
 
-                            data = await this.slugService.checkSlug(
-                                this.model,
-                                source,
-                                this.object
-                            );
+                            data = await this.slugService
+                                .checkSlug(
+                                    this.model,
+                                    source,
+                                    this.object,
+                                    this.column
+                                );
 
                             // check buffer
                             while (this.buffer)
                             {
                                 const bufferValue = this.buffer;
-                                data = await this.slugService.checkSlug(
-                                    this.model,
-                                    this.buffer,
-                                    this.object
-                                );
+                                data = await this.slugService
+                                    .checkSlug(
+                                        this.model,
+                                        this.buffer,
+                                        this.object,
+                                        this.column
+                                    );
                                 // reset buffer
                                 this.buffer = undefined;
                             }
@@ -92,7 +97,7 @@ export class SlugDirective implements AfterViewInit, OnDestroy, OnChanges
                             if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
                             if (data)
                             {
-                                this.control.control.parent.controls[this.target].setValue(data.data.slug);
+                                this.control.control.parent.controls[this.column].setValue(data.data.slug);
                             }
 
                             this.running = false;

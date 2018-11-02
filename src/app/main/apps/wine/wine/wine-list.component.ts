@@ -16,12 +16,12 @@ export class WineListComponent extends CoreListComponent
     columnsSearch: string[] = ['wine_wine.id', 'wine_wine.name', 'wine_wine.year'];
     displayedColumns = ['wine_wine.id', 'wine_wine.name', 'wine_wine.year', 'translations', 'actions'];
     filters = [
-        {'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }
+        {'command': 'where', 'column': 'wine_wine_lang.lang_id', 'operator': '=', 'value': this.baseLang }
     ];
 
     constructor(
-        protected injector: Injector
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 }

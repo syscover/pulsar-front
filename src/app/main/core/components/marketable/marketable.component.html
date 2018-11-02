@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container *ngIf="!hidden">
     <div [formGroup]="fg">
         <input type="hidden" formControlName="lang_id" *ngIf="hiddenFields.indexOf('lang_id') === -1">
         <input type="hidden" formControlName="subtotal">

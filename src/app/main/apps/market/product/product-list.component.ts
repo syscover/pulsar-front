@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ProductGraphQLService } from './product-graphql.service';
+import { graphQL } from './product.graphql';
 
 @Component({
     selector: 'dh2-product-list',
@@ -22,9 +21,8 @@ export class ProductListComponent extends CoreListComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ProductGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 }

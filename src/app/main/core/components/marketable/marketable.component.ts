@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { startWith } from 'rxjs/operators/startWith';
 import { ActivatedRoute } from '@angular/router';
 import { DataRoute } from '../../structures/data-route';
 import { ConfigService } from '../../services/config.service';
@@ -17,6 +16,7 @@ export class MarketableComponent implements OnInit
 {
     @ViewChild('inputName') inputName: ElementRef;
     @Input() fg: FormGroup; // FormGroup from parent component
+    @Input() hidden = false;
     @Input() hiddenFields: string[] = [];
     @Input() products: Product[] = [];
     @Input() categories: Category[] = [];
@@ -25,41 +25,23 @@ export class MarketableComponent implements OnInit
     @Input() priceTypes: PriceType[] = [];
     @Input() productClassTaxes: ProductClassTax[] = [];
     @Input() nameField = 'name';
-    loadingPrice = false;
 
-    // public properties
+    loadingPrice = false;
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
+    marketableFg: FormGroup;
 
     constructor(
         private _marketable: MarketableService,
         private _fb: FormBuilder,
         private _config: ConfigService,
         private _route: ActivatedRoute
-    ) {}
-
-    ngOnInit(): void
-    {
-        this.setReactiveForm();
-        // this.setLang();
+    ) {
+        this.init();
     }
 
-    // get taxes for product
-    handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void
+    init(): void
     {
-        this._marketable.handleGetProductTaxes(
-            this.fg,
-            subtotal,
-            forceCalculatePriceWithoutTax, // force to calulate price without tax
-            callback, // callback, all http petition must to be sequential to pass JWT
-            (value) => { // pass argument like function to respect scope
-                this.loadingPrice = value;
-            }
-        );
-    }
-
-    private setReactiveForm(): void
-    {
-        const marketableFg = this._fb.group({
+        this.marketableFg = this._fb.group({
             active: false,
             categories_id: [[], Validators.required],
             lang_id: [null, Validators.required],
@@ -79,14 +61,63 @@ export class MarketableComponent implements OnInit
             type_id: [null, Validators.required],
             weight: [0]
         });
+    }
 
-        // add marketable controls to parentFg
-        for (const control in marketableFg.controls)
+    ngOnInit(): void
+    {
+        if (this.fg.get('is_product'))
         {
-            // check if field has to add to form group
-            if (this.hiddenFields.indexOf(control) === -1)
+            // subscribe to name marketable changes
+            this.fg.get('is_product')
+                .valueChanges
+                .subscribe(val => {
+                    this.setReactiveForm(! val);
+                });
+        }
+        else
+        {
+            this.setReactiveForm(false);
+        }
+    }
+
+    // get taxes for product
+    handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void
+    {
+        this._marketable.handleGetProductTaxes(
+            this.fg,
+            subtotal,
+            forceCalculatePriceWithoutTax, // force to calulate price without tax
+            callback, // callback, all http petition must to be sequential to pass JWT
+            (value) => { // pass argument like function to respect scope
+                this.loadingPrice = value;
+            }
+        );
+    }
+
+    private setReactiveForm(hidden: boolean): void
+    {
+        if (hidden)
+        {
+            // add marketable controls to parentFg
+            for (const control in this.marketableFg.controls)
             {
-                if (control) this.fg.addControl(control, marketableFg.get(control));
+                // check if field has to add to form group
+                if (this.hiddenFields.indexOf(control) === -1)
+                {
+                    this.fg.removeControl(control);
+                }
+            }
+        }
+        else
+        {
+            // add marketable controls to parentFg
+            for (const control in this.marketableFg.controls)
+            {
+                // check if field has to add to form group
+                if (this.hiddenFields.indexOf(control) === -1)
+                {
+                    this.fg.addControl(control, this.marketableFg.get(control));
+                }
             }
         }
     }

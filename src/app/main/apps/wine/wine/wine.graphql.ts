@@ -11,6 +11,7 @@ const fields = `
             lang_id
             name
             slug
+            tasting_note
             year
             
             ${marketableGraphQL.fields}
@@ -31,10 +32,10 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query WineGetWinesPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: wineWinesPagination (sql:$sql) {
+        query WineGetWinesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
+            coreObjectsPagination: wineWinesPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`,
