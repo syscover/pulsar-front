@@ -43,7 +43,29 @@ const fields = `
         id
         ix
         
-        ${marketableGraphQL.fields}
+        active
+        categories {
+            id
+            ix
+            lang_id
+            name
+        }
+        lang_id
+        name
+        parent_id
+        price_type_id
+        product_class_tax_id
+        sections {
+            ix
+            id
+            name
+        }
+        sku
+        slug
+        sort
+        subtotal
+        type_id
+        weight
     }
 `;
 
@@ -171,8 +193,8 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation MarketDeleteProduct ($lang_id:String! $id:Int!) {
-            marketDeleteProduct (lang_id:$lang_id id:$id){
+        mutation MarketDeleteProduct ($id:Int! $lang_id:String!) {
+            marketDeleteProduct (id:$id lang_id:$lang_id){
                 ${fields}
             }
         }`

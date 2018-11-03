@@ -22,9 +22,7 @@
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                        {{ object.name }}
-                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'" [innerHTML]="object.name"></div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'WINE.WINE' | translate }}
                     </div>
@@ -35,44 +33,46 @@
             </div>
             <!-- / APP TITLE -->
 
-            <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="action-btn fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton || loadingSlug"
-                    *ngIf="dataRoute.action ==='create'">
-                <span>{{ 'APPS.ADD' | translate }}</span>
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+            <div fxLayoutGap="30px">
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn fuse-white mt-16 mt-sm-0"
+                        [disabled]="fg.pristine || loadingButton || loadingSlug"
+                        *ngIf="dataRoute.action ==='create'">
+                    <span>{{ 'APPS.ADD' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
 
-            <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="action-btn mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || loadingButton"
-                    *ngIf="dataRoute.action ==='create-lang'">
-                <span>{{ 'APPS.TRANSLATE' | translate }}</span>
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || loadingButton || loadingSlug"
+                        *ngIf="dataRoute.action ==='create-lang'">
+                    <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
 
-            <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="action-btn fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
-                    *ngIf="dataRoute.action ==='edit'">
-                <span>{{ 'APPS.SAVE' | translate }}</span>
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="action-btn fuse-white mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
+                        *ngIf="dataRoute.action ==='edit'">
+                    <span>{{ 'APPS.SAVE' | translate }}</span>
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
 
-            <button mat-raised-button
-                    class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
-                    [disabled]="loadingTranslationButton"
-                    *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang"
-                    (click)="deleteRecord(object)">
-                <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
-                <mat-spinner *ngIf="loadingTranslationButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+                <button mat-raised-button
+                        class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                        [disabled]="loadingTranslationButton"
+                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang"
+                        (click)="deleteRecord(object)">
+                    <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                    <mat-spinner *ngIf="loadingTranslationButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
+            </div>
         </div>
         <!-- / HEADER -->
 

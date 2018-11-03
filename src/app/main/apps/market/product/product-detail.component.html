@@ -38,7 +38,7 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.pristine || loadingButton"
+                        [disabled]="fg.pristine || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create'">
                     <span>{{ 'APPS.ADD' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -48,7 +48,7 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || loadingButton"
+                        [disabled]="fg.invalid || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create-lang'">
                     <span>{{ 'APPS.TRANSLATE' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>

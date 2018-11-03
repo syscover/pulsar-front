@@ -25,6 +25,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     objectTranslationGender = 'M';
     fieldGroups: FieldGroup[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
+    loadingSlug = false;
     startCustomFields = false;
 
     // ***** start - marketable variables
@@ -70,6 +71,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             description: null,
             attachments: this.fb.array([])
         });
+    }
+
+    handleCheckingSlug($event): void {
+        this.loadingSlug = $event;
     }
 
     disabledForm(): void

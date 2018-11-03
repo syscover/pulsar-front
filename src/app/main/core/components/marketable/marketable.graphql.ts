@@ -2,21 +2,23 @@ export const graphQL = {
 
     fields: `
         active
-        categories {
-            id
-            ix
-            lang_id
-            name
-        }
         lang_id
         name
         parent_id
         price_type_id
         product_class_tax_id
-        sections {
-            ix
-            id
-            name
+        products {
+            categories {
+                id
+                ix
+                lang_id
+                name
+            }
+            sections {
+                ix
+                id
+                name
+            }
         }
         sku
         slug
