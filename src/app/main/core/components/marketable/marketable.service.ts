@@ -81,7 +81,7 @@ export class MarketableService
             });
     }
 
-    getArgumentsRelations(baseLang: string, lang_id: string, id?: string, isInherited: boolean = false): Object
+    getArgumentsRelations(baseLang: string, lang_id: string, id?: string, isInherited: boolean = false, object_type = null): Object
     {
         const sqlProduct = [
             {
@@ -89,6 +89,12 @@ export class MarketableService
                 column: 'market_product_lang.lang_id',
                 operator: '=',
                 value: lang_id ? lang_id : baseLang
+            },
+            {
+                command: 'where',
+                column: 'market_product.object_type',
+                operator: '=',
+                value: object_type
             },
             {
                 command: 'orderBy',
@@ -105,6 +111,8 @@ export class MarketableService
                 value: id
             });
         }
+
+        console.log(sqlProduct);
 
         const sqlCategory = [
             {

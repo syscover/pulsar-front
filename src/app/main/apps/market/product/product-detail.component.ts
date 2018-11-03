@@ -116,7 +116,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     
     argumentsRelationsObject(): Object 
     {
-        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id']);
+        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], false, null);
 
         const sqlAttachmentFamily = [
             {

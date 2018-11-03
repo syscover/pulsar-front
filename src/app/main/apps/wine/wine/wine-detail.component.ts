@@ -56,7 +56,8 @@ export class WineDetailComponent extends CoreDetailComponent
 
     argumentsRelationsObject(): Object
     {
-        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], true);
+
+        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], true, 'Syscover\\Wine\\Models\\Wine');
 
         return {
             ...marketableArguments
