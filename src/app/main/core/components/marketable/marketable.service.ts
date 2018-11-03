@@ -112,8 +112,6 @@ export class MarketableService
             });
         }
 
-        console.log(sqlProduct);
-
         const sqlCategory = [
             {
                 command: 'where',

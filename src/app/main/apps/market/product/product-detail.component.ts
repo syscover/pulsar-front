@@ -26,6 +26,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     fieldGroups: FieldGroup[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     loadingSlug = false;
+    loadingPrice = false;
     startCustomFields = false;
 
     // ***** start - marketable variables
@@ -75,6 +76,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     handleCheckingSlug($event): void {
         this.loadingSlug = $event;
+    }
+
+    handleCheckingPrice($event): void {
+        this.loadingPrice = $event;
     }
 
     disabledForm(): void

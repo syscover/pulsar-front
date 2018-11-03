@@ -20,6 +20,7 @@ export class WineDetailComponent extends CoreDetailComponent
     modelWineLang = 'Syscover\\Wine\\Models\\WineLang';
     attachmentFamilies: AttachmentFamily[] = [];
     loadingSlug = false;
+    loadingPrice = false;
 
     // ***** start - marketable variables
     products: Product[] = [];
@@ -37,8 +38,13 @@ export class WineDetailComponent extends CoreDetailComponent
         super(_injector, graphQL);
     }
 
-    handleCheckingSlug($event): void {
+    handleCheckingSlug($event): void
+    {
         this.loadingSlug = $event;
+    }
+
+    handleCheckingPrice($event): void {
+        this.loadingPrice = $event;
     }
 
     createForm(): void

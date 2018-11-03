@@ -39,14 +39,15 @@
 
         <div fxLayout="row" *ngIf="hiddenFields.indexOf('name') === -1">
             <mat-form-field class="col-12">
-                <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                 <mat-error>{{ formErrors?.name }}</mat-error>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" *ngIf="hiddenFields.indexOf('slug') === -1">
             <mat-form-field class="col-12">
-                <input dh2Slug [model]="modelProductLang" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
                 <mat-error>{{ formErrors?.slug }}</mat-error>
             </mat-form-field>
         </div>

@@ -1,12 +1,7 @@
-import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import {Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { DataRoute } from '../../structures/data-route';
-import { ConfigService } from '../../services/config.service';
-import { Lang } from '../../../apps/admin/admin.models';
 import { MarketableService } from './marketable.service';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-marketable',
@@ -15,6 +10,7 @@ import * as _ from 'lodash';
 export class MarketableComponent implements OnInit
 {
     @ViewChild('inputName') inputName: ElementRef;
+    @Input() object = {};
     @Input() fg: FormGroup; // FormGroup from parent component
     @Input() hidden = false;
     @Input() hiddenFields: string[] = [];
@@ -25,16 +21,17 @@ export class MarketableComponent implements OnInit
     @Input() priceTypes: PriceType[] = [];
     @Input() productClassTaxes: ProductClassTax[] = [];
     @Input() nameField = 'name';
+    @Output() checkingSlug = new EventEmitter<boolean>();
+    @Output() checkingPrice = new EventEmitter<boolean>();
 
     loadingPrice = false;
+    loadingSlug = false;
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
     marketableFg: FormGroup;
 
     constructor(
         private _marketable: MarketableService,
-        private _fb: FormBuilder,
-        private _config: ConfigService,
-        private _route: ActivatedRoute
+        private _fb: FormBuilder
     ) {
         this.init();
     }
@@ -80,6 +77,12 @@ export class MarketableComponent implements OnInit
         }
     }
 
+    handleCheckingSlug($event): void
+    {
+        this.loadingSlug = $event;
+        this.checkingSlug.emit($event);
+    }
+
     // get taxes for product
     handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void
     {
@@ -90,6 +93,7 @@ export class MarketableComponent implements OnInit
             callback, // callback, all http petition must to be sequential to pass JWT
             (value) => { // pass argument like function to respect scope
                 this.loadingPrice = value;
+                this.checkingPrice.emit(value);
             }
         );
     }
@@ -120,27 +124,5 @@ export class MarketableComponent implements OnInit
                 }
             }
         }
-    }
-
-    private setLang(): void
-    {
-        // set lang_id
-        const dataRoute = <DataRoute>this._route.snapshot.data;
-        const params = this._route.snapshot.params;
-        const langs = this._config.get('langs');
-        const baseLang = this._config.get('base_lang');
-        let lang_id: string;
-
-        if (dataRoute.action === 'create')
-        {
-            lang_id = (<Lang>_.find(langs, {'id': baseLang})).id; // get baseLang object
-        }
-
-        if (dataRoute.action === 'create-lang' || dataRoute.action === 'edit')
-        {
-            lang_id = (<Lang>_.find(langs, {'id': params['lang_id']})).id; // get lang object
-        }
-
-        this.fg.get('lang_id').setValue(lang_id);
     }
 }
