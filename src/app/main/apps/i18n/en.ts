@@ -118,6 +118,11 @@ export const locale = {
             'PREVIOUS_PAGE' : 'Previous page',
             'OF_LABEL' : 'of',
         },
+        'STOCKABLE': {
+            'MINIMUM_STOCK': 'Stock mínimo',
+            'STOCK': 'Stock',
+            'WAREHOUSE': 'Almacén'
+        },
         'VALIDATIONS': {
             'DEFAULT': 'Error not contemplated.',
             'EMAIL': 'This field must be a valid email address.',

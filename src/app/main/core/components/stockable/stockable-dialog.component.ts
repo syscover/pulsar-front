@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 
 @Component({
-    selector: 'dh2-product-stock-dialog',
+    selector: 'dh2-stockable-dialog',
     template: `
         <h1 mat-dialog-title>{{ fg.get('warehouse_name').value }}</h1>
         <div mat-dialog-content>
@@ -17,13 +17,13 @@ import { ValidationMessageService } from './../../../core/services/validation-me
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'MARKET.STOCK' | translate }}" formControlName="stock" type="number">
+                            <input matInput placeholder="{{ 'STOCKABLE.STOCK' | translate }}" formControlName="stock" type="number">
                             <mat-error>{{ formErrors?.stock }}</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'MARKET.MINIMUM_STOCK' | translate }}" formControlName="minimum_stock" type="number">
+                            <input matInput placeholder="{{ 'STOCKABLE.MINIMUM_STOCK' | translate }}" formControlName="minimum_stock" type="number">
                             <mat-error>{{ formErrors?.minimum_stock }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -36,14 +36,14 @@ import { ValidationMessageService } from './../../../core/services/validation-me
         </div>
     `
 })
-export class ProductStockDialogComponent implements OnInit
+export class StockableDialogComponent implements OnInit
 {
     fg: FormGroup;
     formErrors: any = {};
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private dialogRef: MatDialogRef<ProductStockDialogComponent>,
+        private dialogRef: MatDialogRef<StockableDialogComponent>,
         private fb: FormBuilder,
         private validationMessageService: ValidationMessageService
     ) 

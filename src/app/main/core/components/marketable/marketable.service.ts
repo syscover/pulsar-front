@@ -81,7 +81,7 @@ export class MarketableService
             });
     }
 
-    getArgumentsRelations(baseLang: string, lang_id: string, id?: string, isInherited: boolean = false, object_type = null): Object
+    getArgumentsRelations(baseLang: string, lang_id: string, product_id?: string, object_type = null): Object
     {
         const sqlProduct = [
             {
@@ -103,12 +103,12 @@ export class MarketableService
             }
         ];
 
-        if (id) {
+        if (product_id) {
             sqlProduct.push({
                 command: 'where',
-                column: isInherited ? 'market_product.object_id' : 'market_product.id',
+                column: 'market_product.id',
                 operator: '<>',
-                value: id
+                value: product_id
             });
         }
 

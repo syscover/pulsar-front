@@ -118,6 +118,11 @@ export const locale = {
             'PREVIOUS_PAGE' : 'Página anterior',
             'OF_LABEL' : 'de',
         },
+        'STOCKABLE': {
+            'MINIMUM_STOCK': 'Minimum stock',
+            'STOCK': 'Stock',
+            'WAREHOUSE': 'Warehouse'
+        },
         'VALIDATIONS': {
             'DEFAULT': 'Error no contemplado.',
             'EMAIL': 'Este campo debe ser un email válido.',

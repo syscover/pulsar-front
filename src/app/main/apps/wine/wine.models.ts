@@ -1,8 +1,13 @@
+import { Attachment } from '../admin/admin.models';
+
 export class Wine
 {
+    attachments: Attachment[];
     id: number;
-    name: string;
-    slug: string;
-    year: number;
     is_product: boolean;
+    name: string;
+    product_id: number;
+    slug: string;
+    tasting_note: string;
+    year: number;
 }

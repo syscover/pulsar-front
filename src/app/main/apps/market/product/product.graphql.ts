@@ -1,40 +1,10 @@
 import gql from 'graphql-tag';
+import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
+import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
+import { graphQL as attachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     ... on MarketProduct {
-        attachments {
-            alt
-            base_path
-            extension
-            family_id
-            file_name
-            height
-            id
-            ix
-            lang_id
-            library_file_name
-            library_id
-            mime
-            object_id
-            object_type
-            sort
-            title
-            url
-            size
-            width
-            attachment_library {
-                base_path
-                extension
-                file_name
-                height
-                id
-                mime
-                name
-                size
-                url
-                width
-            }
-        }
         data
         data_lang
         description
@@ -42,77 +12,20 @@ const fields = `
         id
         ix
         
-        active
-        categories {
-            id
-            ix
-            lang_id
-            name
-        }
-        lang_id
-        name
-        parent_id
-        price_type_id
-        product_class_tax_id
-        sections {
-            ix
-            id
-            name
-        }
-        sku
-        slug
-        sort
-        subtotal
-        type_id
-        weight
+        ${attachmentsGraphQL.fields}
+        ${marketableGraphQL.fields}
     }
 `;
 
 const relationsFields = `
-    marketCategories (sql:$sqlCategory) {
-        ix
-        id
-        lang_id
-        name
-    }
-    marketSections (sql:$sqlSection) {
-        ix
-        id
-        lang_id
-        name
-        slug
-    }
-    marketProductClassTaxes {
-        id
-        name
-    }
-    marketProducts (sql:$sqlProduct) {
-        ix
-        id
-        lang_id
-        name
-        sku
-    }
     adminFieldGroups (sql:$sqlFieldGroup) {
         id
         name
     }
-    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-        id
-        name
-        resource_id
-        width
-        height
-        sizes
-        quality
-        format
-    }
-    marketProductTypes: coreConfig (config:$configProductTypes)
-    marketPriceTypes: coreConfig (config:$configPriceTypes)
-    marketWarehouses {
-        id
-        name
-    }
+    
+    ${attachmentsGraphQL.relationsFields}
+    ${marketableGraphQL.relationsFields}
+    ${stockableGraphQL.relationsFields}
 `;
 
 export const graphQL = {

@@ -9,6 +9,7 @@ import { ImageInputModule } from './image-input/image-input.module';
 import { LocationMapModule } from './location-map/location-map.module';
 import { MarketableModule } from './marketable/marketable.module';
 import { TerritoriesModule } from './territories/territories.module';
+import { StockableModule } from './stockable/stockable.module';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { TerritoriesModule } from './territories/territories.module';
         MatDialogModule,
         MatFormFieldModule,
         MatIconModule,
-        TerritoriesModule
+        TerritoriesModule,
+        StockableModule
     ],
     exports: [
         AttachmentsModule,
@@ -32,7 +34,8 @@ import { TerritoriesModule } from './territories/territories.module';
         ImageInputModule,
         LocationMapModule,
         MarketableModule,
-        TerritoriesModule
+        TerritoriesModule,
+        StockableModule
     ],
     declarations: [
         ConfirmationDialogComponent,

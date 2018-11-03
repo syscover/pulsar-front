@@ -7,8 +7,6 @@ import { locale as spanish } from './i18n/es';
 
 import { WineListComponent } from './wine/wine-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
-import { StockGraphQLService } from '../market/stock/stock-graphql.service';
-import { ProductStockDialogComponent } from '../market/product/product-stock-dialog.component';
 
 @NgModule({
     imports: [
@@ -17,16 +15,10 @@ import { ProductStockDialogComponent } from '../market/product/product-stock-dia
     ],
     exports: [ ],
     declarations: [
-        ProductStockDialogComponent,
         WineListComponent,
         WineDetailComponent
     ],
-    providers: [
-        StockGraphQLService,
-    ],
-    entryComponents: [
-        ProductStockDialogComponent
-    ]
+    providers: []
 })
 
 export class WineModule

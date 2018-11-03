@@ -1,15 +1,13 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section, Stock } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import { StockableService } from '../../../core/components/stockable/stockable.service';
 import { AttachmentFamily } from '../../admin/admin.models';
-import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import * as _ from 'lodash';
-import { ProductStockDialogComponent } from '../../market/product/product-stock-dialog.component';
-import { StockGraphQLService } from '../../market/stock/stock-graphql.service';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -24,6 +22,7 @@ export class WineDetailComponent extends CoreDetailComponent
     attachmentFamilies: AttachmentFamily[] = [];
     loadingSlug = false;
     loadingPrice = false;
+    stocksData = [];
 
     // ***** start - marketable variables
     products: Product[] = [];
@@ -34,18 +33,10 @@ export class WineDetailComponent extends CoreDetailComponent
     productClassTaxes: ProductClassTax[] = [];
     // ***** end - marketable variables
 
-    // ***** start - stockable variables
-    displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
-    stocksData: any[] = [];
-    dataSource = new MatTableDataSource();
-    @ViewChild(MatSort) sort: MatSort;
-    dialog: MatDialog;
-    // ***** end - stockable variables
-
     constructor(
         private _injector: Injector,
-        private _graphQLStock: StockGraphQLService,
-        private _marketable: MarketableService
+        private _marketable: MarketableService,
+        private _stockable: StockableService
     ) {
         super(_injector, graphQL);
     }
@@ -68,17 +59,35 @@ export class WineDetailComponent extends CoreDetailComponent
             slug: [null, Validators.required],
             year: null,
             tasting_note: null,
-            is_product: false
+            is_product: false,
+            attachments: this.fb.array([])
         });
     }
 
     argumentsRelationsObject(): Object
     {
+        const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Wine\\Models\\Wine');
 
-        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], true, 'Syscover\\Wine\\Models\\Wine');
+        const stockableRelations = this._stockable.getArgumentsRelations(this.params['product_id']);
+
+        const sqlAttachmentFamily = [
+            {
+                command: 'where',
+                column: 'admin_attachment_family.resource_id',
+                operator: '=',
+                value: 'wine-wine'
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_attachment_family.name'
+            }
+        ];
 
         return {
-            ...marketableArguments
+            ...marketableRelations,
+            ...stockableRelations,
+            sqlAttachmentFamily
         };
     }
 
@@ -109,21 +118,20 @@ export class WineDetailComponent extends CoreDetailComponent
         if (this.dataRoute.action === 'edit')
         {
             // market stock data
+            const stocksData = [];
             for (const warehouse of data.marketWarehouses)
             {
                 const stock = <Stock>_.find(data.marketStocks, {warehouse_id: warehouse.id});
-                this.stocksData.push({
+                stocksData.push({
                     warehouse_id: warehouse.id,
                     warehouse_name: warehouse.name,
-                    product_id: data.coreObject.id,
+                    product_id: data.coreObject.product_id,
                     stock: stock ? stock.stock : 0,
                     minimum_stock: stock ? stock.minimum_stock : 0,
                 });
             }
+            this.stocksData = stocksData;
         }
-
-        this.dataSource.sort = this.sort;
-        this.dataSource.data = this.stocksData;
         // ***** end - stockable relations
     }
 
@@ -132,10 +140,10 @@ export class WineDetailComponent extends CoreDetailComponent
         if (this.fg.get('is_product').value)
         {
             // set market categories extracting ids
-            this.fg.get('categories_id').setValue(_.uniq(_.map((<Product>_(this.object.products).head()).categories, 'id')));
+            this.fg.get('categories_id').setValue(_.uniq(_.map(this.object.categories, 'id')));
 
             // set market sections extracting ids
-            this.fg.get('sections_id').setValue(_.uniq(_.map((<Product>_(this.object.products).head()).sections, 'id')));
+            this.fg.get('sections_id').setValue(_.uniq(_.map(this.object.sections, 'id')));
 
             this._marketable.handleGetProductTaxes(
                 this.fg,
@@ -143,51 +151,6 @@ export class WineDetailComponent extends CoreDetailComponent
                 true
             );
         }
-    }
-
-    editStock(stockData: any): void
-    {
-        if (this.env.debug) console.log('DEBUG - Edit stock with this arguments: ', stockData);
-
-        const dialogRef = this.dialog.open(ProductStockDialogComponent, {
-            data: {
-                stockData: stockData
-            },
-            width: '80vw'
-        });
-
-        dialogRef.afterClosed().subscribe(newStockData => {
-
-            if (newStockData)
-            {
-                if (this.env.debug) console.log('DEBUG - Update stock with this arguments: ', newStockData);
-
-                const ob$ = this.httpService
-                    .apolloClient()
-                    .mutate({
-                        mutation: this._graphQLStock.mutationSetStock,
-                        variables: {
-                            object: {
-                                warehouse_id: newStockData.warehouse_id,
-                                product_id: newStockData.product_id,
-                                stock: newStockData.stock,
-                                minimum_stock: newStockData.minimum_stock
-                            }
-                        }
-                    })
-                    .subscribe((response) => {
-                        ob$.unsubscribe();
-
-                        // Find stock index using _.findIndex (thanks @AJ Richardson for comment)
-                        const index = _.findIndex(this.stocksData, { warehouse_id: newStockData.warehouse_id, product_id: newStockData.product_id });
-
-                        // Replace stock at index using native splice
-                        this.stocksData.splice(index, 1, newStockData);
-
-                        this.dataSource.data = this.stocksData;
-                    });
-            }
-        });
     }
 }
 

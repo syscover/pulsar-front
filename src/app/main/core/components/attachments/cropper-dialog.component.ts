@@ -77,7 +77,7 @@ export class CropperDialogComponent implements OnInit, OnDestroy
             .subscribe(({data}) => {
                 if (environment.debug) console.log('DEBUG - response after crop image: ', data);
 
-                // set attachemnt family id
+                // set attachment family id
                 this.data.attachment.patchValue(data.adminCropAttachment.attachment);
             });
     }

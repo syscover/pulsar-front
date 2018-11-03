@@ -1,13 +1,12 @@
-import { Component, Injector, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './product.graphql';
 import { StockGraphQLService } from './../stock/stock-graphql.service';
-import { ProductStockDialogComponent } from './product-stock-dialog.component';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import { StockableService } from '../../../core/components/stockable/stockable.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -28,6 +27,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     loadingSlug = false;
     loadingPrice = false;
     startCustomFields = false;
+    stocksData = [];
 
     // ***** start - marketable variables
     products: Product[] = [];
@@ -38,18 +38,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     productClassTaxes: ProductClassTax[] = [];
     // ***** end - marketable variables
 
-    // ***** start - stockable variables
-    displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
-    stocksData: any[] = [];
-    dataSource = new MatTableDataSource();
-    @ViewChild(MatSort) sort: MatSort;
-    dialog: MatDialog;
-    // ***** end - stockable variables
-
     constructor(
         private _injector: Injector,
         private _graphQLStock: StockGraphQLService,
-        private _marketable: MarketableService
+        private _marketable: MarketableService,
+        private _stockable: StockableService
     ) {
         super(_injector, graphQL);
     }
@@ -122,7 +115,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     
     argumentsRelationsObject(): Object 
     {
-        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], false, null);
+        const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], null);
+
+        const stockableRelations = this._stockable.getArgumentsRelations(this.params['id']);
 
         const sqlAttachmentFamily = [
             {
@@ -147,20 +142,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             }
         ];
 
-        const sqlStock = [
-            {
-                command: 'where',
-                column: 'product_id',
-                operator: '=',
-                value: this.params['id']
-            }
-        ];
-
         return {
             ...marketableArguments,
+            ...stockableRelations,
             sqlAttachmentFamily,
-            sqlFieldGroup,
-            sqlStock
+            sqlFieldGroup
         };
     }
 
@@ -191,10 +177,11 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         if (this.dataRoute.action === 'edit')
         {
             // market stock data
+            const stocksData = [];
             for (const warehouse of data.marketWarehouses)
             {
                 const stock = <Stock>_.find(data.marketStocks, {warehouse_id: warehouse.id});
-                this.stocksData.push({
+                stocksData.push({
                     warehouse_id: warehouse.id,
                     warehouse_name: warehouse.name,
                     product_id: data.coreObject.id,
@@ -202,10 +189,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                     minimum_stock: stock ? stock.minimum_stock : 0,
                 });
             }
+            this.stocksData = stocksData;
         }
-
-        this.dataSource.sort = this.sort;
-        this.dataSource.data = this.stocksData;
         // ***** end - stockable relations
 
         // market admin field groups
@@ -232,50 +217,5 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
                 this.startCustomFields = true;
             }
         );
-    }
-
-    editStock(stockData: any): void
-    {
-        if (this.env.debug) console.log('DEBUG - Edit stock with this arguments: ', stockData);
-
-        const dialogRef = this.dialog.open(ProductStockDialogComponent, {
-            data: { 
-                stockData: stockData
-            },
-            width: '80vw'
-        });
-
-        dialogRef.afterClosed().subscribe(newStockData => {
-
-            if (newStockData) 
-            {
-                if (this.env.debug) console.log('DEBUG - Update stock with this arguments: ', newStockData);
-
-                const ob$ = this.httpService
-                    .apolloClient()
-                    .mutate({
-                        mutation: this._graphQLStock.mutationSetStock,
-                        variables: {
-                            object: {
-                                warehouse_id: newStockData.warehouse_id,
-                                product_id: newStockData.product_id,
-                                stock: newStockData.stock,
-                                minimum_stock: newStockData.minimum_stock
-                            }
-                        }
-                    })
-                    .subscribe((response) => {
-                        ob$.unsubscribe();
-
-                        // Find stock index using _.findIndex (thanks @AJ Richardson for comment)
-                        const index = _.findIndex(this.stocksData, { warehouse_id: newStockData.warehouse_id, product_id: newStockData.product_id });
-
-                        // Replace stock at index using native splice
-                        this.stocksData.splice(index, 1, newStockData);
-
-                        this.dataSource.data = this.stocksData;
-                    });
-            }
-        });
     }
 }

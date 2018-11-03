@@ -2,8 +2,8 @@ export const graphQL = {
 
     relationsFields: `
         marketWarehouses {
-        id
-        name
-    }
+            id
+            name
+        }
     `
 };

@@ -27,7 +27,10 @@ export class CustomerGraphQLService extends GraphQLSchema
         }`;
 
     queryObject = gql`
-        query CrmGetCustomer ($sql:[CoreSQLInput] $sqlAddress:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
+        query CrmGetCustomer(
+            $sql:[CoreSQLInput]
+            $sqlCountry:[CoreSQLInput]
+        ) {
             coreObject: crmCustomer (sql:$sql){
                 ${this.fields}
             }

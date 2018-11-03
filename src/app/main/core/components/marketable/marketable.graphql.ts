@@ -2,23 +2,21 @@ export const graphQL = {
 
     fields: `
         active
+        categories {
+            id
+            ix
+            lang_id
+            name
+        }
         lang_id
         name
         parent_id
         price_type_id
         product_class_tax_id
-        products {
-            categories {
-                id
-                ix
-                lang_id
-                name
-            }
-            sections {
-                ix
-                id
-                name
-            }
+        sections {
+            ix
+            id
+            name
         }
         sku
         slug
@@ -35,6 +33,11 @@ export const graphQL = {
             lang_id
             name
         }
+        marketPriceTypes: coreConfig (config:$configPriceTypes)
+        marketProductClassTaxes {
+            id
+            name
+        }
         marketProducts (sql:$sqlProduct) {
             ix
             id
@@ -42,6 +45,7 @@ export const graphQL = {
             name
             sku
         }
+        marketProductTypes: coreConfig (config:$configProductTypes)
         marketSections (sql:$sqlSection) {
             ix
             id
@@ -49,11 +53,5 @@ export const graphQL = {
             name
             slug
         }
-        marketProductClassTaxes {
-            id
-            name
-        }
-        marketProductTypes: coreConfig (config:$configProductTypes)
-        marketPriceTypes: coreConfig (config:$configPriceTypes)
     `
 };

@@ -88,14 +88,14 @@
 
                                     <button mat-menu-item
                                             *ngIf="(row | actionTranslationObject:lang) === 'edit'"
-                                            [routerLink]="[baseUri + '/show', lang.id, row.id]">
+                                            [routerLink]="[baseUri + '/show', lang.id, row.id, {product_id:row.product_id}]">
                                         <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
                                         <span>{{ 'APPS.EDIT' | translate }}</span>
                                     </button>
 
                                     <button mat-menu-item
                                             *ngIf="(row | actionTranslationObject:lang) === 'create'"
-                                            [routerLink]="[baseUri + '/create', lang.id, row.id]">
+                                            [routerLink]="[baseUri + '/create', lang.id, row.id, {product_id:row.product_id}]">
                                         <span class="flag-icon flag-icon-{{ lang.icon }}"></span>
                                         <span>{{ 'APPS.TRANSLATE' | translate }}</span>
                                     </button>
@@ -115,7 +115,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.lang_id, row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.lang_id, row.id, {product_id:row.product_id}]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>

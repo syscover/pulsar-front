@@ -26,7 +26,6 @@ import { ProductListComponent } from './product/product-list.component';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { ProductClassTaxListComponent } from './product-class-tax/product-class-tax-list.component';
 import { ProductClassTaxDetailComponent } from './product-class-tax/product-class-tax-detail.component';
-import { ProductStockDialogComponent } from './product/product-stock-dialog.component';
 import { SectionListComponent } from './section/section-list.component';
 import { SectionDetailComponent } from './section/section-detail.component';
 import { TaxRateZoneListComponent } from './tax-rate-zone/tax-rate-zone-list.component';
@@ -79,7 +78,6 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         ProductDetailComponent,
         ProductClassTaxListComponent,
         ProductClassTaxDetailComponent,
-        ProductStockDialogComponent,
         SectionListComponent,
         SectionDetailComponent,
         TaxRateZoneListComponent,
@@ -106,7 +104,6 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         WarehouseGraphQLService
     ],
     entryComponents: [
-        ProductStockDialogComponent,
         OrderRowInfoDialogComponent
     ]
 })

@@ -11,10 +11,12 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Wines
-            { path: 'wine',                                                          component: WineListComponent },
-            { path: 'wine/create',                                                   component: WineDetailComponent,                          data: { action: 'create' }},
-            { path: 'wine/create/:lang_id/:id',                                      component: WineDetailComponent,                          data: { action: 'create-lang' }},
-            { path: 'wine/show/:lang_id/:id',                                        component: WineDetailComponent,                          data: { action: 'edit' }},
+            { path: 'wine',                                                         component: WineListComponent },
+            { path: 'wine/create',                                                  component: WineDetailComponent,                          data: { action: 'create' }},
+            //{ path: 'wine/create/:lang_id/:id/:product_id',                         component: WineDetailComponent,                          data: { action: 'create-lang' }},
+            { path: 'wine/create/:lang_id/:id',                                     component: WineDetailComponent,                          data: { action: 'create-lang' }},
+            //{ path: 'wine/show/:lang_id/:id/:product_id',                           component: WineDetailComponent,                          data: { action: 'edit' }},
+            { path: 'wine/show/:lang_id/:id',                                       component: WineDetailComponent,                          data: { action: 'edit' }},
         ]  
     }
 ];

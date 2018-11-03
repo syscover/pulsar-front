@@ -16,17 +16,17 @@ export class AttachmentsService extends HttpService
 
     setCropImage(parameters): Observable<any> 
     {
-        if (environment.debug) console.log('DEBUG - Crop image with paremameters: ', parameters);
+        if (environment.debug) console.log('DEBUG - Crop image with parameters: ', parameters);
 
         return this
             .apolloClient()
             .mutate({
                 mutation: gql`
-                    mutation AdminCropAttachment ($object:Object!) {
-                        adminCropAttachment (object:$object)
+                    mutation AdminCropAttachment ($payload:Object!) {
+                        adminCropAttachment (payload:$payload)
                     }`,
                 variables: {
-                    object: parameters // add object to arguments
+                    payload: parameters // add object to arguments
                 }
             });
     }

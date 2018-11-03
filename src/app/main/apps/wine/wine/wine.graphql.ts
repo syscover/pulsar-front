@@ -1,25 +1,31 @@
 import gql from 'graphql-tag';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
+import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
+import { graphQL as attachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     ... on WineWine {
-            data
-            data_lang
-            id
-            is_product
-            ix
-            lang_id
-            name
-            slug
-            tasting_note
-            year
-            
-            ${marketableGraphQL.fields}
-        }
+        data
+        data_lang
+        id
+        is_product
+        ix
+        lang_id
+        name
+        product_id
+        slug
+        tasting_note
+        year
+        
+        ${attachmentsGraphQL.fields}
+        ${marketableGraphQL.fields}
+    }
 `;
 
 const relationsFields = `
+    ${attachmentsGraphQL.relationsFields}
     ${marketableGraphQL.relationsFields}
+    ${stockableGraphQL.relationsFields}
 `;
 
 export const graphQL = {
@@ -66,11 +72,18 @@ export const graphQL = {
             $sqlSection:[CoreSQLInput]
             $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
+            $sqlStock:[CoreSQLInput]
         ) {
             coreObject: wineWine (sql:$sql){
                 ${fields}
             }
             ${relationsFields}
+            marketStocks (sql:$sqlStock) {
+                warehouse_id
+                product_id
+                stock
+                minimum_stock
+            }
         }`,
 
     mutationCreateObject: gql`

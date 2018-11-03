@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MarketableService } from './marketable.service';
