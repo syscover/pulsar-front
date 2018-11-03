@@ -1,0 +1,149 @@
+<ng-container *ngIf="!hidden">
+    <div [formGroup]="fg">
+        <input type="hidden" formControlName="lang_id" *ngIf="hiddenFields.indexOf('lang_id') === -1">
+        <input type="hidden" formControlName="subtotal">
+
+        <div fxLayout="row wrap">
+            <mat-form-field class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
+                <input #inputName matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
+                <mat-error>{{ formErrors?.sku }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-12 offset-md-1 col-md-5" *ngIf="hiddenFields.indexOf('parent_id') === -1">
+                <mat-select placeholder="{{ 'MARKETABLE.PARENT_PRODUCT' | translate }}" formControlName="parent_id">
+                    <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
+                    <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                </mat-select>
+                <mat-hint align="start">{{ 'MARKETABLE.PARENT_PRODUCT_DESCRIPTION' | translate }}</mat-hint>
+                <mat-error>{{ formErrors?.parent_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12" *ngIf="hiddenFields.indexOf('categories_id') === -1">
+                <mat-select placeholder="{{ 'MARKETABLE.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                </mat-select>
+                <mat-error>{{ formErrors?.categories_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12" *ngIf="hiddenFields.indexOf('sections_id') === -1">
+                <mat-select placeholder="{{ 'MARKETABLE.SECTIONS' | translate }}" formControlName="sections_id" multiple>
+                    <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
+                </mat-select>
+                <mat-error>{{ formErrors?.sections_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" *ngIf="hiddenFields.indexOf('name') === -1">
+            <mat-form-field class="col-12">
+                <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                <mat-error>{{ formErrors?.name }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" *ngIf="hiddenFields.indexOf('slug') === -1">
+            <mat-form-field class="col-12">
+                <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
+                <mat-error>{{ formErrors?.slug }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="col-12 col-md-5">
+                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_TYPE' | translate }}" formControlName="type_id" required>
+                    <mat-option *ngFor="let productType of productTypes" [value]="+productType.id">{{ productType.name }}</mat-option>
+                </mat-select>
+                <mat-error>{{ formErrors?.type_id }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- product types transportable, them it must to have a weight -->
+        <div fxLayout="row" *ngIf="fg.get('type_id').value === 2 || fg.get('type_id').value === 3">
+            <mat-form-field class="col-12 col-md-4">
+                <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="weight" type="number">
+                <mat-icon matSuffix>line_weight</mat-icon>
+                <mat-error>{{ formErrors?.weight }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap">
+            <div class="col-12 col-md-5 py-20" *ngIf="hiddenFields.indexOf('active') === -1">
+                <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
+            </div>
+            <mat-form-field class="col-12 col-md-4" *ngIf="hiddenFields.indexOf('active') === -1">
+                <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                <mat-error>{{ formErrors?.sort }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- HEADER -->
+        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+            <mat-icon class="m-0 mr-16">euro_symbol</mat-icon>
+            <div class="h2 secondary-text">{{ 'MARKETABLE.PRICES_TAXES' | translate }}</div>
+        </div>
+        <!-- / HEADER -->
+
+        <div fxLayout="row">
+
+            <div class="col-6">
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-5">
+                        <mat-select placeholder="{{ 'MARKETABLE.PRICE_TYPE' | translate }}" formControlName="price_type_id" required>
+                            <mat-option *ngFor="let priceType of priceTypes" [value]="+priceType.id">{{ priceType.name }}</mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.price_type_id }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-5">
+                        <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
+                            <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
+                        </mat-select>
+                        <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-6" *ngIf="fg.get('price_type_id').value === 1">
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.PRICE' | translate }}" formControlName="price" type="number" (change)="handleGetProductTaxes()">
+                        <mat-spinner *ngIf="loadingPrice" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
+                        <mat-error>{{ formErrors?.price }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.SUBTOTAL' | translate }}" formControlName="subtotal_format" required>
+                        <mat-error>{{ formErrors?.subtotal_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.TAX' | translate }}" formControlName="tax_format" required>
+                        <mat-error>{{ formErrors?.tax_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12">
+                        <input matInput placeholder="{{ 'MARKETABLE.TOTAL' | translate }}" formControlName="total_format" required>
+                        <mat-error>{{ formErrors?.total_format }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="col-6" *ngIf="fg.get('price_type_id').value === 2">
+                Precio indefinido
+            </div>
+
+        </div>
+    </div>
+</ng-container>

@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 
 const fields = `
     ... on MarketProduct {

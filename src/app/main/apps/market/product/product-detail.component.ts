@@ -38,12 +38,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     productClassTaxes: ProductClassTax[] = [];
     // ***** end - marketable variables
 
-    // stocks
+    // ***** start - stockable variables
     displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
     stocksData: any[] = [];
     dataSource = new MatTableDataSource();
     @ViewChild(MatSort) sort: MatSort;
     dialog: MatDialog;
+    // ***** end - stockable variables
 
     constructor(
         private _injector: Injector,
@@ -185,13 +186,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.productClassTaxes = data.marketProductClassTaxes;
         // ***** end - marketable relations
 
-
-        // market admin field groups
-        this.fieldGroups = data.adminFieldGroups;
-
-        // admin attachment families
-        this.attachmentFamilies = data.adminAttachmentFamilies;
-
+        // ***** start - stockable relations
         // only set ware house in edit action
         if (this.dataRoute.action === 'edit')
         {
@@ -211,6 +206,13 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
         this.dataSource.sort = this.sort;
         this.dataSource.data = this.stocksData;
+        // ***** end - stockable relations
+
+        // market admin field groups
+        this.fieldGroups = data.adminFieldGroups;
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
     }
 
     afterPatchValueEdit(): void
