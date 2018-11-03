@@ -133,6 +133,9 @@ export class WineDetailComponent extends CoreDetailComponent
             this.stocksData = stocksData;
         }
         // ***** end - stockable relations
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
     }
 
     afterPatchValueEdit(): void

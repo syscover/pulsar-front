@@ -48,11 +48,12 @@ export const graphQL = {
 
     queryRelationsObject: gql`
         query WineGetRelationsWine (
-            $sqlProduct:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput] 
-            $sqlSection:[CoreSQLInput]
-            $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
+            $configProductTypes:CoreConfigInput!
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput] 
+            $sqlProduct:[CoreSQLInput]
+            $sqlSection:[CoreSQLInput]
         ){
             ${relationsFields}
         }`,
@@ -66,12 +67,13 @@ export const graphQL = {
 
     queryObject: gql`
         query WineGetWine (
-            $sql:[CoreSQLInput] 
-            $sqlProduct:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput]
-            $sqlSection:[CoreSQLInput]
-            $configProductTypes:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
+            $configProductTypes:CoreConfigInput!
+            $sql:[CoreSQLInput] 
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCategory:[CoreSQLInput]
+            $sqlProduct:[CoreSQLInput]
+            $sqlSection:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
         ) {
             coreObject: wineWine (sql:$sql){
