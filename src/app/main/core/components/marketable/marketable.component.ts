@@ -41,6 +41,7 @@ export class MarketableComponent implements OnInit
         this.marketableFg = this._fb.group({
             active: false,
             categories_id: [[], Validators.required],
+            cost: null,
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
             parent_id: null,
@@ -56,7 +57,8 @@ export class MarketableComponent implements OnInit
             tax_format: [{value: null, disabled: true}, Validators.required],
             total_format: [{value: null, disabled: true}, Validators.required],
             type_id: [null, Validators.required],
-            weight: [0]
+            weight: [0],
+            profitability: [{value: null, disabled: true}]
         });
     }
 
@@ -83,13 +85,17 @@ export class MarketableComponent implements OnInit
         this.checkingSlug.emit($event);
     }
 
+    handleChageCost($event): void
+    {
+        this._marketable.calculateProfitability(this.fg, $event.target.value, this.fg.get('subtotal').value);
+    }
     // get taxes for product
     handleGetProductTaxes(subtotal?, forceCalculatePriceWithoutTax?, callback?): void
     {
         this._marketable.handleGetProductTaxes(
             this.fg,
             subtotal,
-            forceCalculatePriceWithoutTax, // force to calulate price without tax
+            forceCalculatePriceWithoutTax, // force to calculate price without tax
             callback, // callback, all http petition must to be sequential to pass JWT
             (value) => { // pass argument like function to respect scope
                 this.loadingPrice = value;

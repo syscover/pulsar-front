@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DirectivesModule } from '../../directives/directives.module';
 import { MarketableService } from './marketable.service';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { MarketableService } from './marketable.service';
         MatIconModule,
         MatInputModule,
         MatSelectModule,
+        PipesModule,
         ReactiveFormsModule,
         TranslateModule
     ],

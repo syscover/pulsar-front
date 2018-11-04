@@ -80,6 +80,8 @@ export class OrderGraphQLService extends GraphQLSchema
                     quantity
                     subtotal
                     data
+                    cost
+                    total_cost
                 }
                 discounts {
                     id

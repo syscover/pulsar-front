@@ -114,7 +114,13 @@ export class Product
     active: boolean;
     sort: number;
     price_type_id: number;
+    cost: number;
     subtotal: number;
+    starts_sale: any;
+    ends_sale: any;
+    starts_at: any;
+    ends_at: any;
+    limited_capacity: number;
     product_class_tax_id: number;
     attachments: Attachment[];
     data_lang: string;
@@ -237,6 +243,8 @@ export class OrderRow
     name: string;
     description: string;
     data: string;
+    cost: number;
+    total_cost: number;
     price: number;
     quantity: number;
     subtotal: number;

@@ -98,6 +98,8 @@ export const locale = {
         },
         'MARKETABLE': {
             'CATEGORIES': 'Categories',
+            'COST': 'Cost',
+            'EVENT': 'Event',
             'PARENT_PRODUCT': 'Parent product',
             'PARENT_PRODUCT_DESCRIPTION': 'Select a product only when it is a subproduct',
             'PRICE': 'Price',
@@ -105,6 +107,7 @@ export const locale = {
             'PRICES_TAXES': 'Prices and taxes',
             'PRODUCT_CLASS_TAX': 'Product class tax',
             'PRODUCT_TYPE': 'Product type',
+            'PROFITABILITY': 'Profitability',
             'SECTIONS': 'Sections',
             'SUBTOTAL': 'Subtotal',
             'SKU': 'SKU',

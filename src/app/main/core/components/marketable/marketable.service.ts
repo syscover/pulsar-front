@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { environment } from 'environments/environment';
+import { NumberFormatPipe } from '../../pipes/number-format.pipe';
 import gql from 'graphql-tag';
 
 @Injectable()
@@ -10,8 +11,21 @@ export class MarketableService
     env: any = environment;
 
     constructor(
-        private _http: HttpService
+        private _http: HttpService,
+        private _numberFormatPipe: NumberFormatPipe
     ) {}
+
+    calculateProfitability(fg: FormGroup, cost: number, subtotal: number): void
+    {
+        if (cost && subtotal)
+        {
+            fg.get('profitability').setValue(this._numberFormatPipe.transform(100 - ((cost * 100) / subtotal), 2));
+        }
+        else
+        {
+            fg.get('profitability').setValue(null);
+        }
+    }
 
     handleGetProductTaxes(fg: FormGroup, subtotal?: number, forceCalculatePriceWithoutTax?: boolean, callback?: Function, loadingPrice?: Function): void
     {
@@ -71,6 +85,9 @@ export class MarketableService
                 fg.get('subtotal_format').setValue(data.marketProductTaxes.subtotalFormat);
                 fg.get('tax_format').setValue(data.marketProductTaxes.taxAmountFormat);
                 fg.get('total_format').setValue(data.marketProductTaxes.totalFormat);
+
+                // calculate profitability
+                this.calculateProfitability(fg, fg.get('cost').value, data.marketProductTaxes.subtotal)
 
                 if (callback) callback();
 

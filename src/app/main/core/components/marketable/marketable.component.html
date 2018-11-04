@@ -61,6 +61,15 @@
             </mat-form-field>
         </div>
 
+        <div>
+            <!-- HEADER -->
+            <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                <mat-icon class="m-0 mr-16">calendar_today</mat-icon>
+                <div class="h2 secondary-text">{{ 'MARKETABLE.EVENT' | translate }}</div>
+            </div>
+            <!-- / HEADER -->
+        </div>
+
         <!-- product types transportable, them it must to have a weight -->
         <div fxLayout="row" *ngIf="fg.get('type_id').value === 2 || fg.get('type_id').value === 3">
             <mat-form-field class="col-12 col-md-4">
@@ -90,6 +99,7 @@
         <div fxLayout="row">
 
             <div class="col-6">
+
                 <div fxLayout="row">
                     <mat-form-field class="col-12 col-md-5">
                         <mat-select placeholder="{{ 'MARKETABLE.PRICE_TYPE' | translate }}" formControlName="price_type_id" required>
@@ -98,6 +108,7 @@
                         <mat-error>{{ formErrors?.price_type_id }}</mat-error>
                     </mat-form-field>
                 </div>
+
                 <div fxLayout="row">
                     <mat-form-field class="col-12 col-md-5">
                         <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
@@ -106,6 +117,18 @@
                         <mat-error>{{ formErrors?.product_class_tax_id }}</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.COST' | translate }}" formControlName="cost" (change)="handleChageCost($event)" type="number">
+                        <mat-error>{{ formErrors?.cost }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-12 offset-sm-1 col-md-5">
+                        <span matSuffix>%</span>
+                        <input matInput placeholder="{{ 'MARKETABLE.PROFITABILITY' | translate }}" formControlName="profitability">
+                    </mat-form-field>
+                </div>
+
             </div>
 
             <div class="col-6" *ngIf="fg.get('price_type_id').value === 1">

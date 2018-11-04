@@ -8,7 +8,11 @@ export const graphQL = {
             lang_id
             name
         }
+        cost
+        ends_at
+        ends_sale
         lang_id
+        limited_capacity
         name
         parent_id
         price_type_id
@@ -21,6 +25,8 @@ export const graphQL = {
         sku
         slug
         sort
+        starts_at
+        starts_sale
         subtotal
         type_id
         weight

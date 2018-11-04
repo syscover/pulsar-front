@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ElementRef } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MatFormFieldControl } from '@angular/material';
 import './../functions/number-decimals-length.function';
