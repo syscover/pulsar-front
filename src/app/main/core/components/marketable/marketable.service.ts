@@ -4,6 +4,8 @@ import { HttpService } from '../../services/http.service';
 import { environment } from 'environments/environment';
 import { NumberFormatPipe } from '../../pipes/number-format.pipe';
 import gql from 'graphql-tag';
+import {Category, Section} from '../../../apps/market/market.models';
+import * as _ from 'lodash';
 
 @Injectable()
 export class MarketableService
@@ -176,5 +178,41 @@ export class MarketableService
             configProductTypes,
             configPriceTypes
         };
+    }
+
+    afterPatchValueEdit(fg: FormGroup, categories: Category[], sections: Section[], subtotal: number, forceCalculatePriceWithoutTax?: boolean, callback?: Function): void
+    {
+        // set market categories extracting ids
+        fg.get('categories_id').setValue(_.uniq(_.map(categories, 'id')));
+
+        // set market sections extracting ids
+        fg.get('sections_id').setValue(_.uniq(_.map(sections, 'id')));
+
+        this.handleGetProductTaxes(
+            fg,
+            subtotal,
+            forceCalculatePriceWithoutTax,
+            callback
+        );
+    }
+
+    getCustomArgumentsPostRecord(args): Object
+    {
+        // if product is event, reset cost
+        if (args.payload.type_id === 5)
+        {
+            args.payload.cost = null;
+        }
+        // else reset event fields
+        else
+        {
+            args.payload.starts_at = null;
+            args.payload.ends_at = null;
+            args.payload.limited_capacity = null;
+            args.payload.fixed_cost = null;
+            args.payload.cost_per_sale = null;
+        }
+
+        return args;
     }
 }

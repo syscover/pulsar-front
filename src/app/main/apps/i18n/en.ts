@@ -96,35 +96,11 @@ export const locale = {
             'OK' : 'Confirm',
             'CANCEL' : 'Cancel',
         },
-        'MARKETABLE': {
-            'CATEGORIES': 'Categories',
-            'COST': 'Cost',
-            'EVENT': 'Event',
-            'PARENT_PRODUCT': 'Parent product',
-            'PARENT_PRODUCT_DESCRIPTION': 'Select a product only when it is a subproduct',
-            'PRICE': 'Price',
-            'PRICE_TYPE': 'Price type',
-            'PRICES_TAXES': 'Prices and taxes',
-            'PRODUCT_CLASS_TAX': 'Product class tax',
-            'PRODUCT_TYPE': 'Product type',
-            'PROFITABILITY': 'Profitability',
-            'SECTIONS': 'Sections',
-            'SUBTOTAL': 'Subtotal',
-            'SKU': 'SKU',
-            'TAX': 'Tax',
-            'TOTAL': 'Total',
-            'WEIGHT': 'Weight'
-        },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Items per page',
             'NEXT_PAGE' : 'Next page',
             'PREVIOUS_PAGE' : 'Previous page',
             'OF_LABEL' : 'of',
-        },
-        'STOCKABLE': {
-            'MINIMUM_STOCK': 'Stock mínimo',
-            'STOCK': 'Stock',
-            'WAREHOUSE': 'Almacén'
         },
         'VALIDATIONS': {
             'DEFAULT': 'Error not contemplated.',

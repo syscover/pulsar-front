@@ -202,20 +202,21 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     afterPatchValueEdit(): void
     {
-        // set market categories extracting ids
-        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
-
-        // set market sections extracting ids
-        this.fg.controls['sections_id'].setValue(_.map(this.object.sections, 'id'));
-
-        this._marketable.handleGetProductTaxes(
+        this._marketable.afterPatchValueEdit(
             this.fg,
+            this.object.categories,
+            this.object.sections,
             this.fg.get('subtotal').value,
-            true, // force to calulate price without tax
+            true,
             () => { // callback, all http petition must to be sequential to pass JWT
                 // allow start dh2-dynamic-form component to avoid failures in the JWT
                 this.startCustomFields = true;
             }
         );
+    }
+
+    getCustomArgumentsPostRecord(args, object): Object
+    {
+        return this._marketable.getCustomArgumentsPostRecord(args);
     }
 }

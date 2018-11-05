@@ -96,35 +96,11 @@ export const locale = {
             'OK' : 'Confirmar',
             'CANCEL' : 'Cancelar',
         },
-        'MARKETABLE': {
-            'CATEGORIES': 'Categorías',
-            'COST': 'Coste',
-            'EVENT': 'Evento',
-            'PARENT_PRODUCT': 'Producto padre',
-            'PARENT_PRODUCT_DESCRIPTION': 'Selecciona un producto sólo cuando sea un subproducto',
-            'PRICE': 'Precio',
-            'PRICE_TYPE': 'Tipo de precio',
-            'PRICES_TAXES': 'Precios e impuestos',
-            'PRODUCT_CLASS_TAX': 'Impuesto al producto',
-            'PRODUCT_TYPE': 'Tipo de producto',
-            'PROFITABILITY': 'Rentabilidad',
-            'SECTIONS': 'Secciones',
-            'SUBTOTAL': 'Subtotal',
-            'SKU': 'SKU',
-            'TAX': 'Impuestos',
-            'TOTAL': 'Total',
-            'WEIGHT': 'Peso'
-        },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Elemetos por página',
             'NEXT_PAGE' : 'Página siguiente',
             'PREVIOUS_PAGE' : 'Página anterior',
             'OF_LABEL' : 'de',
-        },
-        'STOCKABLE': {
-            'MINIMUM_STOCK': 'Minimum stock',
-            'STOCK': 'Stock',
-            'WAREHOUSE': 'Warehouse'
         },
         'VALIDATIONS': {
             'DEFAULT': 'Error no contemplado.',

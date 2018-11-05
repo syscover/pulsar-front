@@ -9,9 +9,11 @@ export const graphQL = {
             name
         }
         cost
+        cost_per_sale
         ends_at
         enable_from
         enable_to
+        fixed_cost
         lang_id
         limited_capacity
         name

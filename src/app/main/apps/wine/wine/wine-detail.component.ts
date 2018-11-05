@@ -142,18 +142,19 @@ export class WineDetailComponent extends CoreDetailComponent
     {
         if (this.fg.get('is_product').value)
         {
-            // set market categories extracting ids
-            this.fg.get('categories_id').setValue(_.uniq(_.map(this.object.categories, 'id')));
-
-            // set market sections extracting ids
-            this.fg.get('sections_id').setValue(_.uniq(_.map(this.object.sections, 'id')));
-
-            this._marketable.handleGetProductTaxes(
+            this._marketable.afterPatchValueEdit(
                 this.fg,
+                this.object.categories,
+                this.object.sections,
                 this.fg.get('subtotal').value,
                 true
             );
         }
+    }
+
+    getCustomArgumentsPostRecord(args, object): Object
+    {
+        return this._marketable.getCustomArgumentsPostRecord(args);
     }
 }
 

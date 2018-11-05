@@ -26,9 +26,11 @@ export class Marketable
     active: boolean;
     categories: Category[];
     cost: number;
+    cost_per_sale: number;
     enable_from: any;
     enable_to: any;
     ends_at: any;
+    fixed_cost: number;
     lang: Lang;
     lang_id: string;
     limited_capacity: number;

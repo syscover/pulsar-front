@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatButtonModule,
-    MatCheckboxModule,
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,
-    MatSelectModule, MatSortModule,
+    MatSortModule,
     MatTableModule
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FuseTranslationLoaderService } from '../../../../../@fuse/services/translation-loader.service';
 import { StockableComponent } from './stockable.component';
 import { StockGraphQLService } from '../../../apps/market/stock/stock-graphql.service';
 import { StockableService } from './stockable.service';
 import { StockableDialogComponent } from './stockable-dialog.component';
+import { locale as english } from './i18n/en';
+import { locale as spanish } from './i18n/es';
 
 @NgModule({
     imports: [
@@ -55,4 +55,9 @@ import { StockableDialogComponent } from './stockable-dialog.component';
 })
 export class StockableModule
 {
+    constructor(
+        private translationLoader: FuseTranslationLoaderService
+    ){
+        this.translationLoader.loadTranslations(english, spanish);
+    }
 }
