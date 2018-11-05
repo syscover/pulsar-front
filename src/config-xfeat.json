@@ -2,12 +2,12 @@
     "graphqlUri": "http://xfeat.local/graphql",
     "apiUrl": "http://xfeat.local",
     "froalaKey": "yjuqtbB3tvyzp==",
-    "googleMapsApiKey": ""
+    "googleMapsApiKey": "AIzaSyClOCvIWfM3sYOLL3T_VvbxmDOlYwY7GJE"
 }
 
 {
     "graphqlUri": "https://xfeat.com/graphql",
     "apiUrl": "https://xfeat.com",
     "froalaKey": "OviupfA2wzA-13==",
-    "googleMapsApiKey": ""
+    "googleMapsApiKey": "AIzaSyClOCvIWfM3sYOLL3T_VvbxmDOlYwY7GJE"
 }
