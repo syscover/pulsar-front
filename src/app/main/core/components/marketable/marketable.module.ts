@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarketableComponent } from './marketable.component';
 import {
-    MatCheckboxModule,
+    MatCheckboxModule, MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -23,6 +23,7 @@ import { PipesModule } from '../../pipes/pipes.module';
         FlexLayoutModule,
         FormsModule,
         MatCheckboxModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatProgressSpinnerModule,
         MatIconModule,

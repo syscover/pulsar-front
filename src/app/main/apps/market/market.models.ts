@@ -21,6 +21,31 @@ export class CustomerClassTax
     name: string;
 }
 
+export class Marketable
+{
+    active: boolean;
+    categories: Category[];
+    cost: number;
+    enable_from: any;
+    enable_to: any;
+    ends_at: any;
+    lang: Lang;
+    lang_id: string;
+    limited_capacity: number;
+    name: string;
+    parent_id; number;
+    price_type_id: number;
+    product_class_tax_id: number;
+    sections: Section[];
+    sku: string;
+    slug: string;
+    sort: number;
+    starts_at: any;
+    subtotal: number;
+    type_id: number;
+    weight: number;
+}
+
 export class ProductClassTax 
 {
     id: number;
@@ -96,35 +121,14 @@ export class PaymentMethod
     data_lang: string;
 }
 
-export class Product 
+export class Product extends Marketable
 {
-    id: number;
-    lang_id: string;
-    code: string;
-    lang: Lang;
-    categories: Category[];
-    sections: Section[];
-    name: string;
-    slug: string;
+    attachments: Attachment[];
+    data: string;
+    data_lang: string;
     description: string;
     field_group_id: number;
-    type_id: number;
-    parent_id; number;
-    weight: number;
-    active: boolean;
-    sort: number;
-    price_type_id: number;
-    cost: number;
-    subtotal: number;
-    starts_sale: any;
-    ends_sale: any;
-    starts_at: any;
-    ends_at: any;
-    limited_capacity: number;
-    product_class_tax_id: number;
-    attachments: Attachment[];
-    data_lang: string;
-    data: string;
+    id: number;
 }
 
 export class Section

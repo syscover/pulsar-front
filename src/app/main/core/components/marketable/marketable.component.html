@@ -61,6 +61,80 @@
             </mat-form-field>
         </div>
 
+        <mat-accordion [multi]="true">
+            <!-- SCHEDULE -->
+            <mat-expansion-panel [expanded]="fg.get('enable_from').value || fg.get('enable_to').value">
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon class="m-0 mr-16">event</mat-icon> {{ 'MARKETABLE.SCHEDULE' | translate }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{ 'MARKETABLE.SCHEDULE_DESCRIPTION' | translate }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxLayout="row wrap" class="justify-content-between">
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.ENABLE_FROM' | translate }}" formControlName="enable_from" type="datetime-local">
+                        <mat-error>{{ formErrors?.enable_from }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.ENABLE_TO' | translate }}" formControlName="enable_to" type="datetime-local">
+                        <mat-error>{{ formErrors?.enable_to }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="true" *ngIf="fg.get('type_id').value === 5">
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon class="m-0 mr-16">event</mat-icon> {{ 'MARKETABLE.SCHEDULE' | translate }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{ 'MARKETABLE.SCHEDULE_DESCRIPTION' | translate }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxLayout="row wrap" class="justify-content-between">
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.ENABLE_FROM' | translate }}" formControlName="starts_at" type="datetime-local">
+                        <mat-error>{{ formErrors?.starts_at }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.ENABLE_TO' | translate }}" formControlName="ends_at" type="datetime-local">
+                        <mat-error>{{ formErrors?.ends_at }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row">
+                    <mat-form-field class="col-12 col-md-4">
+                        <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="limited_capacity" type="number">
+                        <mat-icon matSuffix>line_weight</mat-icon>
+                        <mat-error>{{ formErrors?.limited_capacity }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row wrap" class="justify-content-between">
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="fixed_cost" type="number">
+                        <mat-error>{{ formErrors?.fixed_cost }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12 col-md-5">
+                        <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="cost_per_sale" type="number">
+                        <mat-error>{{ formErrors?.cost_per_sale }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </mat-expansion-panel>
+            <!-- / SCHEDULE -->
+        </mat-accordion>
+
         <div>
             <!-- HEADER -->
             <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
