@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CategoryGraphQLService } from './category-graphql.service';
+import { graphQL } from './category.graphql';
 import { Category } from '../market.models';
 
 @Component({
@@ -15,12 +15,12 @@ export class CategoryDetailComponent extends CoreDetailComponent
     objectTranslation = 'MARKET.CATEGORY';
     objectTranslationGender = 'F';
     categories: Category[] = [];
+    loadingSlug = false;
 
     constructor(
-        protected injector: Injector,
-        public graphQL: CategoryGraphQLService
+        protected _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
     createForm(): void
@@ -35,6 +35,11 @@ export class CategoryDetailComponent extends CoreDetailComponent
             active: false,
             description: null
         });
+    }
+
+    handleCheckingSlug($event): void
+    {
+        this.loadingSlug = $event;
     }
 
     argumentsRelationsObject(): Object

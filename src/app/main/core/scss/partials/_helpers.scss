@@ -1,32 +1,28 @@
 /* TEXT */
 .uppercase {
-    text-transform: uppercase !important;
+    text-transform: uppercase;
 }
 .lowercase {
-    text-transform: lowercase !important;
+    text-transform: lowercase;
 }
 .capitalize {
-    text-transform: capitalize !important;
-}
-.bold {
-    font-weight: bold !important;
+    text-transform: capitalize;
 }
 .pointer {
-    cursor: pointer !important;
+    cursor: pointer;
 }
-.align-center {
-    display: flex;
-    justify-content: center;
-}
-[hidden] {
-    display: none !important;
-}
-.hidden {
-    display: none !important;
+.full-width {
+    width: 100%;
 }
 
-@for $i from 1 through 100 {
+@for $i from 0 through 100 {
     // PADDING
+    .p-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-right: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+        padding-left: #{$i}px !important;
+    }
     .px-#{$i} {
         padding-left: #{$i}px !important;
         padding-right: #{$i}px !important;
@@ -49,6 +45,12 @@
     }
 
     // MARGIN
+    .m-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-right: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+        margin-left: #{$i}px !important;
+    }
     .mx-#{$i} {
         margin-left: #{$i}px !important;
         margin-right: #{$i}px !important;
@@ -70,9 +72,9 @@
         margin-left: #{$i}px !important;
     }
 
-    // FONT SIZE
-    .font-#{$i} {
-        font-size: #{$i}px !important;
+    // WIDTH
+    .w-#{$i} {
+        height: #{$i}px !important;
     }
 
     // HEIGHT
@@ -83,5 +85,58 @@
     // MAX-WIDTH
     .mw-#{$i * 10} {
         max-width: #{$i * 10}px !important;
+    }
+
+    // MAX-HEIGHT
+    .mh-#{$i * 10} {
+        max-width: #{$i * 10}px !important;
+    }
+
+    // FONT SIZE
+    .fs-#{$i} {
+        font-size: #{$i}px !important;
+    }
+
+    // LINE HEIGHT
+    .lh-#{$i} {
+        line-height: #{$i}px !important;
+    }
+
+    // TOP
+    .t-#{$i} {
+        top: #{$i}px !important;
+    }
+
+    // RIGHT
+    .r-#{$i} {
+        right: #{$i}px !important;
+    }
+
+    // BOTTOM
+    .b-#{$i} {
+        bottom: #{$i}px !important;
+    }
+
+    // LEFT
+    .l-#{$i} {
+        left: #{$i}px !important;
+    }
+}
+
+@for $i from 0 through 10 {
+    // FONT SIZE
+    .fs-#{$i * 10}-per {
+        font-size: #{($i * 10) + '%'} !important;
+    }
+    // WIDTH
+    .w-#{$i * 10}-per {
+        width: #{($i * 10) + '%'} !important;
+    }
+}
+
+// MATERIAL SHADOWS FROM 0 TO 24
+@for $i from 0 through 24 {
+    .elevation-z#{$i} {
+        @include mat-elevation($i);
     }
 }

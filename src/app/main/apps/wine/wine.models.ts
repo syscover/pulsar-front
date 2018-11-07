@@ -1,5 +1,16 @@
 import { Attachment } from '../admin/admin.models';
-import {Marketable} from '../market/market.models';
+import { Marketable } from '../market/market.models';
+
+export class Appellation
+{
+    data_lang: string[];
+    description: string;
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
 
 export class Wine extends Marketable
 {

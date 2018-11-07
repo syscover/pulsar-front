@@ -22,7 +22,7 @@ export class Question
     description: string;
     sort: number;
     high_score: number;
-    data_lang: string;
+    data_lang: string[];
     average: QuestionAverage;
 }
 

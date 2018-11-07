@@ -33,7 +33,7 @@ export class Attachment extends AttachmentLibrary
     sort: number;
     alt: string;
     title: string;
-    data_lang: string;
+    data_lang: string[];
 }
 
 export class AttachmentFamily
@@ -70,7 +70,7 @@ export class Country
     territorial_area_3: string;
     territorial_areas_3: TerritorialArea3[];
     zones: string[];
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 
@@ -98,7 +98,7 @@ export class Field
     label_class: string;
     component_class: string;
     values: FieldValue[];
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 
@@ -116,7 +116,7 @@ export class FieldGroup
     pattern: string;
     label_size: number;
     field_size: number;
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 
@@ -137,7 +137,7 @@ export class FieldValue
     name: string;
     sort: string;
     featured: string;
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 

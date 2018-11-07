@@ -11,7 +11,7 @@ export class Category
     slug: string;
     active: boolean;
     description: string;
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 
@@ -105,7 +105,7 @@ export class OrderStatus
     lang: Lang;
     name: string;
     active: boolean;
-    data_lang: string;
+    data_lang: string[];
 }
 
 export class PaymentMethod 
@@ -120,14 +120,14 @@ export class PaymentMethod
     instructions: string;
     sort: number;
     active: boolean;
-    data_lang: string;
+    data_lang: string[];
 }
 
 export class Product extends Marketable
 {
     attachments: Attachment[];
     data: string;
-    data_lang: string;
+    data_lang: string[];
     description: string;
     field_group_id: number;
     id: number;
@@ -304,7 +304,7 @@ export class CartPriceRurle
     apply_shipping_amount: boolean;
     free_shipping: boolean;
     product_rules: string;
-    data_lang: string;
+    data_lang: string[];
 }
 
 export class CustomerDiscountHistory
@@ -326,7 +326,7 @@ export class CustomerDiscountHistory
     apply_shipping_amount: boolean;
     free_shipping: boolean;
     discount_amount: number;
-    data_lang: string;
+    data_lang: string[];
     price_rule: string;
 }
 

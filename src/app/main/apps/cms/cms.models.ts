@@ -56,7 +56,7 @@ export class Category
     slug: string;
     section_id: number;
     sort: number;
-    data_lang: string;
+    data_lang: string[];
     data: string;
 }
 
@@ -84,7 +84,7 @@ export class Article
     excerpt: string;
     article: string;
     tags: Tag[];
-    data_lang: string;
+    data_lang: string[];
     data: any;
     attachments: Attachment[];
     created_at: any;

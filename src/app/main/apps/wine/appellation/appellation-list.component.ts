@@ -1,20 +1,20 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { graphQL } from './category.graphql';
+import { graphQL } from './appellation.graphql';
 
 @Component({
-    selector: 'dh2-market-category-list',
-    templateUrl: './category-list.component.html',
+    selector: 'dh2-wine-appellation-list',
+    templateUrl: './appellation-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
 })
-export class CategoryListComponent extends CoreListComponent
+export class AppellationListComponent extends CoreListComponent
 {
-    objectTranslation = 'MARKET.CATEGORY';
+    objectTranslation = 'WINE.APPELLATION';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['market_category.id', 'market_category.name'];
-    displayedColumns = ['market_category.id', 'market_category.name', 'market_category.active', 'translations', 'actions'];
+    columnsSearch: string[] = ['wine_appellation.id', 'wine_appellation.name'];
+    displayedColumns = ['wine_appellation.id', 'wine_appellation.name', 'translations', 'actions'];
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(

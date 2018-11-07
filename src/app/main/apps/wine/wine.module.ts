@@ -5,8 +5,10 @@ import { WineRoutingModule } from './wine-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
-import { WineListComponent } from './wine/wine-list.component';
+import { AppellationDetailComponent } from './appellation/appellation-detail.component';
+import { AppellationListComponent } from './appellation/appellation-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
+import { WineListComponent } from './wine/wine-list.component';
 
 @NgModule({
     imports: [
@@ -15,8 +17,10 @@ import { WineDetailComponent } from './wine/wine-detail.component';
     ],
     exports: [ ],
     declarations: [
-        WineListComponent,
-        WineDetailComponent
+        AppellationDetailComponent,
+        AppellationListComponent,
+        WineDetailComponent,
+        WineListComponent
     ],
     providers: []
 })

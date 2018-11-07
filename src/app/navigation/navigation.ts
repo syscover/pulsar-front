@@ -354,6 +354,23 @@ export const navigation: FuseNavigation[] = [
                         'type'      : 'item',
                         'icon'      : ['fas', 'wine-glass-alt'],
                         'url'       : '/apps/wine/wine'
+                    },
+                    {
+                        'id'        : 'database',
+                        'title'     : 'Database',
+                        'translate' : 'NAV.TABLES',
+                        'type'      : 'collapsable',
+                        'icon'      : ['fas', 'database'],
+                        'children'  : [
+                            {
+                                'id'        : 'appellations',
+                                'title'     : 'Appellations',
+                                'translate' : 'NAV.APPELLATIONS',
+                                'type'      : 'item',
+                                'icon'      : ['fas', 'map-marked-alt'],
+                                'url'       : '/apps/wine/appellation'
+                            }
+                        ]
                     }
                 ]
             },
