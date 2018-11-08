@@ -2,16 +2,16 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { graphQL } from './appellation.graphql';
+import { graphQL } from './family.graphql';
 
 @Component({
-    selector: 'dh2-wine-appellation-detail',
-    templateUrl: './appellation-detail.component.html',
+    selector: 'dh2-wine-family-detail',
+    templateUrl: './family-detail.component.html',
     animations: fuseAnimations
 })
-export class AppellationDetailComponent extends CoreDetailComponent
+export class FamilyDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'WINE.APPELLATION';
+    objectTranslation = 'APPS.FAMILY';
     objectTranslationGender = 'F';
     loadingSlug = false;
 
@@ -28,8 +28,7 @@ export class AppellationDetailComponent extends CoreDetailComponent
             id: [{value: null, disabled: true}, Validators.required],
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
-            slug: [null, Validators.required],
-            description: null
+            slug: [null, Validators.required]
         });
     }
 

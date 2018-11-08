@@ -85,6 +85,7 @@ export const locale = {
             'TRANSLATION': 'Translation',
             'TRANSLATIONS': 'Translations',
             'TYPE': 'Type',
+            'TYPES': 'Type',
             'USER': 'User',
             'VALUES': 'Values',
             'WIDTH': 'Width',

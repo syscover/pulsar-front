@@ -2,16 +2,16 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { graphQL } from './appellation.graphql';
+import { graphQL } from './grape.graphql';
 
 @Component({
-    selector: 'dh2-wine-appellation-detail',
-    templateUrl: './appellation-detail.component.html',
+    selector: 'dh2-wine-grape-detail',
+    templateUrl: './grape-detail.component.html',
     animations: fuseAnimations
 })
-export class AppellationDetailComponent extends CoreDetailComponent
+export class GrapeDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'WINE.APPELLATION';
+    objectTranslation = 'WINE.GRAPE';
     objectTranslationGender = 'F';
     loadingSlug = false;
 

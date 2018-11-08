@@ -12,6 +12,27 @@ export class Appellation
     slug: string;
 }
 
+export class Family
+{
+    data_lang: string[];
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
+export class Grape
+{
+    data_lang: string[];
+    description: string;
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
 export class Wine extends Marketable
 {
     attachments: Attachment[];

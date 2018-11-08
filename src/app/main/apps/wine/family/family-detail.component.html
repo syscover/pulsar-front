@@ -18,7 +18,7 @@
                 </button>
 
                 <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <fa-icon [icon]="['fas', 'map-marked-alt']" size="2x"></fa-icon>
+                    <mat-icon>category</mat-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -26,7 +26,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'WINE.APPELLATION' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ 'APPS.FAMILY' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -106,17 +106,6 @@
                             <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
                             <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17" class="r-5"></mat-spinner>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <textarea   matInput 
-                                        placeholder="{{ 'APPS.DESCRIPTION' | translate }}" 
-                                        matTextareaAutosize 
-                                        matAutosizeMinRows="4"
-                                        formControlName="description"></textarea>
-                            <mat-error>{{ formErrors?.description }}</mat-error>
                         </mat-form-field>
                     </div>
 

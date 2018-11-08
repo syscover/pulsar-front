@@ -18,10 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <div class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <fa-icon [icon]="['fas', 'map-marked-alt']" size="2x"></fa-icon>
-                </div>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.APPELLATIONS' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">hdr_weak</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.GRAPES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -42,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'WINE.APPELLATION' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'WINE.GRAPE' | translate }}</span>
             </button>
 
         </div>
@@ -60,13 +58,13 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="wine_appellation.id">
+                <ng-container matColumnDef="wine_grape.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="wine_appellation.name">
+                <ng-container matColumnDef="wine_grape.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>

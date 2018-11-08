@@ -7,6 +7,12 @@ import { locale as spanish } from './i18n/es';
 
 import { AppellationDetailComponent } from './appellation/appellation-detail.component';
 import { AppellationListComponent } from './appellation/appellation-list.component';
+import { FamilyDetailComponent } from './family/family-detail.component';
+import { FamilyListComponent } from './family/family-list.component';
+import { GrapeDetailComponent } from './grape/grape-detail.component';
+import { GrapeListComponent } from './grape/grape-list.component';
+import { TypeDetailComponent } from './type/type-detail.component';
+import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
 import { WineListComponent } from './wine/wine-list.component';
 
@@ -19,6 +25,12 @@ import { WineListComponent } from './wine/wine-list.component';
     declarations: [
         AppellationDetailComponent,
         AppellationListComponent,
+        FamilyDetailComponent,
+        FamilyListComponent,
+        GrapeDetailComponent,
+        GrapeListComponent,
+        TypeDetailComponent,
+        TypeListComponent,
         WineDetailComponent,
         WineListComponent
     ],

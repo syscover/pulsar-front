@@ -356,6 +356,14 @@ export const navigation: FuseNavigation[] = [
                         'url'       : '/apps/wine/wine'
                     },
                     {
+                        'id'        : 'wineries',
+                        'title'     : 'Wineries',
+                        'translate' : 'NAV.WINERIES',
+                        'type'      : 'item',
+                        'icon'      : ['fas', 'warehouse'],
+                        'url'       : '/apps/wine/winery'
+                    },
+                    {
                         'id'        : 'database',
                         'title'     : 'Database',
                         'translate' : 'NAV.TABLES',
@@ -369,6 +377,54 @@ export const navigation: FuseNavigation[] = [
                                 'type'      : 'item',
                                 'icon'      : ['fas', 'map-marked-alt'],
                                 'url'       : '/apps/wine/appellation'
+                            },
+                            {
+                                'id'        : 'families',
+                                'title'     : 'Families',
+                                'translate' : 'NAV.FAMILIES',
+                                'type'      : 'item',
+                                'icon'      : 'category',
+                                'url'       : '/apps/wine/family'
+                            },
+                            {
+                                'id'        : 'types',
+                                'title'     : 'Types',
+                                'translate' : 'NAV.TYPES',
+                                'type'      : 'item',
+                                'icon'      : 'bookmarks',
+                                'url'       : '/apps/wine/type'
+                            },
+                            {
+                                'id'        : 'grapes',
+                                'title'     : 'Grapes',
+                                'translate' : 'NAV.GRAPES',
+                                'type'      : 'item',
+                                'icon'      : 'hdr_weak',
+                                'url'       : '/apps/wine/grape'
+                            },
+                            {
+                                'id'        : 'pairings',
+                                'title'     : 'Pairings',
+                                'translate' : 'NAV.PAIRINGS',
+                                'type'      : 'item',
+                                'icon'      : 'local_dining',
+                                'url'       : '/apps/wine/pairing'
+                            },
+                            {
+                                'id'        : 'awards',
+                                'title'     : 'Awards',
+                                'translate' : 'NAV.AWARDS',
+                                'type'      : 'item',
+                                'icon'      : ['fas', 'award'],
+                                'url'       : '/apps/wine/award'
+                            },
+                            {
+                                'id'        : 'presentations',
+                                'title'     : 'Presentations',
+                                'translate' : 'NAV.PRESENTATIONS',
+                                'type'      : 'item',
+                                'icon'      : 'photo_size_select_small',
+                                'url'       : '/apps/wine/presentation'
                             }
                         ]
                     }
