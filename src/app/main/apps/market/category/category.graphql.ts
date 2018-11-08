@@ -1,17 +1,15 @@
 import gql from 'graphql-tag';
 
 const fields = `
-    ... on MarketCategory {
-        ix
-        id
-        lang_id
-        parent_id
-        name
-        slug
-        active
-        description
-        data_lang
-    }
+    ix
+    id
+    lang_id
+    parent_id
+    name
+    slug
+    active
+    description
+    data_lang
 `;
 
 const relationsFields = `
