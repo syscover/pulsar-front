@@ -1,20 +1,18 @@
 import gql from 'graphql-tag';
 
 const fields = `
-     ... on AdminCountry {
-        ix
-        id
-        lang_id
-        name
-        slug
-        sort
-        prefix
-        territorial_area_1
-        territorial_area_2
-        territorial_area_3
-        zones
-        data_lang
-    }
+    ix
+    id
+    lang_id
+    name
+    slug
+    sort
+    prefix
+    territorial_area_1
+    territorial_area_2
+    territorial_area_3
+    zones
+    data_lang
 `;
 
 const relationsFields = ``;
@@ -37,35 +35,35 @@ export const graphQL = {
     queryObjects: gql`
         query AdminGetCountries ($sql:[CoreSQLInput]) {
             coreObjects: adminCountries (sql:$sql){
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     queryObject: gql`
         query AdminGetCountry ($sql:[CoreSQLInput]) {
             coreObject: adminCountry (sql:$sql){
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation AdminCreateCountry ($payload:AdminCountryInput!) {
             adminCreateCountry (payload:$payload){
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation AdminUpdateCountry ($payload:AdminCountryInput!) {
             adminUpdateCountry (payload:$payload){
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation AdminDeleteCountry ($id:String! $lang_id:String!) {
             adminDeleteCountry (id:$id lang_id:$lang_id) {
-                ${this.fields}
+                ${fields}
             }
         }`
 };
