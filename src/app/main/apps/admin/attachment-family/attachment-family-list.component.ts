@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.service';
+import { graphQL } from './attachment-family.graphql';
 
 @Component({
     selector: 'dh2-attachment-family-list',
@@ -17,9 +17,8 @@ export class AttachmentFamilyListComponent extends CoreListComponent
     displayedColumns = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_attachment_family.width', 'admin_attachment_family.height', 'admin_resource.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AttachmentFamilyGraphQLService
+        protected _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 }

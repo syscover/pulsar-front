@@ -16,35 +16,35 @@ export class FieldValueGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query AdminGetFieldValues ($sql:[CoreSQLInput]) {
-            coreObjects: adminFieldValues (sql:$sql){
+            coreObjects: adminFieldValues (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query AdminFieldValue ($sql:[CoreSQLInput]) {
-            coreObject: adminFieldValue (sql:$sql){
+            coreObject: adminFieldValue (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation AdminCreateFieldValue ($payload:AdminFieldValueInput!) {
-            adminCreateFieldValue (payload:$payload){
+            adminCreateFieldValue (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateFieldValue ($payload:AdminFieldValueInput!) {
-            adminUpdateFieldValue (payload:$payload){
+            adminUpdateFieldValue (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteFieldValue ($field_id:Int! $id:String! $lang_id:String!) {
-            adminDeleteFieldValue (field_id:$field_id id:$id lang_id:$lang_id){
+            adminDeleteFieldValue (field_id:$field_id id:$id lang_id:$lang_id) {
                 ${this.fields}
             }
         }`;

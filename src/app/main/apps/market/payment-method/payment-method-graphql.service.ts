@@ -21,7 +21,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetPaymentMethods ($sql:[CoreSQLInput] $sqlOrderStatus:[CoreSQLInput]) {
-            coreObjects: marketPaymentMethods (sql:$sql){
+            coreObjects: marketPaymentMethods (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query MarketGetPaymentMethod ($sql:[CoreSQLInput] $sqlOrderStatus:[CoreSQLInput]) {
-            coreObject: marketPaymentMethod (sql:$sql){
+            coreObject: marketPaymentMethod (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateAction ($payload:MarketPaymentMethodInput!) {
-            marketCreatePaymentMethod (payload:$payload){
+            marketCreatePaymentMethod (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdatePaymentMethod ($payload:MarketPaymentMethodInput!) {
-            marketUpdatePaymentMethod (payload:$payload){
+            marketUpdatePaymentMethod (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeletePaymentMethod ($lang_id:String! $id:Int!) {
-            marketDeletePaymentMethod (lang_id:$lang_id id:$id){
+            marketDeletePaymentMethod (lang_id:$lang_id id:$id) {
                 ${this.fields}
             }
         }`;
@@ -79,7 +79,7 @@ export class PaymentMethodGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            marketOrderStatuses (sql:$sqlOrderStatus){
+            marketOrderStatuses (sql:$sqlOrderStatus) {
                 ix
                 id
                 name

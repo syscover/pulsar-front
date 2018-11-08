@@ -22,7 +22,7 @@ export class FieldGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query AdminGetFields ($sql:[CoreSQLInput] $sqlFieldGroup:[CoreSQLInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
-            coreObjects: adminFields (sql:$sql){
+            coreObjects: adminFields (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -30,7 +30,7 @@ export class FieldGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query AdminGetField ($sql:[CoreSQLInput] $sqlFieldGroup:[CoreSQLInput] $configFieldTypes:CoreConfigInput! $configDataTypes:CoreConfigInput!) {
-            coreObject: adminField (sql:$sql){
+            coreObject: adminField (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -38,21 +38,21 @@ export class FieldGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateField ($payload:AdminFieldInput!) {
-            adminCreateField (payload:$payload){
+            adminCreateField (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateField ($payload:AdminFieldInput!) {
-            adminUpdateField (payload:$payload){
+            adminUpdateField (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteField ($id:Int! $lang_id:String!) {
-            adminDeleteField (id:$id lang_id:$lang_id){
+            adminDeleteField (id:$id lang_id:$lang_id) {
                 ${this.fields}
             }
         }`;
@@ -97,7 +97,7 @@ export class FieldGraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            adminFieldGroups (sql:$sqlFieldGroup){
+            adminFieldGroups (sql:$sqlFieldGroup) {
                 id
                 name
             }

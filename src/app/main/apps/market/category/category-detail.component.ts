@@ -14,6 +14,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'MARKET.CATEGORY';
     objectTranslationGender = 'F';
+    graphQL = graphQL;
     categories: Category[] = [];
     loadingSlug = false;
 

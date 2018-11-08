@@ -21,14 +21,14 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetTaxRateZones ($sql:[CoreSQLInput]) {
-            coreObjects: marketTaxRateZones (sql:$sql){
+            coreObjects: marketTaxRateZones (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetTaxRateZone ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
-            coreObject: marketTaxRateZone (sql:$sql){
+            coreObject: marketTaxRateZone (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -36,21 +36,21 @@ export class TaxRateZoneGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateTaxRateZone ($payload:MarketTaxRateZoneInput!) {
-            marketCreateTaxRateZone (payload:$payload){
+            marketCreateTaxRateZone (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateTaxRateZone ($payload:MarketTaxRateZoneInput!) {
-            marketUpdateTaxRateZone (payload:$payload){
+            marketUpdateTaxRateZone (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteTaxRateZone ($id:Int!) {
-            marketDeleteTaxRateZone (id:$id){
+            marketDeleteTaxRateZone (id:$id) {
                 ${this.fields}
             }
         }`;

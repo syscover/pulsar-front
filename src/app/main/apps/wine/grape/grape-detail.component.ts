@@ -13,6 +13,7 @@ export class GrapeDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.GRAPE';
     objectTranslationGender = 'F';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

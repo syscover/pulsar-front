@@ -42,7 +42,6 @@ import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
 import { ActionGraphQLService } from './action/action-graphql.service';
-import { AttachmentFamilyGraphQLService } from './attachment-family/attachment-family-graphql.service';
 import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
@@ -50,9 +49,7 @@ import { FieldValueGraphQLService } from './field-value/field-value-graphql.serv
 import { LangGraphQLService } from './lang/lang-graphql.service';
 import { OauthAccessTokenGraphqlService } from './oauth-access-token/oauth-access-token-graphql.service';
 import { OAuthClientGraphqlService } from './oauth-client/oauth-client-graphql.service';
-import { PackageGraphQLService } from './package/package-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
-import { ResourceGraphQLService } from './resource/resource-graphql.service';
 import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial-area-1-graphql.service';
 import { TerritorialArea2GraphQLService } from './territorial_area_2/territorial-area-2-graphql.service';
 import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
@@ -103,7 +100,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
     ],
     providers: [
         ActionGraphQLService,
-        AttachmentFamilyGraphQLService,
         AttachmentMimeGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,
@@ -111,9 +107,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
         LangGraphQLService,
         OauthAccessTokenGraphqlService,
         OAuthClientGraphqlService,
-        PackageGraphQLService,
         ProfileGraphQLService,
-        ResourceGraphQLService,
         TerritorialArea1GraphQLService,
         TerritorialArea2GraphQLService,
         TerritorialArea3GraphQLService,
@@ -125,7 +119,7 @@ export class AdminModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

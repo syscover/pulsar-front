@@ -16,35 +16,35 @@ export class CustomerClassTaxGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetCustomerClassTaxes ($sql:[CoreSQLInput]) {
-            coreObjects: marketCustomerClassTaxes (sql:$sql){
+            coreObjects: marketCustomerClassTaxes (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetCustomerClassTax ($sql:[CoreSQLInput]) {
-            coreObject: marketCustomerClassTax (sql:$sql){
+            coreObject: marketCustomerClassTax (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation MarketCreateCustomerClassTax ($payload:MarketCustomerClassTaxInput!) {
-            marketCreateCustomerClassTax (payload:$payload){
+            marketCreateCustomerClassTax (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateCustomerClassTax ($payload:MarketCustomerClassTaxInput!) {
-            marketUpdateCustomerClassTax (payload:$payload){
+            marketUpdateCustomerClassTax (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteCustomerClassTax ($id:Int!) {
-            marketDeleteCustomerClassTax (id:$id){
+            marketDeleteCustomerClassTax (id:$id) {
                 ${this.fields}
             }
         }`;

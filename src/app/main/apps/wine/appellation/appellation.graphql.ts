@@ -30,7 +30,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query WineGetAppellations ($sql:[CoreSQLInput]) {
-            coreObjects: wineAppellations (sql:$sql){
+            coreObjects: wineAppellations (sql:$sql) {
                 ${fields}
             }
         }`,
@@ -39,28 +39,28 @@ export const graphQL = {
         query WineGetAppellation (
             $sql:[CoreSQLInput]
         ) {
-            coreObject: wineAppellation (sql:$sql){
+            coreObject: wineAppellation (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation WineCreateAppellation ($payload:WineAppellationInput!) {
-            wineCreateAppellation (payload:$payload){
+            wineCreateAppellation (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation WineUpdateAppellation ($payload:WineAppellationInput!) {
-            wineUpdateAppellation (payload:$payload){
+            wineUpdateAppellation (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation WineDeleteAppellation ($id:Int! $lang_id:String!) {
-            wineDeleteAppellation (id:$id lang_id:$lang_id){
+            wineDeleteAppellation (id:$id lang_id:$lang_id) {
                 ${fields}
             }
         }`

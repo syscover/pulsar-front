@@ -47,7 +47,7 @@ export class AttachmentsModule
 { 
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

@@ -21,14 +21,14 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetCartPriceRules ($sql:[CoreSQLInput]) {
-            coreObjects: marketCartPriceRules (sql:$sql){
+            coreObjects: marketCartPriceRules (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetCartPriceRule ($sql:[CoreSQLInput] $configDiscountTypes:CoreConfigInput!) {
-            coreObject: marketCartPriceRule (sql:$sql){
+            coreObject: marketCartPriceRule (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -36,21 +36,21 @@ export class CartPriceRuleGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateCartPriceRule ($payload:MarketCartPriceRuleInput!) {
-            marketCreateCartPriceRule (payload:$payload){
+            marketCreateCartPriceRule (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateCartPriceRule ($payload:MarketCartPriceRuleInput!) {
-            marketUpdateCartPriceRule (payload:$payload){
+            marketUpdateCartPriceRule (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteCartPriceRule ($id:Int! $lang_id:String!) {
-            marketDeleteCartPriceRule (id:$id lang_id:$lang_id){
+            marketDeleteCartPriceRule (id:$id lang_id:$lang_id) {
                 ${this.fields}
             }
         }`;

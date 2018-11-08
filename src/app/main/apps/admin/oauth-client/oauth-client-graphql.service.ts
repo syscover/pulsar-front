@@ -30,7 +30,7 @@ export class OAuthClientGraphqlService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateOAuthClient ($payload:AdminOAuthClientInput!) {
-            adminCreateOAuthClient (payload:$payload){
+            adminCreateOAuthClient (payload:$payload) {
                 ${this.fields}
             }
         }`;

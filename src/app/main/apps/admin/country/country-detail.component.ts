@@ -13,6 +13,7 @@ export class CountryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'APPS.COUNTRY';
     objectTranslationGender = 'M';
+    graphQL = graphQL;
     zones: any[] = [
         { id: 'territorial_areas_1', name: 'Territorial Areas 1' },
         { id: 'territorial_areas_2', name: 'Territorial Areas 2' },
@@ -20,12 +21,13 @@ export class CountryDetailComponent extends CoreDetailComponent
     ];
 
     constructor(
-        protected injector: Injector
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
-    createForm() {
+    createForm(): void
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [null, Validators.required],

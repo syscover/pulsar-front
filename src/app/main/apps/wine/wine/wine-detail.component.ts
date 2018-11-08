@@ -18,7 +18,7 @@ export class WineDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.WINE';
     objectTranslationGender = 'M';
-    modelWineLang = 'Syscover\\Wine\\Models\\WineLang';
+    graphQL = graphQL;
     attachmentFamilies: AttachmentFamily[] = [];
     loadingSlug = false;
     loadingPrice = false;

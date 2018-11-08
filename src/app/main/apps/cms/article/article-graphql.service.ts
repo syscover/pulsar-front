@@ -29,7 +29,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
 
     queryObjects = gql`
         query CmsGetArticles ($sql:[CoreSQLInput]) {
-            coreObjects: cmsArticles (sql:$sql){
+            coreObjects: cmsArticles (sql:$sql) {
                 ${this.fields}
             }
         }`;
@@ -44,7 +44,7 @@ export class ArticleGraphQLService extends GraphQLSchema {
             $sqlArticle:[CoreSQLInput]
             $configStatuses:CoreConfigInput!
         ) {
-            coreObject: cmsArticle (sql:$sql){
+            coreObject: cmsArticle (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -52,21 +52,21 @@ export class ArticleGraphQLService extends GraphQLSchema {
 
     mutationCreateObject = gql`
         mutation CmsCreateArticle ($payload:CmsArticleInput!) {
-            cmsCreateArticle (payload:$payload){
+            cmsCreateArticle (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation CmsUpdateArticle ($payload:CmsArticleInput!) {
-            cmsUpdateArticle (payload:$payload){
+            cmsUpdateArticle (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation CmsDeleteArticle ($lang_id:String! $id:Int!) {
-            cmsDeleteArticle (lang_id:$lang_id id:$id){
+            cmsDeleteArticle (lang_id:$lang_id id:$id) {
                 ${this.fields}
             }
         }`;

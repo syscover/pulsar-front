@@ -16,35 +16,35 @@ export class ProfileGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query AdminGetProfiles ($sql:[CoreSQLInput]) {
-            coreObjects: adminProfiles (sql:$sql){
+            coreObjects: adminProfiles (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query AdminGetProfile ($sql:[CoreSQLInput]) {
-            coreObject: adminProfile (sql:$sql){
+            coreObject: adminProfile (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation AdminCreateProfile ($payload:AdminProfileInput!) {
-            adminCreateProfile (payload:$payload){
+            adminCreateProfile (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateProfile ($payload:AdminProfileInput!) {
-            adminUpdateProfile (payload:$payload){
+            adminUpdateProfile (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteProfile ($id:Int!) {
-            adminDeleteProfile (id:$id){
+            adminDeleteProfile (id:$id) {
                 ${this.fields}
             }
         }`;

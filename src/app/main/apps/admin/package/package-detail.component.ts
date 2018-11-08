@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { PackageGraphQLService } from './package-graphql.service';
+import { graphQL } from './package.graphql';
 
 @Component({
     selector: 'dh2-package-detail',
@@ -15,13 +15,12 @@ export class PackageDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: PackageGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],

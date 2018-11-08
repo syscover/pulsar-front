@@ -1,15 +1,13 @@
 import gql from 'graphql-tag';
 
 const fields = `
-    ... on WineGrape {
-        data_lang
-        description
-        id
-        ix
-        lang_id
-        name
-        slug
-    }
+    data_lang
+    description
+    id
+    ix
+    lang_id
+    name
+    slug
 `;
 
 const relationsFields = ``;

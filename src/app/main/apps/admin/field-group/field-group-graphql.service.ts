@@ -15,13 +15,13 @@ export class FieldGroupGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsFieldGroup ($configFieldGroupResources:CoreConfigInput!){
+        query AdminGetRelationsFieldGroup ($configFieldGroupResources:CoreConfigInput!) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
         query AdminGetFieldGroups ($sql:[CoreSQLInput]) {
-            coreObjects: adminFieldGroups (sql:$sql){
+            coreObjects: adminFieldGroups (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class FieldGroupGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query AdminGetFieldGroup ($sql:[CoreSQLInput] $configFieldGroupResources:CoreConfigInput) {
-            coreObject: adminFieldGroup (sql:$sql){
+            coreObject: adminFieldGroup (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class FieldGroupGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateFieldGroup ($payload:AdminFieldGroupInput!) {
-            adminCreateFieldGroup (payload:$payload){
+            adminCreateFieldGroup (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateFieldGroup ($payload:AdminFieldGroupInput!) {
-            adminUpdateFieldGroup (payload:$payload){
+            adminUpdateFieldGroup (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteFieldGroup ($id:Int!) {
-            adminDeleteFieldGroup (id:$id){
+            adminDeleteFieldGroup (id:$id) {
                 ${this.fields}
             }
         }`;

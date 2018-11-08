@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ResourceGraphQLService } from './resource-graphql.service';
+import { graphQL } from './resource.graphql';
 import { Package } from './../admin.models';
 
 @Component({
@@ -17,10 +17,9 @@ export class ResourceDetailComponent extends CoreDetailComponent
     packages: Package[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ResourceGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
     createForm(): void

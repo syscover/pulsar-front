@@ -30,7 +30,7 @@ export class ActionGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateAction ($payload:AdminActionInput!) {
-            adminCreateAction (payload:$payload){
+            adminCreateAction (payload:$payload) {
                 ${this.fields}
             }
         }`;

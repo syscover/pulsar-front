@@ -13,6 +13,7 @@ export class PairingDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.PAIRING';
     objectTranslationGender = 'M';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

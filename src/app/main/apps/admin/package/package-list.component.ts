@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { PackageGraphQLService } from './package-graphql.service';
+import { graphQL } from './package.graphql';
 
 @Component({
     selector: 'dh2-package-list',
@@ -18,9 +17,8 @@ export class PackageListComponent extends CoreListComponent
     displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.sort', 'admin_package.active', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: PackageGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 }

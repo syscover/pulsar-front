@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { AttachmentFamilyGraphQLService } from './attachment-family-graphql.service';
+import { graphQL } from './attachment-family.graphql';
 import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
@@ -27,10 +27,9 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AttachmentFamilyGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 
     createForm(): void

@@ -1,12 +1,11 @@
+import { graphQL as marketCategoryGraphQL } from '../../../apps/market/category/category.graphql';
+
 export const graphQL = {
 
     fields: `
         active
         categories {
-            id
-            ix
-            lang_id
-            name
+            ${marketCategoryGraphQL.fields}
         }
         cost
         cost_per_sale
@@ -36,10 +35,7 @@ export const graphQL = {
 
     relationsFields: `
         marketCategories (sql:$sqlCategory) {
-            ix
-            id
-            lang_id
-            name
+            ${marketCategoryGraphQL.fields}
         }
         marketPriceTypes: coreConfig (config:$configPriceTypes)
         marketProductClassTaxes {

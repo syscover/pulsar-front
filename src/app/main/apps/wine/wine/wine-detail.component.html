@@ -103,14 +103,14 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="modelWineLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="modelWineLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
                                         <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>

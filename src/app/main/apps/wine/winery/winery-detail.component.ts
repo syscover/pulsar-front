@@ -14,7 +14,7 @@ export class WineryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.WINERY';
     objectTranslationGender = 'F';
-    modelWineLang = 'Syscover\\Wine\\Models\\WineryLang';
+    graphQL = graphQL;
     loadingSlug = false;
     attachmentFamilies: AttachmentFamily[] = [];
     countries: Country[] = [];

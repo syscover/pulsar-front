@@ -30,7 +30,7 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateOAuthAccessToken ($payload:AdminOAuthAccessTokenInput!) {
-            adminCreateOAuthAccessToken (payload:$payload){
+            adminCreateOAuthAccessToken (payload:$payload) {
                 ... on AdminOAuthPersonalAccessTokenResult {
                     accessToken
                     token {

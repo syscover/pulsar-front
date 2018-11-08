@@ -21,7 +21,7 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetCustomerGroupsCustomerClassTaxes ($sql:[CoreSQLInput]) {
-            coreObjects: marketCustomerGroupsCustomerClassTaxes (sql:$sql){
+            coreObjects: marketCustomerGroupsCustomerClassTaxes (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query MarketGetCustomerGroupCustomerClassTax ($sql:[CoreSQLInput]) {
-            coreObject: marketCustomerGroupCustomerClassTax (sql:$sql){
+            coreObject: marketCustomerGroupCustomerClassTax (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateCustomerGroupCustomerClassTax ($payload:MarketCustomerGroupCustomerClassTaxInput!) {
-            marketCreateCustomerGroupCustomerClassTax (payload:$payload){
+            marketCreateCustomerGroupCustomerClassTax (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int! $payload:MarketCustomerGroupCustomerClassTaxInput!) {
-            marketUpdateCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id payload:$payload){
+            marketUpdateCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int!) {
-            marketDeleteCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id){
+            marketDeleteCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id) {
                 ${this.fields}
             }
         }`;

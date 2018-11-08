@@ -15,13 +15,13 @@ export class AttachmentMimeGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query AdminGetRelationsAttachmentMime ($configAttachmentResources:CoreConfigInput! $configAttachmentResources:CoreConfigInput!){
+        query AdminGetRelationsAttachmentMime ($configAttachmentResources:CoreConfigInput! $configAttachmentResources:CoreConfigInput!) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
         query AdminGetAttachmentMimes ($sql:[CoreSQLInput] $configAttachmentResources:CoreConfigInput!) {
-            coreObjects: adminAttachmentMimes (sql:$sql){
+            coreObjects: adminAttachmentMimes (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class AttachmentMimeGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query AdminGetAttachmentMime ($sql:[CoreSQLInput] $configAttachmentResources:CoreConfigInput!) {
-            coreObject: adminAttachmentMime (sql:$sql){
+            coreObject: adminAttachmentMime (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class AttachmentMimeGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateAttachmentMime ($payload:AdminAttachmentMimeInput!) {
-            adminCreateAttachmentMime (payload:$payload){
+            adminCreateAttachmentMime (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateAttachmentMime ($payload:AdminAttachmentMimeInput!) {
-            adminUpdateAttachmentMime (payload:$payload){
+            adminUpdateAttachmentMime (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteAttachmentMime ($id:Int!) {
-            adminDeleteAttachmentMime (id:$id){
+            adminDeleteAttachmentMime (id:$id) {
                 ${this.fields}
             }
         }`;

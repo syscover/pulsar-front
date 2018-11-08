@@ -13,6 +13,7 @@ export class TypeDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'APPS.TYPE';
     objectTranslationGender = 'M';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

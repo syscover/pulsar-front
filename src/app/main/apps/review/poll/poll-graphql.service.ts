@@ -30,7 +30,7 @@ export class PollGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation ReviewCreatePoll ($payload:ReviewPollInput!) {
-            reviewCreatePoll (payload:$payload){
+            reviewCreatePoll (payload:$payload) {
                 ${this.fields}
             }
         }`;

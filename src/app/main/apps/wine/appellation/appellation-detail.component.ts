@@ -13,6 +13,7 @@ export class AppellationDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.APPELLATION';
     objectTranslationGender = 'F';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

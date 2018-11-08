@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ResourceGraphQLService } from './resource-graphql.service';
+import { graphQL } from './resource.graphql';
 
 @Component({
     selector: 'dh2-resource-list',
@@ -18,9 +17,8 @@ export class ResourceListComponent extends CoreListComponent
     displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ResourceGraphQLService
+        private _injector: Injector
     ) {
-        super(injector, graphQL);
+        super(_injector, graphQL);
     }
 }

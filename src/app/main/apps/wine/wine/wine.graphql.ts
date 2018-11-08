@@ -5,23 +5,21 @@ import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/att
 import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
 
 const fields = `
-    ... on WineWine {
-        data
-        data_lang
-        id
-        is_product
-        ix
-        lang_id
-        name
-        product_id
-        slug
-        tasting_note
-        year
-        
-        ${adminAttachmentsGraphQL.fields}
-        ${marketCategoryGraphQL.fields}
-        ${marketableGraphQL.fields}
-    }
+    data
+    data_lang
+    id
+    is_product
+    ix
+    lang_id
+    name
+    product_id
+    slug
+    tasting_note
+    year
+    
+    ${adminAttachmentsGraphQL.fields}
+    ${marketCategoryGraphQL.fields}
+    ${marketableGraphQL.fields}
 `;
 
 const relationsFields = `
@@ -56,7 +54,7 @@ export const graphQL = {
             $sqlCategory:[CoreSQLInput] 
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
-        ){
+        ) {
             ${relationsFields}
         }`,
 

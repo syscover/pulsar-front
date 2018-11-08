@@ -61,7 +61,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query MarketGetProducts ($sql:[CoreSQLInput]) {
-            coreObjects: marketProducts (sql:$sql){
+            coreObjects: marketProducts (sql:$sql) {
                 ${fields}
             }
         }`,
@@ -78,7 +78,7 @@ export const graphQL = {
             $sqlFieldGroup:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
         ) {
-            coreObject: marketProduct (sql:$sql){
+            coreObject: marketProduct (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
@@ -92,21 +92,21 @@ export const graphQL = {
 
     mutationCreateObject: gql`
         mutation MarketCreateProduct ($payload:MarketProductInput!) {
-            marketCreateProduct (payload:$payload){
+            marketCreateProduct (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation MarketUpdateProduct ($payload:MarketProductInput!) {
-            marketUpdateProduct (payload:$payload){
+            marketUpdateProduct (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation MarketDeleteProduct ($id:Int! $lang_id:String!) {
-            marketDeleteProduct (id:$id lang_id:$lang_id){
+            marketDeleteProduct (id:$id lang_id:$lang_id) {
                 ${fields}
             }
         }`

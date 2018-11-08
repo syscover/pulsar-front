@@ -13,6 +13,7 @@ export class FamilyDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'APPS.FAMILY';
     objectTranslationGender = 'F';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

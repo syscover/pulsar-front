@@ -13,6 +13,7 @@ export class AwardDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'WINE.AWARD';
     objectTranslationGender = 'M';
+    graphQL = graphQL;
     loadingSlug = false;
 
     constructor(

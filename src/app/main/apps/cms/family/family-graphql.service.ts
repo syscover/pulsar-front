@@ -21,7 +21,7 @@ export class FamilyGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query CmsGetFamilies ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
-            coreObjects: cmsFamilies (sql:$sql){
+            coreObjects: cmsFamilies (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class FamilyGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query CmsGetFamily ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
-            coreObject: cmsFamily (sql:$sql){
+            coreObject: cmsFamily (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class FamilyGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation CmsCreateFamily ($payload:CmsFamilyInput!) {
-            cmsCreateFamily (payload:$payload){
+            cmsCreateFamily (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation CmsUpdateFamily ($payload:CmsFamilyInput!) {
-            cmsUpdateFamily (payload:$payload){
+            cmsUpdateFamily (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation CmsDeleteFamily ($id:Int!) {
-            cmsDeleteFamily (id:$id){
+            cmsDeleteFamily (id:$id) {
                 ${this.fields}
             }
         }`;

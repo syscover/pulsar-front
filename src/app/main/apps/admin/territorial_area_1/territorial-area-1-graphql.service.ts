@@ -22,14 +22,14 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query AdminGetTerritorialAreas1 ($sql:[CoreSQLInput]) {
-            coreObjects: adminTerritorialAreas1 (sql:$sql){
+            coreObjects: adminTerritorialAreas1 (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query AdminTerritorialArea1 ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
-            coreObject: adminTerritorialArea1 (sql:$sql){
+            coreObject: adminTerritorialArea1 (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,21 +37,21 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateTerritorialArea1 ($payload:AdminTerritorialArea1Input!) {
-            adminCreateTerritorialArea1 (payload:$payload){
+            adminCreateTerritorialArea1 (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation AdminUpdateTerritorialArea1 ($payload:AdminTerritorialArea1Input!) {
-            adminUpdateTerritorialArea1 (payload:$payload){
+            adminUpdateTerritorialArea1 (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation AdminDeleteTerritorialArea1 ($id:String!) {
-            adminDeleteTerritorialArea1 (id:$id){
+            adminDeleteTerritorialArea1 (id:$id) {
                 ${this.fields}
             }
         }`;
@@ -73,7 +73,7 @@ export class TerritorialArea1GraphQLService extends GraphQLSchema
         `;
 
         this.relationsFields = `
-            adminCountry: adminCountry (sql:$sqlCountry){
+            adminCountry: adminCountry (sql:$sqlCountry) {
                 ix
                 id
                 lang_id

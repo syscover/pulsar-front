@@ -1,14 +1,12 @@
 import gql from 'graphql-tag';
 
 const fields = `
-    ... on WinePairing {
-        data_lang
-        id
-        ix
-        lang_id
-        name
-        slug
-    }
+    data_lang
+    id
+    ix
+    lang_id
+    name
+    slug
 `;
 
 const relationsFields = ``;

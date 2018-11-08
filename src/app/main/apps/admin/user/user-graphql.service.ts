@@ -21,7 +21,7 @@ export class UserGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query AdminGetUsers ($sql:[CoreSQLInput]) {
-            coreObjects: adminUsers (sql:$sql){
+            coreObjects: adminUsers (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -29,7 +29,7 @@ export class UserGraphQLService extends GraphQLSchema
 
     queryObject = gql`
         query AdminGetUser ($sql:[CoreSQLInput]) {
-            coreObject: adminUser (sql:$sql){
+            coreObject: adminUser (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -37,7 +37,7 @@ export class UserGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation AdminCreateUser ($payload:AdminUserInput!) {
-            adminCreateUser (payload:$payload){
+            adminCreateUser (payload:$payload) {
                 ${this.fields}
             }
         }`;
