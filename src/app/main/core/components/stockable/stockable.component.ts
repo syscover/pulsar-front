@@ -1,12 +1,9 @@
-import {Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter, OnChanges} from '@angular/core';
-import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-import {MatDialog, MatSort, MatTableDataSource} from '@angular/material';
-import {StockGraphQLService} from '../../../apps/market/stock/stock-graphql.service';
+import {Component, Input, ViewChild, OnChanges} from '@angular/core';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { graphQL } from '../../../apps/market/stock/stock.graphql';
 import { HttpService } from '../../services/http.service';
 import { environment } from 'environments/environment';
-import {StockableDialogComponent} from './stockable-dialog.component';
+import { StockableDialogComponent } from './stockable-dialog.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -23,7 +20,6 @@ export class StockableComponent implements OnChanges
     env: any = environment;
 
     constructor(
-        private _graphQLStock: StockGraphQLService,
         private _http: HttpService,
         private _dialog: MatDialog
     ) {}
@@ -54,7 +50,7 @@ export class StockableComponent implements OnChanges
                 const ob$ = this._http
                     .apolloClient()
                     .mutate({
-                        mutation: this._graphQLStock.mutationSetStock,
+                        mutation: graphQL.mutationSetStock,
                         variables: {
                             payload: {
                                 warehouse_id: newStockData.warehouse_id,

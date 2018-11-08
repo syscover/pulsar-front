@@ -2,7 +2,6 @@ import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './product.graphql';
-import { StockGraphQLService } from './../stock/stock-graphql.service';
 import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
@@ -40,7 +39,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     constructor(
         private _injector: Injector,
-        private _graphQLStock: StockGraphQLService,
         private _marketable: MarketableService,
         private _stockable: StockableService
     ) {

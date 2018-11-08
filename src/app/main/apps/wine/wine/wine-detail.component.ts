@@ -84,10 +84,25 @@ export class WineDetailComponent extends CoreDetailComponent
             }
         ];
 
+        const sqlAppellation = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_appellation.name'
+            }
+        ];
+
         return {
             ...marketableRelations,
             ...stockableRelations,
-            sqlAttachmentFamily
+            sqlAttachmentFamily,
+            sqlAppellation
         };
     }
 

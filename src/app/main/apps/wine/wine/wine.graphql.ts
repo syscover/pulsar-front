@@ -2,7 +2,10 @@ import gql from 'graphql-tag';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
 import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
 import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
+import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';
+import { graphQL as wineAppellationGraphQL } from '../appellation/appellation.graphql';
 
 const fields = `
     data
@@ -23,7 +26,12 @@ const fields = `
 `;
 
 const relationsFields = `
-    ${adminAttachmentsGraphQL.relationsFields}
+    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
+    }
+    wineAppellations (sql:$sqlAppellation) {
+        ${wineAppellationGraphQL.fields}
+    }
     ${marketableGraphQL.relationsFields}
     ${stockableGraphQL.relationsFields}
 `;
@@ -54,6 +62,7 @@ export const graphQL = {
             $sqlCategory:[CoreSQLInput] 
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
+            $sqlAppellation:[CoreSQLInput]
         ) {
             ${relationsFields}
         }`,
@@ -75,16 +84,14 @@ export const graphQL = {
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
+            $sqlAppellation:[CoreSQLInput]
         ) {
             coreObject: wineWine (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
             marketStocks (sql:$sqlStock) {
-                warehouse_id
-                product_id
-                stock
-                minimum_stock
+                ${marketStockGraphQL.fields}
             }
         }`,
 
