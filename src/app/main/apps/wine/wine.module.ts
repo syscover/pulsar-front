@@ -11,6 +11,8 @@ import { FamilyDetailComponent } from './family/family-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { GrapeDetailComponent } from './grape/grape-detail.component';
 import { GrapeListComponent } from './grape/grape-list.component';
+import { PairingDetailComponent } from './pairing/pairing-detail.component';
+import { PairingListComponent } from './pairing/pairing-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
 import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
@@ -29,6 +31,8 @@ import { WineListComponent } from './wine/wine-list.component';
         FamilyListComponent,
         GrapeDetailComponent,
         GrapeListComponent,
+        PairingDetailComponent,
+        PairingListComponent,
         TypeDetailComponent,
         TypeListComponent,
         WineDetailComponent,

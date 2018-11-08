@@ -12,6 +12,16 @@ export class Appellation
     slug: string;
 }
 
+export class Award
+{
+    data_lang: string[];
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
 export class Family
 {
     data_lang: string[];
@@ -26,6 +36,36 @@ export class Grape
 {
     data_lang: string[];
     description: string;
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
+export class Pairing
+{
+    data_lang: string[];
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
+export class Presentation
+{
+    data_lang: string[];
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}
+
+export class Type
+{
+    data_lang: string[];
     id: number;
     ix: number;
     lang_id: string;

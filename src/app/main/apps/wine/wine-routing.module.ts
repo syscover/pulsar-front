@@ -8,6 +8,8 @@ import { FamilyDetailComponent } from './family/family-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { GrapeDetailComponent } from './grape/grape-detail.component';
 import { GrapeListComponent } from './grape/grape-list.component';
+import { PairingDetailComponent } from './pairing/pairing-detail.component';
+import { PairingListComponent } from './pairing/pairing-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
 import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
@@ -18,11 +20,6 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthorizationService],
         children: [
-            // Wines
-            { path: 'wine',                                                         component: WineListComponent },
-            { path: 'wine/create',                                                  component: WineDetailComponent,                         data: { action: 'create' }},
-            { path: 'wine/create/:lang_id/:id',                                     component: WineDetailComponent,                         data: { action: 'create-lang' }},
-            { path: 'wine/show/:lang_id/:id',                                       component: WineDetailComponent,                         data: { action: 'edit' }},
 
             // Appellation
             { path: 'appellation',                                                  component: AppellationListComponent },
@@ -42,11 +39,23 @@ const routes: Routes = [
             { path: 'grape/create/:lang_id/:id',                                    component: GrapeDetailComponent,                        data: { action: 'create-lang' }},
             { path: 'grape/show/:lang_id/:id',                                      component: GrapeDetailComponent,                        data: { action: 'edit' }},
 
+            // Pairing
+            { path: 'pairing',                                                      component: PairingListComponent },
+            { path: 'pairing/create',                                               component: PairingDetailComponent,                         data: { action: 'create' }},
+            { path: 'pairing/create/:lang_id/:id',                                  component: PairingDetailComponent,                         data: { action: 'create-lang' }},
+            { path: 'pairing/show/:lang_id/:id',                                    component: PairingDetailComponent,                         data: { action: 'edit' }},
+
             // Type
             { path: 'type',                                                         component: TypeListComponent },
             { path: 'type/create',                                                  component: TypeDetailComponent,                         data: { action: 'create' }},
             { path: 'type/create/:lang_id/:id',                                     component: TypeDetailComponent,                         data: { action: 'create-lang' }},
             { path: 'type/show/:lang_id/:id',                                       component: TypeDetailComponent,                         data: { action: 'edit' }},
+
+            // Wines
+            { path: 'wine',                                                         component: WineListComponent },
+            { path: 'wine/create',                                                  component: WineDetailComponent,                         data: { action: 'create' }},
+            { path: 'wine/create/:lang_id/:id',                                     component: WineDetailComponent,                         data: { action: 'create-lang' }},
+            { path: 'wine/show/:lang_id/:id',                                       component: WineDetailComponent,                         data: { action: 'edit' }},
         ]  
     }
 ];

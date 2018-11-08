@@ -3,7 +3,10 @@ export const locale = {
     data: {
         'WINE': {
             'APPELLATION': 'D.O.',
+            'AWARD': 'Premio',
             'GRAPE': 'Uva',
+            'PAIRING': 'Maridaje',
+            'PRESENTATION': 'Presentación',
             'WINE': 'Vino',
             'YEAR': 'Año'
         }
