@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
-import { graphQL as attachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
 
 const fields = `
     ... on WineWine {
@@ -17,13 +18,14 @@ const fields = `
         tasting_note
         year
         
-        ${attachmentsGraphQL.fields}
+        ${adminAttachmentsGraphQL.fields}
+        ${marketCategoryGraphQL.fields}
         ${marketableGraphQL.fields}
     }
 `;
 
 const relationsFields = `
-    ${attachmentsGraphQL.relationsFields}
+    ${adminAttachmentsGraphQL.relationsFields}
     ${marketableGraphQL.relationsFields}
     ${stockableGraphQL.relationsFields}
 `;

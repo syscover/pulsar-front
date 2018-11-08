@@ -8,6 +8,7 @@ export const locale = {
             'PAIRING': 'Pairing',
             'PRESENTATION': 'Presentation',
             'WINE': 'Wine',
+            'WINERY': 'Winery',
             'YEAR': 'Year'
         }
     }

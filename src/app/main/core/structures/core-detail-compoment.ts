@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
-import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { DataRoute } from './data-route';
 import { ValidationMessageService } from './../services/validation-message.service';

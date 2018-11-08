@@ -117,11 +117,14 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'WINE.YEAR' | translate }}" formControlName="year" required>
-                                        <mat-error>{{ formErrors?.year }}</mat-error>
+                                    <mat-form-field class="col">
+                                        <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" [formControlName]="country_id">
+                                            <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.country_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
+
                             </div>
                         </mat-tab>
 
@@ -142,22 +145,9 @@
                         <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row">
-                                    <div class="col-12 py-20">
-                                        <mat-checkbox formControlName="is_product">{{ 'APPS.IS_PRODUCT' | translate }}</mat-checkbox>
-                                    </div>
-                                </div>
 
-                                <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
-                                                [hiddenFields]="['lang_id', 'name', 'slug']"
-                                                [hidden]="! fg.get('is_product').value"
-                                                [fg]="fg"
-                                                [products]="products"
-                                                [sections]="sections"
-                                                [productTypes]="productTypes"
-                                                [priceTypes]="priceTypes"
-                                                [productClassTaxes]="productClassTaxes"
-                                                [categories]="categories"></dh2-marketable>
+
+
 
                             </div>
                         </mat-tab>
@@ -168,7 +158,7 @@
                                 <div fxLayout="row">
                                     <div class="col-12">
 
-                                        <dh2-stockable [stocksData]="stocksData"></dh2-stockable>
+
 
                                     </div>
                                 </div>

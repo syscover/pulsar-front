@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'WINE.GRAPE' | translate }}</span>
+                <span>{{ 'APPS.NEW.' + objectTranslationGender | translate }} {{ objectTranslation | translate }}</span>
             </button>
 
         </div>

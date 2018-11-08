@@ -12,11 +12,14 @@ const fields = `
     }
 `;
 
+const relationsFields = ``;
+
 export const graphQL = {
 
     model: 'Syscover\\Wine\\Models\\Appellation',
     table: 'wine_appellation',
     fields,
+    relationsFields,
 
     queryPaginationObject: gql`
         query WineGetAppellationsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {

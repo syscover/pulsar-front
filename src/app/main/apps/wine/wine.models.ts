@@ -82,3 +82,19 @@ export class Wine extends Marketable
     tasting_note: string;
     year: number;
 }
+
+export class Winery
+{
+    attachments: Attachment[];
+    country_id: string;
+    data: Object;
+    data_lang: string[];
+    description: string;
+    excerpt: string;
+    header: string;
+    id: number;
+    ix: number;
+    lang_id: string;
+    name: string;
+    slug: string;
+}

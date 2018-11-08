@@ -4,7 +4,6 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Core } from './core';
 import { HttpService } from './../services/http.service';
-import { GraphQLSchema } from './graphql-schema';
 import { Lang } from './../../apps/admin/admin.models';
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
 import { Subject } from 'rxjs/Subject';

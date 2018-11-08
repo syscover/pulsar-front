@@ -1,9 +1,8 @@
 import gql from 'graphql-tag';
 
 const fields = `
-    ... on WineGrape {
+    ... on WineAward {
         data_lang
-        description
         id
         ix
         lang_id
@@ -16,14 +15,14 @@ const relationsFields = ``;
 
 export const graphQL = {
 
-    model: 'Syscover\\Wine\\Models\\Grape',
-    table: 'wine_grape',
+    model: 'Syscover\\Wine\\Models\\Award',
+    table: 'wine_award',
     fields,
     relationsFields,
 
     queryPaginationObject: gql`
-        query WineGetGrapesPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
-            coreObjectsPagination: wineGrapesPagination (filters:$filters sql:$sql) {
+        query WineGetAwardsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
+            coreObjectsPagination: wineAwardsPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
                 filtered
@@ -31,38 +30,38 @@ export const graphQL = {
         }`,
 
     queryObjects: gql`
-        query WineGetGrapes ($sql:[CoreSQLInput]) {
-            coreObjects: wineGrapes (sql:$sql){
+        query WineGetAwards ($sql:[CoreSQLInput]) {
+            coreObjects: wineAwards (sql:$sql){
                 ${fields}
             }
         }`,
 
     queryObject: gql`
-        query WineGetGrape (
+        query WineGetAward (
             $sql:[CoreSQLInput]
         ) {
-            coreObject: wineGrape (sql:$sql){
+            coreObject: wineAward (sql:$sql){
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
-        mutation WineCreateGrape ($payload:WineGrapeInput!) {
-            wineCreateGrape (payload:$payload){
+        mutation WineCreateAward ($payload:WineAwardInput!) {
+            wineCreateAward (payload:$payload){
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
-        mutation WineUpdateGrape ($payload:WineGrapeInput!) {
-            wineUpdateGrape (payload:$payload){
+        mutation WineUpdateAward ($payload:WineAwardInput!) {
+            wineUpdateAward (payload:$payload){
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
-        mutation WineDeleteGrape ($id:Int! $lang_id:String!) {
-            wineDeleteGrape (id:$id lang_id:$lang_id){
+        mutation WineDeleteAward ($id:Int! $lang_id:String!) {
+            wineDeleteAward (id:$id lang_id:$lang_id){
                 ${fields}
             }
         }`

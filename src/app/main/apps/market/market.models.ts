@@ -12,7 +12,7 @@ export class Category
     active: boolean;
     description: string;
     data_lang: string[];
-    data: string;
+    data: Object;
 }
 
 export class CustomerClassTax 
@@ -126,7 +126,7 @@ export class PaymentMethod
 export class Product extends Marketable
 {
     attachments: Attachment[];
-    data: string;
+    data: Object;
     data_lang: string[];
     description: string;
     field_group_id: number;
@@ -178,7 +178,7 @@ export class Order
     rows: OrderRow[];
     discounts: CustomerDiscountHistory[];
     ip: string;
-    data: string;
+    data: Object;
     comments: string;
     transaction_id: string;
     discount_amount: number;
@@ -248,7 +248,7 @@ export class OrderRow
     product_id: number;
     name: string;
     description: string;
-    data: string;
+    data: Object;
     cost: number;
     total_cost: number;
     price: number;

@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <fa-icon [icon]="['fas', 'wine-glass-alt']" size="2x" class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.WINES' | translate }}</span>
+                <fa-icon [icon]="['fas', 'warehouse']" size="2x" class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.WINERIES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -58,21 +58,15 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="wine_wine.id">
+                <ng-container matColumnDef="wine_winery.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="wine_wine.name">
+                <ng-container matColumnDef="wine_winery.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="wine_wine.year">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'WINE.YEAR' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.year }}</mat-cell>
                 </ng-container>
 
                 <!-- LANGS -->

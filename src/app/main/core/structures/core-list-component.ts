@@ -14,7 +14,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
-import { GraphQLSchema } from './graphql-schema';
 import { HttpSynchronousService } from './../services/http-synchronous.service';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit

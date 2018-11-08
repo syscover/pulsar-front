@@ -8,6 +8,7 @@ export const locale = {
             'PAIRING': 'Maridaje',
             'PRESENTATION': 'Presentación',
             'WINE': 'Vino',
+            'WINERY': 'Bodega',
             'YEAR': 'Año'
         }
     }

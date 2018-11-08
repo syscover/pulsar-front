@@ -4,16 +4,22 @@ import { AuthorizationService } from './../../core/services/authorization.servic
 
 import { AppellationDetailComponent } from './appellation/appellation-detail.component';
 import { AppellationListComponent } from './appellation/appellation-list.component';
+import { AwardDetailComponent } from './award/award-detail.component';
+import { AwardListComponent } from './award/award-list.component';
 import { FamilyDetailComponent } from './family/family-detail.component';
 import { FamilyListComponent } from './family/family-list.component';
 import { GrapeDetailComponent } from './grape/grape-detail.component';
 import { GrapeListComponent } from './grape/grape-list.component';
 import { PairingDetailComponent } from './pairing/pairing-detail.component';
 import { PairingListComponent } from './pairing/pairing-list.component';
+import { PresentationDetailComponent } from './presentation/presentation-detail.component';
+import { PresentationListComponent } from './presentation/presentation-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
 import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
 import { WineListComponent } from './wine/wine-list.component';
+import { WineryDetailComponent } from './winery/winery-detail.component';
+import { WineryListComponent } from './winery/winery-list.component';
 
 const routes: Routes = [
     {
@@ -26,6 +32,12 @@ const routes: Routes = [
             { path: 'appellation/create',                                           component: AppellationDetailComponent,                  data: { action: 'create' }},
             { path: 'appellation/create/:lang_id/:id',                              component: AppellationDetailComponent,                  data: { action: 'create-lang' }},
             { path: 'appellation/show/:lang_id/:id',                                component: AppellationDetailComponent,                  data: { action: 'edit' }},
+
+            // Award
+            { path: 'award',                                                        component: AwardListComponent },
+            { path: 'award/create',                                                 component: AwardDetailComponent,                        data: { action: 'create' }},
+            { path: 'award/create/:lang_id/:id',                                    component: AwardDetailComponent,                        data: { action: 'create-lang' }},
+            { path: 'award/show/:lang_id/:id',                                      component: AwardDetailComponent,                        data: { action: 'edit' }},
 
             // Family
             { path: 'family',                                                       component: FamilyListComponent },
@@ -41,9 +53,15 @@ const routes: Routes = [
 
             // Pairing
             { path: 'pairing',                                                      component: PairingListComponent },
-            { path: 'pairing/create',                                               component: PairingDetailComponent,                         data: { action: 'create' }},
-            { path: 'pairing/create/:lang_id/:id',                                  component: PairingDetailComponent,                         data: { action: 'create-lang' }},
-            { path: 'pairing/show/:lang_id/:id',                                    component: PairingDetailComponent,                         data: { action: 'edit' }},
+            { path: 'pairing/create',                                               component: PairingDetailComponent,                      data: { action: 'create' }},
+            { path: 'pairing/create/:lang_id/:id',                                  component: PairingDetailComponent,                      data: { action: 'create-lang' }},
+            { path: 'pairing/show/:lang_id/:id',                                    component: PairingDetailComponent,                      data: { action: 'edit' }},
+
+            // Presentation
+            { path: 'presentation',                                                 component: PresentationListComponent },
+            { path: 'presentation/create',                                          component: PresentationDetailComponent,                 data: { action: 'create' }},
+            { path: 'presentation/create/:lang_id/:id',                             component: PresentationDetailComponent,                 data: { action: 'create-lang' }},
+            { path: 'presentation/show/:lang_id/:id',                               component: PresentationDetailComponent,                 data: { action: 'edit' }},
 
             // Type
             { path: 'type',                                                         component: TypeListComponent },
@@ -56,6 +74,12 @@ const routes: Routes = [
             { path: 'wine/create',                                                  component: WineDetailComponent,                         data: { action: 'create' }},
             { path: 'wine/create/:lang_id/:id',                                     component: WineDetailComponent,                         data: { action: 'create-lang' }},
             { path: 'wine/show/:lang_id/:id',                                       component: WineDetailComponent,                         data: { action: 'edit' }},
+
+            // Wineries
+            { path: 'winery',                                                       component: WineryListComponent },
+            { path: 'winery/create',                                                component: WineryDetailComponent,                       data: { action: 'create' }},
+            { path: 'winery/create/:lang_id/:id',                                   component: WineryDetailComponent,                       data: { action: 'create-lang' }},
+            { path: 'winery/show/:lang_id/:id',                                     component: WineryDetailComponent,                       data: { action: 'edit' }},
         ]  
     }
 ];

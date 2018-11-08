@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CountryGraphQLService } from './country-graphql.service';
+import { graphQL } from './country.graphql';
 
 @Component({
     selector: 'dh2-country-detail',
@@ -20,8 +20,7 @@ export class CountryDetailComponent extends CoreDetailComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: CountryGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

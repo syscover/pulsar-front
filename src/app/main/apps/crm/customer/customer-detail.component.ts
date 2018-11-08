@@ -19,8 +19,6 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
     inputType = 'password';
-
-    // properties for territories
     countries: Country[] = [];
 
     constructor(

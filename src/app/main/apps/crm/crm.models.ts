@@ -1,5 +1,4 @@
-
-export class CustomerGroup 
+export class CustomerGroup
 {
     id: number;
     name: string;

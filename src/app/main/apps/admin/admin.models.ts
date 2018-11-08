@@ -17,7 +17,7 @@ export class AttachmentLibrary
     size: number;
     width: number;
     height: number;
-    data: string;
+    data: Object;
 }
 
 export class Attachment extends AttachmentLibrary
@@ -44,7 +44,7 @@ export class AttachmentFamily
     width: number;
     height: number;
     sizes: number[];
-    data: string;
+    data: Object;
 }
 
 export class AttachmentMime
@@ -71,7 +71,7 @@ export class Country
     territorial_areas_3: TerritorialArea3[];
     zones: string[];
     data_lang: string[];
-    data: string;
+    data: Object;
 }
 
 export class DataType
@@ -99,7 +99,7 @@ export class Field
     component_class: string;
     values: FieldValue[];
     data_lang: string[];
-    data: string;
+    data: Object;
 }
 
 export class FieldGroup
@@ -117,7 +117,7 @@ export class FieldGroup
     label_size: number;
     field_size: number;
     data_lang: string[];
-    data: string;
+    data: Object;
 }
 
 export class FieldType
@@ -138,7 +138,7 @@ export class FieldValue
     sort: string;
     featured: string;
     data_lang: string[];
-    data: string;
+    data: Object;
 }
 
 export class Lang
