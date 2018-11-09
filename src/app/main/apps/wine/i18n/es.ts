@@ -27,8 +27,8 @@ export const locale = {
             'VINEYARD_VINTAGE': 'Vendimia',
             'VINEYARD_WEATHER': 'Clima',
             'WINE': 'Vino',
-            'WINERY': 'Bodega',
-            'YEAR': 'Año'
+            'VINTAGE': 'Añada',
+            'WINERY': 'Bodega'
         }
     }
 };

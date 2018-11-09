@@ -27,8 +27,8 @@ export const locale = {
             'VINEYARD_VINTAGE': 'Vintage',
             'VINEYARD_WEATHER': 'Weather',
             'WINE': 'Wine',
-            'WINERY': 'Winery',
-            'YEAR': 'Year'
+            'VINTAGE': 'Vintage',
+            'WINERY': 'Winery'
         }
     }
 };

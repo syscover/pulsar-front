@@ -84,9 +84,8 @@
 
                 <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
+                        (ngSubmit)="postRecord(object)">
+
                     <mat-tab-group>
 
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
@@ -95,14 +94,14 @@
                                 <input type="hidden" formControlName="lang_id">
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-4">
+                                    <mat-form-field class="col-7 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
-                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
+                                    <dh2-flag-icon class="col-4 offset-1 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field class="col-12">
                                         <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
@@ -118,26 +117,47 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'WINE.YEAR' | translate }}" formControlName="year" required>
-                                        <mat-error>{{ formErrors?.year }}</mat-error>
+                                        <input matInput placeholder="{{ 'WINE.VINTAGE' | translate }}" formControlName="vintage" required>
+                                        <mat-error>{{ formErrors?.vintage }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field class="col-12">
                                         <input matInput placeholder="{{ 'WINE.PRODUCTION' | translate }}" formControlName="production">
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <!--<div fxLayout="row">-->
-                                    <!--<mat-form-field class="col-12 col-md-4">-->
-                                        <!--<mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id">-->
-                                            <!--<mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>-->
-                                        <!--</mat-select>-->
-                                        <!--<mat-error>{{ formErrors?.country_id }}</mat-error>-->
-                                    <!--</mat-form-field>-->
-                                <!--</div>-->
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-11 col-md-4">
+                                        <mat-select placeholder="{{ 'WINE.APPELLATION' | translate }}" formControlName="appellation_id">
+                                            <mat-option *ngFor="let appellation of appellations" [value]="appellation.id">{{ appellation.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.appellation_id }}</mat-error>
+                                    </mat-form-field>
+                                    <button mat-icon-button type="button">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-8 col-md-4">
+                                        <mat-select placeholder="{{ 'WINE.TYPE' | translate }}" formControlName="type_id">
+                                            <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.type_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field class="col-8 col-md-4">
+                                        <mat-select placeholder="{{ 'WINE.FAMILY' | translate }}" formControlName="family_id">
+                                            <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.family_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </mat-tab>
 
