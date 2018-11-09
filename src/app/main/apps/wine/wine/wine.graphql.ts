@@ -6,6 +6,13 @@ import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-
 import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
 import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';
 import { graphQL as wineAppellationGraphQL } from '../appellation/appellation.graphql';
+import { graphQL as wineAwardGraphQL } from '../award/award.graphql';
+import { graphQL as wineFamilyGraphQL } from '../family/family.graphql';
+import { graphQL as wineGrapeGraphQL } from '../grape/grape.graphql';
+import { graphQL as winePairingGraphQL } from '../pairing/pairing.graphql';
+import { graphQL as winePresentationGraphQL } from '../presentation/presentation.graphql';
+import { graphQL as wineTypeGraphQL } from '../type/type.graphql';
+import { graphQL as wineWineryGraphQL } from '../winery/winery.graphql';
 
 const fields = `
     data
@@ -31,6 +38,27 @@ const relationsFields = `
     }
     wineAppellations (sql:$sqlAppellation) {
         ${wineAppellationGraphQL.fields}
+    }
+    wineAwards (sql:$sqlAward) {
+        ${wineAwardGraphQL.fields}
+    }
+    wineFamilies (sql:$sqlFamily) {
+        ${wineFamilyGraphQL.fields}
+    }
+    wineGrapes (sql:$sqlGrape) {
+        ${wineGrapeGraphQL.fields}
+    }
+    winePairings (sql:$sqlPairing) {
+        ${winePairingGraphQL.fields}
+    }
+    winePresentations (sql:$sqlPresentation) {
+        ${winePresentationGraphQL.fields}
+    }
+    wineTypes (sql:$sqlType) {
+        ${wineTypeGraphQL.fields}
+    }
+    wineWineries (sql:$sqlWinery) {
+        ${wineWineryGraphQL.fields}
     }
     ${marketableGraphQL.relationsFields}
     ${stockableGraphQL.relationsFields}
@@ -63,6 +91,13 @@ export const graphQL = {
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
             $sqlAppellation:[CoreSQLInput]
+            $sqlAward:[CoreSQLInput]
+            $sqlFamily:[CoreSQLInput]
+            $sqlGrape:[CoreSQLInput]
+            $sqlPairing:[CoreSQLInput]
+            $sqlPresentation:[CoreSQLInput]
+            $sqlType:[CoreSQLInput]
+            $sqlWinery:[CoreSQLInput]
         ) {
             ${relationsFields}
         }`,
@@ -85,6 +120,13 @@ export const graphQL = {
             $sqlSection:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
             $sqlAppellation:[CoreSQLInput]
+            $sqlAward:[CoreSQLInput]
+            $sqlFamily:[CoreSQLInput]
+            $sqlGrape:[CoreSQLInput]
+            $sqlPairing:[CoreSQLInput]
+            $sqlPresentation:[CoreSQLInput]    
+            $sqlType:[CoreSQLInput]
+            $sqlWinery:[CoreSQLInput]
         ) {
             coreObject: wineWine (sql:$sql) {
                 ${fields}

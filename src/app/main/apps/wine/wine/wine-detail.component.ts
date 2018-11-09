@@ -7,6 +7,7 @@ import { Category, PriceType, Product, ProductClassTax, ProductType, Section, St
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
 import { StockableService } from '../../../core/components/stockable/stockable.service';
 import { AttachmentFamily } from '../../admin/admin.models';
+import { Appellation, Award, Family, Grape, Pairing, Presentation, Type, Winery } from '../wine.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -23,6 +24,16 @@ export class WineDetailComponent extends CoreDetailComponent
     loadingSlug = false;
     loadingPrice = false;
     stocksData = [];
+
+    // relations fields
+    appellations: Appellation[] = [];
+    awards: Award[] = [];
+    families: Family[] = [];
+    grapes: Grape[] = [];
+    pairings: Pairing[] = [];
+    presentations: Presentation[] = [];
+    types: Type[] = [];
+    wineries: Winery[] = [];
 
     // ***** start - marketable variables
     products: Product[] = [];
@@ -135,16 +146,149 @@ export class WineDetailComponent extends CoreDetailComponent
             }
         ];
 
+        const sqlAward = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_award.name'
+            }
+        ];
+
+        const sqlFamily = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_family.name'
+            }
+        ];
+
+        const sqlGrape = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_grape.name'
+            }
+        ];
+
+        const sqlParing = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_pairing.name'
+            }
+        ];
+
+        const sqlPresentation = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_presentation.name'
+            }
+        ];
+
+        const sqlType = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_type.name'
+            }
+        ];
+
+        const sqlWinery = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'wine_winery.name'
+            }
+        ];
+
         return {
             ...marketableRelations,
             ...stockableRelations,
             sqlAttachmentFamily,
-            sqlAppellation
+            sqlAppellation,
+            sqlAward,
+            sqlFamily,
+            sqlGrape,
+            sqlParing,
+            sqlPresentation,
+            sqlType,
+            sqlWinery
         };
     }
 
     setRelationsData(data: any): void
     {
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
+
+        // wine appellations
+        this.appellations = data.wineAppellations;
+
+        // wine awards
+        this.awards = data.wineAwards;
+
+        // wine families
+        this.families = data.wineFamilies;
+
+        // wine grapes
+        this.grapes = data.wineGrapes;
+
+        // wine pairings
+        this.pairings = data.winePairings;
+
+        // wine presentations
+        this.presentations = data.winePresentations;
+
+        // wine types
+        this.types = data.wineTypes;
+
+        // wine wineries
+        this.wineries = data.wineWineries;
+
+
         // ***** start - marketable relations
         // market products
         this.products = data.marketProducts;
@@ -185,9 +329,6 @@ export class WineDetailComponent extends CoreDetailComponent
             this.stocksData = stocksData;
         }
         // ***** end - stockable relations
-
-        // admin attachment families
-        this.attachmentFamilies = data.adminAttachmentFamilies;
     }
 
     afterPatchValueEdit(): void
