@@ -58,9 +58,46 @@ export class WineDetailComponent extends CoreDetailComponent
             name: [null, Validators.required],
             slug: [null, Validators.required],
             year: null,
-            tasting_note: null,
+            winery_id: [null, Validators.required],
+            appellation_id: [null, Validators.required],
+            abv: null,
+            country_id: null,
+            territorial_area_1_id: null,
+            territorial_area_2_id: null,
+            territorial_area_3_id: null,
+            average: null,
+            parker: null,
+            suckling: null,
+            penin: null,
+            decanter: null,
+            wine_spectator: null,
+
+            // wine_lang
+            production: null,
+            tasting: null,
+            tasting_look: null,
+            tasting_nose: null,
+            tasting_mouth: null,
+            tasting_temperature: null,
+            tasting_consumption: null,
+            vineyard: null,
+            vineyard_name: null,
+            vineyard_area: null,
+            vineyard_description: null,
+            vineyard_age: null,
+            vineyard_soil: null,
+            vineyard_weather: null,
+            vineyard_performance: null,
+            vineyard_vintage: null,
+            vineyard_vinification: null,
+            vineyard_aging: null,
+            vineyard_bottling: null,
+
+            attachments: this.fb.array([]),
+
+            // marketable
             is_product: false,
-            attachments: this.fb.array([])
+            product_id: null
         });
     }
 

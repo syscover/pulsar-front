@@ -102,14 +102,14 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12">
+                                    <mat-form-field class="col">
                                         <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12">
+                                    <mat-form-field class="col">
                                         <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
                                         <mat-spinner *ngIf="loadingSlug" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
@@ -122,20 +122,223 @@
                                         <mat-error>{{ formErrors?.year }}</mat-error>
                                     </mat-form-field>
                                 </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <input matInput placeholder="{{ 'WINE.PRODUCTION' | translate }}" formControlName="production">
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </mat-tab>
 
-                        <mat-tab label="{{ 'APPS.DESCRIPTION' | translate | uppercase }}">
+                        <mat-tab label="{{ 'WINE.TASTING' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
+
                                 <div fxLayout="row">
-                                    <div class="col-12">
-                                        <dh2-froala formControlName="tasting_note"
-                                                    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
-                                        <mat-error>{{ formErrors?.tasting_note }}</mat-error>
-                                    </div>
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting"></textarea>
+                                        <mat-error>{{ formErrors?.tasting }}</mat-error>
+                                    </mat-form-field>
                                 </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING_LOOK' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting_look"></textarea>
+                                        <mat-error>{{ formErrors?.tasting_look }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING_NOSE' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting_nose"></textarea>
+                                        <mat-error>{{ formErrors?.tasting_nose }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING_MOUTH' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting_mouth"></textarea>
+                                        <mat-error>{{ formErrors?.tasting_mouth }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING_TEMPERATURE' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting_temperature"></textarea>
+                                        <mat-error>{{ formErrors?.tasting_temperature }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.TASTING_CONSUMPTION' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="tasting_consumption"></textarea>
+                                        <mat-error>{{ formErrors?.tasting_consumption }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'WINE.VINEYARD' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_NAME' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_name"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_AREA' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_area"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_area }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_DESCRIPTION' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_description"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_description }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_AGE' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_age"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_age }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_SOIL' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_soil"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_soil }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_WEATHER' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_weather"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_weather }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_PERFORMANCE' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_performance"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_performance }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_VINTAGE' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_vintage"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_vintage }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_VINIFICATION' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_vinification"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_vinification }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_AGING' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_aging"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_aging }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field class="col">
+                                        <textarea   matInput
+                                                    placeholder="{{ 'WINE.VINEYARD_BOTTLING' | translate }}"
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="vineyard_bottling"></textarea>
+                                        <mat-error>{{ formErrors?.vineyard_bottling }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                             </div>
                         </mat-tab>
 
