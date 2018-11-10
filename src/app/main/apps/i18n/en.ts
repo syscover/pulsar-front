@@ -55,6 +55,7 @@ export const locale = {
             'NAME': 'Name',
             'NEW.F': 'New',
             'NEW.M': 'New',
+            'NO_MATCHING': 'No matching found',
             'NONE.F': 'None',
             'NONE.M': 'None',
             'OK': 'Ok',

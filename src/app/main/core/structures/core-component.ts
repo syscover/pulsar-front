@@ -1,4 +1,4 @@
-import { Injector, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Injector, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,7 +30,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     protected snackBar: MatSnackBar;
     protected translations: Object = {};        // translations for used in component
     protected dialog: MatDialog;
-    protected ngUnsubscribe = new Subject();    // create Observable to unsubscribe
+    protected _onDestroy = new Subject();       // create Observable to unsubscribe
 
     constructor(
         protected injector: Injector,
@@ -78,8 +78,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
     ngOnDestroy(): void
     {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
+        this._onDestroy.next();
+        this._onDestroy.complete();
         if (this.env.debug) console.log('DEBUG - Core component destroyed');
     }
 

@@ -60,7 +60,7 @@ export class FieldDetailComponent extends CoreDetailComponent
         this.fg.controls['component_class'].disable();
     }
 
-    afterSetData() 
+    afterSetData(): void
     {
         if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
         {

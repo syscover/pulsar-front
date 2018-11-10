@@ -36,6 +36,8 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { SelectSearchService } from '../services/select-search.service';
 
 @NgModule({
     imports: [
@@ -71,7 +73,8 @@ import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-        CdkTableModule
+        CdkTableModule,
+        NgxMatSelectSearchModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -105,7 +108,11 @@ import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-        CdkTableModule
+        CdkTableModule,
+        NgxMatSelectSearchModule
+    ],
+    providers: [
+        SelectSearchService
     ]
 })
 export class MaterialModule

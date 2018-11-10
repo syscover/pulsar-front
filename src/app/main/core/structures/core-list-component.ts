@@ -47,7 +47,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 .debounceTime(500)
                 .distinctUntilChanged()
         )
-        .takeUntil(this.ngUnsubscribe)
+        .takeUntil(this._onDestroy)
         .subscribe(() => this.paginator.pageIndex = 0);
 
         merge(
@@ -64,7 +64,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 await this.loadDataSource();
             })
         )
-        .takeUntil(this.ngUnsubscribe)
+        .takeUntil(this._onDestroy)
         .subscribe(() => {
             // this response is asynchronous, fron this section can't recover response data from promise
         });

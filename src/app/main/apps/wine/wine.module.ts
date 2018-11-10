@@ -18,6 +18,7 @@ import { PairingListComponent } from './pairing/pairing-list.component';
 import { PresentationDetailComponent } from './presentation/presentation-detail.component';
 import { PresentationListComponent } from './presentation/presentation-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
+import { TypeDialogComponent } from './type/type-dialog.component';
 import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
 import { WineListComponent } from './wine/wine-list.component';
@@ -48,9 +49,13 @@ import { WineryListComponent } from './winery/winery-list.component';
         WineDetailComponent,
         WineListComponent,
         WineryDetailComponent,
-        WineryListComponent
+        WineryListComponent,
+        TypeDialogComponent
     ],
-    providers: []
+    providers: [],
+    entryComponents: [
+        TypeDialogComponent
+    ]
 })
 
 export class WineModule

@@ -23,7 +23,7 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
     @Input() value: string;
     @Output() checkingSlug = new EventEmitter<boolean>();
 
-    private ngUnsubscribe = new Subject();
+    private _onDestroy = new Subject();
     private running = false; // boolean true when is consulting through Http
     private buffer: any;
     private value$: BehaviorSubject<string>;
@@ -118,14 +118,14 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
                     }
                 })
             )
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil(this._onDestroy)
             .subscribe();
     }
 
     ngOnDestroy(): void
     {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
+        this._onDestroy.next();
+        this._onDestroy.complete();
         if (environment.debug) console.log('DEBUG - SlugDirective destroyed');
     }
 }
