@@ -3,6 +3,7 @@ import { graphQL as marketableGraphQL } from '../../../core/components/marketabl
 import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
 import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
 import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';
 import { graphQL as wineAppellationGraphQL } from '../appellation/appellation.graphql';
@@ -35,6 +36,9 @@ const fields = `
 const relationsFields = `
     adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
         ${adminAttachmentFamilyGraphQL.fields}
+    }
+    adminCountries (sql:$sqlCountry) {
+        ${adminCountryGraphQL.fields}
     }
     wineAppellations (sql:$sqlAppellation) {
         ${wineAppellationGraphQL.fields}
@@ -87,6 +91,7 @@ export const graphQL = {
             $configPriceTypes:CoreConfigInput!
             $configProductTypes:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCountry:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput] 
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
@@ -115,6 +120,7 @@ export const graphQL = {
             $configProductTypes:CoreConfigInput!
             $sql:[CoreSQLInput] 
             $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlCountry:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput]
             $sqlProduct:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]

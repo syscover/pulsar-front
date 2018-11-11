@@ -61,7 +61,7 @@
     "core-js": "2.5.7",
     "cropperjs": "1.4.1",
     "d3": "5.7.0",
-    "flag-icon-css-2": "3.1.0",
+    "flag-icon-css": "3.2.1",
     "generate-password-browser": "1.0.2",
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",

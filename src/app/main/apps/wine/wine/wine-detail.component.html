@@ -97,7 +97,7 @@
                                     <mat-form-field class="col-7 col-md-4">
                                         <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                                     </mat-form-field>
-                                    <dh2-flag-icon class="col-4 offset-1 offset-md-1 col-md-4" [lang]="lang" width="30px"></dh2-flag-icon>
+                                    <dh2-flag-icon class="col-4 offset-1 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
                                 </div>
 
                                 <div fxLayout="row">
@@ -118,7 +118,7 @@
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
                                     <div class="col-12 col-md-6">
                                         <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'APPS.TYPE' | translate }}" formControlName="type_id">
+                                            <mat-select placeholder="{{ 'APPS.TYPE' | translate }}" formControlName="type_id" required>
                                                 <ngx-mat-select-search [formControl]="typeFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -156,7 +156,7 @@
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
                                     <div class="col-12 col-md-6">
                                         <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'WINE.WINERY' | translate }}" formControlName="winery_id">
+                                            <mat-select placeholder="{{ 'WINE.WINERY' | translate }}" formControlName="winery_id" required>
                                                 <ngx-mat-select-search [formControl]="wineryFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -171,7 +171,7 @@
 
                                     <div class="col-12 col-md-5">
                                         <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'WINE.APPELLATION' | translate }}" formControlName="appellation_id">
+                                            <mat-select placeholder="{{ 'WINE.APPELLATION' | translate }}" formControlName="appellation_id" required>
                                                 <ngx-mat-select-search [formControl]="appellationFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -182,6 +182,14 @@
                                         <button mat-icon-button type="button" class="mt-10">
                                             <mat-icon>add</mat-icon>
                                         </button>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-4">
+                                        <dh2-territories    [formGroup]="fg"
+                                                            [formErrors]="formErrors"
+                                                            [countries]="countries"></dh2-territories>
                                     </div>
                                 </div>
 

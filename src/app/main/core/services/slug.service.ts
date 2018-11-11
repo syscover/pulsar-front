@@ -7,12 +7,12 @@ import { first } from 'rxjs/operators/first';
 export class SlugService
 {
     constructor(
-        private httpService: HttpService
+        private _http: HttpService
     ) {}
 
     async checkSlug(model: string, slug: string, object?: any, column?: string)
     {
-        return await this.httpService
+        return await this._http
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',

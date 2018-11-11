@@ -127,9 +127,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // function to get record in edit action or create lang action
-    getRecord(params: Params) 
+    getRecord(params: Params): void
     {
-        const ob$ = this.httpService
+        const ob$ = this.http
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
@@ -231,7 +231,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (this.env.debug) console.log('DEBUG - options of relations to create object: ', options);
 
-            const ob$ = this.httpService
+            const ob$ = this.http
                 .apolloClient()
                 .watchQuery(options)
                 .valueChanges
@@ -295,7 +295,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (this.env.debug) console.log('DEBUG - args sending to create object: ', args);
 
-            record$ = this.httpService
+            record$ = this.http
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationCreateObject,
@@ -313,7 +313,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (this.env.debug) console.log('DEBUG - args sending to create lang object: ', args);
 
-            record$ = this.httpService
+            record$ = this.http
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationCreateObject,
@@ -328,7 +328,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
             if (this.env.debug) console.log('DEBUG - args sending to edit object: ', args);
 
-            record$ = this.httpService
+            record$ = this.http
                 .apolloClient()
                 .mutate({
                     mutation: this.graphQL.mutationUpdateObject,

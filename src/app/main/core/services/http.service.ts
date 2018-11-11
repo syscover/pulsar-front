@@ -4,7 +4,6 @@ import { Params, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
 import { Core } from './../structures/core';
-import { DataListResponse } from './../structures/data-list-response';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -29,7 +28,7 @@ export class HttpService extends Core
         this.options = { headers: this.headers };
     }
 
-    apolloClient() 
+    apolloClient(): Apollo
     {
         return this.apollo;
     }
@@ -41,13 +40,13 @@ export class HttpService extends Core
         return Observable.throw('Error Observable.throw: ' + err.statusText);
     }
 
-    protected setEndpoint(urlAddons: string) 
+    protected setEndpoint(urlAddons: string): void
     {
         // set api URL
         this.apiUrl = this.apiUrl + urlAddons;
     }
 
-    protected getEndpoint(action: string, params?: Params) 
+    protected getEndpoint(action: string, params?: Params): string
     {
         let urlParams = '';
         /**

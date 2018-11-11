@@ -24,7 +24,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
     protected router: Router;
     protected route: ActivatedRoute;
-    protected httpService: HttpService;
+    protected http: HttpService;
     protected params: Params;
     protected langs: Lang[];                    // activated application lang
     protected snackBar: MatSnackBar;
@@ -40,7 +40,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
         this.router = this.injector.get(Router);
         this.route = this.injector.get(ActivatedRoute);
-        this.httpService = this.injector.get(HttpService);
+        this.http = this.injector.get(HttpService);
         this.translateService = this.injector.get(TranslateService);
         this.snackBar = this.injector.get(MatSnackBar);
         this.dialog = this.injector.get(MatDialog);
@@ -130,7 +130,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
                 // apperar spinner in delete translate button
                 this.loadingTranslationButton = true;
 
-                this.httpService
+                this.http
                     .apolloClient()
                     .mutate({
                         mutation: this.graphQL.mutationDeleteObject,

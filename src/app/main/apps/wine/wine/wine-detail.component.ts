@@ -8,10 +8,10 @@ import { ReplaySubject } from 'rxjs';
 import { Category, PriceType, Product, ProductClassTax, ProductType, Section, Stock } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
 import { StockableService } from '../../../core/components/stockable/stockable.service';
-import { AttachmentFamily } from '../../admin/admin.models';
+import {AttachmentFamily, Country} from '../../admin/admin.models';
 import { Appellation, Award, Family, Grape, Pairing, Presentation, Type, Winery } from '../wine.models';
+import { SelectSearchService } from '../../../core/services/select-search.service';
 import * as _ from 'lodash';
-import {SelectSearchService} from '../../../core/services/select-search.service';
 
 
 import {MatDialog} from '@angular/material';
@@ -31,6 +31,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     loadingSlug = false;
     loadingPrice = false;
     stocksData = [];
+    countries: Country[] = [];
 
     // awards
     awards: Award[] = [];
@@ -200,7 +201,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             lang_id: [null, Validators.required],
             name: [null, Validators.required],
             slug: [null, Validators.required],
-            family_id: [null, Validators.required],
+            family_id: [null],
             type_id: [null, Validators.required],
             vintage: null,
             winery_id: [null, Validators.required],
@@ -255,6 +256,20 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Wine\\Models\\Wine');
 
         const stockableRelations = this._stockable.getArgumentsRelations(this.params['product_id']);
+
+        const sqlCountry = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_country.name'
+            }
+        ];
 
         const sqlAttachmentFamily = [
             {
@@ -385,6 +400,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         return {
             ...marketableRelations,
             ...stockableRelations,
+            sqlCountry,
             sqlAttachmentFamily,
             sqlAppellation,
             sqlAward,
@@ -401,6 +417,9 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     {
         // admin attachment families
         this.attachmentFamilies = data.adminAttachmentFamilies;
+
+        // admin attachment families
+        this.countries = data.adminCountries;
 
         // wine appellations
         this.appellations = data.wineAppellations;
@@ -501,42 +520,22 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     {
         const dialogRef = this._dialog.open(TypeDialogComponent, {
             data: {
-                // stockData: stockData
+                lang: this.lang
             },
             width: '80vw'
         });
 
-        dialogRef.afterClosed().subscribe(newStockData => {
+        dialogRef.afterClosed().subscribe((type: Type) => {
 
-            // if (newStockData)
-            // {
-            //     if (this.env.debug) console.log('DEBUG - Update stock with this arguments: ', newStockData);
-            //
-            //     const ob$ = this._http
-            //         .apolloClient()
-            //         .mutate({
-            //             mutation: graphQL.mutationSetStock,
-            //             variables: {
-            //                 payload: {
-            //                     warehouse_id: newStockData.warehouse_id,
-            //                     product_id: newStockData.product_id,
-            //                     stock: newStockData.stock,
-            //                     minimum_stock: newStockData.minimum_stock
-            //                 }
-            //             }
-            //         })
-            //         .subscribe((response) => {
-            //             ob$.unsubscribe();
-            //
-            //             // Find stock index using _.findIndex (thanks @AJ Richardson for comment)
-            //             const index = _.findIndex(this.stocksData, { warehouse_id: newStockData.warehouse_id, product_id: newStockData.product_id });
-            //
-            //             // Replace stock at index using native splice
-            //             this.stocksData.splice(index, 1, newStockData);
-            //
-            //             this.dataSource.data = this.stocksData;
-            //         });
-            // }
+            if (type)
+            {
+                if (this.env.debug) console.log('DEBUG - Add type: ', type);
+
+                this.types.push(type);
+                this.types = _.orderBy(this.types, ['name'], ['asc']);
+                this.filteredTypes.next(this.types.slice());
+                this.fg.get('type_id').setValue(type.id);
+            }
         });
     }
 }

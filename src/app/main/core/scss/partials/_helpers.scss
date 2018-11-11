@@ -74,7 +74,7 @@
 
     // WIDTH
     .w-#{$i} {
-        height: #{$i}px !important;
+        width: #{$i}px !important;
     }
 
     // HEIGHT
@@ -89,7 +89,7 @@
 
     // MAX-HEIGHT
     .mh-#{$i * 10} {
-        max-width: #{$i * 10}px !important;
+        max-height: #{$i * 10}px !important;
     }
 
     // FONT SIZE

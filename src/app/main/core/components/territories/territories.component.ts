@@ -1,10 +1,13 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ReplaySubject, Subject } from 'rxjs';
 import { HttpService } from '../../services/http.service';
 import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from '../../../apps/admin/admin.models';
+import { SelectSearchService } from '../../services/select-search.service';
 import { environment } from 'environments/environment';
 import gql from 'graphql-tag';
 import * as _ from 'lodash';
+import {takeUntil} from 'rxjs/operators';
 
 /* tslint:disable:max-line-length */
 @Component({
@@ -15,7 +18,10 @@ import * as _ from 'lodash';
             <div fxLayout="row">
                 <mat-form-field class="col">
                     <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)">
-                        <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
+                        <ngx-mat-select-search [formControl]="countryFilterCtrl"
+                                               placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
+                                               noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
+                        <mat-option *ngFor="let country of filteredCountries | async" [value]="country.id">{{ country.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[countryControlName] : null }}</mat-error>
                 </mat-form-field>
@@ -52,15 +58,19 @@ import * as _ from 'lodash';
     `
 })
 
-export class TerritoriesComponent implements OnChanges
+export class TerritoriesComponent implements OnChanges, OnInit, OnDestroy
 {
     @Input() formGroup: FormGroup;
-    @Input() countries: Country[] = [];
     @Input() formErrors: any = {};
     @Input() countryControlName = 'country_id';
+    @Input() countries: Country[] = [];
     @Input() territorialArea1ControlName = 'territorial_area_1_id';
     @Input() territorialArea2ControlName = 'territorial_area_2_id';
     @Input() territorialArea3ControlName = 'territorial_area_3_id';
+
+    // countries
+    countryFilterCtrl: FormControl = new FormControl();
+    filteredCountries: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
 
     country: Country;
     territorialAreas1: TerritorialArea1[] = [];
@@ -71,8 +81,11 @@ export class TerritoriesComponent implements OnChanges
     showTerritorialAreas3 = false;
     isLoadedComponent = false;
 
+    private _onDestroy = new Subject();
+
     constructor(
-        private httpService: HttpService
+        private _http: HttpService,
+        private _selectSearch: SelectSearchService
     )
     {}
 
@@ -82,6 +95,7 @@ export class TerritoriesComponent implements OnChanges
         if (this.isLoadedComponent) return;
 
         this.country = <Country>_.find(this.countries, {id: this.formGroup.get(this.countryControlName).value});
+        this.filteredCountries.next(this.countries.slice());
 
         // check the country exist
         if (! this.country) return;
@@ -124,6 +138,32 @@ export class TerritoriesComponent implements OnChanges
 
             if (zones.length > 0) this.load(zones);
         }
+    }
+
+    ngOnInit(): void
+    {
+        this.setSelectSearch();
+    }
+
+    ngOnDestroy(): void
+    {
+        this._onDestroy.next();
+        this._onDestroy.complete();
+    }
+
+    setSelectSearch(): void
+    {
+        // country
+        this.countryFilterCtrl
+            .valueChanges
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(() => {
+                this._selectSearch.filterSelect(
+                    this.countryFilterCtrl,
+                    this.countries,
+                    this.filteredCountries
+                );
+            });
     }
 
     handleChangeCountry($event): void
@@ -349,7 +389,7 @@ export class TerritoriesComponent implements OnChanges
 
         if (environment.debug) console.log('DEBUG - response of query to get territorial areas: ', variables);
 
-        const ob$ = this.httpService
+        const ob$ = this._http
             .apolloClient()
             .watchQuery({
                 fetchPolicy: 'network-only',
