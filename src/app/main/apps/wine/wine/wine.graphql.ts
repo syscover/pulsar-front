@@ -16,22 +16,57 @@ import { graphQL as wineTypeGraphQL } from '../type/type.graphql';
 import { graphQL as wineWineryGraphQL } from '../winery/winery.graphql';
 
 const fields = `
+    abv
+    appellation_id
+    country_id
     data
     data_lang
+    decanter
+    family_id
     id
     is_product
     ix
     lang_id
     name
+    parker
+    penin
+    presentation_id
     product_id
-    slug
-    tasting_note
-    year
-    
-    ${adminAttachmentsGraphQL.fields}
-    ${marketCategoryGraphQL.fields}
+    production
+    score_average
+    suckling
+    tasting
+    tasting_look
+    tasting_nose
+    tasting_mouth
+    tasting_temperature
+    tasting_consumption
+    territorial_area_1_id
+    territorial_area_2_id
+    territorial_area_3_id
+    type_id
+    vineyard
+    vineyard_name
+    vineyard_area
+    vineyard_description
+    vineyard_age
+    vineyard_soil
+    vineyard_weather
+    vineyard_performance
+    vineyard_vintage
+    vineyard_vinification
+    vineyard_aging
+    vineyard_bottling
+    vintage
+    wine_spectator
+    winery_id
     ${marketableGraphQL.fields}
 `;
+
+// attachments {
+//     ${adminAttachmentsGraphQL.fields}
+// }
+// ${marketCategoryGraphQL.fields}
 
 const relationsFields = `
     adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
