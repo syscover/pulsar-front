@@ -51,9 +51,8 @@
 
         <!-- CONTENT CARD -->
         <div class="content-card fuse-white">
-            <div class="loading-shape" *ngIf="isLoadingResults">
-                <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-            </div>
+
+            <dh2-spinner [show]="isLoadingResults"></dh2-spinner>
 
             <mat-table  [dataSource]="dataSource"
                         fusePerfectScrollbar

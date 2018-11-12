@@ -65,6 +65,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 });
             }
         }
+
+        this.showSpinner = false;
+
         this.afterSetData();
     }
 
@@ -237,6 +240,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 .valueChanges
                 .subscribe(({data}) => {
                     ob$.unsubscribe();
+
+                    this.showSpinner = false;
 
                     this.setRelationsData(data);
                 });

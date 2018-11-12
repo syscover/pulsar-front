@@ -13,6 +13,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
     loadingButton = false;
     loadingTranslationButton = false;
+    showSpinner = false;
     translateService: TranslateService;
     baseUri: string;                            // baseUri to set component urls in templete, this property must to be public because is used in template
     baseLang: string;                           // base languague of application, this variable is required for multi-language objects
@@ -54,6 +55,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
+        this.showSpinner = true;
+
         const keys = ['APPS'];
         if (this.objectTranslation) keys.push(this.objectTranslation);
 

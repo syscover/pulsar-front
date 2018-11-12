@@ -196,18 +196,6 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             });
     }
 
-    afterPatchValueEdit(): void
-    {
-        // set wine awards extracting ids
-        fg.get('awards_id').setValue(_.uniq(_.map(awards, 'id')));
-
-        // set wine grapes extracting ids
-        fg.get('grapes_id').setValue(_.uniq(_.map(grapes, 'id')));
-
-        // set wine pairings extracting ids
-        fg.get('pairings_id').setValue(_.uniq(_.map(pairings, 'id')));
-    }
-
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
@@ -521,6 +509,15 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
 
     afterPatchValueEdit(): void
     {
+        // set wine awards extracting ids
+        this.fg.get('awards_id').setValue(_.uniq(_.map(this.object.awards, 'id')));
+
+        // set wine grapes extracting ids
+        this.fg.get('grapes_id').setValue(_.uniq(_.map(this.object.grapes, 'id')));
+
+        // set wine pairings extracting ids
+        this.fg.get('pairings_id').setValue(_.uniq(_.map(this.object.pairings, 'id')));
+
         if (this.fg.get('is_product').value)
         {
             this._marketable.afterPatchValueEdit(
