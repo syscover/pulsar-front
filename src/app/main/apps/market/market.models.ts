@@ -25,6 +25,7 @@ export class Marketable
 {
     active: boolean;
     categories: Category[];
+    class_id: number;
     cost: number;
     cost_per_sale: number;
     enable_from: any;
@@ -44,7 +45,6 @@ export class Marketable
     sort: number;
     starts_at: any;
     subtotal: number;
-    type_id: number;
     weight: number;
 }
 
@@ -85,7 +85,7 @@ export class TaxRule
     tax_rate_zones: TaxRateZone[];
 }
 
-export class ProductType 
+export class ProductClass
 {
     id: number;
     name: string;

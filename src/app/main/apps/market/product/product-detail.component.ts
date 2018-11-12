@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './product.graphql';
-import { Product, ProductType, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
+import { Product, ProductClass, PriceType, ProductClassTax, Category, Stock, Section } from './../market.models';
 import { FieldGroup, AttachmentFamily } from './../../admin/admin.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
 import { StockableService } from '../../../core/components/stockable/stockable.service';
@@ -32,7 +32,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     products: Product[] = [];
     categories: Category[] = [];
     sections: Section[] = [];
-    productTypes: ProductType[] = [];
+    productClasses: ProductClass[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
     // ***** end - marketable variables
@@ -76,18 +76,18 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     disabledForm(): void
     {
-        this.fg.controls['sku'].disable();
-        this.fg.controls['categories_id'].disable();
-        this.fg.controls['sections_id'].disable();
-        this.fg.controls['field_group_id'].disable();
-        this.fg.controls['type_id'].disable();
-        this.fg.controls['parent_id'].disable();
-        this.fg.controls['weight'].disable();
         this.fg.controls['active'].disable();
+        this.fg.controls['categories_id'].disable();
+        this.fg.controls['class_id'].disable();
+        this.fg.controls['field_group_id'].disable();
+        this.fg.controls['parent_id'].disable();
+        this.fg.controls['sections_id'].disable();
         this.fg.controls['sort'].disable();
+        this.fg.controls['weight'].disable();
         this.fg.controls['price_type_id'].disable();
         this.fg.controls['product_class_tax_id'].disable();
         this.fg.controls['price'].disable();
+        this.fg.controls['sku'].disable();
         this.fg.controls['subtotal'].disable();
         this.fg.controls['subtotal_format'].disable();
         this.fg.controls['tax_format'].disable();
@@ -160,8 +160,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         // market product section
         this.sections = data.marketSections;
 
-        // market product types
-        this.productTypes = data.marketProductTypes;
+        // market product classes
+        this.productClasses = data.marketProductClasses;
 
         // market price types
         this.priceTypes = data.marketPriceTypes;

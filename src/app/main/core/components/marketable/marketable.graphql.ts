@@ -7,6 +7,7 @@ export const graphQL = {
         categories {
             ${marketCategoryGraphQL.fields}
         }
+        class_id
         cost
         cost_per_sale
         ends_at
@@ -29,7 +30,6 @@ export const graphQL = {
         sort
         starts_at
         subtotal
-        type_id
         weight
     `,
 
@@ -49,7 +49,7 @@ export const graphQL = {
             name
             sku
         }
-        marketProductTypes: coreConfig (config:$configProductTypes)
+        marketProductClasses: coreConfig (config:$configProductClasses)
         marketSections (sql:$sqlSection) {
             ix
             id

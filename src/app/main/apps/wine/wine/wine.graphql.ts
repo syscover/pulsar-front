@@ -124,7 +124,7 @@ export const graphQL = {
     queryRelationsObject: gql`
         query WineGetRelationsWine (
             $configPriceTypes:CoreConfigInput!
-            $configProductTypes:CoreConfigInput!
+            $configProductClasses:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput] 
@@ -152,7 +152,7 @@ export const graphQL = {
     queryObject: gql`
         query WineGetWine (
             $configPriceTypes:CoreConfigInput!
-            $configProductTypes:CoreConfigInput!
+            $configProductClasses:CoreConfigInput!
             $sql:[CoreSQLInput] 
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]

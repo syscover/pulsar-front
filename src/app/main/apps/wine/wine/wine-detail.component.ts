@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { graphQL } from './wine.graphql';
 import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
-import { Category, PriceType, Product, ProductClassTax, ProductType, Section, Stock } from '../../market/market.models';
+import { Category, PriceType, Product, ProductClassTax, ProductClass, Section, Stock } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
 import { StockableService } from '../../../core/components/stockable/stockable.service';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
@@ -77,7 +77,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     products: Product[] = [];
     categories: Category[] = [];
     sections: Section[] = [];
-    productTypes: ProductType[] = [];
+    productClasses: ProductClass[] = [];
     priceTypes: PriceType[] = [];
     productClassTaxes: ProductClassTax[] = [];
     // ***** end - marketable variables
@@ -465,7 +465,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         this.sections = data.marketSections;
 
         // market product types
-        this.productTypes = data.marketProductTypes;
+        this.productClasses = data.marketProductClasses;
 
         // market price types
         this.priceTypes = data.marketPriceTypes;

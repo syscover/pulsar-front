@@ -17,6 +17,7 @@ export const locale = {
             'PRICE': 'Precio',
             'PRICE_TYPE': 'Tipo de precio',
             'PRICES_TAXES': 'Precios e impuestos',
+            'PRODUCT_CLASS': 'Clase de producto',
             'PRODUCT_CLASS_TAX': 'Impuesto al producto',
             'PRODUCT_TYPE': 'Tipo de producto',
             'PROFITABILITY': 'Rentabilidad',

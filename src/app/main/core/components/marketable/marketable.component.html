@@ -54,10 +54,10 @@
 
         <div fxLayout="row">
             <mat-form-field class="col-12 col-md-5">
-                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_TYPE' | translate }}" formControlName="type_id" required>
-                    <mat-option *ngFor="let productType of productTypes" [value]="+productType.id">{{ productType.name }}</mat-option>
+                <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS' | translate }}" formControlName="class_id" required>
+                    <mat-option *ngFor="let productClass of productClasses" [value]="+productClass.id">{{ productClass.name }}</mat-option>
                 </mat-select>
-                <mat-error>{{ formErrors?.type_id }}</mat-error>
+                <mat-error>{{ formErrors?.class_id }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -91,7 +91,7 @@
                 <!-- /. SCHEDULE -->
 
                 <!-- EVENT -->
-                <mat-expansion-panel [expanded]="true" *ngIf="fg.get('type_id').value === 5">
+                <mat-expansion-panel [expanded]="true" *ngIf="fg.get('class_id').value === 5">
 
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -141,7 +141,7 @@
         </div>
 
         <!-- product types transportable, them it must to have a weight -->
-        <div fxLayout="row" *ngIf="fg.get('type_id').value === 2 || fg.get('type_id').value === 3">
+        <div fxLayout="row" *ngIf="fg.get('class_id').value === 2 || fg.get('class_id').value === 3">
             <mat-form-field class="col-12 col-md-4">
                 <input matInput placeholder="{{ 'MARKETABLE.WEIGHT' | translate }}" formControlName="weight" type="number">
                 <mat-icon matSuffix>line_weight</mat-icon>
@@ -179,7 +179,7 @@
                     </mat-form-field>
                 </div>
 
-                <ng-container *ngIf="fg.get('type_id').value !== 5">
+                <ng-container *ngIf="fg.get('class_id').value !== 5">
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-5">
                             <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>

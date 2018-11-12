@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
-import { Category, PriceType, Product, ProductClassTax, ProductType, Section } from '../../../apps/market/market.models';
+import { Category, PriceType, Product, ProductClassTax, ProductClass, Section } from '../../../apps/market/market.models';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MarketableService } from './marketable.service';
 
@@ -17,7 +17,7 @@ export class MarketableComponent implements OnInit
     @Input() products: Product[] = [];
     @Input() categories: Category[] = [];
     @Input() sections: Section[] = [];
-    @Input() productTypes: ProductType[] = [];
+    @Input() productClasses: ProductClass[] = [];
     @Input() priceTypes: PriceType[] = [];
     @Input() productClassTaxes: ProductClassTax[] = [];
     @Input() nameField = 'name';
@@ -41,6 +41,7 @@ export class MarketableComponent implements OnInit
         this.marketableFg = this._fb.group({
             active: false,
             categories_id: [[], Validators.required],
+            class_id: [null, Validators.required],
             cost: null,
             cost_per_sale: null,
             enable_from: null,
@@ -63,7 +64,6 @@ export class MarketableComponent implements OnInit
             subtotal_format: [{value: null, disabled: true}, Validators.required],
             tax_format: [{value: null, disabled: true}, Validators.required],
             total_format: [{value: null, disabled: true}, Validators.required],
-            type_id: [null, Validators.required],
             weight: [0],
             profitability: [{value: null, disabled: true}]
         });

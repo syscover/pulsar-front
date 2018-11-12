@@ -159,8 +159,8 @@ export class MarketableService
             }
         ];
 
-        const configProductTypes = {
-            key: 'pulsar-market.product_types',
+        const configProductClasses = {
+            key: 'pulsar-market.product_classes',
             lang: lang_id ? lang_id : baseLang,
             property: 'name'
         };
@@ -175,7 +175,7 @@ export class MarketableService
             sqlProduct,
             sqlCategory,
             sqlSection,
-            configProductTypes,
+            configProductClasses,
             configPriceTypes
         };
     }
@@ -199,7 +199,7 @@ export class MarketableService
     getCustomArgumentsPostRecord(args): Object
     {
         // if product is event, reset cost
-        if (args.payload.type_id === 5)
+        if (args.payload.class_id === 5)
         {
             args.payload.cost = null;
         }

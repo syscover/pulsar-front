@@ -51,7 +51,7 @@ export const graphQL = {
             $sqlProduct:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
-            $configProductTypes:CoreConfigInput!
+            $configProductClasses:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlFieldGroup:[CoreSQLInput]
@@ -72,7 +72,7 @@ export const graphQL = {
             $sqlProduct:[CoreSQLInput]
             $sqlCategory:[CoreSQLInput]
             $sqlSection:[CoreSQLInput]
-            $configProductTypes:CoreConfigInput!
+            $configProductClasses:CoreConfigInput!
             $configPriceTypes:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlFieldGroup:[CoreSQLInput]
