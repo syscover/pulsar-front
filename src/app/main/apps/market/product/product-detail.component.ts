@@ -58,10 +58,10 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}],
-            field_group_id: null,
-            description: null,
+            ix: '',
+            id: [{value: '', disabled: true}],
+            field_group_id: '',
+            description: '',
             attachments: this.fb.array([])
         });
     }
@@ -74,7 +74,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.loadingPrice = $event;
     }
 
-    disabledForm(): void
+    disableForm(): void
     {
         this.fg.get('active').disable();
         this.fg.get('categories_id').disable();
@@ -92,23 +92,6 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.fg.get('tax_format').disable();
         this.fg.get('total_format').disable();
         this.fg.get('weight').disable();
-    }
-
-    afterSetData(): void
-    {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
-        {
-            if (this.dataRoute.action === 'create-lang') 
-            {
-                // disabled inputs that hasn't containt multi language
-                this.disabledForm();
-            } 
-            else if (this.dataRoute.action === 'edit') 
-            {
-                // disabled elements if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) this.disabledForm();
-            }
-        }
     }
     
     argumentsRelationsObject(): Object 

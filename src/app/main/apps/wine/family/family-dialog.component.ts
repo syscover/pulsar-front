@@ -4,11 +4,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { HttpService } from '../../../core/services/http.service';
 import { graphQL } from './family.graphql';
+import { ConfigService } from '../../../core/services/config.service';
 import { Lang } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-wine-family-dialog',
-    template: `        
+    template: `
+        <dh2-spinner [show]="showSpinner"></dh2-spinner>
         <h1 mat-dialog-title>
             <mat-icon>category</mat-icon>
             {{ 'APPS.FAMILY' | translate }}
@@ -66,14 +68,16 @@ export class FamilyDialogComponent implements OnInit
     graphQL = graphQL;
     loadingSlug = false;
     loadingButton = false;
+    showSpinner = false;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _dialogRef: MatDialogRef<FamilyDialogComponent>,
         private _fb: FormBuilder,
-        private _validationMessageService: ValidationMessageService,
-        private _http: HttpService
-    ) 
+        private _config: ConfigService,
+        private _http: HttpService,
+        private _validationMessageService: ValidationMessageService
+    )
     {
         this.createForm();
     }
@@ -81,6 +85,7 @@ export class FamilyDialogComponent implements OnInit
     createForm(): void
     {
         this.fg = this._fb.group({
+            id: '',
             lang_id: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required]
@@ -89,11 +94,57 @@ export class FamilyDialogComponent implements OnInit
 
     ngOnInit(): void
     {
+        this.showSpinner = true;
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
         this.lang = this.data.lang;
-        this.fg.patchValue({
-            lang_id: this.lang.id // set lang id in form from object with multiple language
-        });
+
+        // create lang action
+        if (this.data.id)
+        {
+            const ob$ = this._http
+                .apolloClient()
+                .watchQuery({
+                    fetchPolicy: 'network-only',
+                    query: this.graphQL.queryObject,
+                    variables: {
+                        sql: [{
+                            command: 'where',
+                            column: `${graphQL.table}.id`,
+                            operator: '=',
+                            value: this.data.id
+                        },
+                        {
+                            command: 'where',
+                            column: `${graphQL.table}.lang_id`,
+                            operator: '=',
+                            value: this._config.get('base_lang')
+                        }]
+                    }
+                })
+                .valueChanges
+                .subscribe(({data}) => {
+                    ob$.unsubscribe();
+
+                    // instance data
+                    this.fg.patchValue(data['coreObject']);
+
+                    // set new lang
+                    this.fg.patchValue({
+                        lang_id: this.lang.id   // set lang id in form from object with multiple language
+                    });
+
+                    this.showSpinner = false;
+                });
+        }
+        // create action
+        else {
+            // set new lang
+            this.fg.patchValue({
+                lang_id: this.lang.id   // set lang id in form from object with multiple language
+            });
+
+            this.showSpinner = false;
+        }
     }
 
     postRecord(): void

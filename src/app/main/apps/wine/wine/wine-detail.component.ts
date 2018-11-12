@@ -36,6 +36,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     loadingPrice = false;
     stocksData = [];
     countries: Country[] = [];
+    _ = _;
 
     // awards
     awards: Award[] = [];
@@ -107,6 +108,85 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     {
         super.ngOnInit();
         this.setSelectSearch();
+    }
+
+    createForm(): void
+    {
+        this.fg = this.fb.group({
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required],
+            family_id: '',
+            type_id: ['', Validators.required],
+            vintage: '',
+            winery_id: ['', Validators.required],
+            appellation_id: ['', Validators.required],
+            presentation_id: '',
+            abv: '',
+            country_id: '',
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            score_average: '',
+            parker: '',
+            suckling: '',
+            penin: '',
+            decanter: '',
+            wine_spectator: '',
+            awards_id: [[]],
+            grapes_id: [[]],
+            pairings_id: [[]],
+
+            // wine_lang
+            production: '',
+            tasting: '',
+            tasting_look: '',
+            tasting_nose: '',
+            tasting_mouth: '',
+            tasting_temperature: '',
+            tasting_consumption: '',
+            vineyard: '',
+            vineyard_name: '',
+            vineyard_area: '',
+            vineyard_description: '',
+            vineyard_age: '',
+            vineyard_soil: '',
+            vineyard_weather: '',
+            vineyard_performance: '',
+            vineyard_vintage: '',
+            vineyard_vinification: '',
+            vineyard_aging: '',
+            vineyard_bottling: '',
+
+            attachments: this.fb.array([]),
+
+            // marketable
+            is_product: false,
+            product_id: ''
+        });
+    }
+
+    disableForm(): void
+    {
+        this.fg.get('type_id').disable();
+        this.fg.get('family_id').disable();
+        this.fg.get('vintage').disable();
+        this.fg.get('winery_id').disable();
+        this.fg.get('appellation_id').disable();
+        this.fg.get('presentation_id').disable();
+        this.fg.get('abv').disable();
+        this.fg.get('country_id').disable();
+        this.fg.get('territorial_area_1_id').disable();
+        this.fg.get('territorial_area_2_id').disable();
+        this.fg.get('territorial_area_3_id').disable();
+        this.fg.get('score_average').disable();
+        this.fg.get('parker').disable();
+        this.fg.get('suckling').disable();
+        this.fg.get('penin').disable();
+        this.fg.get('decanter').disable();
+        this.fg.get('wine_spectator').disable();
+        this.fg.get('is_product').disable();
     }
 
     setSelectSearch(): void
@@ -203,63 +283,6 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
 
     handleCheckingPrice($event): void {
         this.loadingPrice = $event;
-    }
-
-    createForm(): void
-    {
-        this.fg = this.fb.group({
-            id: [{value: '', disabled: true}],
-            lang_id: ['', Validators.required],
-            name: ['', Validators.required],
-            slug: ['', Validators.required],
-            family_id: '',
-            type_id: ['', Validators.required],
-            vintage: '',
-            winery_id: ['', Validators.required],
-            appellation_id: ['', Validators.required],
-            presentation_id: '',
-            abv: '',
-            country_id: '',
-            territorial_area_1_id: '',
-            territorial_area_2_id: '',
-            territorial_area_3_id: '',
-            score_average: '',
-            parker: '',
-            suckling: '',
-            penin: '',
-            decanter: '',
-            wine_spectator: '',
-            awards_id: [[]],
-            grapes_id: [[]],
-            pairings_id: [[]],
-
-            // wine_lang
-            production: '',
-            tasting: '',
-            tasting_look: '',
-            tasting_nose: '',
-            tasting_mouth: '',
-            tasting_temperature: '',
-            tasting_consumption: '',
-            vineyard: '',
-            vineyard_name: '',
-            vineyard_area: '',
-            vineyard_description: '',
-            vineyard_age: '',
-            vineyard_soil: '',
-            vineyard_weather: '',
-            vineyard_performance: '',
-            vineyard_vintage: '',
-            vineyard_vinification: '',
-            vineyard_aging: '',
-            vineyard_bottling: '',
-
-            attachments: this.fb.array([]),
-
-            // marketable
-            is_product: false,
-            product_id: ''
-        });
     }
 
     argumentsRelationsObject(): Object
@@ -539,6 +562,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     {
         const dialogRef = this._dialog.open(dialog, {
             data: {
+                id: this.fg.get(formGroupName).value,
                 lang: this.lang
             },
             width: '80vw'

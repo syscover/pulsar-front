@@ -36,25 +36,8 @@ export class SectionDetailComponent extends CoreDetailComponent
         });
     }
 
-    disabledForm(): void
+    disableForm(): void
     {
         this.fg.controls['id'].disable();
-    }
-
-    afterSetData(): void
-    {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang')
-        {
-            if (this.dataRoute.action === 'create-lang')
-            {
-                // disabled inputs that hasn't containt multi language
-                this.disabledForm();
-            }
-            else if (this.dataRoute.action === 'edit')
-            {
-                // disabled elements if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) this.disabledForm();
-            }
-        }
     }
 }

@@ -128,8 +128,19 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.type_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10" (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
+                                        <button mat-icon-button
+                                                type="button"
+                                                class="mt-10"
+                                                *ngIf="dataRoute.action !== 'create-lang'"
+                                                (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
                                             <mat-icon>add</mat-icon>
+                                        </button>
+                                        <button mat-icon-button
+                                                type="button"
+                                                class="mt-10"
+                                                *ngIf="dataRoute.action === 'create-lang' && ! showSpinner && ! _.find(types, {'id': fg.get('type_id').value})"
+                                                (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
+                                            <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
                                     </div>
                                     <div class="col-12 col-md-5">
@@ -142,8 +153,19 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.family_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10" (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
+                                        <button mat-icon-button
+                                                type="button"
+                                                class="mt-10"
+                                                *ngIf="dataRoute.action !== 'create-lang'"
+                                                (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
                                             <mat-icon>add</mat-icon>
+                                        </button>
+                                        <button mat-icon-button
+                                                type="button"
+                                                class="mt-10"
+                                                *ngIf="dataRoute.action === 'create-lang' && ! showSpinner && ! _.find(families, {'id': fg.get('family_id').value})"
+                                                (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
+                                            <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
                                     </div>
                                 </div>

@@ -31,7 +31,7 @@ export const locale = {
             'EMAIL': 'Email',
             'ERROR': 'Error',
             'EXCERPT': 'Resumen',
-            'FAMILY': 'Famlilia',
+            'FAMILY': 'Familia',
             'FAMILIES': 'Familias',
             'FIELD_GROUP': 'Grupo de campos',
             'FIELDS': 'Campos',

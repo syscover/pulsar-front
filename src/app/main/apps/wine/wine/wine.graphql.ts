@@ -4,7 +4,6 @@ import { graphQL as stockableGraphQL } from '../../../core/components/stockable/
 import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
-import { graphQL as marketCategoryGraphQL } from '../../market/category/category.graphql';
 import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';
 import { graphQL as wineAppellationGraphQL } from '../appellation/appellation.graphql';
 import { graphQL as wineAwardGraphQL } from '../award/award.graphql';
@@ -18,6 +17,9 @@ import { graphQL as wineWineryGraphQL } from '../winery/winery.graphql';
 const fields = `
     abv
     appellation_id
+    attachments {
+        ${adminAttachmentsGraphQL.fields}
+    }
     awards {
         ${wineAwardGraphQL.fields}
     }
@@ -69,13 +71,9 @@ const fields = `
     vintage
     wine_spectator
     winery_id
+    
     ${marketableGraphQL.fields}
 `;
-
-// attachments {
-//     ${adminAttachmentsGraphQL.fields}
-// }
-// ${marketCategoryGraphQL.fields}
 
 const relationsFields = `
     adminAttachmentFamilies (sql:$sqlAttachmentFamily) {

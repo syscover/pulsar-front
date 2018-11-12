@@ -68,6 +68,21 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         this.showSpinner = false;
 
+        // routine to check if we have to disable form
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang')
+        {
+            if (this.dataRoute.action === 'create-lang')
+            {
+                // disabled inputs that hasn't contain multi language
+                this.disableForm();
+            }
+            else if (this.dataRoute.action === 'edit')
+            {
+                // disabled elements if edit different language that base lang
+                if (this.lang.id !== this.baseLang) this.disableForm();
+            }
+        }
+
         this.afterSetData();
     }
 
@@ -76,6 +91,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // method to implement actions after set data action
     afterPatchValueEdit(): void {}
+
+    // method to disable fields in detail component multi languages
+    disableForm(): void {}
 
     // method to implement actions after patch value in edit action
     afterSetData(): void {}
@@ -137,7 +155,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             .watchQuery({
                 fetchPolicy: 'network-only',
                 query: this.graphQL.queryObject,
-                // do it in separate function to may be rewrite, for examle in FieldGroupDetailComponent
+                // do it in separate function to may be rewrite, for example in FieldGroupDetailComponent
                 variables: this.argumentsGetRecord(params)
             })
             .valueChanges
