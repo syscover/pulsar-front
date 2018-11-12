@@ -35,14 +35,14 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            resource_id: [null, Validators.required],
-            name: [null, Validators.required],
-            width: null,
-            height: null,
-            sizes: null,
-            quality: null,
-            format: []
+            id: [{value: '', disabled: true}],
+            resource_id: ['', Validators.required],
+            name: ['', Validators.required],
+            width: '',
+            height: '',
+            sizes: '',
+            quality: '',
+            format: [[]]
         });
     }
 

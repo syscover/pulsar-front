@@ -4,17 +4,16 @@ import { graphQL as stockableGraphQL } from '../../../core/components/stockable/
 import { graphQL as attachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
-    ... on MarketProduct {
-        data
-        data_lang
-        description
-        field_group_id
-        id
-        ix
-        
+    attachments {
         ${attachmentsGraphQL.fields}
-        ${marketableGraphQL.fields}
     }
+    data
+    data_lang
+    description
+    field_group_id
+    id
+    ix
+    ${marketableGraphQL.fields}
 `;
 
 const relationsFields = `

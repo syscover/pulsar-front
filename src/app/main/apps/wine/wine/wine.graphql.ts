@@ -18,16 +18,25 @@ import { graphQL as wineWineryGraphQL } from '../winery/winery.graphql';
 const fields = `
     abv
     appellation_id
+    awards {
+        ${wineAwardGraphQL.fields}
+    }
     country_id
     data
     data_lang
     decanter
     family_id
+    grapes {
+        ${wineGrapeGraphQL.fields}
+    }
     id
     is_product
     ix
     lang_id
     name
+    pairings {
+        ${winePairingGraphQL.fields}
+    }
     parker
     penin
     presentation_id

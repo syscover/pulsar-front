@@ -76,22 +76,22 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
 
     disabledForm(): void
     {
-        this.fg.controls['active'].disable();
-        this.fg.controls['categories_id'].disable();
-        this.fg.controls['class_id'].disable();
-        this.fg.controls['field_group_id'].disable();
-        this.fg.controls['parent_id'].disable();
-        this.fg.controls['sections_id'].disable();
-        this.fg.controls['sort'].disable();
-        this.fg.controls['weight'].disable();
-        this.fg.controls['price_type_id'].disable();
-        this.fg.controls['product_class_tax_id'].disable();
-        this.fg.controls['price'].disable();
-        this.fg.controls['sku'].disable();
-        this.fg.controls['subtotal'].disable();
-        this.fg.controls['subtotal_format'].disable();
-        this.fg.controls['tax_format'].disable();
-        this.fg.controls['total_format'].disable();
+        this.fg.get('active').disable();
+        this.fg.get('categories_id').disable();
+        this.fg.get('class_id').disable();
+        this.fg.get('field_group_id').disable();
+        this.fg.get('parent_id').disable();
+        this.fg.get('price').disable();
+        this.fg.get('price_type_id').disable();
+        this.fg.get('product_class_tax_id').disable();
+        this.fg.get('sections_id').disable();
+        this.fg.get('sku').disable();
+        this.fg.get('subtotal').disable();
+        this.fg.get('subtotal_format').disable();
+        this.fg.get('sort').disable();
+        this.fg.get('tax_format').disable();
+        this.fg.get('total_format').disable();
+        this.fg.get('weight').disable();
     }
 
     afterSetData(): void

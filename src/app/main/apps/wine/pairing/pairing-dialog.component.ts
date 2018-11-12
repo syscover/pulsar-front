@@ -3,19 +3,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { HttpService } from '../../../core/services/http.service';
-import { graphQL } from './type.graphql';
+import { graphQL } from './pairing.graphql';
 import { Lang } from '../../admin/admin.models';
 
 @Component({
-    selector: 'dh2-wine-type-dialog',
-    template: `        
+    selector: 'dh2-wine-pairing-dialog',
+    template: `
         <h1 mat-dialog-title>
-            <mat-icon>bookmarks</mat-icon>
-            {{ 'APPS.TYPE' | translate }}
+            <mat-icon>local_dining</mat-icon>
+            {{ 'WINE.PAIRING' | translate }} 
             <dh2-flag-icon class="d-inline ml-40" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
         </h1>
         <div mat-dialog-content>
-            <form id="formTypeDialogDetail" 
+            <form id="formPairingDialogDetail" 
                   [formGroup]="fg" 
                   (ngSubmit)="postRecord()">
                 <div fxLayout="column" fxFlex>
@@ -40,7 +40,7 @@ import { Lang } from '../../admin/admin.models';
             
             <button mat-raised-button
                     type="submit"
-                    form="formTypeDialogDetail"
+                    form="formPairingDialogDetail"
                     class="mat-accent mr-16"
                     [disabled]="fg.pristine || loadingButton || loadingSlug" 
                     cdkFocusInitial>
@@ -58,7 +58,7 @@ import { Lang } from '../../admin/admin.models';
         </div>
     `
 })
-export class TypeDialogComponent implements OnInit
+export class PairingDialogComponent implements OnInit
 {
     fg: FormGroup;
     lang: Lang;
@@ -69,7 +69,7 @@ export class TypeDialogComponent implements OnInit
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private _dialogRef: MatDialogRef<TypeDialogComponent>,
+        private _dialogRef: MatDialogRef<PairingDialogComponent>,
         private _fb: FormBuilder,
         private _validationMessageService: ValidationMessageService,
         private _http: HttpService
@@ -114,7 +114,7 @@ export class TypeDialogComponent implements OnInit
 
                     ob$.unsubscribe();
                     this.loadingButton = false;
-                    this._dialogRef.close(res.data.wineCreateType);
+                    this._dialogRef.close(res.data.wineCreatePairing);
                 });
         }
     }

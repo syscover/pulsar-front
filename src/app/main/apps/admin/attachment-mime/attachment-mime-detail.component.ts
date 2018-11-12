@@ -27,9 +27,9 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            resource_id: [null, Validators.required],
-            mime: [null, Validators.required]
+            id: [{value: '', disabled: true}],
+            resource_id: ['', Validators.required],
+            mime: ['', Validators.required]
         });
     }
 

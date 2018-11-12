@@ -25,12 +25,12 @@ export class AppellationDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}, Validators.required],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            slug: [null, Validators.required],
-            description: null
+            ix: '',
+            id: [{value: '', disabled: true}, Validators.required],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required],
+            description: ''
         });
     }
 

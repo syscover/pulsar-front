@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './wine.graphql';
@@ -11,11 +12,14 @@ import { StockableService } from '../../../core/components/stockable/stockable.s
 import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { Appellation, Award, Family, Grape, Pairing, Presentation, Type, Winery } from '../wine.models';
 import { SelectSearchService } from '../../../core/services/select-search.service';
+import { AppellationDialogComponent } from '../appellation/appellation-dialog.component';
+import { AwardDialogComponent } from '../award/award-dialog.component';
+import { FamilyDialogComponent } from '../family/family-dialog.component';
+import { GrapeDialogComponent } from '../grape/grape-dialog.component';
+import { PairingDialogComponent } from '../pairing/pairing-dialog.component';
+import { PresentationDialogComponent } from '../presentation/presentation-dialog.component';
+import { TypeDialogComponent } from '../type/type-dialog.component';
 import * as _ from 'lodash';
-
-
-import {MatDialog} from '@angular/material';
-import {TypeDialogComponent} from '../type/type-dialog.component';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -37,36 +41,43 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     awards: Award[] = [];
     awardFilterCtrl: FormControl = new FormControl();
     filteredAwards: ReplaySubject<Award[]> = new ReplaySubject<Award[]>(1);
+    awardDialogComponent = AwardDialogComponent;
 
     // appellations
     appellations: Appellation[] = [];
     appellationFilterCtrl: FormControl = new FormControl();
     filteredAppellations: ReplaySubject<Appellation[]> = new ReplaySubject<Appellation[]>(1);
+    appellationDialogComponent = AppellationDialogComponent;
 
     // families
     families: Family[] = [];
     familyFilterCtrl: FormControl = new FormControl();
     filteredFamilies: ReplaySubject<Family[]> = new ReplaySubject<Family[]>(1);
+    familyDialogComponent = FamilyDialogComponent;
 
     // grapes
     grapes: Grape[] = [];
     grapeFilterCtrl: FormControl = new FormControl();
     filteredGrapes: ReplaySubject<Grape[]> = new ReplaySubject<Grape[]>(1);
+    grapeDialogComponent = GrapeDialogComponent;
 
     // pairings
     pairings: Pairing[] = [];
     pairingFilterCtrl: FormControl = new FormControl();
     filteredPairings: ReplaySubject<Pairing[]> = new ReplaySubject<Pairing[]>(1);
+    pairingDialogComponent = PairingDialogComponent;
 
     // presentations
     presentations: Presentation[] = [];
     presentationFilterCtrl: FormControl = new FormControl();
     filteredPresentations: ReplaySubject<Presentation[]> = new ReplaySubject<Presentation[]>(1);
+    presentationDialogComponent = PresentationDialogComponent;
 
     // types
     types: Type[] = [];
     typeFilterCtrl: FormControl = new FormControl();
     filteredTypes: ReplaySubject<Type[]> = new ReplaySubject<Type[]>(1);
+    typeDialogComponent = TypeDialogComponent;
 
     // wineries
     wineries: Winery[] = [];
@@ -185,6 +196,18 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             });
     }
 
+    afterPatchValueEdit(): void
+    {
+        // set wine awards extracting ids
+        fg.get('awards_id').setValue(_.uniq(_.map(awards, 'id')));
+
+        // set wine grapes extracting ids
+        fg.get('grapes_id').setValue(_.uniq(_.map(grapes, 'id')));
+
+        // set wine pairings extracting ids
+        fg.get('pairings_id').setValue(_.uniq(_.map(pairings, 'id')));
+    }
+
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
@@ -197,57 +220,57 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            slug: [null, Validators.required],
-            family_id: [null],
-            type_id: [null, Validators.required],
-            vintage: null,
-            winery_id: [null, Validators.required],
-            appellation_id: [null, Validators.required],
-            presentation_id: null,
-            abv: null,
-            country_id: null,
-            territorial_area_1_id: null,
-            territorial_area_2_id: null,
-            territorial_area_3_id: null,
-            score_average: null,
-            parker: null,
-            suckling: null,
-            penin: null,
-            decanter: null,
-            wine_spectator: null,
-            awards_id: [],
-            grapes_id: [],
-            pairings_id: [],
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required],
+            family_id: '',
+            type_id: ['', Validators.required],
+            vintage: '',
+            winery_id: ['', Validators.required],
+            appellation_id: ['', Validators.required],
+            presentation_id: '',
+            abv: '',
+            country_id: '',
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            score_average: '',
+            parker: '',
+            suckling: '',
+            penin: '',
+            decanter: '',
+            wine_spectator: '',
+            awards_id: [[]],
+            grapes_id: [[]],
+            pairings_id: [[]],
 
             // wine_lang
-            production: null,
-            tasting: null,
-            tasting_look: null,
-            tasting_nose: null,
-            tasting_mouth: null,
-            tasting_temperature: null,
-            tasting_consumption: null,
-            vineyard: null,
-            vineyard_name: null,
-            vineyard_area: null,
-            vineyard_description: null,
-            vineyard_age: null,
-            vineyard_soil: null,
-            vineyard_weather: null,
-            vineyard_performance: null,
-            vineyard_vintage: null,
-            vineyard_vinification: null,
-            vineyard_aging: null,
-            vineyard_bottling: null,
+            production: '',
+            tasting: '',
+            tasting_look: '',
+            tasting_nose: '',
+            tasting_mouth: '',
+            tasting_temperature: '',
+            tasting_consumption: '',
+            vineyard: '',
+            vineyard_name: '',
+            vineyard_area: '',
+            vineyard_description: '',
+            vineyard_age: '',
+            vineyard_soil: '',
+            vineyard_weather: '',
+            vineyard_performance: '',
+            vineyard_vintage: '',
+            vineyard_vinification: '',
+            vineyard_aging: '',
+            vineyard_bottling: '',
 
             attachments: this.fb.array([]),
 
             // marketable
             is_product: false,
-            product_id: null
+            product_id: ''
         });
     }
 
@@ -515,26 +538,31 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         return this._marketable.getCustomArgumentsPostRecord(args);
     }
 
-
-    addType(): void
+    add(dialog, objects: any[], filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
     {
-        const dialogRef = this._dialog.open(TypeDialogComponent, {
+        const dialogRef = this._dialog.open(dialog, {
             data: {
                 lang: this.lang
             },
             width: '80vw'
         });
 
-        dialogRef.afterClosed().subscribe((type: Type) => {
+        dialogRef.afterClosed().subscribe((object: any) => {
 
-            if (type)
+            if (object)
             {
-                if (this.env.debug) console.log('DEBUG - Add type: ', type);
+                if (this.env.debug) console.log('DEBUG - Add element: ', object);
 
-                this.types.push(type);
-                this.types = _.orderBy(this.types, ['name'], ['asc']);
-                this.filteredTypes.next(this.types.slice());
-                this.fg.get('type_id').setValue(type.id);
+                objects.push(object);
+                objects = _.orderBy(objects, ['name'], ['asc']);
+                filteredObjects.next(objects.slice());
+
+                if (multiple) {
+                    this.fg.get(formGroupName).value.push(object.id);
+                }
+                else {
+                    this.fg.get(formGroupName).setValue(object.id);
+                }
             }
         });
     }

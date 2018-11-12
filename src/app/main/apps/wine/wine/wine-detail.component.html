@@ -126,7 +126,7 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.type_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10" (click)="addType()">
+                                        <button mat-icon-button type="button" class="mt-10" (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -140,7 +140,7 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.family_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10">
+                                        <button mat-icon-button type="button" class="mt-10" (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -179,7 +179,7 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.appellation_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10">
+                                        <button mat-icon-button type="button" class="mt-10" (click)="add(appellationDialogComponent, appellations, filteredAppellations, 'appellation_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -210,7 +210,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.grapes_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(grapeDialogComponent, grapes, filteredGrapes, 'grapes_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -225,7 +225,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.pairings_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(pairingDialogComponent, pairings, filteredPairings, 'pairings_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -240,7 +240,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.awards_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(awardDialogComponent, awards, filteredAwards, 'awards_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -255,7 +255,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.presentation_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(presentationDialogComponent, presentations, filteredPresentations, 'presentation_id')">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
