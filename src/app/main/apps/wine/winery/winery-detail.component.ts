@@ -1,28 +1,57 @@
-import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
+import {Component, Injector, OnInit} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { ReplaySubject } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './winery.graphql';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
+import { SelectSearchService } from '../../../core/services/select-search.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'dh2-winery-detail',
     templateUrl: 'winery-detail.component.html',
     animations: fuseAnimations
 })
-export class WineryDetailComponent extends CoreDetailComponent
+export class WineryDetailComponent extends CoreDetailComponent implements OnInit
 {
     objectTranslation = 'WINE.WINERY';
     objectTranslationGender = 'F';
     graphQL = graphQL;
     loadingSlug = false;
     attachmentFamilies: AttachmentFamily[] = [];
+
+    // countries
     countries: Country[] = [];
+    countryFilterCtrl: FormControl = new FormControl();
+    filteredCountries: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
 
     constructor(
-        private _injector: Injector
+        private _injector: Injector,
+        private _selectSearch: SelectSearchService
     ) {
         super(_injector, graphQL);
+    }
+
+    ngOnInit(): void
+    {
+        super.ngOnInit();
+        this.setSelectSearch();
+    }
+
+    setSelectSearch(): void
+    {
+        // country
+        this.countryFilterCtrl
+            .valueChanges
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(() => {
+                this._selectSearch.filterSelect(
+                    this.countryFilterCtrl,
+                    this.countries,
+                    this.filteredCountries
+                );
+            });
     }
 
     handleCheckingSlug($event): void
@@ -33,14 +62,14 @@ export class WineryDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            slug: [null, Validators.required],
-            country_id: [null, Validators.required],
-            excerpt: null,
-            header: null,
-            description: null,
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required],
+            country_id: ['', Validators.required],
+            excerpt: '',
+            header: '',
+            description: '',
             attachments: this.fb.array([])
         });
     }
@@ -88,6 +117,8 @@ export class WineryDetailComponent extends CoreDetailComponent
 
         // set admin countries
         this.countries = data.adminCountries;
+        this.filteredCountries.next(this.countries.slice());
+
     }
 }
 

@@ -40,7 +40,7 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn fuse-white mt-16 mt-sm-0"
-                        [disabled]="fg.pristine || loadingButton || loadingSlug || loadingPrice"
+                        [disabled]="fg.pristine || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create'">
                     <span>{{ 'APPS.ADD' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -50,7 +50,7 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn mat-white-bg mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || loadingButton || loadingSlug || loadingPrice"
+                        [disabled]="fg.invalid || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create-lang'">
                     <span>{{ 'APPS.TRANSLATE' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -60,7 +60,7 @@
                         type="submit"
                         form="formDetail"
                         class="action-btn fuse-white mt-16 mt-sm-0"
-                        [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug || loadingPrice"
+                        [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='edit'">
                     <span>{{ 'APPS.SAVE' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -68,7 +68,7 @@
 
                 <button mat-raised-button
                         class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
-                        [disabled]="loadingTranslationButton || loadingSlug || loadingPrice"
+                        [disabled]="loadingTranslationButton || loadingSlug"
                         *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang"
                         (click)="deleteRecord(object)">
                     <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
@@ -120,8 +120,11 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-4">
-                                        <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id">
-                                            <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
+                                        <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" required>
+                                            <ngx-mat-select-search [formControl]="countryFilterCtrl"
+                                                                   placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
+                                                                   noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
+                                            <mat-option *ngFor="let country of filteredCountries | async" [value]="country.id">{{ country.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.country_id }}</mat-error>
                                     </mat-form-field>

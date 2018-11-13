@@ -138,7 +138,7 @@
                                         <button mat-icon-button
                                                 type="button"
                                                 class="mt-10"
-                                                *ngIf="dataRoute.action === 'create-lang' && ! showSpinner && ! _.find(types, {'id': fg.get('type_id').value})"
+                                                *ngIf="dataRoute.action | mustTranslate:showSpinner:types:fg:'type_id'"
                                                 (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
                                             <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
@@ -163,17 +163,23 @@
                                         <button mat-icon-button
                                                 type="button"
                                                 class="mt-10"
-                                                *ngIf="dataRoute.action === 'create-lang' && ! showSpinner && ! _.find(families, {'id': fg.get('family_id').value})"
+                                                *ngIf="dataRoute.action | mustTranslate:showSpinner:families:fg:'family_id'"
                                                 (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
                                             <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
                                     </div>
                                 </div>
 
-                                <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-4">
+                                <div fxLayout="row wrap">
+                                    <mat-form-field class="col-12 col-md-2">
                                         <input type="number" matInput placeholder="{{ 'WINE.VINTAGE' | translate }}" formControlName="vintage">
                                         <mat-error>{{ formErrors?.vintage }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-12 offset-md-2 col-md-2">
+                                        <input type="number" matInput placeholder="{{ 'WINE.ABV' | translate }}" formControlName="abv">
+                                        <span matSuffix>%</span>
+                                        <mat-error>{{ formErrors?.abv }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -188,7 +194,11 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.winery_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10">
+                                        <button mat-icon-button
+                                                type="button"
+                                                class="mt-10"
+                                                *ngIf="dataRoute.action !== 'create-lang'"
+                                                (click)="add(wineryDialogComponent, wineries, filteredWineries, 'winery_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -497,6 +507,62 @@
                             </div>
                         </mat-tab>
 
+                        <mat-tab label="{{ 'WINE.SCORES' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row wrap" fxLayoutAlign="center">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.AVERAGE' | translate }}" formControlName="score_average" readonly>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.PARKER' | translate }}" formControlName="parker" (change)="calculateAverage()">
+                                        <mat-error>{{ formErrors?.parker }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.PENIN' | translate }}" formControlName="penin" (change)="calculateAverage()">
+                                        <mat-error>{{ formErrors?.penin }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.WINE_SPECTATOR' | translate }}" formControlName="wine_spectator" (change)="calculateAverage()">
+                                        <mat-error>{{ formErrors?.wine_spectator }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.DECANTER' | translate }}" formControlName="decanter" (change)="calculateAverage()">
+                                        <mat-error>{{ formErrors?.decanter }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                                    <mat-form-field class="col-12 col-md-4">
+                                        <input type="number" matInput placeholder="{{ 'WINE.SUCKLING' | translate }}" formControlName="suckling" (change)="calculateAverage()">
+                                        <mat-error>{{ formErrors?.suckling }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <dh2-attachments    name="attachments"
+                                                    placeholder="{{ 'APPS.DRAG_FILES' | translate }}"
+                                                    [value]="object.attachments"
+                                                    [form]="fg"
+                                                    [families]="attachmentFamilies">
+                                </dh2-attachments>
+
+                            </div>
+                        </mat-tab>
+
                         <mat-tab label="{{ 'APPS.PRODUCT' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
@@ -530,19 +596,6 @@
 
                                     </div>
                                 </div>
-                            </div>
-                        </mat-tab>
-
-                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}">
-                            <div class="tab-content p-24" fusePerfectScrollbar>
-
-                                <dh2-attachments    name="attachments"
-                                                    placeholder="{{ 'APPS.DRAG_FILES' | translate }}"
-                                                    [value]="object.attachments"
-                                                    [form]="fg"
-                                                    [families]="attachmentFamilies">
-                                </dh2-attachments>
-
                             </div>
                         </mat-tab>
 

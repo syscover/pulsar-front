@@ -2,12 +2,19 @@ export const locale = {
     lang: 'en',
     data: {
         'WINE': {
+            'ABV': 'Alcohol by volume',
             'APPELLATION': 'Appellation',
+            'AVERAGE': 'Average score',
             'AWARD': 'Award',
+            'DECANTER': 'Decanter score',
             'GRAPE': 'Grape',
             'PAIRING': 'Pairing',
+            'PARKER': 'Parker score',
+            'PENIN': 'Peñin score',
             'PRESENTATION': 'Presentation',
             'PRODUCTION': 'Production',
+            'SCORES': 'Scores',
+            'SUCKLING': 'Suckling score',
             'TASTING': 'Tasting',
             'TASTING_LOOK': 'Look',
             'TASTING_MOUTH': 'Mouth',
@@ -27,6 +34,7 @@ export const locale = {
             'VINEYARD_VINTAGE': 'Vintage',
             'VINEYARD_WEATHER': 'Weather',
             'WINE': 'Wine',
+            'WINE_SPECTATOR': 'Wine Spectator score',
             'VINTAGE': 'Vintage',
             'WINERY': 'Winery'
         }

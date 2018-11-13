@@ -29,6 +29,7 @@ import { TypeListComponent } from './type/type-list.component';
 import { WineDetailComponent } from './wine/wine-detail.component';
 import { WineListComponent } from './wine/wine-list.component';
 import { WineryDetailComponent } from './winery/winery-detail.component';
+import { WineryDialogComponent } from './winery/winery-dialog.component';
 import { WineryListComponent } from './winery/winery-list.component';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { WineryListComponent } from './winery/winery-list.component';
         WineDetailComponent,
         WineListComponent,
         WineryDetailComponent,
+        WineryDialogComponent,
         WineryListComponent
     ],
     providers: [],
@@ -72,7 +74,8 @@ import { WineryListComponent } from './winery/winery-list.component';
         GrapeDialogComponent,
         PairingDialogComponent,
         PresentationDialogComponent,
-        TypeDialogComponent
+        TypeDialogComponent,
+        WineryDialogComponent
     ]
 })
 

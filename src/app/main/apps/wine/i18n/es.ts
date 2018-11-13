@@ -2,12 +2,19 @@ export const locale = {
     lang: 'es',
     data: {
         'WINE': {
+            'ABV': 'Graduación alcohólica',
             'APPELLATION': 'D.O.',
+            'AVERAGE': 'Puntuación media',
             'AWARD': 'Premio',
+            'DECANTER': 'Puntuación Decanter',
             'GRAPE': 'Uva',
             'PAIRING': 'Maridaje',
+            'PARKER': 'Puntuación Parker',
+            'PENIN': 'Puntuación Peñin',
             'PRESENTATION': 'Presentación',
             'PRODUCTION': 'Producción',
+            'SCORES': 'Puntuaciones',
+            'SUCKLING': 'Puntuación Suckling',
             'TASTING': 'Cata',
             'TASTING_LOOK': 'Vista',
             'TASTING_MOUTH': 'Boca',
@@ -27,6 +34,7 @@ export const locale = {
             'VINEYARD_VINTAGE': 'Vendimia',
             'VINEYARD_WEATHER': 'Clima',
             'WINE': 'Vino',
+            'WINE_SPECTATOR': 'Puntuación Wine Spectator',
             'VINTAGE': 'Añada',
             'WINERY': 'Bodega'
         }

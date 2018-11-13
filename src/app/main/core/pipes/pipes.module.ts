@@ -9,6 +9,7 @@ import { NumbersArrayPipe } from './numbers-array.pipe';
 import { SortByPipe } from './sort-by.pipe';
 import { ValuesArrayPipe } from './values-array.pipe';
 import { NumberFormatPipe } from './number-format.pipe';
+import { MustTranslatePipe } from './must-translate.pipe';
 
 @NgModule({
     providers: [
@@ -21,6 +22,7 @@ import { NumberFormatPipe } from './number-format.pipe';
         CurrencyFormatPipe,
         GetCollectionObjectValuePipe,
         SizeFormatPipe,
+        MustTranslatePipe,
         NumbersArrayPipe,
         NumberFormatPipe,
         SortByPipe,
@@ -33,6 +35,7 @@ import { NumberFormatPipe } from './number-format.pipe';
         CurrencyFormatPipe,
         GetCollectionObjectValuePipe,
         SizeFormatPipe,
+        MustTranslatePipe,
         NumbersArrayPipe,
         NumberFormatPipe,
         SortByPipe,

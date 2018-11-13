@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
@@ -19,6 +19,7 @@ import { GrapeDialogComponent } from '../grape/grape-dialog.component';
 import { PairingDialogComponent } from '../pairing/pairing-dialog.component';
 import { PresentationDialogComponent } from '../presentation/presentation-dialog.component';
 import { TypeDialogComponent } from '../type/type-dialog.component';
+import { WineryDialogComponent } from '../winery/winery-dialog.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -36,7 +37,6 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     loadingPrice = false;
     stocksData = [];
     countries: Country[] = [];
-    _ = _;
 
     // awards
     awards: Award[] = [];
@@ -84,6 +84,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     wineries: Winery[] = [];
     wineryFilterCtrl: FormControl = new FormControl();
     filteredWineries: ReplaySubject<Winery[]> = new ReplaySubject<Winery[]>(1);
+    wineryDialogComponent = WineryDialogComponent;
 
     // ***** start - marketable variables
     products: Product[] = [];
@@ -186,7 +187,6 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         this.fg.get('penin').disable();
         this.fg.get('decanter').disable();
         this.fg.get('wine_spectator').disable();
-        this.fg.get('is_product').disable();
     }
 
     setSelectSearch(): void
@@ -375,7 +375,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             }
         ];
 
-        const sqlParing = [
+        const sqlPairing = [
             {
                 command: 'where',
                 column: 'lang_id',
@@ -440,7 +440,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             sqlAward,
             sqlFamily,
             sqlGrape,
-            sqlParing,
+            sqlPairing,
             sqlPresentation,
             sqlType,
             sqlWinery
@@ -562,8 +562,9 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
     {
         const dialogRef = this._dialog.open(dialog, {
             data: {
-                id: this.fg.get(formGroupName).value,
-                lang: this.lang
+                id: this.object[formGroupName],
+                lang: this.lang,
+                countries: this.countries // only for wineryDialogComponent
             },
             width: '80vw'
         });
@@ -586,6 +587,24 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
                 }
             }
         });
+    }
+
+    calculateAverage(): void
+    {
+        let scores = 0;
+        let total = 0;
+        const influencers = ['parker', 'penin', 'wine_spectator', 'decanter', 'suckling'];
+
+        for (const influencer of influencers)
+        {
+            if (this.fg.get(influencer).value)
+            {
+                scores++;
+                total += this.fg.get(influencer).value;
+            }
+        }
+
+        this.fg.get('score_average').setValue(total / scores);
     }
 }
 
