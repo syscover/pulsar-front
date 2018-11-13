@@ -264,6 +264,10 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                     this.setRelationsData(data);
                 });
         }
+        else
+        {
+            this.showSpinner = false;
+        }
     }
 
     // get arguments, for example in payment-method-detail.component.ts
