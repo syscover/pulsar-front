@@ -5,10 +5,14 @@ import { ValidationMessageService } from './../../../core/services/validation-me
 import { HttpService } from '../../../core/services/http.service';
 import { graphQL } from './type.graphql';
 import { Lang } from '../../admin/admin.models';
+import { ConfigService } from '../../../core/services/config.service';
+import { Dialog, DialogDecoratorInterface } from '../../../core/decorators/dialog.decorator';
 
+@Dialog()
 @Component({
     selector: 'dh2-wine-type-dialog',
-    template: `        
+    template: `
+        <dh2-spinner [show]="showSpinner"></dh2-spinner>
         <h1 mat-dialog-title>
             <mat-icon>bookmarks</mat-icon>
             {{ 'APPS.TYPE' | translate }}
@@ -58,7 +62,7 @@ import { Lang } from '../../admin/admin.models';
         </div>
     `
 })
-export class TypeDialogComponent implements OnInit
+export class TypeDialogComponent implements OnInit, DialogDecoratorInterface
 {
     fg: FormGroup;
     lang: Lang;
@@ -66,14 +70,19 @@ export class TypeDialogComponent implements OnInit
     graphQL = graphQL;
     loadingSlug = false;
     loadingButton = false;
+    showSpinner = false;
+
+    // dialog decorator
+    getObjectToTranslate: Function;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _dialogRef: MatDialogRef<TypeDialogComponent>,
         private _fb: FormBuilder,
-        private _validationMessageService: ValidationMessageService,
-        private _http: HttpService
-    ) 
+        private _config: ConfigService,
+        private _http: HttpService,
+        private _validationMessageService: ValidationMessageService
+    )
     {
         this.createForm();
     }
@@ -89,11 +98,22 @@ export class TypeDialogComponent implements OnInit
 
     ngOnInit(): void
     {
+        this.showSpinner = true;
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
         this.lang = this.data.lang;
-        this.fg.patchValue({
-            lang_id: this.lang.id // set lang id in form from object with multiple language
-        });
+
+        // create type lang
+        if (this.data.id)
+        {
+            this.getObjectToTranslate();
+        }
+        else {
+            this.fg.patchValue({
+                lang_id: this.lang.id // set lang id in form from object with multiple language
+            });
+
+            this.showSpinner = false;
+        }
     }
 
     postRecord(): void
@@ -105,7 +125,7 @@ export class TypeDialogComponent implements OnInit
             const ob$ = this._http
                 .apolloClient()
                 .mutate({
-                    mutation: graphQL.mutationCreateObject,
+                    mutation: this.graphQL.mutationCreateObject,
                     variables: {
                         payload: this.fg.value
                     }

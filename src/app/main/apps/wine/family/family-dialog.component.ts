@@ -98,7 +98,7 @@ export class FamilyDialogComponent implements OnInit
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
         this.lang = this.data.lang;
 
-        // create lang action
+        // create family lang
         if (this.data.id)
         {
             const ob$ = this._http
