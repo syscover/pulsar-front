@@ -79,7 +79,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             else if (this.dataRoute.action === 'edit')
             {
                 // disabled elements if edit different language that base lang
-                if (this.lang.id !== this.baseLang) this.disableForm();
+                if (this.lang && this.lang.id !== this.baseLang) this.disableForm();
             }
         }
 

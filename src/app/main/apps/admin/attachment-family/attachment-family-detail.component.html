@@ -64,11 +64,10 @@
 
             <!-- CONTENT -->
             <div class="content">
-                <form   id="formDetail"
+                <div class="page-layout carded fullwidth inner-scroll">
+                    <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
-                        fxLayout="column"
-                        fxFlex>
+                        (ngSubmit)="postRecord(object)">
                 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-4">
@@ -130,6 +129,7 @@
                     </div>
 
                 </form>
+                </div>
             </div>
             <!-- / CONTENT -->
 
