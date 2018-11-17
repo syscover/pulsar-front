@@ -21,6 +21,7 @@ import { PresentationDialogComponent } from '../presentation/presentation-dialog
 import { TypeDialogComponent } from '../type/type-dialog.component';
 import { WineryDialogComponent } from '../winery/winery-dialog.component';
 import * as _ from 'lodash';
+import {PercentageGrapeDialogComponent} from '../grape/percentage-grape-dialog.component';
 
 @Component({
     selector: 'dh2-wine-detail',
@@ -136,6 +137,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             decanter: '',
             wine_spectator: '',
             awards_id: [[]],
+            grapes_rel: [[]],
             grapes_id: [[]],
             pairings_id: [[]],
 
@@ -281,8 +283,48 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         this.loadingSlug = $event;
     }
 
-    handleCheckingPrice($event): void {
+    handleCheckingPrice($event): void
+    {
         this.loadingPrice = $event;
+    }
+
+    handleGrapeOnSelectionChange($event): void
+    {
+        if ($event.isUserInput)
+        {
+            if ($event.source.selected)
+            {
+                const dialogRef = this._dialog.open(PercentageGrapeDialogComponent, {
+                    data: {
+                        grape: _.find(this.grapes, {'id': $event.source.value}),
+                        lang: this.lang
+                    },
+                    width: '80vw'
+                });
+
+                dialogRef.afterClosed().subscribe((object: any) => {
+                    // add percentage to grapes
+                    this.grapes.map((grape) => {
+                        if (grape.id === object.id)
+                        {
+                            grape.percentage = object.percentage;
+                        }
+                        return grape;
+                    });
+                });
+            }
+            else {
+                // remove percentage to grapes
+                this.grapes.map((grape) => {
+                    if (grape.id === $event.source.value)
+                    {
+                        grape.percentage = undefined;
+                    }
+                    return grape;
+                });
+            }
+
+        }
     }
 
     argumentsRelationsObject(): Object
@@ -536,7 +578,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         this.fg.get('awards_id').setValue(_.uniq(_.map(this.object.awards, 'id')));
 
         // set wine grapes extracting ids
-        this.fg.get('grapes_id').setValue(_.uniq(_.map(this.object.grapes, 'id')));
+        this.fg.get('grapes_rel').setValue(_.uniq(_.map(this.object.grapes, 'id')));
 
         // set wine pairings extracting ids
         this.fg.get('pairings_id').setValue(_.uniq(_.map(this.object.pairings, 'id')));
@@ -558,7 +600,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         return this._marketable.getCustomArgumentsPostRecord(args);
     }
 
-    add(dialog, objects: any[], filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
+    add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
     {
         const dialogRef = this._dialog.open(dialog, {
             data: {
@@ -575,9 +617,11 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             {
                 if (this.env.debug) console.log('DEBUG - Add element: ', object);
 
-                objects.push(object);
-                objects = _.orderBy(objects, ['name'], ['asc']);
-                filteredObjects.next(objects.slice());
+                // objects is the name og objects[], by to get reference. If not,
+                // when is create lang and add new lang, mustTranslate pipe doesn't work when change objects array
+                this[objects] = this[objects].concat(object);
+                this[objects] = _.orderBy(this[objects], ['name'], ['asc']);
+                filteredObjects.next(this[objects].slice());
 
                 if (multiple) {
                     this.fg.get(formGroupName).value.push(object.id);

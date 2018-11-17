@@ -20,7 +20,7 @@ export class BootstrapService {
             // start config from local file, this operation is do it across http, for being a local file
             this
                 .httpClient
-                .get('./config.json')
+                .get('./config/config.json')
                 .subscribe(
                     (config: Object) => {
                         // init apollo client

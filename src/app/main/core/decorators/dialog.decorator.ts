@@ -1,9 +1,12 @@
+import { ConfigService } from '../services/config.service';
+import { HttpService } from '../services/http.service';
+
 export interface DialogDecoratorInterface {
-    getObjectToTranslate: Function;
+    getObject: Function;
 }
 export function Dialog(): Function {
     return function(target: Function): void {
-        target.prototype.getObjectToTranslate = function (): void {
+        target.prototype.getObject = function (): void {
             const ob$ = this._http
                 .apolloClient()
                 .watchQuery({

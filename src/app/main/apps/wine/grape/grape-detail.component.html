@@ -90,10 +90,10 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
+                        <mat-form-field class="col-12 col-md-4 mr-40" *ngIf="dataRoute.action !== 'create'">
                             <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                         </mat-form-field>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                        <dh2-flag-icon class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">

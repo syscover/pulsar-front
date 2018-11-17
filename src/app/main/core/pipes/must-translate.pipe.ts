@@ -9,6 +9,6 @@ export class MustTranslatePipe implements PipeTransform
 {
     transform(action: string, showSpinner: boolean, objects: any[], fg: FormGroup, formControlName: string): boolean
     {
-        return action === 'create-lang' && ! showSpinner && ! _.find(objects, {'id': fg.get(formControlName).value})
+        return action === 'create-lang' && ! showSpinner && ! _.find(objects, {'id': fg.get(formControlName).value});
     }
 }

@@ -41,6 +41,7 @@ export class Grape
     lang_id: string;
     name: string;
     slug: string;
+    percentage: number; // property for relation between grape and wine
 }
 
 export class Pairing

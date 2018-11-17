@@ -132,14 +132,14 @@
                                                 type="button"
                                                 class="mt-10"
                                                 *ngIf="dataRoute.action !== 'create-lang'"
-                                                (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
+                                                (click)="add(typeDialogComponent,'types', filteredTypes, 'type_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                         <button mat-icon-button
                                                 type="button"
                                                 class="mt-10"
                                                 *ngIf="dataRoute.action | mustTranslate:showSpinner:types:fg:'type_id'"
-                                                (click)="add(typeDialogComponent, types, filteredTypes, 'type_id')">
+                                                (click)="add(typeDialogComponent, 'types', filteredTypes, 'type_id')">
                                             <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
                                     </div>
@@ -157,14 +157,14 @@
                                                 type="button"
                                                 class="mt-10"
                                                 *ngIf="dataRoute.action !== 'create-lang'"
-                                                (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
+                                                (click)="add(familyDialogComponent, 'families', filteredFamilies, 'family_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                         <button mat-icon-button
                                                 type="button"
                                                 class="mt-10"
                                                 *ngIf="dataRoute.action | mustTranslate:showSpinner:families:fg:'family_id'"
-                                                (click)="add(familyDialogComponent, families, filteredFamilies, 'family_id')">
+                                                (click)="add(familyDialogComponent, 'families', filteredFamilies, 'family_id')">
                                             <mat-icon class="warn-color">translate</mat-icon>
                                         </button>
                                     </div>
@@ -198,7 +198,7 @@
                                                 type="button"
                                                 class="mt-10"
                                                 *ngIf="dataRoute.action !== 'create-lang'"
-                                                (click)="add(wineryDialogComponent, wineries, filteredWineries, 'winery_id')">
+                                                (click)="add(wineryDialogComponent, 'wineries', filteredWineries, 'winery_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -213,7 +213,7 @@
                                             </mat-select>
                                             <mat-error>{{ formErrors?.appellation_id }}</mat-error>
                                         </mat-form-field>
-                                        <button mat-icon-button type="button" class="mt-10" (click)="add(appellationDialogComponent, appellations, filteredAppellations, 'appellation_id')">
+                                        <button mat-icon-button type="button" class="mt-10" (click)="add(appellationDialogComponent, 'appellations', filteredAppellations, 'appellation_id')">
                                             <mat-icon>add</mat-icon>
                                         </button>
                                     </div>
@@ -236,15 +236,17 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field fxFlex="grow">
-                                        <mat-select placeholder="{{ 'NAV.GRAPES' | translate }}" formControlName="grapes_id" multiple>
+                                        <mat-select placeholder="{{ 'NAV.GRAPES' | translate }}" formControlName="grapes_rel" multiple>
                                             <ngx-mat-select-search [formControl]="grapeFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
-                                            <mat-option *ngFor="let grape of filteredGrapes | async" [value]="grape.id">{{ grape.name }}</mat-option>
+                                            <mat-option (onSelectionChange)="handleGrapeOnSelectionChange($event)" *ngFor="let grape of filteredGrapes | async" [value]="grape.id">
+                                                {{ grape.name }} <span *ngIf="grape.percentage">({{ grape.percentage }}%)</span>
+                                            </mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.grapes_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(grapeDialogComponent, grapes, filteredGrapes, 'grapes_id', true)">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(grapeDialogComponent, 'grapes', filteredGrapes, 'grapes_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -255,11 +257,13 @@
                                             <ngx-mat-select-search [formControl]="pairingFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
-                                            <mat-option *ngFor="let pairing of filteredPairings | async" [value]="pairing.id">{{ pairing.name }}</mat-option>
+                                            <mat-option *ngFor="let pairing of filteredPairings | async" [value]="pairing.id">
+                                                {{ pairing.name }}
+                                            </mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.pairings_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(pairingDialogComponent, pairings, filteredPairings, 'pairings_id', true)">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(pairingDialogComponent, 'pairings', filteredPairings, 'pairings_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -274,7 +278,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.awards_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(awardDialogComponent, awards, filteredAwards, 'awards_id', true)">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(awardDialogComponent, 'awards', filteredAwards, 'awards_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -289,7 +293,7 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.presentation_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(presentationDialogComponent, presentations, filteredPresentations, 'presentation_id')">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(presentationDialogComponent, 'presentations', filteredPresentations, 'presentation_id')">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>

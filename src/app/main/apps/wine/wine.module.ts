@@ -20,6 +20,7 @@ import { GrapeListComponent } from './grape/grape-list.component';
 import { PairingDetailComponent } from './pairing/pairing-detail.component';
 import { PairingDialogComponent } from './pairing/pairing-dialog.component';
 import { PairingListComponent } from './pairing/pairing-list.component';
+import { PercentageGrapeDialogComponent } from './grape/percentage-grape-dialog.component';
 import { PresentationDetailComponent } from './presentation/presentation-detail.component';
 import { PresentationDialogComponent } from './presentation/presentation-dialog.component';
 import { PresentationListComponent } from './presentation/presentation-list.component';
@@ -54,6 +55,7 @@ import { WineryListComponent } from './winery/winery-list.component';
         PairingDetailComponent,
         PairingDialogComponent,
         PairingListComponent,
+        PercentageGrapeDialogComponent,
         PresentationDetailComponent,
         PresentationDialogComponent,
         PresentationListComponent,
@@ -73,6 +75,7 @@ import { WineryListComponent } from './winery/winery-list.component';
         FamilyDialogComponent,
         GrapeDialogComponent,
         PairingDialogComponent,
+        PercentageGrapeDialogComponent,
         PresentationDialogComponent,
         TypeDialogComponent,
         WineryDialogComponent

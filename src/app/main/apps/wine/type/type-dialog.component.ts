@@ -22,6 +22,9 @@ import { Dialog, DialogDecoratorInterface } from '../../../core/decorators/dialo
             <form id="formTypeDialogDetail" 
                   [formGroup]="fg" 
                   (ngSubmit)="postRecord()">
+                
+                <input type="hidden" formControlName="id">
+                
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
@@ -73,7 +76,17 @@ export class TypeDialogComponent implements OnInit, DialogDecoratorInterface
     showSpinner = false;
 
     // dialog decorator
-    getObjectToTranslate: Function;
+    getObject: Function;
+
+    createForm(): void
+    {
+        this.fg = this._fb.group({
+            id: '',
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required]
+        });
+    }
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -87,15 +100,6 @@ export class TypeDialogComponent implements OnInit, DialogDecoratorInterface
         this.createForm();
     }
 
-    createForm(): void
-    {
-        this.fg = this._fb.group({
-            lang_id: ['', Validators.required],
-            name: ['', Validators.required],
-            slug: ['', Validators.required]
-        });
-    }
-
     ngOnInit(): void
     {
         this.showSpinner = true;
@@ -105,7 +109,7 @@ export class TypeDialogComponent implements OnInit, DialogDecoratorInterface
         // create type lang
         if (this.data.id)
         {
-            this.getObjectToTranslate();
+            this.getObject();
         }
         else {
             this.fg.patchValue({
