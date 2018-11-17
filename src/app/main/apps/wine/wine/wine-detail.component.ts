@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
@@ -138,7 +138,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             wine_spectator: '',
             awards_id: [[]],
             grapes_rel: [[]],
-            grapes_id: [[]],
+            grapes_id: [{}],
             pairings_id: [[]],
 
             // wine_lang
@@ -168,6 +168,64 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             is_product: false,
             product_id: ''
         });
+    }
+
+    changeGrapeId(id: number, action: string): void
+    {
+        const grapes_id = this.fg.get('grapes_id').value;
+
+        if (action === 'add')
+        {
+            const grape = <Grape>_.find(this.grapes, {'id': id});
+            if (grape.composition && grape.composition.percentage)
+            {
+                grapes_id[id] = { percentage: (<Grape>_.find(this.grapes, {'id': id})).composition.percentage };
+            }
+            else
+            {
+                grapes_id[id] = {};
+            }
+        }
+        else if (action === 'delete')
+        {
+            delete grapes_id[id];
+        }
+
+        this.fg.get('grapes_id').setValue(grapes_id);
+    }
+
+    setGrapesId(): void
+    {
+        // set wine grapes extracting ids
+        this.fg.get('grapes_rel').setValue(_.uniq(_.map(this.object.grapes, 'id')));
+
+        // set value grapes with percentage
+        this.object.grapes.map(selectGrape => {
+            this.grapes.map(grape => {
+                if (selectGrape.id === grape.id) {
+                    if (selectGrape.composition.percentage) grape.composition = selectGrape.composition;
+                }
+                return grape;
+            });
+            return selectGrape;
+        });
+        this.filteredGrapes.next(this.grapes.slice());
+
+        // set grapes id
+        const grapes_id = {};
+        for (const id of this.fg.get('grapes_rel').value)
+        {
+            const grape = <Grape>_.find(this.grapes, {'id': id});
+            if (grape.composition && grape.composition.percentage)
+            {
+                grapes_id[id] = { percentage: (<Grape>_.find(this.grapes, {'id': id})).composition.percentage };
+            }
+            else
+            {
+                grapes_id[id] = {};
+            }
+        }
+        this.fg.get('grapes_id').setValue(grapes_id);
     }
 
     disableForm(): void
@@ -226,6 +284,18 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
                     this.familyFilterCtrl,
                     this.families,
                     this.filteredFamilies
+                );
+            });
+
+        // grape
+        this.grapeFilterCtrl
+            .valueChanges
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(() => {
+                this._selectSearch.filterSelect(
+                    this.grapeFilterCtrl,
+                    this.grapes,
+                    this.filteredGrapes
                 );
             });
 
@@ -288,7 +358,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         this.loadingPrice = $event;
     }
 
-    handleGrapeOnSelectionChange($event): void
+    handleGrapeOnOptionChange($event): void
     {
         if ($event.isUserInput)
         {
@@ -303,27 +373,30 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
                 });
 
                 dialogRef.afterClosed().subscribe((object: any) => {
-                    // add percentage to grapes
-                    this.grapes.map((grape) => {
-                        if (grape.id === object.id)
-                        {
-                            grape.percentage = object.percentage;
-                        }
-                        return grape;
-                    });
+
+                    if (object)
+                    {
+                        // add percentage to grapes
+                        this.grapes.map(grape => {
+                            if (grape.id === object.id) grape.composition = { percentage: object.percentage };
+                            return grape;
+                        });
+                    }
+
+                    // add id to grapes_id form control
+                    this.changeGrapeId($event.source.value, 'add');
                 });
             }
             else {
-                // remove percentage to grapes
-                this.grapes.map((grape) => {
-                    if (grape.id === $event.source.value)
-                    {
-                        grape.percentage = undefined;
-                    }
+                // remove composition in grapes
+                this.grapes.map(grape => {
+                    if (grape.id === $event.source.value) grape.composition = undefined;
                     return grape;
                 });
-            }
 
+                // delete id in grapes_id form control
+                this.changeGrapeId($event.source.value, 'delete');
+            }
         }
     }
 
@@ -577,8 +650,8 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // set wine awards extracting ids
         this.fg.get('awards_id').setValue(_.uniq(_.map(this.object.awards, 'id')));
 
-        // set wine grapes extracting ids
-        this.fg.get('grapes_rel').setValue(_.uniq(_.map(this.object.grapes, 'id')));
+        // set data in grapes_id form control
+        this.setGrapesId();
 
         // set wine pairings extracting ids
         this.fg.get('pairings_id').setValue(_.uniq(_.map(this.object.pairings, 'id')));
@@ -625,6 +698,18 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
 
                 if (multiple) {
                     this.fg.get(formGroupName).value.push(object.id);
+                    this.fg.get(formGroupName).markAsDirty();
+
+                    if (formGroupName === 'grapes_rel')
+                    {
+                        this.handleGrapeOnOptionChange({
+                            isUserInput: true,
+                            source: {
+                                selected: true,
+                                value: object.id
+                            }
+                        });
+                    }
                 }
                 else {
                     this.fg.get(formGroupName).setValue(object.id);

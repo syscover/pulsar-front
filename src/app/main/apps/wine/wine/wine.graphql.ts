@@ -30,6 +30,9 @@ const fields = `
     family_id
     grapes {
         ${wineGrapeGraphQL.fields}
+        composition {
+            percentage
+        }
     }
     id
     is_product

@@ -41,6 +41,10 @@ export class Grape
     lang_id: string;
     name: string;
     slug: string;
+    composition: CompositionGrape;
+}
+export class CompositionGrape
+{
     percentage: number; // property for relation between grape and wine
 }
 

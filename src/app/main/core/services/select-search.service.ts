@@ -7,19 +7,19 @@ import { takeUntil } from 'rxjs/operators';
 export class SelectSearchService
 {
     // TODO doesn't work,
-    setSelectSearch(filterCtrl: FormControl, objects: any[], objectsFiltered: ReplaySubject<any[]>, onDestroy: Subject<{}>): void
-    {
-        filterCtrl
-            .valueChanges
-            .pipe(takeUntil(onDestroy))
-            .subscribe(() => {
-                this.filterSelect(
-                    filterCtrl,
-                    objects,
-                    objectsFiltered
-                );
-            });
-    }
+    // setSelectSearch(filterCtrl: FormControl, objects: any[], objectsFiltered: ReplaySubject<any[]>, onDestroy: Subject<{}>): void
+    // {
+    //     filterCtrl
+    //         .valueChanges
+    //         .pipe(takeUntil(onDestroy))
+    //         .subscribe(() => {
+    //             this.filterSelect(
+    //                 filterCtrl,
+    //                 objects,
+    //                 objectsFiltered
+    //             );
+    //         });
+    // }
 
     filterSelect(filterCtrl: FormControl, objects: any[], objectsFiltered: ReplaySubject<any[]>): void
     {

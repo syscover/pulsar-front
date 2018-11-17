@@ -240,13 +240,13 @@
                                             <ngx-mat-select-search [formControl]="grapeFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
-                                            <mat-option (onSelectionChange)="handleGrapeOnSelectionChange($event)" *ngFor="let grape of filteredGrapes | async" [value]="grape.id">
-                                                {{ grape.name }} <span *ngIf="grape.percentage">({{ grape.percentage }}%)</span>
+                                            <mat-option (onSelectionChange)="handleGrapeOnOptionChange($event)" *ngFor="let grape of filteredGrapes | async" [value]="grape.id">
+                                                {{ grape.name }} <span *ngIf="grape.composition?.percentage">({{ grape.composition.percentage }}%)</span>
                                             </mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.grapes_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(grapeDialogComponent, 'grapes', filteredGrapes, 'grapes_id', true)">
+                                    <button mat-icon-button type="button" class="mt-10" (click)="add(grapeDialogComponent, 'grapes', filteredGrapes, 'grapes_rel', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
