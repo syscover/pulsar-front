@@ -729,7 +729,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             if (this.fg.get(influencer).value)
             {
                 scores++;
-                total += this.fg.get(influencer).value;
+                total += parseFloat(this.fg.get(influencer).value);
             }
         }
 
