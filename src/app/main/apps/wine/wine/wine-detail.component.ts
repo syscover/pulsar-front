@@ -119,6 +119,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             lang_id: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required],
+            description: '',
             family_id: '',
             type_id: ['', Validators.required],
             vintage: '',

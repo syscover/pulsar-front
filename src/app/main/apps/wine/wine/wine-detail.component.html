@@ -298,6 +298,15 @@
                                     </button>
                                 </div>
 
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <dh2-froala formControlName="description"
+                                                    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                                    [heightMin]="200"></dh2-froala>
+                                        <mat-error>{{ formErrors?.description }}</mat-error>
+                                    </div>
+                                </div>
+
                             </div>
                         </mat-tab>
 

@@ -27,6 +27,7 @@ const fields = `
     data
     data_lang
     decanter
+    description
     family_id
     grapes {
         ${wineGrapeGraphQL.fields}
