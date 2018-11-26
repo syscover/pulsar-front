@@ -20,12 +20,21 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field class="col-12" *ngIf="hiddenFields.indexOf('categories_id') === -1">
-                <mat-select placeholder="{{ 'MARKETABLE.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
-                    <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-                </mat-select>
-                <mat-error>{{ formErrors?.categories_id }}</mat-error>
-            </mat-form-field>
+            <div class="col-12">
+                <mat-form-field fxFlex="grow" *ngIf="hiddenFields.indexOf('categories_id') === -1">
+                    <mat-select placeholder="{{ 'MARKETABLE.CATEGORIES' | translate }}" formControlName="categories_id" multiple required>
+                        <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                    </mat-select>
+                    <mat-error>{{ formErrors?.categories_id }}</mat-error>
+                </mat-form-field>
+                <button mat-icon-button
+                        type="button"
+                        class="mt-10"
+                        *ngIf="dataRoute.action !== 'create-lang'"
+                        (click)="add(categoryDialogComponent, 'categories', filteredCategories, 'categories_id')">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
         </div>
 
         <div fxLayout="row">
@@ -191,7 +200,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-5">
-                            <input matInput placeholder="{{ 'MARKETABLE.COST' | translate }}" formControlName="cost" (change)="handleChageCost($event)" type="number">
+                            <input matInput placeholder="{{ 'MARKETABLE.COST' | translate }}" formControlName="cost" (change)="handleChangeCost($event)" type="number">
                             <mat-error>{{ formErrors?.cost }}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-12 offset-sm-1 col-md-5">

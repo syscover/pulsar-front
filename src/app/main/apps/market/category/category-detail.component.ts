@@ -12,7 +12,7 @@ import { Category } from '../market.models';
 })
 export class CategoryDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'MARKET.CATEGORY';
+    objectTranslation = 'APPS.CATEGORY';
     objectTranslationGender = 'F';
     graphQL = graphQL;
     categories: Category[] = [];
@@ -27,14 +27,14 @@ export class CategoryDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}, Validators.required],
-            lang_id: [null, Validators.required],
-            parent_id: null,
-            name: [null, Validators.required],
-            slug: [null, Validators.required],
+            ix: '',
+            id: [{value: '', disabled: true}, Validators.required],
+            lang_id: ['', Validators.required],
+            parent_id: '',
+            name: ['', Validators.required],
+            slug: ['', Validators.required],
             active: false,
-            description: null
+            description: ''
         });
     }
 

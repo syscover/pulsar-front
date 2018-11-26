@@ -3,7 +3,6 @@ export const locale = {
     data: {
         'MARKET': {
             'APPLY_SHIPPING_AMOUNT': 'Apply to shipping amount',
-            'CATEGORY': 'Category',
             'CART_PRICE_RULE': 'Cart price rule',
             'COMBINABLE': 'Combinable',
             'COMMENTS': 'Comments',

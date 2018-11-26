@@ -40,7 +40,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'MARKET.CATEGORY' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'APPS.CATEGORY' | translate }}</span>
             </button>
 
         </div>
@@ -66,6 +66,12 @@
                 <ng-container matColumnDef="market_category.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="market_category.parent_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.PARENT_CATEGORY' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ categories | getCollectionObjectValue:'id':row.parent_id:'name' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->

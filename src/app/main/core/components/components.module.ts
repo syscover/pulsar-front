@@ -3,18 +3,19 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { AttachmentsModule } from './attachments/attachments.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
-import { FlagIconComponent } from './flag-icon.component';
 import { FroalaModule } from './froala/froala.module';
 import { ImageInputModule } from './image-input/image-input.module';
 import { LocationMapModule } from './location-map/location-map.module';
 import { MarketableModule } from './marketable/marketable.module';
 import { TerritoriesModule } from './territories/territories.module';
 import { StockableModule } from './stockable/stockable.module';
+import {FlagIconModule} from './flag-icon/flag-icon.module';
 
 @NgModule({
     imports: [
         AttachmentsModule,
         CommonModule,
+        FlagIconModule,
         FroalaModule,
         ImageInputModule,
         LocationMapModule,
@@ -29,7 +30,7 @@ import { StockableModule } from './stockable/stockable.module';
     exports: [
         AttachmentsModule,
         ConfirmationDialogComponent,
-        FlagIconComponent,
+        FlagIconModule,
         FroalaModule,
         ImageInputModule,
         LocationMapModule,
@@ -38,8 +39,7 @@ import { StockableModule } from './stockable/stockable.module';
         StockableModule
     ],
     declarations: [
-        ConfirmationDialogComponent,
-        FlagIconComponent
+        ConfirmationDialogComponent
     ],
     entryComponents: [
         ConfirmationDialogComponent

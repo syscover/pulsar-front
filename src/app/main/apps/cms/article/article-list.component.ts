@@ -26,7 +26,7 @@ export class ArticleListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    // overwite method to get statuses
+    // overwrite method to get statuses
     getCustomArgumentsGetRecords(args: Object): Object
     {    
         args['config'] = {

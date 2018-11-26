@@ -20,8 +20,8 @@ import { PairingDialogComponent } from '../pairing/pairing-dialog.component';
 import { PresentationDialogComponent } from '../presentation/presentation-dialog.component';
 import { TypeDialogComponent } from '../type/type-dialog.component';
 import { WineryDialogComponent } from '../winery/winery-dialog.component';
+import { PercentageGrapeDialogComponent } from '../grape/percentage-grape-dialog.component';
 import * as _ from 'lodash';
-import {PercentageGrapeDialogComponent} from '../grape/percentage-grape-dialog.component';
 
 @Component({
     selector: 'dh2-wine-detail',

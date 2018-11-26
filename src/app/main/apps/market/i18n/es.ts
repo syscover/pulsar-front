@@ -3,7 +3,6 @@ export const locale = {
     data: {
         'MARKET': {
             'APPLY_SHIPPING_AMOUNT': 'Aplicar descuento al transporte',
-            'CATEGORY': 'Categoría',
             'CART_PRICE_RULE': 'Regla de carro',
             'COMBINABLE': 'Combinable',
             'COMMENTS': 'Comentarios',

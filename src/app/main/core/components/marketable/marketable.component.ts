@@ -1,7 +1,14 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Category, PriceType, Product, ProductClassTax, ProductClass, Section } from '../../../apps/market/market.models';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MarketableService } from './marketable.service';
+import { ReplaySubject } from 'rxjs';
+import { environment } from 'environments/environment';
+import { DataRoute } from '../../structures/data-route';
+import { Lang } from '../../../apps/admin/admin.models';
+import { CategoryDialogComponent } from './category-dialog.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-marketable',
@@ -12,10 +19,11 @@ export class MarketableComponent implements OnInit
     @ViewChild('inputName') inputName: ElementRef;
     @Input() object = {};
     @Input() fg: FormGroup; // FormGroup from parent component
+    @Input() lang: Lang[];
+    @Input() dataRoute: DataRoute; // static dataRoute Object pass from route module
     @Input() hidden = false;
     @Input() hiddenFields: string[] = [];
     @Input() products: Product[] = [];
-    @Input() categories: Category[] = [];
     @Input() sections: Section[] = [];
     @Input() productClasses: ProductClass[] = [];
     @Input() priceTypes: PriceType[] = [];
@@ -24,14 +32,22 @@ export class MarketableComponent implements OnInit
     @Output() checkingSlug = new EventEmitter<boolean>();
     @Output() checkingPrice = new EventEmitter<boolean>();
 
+    env: any = environment;
     loadingPrice = false;
     loadingSlug = false;
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
     marketableFg: FormGroup;
 
+    // categories
+    @Input() categories: Category[] = [];
+    categoryFilterCtrl: FormControl = new FormControl();
+    filteredCategories: ReplaySubject<Category[]> = new ReplaySubject<Category[]>(1);
+    categoryDialogComponent = CategoryDialogComponent;
+
     constructor(
         private _marketable: MarketableService,
-        private _fb: FormBuilder
+        private _fb: FormBuilder,
+        private _dialog: MatDialog
     ) {
         this.init();
     }
@@ -92,7 +108,7 @@ export class MarketableComponent implements OnInit
         this.checkingSlug.emit($event);
     }
 
-    handleChageCost($event): void
+    handleChangeCost($event): void
     {
         this._marketable.calculateProfitability(this.fg, $event.target.value, this.fg.get('subtotal').value);
     }
@@ -137,5 +153,39 @@ export class MarketableComponent implements OnInit
                 }
             }
         }
+    }
+
+    add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
+    {
+        const dialogRef = this._dialog.open(dialog, {
+            data: {
+                id: this.object[formGroupName],
+                lang: this.lang,
+                categories: this.categories // only for categoryDialogComponent
+            },
+            width: '80vw'
+        });
+
+        dialogRef.afterClosed().subscribe((object: any) => {
+
+            if (object)
+            {
+                if (this.env.debug) console.log('DEBUG - Add element: ', object);
+
+                // objects is the name og objects[], by to get reference. If not,
+                // when is create lang and add new lang, mustTranslate pipe doesn't work when change objects array
+                this[objects] = this[objects].concat(object);
+                this[objects] = _.orderBy(this[objects], ['name'], ['asc']);
+                filteredObjects.next(this[objects].slice());
+
+                if (multiple) {
+                    this.fg.get(formGroupName).value.push(object.id);
+                    this.fg.get(formGroupName).markAsDirty();
+                }
+                else {
+                    this.fg.get(formGroupName).setValue(object.id);
+                }
+            }
+        });
     }
 }

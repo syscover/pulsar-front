@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { LangGraphQLService } from './lang-graphql.service';
+import { graphQL } from './lang.graphql';
 
 @Component({
     selector: 'dh2-lang-list',
@@ -17,8 +17,7 @@ export class LangListComponent extends CoreListComponent
     displayedColumns = ['admin_lang.id', 'admin_lang.name', 'admin_lang.active', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: LangGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

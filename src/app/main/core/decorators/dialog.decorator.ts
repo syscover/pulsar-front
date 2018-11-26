@@ -1,6 +1,3 @@
-import { ConfigService } from '../services/config.service';
-import { HttpService } from '../services/http.service';
-
 export interface DialogDecoratorInterface {
     getObject: Function;
 }
@@ -19,12 +16,12 @@ export function Dialog(): Function {
                             operator: '=',
                             value: this.data.id
                         },
-                            {
-                                command: 'where',
-                                column: `${this.graphQL.table}.lang_id`,
-                                operator: '=',
-                                value: this._config.get('base_lang')
-                            }]
+                        {
+                            command: 'where',
+                            column: `${this.graphQL.table}.lang_id`,
+                            operator: '=',
+                            value: this._config.get('base_lang')
+                        }]
                     }
                 })
                 .valueChanges

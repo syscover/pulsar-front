@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { LangGraphQLService } from './lang-graphql.service';
+import { graphQL } from './lang.graphql';
 
 @Component({
     selector: 'dh2-lang-detail',
@@ -15,13 +15,13 @@ export class LangDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: LangGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() {
+    createForm(): void
+    {
         this.fg = this.fb.group({
             ix: null,
             id: [null, [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],

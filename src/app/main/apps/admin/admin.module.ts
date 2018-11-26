@@ -46,7 +46,6 @@ import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
-import { LangGraphQLService } from './lang/lang-graphql.service';
 import { OauthAccessTokenGraphqlService } from './oauth-access-token/oauth-access-token-graphql.service';
 import { OAuthClientGraphqlService } from './oauth-client/oauth-client-graphql.service';
 import { ProfileGraphQLService } from './profile/profile-graphql.service';
@@ -104,7 +103,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
         FieldGroupGraphQLService,
         FieldGraphQLService,
         FieldValueGraphQLService,
-        LangGraphQLService,
         OauthAccessTokenGraphqlService,
         OAuthClientGraphqlService,
         ProfileGraphQLService,

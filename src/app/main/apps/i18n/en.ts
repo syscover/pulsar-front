@@ -9,6 +9,7 @@ export const locale = {
             'ADDRESS': 'Address',
             'ATTACHMENTS': 'Attachments',
             'CANCEL': 'Cancel',
+            'CATEGORY': 'Category',
             'CLEAR': 'Clear',
             'CLOSE': 'Close',
             'COMPANY': 'Company',

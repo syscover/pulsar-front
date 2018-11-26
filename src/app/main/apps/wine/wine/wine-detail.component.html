@@ -263,7 +263,10 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.pairings_id }}</mat-error>
                                     </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(pairingDialogComponent, 'pairings', filteredPairings, 'pairings_id', true)">
+                                    <button mat-icon-button
+                                            type="button"
+                                            class="mt-10"
+                                            (click)="add(pairingDialogComponent, 'pairings', filteredPairings, 'pairings_id', true)">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -589,6 +592,8 @@
                                                 [hiddenFields]="['lang_id', 'name', 'slug']"
                                                 [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
+                                                [lang]="lang"
+                                                [dataRoute]="dataRoute"
                                                 [products]="products"
                                                 [sections]="sections"
                                                 [productClasses]="productClasses"

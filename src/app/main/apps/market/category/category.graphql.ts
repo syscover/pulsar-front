@@ -29,12 +29,13 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query MarketGetCategoriesPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput]) {
+        query MarketGetCategoriesPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput] $sqlCategory:[CoreSQLInput]) {
             coreObjectsPagination: marketCategoriesPagination (sql:$sql filters:$filters) {
                 total
                 objects (sql:$sql filters:$filters)
                 filtered
             }
+            ${relationsFields}
         }`,
 
     queryRelationsObject : gql`

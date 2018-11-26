@@ -10,6 +10,6 @@ export class GetCollectionObjectValuePipe implements PipeTransform
     {
         // all config id are string
         const object = _.find(objects, [id, idValue]);
-        return object[field];
+        return object ? object[field] : '';
     }
 }

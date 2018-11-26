@@ -28,7 +28,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'MARKET.CATEGORY' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ 'APPS.CATEGORY' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
+                        <mat-form-field class="col-12 col-md-6 field-with-description">
                             <mat-select placeholder="{{ 'MARKET.PARENT_CATEGORY' | translate }}" formControlName="parent_id">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                 <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
