@@ -592,4 +592,3 @@ export const navigation: FuseNavigation[] = [
         ]
     }
 ];
-

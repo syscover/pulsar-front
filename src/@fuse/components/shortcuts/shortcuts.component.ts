@@ -70,9 +70,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         // Get the navigation items and flatten them
         this.filteredNavigationItems = this.navigationItems = this._fuseNavigationService.getFlatNavigation(this.navigation);
 
-        const cookieExists = this._cookieService.check('FUSE2.shortcuts');
-
-        if ( cookieExists )
+        if ( this._cookieService.check('FUSE2.shortcuts') )
         {
             this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
         }
@@ -82,14 +80,32 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
             // User's shortcut items
             this.shortcutItems = [
                 {
-                    'title': 'Dashboard',
+                    'title': 'Calendar',
                     'type' : 'item',
-                    'icon' : 'dashboard',
-                    'url'  : '/apps/dashboard'
+                    'icon' : 'today',
+                    'url'  : '/apps/calendar'
+                },
+                {
+                    'title': 'Mail',
+                    'icon' : 'email',
+                    'url'  : '/apps/mail'
+                },
+                {
+                    'title': 'Contacts',
+                    'type' : 'item',
+                    'icon' : 'account_box',
+                    'url'  : '/apps/contacts'
+                },
+                {
+                    'title': 'To-Do',
+                    'type' : 'item',
+                    'icon' : 'check_box',
+                    'url'  : '/apps/todo'
                 }
             ];
         }
 
+        // Subscribe to media changes
         this._fuseMatchMediaService.onMediaChange
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {

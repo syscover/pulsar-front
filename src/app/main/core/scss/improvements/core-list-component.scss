@@ -5,7 +5,7 @@
         .search-input-wrapper {
             max-width: 480px;
         }
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint(xs) {
             height: 176px !important;
             min-height: 176px !important;
             max-height: 176px !important;
@@ -29,7 +29,7 @@
         max-width: 100px;
     }
     .top-bg {
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint(xs) {
             height: 240px;
         }
     }

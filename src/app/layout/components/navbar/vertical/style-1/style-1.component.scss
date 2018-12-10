@@ -61,6 +61,19 @@ fuse-sidebar {
 
                         .navbar-content {
                             padding-top: 0;
+
+                            // Material 2 specific style
+                            .material2 {
+
+                                .nav-item {
+
+                                    .nav-link {
+                                        border-radius: 20px;
+                                        margin: 0 12px;
+                                        padding: 0 12px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

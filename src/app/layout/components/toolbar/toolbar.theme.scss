@@ -2,7 +2,10 @@
 
     $foreground: map-get($theme, foreground);
 
-    .toolbar-separator {
-        background: map-get($foreground, divider);
+    toolbar {
+
+        .toolbar-separator {
+            background: map-get($foreground, divider);
+        }
     }
 }

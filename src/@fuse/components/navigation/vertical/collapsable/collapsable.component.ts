@@ -1,6 +1,6 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 import { FuseNavigationItem } from '@fuse/types';
@@ -33,10 +33,12 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
+     * @param {ChangeDetectorRef} _changeDetectorRef
      * @param {FuseNavigationService} _fuseNavigationService
      * @param {Router} _router
      */
     constructor(
+        private _changeDetectorRef: ChangeDetectorRef,
         private _fuseNavigationService: FuseNavigationService,
         private _router: Router
     )
@@ -114,6 +116,18 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
         {
             this.collapse();
         }
+
+        // Subscribe to navigation item
+        merge(
+            this._fuseNavigationService.onNavigationItemAdded,
+            this._fuseNavigationService.onNavigationItemUpdated,
+            this._fuseNavigationService.onNavigationItemRemoved
+        ).pipe(takeUntil(this._unsubscribeAll))
+         .subscribe(() => {
+
+             // Mark for check
+             this._changeDetectorRef.markForCheck();
+         });
     }
 
     /**
@@ -157,6 +171,10 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
         }
 
         this.isOpen = true;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+
         this._fuseNavigationService.onItemCollapseToggled.next();
     }
 
@@ -171,6 +189,10 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
         }
 
         this.isOpen = false;
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+
         this._fuseNavigationService.onItemCollapseToggled.next();
     }
 

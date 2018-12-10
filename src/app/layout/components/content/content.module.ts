@@ -11,9 +11,9 @@ import { ContentComponent } from 'app/layout/components/content/content.componen
     ],
     imports     : [
         RouterModule,
-        FuseSharedModule,
+        FuseSharedModule
     ],
-    exports: [
+    exports     : [
         ContentComponent
     ]
 })
