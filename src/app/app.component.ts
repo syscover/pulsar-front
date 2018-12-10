@@ -107,7 +107,6 @@ export class AppComponent implements OnInit, OnDestroy
             this._translateService.setDefaultLang('es');
         });
 
-
         /**
          * ------------------------------------------------------------------
          * ngxTranslate Fix End

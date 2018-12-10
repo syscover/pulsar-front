@@ -70,7 +70,7 @@
                         fxLayout="column"
                         fxFlex>
                 
-                    <div fxLayout="row">
+                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
                         <mat-form-field class="col-12 col-md-4">
                             <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
                         </mat-form-field>

@@ -1,7 +1,7 @@
 import {Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit} from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { from } from 'rxjs/observable/from';
 import { merge } from 'rxjs/observable/merge';
@@ -45,7 +45,7 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
     ngAfterViewInit(): void
     {
         merge(
-                Observable.fromEvent(this.element.nativeElement, 'change'),
+                fromEvent(this.element.nativeElement, 'change'),
                 this.value$
             )
             .debounceTime(250)
