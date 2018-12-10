@@ -1,12 +1,10 @@
 import { Injector, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { debounceTime } from 'rxjs/operators/debounceTime';
-import { map } from 'rxjs/operators/map';
 import { first } from 'rxjs/operators/first';
 import { from } from 'rxjs/observable/from';
 import 'rxjs/add/operator/debounceTime';
@@ -42,8 +40,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
             this.sort.sortChange,
-            Observable
-                .fromEvent(this.filter.nativeElement, 'keyup')
+                fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(500)
                 .distinctUntilChanged()
         )
@@ -54,8 +51,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             this.refreshTable,
             this.sort.sortChange,
             this.paginator.page, 
-            Observable
-                .fromEvent(this.filter.nativeElement, 'keyup')
+                fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(400)
                 .distinctUntilChanged()
         )

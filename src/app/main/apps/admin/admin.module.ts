@@ -4,7 +4,7 @@ import { SharedModule } from './../../core/modules/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
-import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 import { ActionListComponent } from './action/action-list.component';
 import { ActionDetailComponent } from './action/action-detail.component';
@@ -58,7 +58,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
     imports: [
         SharedModule,
         AdminRoutingModule,
-        NgxMaterialPasswordStrengthModule
+        MatPasswordStrengthModule
     ],
     exports: [ ],
     declarations: [

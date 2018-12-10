@@ -4,7 +4,7 @@ import { SharedModule } from './../../core/modules/shared.module';
 import { CrmRoutingModule } from './crm-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
-import { NgxMaterialPasswordStrengthModule } from 'ngx-material-password-strength';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 import { AddressTypeListComponent } from './address-type/address-type-list.component';
 import { AddressTypeDetailComponent } from './address-type/address-type-detail.component';
@@ -22,7 +22,7 @@ import { TerritorialArea1GraphQLService } from './../admin/territorial_area_1/te
     imports: [
         SharedModule,
         CrmRoutingModule,
-        NgxMaterialPasswordStrengthModule
+        MatPasswordStrengthModule
     ],
     exports: [ ],
     declarations: [
