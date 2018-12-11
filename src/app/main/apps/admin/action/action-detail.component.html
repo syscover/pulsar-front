@@ -65,23 +65,25 @@
             <!-- CONTENT -->
             <div class="content">
                 <form   id="formDetail"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
                         fxLayout="column"
-                        fxFlex>
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
                 
                     <input type="hidden" formControlName="ix">
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>

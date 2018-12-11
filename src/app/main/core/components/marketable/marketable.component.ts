@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MarketableService } from './marketable.service';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'environments/environment';
-import { DataRoute } from '../../structures/data-route';
+import { DataRoute } from '../../types/data-route';
 import { Lang } from '../../../apps/admin/admin.models';
 import { CategoryDialogComponent } from './category-dialog.component';
 import * as _ from 'lodash';

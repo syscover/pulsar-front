@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ActionGraphQLService } from './action-graphql.service';
+import { graphQL } from './action.graphql';
 
 @Component({
     selector: 'dh2-action-list',
@@ -17,8 +17,7 @@ export class ActionListComponent extends CoreListComponent
     displayedColumns = ['admin_action.id', 'admin_action.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ActionGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

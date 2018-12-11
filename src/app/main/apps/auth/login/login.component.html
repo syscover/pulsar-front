@@ -11,7 +11,7 @@
         </div>
 
         <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}" [innerHTML]="welcomeMessage | translate">
-                <span class="excerpt">Nunca olvides que...</span><br><br>Alguien inteligente aprende de la experiencia de los demás
+            <span class="excerpt">Nunca olvides que...</span><br><br>Alguien inteligente aprende de la experiencia de los demás
         </div>
     </div>
 
@@ -28,13 +28,17 @@
 
             <form name="loginForm" [formGroup]="loginForm" novalidate>
 
-                <mat-form-field class="mb-12">
-                    <input matInput placeholder="{{ 'APPS.USER' | translate }}" formControlName="user">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="mb-12">
+                    <mat-label>{{ 'APPS.USER' | translate }}</mat-label>
+                    <input matInput formControlName="user">
+                    <mat-icon matSuffix class="secondary-text">how_to_reg</mat-icon>
                     <mat-error>{{ loginFormErrors?.user }}</mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="mb-12">
-                    <input matInput type="password" placeholder="{{ 'APPS.PASSWORD' | translate }}" formControlName="password">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="mb-12">
+                    <mat-label>{{ 'APPS.PASSWORD' | translate }}</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
                     <mat-error>{{ loginFormErrors?.password }}</mat-error>
                 </mat-form-field>
 
@@ -47,7 +51,7 @@
 
                 <button mat-raised-button 
                         color="accent" 
-                        class="submit-button action-btn" 
+                        class="submit-button action-btn"
                         aria-label="LOGIN" 
                         [disabled]="loginForm.invalid" 
                         (click)="login(object)">
