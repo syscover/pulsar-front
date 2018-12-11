@@ -63,17 +63,17 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white">
+        <div class="content-card">
 
             <!-- CONTENT -->
             <div class="content">
                 
                 <form   id="formDetail"
-                        class="col-12"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
+                        class="w-100-p"
                         fxLayout="column"
-                        fxFlex>
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
 
                     <mat-tab-group>
 
@@ -128,6 +128,7 @@
 
                             </div>
                         </mat-tab>
+
                         <mat-tab label="{{ 'NAV.QUESTIONS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 

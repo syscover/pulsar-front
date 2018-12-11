@@ -74,6 +74,31 @@
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.slug }}</mat-cell>
                 </ng-container>
 
+                <!-- TERRITORIES -->
+                <ng-container matColumnDef="territories">
+                    <mat-header-cell *matHeaderCellDef class="align-center mw-120">{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="align-center mw-120">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="row.territorial_area_1 || row.territorial_area_2 || row.territorial_area_3">
+                            <mat-icon>public</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-1', row.id]" *ngIf="row.territorial_area_1">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_1 }}</span>
+                            </button>
+                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-2', row.id]" *ngIf="row.territorial_area_2">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_2 }}</span>
+                            </button>
+                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-3', row.id]" *ngIf="row.territorial_area_3">
+                                <mat-icon>language</mat-icon>
+                                <span>{{ row.territorial_area_3 }}</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+                <!-- / TERRITORIES -->
+
                 <!-- LANGS -->
                 <ng-container matColumnDef="translations">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.TRANSLATIONS' | translate }}</mat-header-cell>
@@ -105,31 +130,6 @@
                     </mat-cell>
                 </ng-container>
                 <!-- / LANGS -->
-
-                <!-- TERRITORIES -->
-                <ng-container matColumnDef="territories">
-                    <mat-header-cell *matHeaderCellDef class="align-center mw-120">{{ 'ADMIN.TERRITORIES' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="align-center mw-120">
-                        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="row.territorial_area_1 || row.territorial_area_2 || row.territorial_area_3">
-                            <mat-icon>public</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-1', row.id]" *ngIf="row.territorial_area_1">
-                                <mat-icon>language</mat-icon>
-                                <span>{{ row.territorial_area_1 }}</span>
-                            </button>
-                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-2', row.id]" *ngIf="row.territorial_area_2">
-                                <mat-icon>language</mat-icon>
-                                <span>{{ row.territorial_area_2 }}</span>
-                            </button>
-                            <button mat-menu-item [routerLink]="['/apps/admin/country/territorial-area-3', row.id]" *ngIf="row.territorial_area_3">
-                                <mat-icon>language</mat-icon>
-                                <span>{{ row.territorial_area_3 }}</span>
-                            </button>
-                        </mat-menu>
-                    </mat-cell>
-                </ng-container>
-                <!-- / TERRITORIES -->
 
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
