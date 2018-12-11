@@ -90,7 +90,6 @@ export class FroalaComponent implements OnInit
         this.froalaOptions.heightMax = this.heightMax;
         this.froalaOptions.enter = jQuery.FroalaEditor.ENTER_DIV;
         this.froalaOptions.tabSpaces = 4;
-        this.froalaOptions.iconsTemplate = 'font_awesome_5';
         this.froalaOptions.pluginsEnabled = [
             'align',
             'charCounter',
