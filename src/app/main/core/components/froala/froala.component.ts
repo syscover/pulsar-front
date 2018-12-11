@@ -58,27 +58,27 @@ export class FroalaComponent implements OnInit
         return imageStyles;
     }
 
-    writeValue(value: string)
+    writeValue(value: string): void
     {
         this.value = value;
     }
-    registerOnChange(fn) 
+    registerOnChange(fn): void
     {
         this.onChangeCallback = fn;
     }
-    registerOnTouched(fn) 
+    registerOnTouched(fn): void
     { 
         this.onTouchedCallback = fn;
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('apiUrl') + '/api/v1/admin/wysiwyg/upload';
 
         // config custom FroalaEditor
-        jQuery.FroalaEditor.ICON_TEMPLATES = {
-            font_awesome: '<i class="fa fa-[NAME]"></i>'
-        };
+        // jQuery.FroalaEditor.ICON_TEMPLATES = {
+        //     font_awesome: '<i class="fa fa-[NAME]"></i>'
+        // };
 
         // set froala option properties
         this.froalaOptions.key = this.configService.get('froalaKey');
@@ -90,6 +90,7 @@ export class FroalaComponent implements OnInit
         this.froalaOptions.heightMax = this.heightMax;
         this.froalaOptions.enter = jQuery.FroalaEditor.ENTER_DIV;
         this.froalaOptions.tabSpaces = 4;
+        this.froalaOptions.iconsTemplate = 'font_awesome_5';
         this.froalaOptions.pluginsEnabled = [
             'align',
             'charCounter',
