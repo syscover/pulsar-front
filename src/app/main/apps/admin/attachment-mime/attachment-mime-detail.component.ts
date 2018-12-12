@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { AttachmentMimeGraphQLService } from './attachment-mime-graphql.service';
+import { graphQL } from './attachment-mime.graphql';
 import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
@@ -18,8 +18,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent
     resources: Resource[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AttachmentMimeGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -44,6 +43,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent
 
     setRelationsData(data: any): void
     {
+        console.log(data)
         // admin resources
         const resourcesAllowed = data.configAttachmentResources;
         this.resources = _.filter(<Resource[]>data.adminResources, obj => {

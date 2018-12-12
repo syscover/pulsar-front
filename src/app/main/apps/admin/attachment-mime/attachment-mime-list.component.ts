@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { AttachmentMimeGraphQLService } from './attachment-mime-graphql.service';
+import { graphQL } from './attachment-mime.graphql';
 
 @Component({
     selector: 'dh2-attachment-mime-list',
@@ -17,8 +17,7 @@ export class AttachmentMimeListComponent extends CoreListComponent
     displayedColumns = ['admin_attachment_mime.id', 'admin_attachment_mime.mime', 'admin_resource.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AttachmentMimeGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

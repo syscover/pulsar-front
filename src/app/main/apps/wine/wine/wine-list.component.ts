@@ -13,8 +13,8 @@ export class WineListComponent extends CoreListComponent
 {
     objectTranslation = 'WINE.WINE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['wine_wine.id', 'wine_wine.name', 'wine_wine.year'];
-    displayedColumns = ['wine_wine.id', 'wine_wine.name', 'wine_wine.vintage', 'translations', 'actions'];
+    columnsSearch: string[] = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage'];
+    displayedColumns = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage', 'translations', 'actions'];
     filters = [
         {'command': 'where', 'column': 'wine_wine_lang.lang_id', 'operator': '=', 'value': this.baseLang }
     ];

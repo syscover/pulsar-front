@@ -41,7 +41,6 @@ import { TerritorialArea3DetailComponent } from './territorial_area_3/territoria
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
-import { AttachmentMimeGraphQLService } from './attachment-mime/attachment-mime-graphql.service';
 import { FieldGroupGraphQLService } from './field-group/field-group-graphql.service';
 import { FieldGraphQLService } from './field/field-graphql.service';
 import { FieldValueGraphQLService } from './field-value/field-value-graphql.service';
@@ -97,7 +96,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
         UserDetailComponent
     ],
     providers: [
-        AttachmentMimeGraphQLService,
         FieldGroupGraphQLService,
         FieldGraphQLService,
         FieldValueGraphQLService,

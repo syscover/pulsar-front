@@ -79,12 +79,15 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white">
+        <div class="content-card">
 
             <!-- CONTENT -->
             <div class="content">
 
                 <form   id="formDetail"
+                        class="w-100-p"
+                        fxLayout="column"
+                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
