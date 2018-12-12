@@ -16,10 +16,9 @@ import * as _ from 'lodash';
 })
 export class MarketableComponent implements OnInit
 {
-    @ViewChild('inputName') inputName: ElementRef;
     @Input() object = {};
     @Input() fg: FormGroup; // FormGroup from parent component
-    @Input() lang: Lang[];
+    @Input() lang: Lang;
     @Input() dataRoute: DataRoute; // static dataRoute Object pass from route module
     @Input() hidden = false;
     @Input() hiddenFields: string[] = [];
@@ -57,36 +56,42 @@ export class MarketableComponent implements OnInit
         this.marketableFg = this._fb.group({
             active: false,
             categories_id: [[], Validators.required],
-            class_id: [null, Validators.required],
-            cost: null,
-            cost_per_sale: null,
-            enable_from: null,
-            enable_to: null,
-            ends_at: null,
-            fixed_cost: null,
-            lang_id: [null, Validators.required],
-            limited_capacity: null,
-            name: [null, Validators.required],
-            parent_id: null,
-            price: null,
-            price_type_id: [null, Validators.required],
-            product_class_tax_id: [null, Validators.required],
+            class_id: ['', Validators.required],
+            cost: '',
+            cost_per_sale: '',
+            enable_from: '',
+            enable_to: '',
+            ends_at: '',
+            fixed_cost: '',
+            lang_id: ['', Validators.required],
+            limited_capacity: '',
+            name: ['', Validators.required],
+            parent_id: '',
+            price: '',
+            price_type_id: ['', Validators.required],
+            product_class_tax_id: ['', Validators.required],
             sections_id: [],
-            sku: null,
-            slug: [null, Validators.required],
-            sort: null,
-            starts_at: null,
-            subtotal: null,
-            subtotal_format: [{value: null, disabled: true}, Validators.required],
-            tax_format: [{value: null, disabled: true}, Validators.required],
-            total_format: [{value: null, disabled: true}, Validators.required],
+            sku: '',
+            slug: ['', Validators.required],
+            sort: '',
+            starts_at: '',
+            subtotal: '',
+            subtotal_format: [{value: '', disabled: true}, Validators.required],
+            tax_format: [{value: '', disabled: true}, Validators.required],
+            total_format: [{value: '', disabled: true}, Validators.required],
             weight: [0],
-            profitability: [{value: null, disabled: true}]
+            profitability: [{value: '', disabled: true}]
         });
     }
 
     ngOnInit(): void
     {
+        // set lang id if is defined like parameter
+        if (this.lang)
+        {
+            this.marketableFg.get('lang_id').setValue(this.lang.id);
+        }
+
         if (this.fg.get('is_product'))
         {
             // subscribe to name marketable changes

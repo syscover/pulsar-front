@@ -105,7 +105,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     {
         if (this.dataRoute.action === 'create') 
         {
-            this.lang  = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
+            this.lang = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
 
             // to create a new object, do all queries to get relations data to create new object
             this.relationsObject();

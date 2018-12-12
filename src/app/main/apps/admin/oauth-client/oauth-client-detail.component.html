@@ -40,7 +40,7 @@
             <button mat-raised-button
                     type="submit"
                     form="formDetail"
-                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    class="mat-white-bg mt-16 mt-sm-0"
                     [disabled]="fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='create'">
                 <span>{{ 'APPS.ADD' | translate }}</span>
@@ -50,7 +50,7 @@
             <button mat-raised-button
                     type="submit"
                     form="formDetail"
-                    class="action-btn mat-white-bg mt-16 mt-sm-0"
+                    class="mat-white-bg mt-16 mt-sm-0"
                     [disabled]="fg.invalid || fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='edit'">
                 <span>{{ 'APPS.SAVE' | translate }}</span>

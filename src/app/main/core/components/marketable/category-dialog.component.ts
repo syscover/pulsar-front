@@ -65,10 +65,8 @@ import { SelectSearchService } from '../../services/select-search.service';
                     class="mat-accent mr-16"
                     [disabled]="fg.pristine || loadingButton || loadingSlug" 
                     cdkFocusInitial>
-                <div class="d-flex align-items-center">
-                    <span>{{ 'APPS.SAVE' | translate }}</span>
-                    <mat-spinner class="ml-15" *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-                </div>
+                    {{ 'APPS.SAVE' | translate }}
+                    <mat-spinner mode="indeterminate" diameter="17" *ngIf="loadingButton"></mat-spinner>
             </button>
             
             <button mat-raised-button 

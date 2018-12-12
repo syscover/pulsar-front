@@ -5,7 +5,7 @@
 
         <div fxLayout="row wrap">
             <mat-form-field class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
-                <input #inputName matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
+                <input matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
                 <mat-error>{{ formErrors?.sku }}</mat-error>
             </mat-form-field>
 
@@ -188,7 +188,7 @@
                     </mat-form-field>
                 </div>
 
-                <ng-container *ngIf="fg.get('class_id').value !== 5">
+                <ng-container>
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-5">
                             <mat-select placeholder="{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
@@ -198,7 +198,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="row">
+                    <div fxLayout="row" *ngIf="fg.get('class_id').value !== 5">
                         <mat-form-field class="col-12 col-md-5">
                             <input matInput placeholder="{{ 'MARKETABLE.COST' | translate }}" formControlName="cost" (change)="handleChangeCost($event)" type="number">
                             <mat-error>{{ formErrors?.cost }}</mat-error>

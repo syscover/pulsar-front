@@ -39,7 +39,7 @@
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        class="mt-16 mt-sm-0"
                         [disabled]="fg.pristine || loadingButton || loadingSlug || loadingPrice"
                         *ngIf="dataRoute.action ==='create'">
                     <span>{{ 'APPS.ADD' | translate }}</span>
@@ -49,7 +49,7 @@
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        class="mt-16 mt-sm-0"
                         [disabled]="fg.invalid || loadingButton || loadingSlug || loadingPrice"
                         *ngIf="dataRoute.action ==='create-lang'">
                     <span>{{ 'APPS.TRANSLATE' | translate }}</span>
@@ -59,7 +59,7 @@
                 <button mat-raised-button
                         type="submit"
                         form="formDetail"
-                        class="action-btn mat-white-bg mt-16 mt-sm-0"
+                        class="mt-16 mt-sm-0"
                         [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug || loadingPrice"
                         *ngIf="dataRoute.action ==='edit'">
                     <span>{{ 'APPS.SAVE' | translate }}</span>
@@ -67,7 +67,7 @@
                 </button>
 
                 <button mat-raised-button
-                        class="action-btn mat-red-400-bg primary-text mt-16 mt-sm-0"
+                        class="mat-red-400-bg primary-text mt-16 mt-sm-0"
                         [disabled]="loadingTranslationButton || loadingSlug || loadingPrice"
                         *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang" 
                         (click)="deleteRecord(object)">
@@ -79,16 +79,17 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card mat-white-bg">
+        <div class="content-card">
 
             <!-- CONTENT -->
             <div class="content">
                 
                 <form   id="formDetail"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
+                        class="w-100-p"
                         fxLayout="column"
-                        fxFlex>
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
 
                     <mat-tab-group>
 
