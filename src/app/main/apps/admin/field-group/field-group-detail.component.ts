@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { FieldGroupGraphQLService } from './field-group-graphql.service';
+import { graphQL } from './field-group.graphql';
 import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
@@ -18,13 +18,12 @@ export class FieldGroupDetailComponent extends CoreDetailComponent
     resources: Resource[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldGroupGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -42,7 +41,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin resources
         const resourcesAllowed = data.configFieldGroupResources;

@@ -94,8 +94,9 @@
                     <input type="hidden" formControlName="ix">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-5 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
                         <div class="offset-1 col-6 offset-md-1 col-md-2 py-20">
@@ -105,15 +106,17 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                            <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                            <input matInput formControlName="sort" type="number">
                             <mat-error>{{ formErrors?.sort }}</mat-error>
                         </mat-form-field>
                     </div>

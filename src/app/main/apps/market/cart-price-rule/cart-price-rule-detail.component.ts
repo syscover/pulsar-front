@@ -73,7 +73,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
 
     // overwrite this method for not implement lang_id property in aguments
     // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): any
+    getCustomArgumentsGetRecord(args: Object, params: Params): Object
     {
         return Object.assign({}, {
             sql: [{

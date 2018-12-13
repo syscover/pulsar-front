@@ -1,10 +1,8 @@
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { PreferenceGraphQLService } from './preference-graphql.service';
 import { User } from './../../admin/admin.models';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-preference-detail',
@@ -25,7 +23,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             review_validate_comments: null,
@@ -33,7 +31,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
         });
     }
 
-    getCustomArgumentsGetRecord(args, params) 
+    getCustomArgumentsGetRecord(args, params): Object
     {
         return {
             keys: [
@@ -43,7 +41,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
         };
     }
 
-    beforePatchValueEdit() 
+    beforePatchValueEdit(): void
     {
         // mutate array to object to fit in reactive form
         const objectOutput = {};
@@ -55,7 +53,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
     }
 
     // instance PreferenceType[] object to do a post
-    getCustomArgumentsPostRecord(args, object) 
+    getCustomArgumentsPostRecord(args, object): Object
     {
         const objectInput = [];
 
@@ -74,7 +72,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set admin users
         this.users = data.adminUsers;

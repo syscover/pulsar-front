@@ -37,7 +37,7 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
         });
     }
 
-    getCustomArgumentsGetRecord(args: Object, params: Params): any 
+    getCustomArgumentsGetRecord(args: Object, params: Params): Object
     {
         return {
             sql: [{

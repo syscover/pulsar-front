@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from './../../services/http.service';
-import { FieldGraphQLService } from './../../../apps/admin/field/field-graphql.service';
+import { graphQL } from './../../../apps/admin/field/field.graphql';
 import { ValidationMessageService } from './../../services/validation-message.service';
 import { Field } from './../../../apps/admin/admin.models';
 import { environment } from 'environments/environment';
@@ -16,7 +16,6 @@ export class DynamicFormService extends HttpService
 
     constructor(
         protected injector: Injector,
-        private graphQL: FieldGraphQLService,
         private fb: FormBuilder,
         private validationMessageService: ValidationMessageService
     ) { 
@@ -35,7 +34,7 @@ export class DynamicFormService extends HttpService
                 .apolloClient()
                 .watchQuery({
                     fetchPolicy: 'network-only',
-                    query: this.graphQL.queryObjects,
+                    query: graphQL.queryObjects,
                     variables: {
                         sql: [
                             {

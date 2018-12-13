@@ -219,7 +219,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // instance custom arguments, for example in field-detail.component.ts
     // default merge relations arguments with argumens
-    getCustomArgumentsGetRecord(args: Object, params: Params): any 
+    getCustomArgumentsGetRecord(args: Object, params: Params): Object
     {
         return Object.assign({}, args, this.argumentsRelationsObject());
     }

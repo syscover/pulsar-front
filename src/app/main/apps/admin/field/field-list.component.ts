@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { FieldGraphQLService } from './field-graphql.service';
+import { graphQL } from './field.graphql';
 import { FieldType } from './../admin.models';
 import * as _ from 'lodash';
 
@@ -20,8 +20,7 @@ export class FieldListComponent extends CoreListComponent
     adminConfigFieldTypesId: any[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { FieldGroupGraphQLService } from './field-group-graphql.service';
+import { graphQL } from './field-group.graphql';
 
 @Component({
     selector: 'dh2-field-group-list',
@@ -17,8 +17,7 @@ export class FieldGroupListComponent extends CoreListComponent
     displayedColumns = ['admin_field_group.id', 'admin_field_group.name', 'admin_resource.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldGroupGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

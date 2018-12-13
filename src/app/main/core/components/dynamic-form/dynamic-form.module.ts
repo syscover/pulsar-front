@@ -13,7 +13,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FroalaModule } from './../froala/froala.module';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { DynamicFormService } from './dynamic-form.service';
-import { FieldGraphQLService } from './../../../apps/admin/field/field-graphql.service';
 
 import { GetFieldLabelPipe } from './pipes/get-field-label.pipe';
 import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
@@ -40,8 +39,7 @@ import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
         DynamicFormComponent
     ],
     providers: [
-        DynamicFormService,
-        FieldGraphQLService
+        DynamicFormService
     ],
 })
 export class DynamicFormModule

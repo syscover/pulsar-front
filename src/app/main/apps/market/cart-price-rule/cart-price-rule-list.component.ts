@@ -2,7 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-cart-price-rule-list',

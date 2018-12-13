@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { FieldValueGraphQLService } from './field-value-graphql.service';
+import { graphQL } from './field-value.graphql';
 
 @Component({
     selector: 'dh2-field-value-detail',
@@ -16,8 +16,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent
     field_id: number;
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldValueGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
 
@@ -28,7 +27,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         this.fg.controls['field_id'].setValue(this.field_id);
     }
 
-    createForm()
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -41,7 +40,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         });
     }
 
-    getCustomArgumentsGetRecord(args, params) 
+    getCustomArgumentsGetRecord(args, params): Object
     {
         args.sql.push({
             command: 'where',
@@ -53,7 +52,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         return args;
     } 
 
-    handleEnableId($event) 
+    handleEnableId($event): void
     {
         if (this.fg.controls['id'].disabled) 
         {

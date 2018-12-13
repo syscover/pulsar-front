@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { FieldValueGraphQLService } from './field-value-graphql.service';
+import { graphQL } from './field-value.graphql';
 
 @Component({
     selector: 'dh2-field-value-list',
@@ -22,8 +22,7 @@ export class FieldValueListComponent extends CoreListComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldValueGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     

@@ -3,9 +3,8 @@ import { Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { FieldGraphQLService } from './field-graphql.service';
-import { Field, FieldGroup, FieldType, DataType } from './../admin.models';
-import * as _ from 'lodash';
+import { graphQL } from './field.graphql';
+import { FieldGroup, FieldType, DataType } from './../admin.models';
 
 @Component({
     selector: 'dh2-field-detail',
@@ -21,13 +20,12 @@ export class FieldDetailComponent extends CoreDetailComponent
     dataTypes: DataType[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FieldGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -46,7 +44,7 @@ export class FieldDetailComponent extends CoreDetailComponent
         });
     }
 
-    disabledForm() 
+    disabledForm(): void
     {
         this.fg.controls['field_group_id'].disable();
         this.fg.controls['name'].disable();
@@ -121,7 +119,7 @@ export class FieldDetailComponent extends CoreDetailComponent
 
     // overwrite this method for not implement lang_id property in aguments
     // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): any 
+    getCustomArgumentsGetRecord(args: Object, params: Params): Object
     {
         return Object.assign({}, {
             sql: [{
@@ -134,7 +132,7 @@ export class FieldDetailComponent extends CoreDetailComponent
         );
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set field groups
         this.fieldGroups = data.adminFieldGroups;
