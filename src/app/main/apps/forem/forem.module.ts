@@ -5,6 +5,7 @@ import { ForemRoutingModule } from './forem-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 // import { CommentListComponent } from './comment/comment-list.component';
 // import { CommentDetailComponent } from './comment/comment-detail.component';
 // import { ObjectAverageListComponent } from './object-average/object-average-list.component';
@@ -31,7 +32,7 @@ import { locale as spanish } from './i18n/es';
     ],
     exports: [ ],
     declarations: [
-        // CommentListComponent,
+        EmploymentOfficeListComponent
         // CommentDetailComponent,
         // ObjectAverageListComponent,
         // ObjectAverageDetailComponent,
@@ -43,14 +44,7 @@ import { locale as spanish } from './i18n/es';
         // ReviewListComponent,
         // ReviewDetailComponent
     ],
-    providers: [
-        // CommentGraphQLService,
-        // ObjectAverageGraphQLService,
-        // PollGraphQLService,
-        // PreferenceGraphQLService,
-        // QuestionGraphQLService,
-        // ReviewGraphQLService
-    ]
+    providers: []
 })
 
 export class ForemModule

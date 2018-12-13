@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ProfileGraphQLService } from './profile-graphql.service';
+import { graphQL } from './profile.graphql';
 
 @Component({
     selector: 'dh2-profile-detail',
@@ -11,12 +11,11 @@ import { ProfileGraphQLService } from './profile-graphql.service';
 })
 export class ProfileDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'ADMIN.PROFILE';
+    objectTranslation = 'APPS.PROFILE';
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ProfileGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

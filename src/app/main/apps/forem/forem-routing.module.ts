@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from './../../core/services/authorization.service';
 
+import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 // import { CommentListComponent } from './comment/comment-list.component';
 // import { CommentDetailComponent } from './comment/comment-detail.component';
 // import { ObjectAverageListComponent } from './object-average/object-average-list.component';
@@ -19,10 +20,10 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthorizationService],
         children: [
-            // // Reviews
-            // { path: 'review',                                       component: ReviewListComponent },
-            // { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
-            // { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
+            // // EmploymentOffices
+            { path: 'employment-office',                                       component: EmploymentOfficeListComponent },
+            // { path: 'employment-office/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
+            // { path: 'employment-office/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
             //
             // // Comments
             // { path: 'comment',                                       component: CommentListComponent },

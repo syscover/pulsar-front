@@ -43,7 +43,6 @@ import { UserDetailComponent } from './user/user-detail.component';
 
 import { OauthAccessTokenGraphqlService } from './oauth-access-token/oauth-access-token-graphql.service';
 import { OAuthClientGraphqlService } from './oauth-client/oauth-client-graphql.service';
-import { ProfileGraphQLService } from './profile/profile-graphql.service';
 import { TerritorialArea1GraphQLService } from './territorial_area_1/territorial-area-1-graphql.service';
 import { TerritorialArea2GraphQLService } from './territorial_area_2/territorial-area-2-graphql.service';
 import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
@@ -95,7 +94,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
     providers: [
         OauthAccessTokenGraphqlService,
         OAuthClientGraphqlService,
-        ProfileGraphQLService,
         TerritorialArea1GraphQLService,
         TerritorialArea2GraphQLService,
         TerritorialArea3GraphQLService,

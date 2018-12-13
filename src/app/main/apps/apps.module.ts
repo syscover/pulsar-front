@@ -48,6 +48,11 @@ const routes = [
         loadChildren: './review/review.module#ReviewModule',
         canLoad     : [AuthorizationService]
     },
+    {
+        path        : 'forem',
+        loadChildren: './forem/forem.module#ForemModule',
+        canLoad     : [AuthorizationService]
+    },
 ];
 
 

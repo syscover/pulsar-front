@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ProfileGraphQLService } from './profile-graphql.service';
+import { graphQL } from './profile.graphql';
 
 @Component({
     selector: 'dh2-profile-list',
@@ -12,14 +11,13 @@ import { ProfileGraphQLService } from './profile-graphql.service';
 })
 export class ProfileListComponent extends CoreListComponent
 {
-    objectTranslation = 'ADMIN.PROFILE';
+    objectTranslation = 'APPS.PROFILE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_profile.id', 'admin_profile.name'];
     displayedColumns = ['admin_profile.id', 'admin_profile.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ProfileGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

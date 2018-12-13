@@ -20,7 +20,6 @@ export const locale = {
             'MAXIMUM_LENGTH': 'Longitud máxima',
             'PACKAGE': 'Paquete',
             'PATTERN': 'Patrón',
-            'PROFILE': 'Perfil',
             'QUALITY': 'Calidad',
             'REDIRECT_URL': 'Url de redirección',
             'REQUIRED': 'Requerido',

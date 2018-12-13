@@ -49,6 +49,24 @@ export const navigation: FuseNavigation[] = [
                     }
                 ]
             },
+            {
+                'id'   : 'forem',
+                'title': 'Forem',
+                'translate': 'NAV.FOREM',
+                'type' : 'collapsable',
+                'icon' : 'highlight',
+                'children' : [
+
+                    {
+                        'id'        : 'employment_offices',
+                        'title'     : 'Employment offices',
+                        'translate' : 'NAV.EMPLOYMENT_OFFICES',
+                        'type'      : 'item',
+                        'icon'      : 'store_mall_directory',
+                        'url'       : '/apps/forem/employment-office'
+                    }
+                ]
+            },
             /* {
                 'id'   : 'booking',
                 'title': 'Booking',
