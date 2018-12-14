@@ -64,35 +64,39 @@
 
             <!-- CONTENT -->
             <div class="content">
-                <div fxFlex fxLayout="column">
-                    <form   id="formDetail"
+
+                <form   id="formDetail"
+                        fxLayout="column"
+                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <input type="hidden" formControlName="user_id">
-                
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
-                        </mat-form-field>
-                    </div>
+                    <div class="container">
+                        <input type="hidden" formControlName="user_id">
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12 col-md-4">
+                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'ADMIN.REDIRECT_URL' | translate }}" formControlName="redirect" required>
-                            <mat-error>{{ formErrors?.redirect }}</mat-error>
-                        </mat-form-field>
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-12">
+                                <input matInput placeholder="{{ 'ADMIN.REDIRECT_URL' | translate }}" formControlName="redirect" required>
+                                <mat-error>{{ formErrors?.redirect }}</mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
 
                 </form>
-                </div>
+
             </div>
             <!-- / CONTENT -->
 

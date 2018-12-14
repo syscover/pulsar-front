@@ -69,45 +69,47 @@
                         fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
-                
-                    <input type="hidden" formControlName="ix">
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                            <input matInput formControlName="id" required>
-                            <mat-error>{{ formErrors?.id }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                    <div class="container">
+                        <input type="hidden" formControlName="ix">
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                            <input matInput formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                <input matInput formControlName="id" required>
+                                <mat-error>{{ formErrors?.id }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-sm-5">
-                            <mat-label>{{ 'ADMIN.ICON' | translate }}</mat-label>
-                            <input matInput formControlName="icon">
-                            <mat-error>{{ formErrors?.icon }}</mat-error>
-                        </mat-form-field>
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                <input matInput formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-sm-5">
-                            <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
-                            <input matInput formControlName="sort" type="number" required>
-                            <mat-error>{{ formErrors?.sort }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <div fxLayout="row wrap" class="justify-content-between">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-sm-5">
+                                <mat-label>{{ 'ADMIN.ICON' | translate }}</mat-label>
+                                <input matInput formControlName="icon">
+                                <mat-error>{{ formErrors?.icon }}</mat-error>
+                            </mat-form-field>
 
-                    <div fxLayout="row">
-                        <div class="col-6 py-20">
-                            <mat-checkbox formControlName="active" labelPosition="before">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-sm-5">
+                                <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                                <input matInput formControlName="sort" type="number" required>
+                                <mat-error>{{ formErrors?.sort }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div class="col-6 py-20">
+                                <mat-checkbox formControlName="active" labelPosition="before">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
+                            </div>
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
             <!-- / CONTENT -->
