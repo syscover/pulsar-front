@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { OauthAccessTokenGraphqlService } from './oauth-access-token-graphql.service';
+import { graphQL } from './oauth-access-token.graphql';
 
 @Component({
     selector: 'dh2-oauth-access-token-list',
@@ -18,8 +17,7 @@ export class OauthAccessTokenListComponent extends CoreListComponent
     displayedColumns = ['oauth_access_tokens.id', 'oauth_access_tokens.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: OauthAccessTokenGraphqlService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

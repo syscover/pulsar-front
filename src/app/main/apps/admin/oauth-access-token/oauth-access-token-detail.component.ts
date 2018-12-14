@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { OauthAccessTokenGraphqlService } from './oauth-access-token-graphql.service';
+import { graphQL } from './oauth-access-token.graphql';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { User } from '../admin.models';
 
@@ -19,7 +19,6 @@ export class OauthAccessTokenDetailComponent extends CoreDetailComponent impleme
 
     constructor(
         protected injector: Injector,
-        protected graphQL: OauthAccessTokenGraphqlService,
         private _authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);

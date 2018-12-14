@@ -1,34 +1,43 @@
-import { Injectable } from '@angular/core';
-import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
 
-@Injectable()
-export class OauthAccessTokenGraphqlService extends GraphQLSchema
-{
-    queryPaginationObject = gql`
+const fields = `
+    id 
+    user_id
+    name
+`;
+
+const relationsFields = ``;
+
+export const graphQL = {
+    model: 'Syscover\\Admin\\Models\\OAuthAccessToken',
+    table: 'oauth_access_tokens',
+    fields,
+    relationsFields,
+
+    queryPaginationObject: gql`
         query AdminGetOAuthClientsPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: adminOAuthAccessTokensPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
             }
-        }`;
+        }`,
 
-    queryObjects = gql`
+    queryObjects: gql`
         query AdminGetOAuthAccessTokens ($sql:[CoreSQLInput]) {
             coreObjects: adminOAuthAccessTokens (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
+        }`,
 
-    queryObject = gql`
+    queryObject: gql`
         query AdminGetOAuthAccessToken ($sql:[CoreSQLInput]) {
             coreObject: adminOAuthAccessToken (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
+        }`,
 
-    mutationCreateObject = gql`
+    mutationCreateObject: gql`
         mutation AdminCreateOAuthAccessToken ($payload:AdminOAuthAccessTokenInput!) {
             adminCreateOAuthAccessToken (payload:$payload) {
                 ... on AdminOAuthPersonalAccessTokenResult {
@@ -40,36 +49,19 @@ export class OauthAccessTokenGraphqlService extends GraphQLSchema
                     }
                 }
             }
-        }`;
+        }`,
 
-    mutationUpdateObject = gql`
+    mutationUpdateObject: gql`
         mutation AdminUpdateOAuthAccessToken ($payload:AdminOAuthAccessTokenInput!) {
             adminUpdateOAuthAccessToken (payload:$payload) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
+        }`,
 
-    mutationDeleteObject = gql`
+    mutationDeleteObject: gql`
         mutation AdminDeleteOAuthAccessToken ($id:String!) {
             adminDeleteOAuthAccessToken (id:$id) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
-
-    init(): void
-    {
-        this.model = 'Syscover\\Admin\\Models\\OAuthAccessToken';
-        this.table = 'oauth_access_tokens';
-
-        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
-        this.fields = `
-            ... on AdminOAuthAccessToken {
-                id 
-                user_id
-                name
-            }
-        `;
-
-        super.init();
-    }
-}
+        }`
+};
