@@ -226,7 +226,8 @@
                                     <div class="col-12 col-md-4">
                                         <dh2-territories    [formGroup]="fg"
                                                             [formErrors]="formErrors"
-                                                            [countries]="countries"></dh2-territories>
+                                                            [countries]="countries"
+                                                            [required]="['country']"></dh2-territories>
                                     </div>
                                 </div>
 
@@ -607,7 +608,7 @@
                             </div>
                         </mat-tab>
 
-                        <mat-tab label="{{ 'STOCKABLE.STOCK' | translate | uppercase }}"
+                        <mat-tab label="{{ 'APPS.STOCK' | translate | uppercase }}"
                                  *ngIf="dataRoute.action === 'edit' && fg.get('is_product').value">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">

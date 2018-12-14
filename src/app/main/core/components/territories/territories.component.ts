@@ -17,7 +17,7 @@ import {takeUntil} from 'rxjs/operators';
             
             <div fxLayout="row">
                 <mat-form-field class="col">
-                    <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)">
+                    <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)" [required]="required.indexOf('country') > -1">
                         <ngx-mat-select-search [formControl]="countryFilterCtrl"
                                                placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -29,7 +29,7 @@ import {takeUntil} from 'rxjs/operators';
 
             <div fxLayout="row" *ngIf="showTerritorialAreas1">
                 <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_1" [formControlName]="territorialArea1ControlName" (selectionChange)="handleChangeTerritorialArea1($event)">
+                    <mat-select [placeholder]="country?.territorial_area_1" [formControlName]="territorialArea1ControlName" (selectionChange)="handleChangeTerritorialArea1($event)" [required]="required.indexOf('territorial_area_1') > -1">
                         <mat-option *ngFor="let territorialArea1 of territorialAreas1" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea1ControlName] : null }}</mat-error>
@@ -38,7 +38,7 @@ import {takeUntil} from 'rxjs/operators';
 
             <div fxLayout="row" *ngIf="showTerritorialAreas2">
                 <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_2" [formControlName]="territorialArea2ControlName" (selectionChange)="handleChangeTerritorialArea2($event)">
+                    <mat-select [placeholder]="country?.territorial_area_2" [formControlName]="territorialArea2ControlName" (selectionChange)="handleChangeTerritorialArea2($event)" [required]="required.indexOf('territorial_area_2') > -1">
                         <mat-option *ngFor="let territorialArea2 of territorialAreas2" [value]="territorialArea2.id">{{ territorialArea2.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea2ControlName] : null }}</mat-error>
@@ -47,7 +47,7 @@ import {takeUntil} from 'rxjs/operators';
 
             <div fxLayout="row" *ngIf="showTerritorialAreas3">
                 <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_3" [formControlName]="territorialArea3ControlName">
+                    <mat-select [placeholder]="country?.territorial_area_3" [formControlName]="territorialArea3ControlName" [required]="required.indexOf('territorial_area_3') > -1">
                         <mat-option *ngFor="let territorialArea3 of territorialAreas3" [value]="territorialArea3.id">{{ territorialArea3.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea3ControlName] : null }}</mat-error>
@@ -67,6 +67,7 @@ export class TerritoriesComponent implements OnChanges, OnInit, OnDestroy
     @Input() territorialArea1ControlName = 'territorial_area_1_id';
     @Input() territorialArea2ControlName = 'territorial_area_2_id';
     @Input() territorialArea3ControlName = 'territorial_area_3_id';
+    @Input() required = [];
 
     // countries
     countryFilterCtrl: FormControl = new FormControl();

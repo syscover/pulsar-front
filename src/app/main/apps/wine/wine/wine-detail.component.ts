@@ -127,7 +127,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             appellation_id: ['', Validators.required],
             presentation_id: '',
             abv: '',
-            country_id: '',
+            country_id: ['', Validators.required],
             territorial_area_1_id: '',
             territorial_area_2_id: '',
             territorial_area_3_id: '',

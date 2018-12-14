@@ -17,7 +17,7 @@ import { ValidationMessageService } from './../../../core/services/validation-me
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'STOCKABLE.STOCK' | translate }}" formControlName="stock" type="number">
+                            <input matInput placeholder="{{ 'APPS.STOCK' | translate }}" formControlName="stock" type="number">
                             <mat-error>{{ formErrors?.stock }}</mat-error>
                         </mat-form-field>
                     </div>

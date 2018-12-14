@@ -74,6 +74,18 @@
                     <mat-cell *matCellDef="let row">{{ row.vintage }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="wine_wine.price">
+                    <mat-header-cell *matHeaderCellDef matSortDisabled>{{ 'APPS.PRICE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.price | currencyFormat }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="wine_wine.stock">
+                    <mat-header-cell *matHeaderCellDef matSortDisabled>{{ 'APPS.STOCK' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.stocks | sumBy:'stock' }}</mat-cell>
+                </ng-container>
+
                 <!-- LANGS -->
                 <ng-container matColumnDef="translations">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.TRANSLATIONS' | translate }}</mat-header-cell>
