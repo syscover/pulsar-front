@@ -84,12 +84,15 @@
         <div class="content-card mat-white-bg p-24">
 
             <!-- CONTENT -->
-            <div class="content" fusePerfectScrollbar>
-                <div fxFlex fxLayout="column">
-                    <form   id="formDetail"
+            <div class="content">
+
+                <form   id="formDetail"
+                            fxLayout="column"
+                            fxFlex
                             [formGroup]="fg"
                             (ngSubmit)="postRecord(object)">
-                    
+
+                    <div class="container">
                         <input type="hidden" formControlName="ix">
 
                         <div fxLayout="row wrap">
@@ -104,7 +107,7 @@
                         <div fxLayout="row">
                             <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input dh2Slug [model]="graphQL.model" matInput formControlName="name" required>
+                                <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>
                             </mat-form-field>
                         </div>
@@ -112,7 +115,8 @@
                         <div fxLayout="row">
                             <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
-                                <input dh2Slug [model]="graphQL.model" matInput formControlName="slug" required>
+                                <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
+                                <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                                 <mat-error>{{ formErrors?.slug }}</mat-error>
                             </mat-form-field>
                         </div>
@@ -164,9 +168,10 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
+                    </div>
 
-                    </form>
-                </div>
+                </form>
+
             </div>
             <!-- / CONTENT -->
 

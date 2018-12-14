@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
-import { graphQL as foremProfileGraphQL } from '../../admin/profile/profile.graphql';
+import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 
 const fields = `
     id
     profile_id
     profile {
-        ${foremProfileGraphQL.fields}
+        ${adminProfileGraphQL.fields}
     }
     code
     name
@@ -21,7 +22,14 @@ const fields = `
     longitude
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    adminCountries (sql:$sqlCountry) {
+        ${adminCountryGraphQL.fields}
+    }
+    adminProfiles {
+        ${adminProfileGraphQL.fields}
+    }
+`;
 
 export const graphQL = {
     model: 'Syscover\\Forem\\Models\\EmploymentOffice',
@@ -38,11 +46,17 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query ForemGetRelationsEmploymentOffice ($sqlCountry:[CoreSQLInput]){
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
         query ForemGetEmploymentOffices ($sql:[CoreSQLInput]) {
-            coreObjects: foremEmploymentOffices (sql:$sql){
+            coreObjects: foremEmploymentOffices (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
@@ -50,6 +64,7 @@ export const graphQL = {
             coreObject: foremEmploymentOffice (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`

@@ -18,8 +18,8 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     objectTranslation = 'APPS.CUSTOMER';
     objectTranslationGender = 'M';
     customerGroups: CustomerGroup[] = [];
-    inputType = 'password';
     countries: Country[] = [];
+    inputType = 'password';
 
     constructor(
         protected injector: Injector,
@@ -58,14 +58,15 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     {   
         super.ngOnInit();
 
-        // set validator after ngOnInit to get AbstractControl implementation in notEqual custom validation
-        this.fg.controls['repeat_password'].setValidators(notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD']));
-
         // set required password in create action
         if (this.dataRoute.action === 'create')
         {
-            this.fg.controls['password'].setValidators(Validators.required);
-            this.fg.controls['repeat_password'].setValidators(Validators.required);
+            this.fg.get('password').setValidators(Validators.required);
+            this.fg.get('repeat_password').setValidators([Validators.required, notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD'])]);
+        }
+        else {
+            // set validator in ngOnInit to get AbstractControl implementation in notEqual custom validation
+            this.fg.get('repeat_password').setValidators(notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD']));
         }
     }
 
@@ -125,8 +126,8 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
             length: 10,
             numbers: true
         });
-        
-        this.fg.controls['password'].setValue(password);
-        this.fg.controls['repeat_password'].setValue(password);
+
+        this.fg.get('password').setValue(password);
+        this.fg.get('repeat_password').setValue(password);
     }
 }

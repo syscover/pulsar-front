@@ -6,24 +6,7 @@ import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
 import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
-// import { CommentListComponent } from './comment/comment-list.component';
-// import { CommentDetailComponent } from './comment/comment-detail.component';
-// import { ObjectAverageListComponent } from './object-average/object-average-list.component';
-// import { ObjectAverageDetailComponent } from './object-average/object-average-detail.component';
-// import { PollListComponent } from './poll/poll-list.component';
-// import { PollDetailComponent } from './poll/poll-detail.component';
-// import { PreferenceDetailComponent } from './preference/preference-detail.component';
-// import { QuestionListComponent } from './question/question-list.component';
-// import { QuestionDetailComponent } from './question/question-detail.component';
-// import { ReviewListComponent } from './review/review-list.component';
-// import { ReviewDetailComponent } from './review/review-detail.component';
-//
-// import { CommentGraphQLService } from './comment/comment-graphql.service';
-// import { ObjectAverageGraphQLService } from './object-average/object-average-graphql.service';
-// import { PollGraphQLService } from './poll/poll-graphql.service';
-// import { PreferenceGraphQLService } from './preference/preference-graphql.service';
-// import { QuestionGraphQLService } from './question/question-graphql.service';
-// import { ReviewGraphQLService } from './review/review-graphql.service';
+import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
 
 @NgModule({
     imports: [
@@ -32,17 +15,8 @@ import { EmploymentOfficeListComponent } from './employment-office/employment-of
     ],
     exports: [ ],
     declarations: [
-        EmploymentOfficeListComponent
-        // CommentDetailComponent,
-        // ObjectAverageListComponent,
-        // ObjectAverageDetailComponent,
-        // PollListComponent,
-        // PollDetailComponent,
-        // PreferenceDetailComponent,
-        // QuestionListComponent,
-        // QuestionDetailComponent,
-        // ReviewListComponent,
-        // ReviewDetailComponent
+        EmploymentOfficeDetailComponent,
+        EmploymentOfficeListComponent,
     ],
     providers: []
 })

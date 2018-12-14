@@ -36,6 +36,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     section: Section;
     family: Family; // family for adapt article form
     separatorKeysCodes = [ENTER, COMMA];
+    loadingSlug = false;
     private _attachmentFamilies: AttachmentFamily[];
     
     constructor(
@@ -149,6 +150,11 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
         {
             this.family = null;
         }
+    }
+
+    handleCheckingSlug($event): void
+    {
+        this.loadingSlug = $event;
     }
 
     argumentsRelationsObject(): Object

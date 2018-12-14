@@ -9,9 +9,6 @@ import { environment } from 'environments/environment';
         :host{
             justify-content: center;
         }
-        agm-map {
-            height: 500px;
-        }
         .search-box {
             width: 60% !important;
             position: absolute;
@@ -30,7 +27,8 @@ import { environment } from 'environments/environment';
             </div>
         </div>
         
-        <agm-map    [latitude]="formGroup.get(latitudeControlName).value ? formGroup.get(latitudeControlName).value : dedaultLatitude" 
+        <agm-map    [style.height]="height"
+                    [latitude]="formGroup.get(latitudeControlName).value ? formGroup.get(latitudeControlName).value : dedaultLatitude" 
                     [longitude]="formGroup.get(longitudeControlName).value ? formGroup.get(longitudeControlName).value : dedaultLongitude"
                     [mapTypeControl]="true"
                     [mapTypeControlOptions]="mapTypeControlOptions">
@@ -50,6 +48,7 @@ export class LocationMapComponent implements OnInit
     @Input() formGroup: FormGroup;
     @Input() latitudeControlName = 'latitude';
     @Input() longitudeControlName = 'longitude';
+    @Input() height = '300px';
     @ViewChild('search') serachBox: ElementRef;
     @ViewChild('marker') marker: ElementRef;
 
@@ -91,7 +90,7 @@ export class LocationMapComponent implements OnInit
             });
 
             this.mapTypeControlOptions = {
-                position: google.maps.ControlPosition.TOP_LEFT
+                position: google.maps.ControlPosition.BOTTOM_CENTER
             };
         });
     }

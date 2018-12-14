@@ -27,7 +27,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -47,18 +47,19 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
     {   
         super.ngOnInit();
 
-        // set validator after ngOnInit to get AbstractControl implementation in notEqual custom validation
-        this.fg.controls['repeat_password'].setValidators(notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD']));
-
         // set required password in create action
         if (this.dataRoute.action === 'create')
         {
-            this.fg.controls['password'].setValidators(Validators.required);
-            this.fg.controls['repeat_password'].setValidators(Validators.required);
+            this.fg.get('password').setValidators(Validators.required);
+            this.fg.get('repeat_password').setValidators([Validators.required, notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD'])]);
+        }
+        else {
+            // set validator in ngOnInit to get AbstractControl implementation in notEqual custom validation
+            this.fg.get('repeat_password').setValidators(notEqual('password', this.translations['APPS.PASSWORD'], this.translations['APPS.REPEAT_PASSWORD']));
         }
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set admin langs
         this.langsAux = data.adminLangs;
@@ -67,7 +68,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         this.profiles = data.adminProfiles;
     }
 
-    getCustomArgumentsCreatePostRecord(args, object)
+    getCustomArgumentsCreatePostRecord(args, object): Object
     { 
         // delete repeat_password from object to ajust to user class
         delete args['payload']['repeat_password'];
@@ -75,7 +76,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         return args;
     }
 
-    getCustomArgumentsEditPostRecord(args, object) 
+    getCustomArgumentsEditPostRecord(args, object): Object
     {
         // delete repeat_password from object to ajust to user class
         delete args['payload']['repeat_password'];
@@ -83,14 +84,14 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         return args;
     }
 
-    generatePassword()
+    generatePassword(): void
     {
         const password = passwordGenerator.generate({
             length: 10,
             numbers: true
         });
         
-        this.fg.controls['password'].setValue(password);
-        this.fg.controls['repeat_password'].setValue(password);
+        this.fg.get('password').setValue(password);
+        this.fg.get('repeat_password').setValue(password);
     }
 }

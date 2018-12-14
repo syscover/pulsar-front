@@ -13,6 +13,7 @@ export class CountryDetailComponent extends CoreDetailComponent
 {
     objectTranslation = 'APPS.COUNTRY';
     objectTranslationGender = 'M';
+    loadingSlug = false;
     graphQL = graphQL;
     zones: any[] = [
         { id: 'territorial_areas_1', name: 'Territorial Areas 1' },
@@ -41,5 +42,10 @@ export class CountryDetailComponent extends CoreDetailComponent
             territorial_area_3: '',
             zones: [[]],
         });
+    }
+
+    handleCheckingSlug($event): void
+    {
+        this.loadingSlug = $event;
     }
 }
