@@ -64,40 +64,39 @@
 
             <!-- CONTENT -->
             <div class="content">
+
                 <form   id="formDetail"
-                        fxLayout="column"
-                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div class="container">
-                        <div fxLayout="row" *ngIf="dataRoute.action ==='edit'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id">
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                <mat-label>{{ 'APPS.RESOURCE' | translate }}</mat-label>
-                                <mat-select formControlName="resource_id" required>
-                                    <mat-option *ngFor="let resource of resources" [value]="resource.id">{{ resource.name }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ formErrors?.resource_id }}</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.MIME' | translate }}</mat-label>
-                                <input matInput formControlName="mime" required>
-                                <mat-error>{{ formErrors?.mime }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row" *ngIf="dataRoute.action ==='edit'">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
+                        </mat-form-field>
                     </div>
 
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'APPS.RESOURCE' | translate }}</mat-label>
+                            <mat-select formControlName="resource_id" required>
+                                <mat-option *ngFor="let resource of resources" [value]="resource.id">{{ resource.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.resource_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.MIME' | translate }}</mat-label>
+                            <input matInput formControlName="mime" required>
+                            <mat-error>{{ formErrors?.mime }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+
                 </form>
+
             </div>
             <!-- / CONTENT -->
 

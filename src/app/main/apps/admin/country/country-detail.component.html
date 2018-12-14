@@ -44,7 +44,7 @@
                         class="fuse-white mt-16 mt-sm-0"
                         [disabled]="fg.pristine || loadingButton"
                         *ngIf="dataRoute.action ==='create'">
-                    <span>{{ 'APPS.ADD' | translate }}X</span>
+                    <span>{{ 'APPS.ADD' | translate }}</span>
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 
@@ -87,87 +87,83 @@
             <div class="content">
 
                 <form   id="formDetail"
-                            fxLayout="column"
-                            fxFlex
-                            [formGroup]="fg"
-                            (ngSubmit)="postRecord(object)">
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
 
-                    <div class="container">
-                        <input type="hidden" formControlName="ix">
+                    <input type="hidden" formControlName="ix">
 
-                        <div fxLayout="row wrap">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id" required>
-                                <mat-error>{{ formErrors?.id }}</mat-error>
-                            </mat-form-field>
-                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
-                        </div>
+                    <div fxLayout="row wrap">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
+                            <mat-error>{{ formErrors?.id }}</mat-error>
+                        </mat-form-field>
+                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
-                                <mat-error>{{ formErrors?.name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
-                                <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                                <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
-                                <mat-error>{{ formErrors?.slug }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
+                            <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
+                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
+                            <mat-error>{{ formErrors?.slug }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row wrap" fxLayoutGap="25px">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
-                                <mat-label>{{ 'APPS.PREFIX' | translate }}</mat-label>
-                                <span matPrefix><mat-icon>add</mat-icon> &nbsp;</span>
-                                <input matInput formControlName="prefix" type="number">
-                                <mat-error>{{ formErrors?.prefix }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
-                                <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
-                                <input matInput formControlName="sort" type="number">
-                                <mat-error>{{ formErrors?.sort }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row wrap" fxLayoutGap="25px">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                            <mat-label>{{ 'APPS.PREFIX' | translate }}</mat-label>
+                            <span matPrefix><mat-icon>add</mat-icon> &nbsp;</span>
+                            <input matInput formControlName="prefix" type="number">
+                            <mat-error>{{ formErrors?.prefix }}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                            <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                            <input matInput formControlName="sort" type="number">
+                            <mat-error>{{ formErrors?.sort }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}</mat-label>
-                                <input matInput formControlName="territorial_area_1">
-                                <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_1' | translate }}</mat-label>
+                            <input matInput formControlName="territorial_area_1">
+                            <mat-error>{{ formErrors?.territorial_area_1 }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}</mat-label>
-                                <input matInput formControlName="territorial_area_2">
-                                <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_2' | translate }}</mat-label>
+                            <input matInput formControlName="territorial_area_2">
+                            <mat-error>{{ formErrors?.territorial_area_2 }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}</mat-label>
-                                <input matInput formControlName="territorial_area_3">
-                                <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'ADMIN.TERRITORIAL_AREA_3' | translate }}</mat-label>
+                            <input matInput formControlName="territorial_area_3">
+                            <mat-error>{{ formErrors?.territorial_area_3 }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                <mat-label>{{ 'ADMIN.ZONES' | translate }}</mat-label>
-                                <mat-select formControlName="zones" multiple>
-                                    <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
-                                    <mat-error>{{ formErrors?.zones }}</mat-error>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'ADMIN.ZONES' | translate }}</mat-label>
+                            <mat-select formControlName="zones" multiple>
+                                <mat-option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</mat-option>
+                                <mat-error>{{ formErrors?.zones }}</mat-error>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
 
                 </form>

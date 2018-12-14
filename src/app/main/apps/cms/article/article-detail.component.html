@@ -88,10 +88,10 @@
                 
                 <form   id="formDetail"
                         class="col-12"
-                        [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)"
                         fxLayout="column"
-                        fxFlex>
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
 
                     <mat-tab-group>
 

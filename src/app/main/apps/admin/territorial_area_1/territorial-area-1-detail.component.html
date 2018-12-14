@@ -66,39 +66,37 @@
 
             <!-- CONTENT -->
             <div class="content">
+
                 <form   id="formDetail"
-                        fxLayout="column"
-                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object, ['/apps/admin/country/territorial-area-1', country.id])">
 
-                    <div class="container">
-                        <input type="hidden" formControlName="ix">
+                    <input type="hidden" formControlName="ix">
 
-                        <div fxLayout="row">
-                            <mat-form-field class="col-5 col-md-4">
-                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
-                                <mat-error>{{ formErrors?.id }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field class="col-5 col-md-4">
+                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                            <mat-error>{{ formErrors?.id }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
-                                <mat-error>{{ formErrors?.name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
-                                <mat-spinner matSuffix *ngIf="slugLoader" mode="indeterminate" diameter="17"></mat-spinner>
-                                <mat-error>{{ formErrors?.slug }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                            <mat-spinner matSuffix *ngIf="slugLoader" mode="indeterminate" diameter="17"></mat-spinner>
+                            <mat-error>{{ formErrors?.slug }}</mat-error>
+                        </mat-form-field>
                     </div>
 
                 </form>
+
             </div>
             <!-- / CONTENT -->
 

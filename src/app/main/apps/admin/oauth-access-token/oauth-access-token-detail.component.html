@@ -66,28 +66,24 @@
             <div class="content">
 
                 <form   id="formDetail"
-                        fxLayout="column"
-                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div class="container">
-                        <input type="hidden" formControlName="user_id">
+                    <input type="hidden" formControlName="user_id">
 
-                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                            <mat-form-field class="col-12">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id">
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                        <mat-form-field class="col-12">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
+                        </mat-form-field>
+                    </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input matInput formControlName="name" required>
-                                <mat-error>{{ formErrors?.name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <div fxLayout="row">
+                        <mat-form-field class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
+                            <mat-error>{{ formErrors?.name }}</mat-error>
+                        </mat-form-field>
                     </div>
 
                 </form>
