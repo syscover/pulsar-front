@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { graphQL } from './field-value.graphql';
 
 @Component({
-    selector: 'dh2-field-value-detail',
+    selector: 'dh2-admin-field-value-detail',
     templateUrl: './field-value-detail.component.html',
     animations: fuseAnimations
 })

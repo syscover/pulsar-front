@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './oauth-access-token.graphql';
 
 @Component({
-    selector: 'dh2-oauth-access-token-list',
+    selector: 'dh2-admin-oauth-access-token-list',
     templateUrl: './oauth-access-token-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

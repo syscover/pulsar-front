@@ -7,7 +7,7 @@ import { graphQL } from './field.graphql';
 import { FieldGroup, FieldType, DataType } from './../admin.models';
 
 @Component({
-    selector: 'dh2-field-detail',
+    selector: 'dh2-admin-field-detail',
     templateUrl: 'field-detail.component.html',
     animations: fuseAnimations
 })

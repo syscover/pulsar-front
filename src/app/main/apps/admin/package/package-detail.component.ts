@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { graphQL } from './package.graphql';
 
 @Component({
-    selector: 'dh2-package-detail',
+    selector: 'dh2-admin-package-detail',
     templateUrl: 'package-detail.component.html',
     animations: fuseAnimations
 })

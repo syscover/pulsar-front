@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './field-value.graphql';
 
 @Component({
-    selector: 'dh2-field-value-list',
+    selector: 'dh2-admin-field-value-list',
     templateUrl: './field-value-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

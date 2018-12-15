@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './resource.graphql';
 
 @Component({
-    selector: 'dh2-resource-list',
+    selector: 'dh2-admin-resource-list',
     templateUrl: './resource-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

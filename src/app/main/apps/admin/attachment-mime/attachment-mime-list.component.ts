@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './attachment-mime.graphql';
 
 @Component({
-    selector: 'dh2-attachment-mime-list',
+    selector: 'dh2-admin-attachment-mime-list',
     templateUrl: './attachment-mime-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

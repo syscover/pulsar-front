@@ -1,11 +1,11 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { TerritorialArea3Graphql } from './territorial-area-3-graphql.service';
 import { Country } from './../admin.models';
+import { graphQL } from './territorial-area-3.graphql';
 
 @Component({
-    selector: 'dh2-territorial-area-3-list',
+    selector: 'dh2-admin-territorial-area-3-list',
     templateUrl: './territorial-area-3-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
@@ -22,8 +22,7 @@ export class TerritorialArea3ListComponent extends CoreListComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TerritorialArea3Graphql
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

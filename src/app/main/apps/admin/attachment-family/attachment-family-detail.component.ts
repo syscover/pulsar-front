@@ -7,7 +7,7 @@ import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-attachment-family-detail',
+    selector: 'dh2-admin-attachment-family-detail',
     templateUrl: 'attachment-family-detail.component.html',
     animations: fuseAnimations
 })

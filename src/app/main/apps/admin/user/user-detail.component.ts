@@ -8,7 +8,7 @@ import * as passwordGenerator from 'generate-password-browser';
 import { graphQL } from './user.graphql';
 
 @Component({
-    selector: 'dh2-user-detail',
+    selector: 'dh2-admin-user-detail',
     templateUrl: 'user-detail.component.html',
     animations: fuseAnimations
 })

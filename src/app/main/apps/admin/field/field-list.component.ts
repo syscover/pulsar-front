@@ -6,7 +6,7 @@ import { FieldType } from './../admin.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-field-list',
+    selector: 'dh2-admin-field-list',
     templateUrl: './field-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

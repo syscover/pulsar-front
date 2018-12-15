@@ -7,7 +7,7 @@ import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-field-group-detail',
+    selector: 'dh2-admin-field-group-detail',
     templateUrl: 'field-group-detail.component.html',
     animations: fuseAnimations
 })

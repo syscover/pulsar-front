@@ -6,7 +6,7 @@ import { graphQL } from './resource.graphql';
 import { Package } from './../admin.models';
 
 @Component({
-    selector: 'dh2-resource-detail',
+    selector: 'dh2-admin-resource-detail',
     templateUrl: 'resource-detail.component.html',
     animations: fuseAnimations
 })

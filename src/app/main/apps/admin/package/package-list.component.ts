@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './package.graphql';
 
 @Component({
-    selector: 'dh2-package-list',
+    selector: 'dh2-admin-package-list',
     templateUrl: './package-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

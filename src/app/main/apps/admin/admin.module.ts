@@ -41,8 +41,6 @@ import { TerritorialArea3DetailComponent } from './territorial_area_3/territoria
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
-import { UserGraphql } from './user/user-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
@@ -86,9 +84,7 @@ import { UserGraphql } from './user/user-graphql.service';
         UserListComponent,
         UserDetailComponent
     ],
-    providers: [
-        UserGraphql
-    ]
+    providers: []
 })
 
 export class AdminModule

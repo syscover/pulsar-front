@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './field-group.graphql';
 
 @Component({
-    selector: 'dh2-field-group-list',
+    selector: 'dh2-admin-field-group-list',
     templateUrl: './field-group-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

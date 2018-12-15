@@ -2,12 +2,12 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TerritorialArea3Graphql } from './territorial-area-3-graphql.service';
 import { Country, TerritorialArea2 } from './../admin.models';
 import * as _ from 'lodash';
+import { graphQL } from './territorial-area-3.graphql';
 
 @Component({
-    selector: 'dh2-territorial-area-3-detail',
+    selector: 'dh2-admin-territorial-area-3-detail',
     templateUrl: './territorial-area-3-detail.component.html',
     animations: fuseAnimations
 })
@@ -20,8 +20,7 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
     territorialAreas2: TerritorialArea2[] = [];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: TerritorialArea3Graphql
+        protected injector: Injector
     ) {
         super(injector, graphQL);
 

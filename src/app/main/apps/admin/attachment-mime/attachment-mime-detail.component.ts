@@ -7,7 +7,7 @@ import { Resource } from './../admin.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-attachment-mime-detail',
+    selector: 'dh2-admin-attachment-mime-detail',
     templateUrl: 'attachment-mime-detail.component.html',
     animations: fuseAnimations
 })

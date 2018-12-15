@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { graphQL } from './attachment-family.graphql';
 
 @Component({
-    selector: 'dh2-attachment-family-list',
+    selector: 'dh2-admin-attachment-family-list',
     templateUrl: './attachment-family-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

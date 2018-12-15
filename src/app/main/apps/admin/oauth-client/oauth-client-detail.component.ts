@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 import { User } from '../admin.models';
 
 @Component({
-    selector: 'dh2-oauth-client-detail',
+    selector: 'dh2-admin-oauth-client-detail',
     templateUrl: 'oauth-client-detail.component.html',
     animations: fuseAnimations
 })

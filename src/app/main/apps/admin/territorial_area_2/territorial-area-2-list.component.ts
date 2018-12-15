@@ -5,7 +5,7 @@ import { Country } from './../admin.models';
 import { graphQL } from './territorial-area-2.graphql';
 
 @Component({
-    selector: 'dh2-territorial-area-2-list',
+    selector: 'dh2-admin-territorial-area-2-list',
     templateUrl: './territorial-area-2-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
