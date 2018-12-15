@@ -71,31 +71,36 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-5">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-12 offset-md-1 col-md-6">
-                            <input matInput placeholder="{{ 'APPS.SURNAME' | translate }}" formControlName="surname">
+                            <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
+                            <input matInput formControlName="surname">
                             <mat-error>{{ formErrors?.surname }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="email" required>
+                            <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
+                            <input matInput formControlName="email" required>
                             <mat-error>{{ formErrors?.email }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'ADMIN.LANGUAGE' | translate }}" formControlName="lang_id" required>
+                            <mat-label>{{ 'ADMIN.LANGUAGE' | translate }}</mat-label>
+                            <mat-select formControlName="lang_id" required>
                                 <mat-option *ngFor="let lang of langsAux" [value]="lang.id">{{ lang.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.lang_id }}</mat-error>
@@ -117,7 +122,8 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'APPS.PROFILE' | translate }}" formControlName="profile_id" required>
+                            <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
+                            <mat-select formControlName="profile_id" required>
                                 <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.profile_id }}</mat-error>
@@ -126,16 +132,18 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <input matInput placeholder="{{ 'APPS.USER' | translate }}" formControlName="user" required>
+                            <mat-label>{{ 'APPS.USER' | translate }}</mat-label>
+                            <input matInput formControlName="user" required>
                             <mat-error>{{ formErrors?.user }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
+                            <mat-label>{{ 'APPS.PASSWORD' | translate }}</mat-label>
                             <mat-icon matSuffix matTooltip="{{ 'APPS.SHOW_PASSWORD' | translate }}" class="pointer" (mousedown)="inputType = 'text'" (mouseup)="inputType = 'password'" (mouseleave)="inputType = 'password'">remove_red_eye</mat-icon>
                             <mat-icon matSuffix matTooltip="{{ 'APPS.GENERATE_PASSWORD' | translate }}" class="pointer ml-12" (click)="generatePassword()">cached</mat-icon>
-                            <input matInput placeholder="{{ 'APPS.PASSWORD' | translate }}" formControlName="password" [type]="inputType" [required]="dataRoute.action === 'create'" autocomplete="new-password">
+                            <input matInput formControlName="password" [type]="inputType" [required]="dataRoute.action === 'create'" autocomplete="new-password">
                             <mat-hint align="end" aria-live="polite">{{ fg.controls['password'].value?.length }}</mat-hint>
                             <mat-error>{{ formErrors?.password }}</mat-error>
                         </mat-form-field>
@@ -146,7 +154,8 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <input matInput placeholder="{{ 'APPS.REPEAT_PASSWORD' | translate }}" formControlName="repeat_password" type="password" [required]="dataRoute.action === 'create'" autocomplete="new-password">
+                            <mat-label>{{ 'APPS.REPEAT_PASSWORD' | translate }}</mat-label>
+                            <input matInput formControlName="repeat_password" type="password" [required]="dataRoute.action === 'create'" autocomplete="new-password">
                             <mat-hint align="end" aria-live="polite">{{ fg.controls['repeat_password'].value?.length }}</mat-hint>
                             <mat-error>{{ formErrors?.repeat_password }}</mat-error>
                         </mat-form-field>
