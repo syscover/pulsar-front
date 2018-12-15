@@ -74,15 +74,17 @@
                     <input type="hidden" formControlName="ix">
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-5 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ country.territorial_area_1 }}" formControlName="territorial_area_1_id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ country.territorial_area_1 }}</mat-label>
+                            <mat-select formControlName="territorial_area_1_id" required>
                                 <mat-option *ngFor="let territorialArea1 of country.territorial_areas_1 | sortBy:['name']" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.territorial_area_1_id }}</mat-error>
@@ -90,15 +92,17 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug">
                             <mat-spinner matSuffix *ngIf="slugLoader" mode="indeterminate" diameter="17"></mat-spinner>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>

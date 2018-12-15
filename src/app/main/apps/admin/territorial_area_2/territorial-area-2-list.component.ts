@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { TerritorialArea2GraphQLService } from './territorial-area-2-graphql.service';
 import { Country } from './../admin.models';
+import { graphQL } from './territorial-area-2.graphql';
 
 @Component({
     selector: 'dh2-territorial-area-2-list',
@@ -22,8 +22,7 @@ export class TerritorialArea2ListComponent extends CoreListComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TerritorialArea2GraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -47,7 +46,7 @@ export class TerritorialArea2ListComponent extends CoreListComponent
         return args;
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin country
         this.country = data.adminCountry;

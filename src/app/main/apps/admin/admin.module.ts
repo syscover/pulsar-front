@@ -41,8 +41,6 @@ import { TerritorialArea3DetailComponent } from './territorial_area_3/territoria
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
-import { TerritorialArea1Graphql } from './territorial_area_1/territorial-area-1-graphql.service';
-import { TerritorialArea2GraphQLService } from './territorial_area_2/territorial-area-2-graphql.service';
 import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
 import { UserGraphQLService } from './user/user-graphql.service';
 
@@ -90,8 +88,6 @@ import { UserGraphQLService } from './user/user-graphql.service';
         UserDetailComponent
     ],
     providers: [
-        TerritorialArea1Graphql,
-        TerritorialArea2GraphQLService,
         TerritorialArea3GraphQLService,
         UserGraphQLService
     ]
