@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { TerritorialArea1GraphQLService } from './territorial-area-1-graphql.service';
 import { Country } from './../admin.models';
+import { graphQL } from './territorial-area-1.graphql';
 
 @Component({
     selector: 'dh2-territorial-area-1-list',
@@ -22,8 +22,7 @@ export class TerritorialArea1ListComponent extends CoreListComponent
     ];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TerritorialArea1GraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

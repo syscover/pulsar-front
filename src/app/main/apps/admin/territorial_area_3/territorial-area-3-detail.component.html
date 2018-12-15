@@ -81,7 +81,7 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12 col-md-6">
-                            <mat-select (selectionChange)="handlerChangeTerritorialArea1($event)" placeholder="{{ country.territorial_area_1 }}" formControlName="territorial_area_1_id" required>
+                            <mat-select (selectionChange)="handleChangeTerritorialArea1($event)" placeholder="{{ country.territorial_area_1 }}" formControlName="territorial_area_1_id" required>
                                 <mat-option *ngFor="let territorialArea1 of country.territorial_areas_1 | sortBy:['name']" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.territorial_area_1_id }}</mat-error>
@@ -99,14 +99,14 @@
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handlerCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
                             <mat-spinner matSuffix *ngIf="slugLoader" mode="indeterminate" diameter="17"></mat-spinner>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>

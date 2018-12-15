@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { OAuthClientGraphqlService } from './oauth-client-graphql.service';
+import { graphQL } from './oauth-client.graphql';
 
 @Component({
     selector: 'dh2-oauth-client-list',
@@ -18,8 +17,7 @@ export class OauthClientListComponent extends CoreListComponent
     displayedColumns = ['oauth_clients.id', 'oauth_clients.name', 'oauth_clients.secret', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: OAuthClientGraphqlService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

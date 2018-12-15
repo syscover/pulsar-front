@@ -73,15 +73,15 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
 
     beforePatchValueEdit(): void
     {
-        this.handlerChangeTerritorialArea1({ value: this.object.territorial_area_1_id });
+        this.handleChangeTerritorialArea1({ value: this.object.territorial_area_1_id });
     }
 
-    handlerChangeTerritorialArea1(event): void
+    handleChangeTerritorialArea1(event): void
     {
         this.territorialAreas2 = <TerritorialArea2[]> _.filter(this.country.territorial_areas_2, { 'territorial_area_1_id': event.value });
     }
 
-    handlerCheckingSlug(isChecking): void
+    handleCheckingSlug(isChecking): void
     {
         this.slugLoader = isChecking;
     }

@@ -31,4 +31,3 @@ export class PackageDetailComponent extends CoreDetailComponent
         });
     }
 }
-

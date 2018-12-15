@@ -68,7 +68,7 @@ export class TerritorialArea2DetailComponent extends CoreDetailComponent
         this.objectTranslationTranslated = this.country.territorial_area_2;
     }
 
-    handlerCheckingSlug(isChecking)
+    handleCheckingSlug(isChecking)
     {
         this.slugLoader = isChecking;
     }

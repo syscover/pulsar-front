@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TerritorialArea1GraphQLService } from './territorial-area-1-graphql.service';
 import { Country } from './../admin.models';
+import { graphQL } from './territorial-area-1.graphql';
 
 @Component({
     selector: 'dh2-territorial-area-1-detail',
@@ -18,8 +18,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
     country: Country = new Country();
 
     constructor(
-        protected injector: Injector,
-        public graphQL: TerritorialArea1GraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
 
@@ -27,7 +26,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
         this.fg.controls['country_id'].setValue(this.params['country_id']);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,
@@ -60,15 +59,15 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin country
         this.country = data.adminCountry;
         this.objectTranslationTranslated = this.country.territorial_area_1;
     }
 
-    handlerCheckingSlug(isChecking)
+    handleCheckingSlug($event): void
     {
-        this.slugLoader = isChecking;
+        this.slugLoader = $event;
     }
 }
