@@ -41,7 +41,7 @@ import { TerritorialArea3DetailComponent } from './territorial_area_3/territoria
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
-import { TerritorialArea3GraphQLService } from './territorial_area_3/territorial-area-3-graphql.service';
+import { TerritorialArea3Graphql } from './territorial_area_3/territorial-area-3-graphql.service';
 import { UserGraphQLService } from './user/user-graphql.service';
 
 @NgModule({
@@ -88,7 +88,7 @@ import { UserGraphQLService } from './user/user-graphql.service';
         UserDetailComponent
     ],
     providers: [
-        TerritorialArea3GraphQLService,
+        TerritorialArea3Graphql,
         UserGraphQLService
     ]
 })

@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TerritorialArea3GraphQLService } from './territorial-area-3-graphql.service';
+import { TerritorialArea3Graphql } from './territorial-area-3-graphql.service';
 import { Country, TerritorialArea2 } from './../admin.models';
 import * as _ from 'lodash';
 
@@ -21,7 +21,7 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        public graphQL: TerritorialArea3GraphQLService
+        public graphQL: TerritorialArea3Graphql
     ) {
         super(injector, graphQL);
 
