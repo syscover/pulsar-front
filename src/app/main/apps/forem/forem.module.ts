@@ -5,6 +5,8 @@ import { ForemRoutingModule } from './forem-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { CategoryDetailComponent } from './category/category-detail.component';
+import { CategoryListComponent } from './category/category-list.component';
 import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
 
@@ -15,6 +17,8 @@ import { EmploymentOfficeDetailComponent } from './employment-office/employment-
     ],
     exports: [ ],
     declarations: [
+        CategoryDetailComponent,
+        CategoryListComponent,
         EmploymentOfficeDetailComponent,
         EmploymentOfficeListComponent,
     ],

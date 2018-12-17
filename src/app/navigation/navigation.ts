@@ -64,7 +64,15 @@ export const navigation: FuseNavigation[] = [
                         'type'      : 'item',
                         'icon'      : 'store_mall_directory',
                         'url'       : '/apps/forem/employment-office'
-                    }
+                    },
+                    {
+                        'id'        : 'categories',
+                        'title'     : 'Categories',
+                        'translate' : 'NAV.CATEGORIES',
+                        'type'      : 'item',
+                        'icon'      : 'chrome_reader_mode',
+                        'url'       : '/apps/forem/category'
+                    },
                 ]
             },
             /* {
