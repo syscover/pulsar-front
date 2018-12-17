@@ -2,10 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { SectionGraphQLService } from './section-graphql.service';
 import { Family } from './../cms.models';
 import { AttachmentFamily } from './../../admin/admin.models';
-import * as _ from 'lodash';
+import { graphQL } from './section.graphql';
 
 @Component({
     selector: 'dh2-section-detail',
@@ -20,8 +19,7 @@ export class SectionDetailComponent extends CoreDetailComponent
     attachmentFamilies: AttachmentFamily[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: SectionGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -41,7 +39,7 @@ export class SectionDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject() 
+    argumentsRelationsObject(): Object
     {
         const sqlAttachmentFamily = [
             {

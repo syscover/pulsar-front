@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { FamilyGraphQLService } from './family-graphql.service';
+import { graphQL } from './family.graphql';
 
 @Component({
     selector: 'dh2-family-list',
@@ -17,8 +17,7 @@ export class FamilyListComponent extends CoreListComponent
     displayedColumns = ['cms_family.id', 'cms_family.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FamilyGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

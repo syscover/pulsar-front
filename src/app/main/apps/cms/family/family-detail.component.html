@@ -71,15 +71,17 @@
                             [formGroup]="fg"
                             (ngSubmit)="postRecord(object)">
 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -127,15 +129,17 @@
                     </div>
 
                     <div fxLayout="row" class="justify-content-between">
-                        <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'CMS.EXCERPT_EDITOR' | translate }}" formControlName="excerpt_editor_id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-label>{{ 'CMS.EXCERPT_EDITOR' | translate }}</mat-label>
+                            <mat-select formControlName="excerpt_editor_id">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                 <mat-option *ngFor="let editor of editors" [value]="+editor.id">{{ editor.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
 
-                        <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'CMS.ARTICLE_EDITOR' | translate }}" formControlName="article_editor_id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-label>{{ 'CMS.ARTICLE_EDITOR' | translate }}</mat-label>
+                            <mat-select formControlName="article_editor_id">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                 <mat-option *ngFor="let editor of editors" [value]="+editor.id">{{ editor.name }}</mat-option>
                             </mat-select>
@@ -143,8 +147,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-5">
-                            <mat-select placeholder="{{ 'APPS.FIELD_GROUP' | translate }}" formControlName="field_group_id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-label>{{ 'APPS.FIELD_GROUP' | translate }}</mat-label>
+                            <mat-select formControlName="field_group_id">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                 <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
                             </mat-select>

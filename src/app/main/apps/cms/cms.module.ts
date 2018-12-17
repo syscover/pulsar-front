@@ -16,8 +16,6 @@ import { SectionDetailComponent } from './section/section-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
 import { CategoryGraphQLService } from './category/category-graphql.service';
-import { FamilyGraphQLService } from './family/family-graphql.service';
-import { SectionGraphQLService } from './section/section-graphql.service';
 
 @NgModule({
     imports: [
@@ -37,9 +35,7 @@ import { SectionGraphQLService } from './section/section-graphql.service';
     ],
     providers: [
         ArticleGraphQLService,
-        CategoryGraphQLService,
-        FamilyGraphQLService,
-        SectionGraphQLService
+        CategoryGraphQLService
     ]
 })
 

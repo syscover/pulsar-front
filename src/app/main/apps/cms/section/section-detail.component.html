@@ -74,22 +74,25 @@
                     <input type="hidden" formControlName="ix">    
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'CMS.FAMILY' | translate }}" formControlName="family_id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'CMS.FAMILY' | translate }}</mat-label>
+                            <mat-select formControlName="family_id">
                                 <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                 <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>
                             </mat-select>
@@ -97,8 +100,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'NAV.ATTACHMENT_FAMILIES' | translate }}" formControlName="attachment_families" multiple>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'NAV.ATTACHMENT_FAMILIES' | translate }}</mat-label>
+                            <mat-select formControlName="attachment_families" multiple>
                                 <mat-option *ngFor="let attachmentFamily of attachmentFamilies" [value]="attachmentFamily.id">{{ attachmentFamily.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>

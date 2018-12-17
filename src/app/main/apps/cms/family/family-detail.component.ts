@@ -2,9 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { FamilyGraphQLService } from './family-graphql.service';
 import { FieldGroup } from './../../admin/admin.models';
 import { Editor } from './../cms.models';
+import { graphQL } from './family.graphql';
 
 @Component({
     selector: 'dh2-family-detail',
@@ -19,13 +19,12 @@ export class FamilyDetailComponent extends CoreDetailComponent
     fieldGroups: FieldGroup[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: FamilyGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             id: [{value: null, disabled: true}],
@@ -45,7 +44,7 @@ export class FamilyDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject() 
+    argumentsRelationsObject(): Object
     {
         const sqlFieldGroup = [
             {
@@ -71,7 +70,7 @@ export class FamilyDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set article and excerpt editors
         this.editors = <Editor[]>data.coreConfig;

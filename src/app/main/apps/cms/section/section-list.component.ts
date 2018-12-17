@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { SectionGraphQLService } from './section-graphql.service';
+import { graphQL } from './section.graphql';
 
 @Component({
     selector: 'dh2-section-list',
@@ -17,8 +17,7 @@ export class SectionListComponent extends CoreListComponent
     displayedColumns = ['cms_section.id', 'cms_section.name', 'cms_family.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: SectionGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
