@@ -76,14 +76,14 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_package.sort">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex">{{ 'APPS.SORT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-flex">{{ row.sort }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'APPS.SORT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.sort }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_package.active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
                         <mat-icon *ngIf="row.active">done</mat-icon>
                     </mat-cell>
                 </ng-container>

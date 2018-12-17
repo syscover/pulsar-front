@@ -70,7 +70,6 @@ export class EmploymentOfficeDetailComponent extends CoreDetailComponent  implem
         // set admin countries
         this.countries = data.adminCountries;
 
-
         // set profiles
         this.profiles = data.adminProfiles;
     }

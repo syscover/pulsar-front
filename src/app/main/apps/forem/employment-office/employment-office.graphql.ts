@@ -52,7 +52,7 @@ export const graphQL = {
         }`,
 
     queryObjects: gql`
-        query ForemGetEmploymentOffices ($sql:[CoreSQLInput]) {
+        query ForemGetEmploymentOffices ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObjects: foremEmploymentOffices (sql:$sql) {
                 ${fields}
             }
@@ -60,7 +60,7 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query ForemGetEmploymentOffice ($sql:[CoreSQLInput]) {
+        query ForemGetEmploymentOffice ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: foremEmploymentOffice (sql:$sql) {
                 ${fields}
             }
