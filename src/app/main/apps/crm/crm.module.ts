@@ -13,10 +13,9 @@ import { CustomerDetailComponent } from './customer/customer-detail.component';
 import { CustomerGroupListComponent } from './customer-group/customer-group-list.component';
 import { CustomerGroupDetailComponent } from './customer-group/customer-group-detail.component';
 
-import { AddressTypeGraphQLService } from './address-type/address-type-graphql.service';
+
 import { CustomerGraphQLService } from './customer/customer-graphql.service';
 import { CustomerGroupGraphQLService } from './customer-group/customer-group-graphql.service';
-import { TerritorialArea1Graphql } from './../admin/territorial_area_1/territorial-area-1-graphql.service';
 
 @NgModule({
     imports: [
@@ -34,10 +33,8 @@ import { TerritorialArea1Graphql } from './../admin/territorial_area_1/territori
         CustomerGroupDetailComponent,
     ],
     providers: [
-        AddressTypeGraphQLService,
         CustomerGraphQLService,
-        CustomerGroupGraphQLService,
-        TerritorialArea1Graphql
+        CustomerGroupGraphQLService
     ]
 })
 

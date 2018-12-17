@@ -9,7 +9,7 @@ import { Country } from './../../admin/admin.models';
 import * as passwordGenerator from 'generate-password-browser';
 
 @Component({
-    selector: 'dh2-customer-detail',
+    selector: 'dh2-crm-customer-detail',
     templateUrl: 'customer-detail.component.html',
     animations: fuseAnimations
 })

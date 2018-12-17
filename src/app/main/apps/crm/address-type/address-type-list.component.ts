@@ -1,11 +1,10 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { AddressTypeGraphQLService } from './address-type-graphql.service';
+import { graphQL } from './address-type.graphql';
 
 @Component({
-    selector: 'dh2-address-type-list',
+    selector: 'dh2-crm-address-type-list',
     templateUrl: './address-type-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
@@ -18,8 +17,7 @@ export class AddressTypeListComponent extends CoreListComponent
     displayedColumns = ['crm_address_type.id', 'crm_address_type.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AddressTypeGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

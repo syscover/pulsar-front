@@ -2,10 +2,10 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { AddressTypeGraphQLService } from './address-type-graphql.service';
+import { graphQL } from './address-type.graphql';
 
 @Component({
-    selector: 'dh2-address-type-detail',
+    selector: 'dh2-crm-address-type-detail',
     templateUrl: 'address-type-detail.component.html',
     animations: fuseAnimations
 })
@@ -15,8 +15,7 @@ export class AddressTypeDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: AddressTypeGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

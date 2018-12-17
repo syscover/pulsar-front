@@ -5,7 +5,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { CustomerGraphQLService } from './customer-graphql.service';
 
 @Component({
-    selector: 'dh2-customer-list',
+    selector: 'dh2-crm-customer-list',
     templateUrl: './customer-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

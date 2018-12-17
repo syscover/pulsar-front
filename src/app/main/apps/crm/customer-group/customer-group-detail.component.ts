@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { CustomerGroupGraphQLService } from './customer-group-graphql.service';
 
 @Component({
-    selector: 'dh2-customer-group-detail',
+    selector: 'dh2-crm-customer-group-detail',
     templateUrl: 'customer-group-detail.component.html',
     animations: fuseAnimations
 })
