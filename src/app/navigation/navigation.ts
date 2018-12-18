@@ -58,6 +58,14 @@ export const navigation: FuseNavigation[] = [
                 'children' : [
 
                     {
+                        'id'        : 'actions',
+                        'title'     : 'Actions',
+                        'translate' : 'NAV.ACTIONS',
+                        'type'      : 'item',
+                        'icon'      : 'wb_incandescent',
+                        'url'       : '/apps/forem/action'
+                    },
+                    {
                         'id'        : 'employment_offices',
                         'title'     : 'Employment offices',
                         'translate' : 'NAV.EMPLOYMENT_OFFICES',
