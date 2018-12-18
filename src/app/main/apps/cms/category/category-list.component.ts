@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { CategoryGraphQLService } from './category-graphql.service';
+import { graphQL } from './category.graphql';
 
 @Component({
     selector: 'dh2-category-list',
@@ -18,8 +18,7 @@ export class CategoryListComponent extends CoreListComponent
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CategoryGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

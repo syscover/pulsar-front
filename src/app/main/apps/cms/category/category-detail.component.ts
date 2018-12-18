@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CategoryGraphQLService } from './category-graphql.service';
 import { Section } from './../cms.models';
+import { graphQL } from './category.graphql';
 
 @Component({
     selector: 'dh2-category-detail',
@@ -17,8 +17,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
     sections: Section[] = [];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: CategoryGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -26,13 +25,13 @@ export class CategoryDetailComponent extends CoreDetailComponent
     createForm() 
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required ],
-            slug: [null, Validators.required ],
-            section_id: null,
-            sort: null
+            ix: '',
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required ],
+            slug: ['', Validators.required ],
+            section_id: '',
+            sort: ''
         });
     }
 

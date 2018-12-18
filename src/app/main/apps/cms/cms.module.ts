@@ -15,7 +15,6 @@ import { SectionListComponent } from './section/section-list.component';
 import { SectionDetailComponent } from './section/section-detail.component';
 
 import { ArticleGraphQLService } from './article/article-graphql.service';
-import { CategoryGraphQLService } from './category/category-graphql.service';
 
 @NgModule({
     imports: [
@@ -34,8 +33,7 @@ import { CategoryGraphQLService } from './category/category-graphql.service';
         SectionDetailComponent
     ],
     providers: [
-        ArticleGraphQLService,
-        CategoryGraphQLService
+        ArticleGraphQLService
     ]
 })
 
