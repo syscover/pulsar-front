@@ -44,7 +44,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query CmsGetSections ($sql:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
-            coreObjects: cmsSections (sql:$sql){
+            coreObjects: cmsSections (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
@@ -60,14 +60,14 @@ export const graphQL = {
 
     mutationCreateObject: gql`
         mutation CmsCreateSection ($payload:CmsSectionInput!) {
-            cmsCreateSection (payload:$payload){
+            cmsCreateSection (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation CmsUpdateSection ($payload:CmsSectionInput!) {
-            cmsUpdateSection (payload:$payload){
+            cmsUpdateSection (payload:$payload) {
                 ${fields}
             }
         }`,

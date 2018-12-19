@@ -70,14 +70,14 @@ export const graphQL = {
 
     mutationUpdateObject: gql`
         mutation AdminUpdateUser ($payload:AdminUserInput!) {
-            adminUpdateUser (payload:$payload){
+            adminUpdateUser (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation AdminDeleteUser ($id:Int!) {
-            adminDeleteUser (id:$id){
+            adminDeleteUser (id:$id) {
                 ${fields}
             }
         }`

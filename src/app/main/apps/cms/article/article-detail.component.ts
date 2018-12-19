@@ -1,11 +1,11 @@
-import { Component, Injector, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ArticleGraphQLService } from './article-graphql.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import { Section, Family, Article, Category, Status } from './../cms.models';
 import { AttachmentFamily } from './../../admin/admin.models';
+import { graphQL } from './article.graphql';
 
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -41,7 +41,6 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     
     constructor(
         protected injector: Injector,
-        protected graphQL: ArticleGraphQLService,
         private authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);
@@ -52,28 +51,28 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chipa
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            parent_id: null,
-            author_id: null,
-            author_name: [{value: null, disabled: true}],
-            section_id: [null, Validators.required],
-            family_id: null,
-            field_group_id: null,
-            status_id: [null, Validators.required],
-            publish: null,
-            date: null,
-            title: null,
+            ix: '',
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            parent_id: '',
+            author_id: '',
+            author_name: [{value: '', disabled: true}],
+            section_id: ['', Validators.required],
+            family_id: '',
+            field_group_id: '',
+            status_id: ['', Validators.required],
+            publish: '',
+            date: '',
+            title: '',
             categories_id: [],
-            slug: null,
-            link: null,
+            slug: '',
+            link: '',
             blank: false,
-            sort: null,
+            sort: '',
             tags: [],
-            excerpt: null,
-            article: null,
+            excerpt: '',
+            article: '',
             attachments: this.fb.array([])
         });
     }

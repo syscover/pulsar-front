@@ -58,14 +58,14 @@ export const graphQL = {
 
     queryObjects: gql`
         query AdminGetTerritorialAreas3 ($sql:[CoreSQLInput]) {
-            coreObjects: adminTerritorialAreas3 (sql:$sql){
+            coreObjects: adminTerritorialAreas3 (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query AdminTerritorialArea3 ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
-            coreObject: adminTerritorialArea3 (sql:$sql){
+            coreObject: adminTerritorialArea3 (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
@@ -73,21 +73,21 @@ export const graphQL = {
 
     mutationCreateObject: gql`
         mutation AdminCreateTerritorialArea3 ($payload:AdminTerritorialArea3Input!) {
-            adminCreateTerritorialArea3 (payload:$payload){
+            adminCreateTerritorialArea3 (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation AdminUpdateTerritorialArea3 ($payload:AdminTerritorialArea3Input!) {
-            adminUpdateTerritorialArea3 (payload:$payload){
+            adminUpdateTerritorialArea3 (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation AdminDeleteTerritorialArea3 ($id:String!) {
-            adminDeleteTerritorialArea3 (id:$id){
+            adminDeleteTerritorialArea3 (id:$id) {
                 ${fields}
             }
         }`

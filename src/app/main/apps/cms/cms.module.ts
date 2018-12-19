@@ -14,14 +14,12 @@ import { FamilyDetailComponent } from './family/family-detail.component';
 import { SectionListComponent } from './section/section-list.component';
 import { SectionDetailComponent } from './section/section-detail.component';
 
-import { ArticleGraphQLService } from './article/article-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
         CmsRoutingModule
     ],
-    exports: [ ],
+    exports: [],
     declarations: [
         ArticleListComponent,
         ArticleDetailComponent,
@@ -32,16 +30,14 @@ import { ArticleGraphQLService } from './article/article-graphql.service';
         SectionListComponent,
         SectionDetailComponent
     ],
-    providers: [
-        ArticleGraphQLService
-    ]
+    providers: []
 })
 
 export class CmsModule 
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

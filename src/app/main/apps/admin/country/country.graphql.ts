@@ -34,7 +34,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query AdminGetCountries ($sql:[CoreSQLInput]) {
-            coreObjects: adminCountries (sql:$sql){
+            coreObjects: adminCountries (sql:$sql) {
                 ${fields}
             }
         }`,
@@ -48,14 +48,14 @@ export const graphQL = {
 
     mutationCreateObject: gql`
         mutation AdminCreateCountry ($payload:AdminCountryInput!) {
-            adminCreateCountry (payload:$payload){
+            adminCreateCountry (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation AdminUpdateCountry ($payload:AdminCountryInput!) {
-            adminUpdateCountry (payload:$payload){
+            adminUpdateCountry (payload:$payload) {
                 ${fields}
             }
         }`,

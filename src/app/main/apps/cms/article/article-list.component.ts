@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ArticleGraphQLService } from './article-graphql.service';
 import { Status } from './../cms.models';
+import { graphQL } from './article.graphql';
 
 @Component({
     selector: 'dh2-article-list',
@@ -20,8 +20,7 @@ export class ArticleListComponent extends CoreListComponent
     statuses: Status[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ArticleGraphQLService,
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

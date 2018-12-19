@@ -101,41 +101,47 @@
                                 <input type="hidden" formControlName="ix">
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
                                     </mat-form-field>
-                                    <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
+                                    <dh2-flag-icon [class.offset-md-1]="dataRoute.action !== 'create'" class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
                                 </div>
             
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-md-6">
-                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-6">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-md-5">
-                                        <input matInput placeholder="{{ 'CMS.AUTHOR' | translate }}" formControlName="author_name" required>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'CMS.AUTHOR' | translate }}</mat-label>
+                                        <input matInput formControlName="author_name" required>
                                         <mat-error>{{ formErrors?.author_name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.STATUS' | translate }}" formControlName="status_id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.STATUS' | translate }}</mat-label>
+                                        <mat-select formControlName="status_id">
                                             <mat-option *ngFor="let status of statuses" [value]="+status.id">{{ status.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.status_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'CMS.PUBLISH' | translate }}" formControlName="publish" type="datetime-local">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'CMS.PUBLISH' | translate }}</mat-label>
+                                        <input matInput formControlName="publish" type="datetime-local">
                                         <mat-error>{{ formErrors?.publish }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.SECTIONS' | translate }}" formControlName="section_id" (selectionChange)="handleChangeSection($event)">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.SECTIONS' | translate }}</mat-label>
+                                        <mat-select formControlName="section_id" (selectionChange)="handleChangeSection($event)">
                                             <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.section_id }}</mat-error>
@@ -143,8 +149,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'APPS.FAMILIES' | translate }}" formControlName="family_id" (selectionChange)="handleChangeFamily($event)">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.FAMILIES' | translate }}</mat-label>
+                                        <mat-select formControlName="family_id" (selectionChange)="handleChangeFamily($event)">
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                             <mat-option *ngFor="let family of families" [value]="family.id">{{ family.name }}</mat-option>                                            
                                         </mat-select>
@@ -162,8 +169,9 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row" *ngIf="family?.article_parent">
-                                    <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'CMS.ARTICLE_PARENT' | translate }}" formControlName="parent_id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'CMS.ARTICLE_PARENT' | translate }}</mat-label>
+                                        <mat-select formControlName="parent_id">
                                             <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                             <mat-option *ngFor="let article of articles" [value]="article.id">{{ article.name }}</mat-option>
                                         </mat-select>
@@ -172,8 +180,9 @@
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.date">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" [matDatepicker]="date" formControlName="date">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.DATE' | translate }}</mat-label>
+                                        <input matInput [matDatepicker]="date" formControlName="date">
                                         <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
                                         <mat-datepicker #date></mat-datepicker>
                                         <mat-error>{{ formErrors?.date }}</mat-error>
@@ -181,23 +190,26 @@
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.title">
-                                    <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'CMS.TITLE' | translate }}" formControlName="title">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'CMS.TITLE' | translate }}</mat-label>
+                                        <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="title">
                                         <mat-error>{{ formErrors?.title }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.slug">
-                                    <mat-form-field class="col-12">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                                         <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                                        <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug">
+                                        <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug">
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.categories">
-                                    <mat-form-field class="col-12">
-                                        <mat-select placeholder="{{ 'NAV.CATEGORIES' | translate }}" formControlName="categories_id" multiple>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'NAV.CATEGORIES' | translate }}</mat-label>
+                                        <mat-select formControlName="categories_id" multiple>
                                             <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.categories_id }}</mat-error>
@@ -205,8 +217,9 @@
                                 </div>
 
                                 <div fxLayout="row" class="justify-content-between flex-wrap" *ngIf="family?.link">
-                                    <mat-form-field class="col-12 col-md-9">
-                                        <input matInput placeholder="{{ 'APPS.LINK' | translate }}" formControlName="link">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-9">
+                                        <mat-label>{{ 'APPS.LINK' | translate }}</mat-label>
+                                        <input matInput formControlName="link">
                                         <mat-error>{{ formErrors?.link }}</mat-error>
                                     </mat-form-field>
 
@@ -216,14 +229,14 @@
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.tags">
-                                    <mat-form-field class="col-12">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'CMS.ADD_TAG' | translate }}</mat-label>
                                         <mat-chip-list #tagList>
                                             <mat-chip *ngFor="let tag of fg.controls['tags'].value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
                                                 {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
                                         </mat-chip-list>
-                                        <input  placeholder="{{ 'CMS.ADD_TAG' | translate }}"
-                                                [matChipInputFor]="tagList"
+                                        <input  [matChipInputFor]="tagList"
                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                                 [matChipInputAddOnBlur]="true"
                                                 (matChipInputTokenEnd)="addTag(fg, 'tags', $event)">
@@ -232,8 +245,9 @@
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.sort">
-                                    <mat-form-field class="col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                                        <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                                        <input matInput formControlName="sort" type="number">
                                         <mat-error>{{ formErrors?.sort }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -260,9 +274,9 @@
                                 <div class="content">
                                     <div fxLayout="row" [ngSwitch]="family.excerpt_editor_id">
 
-                                        <mat-form-field class="col-12" *ngSwitchCase="1">
-                                            <textarea   matInput 
-                                                        placeholder="{{ 'CMS.EXCERPT' | translate }}" 
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12" *ngSwitchCase="1">
+                                            <mat-label>{{ 'CMS.EXCERPT' | translate }}</mat-label>
+                                            <textarea   matInput
                                                         matTextareaAutosize 
                                                         matAutosizeMinRows="2" 
                                                         formControlName="excerpt"></textarea>
@@ -284,9 +298,9 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row" [ngSwitch]="family.article_editor_id">
 
-                                    <mat-form-field class="col-12" *ngSwitchCase="1">
-                                        <textarea   matInput 
-                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}" 
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12" *ngSwitchCase="1">
+                                        <mat-label>{{ 'CMS.ARTICLE' | translate }}</mat-label>
+                                        <textarea   matInput
                                                     matTextareaAutosize 
                                                     matAutosizeMinRows="2" 
                                                     formControlName="article"></textarea>

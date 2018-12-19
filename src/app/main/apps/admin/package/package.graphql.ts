@@ -27,7 +27,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query AdminGetPackages ($sql:[CoreSQLInput]) {
-            coreObjects: adminPackages (sql:$sql){
+            coreObjects: adminPackages (sql:$sql) {
                 ${fields}
             }
         }`,

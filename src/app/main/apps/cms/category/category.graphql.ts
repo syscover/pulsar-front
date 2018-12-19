@@ -40,14 +40,14 @@ export const graphQL = {
 
     queryObjects: gql`
         query CmsGetCategories ($sql:[CoreSQLInput]) {
-            coreObjects: cmsCategories (sql:$sql){
+            coreObjects: cmsCategories (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query CmsGetCategory ($sql:[CoreSQLInput]) {
-            coreObject: cmsCategory (sql:$sql){
+            coreObject: cmsCategory (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
@@ -55,21 +55,21 @@ export const graphQL = {
 
     mutationCreateObject: gql`
         mutation CmsCreateCategory ($payload:CmsCategoryInput!) {
-            cmsCreateCategory (payload:$payload){
+            cmsCreateCategory (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation CmsUpdateCategory ($payload:CmsCategoryInput!) {
-            cmsUpdateCategory (payload:$payload){
+            cmsUpdateCategory (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation CmsDeleteCategory ($lang_id:String! $id:Int!) {
-            cmsDeleteCategory (lang_id:$lang_id id:$id){
+            cmsDeleteCategory (lang_id:$lang_id id:$id) {
                 ${fields}
             }
         }`

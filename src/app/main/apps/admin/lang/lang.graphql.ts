@@ -28,35 +28,35 @@ export const graphQL = {
 
     queryObjects: gql`
         query AdminGetLangs ($sql:[CoreSQLInput]) {
-            coreObjects: adminLangs (sql:$sql){
+            coreObjects: adminLangs (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query AdminGetLang ($sql:[CoreSQLInput]) {
-            coreObject: adminLang (sql:$sql){
+            coreObject: adminLang (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation AdminCreateLang ($payload:AdminLangInput!) {
-            adminCreateLang (payload:$payload){
+            adminCreateLang (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation AdminUpdateLang ($payload:AdminLangInput!) {
-            adminUpdateLang (payload:$payload){
+            adminUpdateLang (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation AdminDeleteLang ($id:String!) {
-            adminDeleteLang (id:$id){
+            adminDeleteLang (id:$id) {
                 ${fields}
             }
         }`
