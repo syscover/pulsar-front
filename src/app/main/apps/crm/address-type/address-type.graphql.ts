@@ -24,35 +24,35 @@ export const graphQL = {
 
     queryObjects: gql`
         query CrmGetAddressTypes ($sql:[CoreSQLInput]) {
-            coreObjects: crmAddressTypes (sql:$sql){
+            coreObjects: crmAddressTypes (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query CrmGetAddressType ($sql:[CoreSQLInput]) {
-            coreObject: crmAddressType (sql:$sql){
+            coreObject: crmAddressType (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation CrmCreateAddressType ($payload:CrmAddressTypeInput!) {
-            crmCreateAddressType (payload:$payload){
+            crmCreateAddressType (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation CrmUpdateAddressType ($payload:CrmAddressTypeInput!) {
-            crmUpdateAddressType (payload:$payload){
+            crmUpdateAddressType (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation CrmDeleteAddressType ($id:Int!) {
-            crmDeleteAddressType (id:$id){
+            crmDeleteAddressType (id:$id) {
                 ${fields}
             }
         }`

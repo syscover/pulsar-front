@@ -47,7 +47,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsEmploymentOffice ($sqlCountry:[CoreSQLInput]){
+        query ForemGetRelationsEmploymentOffice ($sqlCountry:[CoreSQLInput]) {
             ${relationsFields}
         }`,
 

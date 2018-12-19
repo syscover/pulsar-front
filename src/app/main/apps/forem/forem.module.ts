@@ -33,7 +33,7 @@ export class ForemModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

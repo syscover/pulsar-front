@@ -15,20 +15,20 @@ export class WarehouseGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query marketGetRelationsWarehouse ($sqlCountry:[CoreSQLInput]){
+        query marketGetRelationsWarehouse ($sqlCountry:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
         query MarketGetWarehouses ($sql:[CoreSQLInput]) {
-            coreObjects: marketWarehouses (sql:$sql){
+            coreObjects: marketWarehouses (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetWarehouse ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
-            coreObject: marketWarehouse (sql:$sql){
+            coreObject: marketWarehouse (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -36,21 +36,21 @@ export class WarehouseGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateWarehouse ($payload:MarketWarehouseInput!) {
-            marketCreateWarehouse (payload:$payload){
+            marketCreateWarehouse (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateWarehouse ($payload:MarketWarehouseInput!) {
-            marketUpdateWarehouse (payload:$payload){
+            marketUpdateWarehouse (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteWarehouse ($id:Int!) {
-            marketDeleteWarehouse (id:$id){
+            marketDeleteWarehouse (id:$id) {
                 ${this.fields}
             }
         }`;

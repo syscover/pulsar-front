@@ -71,7 +71,7 @@ export class AppsModule
     constructor(
         private translate: TranslateService,
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

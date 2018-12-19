@@ -17,7 +17,7 @@ export const graphQL = {
 
     mutationSetStock: gql`
         mutation MarketSetStock ($payload:MarketStockInput!) {
-            marketSetStock (payload:$payload){
+            marketSetStock (payload:$payload) {
                 ${fields}
             }
         }`

@@ -48,7 +48,7 @@ export const graphQL = {
         query WineGetRelationsWinery (
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]
-        ){
+        ) {
             ${relationsFields}
         }`,
 

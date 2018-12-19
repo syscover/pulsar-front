@@ -42,7 +42,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsCategory ($sqlCountry:[CoreSQLInput]){
+        query ForemGetRelationsCategory ($sqlCountry:[CoreSQLInput]) {
             ${relationsFields}
         }`,
 

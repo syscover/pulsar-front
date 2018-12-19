@@ -24,7 +24,7 @@ export class AuthModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

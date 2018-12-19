@@ -15,7 +15,7 @@ export class QuestionGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query ReviewGetRelationsQuestion ($configQuestionTypes:CoreConfigInput!){
+        query ReviewGetRelationsQuestion ($configQuestionTypes:CoreConfigInput!) {
             ${this.relationsFields}
         }`;
 
@@ -39,7 +39,7 @@ export class QuestionGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation ReviewCreateQuestion ($payload:ReviewQuestionInput!) {
-            reviewCreateQuestion (payload:$payload){
+            reviewCreateQuestion (payload:$payload) {
                 ${this.fields}
             }
         }`;

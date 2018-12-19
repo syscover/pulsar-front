@@ -29,7 +29,7 @@ export const graphQL = {
 
     queryObjects: gql`
         query WineGetPairings ($sql:[CoreSQLInput]) {
-            coreObjects: winePairings (sql:$sql){
+            coreObjects: winePairings (sql:$sql) {
                 ${fields}
             }
         }`,
@@ -38,28 +38,28 @@ export const graphQL = {
         query WineGetPairing (
             $sql:[CoreSQLInput]
         ) {
-            coreObject: winePairing (sql:$sql){
+            coreObject: winePairing (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation WineCreatePairing ($payload:WinePairingInput!) {
-            wineCreatePairing (payload:$payload){
+            wineCreatePairing (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation WineUpdatePairing ($payload:WinePairingInput!) {
-            wineUpdatePairing (payload:$payload){
+            wineUpdatePairing (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation WineDeletePairing ($id:Int! $lang_id:String!) {
-            wineDeletePairing (id:$id lang_id:$lang_id){
+            wineDeletePairing (id:$id lang_id:$lang_id) {
                 ${fields}
             }
         }`

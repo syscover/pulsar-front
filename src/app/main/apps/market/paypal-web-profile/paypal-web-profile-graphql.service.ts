@@ -44,7 +44,7 @@ export class PaypalWebProfileGraphqlService extends GraphQLSchema
 
     mutationDeleteObject = gql`
         mutation MarketDeletePaypalWebProfile ($id:String!) {
-            marketDeletePaypalWebProfile (id:$id){
+            marketDeletePaypalWebProfile (id:$id) {
                 ${this.fields}
             }
         }`;

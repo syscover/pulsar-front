@@ -21,14 +21,14 @@ export class TaxRuleGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetTaxRules ($sql:[CoreSQLInput]) {
-            coreObjects: marketTaxRules (sql:$sql){
+            coreObjects: marketTaxRules (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetTaxRule ($sql:[CoreSQLInput]) {
-            coreObject: marketTaxRule (sql:$sql){
+            coreObject: marketTaxRule (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -36,21 +36,21 @@ export class TaxRuleGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateTaxRule ($payload:MarketTaxRuleInput!) {
-            marketCreateTaxRule (payload:$payload){
+            marketCreateTaxRule (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateTaxRule ($payload:MarketTaxRuleInput!) {
-            marketUpdateTaxRule (payload:$payload){
+            marketUpdateTaxRule (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteTaxRule ($id:Int!) {
-            marketDeleteTaxRule (id:$id){
+            marketDeleteTaxRule (id:$id) {
                 ${this.fields}
             }
         }`;

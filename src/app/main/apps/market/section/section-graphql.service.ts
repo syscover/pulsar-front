@@ -16,35 +16,35 @@ export class SectionGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetSections ($sql:[CoreSQLInput]) {
-            coreObjects: marketSections (sql:$sql){
+            coreObjects: marketSections (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetSection ($sql:[CoreSQLInput]) {
-            coreObject: marketSection (sql:$sql){
+            coreObject: marketSection (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation MarketCreateSection ($payload:MarketSectionInput!) {
-            marketCreateSection (payload:$payload){
+            marketCreateSection (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateSection ($payload:MarketSectionInput!) {
-            marketUpdateSection (payload:$payload){
+            marketUpdateSection (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteSection ($id:String! $lang_id:String!) {
-            marketDeleteSection (id:$id lang_id:$lang_id){
+            marketDeleteSection (id:$id lang_id:$lang_id) {
                 ${this.fields}
             }
         }`;

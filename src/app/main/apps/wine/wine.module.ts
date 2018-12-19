@@ -86,7 +86,7 @@ export class WineModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

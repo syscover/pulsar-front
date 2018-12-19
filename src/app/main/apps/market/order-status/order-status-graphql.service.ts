@@ -16,35 +16,35 @@ export class OrderStatusGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetOrderStatuses ($sql:[CoreSQLInput]) {
-            coreObjects: marketOrderStatuses (sql:$sql){
+            coreObjects: marketOrderStatuses (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetOrderStatus ($sql:[CoreSQLInput]) {
-            coreObject: marketOrderStatus (sql:$sql){
+            coreObject: marketOrderStatus (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation MarketCreateOrderStatus ($payload:MarketOrderStatusInput!) {
-            marketCreateOrderStatus (payload:$payload){
+            marketCreateOrderStatus (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateOrderStatus ($payload:MarketOrderStatusInput!) {
-            marketUpdateOrderStatus (payload:$payload){
+            marketUpdateOrderStatus (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteOrderStatus ($lang_id:String! $id:Int!) {
-            marketDeleteOrderStatus (lang_id:$lang_id id:$id){
+            marketDeleteOrderStatus (lang_id:$lang_id id:$id) {
                 ${this.fields}
             }
         }`;

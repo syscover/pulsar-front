@@ -16,35 +16,35 @@ export class CustomerGroupGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query CrmGetCustomerGroups ($sql:[CoreSQLInput]) {
-            coreObjects: crmCustomerGroups (sql:$sql){
+            coreObjects: crmCustomerGroups (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query CrmGetCustomerGroup ($sql:[CoreSQLInput]) {
-            coreObject: crmCustomerGroup (sql:$sql){
+            coreObject: crmCustomerGroup (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     mutationCreateObject = gql`
         mutation CrmCreateCustomerGroup ($payload:CrmCustomerGroupInput!) {
-            crmCreateCustomerGroup (payload:$payload){
+            crmCreateCustomerGroup (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation CrmUpdateCustomerGroup ($payload:CrmCustomerGroupInput!) {
-            crmUpdateCustomerGroup (payload:$payload){
+            crmUpdateCustomerGroup (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation CrmDeleteCustomerGroup ($id:Int!) {
-            crmDeleteCustomerGroup (id:$id){
+            crmDeleteCustomerGroup (id:$id) {
                 ${this.fields}
             }
         }`;

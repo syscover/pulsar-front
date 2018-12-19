@@ -15,13 +15,13 @@ export class CustomerGraphQLService extends GraphQLSchema
         }`;
 
     queryRelationsObject = gql`
-        query CrmGetRelationsCustomer ($sqlCountry:[CoreSQLInput]){
+        query CrmGetRelationsCustomer ($sqlCountry:[CoreSQLInput]) {
             ${this.relationsFields}
         }`;
 
     queryObjects = gql`
         query CrmGetCustomers ($sql:[CoreSQLInput]) {
-            coreObjects: crmCustomers (sql:$sql){
+            coreObjects: crmCustomers (sql:$sql) {
                 ${this.fields}
             }
         }`;
@@ -31,7 +31,7 @@ export class CustomerGraphQLService extends GraphQLSchema
             $sql:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]
         ) {
-            coreObject: crmCustomer (sql:$sql){
+            coreObject: crmCustomer (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -39,21 +39,21 @@ export class CustomerGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation CrmCreateCustomer ($payload:CrmCustomerInput!) {
-            crmCreateCustomer (payload:$payload){
+            crmCreateCustomer (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation CrmUpdateCustomer ($payload:CrmCustomerInput!) {
-            crmUpdateCustomer (payload:$payload){
+            crmUpdateCustomer (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation CrmDeleteCustomer ($id:Int!) {
-            crmDeleteCustomer (id:$id){
+            crmDeleteCustomer (id:$id) {
                 ${this.fields}
             }
         }`;

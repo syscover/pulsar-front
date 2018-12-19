@@ -42,7 +42,7 @@ export class CrmModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ){
+    ) {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

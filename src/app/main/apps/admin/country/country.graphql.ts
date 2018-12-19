@@ -41,7 +41,7 @@ export const graphQL = {
 
     queryObject: gql`
         query AdminGetCountry ($sql:[CoreSQLInput]) {
-            coreObject: adminCountry (sql:$sql){
+            coreObject: adminCountry (sql:$sql) {
                 ${fields}
             }
         }`,

@@ -13,7 +13,7 @@ const fields = `
 `;
 
 const relationsFields = `
-    adminCountry: adminCountry (sql:$sqlCountry){
+    adminCountry: adminCountry (sql:$sqlCountry) {
         ix
         id
         lang_id

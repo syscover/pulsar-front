@@ -21,14 +21,14 @@ export class OrderGraphQLService extends GraphQLSchema
 
     queryObjects = gql`
         query MarketGetOrders ($sql:[CoreSQLInput]) {
-            coreObjects: marketOrders (sql:$sql){
+            coreObjects: marketOrders (sql:$sql) {
                 ${this.fields}
             }
         }`;
 
     queryObject = gql`
         query MarketGetOrder ($sql:[CoreSQLInput] $sqlOrderStatus:[CoreSQLInput] $sqlPaymentMethod:[CoreSQLInput]) {
-            coreObject: marketOrder (sql:$sql){
+            coreObject: marketOrder (sql:$sql) {
                 ${this.fields}
             }
             ${this.relationsFields}
@@ -36,21 +36,21 @@ export class OrderGraphQLService extends GraphQLSchema
 
     mutationCreateObject = gql`
         mutation MarketCreateOrder ($payload:MarketOrderInput!) {
-            marketCreateOrder (payload:$payload){
+            marketCreateOrder (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationUpdateObject = gql`
         mutation MarketUpdateOrder ($payload:MarketOrderInput!) {
-            marketUpdateOrder (payload:$payload){
+            marketUpdateOrder (payload:$payload) {
                 ${this.fields}
             }
         }`;
 
     mutationDeleteObject = gql`
         mutation MarketDeleteOrder ($id:Int!) {
-            marketDeleteOrder (id:$id){
+            marketDeleteOrder (id:$id) {
                 ${this.fields}
             }
         }`;
