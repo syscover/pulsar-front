@@ -104,7 +104,7 @@
                                         *ngIf="(row | actionTranslationObject:lang) === 'create'" 
                                         [routerLink]="[baseUri + '/create', lang.id, row.id]">
                                         <dh2-flag-icon [lang]="lang" [rounded]="true"></dh2-flag-icon>
-                                        <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                                        {{ 'APPS.TRANSLATE' | translate }}
                                     </button>
                                     
                                 </ng-container>

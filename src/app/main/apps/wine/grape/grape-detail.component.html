@@ -44,7 +44,7 @@
                         class="mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.pristine || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create'">
-                    <span>{{ 'APPS.ADD' | translate }}</span>
+                    {{ 'APPS.ADD' | translate }}
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 
@@ -54,7 +54,7 @@
                         class="mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.invalid || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='create-lang'">
-                    <span>{{ 'APPS.TRANSLATE' | translate }}</span>
+                    {{ 'APPS.TRANSLATE' | translate }}
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 
@@ -64,7 +64,7 @@
                         class="mat-white-bg mt-16 mt-sm-0"
                         [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
                         *ngIf="dataRoute.action ==='edit'">
-                    <span>{{ 'APPS.SAVE' | translate }}</span>
+                    {{ 'APPS.SAVE' | translate }}
                     <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
 

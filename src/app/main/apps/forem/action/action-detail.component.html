@@ -43,7 +43,7 @@
                     class="mat-white-bg mt-16 mt-sm-0"
                     [disabled]="fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='create'">
-                <span>{{ 'APPS.ADD' | translate }}</span>
+                {{ 'APPS.ADD' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
 
@@ -53,7 +53,7 @@
                     class="mat-white-bg mt-16 mt-sm-0"
                     [disabled]="fg.invalid || fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='edit'">
-                <span>{{ 'APPS.SAVE' | translate }}</span>
+                {{ 'APPS.SAVE' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
         </div>
@@ -94,6 +94,22 @@
                                 <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                                 <mat-error>{{ formErrors?.slug }}</mat-error>
                             </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field class="col-11 col-md-6">
+                                <mat-label>{{ 'NAV.CATEGORIES' | translate }}</mat-label>
+                                <mat-select formControlName="category_id">
+                                    <ngx-mat-select-search [formControl]="categoryFilterCtrl"
+                                                           placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
+                                                           noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
+                                    <mat-option *ngFor="let category of filteredCategories | async" [value]="category.id">{{ category.name }}</mat-option>
+                                </mat-select>
+                                <mat-error>{{ formErrors?.category_id }}</mat-error>
+                            </mat-form-field>
+                            <button mat-icon-button type="button" class="mt-10" (click)="add(categoryDialogComponent, 'categories', filteredCategories, 'category_id')">
+                                <mat-icon>add</mat-icon>
+                            </button>
                         </div>
                     </div>
 

@@ -47,7 +47,7 @@ export const graphQL = {
         }`,
 
     queryObjects: gql`
-        query CmsGetFamilies ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
+        query CmsGetFamilies ($sql:[CoreSQLInput] $sqlFieldGroup:[CoreSQLInput] $configEditors:CoreConfigInput) {
             coreObjects: cmsFamilies (sql:$sql) {
                 ${fields}
             }
@@ -55,7 +55,7 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query CmsGetFamily ($sql:[CoreSQLInput] $configEditors:CoreConfigInput $sqlFieldGroup:[CoreSQLInput]) {
+        query CmsGetFamily ($sql:[CoreSQLInput] $sqlFieldGroup:[CoreSQLInput] $configEditors:CoreConfigInput) {
             coreObject: cmsFamily (sql:$sql) {
                 ${fields}
             }

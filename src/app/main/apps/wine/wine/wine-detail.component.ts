@@ -691,8 +691,9 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
             {
                 if (this.env.debug) console.log('DEBUG - Add element: ', object);
 
-                // objects is the name og objects[], by to get reference. If not,
-                // when is create lang and add new lang, mustTranslate pipe doesn't work when change objects array
+                // Objects is the name of property, by to get reference.
+                // If not, when is create lang and add new lang, mustTranslate
+                // pipe doesn't work when change objects array
                 this[objects] = this[objects].concat(object);
                 this[objects] = _.orderBy(this[objects], ['name'], ['asc']);
                 filteredObjects.next(this[objects].slice());

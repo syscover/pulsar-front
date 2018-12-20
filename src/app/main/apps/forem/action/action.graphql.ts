@@ -24,6 +24,7 @@ const relationsFields = `
     foremCategories {
         ${foremCategoryGraphQL.fields}
     }
+    foremTargets: coreConfig (config:$configTargets)
 `;
 
 export const graphQL = {
@@ -42,7 +43,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsCategory ($sqlCountry:[CoreSQLInput]) {
+        query ForemGetRelationsCategory ($configTargets:CoreConfigInput) {
             ${relationsFields}
         }`,
 

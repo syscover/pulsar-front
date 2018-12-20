@@ -11,6 +11,7 @@ import { CategoryDetailComponent } from './category/category-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
+import { CategoryDialogComponent } from './category/category-dialog.component';
 
 @NgModule({
     imports: [
@@ -22,11 +23,15 @@ import { EmploymentOfficeDetailComponent } from './employment-office/employment-
         ActionDetailComponent,
         ActionListComponent,
         CategoryDetailComponent,
+        CategoryDialogComponent,
         CategoryListComponent,
         EmploymentOfficeDetailComponent,
         EmploymentOfficeListComponent,
     ],
-    providers: []
+    providers: [],
+    entryComponents: [
+        CategoryDialogComponent
+    ]
 })
 
 export class ForemModule

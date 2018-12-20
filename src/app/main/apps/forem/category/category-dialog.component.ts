@@ -3,36 +3,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { HttpService } from '../../../core/services/http.service';
-import { graphQL } from './grape.graphql';
-import { Lang } from '../../admin/admin.models';
+import { graphQL } from './category.graphql';
 
 @Component({
-    selector: 'dh2-wine-grape-dialog',
+    selector: 'dh2-forem-category-dialog',
     template: `
         <h1 mat-dialog-title>
-            <mat-icon>hdr_weak</mat-icon>
-            {{ 'WINE.GRAPE' | translate }} 
-            <dh2-flag-icon class="d-inline ml-40" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
+            <mat-icon>chrome_reader_mode</mat-icon>
+            {{ 'APPS.CATEGORY' | translate }}
         </h1>
         <div mat-dialog-content>
-            <form id="formGrapeDialogDetail" 
+            <form id="formCategoryDialogDetail" 
                   [formGroup]="fg" 
                   (ngSubmit)="postRecord()">
-
-                <input type="hidden" formControlName="id">
-                
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
                         <mat-form-field class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -43,12 +40,12 @@ import { Lang } from '../../admin/admin.models';
             
             <button mat-raised-button
                     type="submit"
-                    form="formGrapeDialogDetail"
+                    form="formCategoryDialogDetail"
                     class="mat-accent mr-16"
                     [disabled]="fg.pristine || loadingButton || loadingSlug" 
                     cdkFocusInitial>
                 {{ 'APPS.SAVE' | translate }}
-                <mat-spinner class="ml-15" *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                <mat-spinner class="ml-15 d-inline" *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
             
             <button mat-raised-button 
@@ -59,10 +56,9 @@ import { Lang } from '../../admin/admin.models';
         </div>
     `
 })
-export class GrapeDialogComponent implements OnInit
+export class CategoryDialogComponent implements OnInit
 {
     fg: FormGroup;
-    lang: Lang;
     formErrors: any = {};
     graphQL = graphQL;
     loadingSlug = false;
@@ -70,7 +66,7 @@ export class GrapeDialogComponent implements OnInit
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private _dialogRef: MatDialogRef<GrapeDialogComponent>,
+        private _dialogRef: MatDialogRef<CategoryDialogComponent>,
         private _fb: FormBuilder,
         private _validationMessageService: ValidationMessageService,
         private _http: HttpService
@@ -82,8 +78,6 @@ export class GrapeDialogComponent implements OnInit
     createForm(): void
     {
         this.fg = this._fb.group({
-            id: '',
-            lang_id: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required]
         });
@@ -92,10 +86,6 @@ export class GrapeDialogComponent implements OnInit
     ngOnInit(): void
     {
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
-        this.lang = this.data.lang;
-        this.fg.patchValue({
-            lang_id: this.lang.id // set lang id in form from object with multiple language
-        });
     }
 
     postRecord(): void
@@ -116,7 +106,7 @@ export class GrapeDialogComponent implements OnInit
 
                     ob$.unsubscribe();
                     this.loadingButton = false;
-                    this._dialogRef.close(res.data.wineCreateGrape);
+                    this._dialogRef.close(res.data.foremCreateCategory);
                 });
         }
     }

@@ -1,8 +1,15 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './action.graphql';
+import { Category, Target } from '../forem.models';
+import { ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { SelectSearchService } from '../../../core/services/select-search.service';
+import { CategoryDialogComponent } from '../category/category-dialog.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-forem-category-detail',
@@ -14,11 +21,26 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     objectTranslation = 'FOREM.ACTION';
     objectTranslationGender = 'F';
     loadingSlug = false;
+    targets: Target[] = [];
+
+    // categories
+    categories: Category[] = [];
+    categoryFilterCtrl: FormControl = new FormControl();
+    filteredCategories: ReplaySubject<Category[]> = new ReplaySubject<Category[]>(1);
+    categoryDialogComponent = CategoryDialogComponent;
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        private _selectSearch: SelectSearchService,
+        private _dialog: MatDialog
     ) {
         super(injector, graphQL);
+    }
+
+    ngOnInit(): void
+    {
+        super.ngOnInit();
+        this.setSelectSearch();
     }
 
     createForm(): void
@@ -26,12 +48,85 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             name: ['', Validators.required],
-            slug: ['', Validators.required]
+            slug: ['', Validators.required],
+            category_id: ['', Validators.required],
+            target_id: ['', Validators.required],
+            assistance_id: ['', Validators.required],
+            type_id: ['', Validators.required]
         });
+    }
+
+    setSelectSearch(): void
+    {
+        // category
+        this.categoryFilterCtrl
+            .valueChanges
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(() => {
+                this._selectSearch.filterSelect(
+                    this.categoryFilterCtrl,
+                    this.categories,
+                    this.filteredCategories
+                );
+            });
+    }
+
+    argumentsRelationsObject(): Object
+    {
+        const configTargets = {
+            key: 'pulsar-forem.targets'
+        };
+
+        return {
+            configTargets,
+        };
+    }
+
+    setRelationsData(data: any): void
+    {
+        // set targets
+        this.targets = <Target[]>data.foremTargets;
+
+        // forem categories
+        this.categories = data.foremCategories;
+        this.filteredCategories.next(this.categories.slice());
     }
 
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
+    }
+
+    add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
+    {
+        const dialogRef = this._dialog.open(dialog, {
+            data: {
+                id: this.object[formGroupName]
+            },
+            width: '80vw'
+        });
+
+        dialogRef.afterClosed().subscribe((object: any) => {
+
+            if (object)
+            {
+                if (this.env.debug) console.log('DEBUG - Add element: ', object);
+
+                // Objects is the name of property, by to get reference.
+                // If not, when is create lang and add new lang, mustTranslate
+                // pipe doesn't work when change objects array
+                this[objects] = this[objects].concat(object);
+                this[objects] = _.orderBy(this[objects], ['name'], ['asc']);
+                filteredObjects.next(this[objects].slice());
+
+                if (multiple) {
+                    this.fg.get(formGroupName).value.push(object.id);
+                    this.fg.get(formGroupName).markAsDirty();
+                }
+                else {
+                    this.fg.get(formGroupName).setValue(object.id);
+                }
+            }
+        });
     }
 }
