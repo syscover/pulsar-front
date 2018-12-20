@@ -13,17 +13,13 @@ import { CustomerDetailComponent } from './customer/customer-detail.component';
 import { CustomerGroupListComponent } from './customer-group/customer-group-list.component';
 import { CustomerGroupDetailComponent } from './customer-group/customer-group-detail.component';
 
-
-import { CustomerGraphQLService } from './customer/customer-graphql.service';
-import { CustomerGroupGraphQLService } from './customer-group/customer-group-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
         CrmRoutingModule,
         MatPasswordStrengthModule
     ],
-    exports: [ ],
+    exports: [],
     declarations: [
         AddressTypeListComponent,
         AddressTypeDetailComponent,
@@ -32,10 +28,7 @@ import { CustomerGroupGraphQLService } from './customer-group/customer-group-gra
         CustomerGroupListComponent,
         CustomerGroupDetailComponent,
     ],
-    providers: [
-        CustomerGraphQLService,
-        CustomerGroupGraphQLService
-    ]
+    providers: []
 })
 
 export class CrmModule

@@ -2,11 +2,11 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CustomerGraphQLService } from './customer-graphql.service';
 import { notEqual } from './../../../core/validations/not-equal.validation';
 import { CustomerGroup } from './../crm.models';
 import { Country } from './../../admin/admin.models';
 import * as passwordGenerator from 'generate-password-browser';
+import { graphQL } from './customer.graphql';
 
 @Component({
     selector: 'dh2-crm-customer-detail',
@@ -22,8 +22,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     inputType = 'password';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CustomerGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -31,26 +30,26 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            group_id: [null, Validators.required],
-            company: null,
-            tin: null,
-            name: null,
-            surname: null,
-            email: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            group_id: ['', Validators.required],
+            company: '',
+            tin: '',
+            name: '',
+            surname: '',
+            email: ['', Validators.required],
             active: false,
-            user: [null, Validators.required],
-            password: null,
-            repeat_password: null,
-            address: null,
-            country_id: null,
-            territorial_area_1_id: null,
-            territorial_area_2_id: null,
-            territorial_area_3_id: null,
-            zip: null,
-            locality: null,
-            latitude: null,
-            longitude: null
+            user: ['', Validators.required],
+            password: '',
+            repeat_password: '',
+            address: '',
+            country_id: '',
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            zip: '',
+            locality: '',
+            latitude: '',
+            longitude: ''
         });
     }
 

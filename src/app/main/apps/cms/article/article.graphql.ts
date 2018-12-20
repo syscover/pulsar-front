@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
 import { graphQL as cmsSectionGraphQL } from './../section/section.graphql';
-import { graphQL as cmsCategoriesGraphQL } from './../category/category.graphql';
-import { graphQL as cmsFamiliesGraphQL } from './../family/family.graphql';
-import { graphQL as adminAttachmentFamiliesGraphQL } from './../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as attachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as cmsCategoryGraphQL } from './../category/category.graphql';
+import { graphQL as cmsFamilyGraphQL } from './../family/family.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from './../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as attachmentGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     ix
@@ -24,7 +24,7 @@ const fields = `
     slug
     categories_id
     categories {
-        ${cmsCategoriesGraphQL.fields}
+        ${cmsCategoryGraphQL.fields}
     }
     link
     blank
@@ -35,7 +35,7 @@ const fields = `
     data_lang
     data
     attachments {
-        ${attachmentsGraphQL.fields}
+        ${attachmentGraphQL.fields}
     }
 `;
 
@@ -44,14 +44,14 @@ const relationsFields = `
         ${cmsSectionGraphQL.fields}
     }
     cmsFamilies (sql:$sqlFamily) {
-        ${cmsFamiliesGraphQL.fields}
+        ${cmsFamilyGraphQL.fields}
     }
     cmsCategories (sql:$sqlCategory) {
-        ${cmsCategoriesGraphQL.fields}
+        ${cmsCategoryGraphQL.fields}
     }
     cmsStatuses: coreConfig (config:$configStatuses)
     adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-        ${adminAttachmentFamiliesGraphQL.fields}
+        ${adminAttachmentFamilyGraphQL.fields}
     }
     cmsArticles (sql:$sqlArticle) {
         ix

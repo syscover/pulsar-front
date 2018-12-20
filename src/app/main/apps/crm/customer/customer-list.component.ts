@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { CustomerGraphQLService } from './customer-graphql.service';
+import { graphQL } from './customer.graphql';
 
 @Component({
     selector: 'dh2-crm-customer-list',
@@ -18,8 +17,7 @@ export class CustomerListComponent extends CoreListComponent
     displayedColumns = ['crm_customer.id', 'crm_customer.name', 'crm_customer.surname', 'crm_customer.email', 'crm_customer.active', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CustomerGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
