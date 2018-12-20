@@ -25,6 +25,8 @@ const relationsFields = `
         ${foremCategoryGraphQL.fields}
     }
     foremTargets: coreConfig (config:$configTargets)
+    foremAssists: coreConfig (config:$configAssists)
+    foremTypes: coreConfig (config:$configTypes)
 `;
 
 export const graphQL = {
@@ -43,12 +45,12 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsCategory ($configTargets:CoreConfigInput) {
+        query ForemGetRelationsCategory ($configTargets:CoreConfigInput $configAssists:CoreConfigInput $configTypes:CoreConfigInput) {
             ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query ForemGetActions ($sql:[CoreSQLInput]) {
+        query ForemGetActions ($sql:[CoreSQLInput] $configTargets:CoreConfigInput $configAssists:CoreConfigInput $configTypes:CoreConfigInput) {
             coreObjects: foremActions (sql:$sql) {
                 ${fields}
             }
@@ -56,7 +58,7 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query ForemGetAction ($sql:[CoreSQLInput]) {
+        query ForemGetAction ($sql:[CoreSQLInput] $configTargets:CoreConfigInput $configAssists:CoreConfigInput $configTypes:CoreConfigInput) {
             coreObject: foremAction (sql:$sql) {
                 ${fields}
             }

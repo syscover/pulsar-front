@@ -3,7 +3,9 @@ export const locale = {
     data: {
         'FOREM': {
             'ACTION': 'Action',
-            'EMPLOYMENT_OFFICE': 'Employment office'
+            'ASSIST': 'Assist',
+            'EMPLOYMENT_OFFICE': 'Employment office',
+            'TARGET': 'Target',
         }
     }
 };

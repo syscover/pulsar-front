@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './action.graphql';
-import { Category, Target } from '../forem.models';
+import { Category, Target, Assist, Type } from '../forem.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from '../../../core/services/select-search.service';
@@ -22,6 +22,8 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     objectTranslationGender = 'F';
     loadingSlug = false;
     targets: Target[] = [];
+    assists: Assist[] = [];
+    types: Type[] = [];
 
     // categories
     categories: Category[] = [];
@@ -77,8 +79,18 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             key: 'pulsar-forem.targets'
         };
 
+        const configAssists = {
+            key: 'pulsar-forem.assists'
+        };
+
+        const configTypes = {
+            key: 'pulsar-forem.types'
+        };
+
         return {
             configTargets,
+            configAssists,
+            configTypes
         };
     }
 
@@ -86,6 +98,12 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     {
         // set targets
         this.targets = <Target[]>data.foremTargets;
+
+        // set assists
+        this.assists = <Assist[]>data.foremAssists;
+
+        // set types
+        this.types = <Type[]>data.foremTypes;
 
         // forem categories
         this.categories = data.foremCategories;
