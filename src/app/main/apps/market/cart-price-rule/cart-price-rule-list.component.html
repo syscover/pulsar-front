@@ -76,14 +76,14 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="market_cart_price_rule.total_uses">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'MARKET.TOTAL_USES' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.total_uses }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'MARKET.TOTAL_USES' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-100">{{ row.total_uses }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
                 <ng-container matColumnDef="market_cart_price_rule.active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center">{{ 'APPS.ACTIVE.F' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'APPS.ACTIVE.F' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
                         <mat-icon *ngIf="row.active">done</mat-icon>
                     </mat-cell>
                 </ng-container>

@@ -126,7 +126,6 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
                 // set description field
                 if (Array.isArray(this.object.descriptions))
                 {
-                    console.log(this.object.descriptions);
                     const trans = this.object.descriptions.find((el) => {
                         return el['id'] === this.lang.id;
                     });
