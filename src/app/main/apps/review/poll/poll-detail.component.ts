@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { PollGraphQLService } from './poll-graphql.service';
 
 @Component({
-    selector: 'dh2-poll-detail',
+    selector: 'dh2-review-poll-detail',
     templateUrl: 'poll-detail.component.html',
     animations: fuseAnimations
 })

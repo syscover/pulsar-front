@@ -5,7 +5,7 @@ import { PreferenceGraphQLService } from './preference-graphql.service';
 import { User } from './../../admin/admin.models';
 
 @Component({
-    selector: 'dh2-preference-detail',
+    selector: 'dh2-review-preference-detail',
     templateUrl: './preference-detail.component.html',
     animations: fuseAnimations
 })

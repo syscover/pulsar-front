@@ -6,7 +6,7 @@ import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
 import { Country } from './../../admin/admin.models';
 
 @Component({
-    selector: 'dh2-tax-rate-zone-detail',
+    selector: 'dh2-market-tax-rate-zone-detail',
     templateUrl: 'tax-rate-zone-detail.component.html',
     animations: fuseAnimations
 })

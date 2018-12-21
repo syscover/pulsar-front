@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { OrderStatusGraphQLService } from './order-status-graphql.service';
 
 @Component({
-    selector: 'dh2-order-status-list',
+    selector: 'dh2-market-order-status-list',
     templateUrl: './order-status-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

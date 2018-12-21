@@ -35,7 +35,6 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
-import { CartPriceRuleGraphQLService } from './cart-price-rule/cart-price-rule-graphql.service';
 import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
 import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-customer-class-tax/customer-group-customer-class-tax-graphql.service';
 import { OrderGraphQLService } from './order/order-graphql.service';
@@ -86,7 +85,6 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         WarehouseDetailComponent
     ],
     providers: [
-        CartPriceRuleGraphQLService,
         CustomerClassTaxGraphQLService,
         CustomerGroupCustomerClassTaxGraphQLService,
         OrderGraphQLService,

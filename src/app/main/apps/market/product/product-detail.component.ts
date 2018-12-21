@@ -9,7 +9,7 @@ import { StockableService } from '../../../core/components/stockable/stockable.s
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-market-product-detail',
+    selector: 'dh2-market-market-product-detail',
     templateUrl: './product-detail.component.html',
     animations: fuseAnimations,
     styleUrls: [

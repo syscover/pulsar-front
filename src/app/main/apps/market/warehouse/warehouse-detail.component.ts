@@ -6,7 +6,7 @@ import { WarehouseGraphQLService } from './warehouse-graphql.service';
 import { Country } from './../../admin/admin.models';
 
 @Component({
-    selector: 'dh2-warehouse-detail',
+    selector: 'dh2-market-warehouse-detail',
     templateUrl: 'warehouse-detail.component.html',
     animations: fuseAnimations
 })

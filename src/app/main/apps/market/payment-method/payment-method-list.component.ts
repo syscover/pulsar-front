@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 
 @Component({
-    selector: 'dh2-payment-method-list',
+    selector: 'dh2-market-payment-method-list',
     templateUrl: './payment-method-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

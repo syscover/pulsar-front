@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.service';
 
 @Component({
-    selector: 'dh2-paypal-web-profile-detail',
+    selector: 'dh2-market-paypal-web-profile-detail',
     templateUrl: 'paypal-web-profile-detail.component.html',
     animations: fuseAnimations
 })

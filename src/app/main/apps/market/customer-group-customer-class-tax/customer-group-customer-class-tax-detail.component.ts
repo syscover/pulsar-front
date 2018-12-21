@@ -9,7 +9,7 @@ import { CustomerClassTax } from './../market.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-customer-group-customer-class-tax-detail',
+    selector: 'dh2-market-customer-group-customer-class-tax-detail',
     templateUrl: 'customer-group-customer-class-tax-detail.component.html',
     animations: fuseAnimations
 })

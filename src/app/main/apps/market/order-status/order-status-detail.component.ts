@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { OrderStatusGraphQLService } from './order-status-graphql.service';
 
 @Component({
-    selector: 'dh2-order-status-detail',
+    selector: 'dh2-market-order-status-detail',
     templateUrl: './order-status-detail.component.html',
     animations: fuseAnimations
 })

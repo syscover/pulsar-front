@@ -6,7 +6,7 @@ import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 import { OrderStatus } from './../market.models';
 
 @Component({
-    selector: 'dh2-payment-method-detail',
+    selector: 'dh2-market-payment-method-detail',
     templateUrl: './payment-method-detail.component.html',
     animations: fuseAnimations
 })

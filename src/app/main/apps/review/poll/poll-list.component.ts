@@ -1,11 +1,10 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { PollGraphQLService } from './poll-graphql.service';
 
 @Component({
-    selector: 'dh2-poll-list',
+    selector: 'dh2-review-poll-list',
     templateUrl: './poll-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

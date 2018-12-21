@@ -5,7 +5,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { WarehouseGraphQLService } from './warehouse-graphql.service';
 
 @Component({
-    selector: 'dh2-warehouse-list',
+    selector: 'dh2-market-warehouse-list',
     templateUrl: './warehouse-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

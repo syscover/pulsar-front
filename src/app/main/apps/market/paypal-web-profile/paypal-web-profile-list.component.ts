@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.service';
 
 @Component({
-    selector: 'dh2-paypal-web-profile-list',
+    selector: 'dh2-market-paypal-web-profile-list',
     templateUrl: './paypal-web-profile-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

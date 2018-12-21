@@ -1,10 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
+import { graphQL } from './cart-price-rule.graphql';
 
 @Component({
-    selector: 'dh2-cart-price-rule-list',
+    selector: 'dh2-market-cart-price-rule-list',
     templateUrl: './cart-price-rule-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
@@ -18,8 +18,7 @@ export class CartPriceRuleListComponent extends CoreListComponent
     baseUri = '/apps/market/marketing/cart-price-rule';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CartPriceRuleGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

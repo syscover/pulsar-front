@@ -5,7 +5,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { CustomerClassTaxGraphQLService } from './customer-class-tax-graphql.service';
 
 @Component({
-    selector: 'dh2-customer-class-tax-detail',
+    selector: 'dh2-market-customer-class-tax-detail',
     templateUrl: 'customer-class-tax-detail.component.html',
     animations: fuseAnimations
 })

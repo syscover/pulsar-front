@@ -7,7 +7,7 @@ import { TaxRateZone, CustomerClassTax, ProductClassTax } from './../market.mode
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-tax-rule-detail',
+    selector: 'dh2-market-tax-rule-detail',
     templateUrl: 'tax-rule-detail.component.html',
     animations: fuseAnimations
 })

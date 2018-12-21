@@ -5,7 +5,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { CustomerClassTaxGraphQLService } from './customer-class-tax-graphql.service';
 
 @Component({
-    selector: 'dh2-customer-class-tax-list',
+    selector: 'dh2-market-customer-class-tax-list',
     templateUrl: './customer-class-tax-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

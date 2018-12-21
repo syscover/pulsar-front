@@ -1,11 +1,10 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { CommentGraphQLService } from './comment-graphql.service';
 
 @Component({
-    selector: 'dh2-comment-list',
+    selector: 'dh2-review-comment-list',
     templateUrl: './comment-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

@@ -8,7 +8,7 @@ import { Question, Response } from './../review.models';
 import './../../../core/functions/map-order.function';
 
 @Component({
-    selector: 'dh2-comment-detail',
+    selector: 'dh2-review-comment-detail',
     templateUrl: 'comment-detail.component.html',
     styleUrls  : ['./comment-detail.component.scss'],
     animations: fuseAnimations

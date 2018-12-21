@@ -4,7 +4,7 @@ import { CoreListComponent } from './../../../core/structures/core-list-componen
 import { TaxRuleGraphQLService } from './tax-rule-graphql.service';
 
 @Component({
-    selector: 'dh2-tax-rule-list',
+    selector: 'dh2-market-tax-rule-list',
     templateUrl: './tax-rule-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

@@ -1,11 +1,10 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { ObjectAverageGraphQLService } from './object-average-graphql.service';
 
 @Component({
-    selector: 'dh2-object-average-list',
+    selector: 'dh2-review-object-average-list',
     templateUrl: './object-average-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

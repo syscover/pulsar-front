@@ -7,7 +7,7 @@ import { Poll, QuestionType } from './../review.models';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'dh2-question-detail',
+    selector: 'dh2-review-question-detail',
     templateUrl: 'question-detail.component.html',
     animations: fuseAnimations
 })

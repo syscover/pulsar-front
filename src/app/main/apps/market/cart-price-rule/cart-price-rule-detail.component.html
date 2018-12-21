@@ -91,15 +91,17 @@
                             (ngSubmit)="postRecord(object)">
                     
                         <div fxLayout="row wrap">
-                            <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                <input matInput formControlName="id">
                             </mat-form-field>
-                            <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                            <dh2-flag-icon [class.offset-md-1]="dataRoute.action !== 'create'" class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                <input matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>
                             </mat-form-field>
                         </div>
@@ -123,8 +125,9 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <mat-select placeholder="{{ 'NAV.CUSTOMER_GROUPS' | translate }}" formControlName="customer_group_ids" multiple>
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                <mat-label>{{ 'NAV.CUSTOMER_GROUPS' | translate }}</mat-label>
+                                <mat-select formControlName="customer_group_ids" multiple>
                                     <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>
                                 </mat-select>
                                 <mat-error>{{ formErrors?.customer_group_ids }}</mat-error>
@@ -132,8 +135,9 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="{{ 'MARKET.PRIORITY' | translate }}" formControlName="priority" type="number">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                <mat-label>{{ 'MARKET.PRIORITY' | translate }}</mat-label>
+                                <input matInput formControlName="priority" type="number">
                                 <mat-error>{{ formErrors?.priority }}</mat-error>
                             </mat-form-field>
                         </div>
@@ -152,13 +156,15 @@
                                 </mat-expansion-panel-header>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'MARKET.ENABLE_FROM' | translate }}" formControlName="enable_from" type="datetime-local">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'MARKET.ENABLE_FROM' | translate }}</mat-label>
+                                        <input matInput formControlName="enable_from" type="datetime-local">
                                         <mat-error>{{ formErrors?.enable_from }}</mat-error>
                                     </mat-form-field>
         
-                                    <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'MARKET.ENABLE_TO' | translate }}" formControlName="enable_to" type="datetime-local">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'MARKET.ENABLE_TO' | translate }}</mat-label>
+                                        <input matInput formControlName="enable_to" type="datetime-local">
                                         <mat-error>{{ formErrors?.enable_to }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -185,28 +191,32 @@
         
                                 <div *ngIf="fg.get('has_coupon').value">
                                     <div fxLayout="row">
-                                        <mat-form-field class="col-12 col-md-4">
-                                            <input matInput placeholder="{{ 'MARKET.COUPON' | translate }}" formControlName="coupon_code">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                            <mat-label>{{ 'MARKET.COUPON' | translate }}</mat-label>
+                                            <input matInput formControlName="coupon_code">
                                             <mat-error>{{ formErrors?.coupon_code }}</mat-error>
                                         </mat-form-field>
                                     </div>
         
                                     <div fxLayout="row wrap">
-                                        <mat-form-field class="col-12 col-md-4">
-                                            <input matInput placeholder="{{ 'MARKET.COUPON_USES' | translate }}" formControlName="coupon_uses" type="number">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                            <mat-label>{{ 'MARKET.COUPON_USES' | translate }}</mat-label>
+                                            <input matInput formControlName="coupon_uses" type="number">
                                             <mat-hint align="start">{{ 'MARKET.COUPON_USES_DESCRIPTION' | translate }}</mat-hint>
                                             <mat-error>{{ formErrors?.coupon_uses }}</mat-error>
                                         </mat-form-field>
-                                        <mat-form-field class="col-12 offset-md-1 col-md-4">
-                                            <input matInput placeholder="{{ 'MARKET.CUSTOMER_USES' | translate }}" formControlName="customer_uses" type="number">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                                            <mat-label>{{ 'MARKET.CUSTOMER_USES' | translate }}</mat-label>
+                                            <input matInput formControlName="customer_uses" type="number">
                                             <mat-hint align="start">{{ 'MARKET.CUSTOMER_USES_DESCRIPTION' | translate }}</mat-hint>
                                             <mat-error>{{ formErrors?.customer_uses }}</mat-error>
                                         </mat-form-field>
                                     </div>
         
                                     <div fxLayout="row wrap">
-                                        <mat-form-field class="col-12 col-md-4 mt-12">
-                                            <input matInput placeholder="{{ 'MARKET.TOTAL_USES' | translate }}" formControlName="total_uses" type="number">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4 mt-12">
+                                            <mat-label>{{ 'MARKET.TOTAL_USES' | translate }}</mat-label>
+                                            <input matInput formControlName="total_uses" type="number">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -223,8 +233,9 @@
                         <!-- / HEADER -->
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
-                                <mat-select placeholder="{{ 'MARKET.DISCOUNT_TYPES' | translate }}" formControlName="discount_type_id" (selectionChange)="handleDiscountType($event)" required>
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                <mat-label>{{ 'MARKET.DISCOUNT_TYPES' | translate }}</mat-label>
+                                <mat-select formControlName="discount_type_id" (selectionChange)="handleDiscountType($event)" required>
                                     <mat-option *ngFor="let discountType of discountTypes" [value]="+discountType.id">{{ discountType.name }}</mat-option>
                                 </mat-select>
                                 <mat-error>{{ formErrors?.discount_type_id }}</mat-error>
@@ -233,14 +244,16 @@
 
                         <div *ngIf="percentageDiscount">
                             <div fxLayout="row wrap">
-                                <mat-form-field class="col-12 col-md-4">
+                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-label>{{ 'MARKET.DISCOUNT_PERCENTAGE' | translate }}</mat-label>
                                     <span matSuffix>%</span>
-                                    <input matInput placeholder="{{ 'MARKET.DISCOUNT_PERCENTAGE' | translate }}" formControlName="discount_percentage" type="number">
+                                    <input matInput formControlName="discount_percentage" type="number">
                                     <mat-error>{{ formErrors?.discount_percentage }}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="col-12 offset-md-1 col-md-4">
+                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                                    <mat-label>{{ 'MARKET.MAXIMUN_DISCOUNT_AMOUNT' | translate }}</mat-label>
                                     <mat-icon matSuffix>euro_symbol</mat-icon>
-                                    <input matInput placeholder="{{ 'MARKET.MAXIMUN_DISCOUNT_AMOUNT' | translate }}" formControlName="maximum_discount_amount" type="number">
+                                    <input matInput formControlName="maximum_discount_amount" type="number">
                                     <mat-error>{{ formErrors?.maximum_discount_amount }}</mat-error>
                                 </mat-form-field>
                             </div>
@@ -254,9 +267,10 @@
 
                         <div *ngIf="amountDiscount">
                             <div fxLayout="row">
-                                <mat-form-field class="col-12 col-md-4">
+                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-label>{{ 'MARKET.DISCOUNT_FIXED_AMOUNT' | translate }}</mat-label>
                                     <mat-icon matSuffix>euro_symbol</mat-icon>
-                                    <input matInput placeholder="{{ 'MARKET.DISCOUNT_FIXED_AMOUNT' | translate }}" formControlName="discount_fixed_amount" type="number">
+                                    <input matInput formControlName="discount_fixed_amount" type="number">
                                     <mat-error>{{ formErrors?.discount_fixed_amount }}</mat-error>
                                 </mat-form-field>
                             </div>

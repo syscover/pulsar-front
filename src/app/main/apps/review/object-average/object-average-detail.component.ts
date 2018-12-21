@@ -6,7 +6,7 @@ import { ObjectAverageGraphQLService } from './object-average-graphql.service';
 import { Poll } from './../review.models';
 
 @Component({
-    selector: 'dh2-object-average-detail',
+    selector: 'dh2-review-object-average-detail',
     templateUrl: 'object-average-detail.component.html',
     animations: fuseAnimations
 })

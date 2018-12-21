@@ -3,13 +3,13 @@ import { Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CartPriceRuleGraphQLService } from './cart-price-rule-graphql.service';
 import { CustomerGroup } from './../../crm/crm.models';
 import { DiscountType } from './../market.models';
 import './../../../core/functions/date-to-json.function';
+import { graphQL } from './cart-price-rule.graphql';
 
 @Component({
-    selector: 'dh2-cart-price-rule-detail',
+    selector: 'dh2-market-cart-price-rule-detail',
     templateUrl: 'cart-price-rule-detail.component.html',
     animations: fuseAnimations
 })
@@ -25,8 +25,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     percentageDiscount = false;
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CartPriceRuleGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -34,25 +33,25 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            description: null,
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            description: '',
             active: false,
             customer_group_ids: [],
             combinable: false,
-            priority: null,
+            priority: '',
             has_coupon: false,
-            coupon_code: null,
-            coupon_uses: null,
-            customer_uses: null,
-            total_uses: [{value: null, disabled: true}],
-            enable_from: null,
-            enable_to: null,
-            discount_type_id: [null, Validators.required],
-            discount_fixed_amount: null,
-            discount_percentage: null,
-            maximum_discount_amount: null,
+            coupon_code: '',
+            coupon_uses: '',
+            customer_uses: '',
+            total_uses: [{value: '', disabled: true}],
+            enable_from: '',
+            enable_to: '',
+            discount_type_id: ['', Validators.required],
+            discount_fixed_amount: '',
+            discount_percentage: '',
+            maximum_discount_amount: '',
             apply_shipping_amount: false,
             free_shipping: false
         });

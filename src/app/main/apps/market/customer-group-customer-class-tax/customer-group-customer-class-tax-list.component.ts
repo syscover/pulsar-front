@@ -1,11 +1,10 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-customer-class-tax-graphql.service';
 
 @Component({
-    selector: 'dh2-customer-group-customer-class-tax-list',
+    selector: 'dh2-market-customer-group-customer-class-tax-list',
     templateUrl: './customer-group-customer-class-tax-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']

@@ -9,7 +9,7 @@ import { OrderStatus, PaymentMethod, Log } from './../market.models';
 import { CustomerGroup } from '../../crm/crm.models';
 
 @Component({
-    selector: 'dh2-order-detail',
+    selector: 'dh2-market-order-detail',
     templateUrl: 'order-detail.component.html',
     animations: fuseAnimations
 })
