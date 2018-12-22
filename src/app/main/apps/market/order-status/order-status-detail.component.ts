@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { OrderStatusGraphQLService } from './order-status-graphql.service';
+import { graphQL } from './order-status.graphql';
 
 @Component({
     selector: 'dh2-market-order-status-detail',
@@ -15,13 +15,12 @@ export class OrderStatusDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: OrderStatusGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: null,

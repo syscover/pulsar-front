@@ -1,85 +1,76 @@
-import { Injectable } from '@angular/core';
-import { GraphQLSchema } from './../../../core/structures/graphql-schema';
 import gql from 'graphql-tag';
+import { graphQL as marketCustomerClassTax } from './../customer-class-tax/customer-class-tax.graphql';
+import { graphQL as crmCustomerGroup } from './../../crm/customer-group/customer-group.graphql';
 
-@Injectable()
-export class CustomerGroupCustomerClassTaxGraphQLService extends GraphQLSchema
-{
-    queryPaginationObject = gql`
+const fields = `
+    customer_group_id
+    customer_class_tax_id 
+`;
+
+const relationsFields = `
+    crmCustomerGroups {
+        ${crmCustomerGroup.fields}
+    }
+    marketCustomerClassTaxes {
+        ${marketCustomerClassTax.fields}
+    }
+`;
+
+export const graphQL = {
+
+    model: 'Syscover\\Market\\Models\\CustomerGroupCustomerClassTax',
+    table: 'market_customer_group_customer_class_tax',
+    fields,
+    relationsFields,
+
+    queryPaginationObject: gql`
         query MarketGetCustomerGroupsCustomerClassTaxesPagination ($sql:[CoreSQLInput]) {
             coreObjectsPagination: marketCustomerGroupsCustomerClassTaxesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
             }
-        }`;
+        }`,
 
-    queryRelationsObject  = gql`
+    queryRelationsObject : gql`
         query MarketGetRelationsArticle {
-            ${this.relationsFields}
-        }`;
+            ${relationsFields}
+        }`,
 
-    queryObjects = gql`
+    queryObjects: gql`
         query MarketGetCustomerGroupsCustomerClassTaxes ($sql:[CoreSQLInput]) {
             coreObjects: marketCustomerGroupsCustomerClassTaxes (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
-            ${this.relationsFields}
-        }`;
+            ${relationsFields}
+        }`,
 
-    queryObject = gql`
+    queryObject: gql`
         query MarketGetCustomerGroupCustomerClassTax ($sql:[CoreSQLInput]) {
             coreObject: marketCustomerGroupCustomerClassTax (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
-            ${this.relationsFields}
-        }`;
+            ${relationsFields}
+        }`,
 
-    mutationCreateObject = gql`
+    mutationCreateObject: gql`
         mutation MarketCreateCustomerGroupCustomerClassTax ($payload:MarketCustomerGroupCustomerClassTaxInput!) {
             marketCreateCustomerGroupCustomerClassTax (payload:$payload) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
+        }`,
 
-    mutationUpdateObject = gql`
+    mutationUpdateObject: gql`
         mutation MarketUpdateCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int! $payload:MarketCustomerGroupCustomerClassTaxInput!) {
             marketUpdateCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id payload:$payload) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
+        }`,
 
-    mutationDeleteObject = gql`
+    mutationDeleteObject: gql`
         mutation MarketDeleteCustomerGroupCustomerClassTax ($customer_group_id:Int! $customer_class_tax_id:Int!) {
             marketDeleteCustomerGroupCustomerClassTax (customer_group_id:$customer_group_id customer_class_tax_id:$customer_class_tax_id) {
-                ${this.fields}
+                ${fields}
             }
-        }`;
-
-    init(): void
-    {
-        this.model = 'Syscover\\Market\\Models\\CustomerGroupCustomerClassTax';
-        this.table = 'market_customer_group_customer_class_tax';
-
-        // defaults fields that will be return, fragment necessary for return CoreObjectInterface
-        this.fields = `
-            ... on MarketCustomerGroupCustomerClassTax {
-                customer_group_id
-                customer_class_tax_id 
-            }
-        `;
-
-        this.relationsFields = `
-            crmCustomerGroups {
-                id
-                name
-            }
-            marketCustomerClassTaxes {
-                id
-                name
-            }
-        `;
-
-        super.init();
-    }
-}
+        }`
+};

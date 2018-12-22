@@ -3,10 +3,10 @@ import { Validators } from '@angular/forms';
 import { Params } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-customer-class-tax-graphql.service';
 import { CustomerGroup } from './../../crm/crm.models';
 import { CustomerClassTax } from './../market.models';
 import * as _ from 'lodash';
+import { graphQL } from './customer-group-customer-class-tax.graphql';
 
 @Component({
     selector: 'dh2-market-customer-group-customer-class-tax-detail',
@@ -23,8 +23,7 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
     name: string;
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CustomerGroupCustomerClassTaxGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

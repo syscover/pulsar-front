@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CustomerClassTaxGraphQLService } from './customer-class-tax-graphql.service';
+import { graphQL } from './customer-class-tax.graphql';
 
 @Component({
     selector: 'dh2-market-customer-class-tax-detail',
@@ -16,8 +16,7 @@ export class CustomerClassTaxDetailComponent extends CoreDetailComponent
     baseUri = '/apps/market/taxes/customer-class-tax';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: CustomerClassTaxGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -25,8 +24,8 @@ export class CustomerClassTaxDetailComponent extends CoreDetailComponent
     createForm() 
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required]
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required]
         });
     }
 }

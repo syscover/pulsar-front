@@ -90,15 +90,17 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                        <dh2-flag-icon [class.offset-md-1]="dataRoute.action !== 'create'" class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>

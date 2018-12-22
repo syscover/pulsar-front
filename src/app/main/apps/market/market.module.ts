@@ -35,17 +35,13 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
-import { CustomerClassTaxGraphQLService } from './customer-class-tax/customer-class-tax-graphql.service';
-import { CustomerGroupCustomerClassTaxGraphQLService } from './customer-group-customer-class-tax/customer-group-customer-class-tax-graphql.service';
 import { OrderGraphQLService } from './order/order-graphql.service';
-import { OrderStatusGraphQLService } from './order-status/order-status-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { SectionGraphQLService } from './section/section-graphql.service';
 import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
-import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
 
 @NgModule({
     imports: [
@@ -85,17 +81,13 @@ import { WarehouseGraphQLService } from './warehouse/warehouse-graphql.service';
         WarehouseDetailComponent
     ],
     providers: [
-        CustomerClassTaxGraphQLService,
-        CustomerGroupCustomerClassTaxGraphQLService,
         OrderGraphQLService,
-        OrderStatusGraphQLService,
         PaymentMethodGraphQLService,
         PaypalWebProfileGraphqlService,
         ProductClassTaxGraphQLService,
         SectionGraphQLService,
         TaxRateZoneGraphQLService,
-        TaxRuleGraphQLService,
-        WarehouseGraphQLService
+        TaxRuleGraphQLService
     ],
     entryComponents: [
         OrderRowInfoDialogComponent

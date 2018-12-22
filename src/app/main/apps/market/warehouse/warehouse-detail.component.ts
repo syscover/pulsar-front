@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { WarehouseGraphQLService } from './warehouse-graphql.service';
 import { Country } from './../../admin/admin.models';
+import { graphQL } from './warehouse.graphql';
 
 @Component({
     selector: 'dh2-market-warehouse-detail',
@@ -17,8 +17,7 @@ export class WarehouseDetailComponent extends CoreDetailComponent
     countries: Country[];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: WarehouseGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -26,8 +25,8 @@ export class WarehouseDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
             active: false
         });
     }

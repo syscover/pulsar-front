@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { WarehouseGraphQLService } from './warehouse-graphql.service';
+import { graphQL } from './warehouse.graphql';
 
 @Component({
     selector: 'dh2-market-warehouse-list',
@@ -18,8 +17,7 @@ export class WarehouseListComponent extends CoreListComponent
     displayedColumns = ['market_warehouse.id', 'market_warehouse.name', 'market_warehouse.active', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: WarehouseGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

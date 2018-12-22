@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { OrderStatusGraphQLService } from './order-status-graphql.service';
+import { graphQL } from './order-status.graphql';
 
 @Component({
     selector: 'dh2-market-order-status-list',
@@ -18,8 +18,7 @@ export class OrderStatusListComponent extends CoreListComponent
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: OrderStatusGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
