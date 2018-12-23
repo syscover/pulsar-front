@@ -94,23 +94,26 @@
                     <input type="hidden" formControlName="ix">    
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id" required>
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
                         <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [object]="object" [model]="graphQL.model" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [object]="object" [model]="graphQL.model" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [object]="object" [model]="graphQL.model" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
+                            <input dh2Slug [object]="object" [model]="graphQL.model" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>

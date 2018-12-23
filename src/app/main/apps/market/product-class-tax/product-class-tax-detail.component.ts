@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ProductClassTaxGraphQLService } from './product-class-tax-graphql.service';
+import { graphQL } from './product-class-tax.graphql';
 
 @Component({
     selector: 'dh2-market-product-class-tax-detail',
@@ -16,8 +16,7 @@ export class ProductClassTaxDetailComponent extends CoreDetailComponent
     baseUri = '/apps/market/taxes/product-class-tax';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: ProductClassTaxGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

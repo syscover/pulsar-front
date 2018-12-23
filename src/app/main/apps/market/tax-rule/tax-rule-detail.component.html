@@ -69,29 +69,33 @@
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
                 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.TRANSLATION' | translate }}" formControlName="translation" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.TRANSLATION' | translate }}</mat-label>
+                            <input matInput formControlName="translation" required>
                             <mat-error>{{ formErrors?.translation }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <mat-select placeholder="{{ 'MARKET.TAX_RATE_ZONE' | translate }}" formControlName="tax_rate_zones_id" multiple required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'MARKET.TAX_RATE_ZONE' | translate }}</mat-label>
+                            <mat-select formControlName="tax_rate_zones_id" multiple required>
                                 <mat-option *ngFor="let taxRateZone of taxRateZones" [value]="taxRateZone.id">{{ taxRateZone.name }}</mat-option>                                            
                             </mat-select>
                             <mat-error>{{ formErrors?.tax_rate_zones_id }}</mat-error>
@@ -99,8 +103,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}" formControlName="customer_class_taxes_id" multiple required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}</mat-label>
+                            <mat-select formControlName="customer_class_taxes_id" multiple required>
                                 <mat-option *ngFor="let customerClassTax of customerClassTaxes" [value]="customerClassTax.id">{{ customerClassTax.name }}</mat-option>                                            
                             </mat-select>
                             <mat-error>{{ formErrors?.customer_class_taxes_id }}</mat-error>
@@ -108,8 +113,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}" formControlName="product_class_taxes_id" multiple required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}</mat-label>
+                            <mat-select formControlName="product_class_taxes_id" multiple required>
                                 <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>                                            
                             </mat-select>
                             <mat-error>{{ formErrors?.product_class_taxes_id }}</mat-error>
@@ -117,12 +123,14 @@
                     </div>
 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'MARKET.PRIORITY' | translate }}" formControlName="priority" type="number">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'MARKET.PRIORITY' | translate }}</mat-label>
+                            <input matInput formControlName="priority" type="number">
                             <mat-error>{{ formErrors?.priority }}</mat-error>
                         </mat-form-field>
-                        <mat-form-field class="col-12 offset-md-1 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                            <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                            <input matInput formControlName="sort" type="number">
                             <mat-error>{{ formErrors?.sort }}</mat-error>
                         </mat-form-field>
                     </div>

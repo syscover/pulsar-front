@@ -38,9 +38,6 @@ import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component
 import { OrderGraphQLService } from './order/order-graphql.service';
 import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
-import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
-import { SectionGraphQLService } from './section/section-graphql.service';
-import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 
 @NgModule({
     imports: [
@@ -82,10 +79,7 @@ import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
     providers: [
         OrderGraphQLService,
         PaymentMethodGraphQLService,
-        PaypalWebProfileGraphqlService,
-        ProductClassTaxGraphQLService,
-        SectionGraphQLService,
-        TaxRuleGraphQLService
+        PaypalWebProfileGraphqlService
     ],
     entryComponents: [
         OrderRowInfoDialogComponent

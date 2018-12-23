@@ -2,9 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TaxRuleGraphQLService } from './tax-rule-graphql.service';
 import { TaxRateZone, CustomerClassTax, ProductClassTax } from './../market.models';
 import * as _ from 'lodash';
+import { graphQL } from './tax-rule.graphql';
 
 @Component({
     selector: 'dh2-market-tax-rule-detail',
@@ -21,8 +21,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent
     productClassTaxes: ProductClassTax[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TaxRuleGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

@@ -20,9 +20,9 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     object: any = {}; // set empty object
     validationMessageService: ValidationMessageService;
     
-    constructor(
+    protected constructor(
         protected injector: Injector,
-        protected graphQL: any
+        public graphQL: any
     ) 
     {
         super(injector, graphQL);
