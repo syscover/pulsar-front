@@ -46,7 +46,7 @@ export class TerritorialArea3ListComponent extends CoreListComponent
         return args;
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // admin country
         this.country = data.adminCountry;

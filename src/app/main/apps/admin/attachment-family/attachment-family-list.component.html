@@ -77,13 +77,13 @@
                 <!-- Column -->
                 <ng-container matColumnDef="admin_attachment_family.width">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-120">{{ 'APPS.WIDTH' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="mw-120">{{ row.width ? row.width + 'px' : null }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="mw-120">{{ row.width ? row.width + 'px' : '' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_attachment_family.height">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-120">{{ 'APPS.HEIGHT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="mw-120">{{ row.height ? row.height + 'px' : null }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="mw-120">{{ row.height ? row.height + 'px' : '' }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

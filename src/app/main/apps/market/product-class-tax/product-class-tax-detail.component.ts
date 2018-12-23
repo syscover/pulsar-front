@@ -22,11 +22,11 @@ export class ProductClassTaxDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required]
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required]
         });
     }
 }

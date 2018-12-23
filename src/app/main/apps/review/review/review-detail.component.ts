@@ -25,18 +25,18 @@ export class ReviewDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            object_name: [{value: null, disabled: true}],
-            object_email: [{value: null, disabled: true}],
-            customer_name: [{value: null, disabled: true}],
-            customer_email: [{value: null, disabled: true}],
-            average: [{value: null, disabled: true}],
-            completed: [{value: null, disabled: true}],
-            validated: [{value: null, disabled: true}],
-            action_id: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            object_name: [{value: '', disabled: true}],
+            object_email: [{value: '', disabled: true}],
+            customer_name: [{value: '', disabled: true}],
+            customer_email: [{value: '', disabled: true}],
+            average: [{value: '', disabled: true}],
+            completed: [{value: '', disabled: true}],
+            validated: [{value: '', disabled: true}],
+            action_id: ['', Validators.required],
             responses: this.fb.array([])
         });
     }
@@ -58,10 +58,10 @@ export class ReviewDetailComponent extends CoreDetailComponent
         for (const obj of this.questions)
         {
             this.responses.push(this.fb.group({
-                id: null,
-                question_id: null,
-                score: null,
-                text: null
+                id: '',
+                question_id: '',
+                score: '',
+                text: ''
             }));
         }
     }

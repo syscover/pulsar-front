@@ -23,7 +23,7 @@ export class CustomerGroupDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
+            id: [{value: '', disabled: true}],
             name: ['', Validators.required]
         });
     }

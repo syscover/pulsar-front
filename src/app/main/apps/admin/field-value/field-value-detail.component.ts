@@ -30,12 +30,12 @@ export class FieldValueDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
+            ix: '',
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
             field_id: [this.field_id, Validators.required],
-            name: [null, Validators.required],
-            sort: null,
+            name: ['', Validators.required],
+            sort: '',
             featured: false
         });
     }

@@ -27,21 +27,21 @@ export class TaxRuleDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
-            translation: null,
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
+            translation: '',
             tax_rate_zones_id: [[], Validators.required],
             customer_class_taxes_id: [[], Validators.required],
             product_class_taxes_id: [[], Validators.required],
-            priority: [null, Validators.required ],
-            sort: [null, Validators.required ]
+            priority: ['', Validators.required ],
+            sort: ['', Validators.required ]
         });
     }
 
-    afterPatchValueEdit()
+    afterPatchValueEdit(): void
     {
         // set market product class taxes
         this.fg.controls['tax_rate_zones_id'].setValue(_.map(this.object.tax_rate_zones, 'id'));
@@ -51,7 +51,7 @@ export class TaxRuleDetailComponent extends CoreDetailComponent
         this.fg.controls['product_class_taxes_id'].setValue(_.map(this.object.product_class_taxes, 'id'));
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set market tax rate zones
         this.taxRateZones = data.marketTaxRateZones;

@@ -40,7 +40,6 @@ import { PaymentMethodGraphQLService } from './payment-method/payment-method-gra
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
 import { ProductClassTaxGraphQLService } from './product-class-tax/product-class-tax-graphql.service';
 import { SectionGraphQLService } from './section/section-graphql.service';
-import { TaxRateZoneGraphQLService } from './tax-rate-zone/tax-rate-zone-graphql.service';
 import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
 
 @NgModule({
@@ -86,7 +85,6 @@ import { TaxRuleGraphQLService } from './tax-rule/tax-rule-graphql.service';
         PaypalWebProfileGraphqlService,
         ProductClassTaxGraphQLService,
         SectionGraphQLService,
-        TaxRateZoneGraphQLService,
         TaxRuleGraphQLService
     ],
     entryComponents: [

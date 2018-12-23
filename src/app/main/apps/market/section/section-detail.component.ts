@@ -24,15 +24,15 @@ export class SectionDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [null, [
+            ix: '',
+            id: ['', [
                 Validators.required,
                 Validators.minLength(4),
                 Validators.maxLength(30)]
             ],
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required ],
-            slug: [null, Validators.required ]
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required ],
+            slug: ['', Validators.required ]
         });
     }
 

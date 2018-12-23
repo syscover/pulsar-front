@@ -29,16 +29,16 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
-            surname: null,
-            email: [null, Validators.required],
-            lang_id: [null, Validators.required],
-            profile_id: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
+            surname: '',
+            email: ['', Validators.required],
+            lang_id: ['', Validators.required],
+            profile_id: ['', Validators.required],
             active: false,
-            user: [null, Validators.required],
-            password: null,
-            repeat_password: null
+            user: ['', Validators.required],
+            password: '',
+            repeat_password: ''
         });
     }
 

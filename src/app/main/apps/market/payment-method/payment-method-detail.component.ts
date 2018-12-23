@@ -23,19 +23,19 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}, Validators.required],
-            lang_id: [null, Validators.required],
-            order_status_successful_id: [null, Validators.required],
-            name: [null, Validators.required ],
-            minimum_price: null,
-            maximum_price: null,
-            sort: null,
+            ix: '',
+            id: [{value: '', disabled: true}, Validators.required],
+            lang_id: ['', Validators.required],
+            order_status_successful_id: ['', Validators.required],
+            name: ['', Validators.required],
+            minimum_price: '',
+            maximum_price: '',
+            sort: '',
             active: false,
-            instructions: null
+            instructions: ''
         });
     }
 

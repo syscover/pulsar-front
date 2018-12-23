@@ -28,11 +28,11 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            customer_group_id: [null, Validators.required],
-            customer_class_tax_id: [null, Validators.required]
+            customer_group_id: ['', Validators.required],
+            customer_class_tax_id: ['', Validators.required]
         });
     }
 

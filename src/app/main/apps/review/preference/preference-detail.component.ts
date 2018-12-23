@@ -26,8 +26,8 @@ export class PreferenceDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            review_validate_comments: null,
-            review_moderators: null
+            review_validate_comments: '',
+            review_moderators: ''
         });
     }
 

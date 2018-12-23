@@ -27,8 +27,8 @@ export class FamilyDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required ],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required ],
             date: false,
             title: false,
             slug: false,
@@ -38,9 +38,9 @@ export class FamilyDetailComponent extends CoreDetailComponent
             link: false,
             article_parent: false,
             attachments: false,
-            excerpt_editor_id: null,
-            article_editor_id: null,
-            field_group_id: null
+            excerpt_editor_id: '',
+            article_editor_id: '',
+            field_group_id: ''
         });
     }
 

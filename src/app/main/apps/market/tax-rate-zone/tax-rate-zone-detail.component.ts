@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
 import { Country } from './../../admin/admin.models';
+import { graphQL } from './tax-rate-zone.graphql';
 
 @Component({
     selector: 'dh2-market-tax-rate-zone-detail',
@@ -18,23 +18,22 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent
     countries: Country[] = [];
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TaxRateZoneGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
-            country_id: [null, Validators.required],
-            territorial_area_1_id: null,
-            territorial_area_2_id: null,
-            territorial_area_3_id: null,
-            zip: null,
-            tax_rate: [null, Validators.required]
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
+            country_id: ['', Validators.required],
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            zip: '',
+            tax_rate: ['', Validators.required]
         });
     }
 
@@ -59,10 +58,9 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set admin countries
         this.countries = data.adminCountries;
     }
 }
-

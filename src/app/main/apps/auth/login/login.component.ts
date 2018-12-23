@@ -67,8 +67,8 @@ export class LoginComponent implements OnInit
         const remenberme = localStorage.getItem('remember_me') ? JSON.parse(localStorage.getItem('remember_me')) : null;
 
         this.loginForm = this.formBuilder.group({
-            user        : [remenberme && remenberme.user ? remenberme.user : null, [Validators.required, Validators.email]],
-            password    : [remenberme && remenberme.password ? remenberme.password : null, Validators.required],
+            user        : [remenberme && remenberme.user ? remenberme.user : '', [Validators.required, Validators.email]],
+            password    : [remenberme && remenberme.password ? remenberme.password : '', Validators.required],
             remember_me : false
         });
 

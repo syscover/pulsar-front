@@ -21,20 +21,20 @@ export class PollDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
             send_notification: false,
             validate: false,
-            default_high_score: null,
-            mailing_days: null,
-            expiration_days: null,
-            review_route: null,
-            comment_route: null,
-            review_email_template: null,
-            comment_email_template: null
+            default_high_score: '',
+            mailing_days: '',
+            expiration_days: '',
+            review_route: '',
+            comment_route: '',
+            review_email_template: '',
+            comment_email_template: ''
         });
     }
 }

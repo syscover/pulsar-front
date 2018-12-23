@@ -22,7 +22,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
             ix: '',
@@ -35,7 +35,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
         });
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // cms sections
         this.sections = data.cmsSections;

@@ -23,11 +23,11 @@ export class PackageDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
-            root: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
+            root: ['', Validators.required],
             active: false,
-            sort: [null, Validators.required]
+            sort: ['', Validators.required]
         });
     }
 }

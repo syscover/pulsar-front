@@ -24,26 +24,26 @@ export class PaypalWebProfileDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            name: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            name: ['', Validators.required],
             temporary: false,
             flow_config: this.fb.group({
-                landing_page_type: [null, Validators.required],
-                bank_txn_pending_url: [null, Validators.required],
-                user_action: [null, Validators.required],
-                return_uri_http_method: [null, Validators.required]
+                landing_page_type: ['', Validators.required],
+                bank_txn_pending_url: ['', Validators.required],
+                user_action: ['', Validators.required],
+                return_uri_http_method: ['', Validators.required]
             }),
             input_fields: this.fb.group({
                 allow_note: [false, Validators.required],
-                no_shipping: [null, Validators.required],
-                address_override: [null, Validators.required]
+                no_shipping: ['', Validators.required],
+                address_override: ['', Validators.required]
             }),
             presentation: this.fb.group({
-                brand_name: [null, Validators.required],
-                logo_image: [null, Validators.required],
-                locale_code: [null, Validators.required],
-                return_url_label: [null, Validators.required],
-                note_to_seller_label: [null, Validators.required]
+                brand_name: ['', Validators.required],
+                logo_image: ['', Validators.required],
+                locale_code: ['', Validators.required],
+                return_url_label: ['', Validators.required],
+                note_to_seller_label: ['', Validators.required]
             })
         });
     }

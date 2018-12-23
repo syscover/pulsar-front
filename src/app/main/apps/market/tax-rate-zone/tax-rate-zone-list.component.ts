@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { TaxRateZoneGraphQLService } from './tax-rate-zone-graphql.service';
+import { graphQL } from './tax-rate-zone.graphql';
 
 @Component({
     selector: 'dh2-market-tax-rate-zone-list',
@@ -18,8 +18,7 @@ export class TaxRateZoneListComponent extends CoreListComponent
     baseUri = '/apps/market/taxes/tax-rate-zone';
 
     constructor(
-        protected injector: Injector,
-        protected graphQL: TaxRateZoneGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

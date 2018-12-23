@@ -28,9 +28,9 @@ export class OauthAccessTokenDetailComponent extends CoreDetailComponent impleme
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            user_id: null,
-            name: [null, Validators.required]
+            id: [{value: '', disabled: true}],
+            user_id: '',
+            name: ['', Validators.required]
         });
     }
 

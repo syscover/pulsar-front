@@ -23,11 +23,11 @@ export class LangDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [null, [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-            name: [null, Validators.required],
-            icon: null,
-            sort: null,
+            ix: '',
+            id: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+            name: ['', Validators.required],
+            icon: '',
+            sort: '',
             active: false
         });
     }

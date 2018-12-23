@@ -29,15 +29,15 @@ export class CommentDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            review_id: [{value: null, disabled: true}],
-            date: [{value: null, disabled: false}],
-            // owner_type_id: [{value: null, disabled: true}],
-            name: [{value: null, disabled: true}],
-            email: [{value: null, disabled: true}],
-            comment: [null, Validators.required],
-            validated: [{value: null, disabled: true}],
-            action_id: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            review_id: [{value: '', disabled: true}],
+            date: [{value: '', disabled: false}],
+            // owner_type_id: [{value: '', disabled: true}],
+            name: [{value: '', disabled: true}],
+            email: [{value: '', disabled: true}],
+            comment: ['', Validators.required],
+            validated: [{value: '', disabled: true}],
+            action_id: ['', Validators.required],
             responses: this.fb.array([])
         });
     }
@@ -59,10 +59,10 @@ export class CommentDetailComponent extends CoreDetailComponent
         for (const obj of this.questions)
         {
             this.responses.push(this.fb.group({
-                id: {value: null, disabled: true},
-                question_id: {value: null, disabled: true},
-                score: {value: null, disabled: true},
-                text: {value: null, disabled: true}
+                id: {value: '', disabled: true},
+                question_id: {value: '', disabled: true},
+                score: {value: '', disabled: true},
+                text: {value: '', disabled: true}
             }));
         }
     }

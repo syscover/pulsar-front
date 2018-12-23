@@ -31,13 +31,13 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [null, Validators.required],
-            country_id: null,
-            territorial_area_1_id: [null, Validators.required],
-            territorial_area_2_id: [null, Validators.required],
-            name: [null, Validators.required],
-            slug: null
+            ix: '',
+            id: ['', Validators.required],
+            country_id: '',
+            territorial_area_1_id: ['', Validators.required],
+            territorial_area_2_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ''
         });
     }
 

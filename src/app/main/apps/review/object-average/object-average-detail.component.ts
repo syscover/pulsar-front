@@ -23,19 +23,19 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
         super(injector, graphQL);
     }
 
-    createForm() 
+    createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            poll_id: [{value: null, disabled: true}],
-            object_name: [{value: null, disabled: true}],
-            reviews: [{value: null, disabled: true}, Validators.required],
-            total: [{value: null, disabled: true}, Validators.required],
-            average: [{value: null, disabled: true}, Validators.required]
+            id: [{value: '', disabled: true}],
+            poll_id: [{value: '', disabled: true}],
+            object_name: [{value: '', disabled: true}],
+            reviews: [{value: '', disabled: true}, Validators.required],
+            total: [{value: '', disabled: true}, Validators.required],
+            average: [{value: '', disabled: true}, Validators.required]
         });
     }
 
-    setRelationsData(data: any) 
+    setRelationsData(data: any): void
     {
         // set review polls
         this.polls = data.reviewPolls;

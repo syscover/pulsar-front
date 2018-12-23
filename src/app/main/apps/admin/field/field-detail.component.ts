@@ -28,19 +28,19 @@ export class FieldDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            id: [{value: null, disabled: true}],
-            field_group_id: [null, Validators.required],
-            lang_id: [null, Validators.required],
-            label: [null, Validators.required],
-            name: [null, Validators.required],
-            field_type_id: [null, Validators.required],
-            data_type_id: [null, Validators.required],
+            id: [{value: '', disabled: true}],
+            field_group_id: ['', Validators.required],
+            lang_id: ['', Validators.required],
+            label: ['', Validators.required],
+            name: ['', Validators.required],
+            field_type_id: ['', Validators.required],
+            data_type_id: ['', Validators.required],
             required: false,
-            sort: null,
-            max_length: null,
-            pattern: null,
-            label_class: null,
-            component_class: null
+            sort: '',
+            max_length: '',
+            pattern: '',
+            label_class: '',
+            component_class: ''
         });
     }
 

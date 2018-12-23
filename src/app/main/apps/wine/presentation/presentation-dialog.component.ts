@@ -79,9 +79,9 @@ export class PresentationDialogComponent implements OnInit
     createForm(): void
     {
         this.fg = this._fb.group({
-            lang_id: [null, Validators.required],
-            name: [null, Validators.required],
-            slug: [null, Validators.required]
+            lang_id: ['', Validators.required],
+            name: ['', Validators.required],
+            slug: ['', Validators.required]
         });
     }
 

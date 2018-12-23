@@ -29,15 +29,15 @@ export class QuestionDetailComponent extends CoreDetailComponent
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: null,
-            id: [{value: null, disabled: true}],
-            lang_id: [null, Validators.required],
-            poll_id: [null, Validators.required],
-            type_id: [null, Validators.required],
-            name: [null, Validators.required],
-            description: null,
-            sort: null,
-            high_score: null
+            ix: '',
+            id: [{value: '', disabled: true}],
+            lang_id: ['', Validators.required],
+            poll_id: ['', Validators.required],
+            type_id: ['', Validators.required],
+            name: ['', Validators.required],
+            description: '',
+            sort: '',
+            high_score: ''
         });
     }
 
@@ -61,10 +61,10 @@ export class QuestionDetailComponent extends CoreDetailComponent
         if (this.dataRoute.action === 'edit' && this.object.average)
         {
             this.fg.addControl('average', this.fb.group({
-                id: {value: null, disabled: true},
-                reviews: [{value: null, disabled: true}, Validators.required],
-                total: [{value: null, disabled: true}, Validators.required],
-                average: [{value: null, disabled: true}, Validators.required]
+                id: {value: '', disabled: true},
+                reviews: [{value: '', disabled: true}, Validators.required],
+                total: [{value: '', disabled: true}, Validators.required],
+                average: [{value: '', disabled: true}, Validators.required]
             }));
         }
         
