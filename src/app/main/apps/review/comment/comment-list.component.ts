@@ -18,7 +18,7 @@ export class CommentListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: CommentGraphQLService
+        public graphQL: CommentGraphQLService
     ) {
         super(injector, graphQL);
     }

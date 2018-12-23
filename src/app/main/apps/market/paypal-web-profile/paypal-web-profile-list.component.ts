@@ -18,7 +18,7 @@ export class PaypalWebProfileListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PaypalWebProfileGraphqlService
+        public graphQL: PaypalWebProfileGraphqlService
     ) {
         super(injector, graphQL);
     }

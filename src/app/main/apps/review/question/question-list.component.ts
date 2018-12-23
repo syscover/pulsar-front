@@ -20,7 +20,7 @@ export class QuestionListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: QuestionGraphQLService
+        public graphQL: QuestionGraphQLService
     ) {
         super(injector, graphQL);
     }

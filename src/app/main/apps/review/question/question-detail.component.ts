@@ -21,7 +21,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: QuestionGraphQLService
+        public graphQL: QuestionGraphQLService
     ) {
         super(injector, graphQL);
     }

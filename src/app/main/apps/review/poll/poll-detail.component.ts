@@ -16,7 +16,7 @@ export class PollDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PollGraphQLService
+        public graphQL: PollGraphQLService
     ) {
         super(injector, graphQL);
     }

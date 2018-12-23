@@ -34,7 +34,7 @@ export class OrderDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: OrderGraphQLService
+        public graphQL: OrderGraphQLService
     ) {
         super(injector, graphQL);
     }

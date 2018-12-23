@@ -21,7 +21,7 @@ export class CommentDetailComponent extends CoreDetailComponent
     
     constructor(
         protected injector: Injector,
-        protected graphQL: CommentGraphQLService
+        public graphQL: CommentGraphQLService
     ) {
         super(injector, graphQL);
     }

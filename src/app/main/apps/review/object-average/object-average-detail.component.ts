@@ -18,7 +18,7 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: ObjectAverageGraphQLService
+        public graphQL: ObjectAverageGraphQLService
     ) {
         super(injector, graphQL);
     }

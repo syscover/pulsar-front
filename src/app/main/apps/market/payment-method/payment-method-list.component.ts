@@ -19,7 +19,7 @@ export class PaymentMethodListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PaymentMethodGraphQLService
+        public graphQL: PaymentMethodGraphQLService
     ) {
         super(injector, graphQL);
     }

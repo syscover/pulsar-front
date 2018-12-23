@@ -14,7 +14,7 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
 {
     objectTranslationTranslated;
     objectTranslationGender = 'F';
-    slugLoader = false;
+    loadingSlug = false;
     country: Country = new Country();
 
     constructor(
@@ -68,6 +68,6 @@ export class TerritorialArea1DetailComponent extends CoreDetailComponent
 
     handleCheckingSlug($event): void
     {
-        this.slugLoader = $event;
+        this.loadingSlug = $event;
     }
 }

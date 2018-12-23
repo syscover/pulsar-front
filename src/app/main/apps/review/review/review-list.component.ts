@@ -18,7 +18,7 @@ export class ReviewListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: ReviewGraphQLService
+        public graphQL: ReviewGraphQLService
     ) {
         super(injector, graphQL);
     }

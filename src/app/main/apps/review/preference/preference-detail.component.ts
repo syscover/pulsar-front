@@ -18,7 +18,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PreferenceGraphQLService
+        public graphQL: PreferenceGraphQLService
     ) {
         super(injector, graphQL);
     }

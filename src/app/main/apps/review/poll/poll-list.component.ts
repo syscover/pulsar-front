@@ -18,7 +18,7 @@ export class PollListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PollGraphQLService
+        public graphQL: PollGraphQLService
     ) {
         super(injector, graphQL);
     }

@@ -18,7 +18,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: PaymentMethodGraphQLService
+        public graphQL: PaymentMethodGraphQLService
     ) {
         super(injector, graphQL);
     }

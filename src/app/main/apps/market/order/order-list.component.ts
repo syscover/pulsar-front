@@ -18,7 +18,7 @@ export class OrderListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: OrderGraphQLService
+        public graphQL: OrderGraphQLService
     ) {
         super(injector, graphQL);
     }

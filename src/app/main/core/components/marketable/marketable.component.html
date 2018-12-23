@@ -5,7 +5,8 @@
 
         <div fxLayout="row wrap">
             <mat-form-field class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
-                <input matInput placeholder="{{ 'MARKETABLE.SKU' | translate }}" formControlName="sku">
+                <mat-label>{{ 'MARKETABLE.SKU' | translate }}</mat-label>
+                <input matInput formControlName="sku">
                 <mat-error>{{ formErrors?.sku }}</mat-error>
             </mat-form-field>
 

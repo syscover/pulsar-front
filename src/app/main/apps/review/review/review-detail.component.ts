@@ -20,7 +20,7 @@ export class ReviewDetailComponent extends CoreDetailComponent
 
     constructor(
         protected injector: Injector,
-        protected graphQL: ReviewGraphQLService
+        public graphQL: ReviewGraphQLService
     ) {
         super(injector, graphQL);
     }
