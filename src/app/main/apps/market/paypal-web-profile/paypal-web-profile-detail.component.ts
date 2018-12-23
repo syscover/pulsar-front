@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.service';
+import { graphQL } from './paypal-web-profile.graphql';
 
 @Component({
     selector: 'dh2-market-paypal-web-profile-detail',
@@ -15,8 +15,7 @@ export class PaypalWebProfileDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'M';
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PaypalWebProfileGraphqlService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

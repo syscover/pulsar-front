@@ -3,10 +3,10 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { OrderGraphQLService } from './order-graphql.service';
 import { OrderRowInfoDialogComponent } from './order-row-info-dialog.component';
 import { OrderStatus, PaymentMethod, Log } from './../market.models';
 import { CustomerGroup } from '../../crm/crm.models';
+import { graphQL } from './order.graphql';
 
 @Component({
     selector: 'dh2-market-order-detail',
@@ -33,8 +33,7 @@ export class OrderDetailComponent extends CoreDetailComponent
     @ViewChild(MatSort) sortDiscount: MatSort;
 
     constructor(
-        protected injector: Injector,
-        public graphQL: OrderGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

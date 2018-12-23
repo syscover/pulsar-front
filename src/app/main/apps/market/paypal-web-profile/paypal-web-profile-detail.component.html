@@ -69,15 +69,17 @@
                           [formGroup]="fg"
                           (ngSubmit)="postRecord(object, [this.baseUri, 'paypal-web-profile'])">
                 
-                    <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -103,16 +105,18 @@
                             <div formGroupName="presentation">
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12">
-                                            <input matInput placeholder="{{ 'PAYPAL.BRAND_NAME' | translate }}" formControlName="brand_name" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'PAYPAL.BRAND_NAME' | translate }}</mat-label>
+                                            <input matInput formControlName="brand_name" required>
                                             <mat-error>{{ formErrors?.brand_name }}</mat-error>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 py-24">
-                                            <input matInput placeholder="{{ 'PAYPAL.LOGO_IMAGE' | translate }}" formControlName="logo_image" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 py-24">
+                                            <mat-label>{{ 'PAYPAL.LOGO_IMAGE' | translate }}</mat-label>
+                                            <input matInput formControlName="logo_image" required>
                                             <mat-hint align="start">{{ 'PAYPAL.LOGO_IMAGE_DESCRIPTION' | translate }}</mat-hint>
                                             <mat-error>{{ formErrors?.logo_image }}</mat-error>
                                         </mat-form-field>
@@ -120,8 +124,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-4">
-                                        <mat-form-field class="col-12">
-                                            <mat-select placeholder="{{ 'PAYPAL.LOCALE_CODE' | translate }}" formControlName="locale_code">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'PAYPAL.LOCALE_CODE' | translate }}</mat-label>
+                                            <mat-select formControlName="locale_code">
                                                 <mat-option value="AU">AU</mat-option>
                                                 <mat-option value="AT">AT</mat-option>
                                                 <mat-option value="BE">BE</mat-option>
@@ -146,8 +151,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 py-24">
-                                            <input matInput placeholder="{{ 'PAYPAL.RETURN_URL_LABEL' | translate }}" formControlName="return_url_label" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 py-24">
+                                            <mat-label>{{ 'PAYPAL.RETURN_URL_LABEL' | translate }}</mat-label>
+                                            <input matInput formControlName="return_url_label" required>
                                             <mat-hint align="start">{{ 'PAYPAL.RETURN_URL_LABEL_DESCRIPTION' | translate }}</mat-hint>
                                             <mat-error>{{ formErrors?.return_url_label }}</mat-error>
                                         </mat-form-field>
@@ -155,8 +161,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 py-24">
-                                            <input matInput placeholder="{{ 'PAYPAL.NOTE_TO_SELLER_LABEL' | translate }}" formControlName="note_to_seller_label" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 py-24">
+                                            <mat-label>{{ 'PAYPAL.NOTE_TO_SELLER_LABEL' | translate }}</mat-label>
+                                            <input matInput formControlName="note_to_seller_label" required>
                                             <mat-hint align="start">{{ 'PAYPAL.RETURN_URL_LABEL_DESCRIPTION' | translate }}</mat-hint>
                                             <mat-error>{{ formErrors?.note_to_seller_label }}</mat-error>
                                         </mat-form-field>
@@ -178,8 +185,9 @@
                             <div formGroupName="flow_config">
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 col-md-5 py-24">
-                                            <mat-select placeholder="{{ 'PAYPAL.LANDING_PAGE_TYPE' | translate }}" formControlName="landing_page_type">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5 py-24">
+                                            <mat-label>{{ 'PAYPAL.LANDING_PAGE_TYPE' | translate }}</mat-label>
+                                            <mat-select formControlName="landing_page_type">
                                                 <mat-option value="Billing">{{ 'PAYPAL.BILLING' | translate }}</mat-option>
                                                 <mat-option value="Login">{{ 'PAYPAL.LOGIN' | translate }}</mat-option>
                                             </mat-select>
@@ -192,8 +200,9 @@
                                     <div class="col-12">
                                         <div fxLayout="row">
                                             <div class="col-12">
-                                                <mat-form-field class="col-12">
-                                                    <input matInput placeholder="{{ 'PAYPAL.BANK_TXN_PENDING_URL' | translate }}" formControlName="bank_txn_pending_url" required>
+                                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                                    <mat-label>{{ 'PAYPAL.BANK_TXN_PENDING_URL' | translate }}</mat-label>
+                                                    <input matInput formControlName="bank_txn_pending_url" required>
                                                     <mat-error>{{ formErrors?.bank_txn_pending_url }}</mat-error>
                                                 </mat-form-field>
                                             </div>
@@ -202,8 +211,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 col-md-5 py-24">
-                                            <mat-select placeholder="{{ 'PAYPAL.USER_ACTION' | translate }}" formControlName="user_action">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5 py-24">
+                                            <mat-label>{{ 'PAYPAL.USER_ACTION' | translate }}</mat-label>
+                                            <mat-select formControlName="user_action">
                                                 <mat-option value="continue">{{ 'PAYPAL.CONTINUE' | translate }}</mat-option>
                                                 <mat-option value="commit">{{ 'PAYPAL.COMMIT' | translate }}</mat-option>
                                             </mat-select>
@@ -214,8 +224,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12 col-md-5">
-                                            <mat-select placeholder="{{ 'PAYPAL.RETURN_URI_HTTP_METHOD' | translate }}" formControlName="return_uri_http_method">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'PAYPAL.RETURN_URI_HTTP_METHOD' | translate }}</mat-label>
+                                            <mat-select formControlName="return_uri_http_method">
                                                 <mat-option value="GET">GET</mat-option>
                                                 <mat-option value="POST">POST</mat-option>
                                             </mat-select>
@@ -244,8 +255,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12">
-                                            <mat-select placeholder="{{ 'PAYPAL.NO_SHIPPING' | translate }}" formControlName="no_shipping">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'PAYPAL.NO_SHIPPING' | translate }}</mat-label>
+                                            <mat-select formControlName="no_shipping">
                                                 <mat-option [value]="0">{{ 'PAYPAL.NO_SHIPPING_OPTION_1' | translate }}</mat-option>
                                                 <mat-option [value]="1">{{ 'PAYPAL.NO_SHIPPING_OPTION_2' | translate }}</mat-option>
                                                 <mat-option [value]="2">{{ 'PAYPAL.NO_SHIPPING_OPTION_3' | translate }}</mat-option>
@@ -256,8 +268,9 @@
                                 </div>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <mat-form-field class="col-12">
-                                            <mat-select placeholder="{{ 'PAYPAL.ADDRESS_OVERRIDE' | translate }}" formControlName="address_override">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'PAYPAL.ADDRESS_OVERRIDE' | translate }}</mat-label>
+                                            <mat-select formControlName="address_override">
                                                 <mat-option [value]="0">{{ 'PAYPAL.ADDRESS_OVERRIDE_OPTION_1' | translate }}</mat-option>
                                                 <mat-option [value]="1">{{ 'PAYPAL.ADDRESS_OVERRIDE_OPTION_2' | translate }}</mat-option>
                                             </mat-select>

@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { PaypalWebProfileGraphqlService } from './paypal-web-profile-graphql.service';
+import { graphQL } from './paypal-web-profile.graphql';
 
 @Component({
     selector: 'dh2-market-paypal-web-profile-list',
@@ -17,8 +17,7 @@ export class PaypalWebProfileListComponent extends CoreListComponent
     displayedColumns = ['market_paypal_web_profile.id', 'market_paypal_web_profile.name', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PaypalWebProfileGraphqlService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

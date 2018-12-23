@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { OrderGraphQLService } from './order-graphql.service';
+import { graphQL } from './order.graphql';
 
 @Component({
     selector: 'dh2-market-order-list',
@@ -17,8 +17,7 @@ export class OrderListComponent extends CoreListComponent
     displayedColumns = ['market_order.id', 'market_order.date', 'market_order.customer_name', 'market_order.customer_email', 'market_payment_method.name', 'market_order_status.name', 'market_order.total', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: OrderGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

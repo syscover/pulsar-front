@@ -35,9 +35,6 @@ import { TaxRuleDetailComponent } from './tax-rule/tax-rule-detail.component';
 import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
-import { OrderGraphQLService } from './order/order-graphql.service';
-import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
@@ -75,10 +72,7 @@ import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-
         WarehouseListComponent,
         WarehouseDetailComponent
     ],
-    providers: [
-        OrderGraphQLService,
-        PaypalWebProfileGraphqlService
-    ],
+    providers: [],
     entryComponents: [
         OrderRowInfoDialogComponent
     ]
