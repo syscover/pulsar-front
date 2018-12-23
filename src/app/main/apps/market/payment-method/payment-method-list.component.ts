@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
+import { graphQL } from './payment-method.graphql';
 
 @Component({
     selector: 'dh2-market-payment-method-list',
@@ -18,8 +18,7 @@ export class PaymentMethodListComponent extends CoreListComponent
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PaymentMethodGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

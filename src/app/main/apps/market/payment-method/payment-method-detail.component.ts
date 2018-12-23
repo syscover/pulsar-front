@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { PaymentMethodGraphQLService } from './payment-method-graphql.service';
 import { OrderStatus } from './../market.models';
+import { graphQL } from './payment-method.graphql';
 
 @Component({
     selector: 'dh2-market-payment-method-detail',
@@ -17,8 +17,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent
     orderStatuses: OrderStatus[] = [];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PaymentMethodGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

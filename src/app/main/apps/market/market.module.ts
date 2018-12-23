@@ -36,7 +36,6 @@ import { WarehouseListComponent } from './warehouse/warehouse-list.component';
 import { WarehouseDetailComponent } from './warehouse/warehouse-detail.component';
 
 import { OrderGraphQLService } from './order/order-graphql.service';
-import { PaymentMethodGraphQLService } from './payment-method/payment-method-graphql.service';
 import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-profile-graphql.service';
 
 @NgModule({
@@ -78,7 +77,6 @@ import { PaypalWebProfileGraphqlService } from './paypal-web-profile/paypal-web-
     ],
     providers: [
         OrderGraphQLService,
-        PaymentMethodGraphQLService,
         PaypalWebProfileGraphqlService
     ],
     entryComponents: [

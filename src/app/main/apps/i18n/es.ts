@@ -13,6 +13,7 @@ export const locale = {
             'CLEAR': 'Limpiar',
             'CLOSE': 'Cerrar',
             'CODE': 'Código',
+            'COMMENTS': 'Comentarios',
             'COMPANY': 'Empresa',
             'COMPLETED.F': 'Completada',
             'COMPLETED.M': 'Completado',
