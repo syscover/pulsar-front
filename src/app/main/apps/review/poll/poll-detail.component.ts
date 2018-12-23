@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { PollGraphQLService } from './poll-graphql.service';
+import { graphQL } from './poll.graphql';
 
 @Component({
     selector: 'dh2-review-poll-detail',
@@ -15,8 +15,7 @@ export class PollDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'F';
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PollGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

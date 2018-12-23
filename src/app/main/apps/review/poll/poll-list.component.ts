@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { PollGraphQLService } from './poll-graphql.service';
+import { graphQL } from './poll.graphql';
 
 @Component({
     selector: 'dh2-review-poll-list',
@@ -17,8 +17,7 @@ export class PollListComponent extends CoreListComponent
     displayedColumns = ['review_poll.id', 'review_poll.name', 'review_poll.send_notification', 'review_poll.validate', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PollGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
