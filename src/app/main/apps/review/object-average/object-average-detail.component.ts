@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { ObjectAverageGraphQLService } from './object-average-graphql.service';
 import { Poll } from './../review.models';
+import { graphQL } from './object-average.graphql';
 
 @Component({
     selector: 'dh2-review-object-average-detail',
@@ -17,8 +17,7 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
     polls: Poll[] = [];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: ObjectAverageGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

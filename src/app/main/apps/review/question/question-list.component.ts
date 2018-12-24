@@ -1,8 +1,7 @@
-
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { QuestionGraphQLService } from './question-graphql.service';
+import { graphQL } from './question.graphql';
 
 @Component({
     selector: 'dh2-review-question-list',
@@ -19,8 +18,7 @@ export class QuestionListComponent extends CoreListComponent
     filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: QuestionGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

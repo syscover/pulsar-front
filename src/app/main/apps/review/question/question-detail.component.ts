@@ -2,9 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { QuestionGraphQLService } from './question-graphql.service';
 import { Poll, QuestionType } from './../review.models';
 import * as _ from 'lodash';
+import { graphQL } from './question.graphql';
 
 @Component({
     selector: 'dh2-review-question-detail',
@@ -20,8 +20,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
     showHighScore = true;
 
     constructor(
-        protected injector: Injector,
-        public graphQL: QuestionGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

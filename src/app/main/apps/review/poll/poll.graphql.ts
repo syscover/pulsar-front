@@ -35,35 +35,35 @@ export const graphQL = {
     queryObjects: gql`
         query ReviewGetPolls ($sql:[CoreSQLInput]) {
             coreObjects: reviewPolls (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     queryObject: gql`
         query ReviewGetPoll ($sql:[CoreSQLInput]) {
             coreObject: reviewPoll (sql:$sql) {
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation ReviewCreatePoll ($payload:ReviewPollInput!) {
             reviewCreatePoll (payload:$payload) {
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation ReviewUpdatePoll ($payload:ReviewPollInput!) {
             reviewUpdatePoll (payload:$payload) {
-                ${this.fields}
+                ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation ReviewDeletePoll ($id:Int!) {
             reviewDeletePoll (id:$id) {
-                ${this.fields}
+                ${fields}
             }
         }`
 };

@@ -20,15 +20,15 @@ export const graphQL = {
     queryObject: gql`
         query ReviewGetPreferences ($keys:[String]!) {
             coreObject: corePreferences (keys:$keys) {
-                ${this.fields}
+                ${fields}
             }
-            ${this.relationsFields}
+            ${relationsFields}
         }`,
 
     mutationUpdateObject: gql`
         mutation ReviewUpdatePreferences ($preferences:[CorePreferenceInput]) {
             coreUpdatePreferences (preferences:$preferences) {
-                ${this.fields}
+                ${fields}
             }
-        }`,
+        }`
 };

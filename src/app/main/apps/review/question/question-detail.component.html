@@ -91,15 +91,17 @@
                         (ngSubmit)="postRecord(object)">
                 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
-                        <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
+                        <dh2-flag-icon [class.offset-md-1]="dataRoute.action !== 'create'" class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'REVIEW.POLL' | translate }}" formControlName="poll_id" (selectionChange)="handleChangePoll($event)" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'REVIEW.POLL' | translate }}</mat-label>
+                            <mat-select formControlName="poll_id" (selectionChange)="handleChangePoll($event)" required>
                                 <mat-option *ngFor="let poll of polls" [value]="poll.id">{{ poll.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.poll_id }}</mat-error>
@@ -107,8 +109,9 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'REVIEW.QUESTION_TYPE' | translate }}" formControlName="type_id" (selectionChange)="handleChangeType($event)" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'REVIEW.QUESTION_TYPE' | translate }}</mat-label>
+                            <mat-select formControlName="type_id" (selectionChange)="handleChangeType($event)" required>
                                 <mat-option *ngFor="let questionType of questionTypes" [value]="+questionType.id">{{ questionType.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.type_id }}</mat-error>
@@ -116,16 +119,17 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <textarea   matInput 
-                                        placeholder="{{ 'APPS.DESCRIPTION' | translate }}" 
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
+                            <textarea   matInput
                                         matTextareaAutosize 
                                         matAutosizeMinRows="2" 
                                         formControlName="description"></textarea>
@@ -134,13 +138,15 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <input matInput placeholder="{{ 'APPS.SORT' | translate }}" formControlName="sort" type="number" min="0">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
+                            <input matInput formControlName="sort" type="number" min="0">
                             <mat-error>{{ formErrors?.sort }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field class="col-12 offset-md-1 col-md-4" *ngIf="showHighScore">
-                            <input matInput placeholder="{{ 'REVIEW.HIGH_SCORE' | translate }}" formControlName="high_score" type="number" min="0">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4" *ngIf="showHighScore">
+                            <mat-label>{{ 'REVIEW.HIGH_SCORE' | translate }}</mat-label>
+                            <input matInput formControlName="high_score" type="number" min="0">
                             <mat-error>{{ formErrors?.high_score }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -156,20 +162,23 @@
                         <!-- / HEADER -->
                     
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
-                                <input matInput placeholder="{{ 'NAV.REVIEWS' | translate }}" formControlName="reviews" type="number">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                <mat-label>{{ 'NAV.REVIEWS' | translate }}</mat-label>
+                                <input matInput formControlName="reviews" type="number">
                                 <mat-hint align="start">{{ 'REVIEW.REVIEWS_DESCRIPTION' | translate }}</mat-hint>
                             </mat-form-field>
 
-                            <mat-form-field class="col-12 offset-md-1 col-md-4">
-                                <input matInput placeholder="{{ 'APPS.TOTAL' | translate }}" formControlName="total" type="number">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                                <mat-label>{{ 'APPS.TOTAL' | translate }}</mat-label>
+                                <input matInput formControlName="total" type="number">
                                 <mat-hint align="start">{{ 'REVIEW.TOTAL_DESCRIPTION' | translate }}</mat-hint>
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4 pt-20">
-                                <input matInput placeholder="{{ 'REVIEW.AVERAGE' | translate }}" formControlName="average" type="number">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4 pt-20">
+                                <mat-label>{{ 'REVIEW.AVERAGE' | translate }}</mat-label>
+                                <input matInput formControlName="average" type="number">
                                 <mat-hint align="start">{{ 'REVIEW.AVERAGE_DESCRIPTION' | translate }}</mat-hint>
                             </mat-form-field>
                         </div>

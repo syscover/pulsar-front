@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ObjectAverageGraphQLService } from './object-average-graphql.service';
+import { graphQL } from './object-average.graphql';
 
 @Component({
     selector: 'dh2-review-object-average-list',
@@ -17,8 +17,7 @@ export class ObjectAverageListComponent extends CoreListComponent
     displayedColumns = ['review_object_average.id', 'review_object_average.object_name', 'review_object_average.average', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: ObjectAverageGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

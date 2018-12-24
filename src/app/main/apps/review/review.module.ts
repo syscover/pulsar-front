@@ -18,8 +18,6 @@ import { ReviewListComponent } from './review/review-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 
 import { CommentGraphQLService } from './comment/comment-graphql.service';
-import { ObjectAverageGraphQLService } from './object-average/object-average-graphql.service';
-import { QuestionGraphQLService } from './question/question-graphql.service';
 import { ReviewGraphQLService } from './review/review-graphql.service';
 
 @NgModule({
@@ -43,8 +41,6 @@ import { ReviewGraphQLService } from './review/review-graphql.service';
     ],
     providers: [
         CommentGraphQLService,
-        ObjectAverageGraphQLService,
-        QuestionGraphQLService,
         ReviewGraphQLService
     ]
 })
