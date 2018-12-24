@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { PreferenceGraphQLService } from './preference-graphql.service';
 import { User } from './../../admin/admin.models';
+import { graphQL } from './preference.graphql';
 
 @Component({
     selector: 'dh2-review-preference-detail',
@@ -17,8 +17,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
     users: User[] = [];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: PreferenceGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

@@ -69,15 +69,15 @@
                             [formGroup]="fg"
                             (ngSubmit)="postRecord(object)">
                     
-                        <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
+                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                                 <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                 <input matInput formControlName="id">
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                 <input matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>
@@ -99,7 +99,7 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                                 <mat-label>{{ 'REVIEW.DEFAULT_HIGH_SCORE' | translate }}</mat-label>
                                 <input matInput formControlName="default_high_score" type="number" min="0">
                                 <mat-error>{{ formErrors?.default_high_score }}</mat-error>
@@ -107,14 +107,14 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 col-md-4">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                                 <mat-label>{{ 'REVIEW.MAILING_DAYS' | translate }}</mat-label>
                                 <input matInput formControlName="mailing_days" type="number" min="0">
                                 <mat-hint align="start">{{ 'REVIEW.MAILING_DAYS_DESCRIPTION' | translate }}</mat-hint>
                                 <mat-error>{{ formErrors?.mailing_days }}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field class="col-12 offset-md-1 col-md-4">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
                                 <mat-label>{{ 'REVIEW.EXPIRATION_DAYS' | translate }}</mat-label>
                                 <input matInput formControlName="expiration_days" type="number" min="0">
                                 <mat-hint align="start">{{ 'REVIEW.EXPIRATION_DAYS_DESCRIPTION' | translate }}</mat-hint>
@@ -123,7 +123,7 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 mt-12">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 mt-12">
                                 <mat-label>{{ 'REVIEW.REVIEW_ROUTE' | translate }}</mat-label>
                                 <input matInput formControlName="review_route">
                                 <mat-hint align="start">{{ 'REVIEW.REVIEW_ROUTE_DESCRIPTION' | translate }}</mat-hint>
@@ -132,7 +132,7 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'REVIEW.COMMENT_ROUTE' | translate }}</mat-label>
                                 <input matInput formControlName="comment_route">
                                 <mat-hint align="start">{{ 'REVIEW.COMMENT_ROUTE_DESCRIPTION' | translate }}</mat-hint>
@@ -148,7 +148,7 @@
                         <!-- / HEADER -->
 
                         <div fxLayout="row">
-                            <mat-form-field class="col-12">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'REVIEW.REVIEW_EMAIL_TEMPLATE' | translate }}</mat-label>
                                 <input matInput formControlName="review_email_template">
                                 <mat-hint align="start">{{ 'REVIEW.REVIEW_EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
@@ -157,7 +157,7 @@
                         </div>
     
                         <div fxLayout="row">
-                            <mat-form-field class="col-12 mt-12">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 mt-12">
                                 <mat-label>{{ 'REVIEW.COMMENT_EMAIL_TEMPLATE' | translate }}</mat-label>
                                 <input matInput formControlName="comment_email_template">
                                 <mat-hint align="start">{{ 'REVIEW.COMMENT_EMAIL_TEMPLATE_DESCRIPTION' | translate }}</mat-hint>
