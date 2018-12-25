@@ -2,10 +2,10 @@ import { Component, Injector } from '@angular/core';
 import { Validators, FormArray } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CommentGraphQLService } from './comment-graphql.service';
 import * as _ from 'lodash';
-import { Question, Response } from './../review.models';
+import { Question } from './../review.models';
 import './../../../core/functions/map-order.function';
+import { graphQL } from './comment.graphql';
 
 @Component({
     selector: 'dh2-review-comment-detail',
@@ -20,8 +20,7 @@ export class CommentDetailComponent extends CoreDetailComponent
     questions: Question[] = [];
     
     constructor(
-        protected injector: Injector,
-        public graphQL: CommentGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

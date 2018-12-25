@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { CommentGraphQLService } from './comment-graphql.service';
+import { graphQL } from './comment.graphql';
 
 @Component({
     selector: 'dh2-review-comment-list',
@@ -17,8 +17,7 @@ export class CommentListComponent extends CoreListComponent
     displayedColumns = ['review_comment.id', 'review_comment.name', 'review_comment.email', 'review_comment.validated', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: CommentGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

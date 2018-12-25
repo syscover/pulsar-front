@@ -17,14 +17,12 @@ import { QuestionDetailComponent } from './question/question-detail.component';
 import { ReviewListComponent } from './review/review-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 
-import { CommentGraphQLService } from './comment/comment-graphql.service';
-
 @NgModule({
     imports: [
         SharedModule,
         ReviewRoutingModule
     ],
-    exports: [ ],
+    exports: [],
     declarations: [
         CommentListComponent,
         CommentDetailComponent,
@@ -38,9 +36,7 @@ import { CommentGraphQLService } from './comment/comment-graphql.service';
         ReviewListComponent,
         ReviewDetailComponent
     ],
-    providers: [
-        CommentGraphQLService
-    ]
+    providers: []
 })
 
 export class ReviewModule
