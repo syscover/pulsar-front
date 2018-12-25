@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { Lang } from './../../admin/admin.models';
-
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-wine-percentage-grape-dialog',
@@ -66,9 +66,7 @@ export class PercentageGrapeDialogComponent implements OnInit
     lang: Lang;
     formErrors: any = {};
     loadingButton = false;
-
-    // dialog decorator
-    getObject: Function;
+    pulsarConfig = pulsarConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
