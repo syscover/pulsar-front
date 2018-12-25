@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { ReviewGraphQLService } from './review-graphql.service';
+import { graphQL } from './review.graphql';
 
 @Component({
     selector: 'dh2-review-review-list',
@@ -17,8 +17,7 @@ export class ReviewListComponent extends CoreListComponent
     displayedColumns = ['review_review.id', 'review_review.object_name', 'review_review.object_email', 'review_review.average', 'review_review.validated', 'actions'];
 
     constructor(
-        protected injector: Injector,
-        public graphQL: ReviewGraphQLService
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }

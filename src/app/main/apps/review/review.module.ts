@@ -18,7 +18,6 @@ import { ReviewListComponent } from './review/review-list.component';
 import { ReviewDetailComponent } from './review/review-detail.component';
 
 import { CommentGraphQLService } from './comment/comment-graphql.service';
-import { ReviewGraphQLService } from './review/review-graphql.service';
 
 @NgModule({
     imports: [
@@ -40,8 +39,7 @@ import { ReviewGraphQLService } from './review/review-graphql.service';
         ReviewDetailComponent
     ],
     providers: [
-        CommentGraphQLService,
-        ReviewGraphQLService
+        CommentGraphQLService
     ]
 })
 

@@ -80,37 +80,43 @@
                         <mat-tab label="{{ 'NAV.REVIEW' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
                                     <mat-form-field class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_NAME' | translate }}" formControlName="object_name" required>
+                                        <mat-label>{{ 'REVIEW.OBJECT_NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="object_name" required>
                                         <mat-error>{{ formErrors?.object_name }}</mat-error>
                                     </mat-form-field>
                                     <mat-form-field class="col-12 offset-md-1 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.OBJECT_EMAIL' | translate }}" formControlName="object_email" required>
+                                        <mat-label>{{ 'REVIEW.OBJECT_EMAIL' | translate }}</mat-label>
+                                        <input matInput formControlName="object_email" required>
                                         <mat-error>{{ formErrors?.object_email }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_NAME' | translate }}" formControlName="customer_name" required>
+                                        <mat-label>{{ 'REVIEW.CUSTOMER_NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="customer_name" required>
                                         <mat-error>{{ formErrors?.customer_name }}</mat-error>
                                     </mat-form-field>
                                     <mat-form-field class="col-12 offset-md-1 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.CUSTOMER_EMAIL' | translate }}" formControlName="customer_email" required>
+                                        <mat-label>{{ 'REVIEW.CUSTOMER_EMAIL' | translate }}</mat-label>
+                                        <input matInput formControlName="customer_email" required>
                                         <mat-error>{{ formErrors?.customer_email }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-5">
-                                        <input matInput placeholder="{{ 'REVIEW.AVERAGE' | translate }}" formControlName="average" [dh2NumberPipe]="'1.2-2'" required>
+                                        <mat-label>{{ 'REVIEW.AVERAGE' | translate }}</mat-label>
+                                        <input matInput formControlName="average" [dh2NumberPipe]="'1.2-2'" required>
                                         <mat-error>{{ formErrors?.average }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -134,7 +140,8 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'REVIEW.ACTIONS' | translate }}" formControlName="action_id" required>
+                                        <mat-label>{{ 'REVIEW.ACTIONS' | translate }}</mat-label>
+                                        <mat-select formControlName="action_id" required>
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                             <mat-option value="1">{{ 'REVIEW.ACTION_REVIEW_1' | translate }}</mat-option>
                                             <mat-option value="2">{{ 'REVIEW.ACTION_REVIEW_2' | translate }}</mat-option>
@@ -160,7 +167,8 @@
 
                                             <ng-container *ngSwitchCase="1">
                                                 <mat-form-field class="col-12 col-md-6">
-                                                    <mat-select placeholder="{{ question.name }}" formControlName="score">
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <mat-select formControlName="score">
                                                         <mat-option *ngFor="let number of question.high_score | numbersArray" [value]="number">{{ number }}</mat-option>
                                                     </mat-select>
                                                     <mat-hint align="start">{{ question.description }}</mat-hint>
@@ -169,8 +177,8 @@
 
                                             <ng-container *ngSwitchCase="2">
                                                 <mat-form-field class="col-12">
-                                                    <textarea   matInput 
-                                                                placeholder="{{ question.name }}" 
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <textarea   matInput
                                                                 matTextareaAutosize 
                                                                 matAutosizeMinRows="2" 
                                                                 formControlName="text"></textarea>
