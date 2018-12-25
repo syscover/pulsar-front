@@ -124,8 +124,8 @@
                         </mat-form-field>
                         
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
-                            <mat-label>{{ 'MARKET.MINIMUM_PRICE' | translate }}</mat-label>
-                            <input matInput placeholder="{{ 'MARKET.MAXIMUM_PRICE' | translate }}" formControlName="maximum_price" type="number">
+                            <mat-label>{{ 'MARKET.MAXIMUM_PRICE' | translate }}</mat-label>
+                            <input matInput formControlName="maximum_price" type="number">
                             <mat-error>{{ formErrors?.maximum_price }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -143,8 +143,8 @@
 
                     <div fxLayout="row">
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                            <textarea   matInput 
-                                        placeholder="{{ 'MARKET.INSTRUCTIONS' | translate }}" 
+                            <mat-label>{{ 'MARKET.INSTRUCTIONS' | translate }}</mat-label>
+                            <textarea   matInput
                                         matTextareaAutosize 
                                         matAutosizeMinRows="2" 
                                         formControlName="instructions"></textarea>

@@ -1,13 +1,14 @@
 import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
-import { HttpService } from '../../services/http.service';
-import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from '../../../apps/admin/admin.models';
-import { SelectSearchService } from '../../services/select-search.service';
+import { HttpService } from './../../services/http.service';
+import { Country, TerritorialArea1, TerritorialArea2, TerritorialArea3 } from './../../../apps/admin/admin.models';
+import { SelectSearchService } from './../../services/select-search.service';
 import { environment } from 'environments/environment';
 import gql from 'graphql-tag';
 import * as _ from 'lodash';
-import {takeUntil} from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { pulsarConfig } from './../../../pulsar-config';
 
 /* tslint:disable:max-line-length */
 @Component({
@@ -16,8 +17,9 @@ import {takeUntil} from 'rxjs/operators';
         <div [formGroup]="formGroup">
             
             <div fxLayout="row">
-                <mat-form-field class="col">
-                    <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)" [required]="required.indexOf('country') > -1">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                    <mat-label>{{ 'APPS.COUNTRY' | translate }}</mat-label>
+                    <mat-select [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)" [required]="required.indexOf('country') > -1">
                         <ngx-mat-select-search [formControl]="countryFilterCtrl"
                                                placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -28,8 +30,9 @@ import {takeUntil} from 'rxjs/operators';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas1">
-                <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_1" [formControlName]="territorialArea1ControlName" (selectionChange)="handleChangeTerritorialArea1($event)" [required]="required.indexOf('territorial_area_1') > -1">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                    <mat-label>{{ country?.territorial_area_1 }}</mat-label>
+                    <mat-select [formControlName]="territorialArea1ControlName" (selectionChange)="handleChangeTerritorialArea1($event)" [required]="required.indexOf('territorial_area_1') > -1">
                         <mat-option *ngFor="let territorialArea1 of territorialAreas1" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea1ControlName] : null }}</mat-error>
@@ -37,8 +40,9 @@ import {takeUntil} from 'rxjs/operators';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas2">
-                <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_2" [formControlName]="territorialArea2ControlName" (selectionChange)="handleChangeTerritorialArea2($event)" [required]="required.indexOf('territorial_area_2') > -1">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                    <mat-label>{{ country?.territorial_area_2 }}</mat-label>
+                    <mat-select [formControlName]="territorialArea2ControlName" (selectionChange)="handleChangeTerritorialArea2($event)" [required]="required.indexOf('territorial_area_2') > -1">
                         <mat-option *ngFor="let territorialArea2 of territorialAreas2" [value]="territorialArea2.id">{{ territorialArea2.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea2ControlName] : null }}</mat-error>
@@ -46,8 +50,9 @@ import {takeUntil} from 'rxjs/operators';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas3">
-                <mat-form-field class="col">
-                    <mat-select [placeholder]="country?.territorial_area_3" [formControlName]="territorialArea3ControlName" [required]="required.indexOf('territorial_area_3') > -1">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                    <mat-label>{{ country?.territorial_area_2 }}</mat-label>
+                    <mat-select [formControlName]="territorialArea3ControlName" [required]="required.indexOf('territorial_area_3') > -1">
                         <mat-option *ngFor="let territorialArea3 of territorialAreas3" [value]="territorialArea3.id">{{ territorialArea3.name }}</mat-option>
                     </mat-select>
                     <mat-error>{{ formErrors ? formErrors[territorialArea3ControlName] : null }}</mat-error>
@@ -81,6 +86,7 @@ export class TerritoriesComponent implements OnChanges, OnInit, OnDestroy
     showTerritorialAreas2 = false;
     showTerritorialAreas3 = false;
     isLoadedComponent = false;
+    pulsarConfig = pulsarConfig;
 
     private _onDestroy = new Subject();
 

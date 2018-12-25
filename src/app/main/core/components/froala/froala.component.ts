@@ -1,5 +1,5 @@
 import { Component, Renderer2, Input, OnInit, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './../../services/config.service';
 import { AttachmentFamily } from './../../../apps/admin/admin.models';

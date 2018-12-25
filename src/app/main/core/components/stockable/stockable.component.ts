@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, OnChanges} from '@angular/core';
+import { Component, Input, ViewChild, OnChanges } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { graphQL } from '../../../apps/market/stock/stock.graphql';
 import { HttpService } from '../../services/http.service';

@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { HttpService } from '../../../core/services/http.service';
+import { HttpService } from './../../../core/services/http.service';
 import { graphQL } from './category.graphql';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-forem-category-dialog',
@@ -18,7 +19,7 @@ import { graphQL } from './category.graphql';
                   (ngSubmit)="postRecord()">
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -26,7 +27,7 @@ import { graphQL } from './category.graphql';
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
                             <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
@@ -63,6 +64,7 @@ export class CategoryDialogComponent implements OnInit
     graphQL = graphQL;
     loadingSlug = false;
     loadingButton = false;
+    pulsarConfig = pulsarConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

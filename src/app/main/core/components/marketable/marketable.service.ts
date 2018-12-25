@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { HttpService } from '../../services/http.service';
+import { HttpService } from './../../services/http.service';
 import { environment } from 'environments/environment';
-import { NumberFormatPipe } from '../../pipes/number-format.pipe';
+import { NumberFormatPipe } from './../../pipes/number-format.pipe';
 import gql from 'graphql-tag';
-import {Category, Section} from '../../../apps/market/market.models';
+import { Category, Section } from './../../../apps/market/market.models';
 import * as _ from 'lodash';
 
 @Injectable()

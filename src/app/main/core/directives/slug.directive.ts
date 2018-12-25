@@ -1,4 +1,4 @@
-import {Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit} from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';

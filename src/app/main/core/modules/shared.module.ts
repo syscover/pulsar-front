@@ -7,7 +7,7 @@ import { DynamicFormModule } from './../components/dynamic-form/dynamic-form.mod
 import { MaterialModule } from './material.module';
 import { PipesModule } from './../pipes/pipes.module';
 import { DirectivesModule } from './../directives/directives.module';
-import { SpinnerModule } from '../components/spinner/spinner.module';
+import { SpinnerModule } from './../components/spinner/spinner.module';
 
 // font awesome icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

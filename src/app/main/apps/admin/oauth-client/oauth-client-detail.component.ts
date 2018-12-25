@@ -3,8 +3,8 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './oauth-client.graphql';
-import { AuthenticationService } from '../../../core/services/authentication.service';
-import { User } from '../admin.models';
+import { AuthenticationService } from './../../../core/services/authentication.service';
+import { User } from './../admin.models';
 
 @Component({
     selector: 'dh2-admin-oauth-client-detail',

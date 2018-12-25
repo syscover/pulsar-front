@@ -7,7 +7,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatSelectModule
-} from '@angular/material';
+ } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { FroalaModule } from './../froala/froala.module';

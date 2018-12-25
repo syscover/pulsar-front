@@ -90,31 +90,34 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field class="col-12 col-md-4 mr-40" *ngIf="dataRoute.action !== 'create'">
-                            <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4 mr-40" *ngIf="dataRoute.action !== 'create'">
+                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                            <input matInput formControlName="id">
                         </mat-form-field>
                         <dh2-flag-icon class="col-12 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <textarea   matInput 
-                                        placeholder="{{ 'APPS.DESCRIPTION' | translate }}" 
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
+                            <textarea   matInput
                                         matTextareaAutosize 
                                         matAutosizeMinRows="4"
                                         formControlName="description"></textarea>

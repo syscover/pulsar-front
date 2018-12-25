@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as crmCustomerGroupGraphQL } from '../../crm/customer-group/customer-group.graphql';
+import { graphQL as crmCustomerGroupGraphQL } from './../../crm/customer-group/customer-group.graphql';
 
 const fields = `
     id

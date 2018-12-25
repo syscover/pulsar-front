@@ -9,7 +9,7 @@ import { LocationMapModule } from './location-map/location-map.module';
 import { MarketableModule } from './marketable/marketable.module';
 import { TerritoriesModule } from './territories/territories.module';
 import { StockableModule } from './stockable/stockable.module';
-import {FlagIconModule} from './flag-icon/flag-icon.module';
+import { FlagIconModule } from './flag-icon/flag-icon.module';
 
 @NgModule({
     imports: [

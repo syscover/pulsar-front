@@ -1,7 +1,7 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { MapsAPILoader, LAZY_MAPS_API_CONFIG, LazyMapsAPILoaderConfigLiteral, GoogleMapsScriptProtocol } from '@agm/core';
 import { DocumentRef, WindowRef } from '@agm/core/utils/browser-globals';
-import {ConfigService} from './config.service';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class GoogleMapsLoaderService extends MapsAPILoader

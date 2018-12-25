@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as adminTerritorialArea1GraphQL } from '../territorial_area_1/territorial-area-1.graphql';
-import { graphQL as adminTerritorialArea2GraphQL } from '../territorial_area_2/territorial-area-2.graphql';
+import { graphQL as adminTerritorialArea1GraphQL } from './../territorial_area_1/territorial-area-1.graphql';
+import { graphQL as adminTerritorialArea2GraphQL } from './../territorial_area_2/territorial-area-2.graphql';
 
 const fields = `   
     ix

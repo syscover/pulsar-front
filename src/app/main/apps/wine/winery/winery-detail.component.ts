@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
@@ -6,7 +6,7 @@ import { CoreDetailComponent } from './../../../core/structures/core-detail-comp
 import { graphQL } from './winery.graphql';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { SelectSearchService } from '../../../core/services/select-search.service';
-import {takeUntil} from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'dh2-winery-detail',

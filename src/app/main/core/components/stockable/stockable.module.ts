@@ -9,7 +9,7 @@ import {
     MatInputModule,
     MatSortModule,
     MatTableModule
-} from '@angular/material';
+ } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseTranslationLoaderService } from '../../../../../@fuse/services/translation-loader.service';
 import { StockableComponent } from './stockable.component';

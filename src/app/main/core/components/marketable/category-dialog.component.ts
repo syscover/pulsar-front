@@ -2,14 +2,15 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { HttpService } from '../../../core/services/http.service';
+import { HttpService } from './../../../core/services/http.service';
 import { graphQL } from './../../../apps/market/category/category.graphql';
-import { Category } from '../../../apps/market/market.models';
-import { Lang } from '../../../apps/admin/admin.models';
-import { ConfigService } from '../../../core/services/config.service';
+import { Category } from './../../../apps/market/market.models';
+import { Lang } from './../../../apps/admin/admin.models';
+import { ConfigService } from './../../../core/services/config.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SelectSearchService } from '../../services/select-search.service';
+import { SelectSearchService } from './../../services/select-search.service';
+import { pulsarConfig } from './../../../pulsar-config';
 
 @Component({
     selector: 'dh2-market-category-dialog',
@@ -29,8 +30,9 @@ import { SelectSearchService } from '../../services/select-search.service';
                 
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-6">
-                            <mat-select placeholder="{{ 'MARKET.PARENT_CATEGORY' | translate }}" formControlName="parent_id">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                            <mat-label>{{ 'MARKET.PARENT_CATEGORY' | translate }}</mat-label>
+                            <mat-select formControlName="parent_id">
                                 <ngx-mat-select-search [formControl]="categoryFilterCtrl"
                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -41,16 +43,18 @@ import { SelectSearchService } from '../../services/select-search.service';
                     </div>
                     
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -86,6 +90,7 @@ export class CategoryDialogComponent implements OnInit, OnDestroy
     loadingSlug = false;
     loadingButton = false;
     showSpinner = false;
+    pulsarConfig = pulsarConfig;
 
     // categories
     categories: Category[] = [];

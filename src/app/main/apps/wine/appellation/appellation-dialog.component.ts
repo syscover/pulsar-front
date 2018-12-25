@@ -5,6 +5,7 @@ import { ValidationMessageService } from './../../../core/services/validation-me
 import { HttpService } from '../../../core/services/http.service';
 import { graphQL } from './appellation.graphql';
 import { Lang } from '../../admin/admin.models';
+import { pulsarConfig } from './../../../pulsar-config';
 
 @Component({
     selector: 'dh2-wine-appellation-dialog',
@@ -20,16 +21,18 @@ import { Lang } from '../../admin/admin.models';
                   (ngSubmit)="postRecord()">
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -64,6 +67,7 @@ export class AppellationDialogComponent implements OnInit
     graphQL = graphQL;
     loadingSlug = false;
     loadingButton = false;
+    pulsarConfig = pulsarConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

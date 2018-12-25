@@ -2,6 +2,7 @@ import { Component, Input, OnInit, NgZone, ViewChild, ElementRef } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { environment } from 'environments/environment';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-location-map',
@@ -19,10 +20,10 @@ import { environment } from 'environments/environment';
     template: `        
         <div class="d-flex justify-content-center">
             <div fxLayout="row" class="search-box justify-content-center">
-                <mat-form-field class="col-11">
+                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-11">
+                    <mat-label>{{ 'APPS.SEARCH_LOCATION' | translate }}</mat-label>
                     <input  matInput
-                            #search
-                            placeholder="{{ 'APPS.SEARCH_LOCATION' | translate }}">
+                            #search>
                 </mat-form-field>
             </div>
         </div>
@@ -55,6 +56,7 @@ export class LocationMapComponent implements OnInit
     dedaultLatitude = 40.420179;
     dedaultLongitude = -3.703927;
     mapTypeControlOptions: any;
+    pulsarConfig = pulsarConfig;
 
     constructor(
         private mapsAPILoader: MapsAPILoader,
@@ -62,7 +64,7 @@ export class LocationMapComponent implements OnInit
     ) {
     }
 
-    ngOnInit()
+    ngOnInit(): void
     {
         // load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
@@ -95,7 +97,7 @@ export class LocationMapComponent implements OnInit
         });
     }
 
-    markerDragEnd($event)
+    markerDragEnd($event): void
     {
         if (environment.debug) console.log('DEBUG - markerDragEnd event: ', $event);
 

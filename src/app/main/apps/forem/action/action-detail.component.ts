@@ -4,11 +4,11 @@ import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './action.graphql';
-import { Category, Target, Assist, Type } from '../forem.models';
+import { Category, Target, Assist, Type } from './../forem.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SelectSearchService } from '../../../core/services/select-search.service';
-import { CategoryDialogComponent } from '../category/category-dialog.component';
+import { SelectSearchService } from './../../../core/services/select-search.service';
+import { CategoryDialogComponent } from './../category/category-dialog.component';
 import * as _ from 'lodash';
 
 @Component({

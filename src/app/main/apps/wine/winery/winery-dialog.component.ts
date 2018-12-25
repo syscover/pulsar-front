@@ -8,6 +8,7 @@ import { HttpService } from '../../../core/services/http.service';
 import { graphQL } from './winery.graphql';
 import { Country, Lang } from '../../admin/admin.models';
 import { SelectSearchService } from '../../../core/services/select-search.service';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-wine-winery-dialog',
@@ -24,23 +25,26 @@ import { SelectSearchService } from '../../../core/services/select-search.servic
                   (ngSubmit)="postRecord()">
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                            <input dh2Slug [model]="graphQL.model" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                             <mat-error>{{ formErrors?.slug }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-12 col-md-4">
-                            <mat-select placeholder="{{ 'APPS.COUNTRY' | translate }}" formControlName="country_id" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.COUNTRY' | translate }}</mat-label>
+                            <mat-select formControlName="country_id" required>
                                 <ngx-mat-select-search [formControl]="countryFilterCtrl"
                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -81,6 +85,7 @@ export class WineryDialogComponent implements OnInit, OnDestroy
     loadingSlug = false;
     loadingButton = false;
     showSpinner = false;
+    pulsarConfig = pulsarConfig;
 
     // countries
     countries: Country[] = [];

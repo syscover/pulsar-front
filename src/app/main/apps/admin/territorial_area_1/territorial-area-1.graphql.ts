@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as adminCountryGraphQL } from '../country/country.graphql';
+import { graphQL as adminCountryGraphQL } from './../country/country.graphql';
 
 const fields = `   
     ix

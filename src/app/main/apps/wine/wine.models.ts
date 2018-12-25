@@ -1,5 +1,5 @@
-import { Attachment } from '../admin/admin.models';
-import { Marketable } from '../market/market.models';
+import { Attachment } from './../admin/admin.models';
+import { Marketable } from './../market/market.models';
 
 export class Appellation
 {

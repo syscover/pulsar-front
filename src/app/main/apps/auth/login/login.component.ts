@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
 import { AuthenticationService } from './../../../core/services/authentication.service';
 import './../../../core/functions/array-random.function';
-import { pulsarConfig } from '../../../pulsar-config';
+import { pulsarConfig } from './../../../pulsar-config';
 
 @Component({
     selector   : 'dh2-login',

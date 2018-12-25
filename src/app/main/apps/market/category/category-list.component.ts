@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from './../../../core/structures/core-list-component';
 import { graphQL } from './category.graphql';
-import { Category } from '../market.models';
+import { Category } from './../market.models';
 
 @Component({
     selector: 'dh2-market-category-list',

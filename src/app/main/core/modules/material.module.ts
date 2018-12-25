@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
+import { 
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -33,11 +33,11 @@ import {
     MatTabsModule,
     MatStepperModule,
     DateAdapter
-} from '@angular/material';
+ } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { SelectSearchService } from '../services/select-search.service';
+import { SelectSearchService } from './../services/select-search.service';
 
 @NgModule({
     imports: [

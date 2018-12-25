@@ -99,31 +99,35 @@
                                 <input type="hidden" formControlName="lang_id">
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-7 col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-7 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
                                     </mat-form-field>
                                     <dh2-flag-icon class="col-4 offset-1 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true"></dh2-flag-icon>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-12">
-                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                                         <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput placeholder="{{ 'APPS.SLUG' | translate }}" formControlName="slug" required>
+                                        <input dh2Slug [model]="graphQL.modelLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
                                     <div class="col-12 col-md-6">
-                                        <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'APPS.TYPE' | translate }}" formControlName="type_id" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                            <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
+                                            <mat-select formControlName="type_id" required>
                                                 <ngx-mat-select-search [formControl]="typeFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -147,8 +151,9 @@
                                         </button>
                                     </div>
                                     <div class="col-12 col-md-5">
-                                        <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'APPS.FAMILY' | translate }}" formControlName="family_id">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                            <mat-label>{{ 'APPS.FAMILY' | translate }}</mat-label>
+                                            <mat-select formControlName="family_id">
                                                 <ngx-mat-select-search [formControl]="familyFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -174,13 +179,15 @@
                                 </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field class="col-12 col-md-2">
-                                        <input type="number" matInput placeholder="{{ 'WINE.VINTAGE' | translate }}" formControlName="vintage">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
+                                        <mat-label>{{ 'WINE.VINTAGE' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="vintage">
                                         <mat-error>{{ formErrors?.vintage }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-12 offset-md-2 col-md-2">
-                                        <input type="number" matInput placeholder="{{ 'WINE.ABV' | translate }}" formControlName="abv">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-2 col-md-2">
+                                        <mat-label>{{ 'WINE.ABV' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="abv">
                                         <span matSuffix>%</span>
                                         <mat-error>{{ formErrors?.abv }}</mat-error>
                                     </mat-form-field>
@@ -188,8 +195,9 @@
 
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
                                     <div class="col-12 col-md-6">
-                                        <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'WINE.WINERY' | translate }}" formControlName="winery_id" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                            <mat-label>{{ 'WINE.WINERY' | translate }}</mat-label>
+                                            <mat-select formControlName="winery_id" required>
                                                 <ngx-mat-select-search [formControl]="wineryFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -207,8 +215,9 @@
                                     </div>
 
                                     <div class="col-12 col-md-5">
-                                        <mat-form-field fxFlex="grow">
-                                            <mat-select placeholder="{{ 'WINE.APPELLATION' | translate }}" formControlName="appellation_id" required>
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                            <mat-label>{{ 'WINE.APPELLATION' | translate }}</mat-label>
+                                            <mat-select formControlName="appellation_id" required>
                                                 <ngx-mat-select-search [formControl]="appellationFilterCtrl"
                                                                        placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                        noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -232,15 +241,17 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field fxFlex="grow">
-                                        <input matInput placeholder="{{ 'WINE.PRODUCTION' | translate }}" formControlName="production">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                        <mat-label>{{ 'WINE.PRODUCTION' | translate }}</mat-label>
+                                        <input matInput formControlName="production">
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field fxFlex="grow">
-                                        <mat-select placeholder="{{ 'NAV.GRAPES' | translate }}" formControlName="grapes_rel" multiple>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                        <mat-label>{{ 'NAV.GRAPES' | translate }}</mat-label>
+                                        <mat-select formControlName="grapes_rel" multiple>
                                             <ngx-mat-select-search [formControl]="grapeFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -256,8 +267,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field fxFlex="grow">
-                                        <mat-select placeholder="{{ 'NAV.PAIRINGS' | translate }}" formControlName="pairings_id" multiple>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                        <mat-label>{{ 'NAV.PAIRINGS' | translate }}</mat-label>
+                                        <mat-select formControlName="pairings_id" multiple>
                                             <ngx-mat-select-search [formControl]="pairingFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -276,8 +288,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field fxFlex="grow">
-                                        <mat-select placeholder="{{ 'NAV.AWARDS' | translate }}" formControlName="awards_id" multiple>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                        <mat-label>{{ 'NAV.AWARDS' | translate }}</mat-label>
+                                        <mat-select formControlName="awards_id" multiple>
                                             <ngx-mat-select-search [formControl]="awardFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -291,8 +304,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col-11 col-md-6">
-                                        <mat-select placeholder="{{ 'WINE.PRESENTATION' | translate }}" formControlName="presentation_id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-11 col-md-6">
+                                        <mat-label>{{ 'WINE.PRESENTATION' | translate }}</mat-label>
+                                        <mat-select formControlName="presentation_id">
                                             <ngx-mat-select-search [formControl]="presentationFilterCtrl"
                                                                    placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
                                                                    noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
@@ -321,9 +335,9 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting"></textarea>
@@ -332,9 +346,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING_LOOK' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING_LOOK' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting_look"></textarea>
@@ -343,9 +357,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING_NOSE' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING_NOSE' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting_nose"></textarea>
@@ -354,9 +368,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING_MOUTH' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING_MOUTH' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting_mouth"></textarea>
@@ -365,9 +379,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING_TEMPERATURE' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING_TEMPERATURE' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting_temperature"></textarea>
@@ -376,9 +390,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.TASTING_CONSUMPTION' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.TASTING_CONSUMPTION' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting_consumption"></textarea>
@@ -393,9 +407,9 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard"></textarea>
@@ -404,9 +418,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_NAME' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_NAME' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_name"></textarea>
@@ -415,9 +429,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_AREA' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_AREA' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_area"></textarea>
@@ -426,9 +440,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_DESCRIPTION' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_DESCRIPTION' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_description"></textarea>
@@ -437,9 +451,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_AGE' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_AGE' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_age"></textarea>
@@ -448,9 +462,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_SOIL' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_SOIL' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_soil"></textarea>
@@ -459,9 +473,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_WEATHER' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_WEATHER' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_weather"></textarea>
@@ -470,9 +484,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_PERFORMANCE' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_PERFORMANCE' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_performance"></textarea>
@@ -481,9 +495,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_VINTAGE' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_VINTAGE' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_vintage"></textarea>
@@ -492,9 +506,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_VINIFICATION' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_VINIFICATION' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_vinification"></textarea>
@@ -503,9 +517,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_AGING' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_AGING' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_aging"></textarea>
@@ -514,9 +528,9 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'WINE.VINEYARD_BOTTLING' | translate }}</mat-label>
                                         <textarea   matInput
-                                                    placeholder="{{ 'WINE.VINEYARD_BOTTLING' | translate }}"
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard_bottling"></textarea>
@@ -531,38 +545,44 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="center">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="number" matInput placeholder="{{ 'WINE.AVERAGE' | translate }}" formControlName="score_average" readonly>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.AVERAGE' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="score_average" readonly>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="text" matInput placeholder="{{ 'WINE.PARKER' | translate }}" formControlName="parker" (change)="calculateAverage()">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.PARKER' | translate }}</mat-label>
+                                        <input type="text" matInput formControlName="parker" (change)="calculateAverage()">
                                         <mat-error>{{ formErrors?.parker }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="text" matInput placeholder="{{ 'WINE.PENIN' | translate }}" formControlName="penin" (change)="calculateAverage()">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.PENIN' | translate }}</mat-label>
+                                        <input type="text" matInput formControlName="penin" (change)="calculateAverage()">
                                         <mat-error>{{ formErrors?.penin }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="text" matInput placeholder="{{ 'WINE.WINE_SPECTATOR' | translate }}" formControlName="wine_spectator" (change)="calculateAverage()">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.WINE_SPECTATOR' | translate }}</mat-label>
+                                        <input type="text" matInput formControlName="wine_spectator" (change)="calculateAverage()">
                                         <mat-error>{{ formErrors?.wine_spectator }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="text" matInput placeholder="{{ 'WINE.DECANTER' | translate }}" formControlName="decanter" (change)="calculateAverage()">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.DECANTER' | translate }}</mat-label>
+                                        <input type="text" matInput formControlName="decanter" (change)="calculateAverage()">
                                         <mat-error>{{ formErrors?.decanter }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
-                                    <mat-form-field class="col-12 col-md-4">
-                                        <input type="text" matInput placeholder="{{ 'WINE.SUCKLING' | translate }}" formControlName="suckling" (change)="calculateAverage()">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'WINE.SUCKLING' | translate }}</mat-label>
+                                        <input type="text" matInput formControlName="suckling" (change)="calculateAverage()">
                                         <mat-error>{{ formErrors?.suckling }}</mat-error>
                                     </mat-form-field>
                                 </div>

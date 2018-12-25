@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as adminResourceGraphQL } from '../resource/resource.graphql';
+import { graphQL as adminResourceGraphQL } from './../resource/resource.graphql';
 
 const fields = `  
     id 

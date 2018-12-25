@@ -82,31 +82,35 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                        <input matInput placeholder="{{ 'APPS.ID' | translate }}" formControlName="id">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-3 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.DATE' | translate }}" formControlName="date" type="datetime-local">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class.offset-md-3]="dataRoute.action !== 'create'" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.DATE' | translate }}</mat-label>
+                                        <input matInput formControlName="date" type="datetime-local">
                                         <mat-error>{{ formErrors?.date }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                        <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" required>
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
-                                        <input matInput placeholder="{{ 'APPS.EMAIL' | translate }}" formControlName="email" required>
+                                        <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
+                                        <input matInput formControlName="email" required>
                                         <mat-error>{{ formErrors?.email }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                        <textarea   matInput 
-                                                    placeholder="{{ 'REVIEW.COMMENT' | translate }}" 
+                                        <mat-label>{{ 'REVIEW.COMMENT' | translate }}</mat-label>
+                                        <textarea   matInput
                                                     matTextareaAutosize 
                                                     matAutosizeMinRows="2" 
                                                     formControlName="comment"></textarea>
@@ -129,7 +133,8 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                        <mat-select placeholder="{{ 'REVIEW.ACTIONS' | translate }}" formControlName="action_id">
+                                        <mat-label>{{ 'REVIEW.ACTIONS' | translate }}</mat-label>
+                                        <mat-select formControlName="action_id">
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
                                             <mat-option value="1">{{ 'REVIEW.ACTION_COMMENT_1' | translate }}</mat-option>
                                             <mat-option value="2">{{ 'REVIEW.ACTION_COMMENT_2' | translate }}</mat-option>
@@ -180,7 +185,8 @@
 
                                             <ng-container *ngSwitchCase="1">
                                                 <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                                    <mat-select placeholder="{{ question.name }}" formControlName="score">
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <mat-select formControlName="score">
                                                         <mat-option *ngFor="let number of question.high_score | numbersArray" [value]="number">{{ number }}</mat-option>
                                                     </mat-select>
                                                     <mat-hint align="start">{{ question.description }}</mat-hint>
@@ -189,8 +195,8 @@
 
                                             <ng-container *ngSwitchCase="2">
                                                 <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                                    <textarea   matInput 
-                                                                placeholder="{{ question.name }}" 
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <textarea   matInput
                                                                 matTextareaAutosize 
                                                                 matAutosizeMinRows="2"
                                                                 formControlName="text"></textarea>

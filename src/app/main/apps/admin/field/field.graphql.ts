@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import {graphQL as adminFieldValueGraphQL} from '../field-value/field-value.graphql';
-import {graphQL as adminFieldGroupGraphQL} from '../field-group/field-group.graphql';
+import { graphQL as adminFieldValueGraphQL } from './../field-value/field-value.graphql';
+import { graphQL as adminFieldGroupGraphQL } from './../field-group/field-group.graphql';
 
 const fields = `
     id

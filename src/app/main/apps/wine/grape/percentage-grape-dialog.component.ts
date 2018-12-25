@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { Lang } from '../../admin/admin.models';
+import { Lang } from './../../admin/admin.models';
 
 
 @Component({
@@ -22,15 +22,17 @@ import { Lang } from '../../admin/admin.models';
                 
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.NAME' | translate }}" formControlName="name" readonly>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                            <input matInput formControlName="name" readonly>
                             <mat-error>{{ formErrors?.name }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field class="col-6">
-                            <input matInput placeholder="{{ 'APPS.PERCENTAGE' | translate }}" formControlName="percentage" type="number" required>
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6">
+                            <mat-label>{{ 'APPS.PERCENTAGE' | translate }}</mat-label>
+                            <input matInput formControlName="percentage" type="number" required>
                             <span matSuffix>%</span>
                             <mat-error>{{ formErrors?.percentage }}</mat-error>
                         </mat-form-field>

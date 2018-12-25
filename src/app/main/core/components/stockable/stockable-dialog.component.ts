@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from './../../../core/services/validation-message.service';
+import { pulsarConfig } from './../../../pulsar-config';
 
 @Component({
     selector: 'dh2-stockable-dialog',
@@ -16,14 +17,16 @@ import { ValidationMessageService } from './../../../core/services/validation-me
 
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'APPS.STOCK' | translate }}" formControlName="stock" type="number">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.STOCK' | translate }}</mat-label>
+                            <input matInput formControlName="stock" type="number">
                             <mat-error>{{ formErrors?.stock }}</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row">
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="{{ 'STOCKABLE.MINIMUM_STOCK' | translate }}" formControlName="minimum_stock" type="number">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'STOCKABLE.MINIMUM_STOCK' | translate }}</mat-label>
+                            <input matInput formControlName="minimum_stock" type="number">
                             <mat-error>{{ formErrors?.minimum_stock }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -40,6 +43,7 @@ export class StockableDialogComponent implements OnInit
 {
     fg: FormGroup;
     formErrors: any = {};
+    pulsarConfig = pulsarConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

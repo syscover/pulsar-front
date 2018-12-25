@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as adminPackageGraphQL } from '../package/package.graphql';
+import { graphQL as adminPackageGraphQL } from './../package/package.graphql';
 
 const fields = `   
     ix

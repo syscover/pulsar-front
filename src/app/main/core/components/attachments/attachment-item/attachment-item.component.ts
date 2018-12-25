@@ -30,7 +30,7 @@ export class AttachmentItemComponent implements OnInit
         private renderer: Renderer2
     ) { }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         this.renderer.listen(this.openOver.nativeElement, 'click', ($event) => {
             this.renderer.addClass($event.target.closest('.attachment-item'), 'covered');
@@ -43,7 +43,7 @@ export class AttachmentItemComponent implements OnInit
         this.family = <AttachmentFamily>_.find(this.families, {'id': this.attachment.get('family_id').value});
     }
 
-    removeItemHandler($event) 
+    removeItemHandler($event): void
     {
         this.removeItem.emit({
             attachment: this.attachment
@@ -54,12 +54,12 @@ export class AttachmentItemComponent implements OnInit
         });
     }
 
-    changeFamilyHandler($event) 
+    changeFamilyHandler($event): void
     {
         this.family =  _.find(this.families, {'id': +$event.target.value});
     }
 
-    activeCropHandler($event) 
+    activeCropHandler($event): void
     {
         // click to active cropper
         if (this.attachment.controls['family_id'].value !== '') 

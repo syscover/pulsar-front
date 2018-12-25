@@ -15,7 +15,7 @@ import { OrderDetailComponent } from './order/order-detail.component';
 import { OrderStatusListComponent } from './order-status/order-status-list.component';
 import { OrderStatusDetailComponent } from './order-status/order-status-detail.component';
 import { PaymentMethodListComponent } from './payment-method/payment-method-list.component';
-import { PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
+import {  PaymentMethodDetailComponent } from './payment-method/payment-method-detail.component';
 import { PaypalWebProfileListComponent } from './paypal-web-profile/paypal-web-profile-list.component';
 import { PaypalWebProfileDetailComponent } from './paypal-web-profile/paypal-web-profile-detail.component';
 import { ProductListComponent } from './product/product-list.component';
