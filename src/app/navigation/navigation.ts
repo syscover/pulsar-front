@@ -56,7 +56,6 @@ export const navigation: FuseNavigation[] = [
                 'type' : 'collapsable',
                 'icon' : 'highlight',
                 'children' : [
-
                     {
                         'id'        : 'actions',
                         'title'     : 'Actions',
@@ -64,6 +63,14 @@ export const navigation: FuseNavigation[] = [
                         'type'      : 'item',
                         'icon'      : 'wb_incandescent',
                         'url'       : '/apps/forem/action'
+                    },
+                    {
+                        'id'        : 'expedients',
+                        'title'     : 'Expedients',
+                        'translate' : 'NAV.EXPEDIENTS',
+                        'type'      : 'item',
+                        'icon'      : 'all_inbox',
+                        'url'       : '/apps/forem/expedient'
                     },
                     {
                         'id'        : 'employment_offices',
@@ -80,7 +87,7 @@ export const navigation: FuseNavigation[] = [
                         'type'      : 'item',
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/forem/category'
-                    },
+                    }
                 ]
             },
             /* {

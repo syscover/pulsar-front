@@ -12,6 +12,8 @@ import { CategoryListComponent } from './category/category-list.component';
 import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
 import { CategoryDialogComponent } from './category/category-dialog.component';
+import { ExpedientDetailComponent } from './expedient/expedient-detail.component';
+import { ExpedientListComponent } from './expedient/expedient-list.component';
 
 @NgModule({
     imports: [
@@ -27,6 +29,8 @@ import { CategoryDialogComponent } from './category/category-dialog.component';
         CategoryListComponent,
         EmploymentOfficeDetailComponent,
         EmploymentOfficeListComponent,
+        ExpedientDetailComponent,
+        ExpedientListComponent
     ],
     providers: [],
     entryComponents: [

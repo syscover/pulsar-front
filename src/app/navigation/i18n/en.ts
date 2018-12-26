@@ -31,6 +31,7 @@ export const locale = {
             'CUSTOMERS': 'Customers',
             'DASHBOARD': 'Dashboard',
             'EMPLOYMENT_OFFICES': 'Employment offices',
+            'EXPEDIENTS': 'Expedients',
             'FAMILIES': 'Families',
             'FIELDS': 'Fields',
             'FIELD_GROUPS': 'Field groups',

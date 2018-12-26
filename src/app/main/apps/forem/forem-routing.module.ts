@@ -8,6 +8,8 @@ import { CategoryDetailComponent } from './category/category-detail.component';
 import { CategoryListComponent } from './category/category-list.component';
 import { EmploymentOfficeListComponent } from './employment-office/employment-office-list.component';
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
+import { ExpedientDetailComponent } from './expedient/expedient-detail.component';
+import { ExpedientListComponent } from './expedient/expedient-list.component';
 
 const routes: Routes = [
     {
@@ -28,6 +30,11 @@ const routes: Routes = [
             { path: 'action',                                               component: ActionListComponent },
             { path: 'action/create',                                        component: ActionDetailComponent,                   data: { action: 'create' }},
             { path: 'action/show/:id',                                      component: ActionDetailComponent,                   data: { action: 'edit' }},
+
+            // Expedients
+            { path: 'expedient',                                            component: ExpedientListComponent },
+            { path: 'expedient/create',                                     component: ExpedientDetailComponent,                data: { action: 'create' }},
+            { path: 'expedient/show/:id',                                   component: ExpedientDetailComponent,                data: { action: 'edit' }},
         ]  
     }
 ];
