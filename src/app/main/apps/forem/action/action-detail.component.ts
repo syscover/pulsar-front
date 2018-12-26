@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './action.graphql';
-import { Category, Target, Assist, Type } from './../forem.models';
+import { Category, Target, Assistance, Type } from './../forem.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from './../../../core/services/select-search.service';
@@ -22,7 +22,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     objectTranslationGender = 'F';
     loadingSlug = false;
     targets: Target[] = [];
-    assists: Assist[] = [];
+    assistances: Assistance[] = [];
     types: Type[] = [];
 
     // categories
@@ -49,12 +49,21 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
+            code: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required],
             category_id: ['', Validators.required],
             target_id: ['', Validators.required],
             assistance_id: ['', Validators.required],
-            type_id: ['', Validators.required]
+            type_id: ['', Validators.required],
+            hours: ['', Validators.required],
+            online: false,
+            price: '',
+            price_hour: '',
+            subsidized: false,
+            contents: '',
+            requirements: '',
+            observations: ''
         });
     }
 
@@ -79,8 +88,8 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             key: 'pulsar-forem.targets'
         };
 
-        const configAssists = {
-            key: 'pulsar-forem.assists'
+        const configAssistances = {
+            key: 'pulsar-forem.assistances'
         };
 
         const configTypes = {
@@ -89,7 +98,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
 
         return {
             configTargets,
-            configAssists,
+            configAssistances,
             configTypes
         };
     }
@@ -100,7 +109,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
         this.targets = <Target[]>data.foremTargets;
 
         // set assists
-        this.assists = <Assist[]>data.foremAssists;
+        this.assistances = <Assistance[]>data.foremAssistances;
 
         // set types
         this.types = <Type[]>data.foremTypes;

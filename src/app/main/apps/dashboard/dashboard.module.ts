@@ -12,13 +12,11 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
         SharedModule,
         DashboardRoutingModule
     ],
-    exports: [ ],
+    exports: [],
     declarations: [
         DashboardComponent
     ],
-    providers: [
-        
-    ]
+    providers: []
 })
 
 export class DashboardModule 

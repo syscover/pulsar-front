@@ -1,4 +1,4 @@
-export class Assist
+export class Assistance
 {
     id: number;
     name: string;

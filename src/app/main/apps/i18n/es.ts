@@ -61,6 +61,7 @@ export const locale = {
             'NO_MATCHING': 'No se encontró ninguna coincidencia',
             'NONE.F': 'Ninguna',
             'NONE.M': 'Ninguno',
+            'OBSERVATIONS': 'Observaciones',
             'OK': 'Ok',
             'PASSWORD': 'Contraseña',
             'PERCENTAGE': 'Porcentaje',
