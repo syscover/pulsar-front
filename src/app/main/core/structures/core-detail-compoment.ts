@@ -282,6 +282,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
 
     // function that will be call for create object, create lang object and update object
+    // pass object with data if is a edit action, else the object is empty
     postRecord(object: any, routeRedirect?: any[]): void
     {
         // appear spinner in button

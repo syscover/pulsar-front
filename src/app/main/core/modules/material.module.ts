@@ -38,7 +38,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SelectSearchService } from './../services/select-search.service';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
     imports: [
@@ -57,8 +56,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule } from '@angular/m
         MatInputModule,
         MatListModule,
         MatMenuModule,
-        MatMomentDateModule,
-       // MatNativeDateModule,
+        MatNativeDateModule,
         MatPaginatorModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
@@ -93,8 +91,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule } from '@angular/m
         MatInputModule,
         MatListModule,
         MatMenuModule,
-        MatMomentDateModule,
-       // MatNativeDateModule,
+        MatNativeDateModule,
         MatPaginatorModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
@@ -115,8 +112,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule } from '@angular/m
         NgxMatSelectSearchModule
     ],
     providers: [
-        SelectSearchService,
-        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+        SelectSearchService
     ]
 })
 export class MaterialModule
