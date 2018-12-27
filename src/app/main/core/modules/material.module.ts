@@ -34,6 +34,7 @@ import {
     MatStepperModule,
     DateAdapter
  } from '@angular/material';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -56,7 +57,6 @@ import { SelectSearchService } from './../services/select-search.service';
         MatInputModule,
         MatListModule,
         MatMenuModule,
-        MatNativeDateModule,
         MatPaginatorModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
@@ -74,7 +74,12 @@ import { SelectSearchService } from './../services/select-search.service';
         MatToolbarModule,
         MatTooltipModule,
         CdkTableModule,
-        NgxMatSelectSearchModule
+        NgxMatSelectSearchModule,
+
+        // date-picker
+        // MatNativeDateModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
     ],
     exports: [
         MatAutocompleteModule,
@@ -91,7 +96,6 @@ import { SelectSearchService } from './../services/select-search.service';
         MatInputModule,
         MatListModule,
         MatMenuModule,
-        MatNativeDateModule,
         MatPaginatorModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
@@ -109,26 +113,35 @@ import { SelectSearchService } from './../services/select-search.service';
         MatToolbarModule,
         MatTooltipModule,
         CdkTableModule,
-        NgxMatSelectSearchModule
+        NgxMatSelectSearchModule,
+
+        // date-picker
+        // MatNativeDateModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
     ],
     providers: [
-        SelectSearchService
+        SelectSearchService,
+        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
     ]
 })
 export class MaterialModule
 {
     constructor(
-        private translateService: TranslateService,
-        private dateAdapter: DateAdapter<Date>
+        private _translateService: TranslateService,
+        private _dateAdapter: DateAdapter<Date>
     ) {
         // set current lang to datepicker
-        this.dateAdapter.setLocale(this.translateService.currentLang);
+        if (this._translateService.currentLang)
+        {
+            this._dateAdapter.setLocale(this._translateService.currentLang);
+        }
 
         // set new lang in datepicker when languague is changed
-        translateService
+        _translateService
             .onLangChange
             .subscribe((event: TranslationChangeEvent) => {
-                this.dateAdapter.setLocale(event.lang);
+                this._dateAdapter.setLocale(event.lang);
             });
     }
 }
