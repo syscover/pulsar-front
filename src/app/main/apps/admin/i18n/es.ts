@@ -15,6 +15,7 @@ export const locale = {
             'FIELD_TYPE': 'Tipo de campo',
             'FORMATS': 'Formatos',
             'ICON': 'Icono',
+            'INSERT_EMAIL': 'Introduzca un email',
             'LABEL_CLASS': 'Clase de la etiqueta',
             'LANGUAGE': 'Idioma',
             'MAXIMUM_LENGTH': 'Longitud máxima',

@@ -4,6 +4,10 @@
 // Import app.theme.scss
 @import "app/app.theme";
 
+// Import covalent styles
+@import '~@covalent/core/theming/all-theme';
+@import '~@covalent/core/theming/prebuilt/blue-grey-deep-orange';
+
 // DH2
 // Import DH2 styles
 @import "app/main/core/scss/core";

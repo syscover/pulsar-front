@@ -80,7 +80,20 @@
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.SUBJECT' | translate }}</mat-label>
                             <input matInput formControlName="subject" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
+                            <mat-error>{{ formErrors?.subject }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <td-chips placeholder="{{ 'ADMIN.INSERT_EMAIL' | translate }}"
+                                  class="p-0 col-12"></td-chips>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-label>{{ 'APPS.FILENAME' | translate }}</mat-label>
+                            <input matInput formControlName="filename" required>
+                            <mat-error>{{ formErrors?.filename }}</mat-error>
                         </mat-form-field>
                     </div>
 
