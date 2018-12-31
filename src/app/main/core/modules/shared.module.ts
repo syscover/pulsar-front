@@ -5,6 +5,7 @@ import { AttachmentsModule } from './../components/attachments/attachments.modul
 import { ComponentsModule } from './../components/components.module';
 import { DynamicFormModule } from './../components/dynamic-form/dynamic-form.module';
 import { MaterialModule } from './material.module';
+import { CovalentModule } from './covalent.module';
 import { PipesModule } from './../pipes/pipes.module';
 import { DirectivesModule } from './../directives/directives.module';
 import { SpinnerModule } from './../components/spinner/spinner.module';
@@ -22,6 +23,7 @@ library.add(fas, far, fab);
     imports: [
         AttachmentsModule,
         ComponentsModule,
+        CovalentModule,
         DirectivesModule,
         DynamicFormModule,
         FuseSharedModule,
@@ -34,6 +36,7 @@ library.add(fas, far, fab);
     exports: [
         AttachmentsModule,
         ComponentsModule,
+        CovalentModule,
         DirectivesModule,
         DynamicFormModule,
         FuseSharedModule,

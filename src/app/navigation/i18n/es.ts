@@ -56,6 +56,7 @@ export const locale = {
             'PRODUCT_CLASS_TAXES': 'Impuestos al producto',
             'PRODUCTS': 'Productos',
             'PROFILES': 'Perfiles',
+            'REPORTS': 'Informes',
             'QUESTIONS': 'Preguntas',
             'RESOURCES': 'Recursos',
             'REVIEW': 'Review',

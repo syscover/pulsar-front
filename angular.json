@@ -25,7 +25,12 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "src/config/config.json"
+                            "src/config/config.json",
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/@covalent/code-editor/assets/monaco",
+                                "output": "/assets/monaco"
+                            }
                         ],
                         "styles": [
                             "./node_modules/cropperjs/dist/cropper.min.css",

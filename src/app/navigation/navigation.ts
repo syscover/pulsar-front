@@ -479,6 +479,14 @@ export const navigation: FuseNavigation[] = [
                 'icon'     : 'settings',
                 'children' : [
                     {
+                        'id'        : 'reports',
+                        'title'     : 'Reports',
+                        'translate' : 'NAV.REPORTS',
+                        'type'      : 'item',
+                        'icon'      : 'equalizer',
+                        'url'       : '/apps/admin/report'
+                    },
+                    {
                         'id'        : 'users',
                         'title'     : 'Users',
                         'translate' : 'NAV.USERS',

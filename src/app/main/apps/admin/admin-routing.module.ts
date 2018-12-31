@@ -26,6 +26,8 @@ import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
+import { ReportDetailComponent } from './report/report-detail.component';
+import { ReportListComponent } from './report/report-list.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
@@ -104,6 +106,11 @@ const routes: Routes = [
             { path: 'profile',                                          component: ProfileListComponent },
             { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
             { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
+
+            // Report
+            { path: 'report',                                           component: ReportListComponent },
+            { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create' }},
+            { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit' }},
 
             // Resource
             { path: 'resource',                                         component: ResourceListComponent },

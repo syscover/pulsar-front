@@ -30,6 +30,8 @@ import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
+import { ReportDetailComponent } from './report/report-detail.component';
+import { ReportListComponent } from './report/report-list.component';
 import { ResourceListComponent } from './resource/resource-list.component';
 import { ResourceDetailComponent } from './resource/resource-detail.component';
 import { TerritorialArea1ListComponent } from './territorial_area_1/territorial-area-1-list.component';
@@ -73,6 +75,8 @@ import { UserDetailComponent } from './user/user-detail.component';
         PackageDetailComponent,
         ProfileListComponent,
         ProfileDetailComponent,
+        ReportDetailComponent,
+        ReportListComponent,
         ResourceListComponent,
         ResourceDetailComponent,
         TerritorialArea1ListComponent,
