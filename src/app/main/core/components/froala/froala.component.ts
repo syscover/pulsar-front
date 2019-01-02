@@ -75,13 +75,12 @@ export class FroalaComponent implements OnInit
     {
         if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('apiUrl') + '/api/v1/admin/wysiwyg/upload';
 
-        // config custom FroalaEditor
-        // jQuery.FroalaEditor.ICON_TEMPLATES = {
-        //     font_awesome: '<i class="fa fa-[NAME]"></i>'
-        // };
-
         // set froala option properties
         this.froalaOptions.key = this.configService.get('froalaKey');
+
+        // set fontawesome 5
+        this.froalaOptions.iconsTemplate = 'font_awesome_5';
+
         // TODO, Detect change language, now is not possible
         // https://github.com/froala/angular-froala-wysiwyg/issues/66
         this.froalaOptions.language = this.translateService.currentLang;
