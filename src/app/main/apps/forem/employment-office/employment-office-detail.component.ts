@@ -1,8 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { Country, Profile } from './../../admin/admin.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Country, Profile } from '../../admin/admin.models';
 import { graphQL } from './employment-office.graphql';
 
 @Component({

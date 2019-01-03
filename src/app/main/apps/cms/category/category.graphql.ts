@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as cmsSectionGraphQL } from './../section/section.graphql';
+import { graphQL as cmsSectionGraphQL } from '../section/section.graphql';
 
 const fields = `
     ix

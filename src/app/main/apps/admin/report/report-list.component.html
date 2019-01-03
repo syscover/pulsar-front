@@ -72,7 +72,7 @@
                 <!-- Column -->
                 <ng-container matColumnDef="admin_report.filename">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.FILENAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.filename }}</mat-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.filename + '.' + row.extension }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

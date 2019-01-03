@@ -1,14 +1,14 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from './../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/structures/core-list-component';
 import { graphQL } from './category.graphql';
-import { Category } from './../market.models';
+import { Category } from '../market.models';
 
 @Component({
     selector: 'dh2-market-category-list',
     templateUrl: './category-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
 })
 export class CategoryListComponent extends CoreListComponent
 {

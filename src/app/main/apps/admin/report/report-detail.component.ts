@@ -42,7 +42,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             filename: ['', Validators.required],
             extension: ['', Validators.required],
             frequency_id: ['', Validators.required],
-            sql: ['SELECT', Validators.required],
+            sql: ['', Validators.required],
         });
     }
 

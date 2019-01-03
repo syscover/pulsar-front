@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
-import { graphQL as cmsSectionGraphQL } from './../section/section.graphql';
-import { graphQL as cmsCategoryGraphQL } from './../category/category.graphql';
-import { graphQL as cmsFamilyGraphQL } from './../family/family.graphql';
-import { graphQL as adminAttachmentFamilyGraphQL } from './../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as attachmentGraphQL } from './../../../core/components/attachments/attachments.graphql';
+import { graphQL as cmsSectionGraphQL } from '../section/section.graphql';
+import { graphQL as cmsCategoryGraphQL } from '../category/category.graphql';
+import { graphQL as cmsFamilyGraphQL } from '../family/family.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as attachmentGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     ix

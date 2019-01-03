@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { Family } from './../cms.models';
-import { AttachmentFamily } from './../../admin/admin.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Family } from '../cms.models';
+import { AttachmentFamily } from '../../admin/admin.models';
 import { graphQL } from './section.graphql';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { Country, TerritorialArea2 } from './../admin.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Country, TerritorialArea2 } from '../admin.models';
 import * as _ from 'lodash';
 import { graphQL } from './territorial-area-3.graphql';
 

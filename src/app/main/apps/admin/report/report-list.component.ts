@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from './../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/structures/core-list-component';
 import { graphQL } from './report.graphql';
 
 @Component({
@@ -13,7 +13,7 @@ export class ReportListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.REPORT';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['admin_report.id', 'admin_report.subject', 'admin_report.filename'];
+    columnsSearch: string[] = ['admin_report.id', 'admin_report.subject', 'admin_report.filename', 'admin_report.extension'];
     displayedColumns = ['admin_report.id', 'admin_report.subject', 'admin_report.filename', 'actions'];
 
     constructor(

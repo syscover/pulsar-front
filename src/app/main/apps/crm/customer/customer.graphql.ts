@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { graphQL as crmCustomerGroupGraphQL } from './../customer-group/customer-group.graphql';
-import { graphQL as crmAddressGraphQL } from './../address/address.graphql';
-import { graphQL as adminCountryGraphQL } from './../../admin/country/country.graphql';
+import { graphQL as crmCustomerGroupGraphQL } from '../customer-group/customer-group.graphql';
+import { graphQL as crmAddressGraphQL } from '../address/address.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 
 const fields = `
     id

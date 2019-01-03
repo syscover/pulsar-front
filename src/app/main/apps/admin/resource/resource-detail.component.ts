@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { graphQL } from './resource.graphql';
-import { Package } from './../admin.models';
+import { Package } from '../admin.models';
 
 @Component({
     selector: 'dh2-admin-resource-detail',

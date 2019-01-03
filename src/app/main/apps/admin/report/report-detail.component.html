@@ -25,7 +25,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                        {{ object.name }}
+                        {{ object.subject }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'APPS.REPORT' | translate }}
@@ -109,7 +109,7 @@
 
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-3 ml-20 col-md-2">
                             <mat-label>{{ 'APPS.EXTENSION' | translate }}</mat-label>
-                            <mat-select formControlName="extension">
+                            <mat-select formControlName="extension" required>
                                 <mat-option *ngFor="let extension of extensions" [value]="extension.id">{{ extension.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.extension }}</mat-error>
@@ -119,7 +119,7 @@
                     <div fxLayout="row" class="justify-content-between">
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-4 col-md-6">
                             <mat-label>{{ 'ADMIN.FREQUENCY' | translate }}</mat-label>
-                            <mat-select formControlName="frequency_id">
+                            <mat-select formControlName="frequency_id" required>
                                 <mat-option *ngFor="let frequency of frequencies" [value]="+frequency.id">{{ frequency.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.frequency_id }}</mat-error>
@@ -127,7 +127,7 @@
                     </div>
 
                     <!-- HEADER -->
-                    <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                    <div fxLayout="row" fxLayoutAlign="start center" class="mt-20 mb-5 header-section">
                         <mat-icon class="m-0 mr-16">code</mat-icon>
                         <div class="h2 secondary-text">SQL</div>
                     </div>
@@ -138,7 +138,8 @@
                                         language="sql"
                                         class="col-12"
                                         formControlName="sql"
-                                        style="height: 200px">
+                                        style="height: 200px"
+                                        [editorOptions]="{acceptSuggestionOnCommitCharacter:true, acceptSuggestionOnEnter:true, quickSuggestions:true, wordBasedSuggestions: true}">
                         </td-code-editor>
                     </div>
 

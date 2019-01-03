@@ -1,4 +1,4 @@
-import { Lang, Country, Attachment } from './../admin/admin.models';
+import { Lang, Country, Attachment } from '../admin/admin.models';
 
 export class Category 
 {

@@ -1,4 +1,4 @@
-import { User, Attachment } from './../admin/admin.models';
+import { User, Attachment } from '../admin/admin.models';
 
 export class Editor 
 {

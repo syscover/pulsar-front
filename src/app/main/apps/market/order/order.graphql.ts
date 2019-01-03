@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { graphQL as marketOrderStatus } from './../order-status/order-status.graphql';
-import { graphQL as marketPaymentMethod } from './../payment-method/payment-method.graphql';
-import { graphQL as crmCustomerGroup } from './../../crm/customer-group/customer-group.graphql';
+import { graphQL as marketOrderStatus } from '../order-status/order-status.graphql';
+import { graphQL as marketPaymentMethod } from '../payment-method/payment-method.graphql';
+import { graphQL as crmCustomerGroup } from '../../crm/customer-group/customer-group.graphql';
 
 const fields = `
     id

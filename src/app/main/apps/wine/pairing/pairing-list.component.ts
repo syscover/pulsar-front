@@ -1,13 +1,13 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from './../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/structures/core-list-component';
 import { graphQL } from './pairing.graphql';
 
 @Component({
     selector: 'dh2-wine-pairing-list',
     templateUrl: './pairing-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
 })
 export class PairingListComponent extends CoreListComponent
 {

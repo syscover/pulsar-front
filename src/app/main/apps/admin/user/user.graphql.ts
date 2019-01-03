@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as adminProfileGraphQL } from './../profile/profile.graphql';
-import { graphQL as adminLangGraphQL } from './../lang/lang.graphql';
+import { graphQL as adminProfileGraphQL } from '../profile/profile.graphql';
+import { graphQL as adminLangGraphQL } from '../lang/lang.graphql';
 
 const fields = `
     id 

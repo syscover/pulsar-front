@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { OrderStatus } from './../market.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { OrderStatus } from '../market.models';
 import { graphQL } from './payment-method.graphql';
 
 @Component({

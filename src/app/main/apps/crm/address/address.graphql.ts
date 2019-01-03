@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as crmAddressTypeGraphQL } from './../address-type/address-type.graphql';
+import { graphQL as crmAddressTypeGraphQL } from '../address-type/address-type.graphql';
 
 const fields = `
     id

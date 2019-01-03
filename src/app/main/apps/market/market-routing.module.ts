@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationService } from './../../core/services/authorization.service';
+import { AuthorizationService } from '../../core/services/authorization.service';
 
 import { CartPriceRuleListComponent } from './cart-price-rule/cart-price-rule-list.component';
 import { CartPriceRuleDetailComponent } from './cart-price-rule/cart-price-rule-detail.component';

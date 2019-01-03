@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as cmsFamilyGraphQL } from './../family/family.graphql';
-import { graphQL as adminAttachmentFamilyGraphQL } from './../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as cmsFamilyGraphQL } from '../family/family.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
 
 const fields = `
     ix

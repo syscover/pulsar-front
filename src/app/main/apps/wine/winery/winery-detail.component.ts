@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { graphQL } from './winery.graphql';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { SelectSearchService } from '../../../core/services/select-search.service';

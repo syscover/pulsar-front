@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as marketCustomerClassTax } from './../customer-class-tax/customer-class-tax.graphql';
-import { graphQL as crmCustomerGroup } from './../../crm/customer-group/customer-group.graphql';
+import { graphQL as marketCustomerClassTax } from '../customer-class-tax/customer-class-tax.graphql';
+import { graphQL as crmCustomerGroup } from '../../crm/customer-group/customer-group.graphql';
 
 const fields = `
     customer_group_id

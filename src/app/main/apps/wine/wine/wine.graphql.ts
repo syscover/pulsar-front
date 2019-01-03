@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
-import { graphQL as marketableGraphQL } from './../../../core/components/marketable/marketable.graphql';
-import { graphQL as stockableGraphQL } from './../../../core/components/stockable/stockable.graphql';
-import { graphQL as adminAttachmentsGraphQL } from './../../../core/components/attachments/attachments.graphql';
-import { graphQL as adminAttachmentFamilyGraphQL } from './../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as adminCountryGraphQL } from './../../admin/country/country.graphql';
-import { graphQL as marketStockGraphQL } from './../../market/stock/stock.graphql';
+import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
+import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
+import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';
 import { graphQL as wineAppellationGraphQL } from './../appellation/appellation.graphql';
 import { graphQL as wineAwardGraphQL } from './../award/award.graphql';
 import { graphQL as wineFamilyGraphQL } from './../family/family.graphql';

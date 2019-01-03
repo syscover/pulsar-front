@@ -2,10 +2,10 @@ import { Component, Injector } from '@angular/core';
 import { Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { CustomerGroup } from './../../crm/crm.models';
-import { DiscountType } from './../market.models';
-import './../../../core/functions/date-to-json.function';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CustomerGroup } from '../../crm/crm.models';
+import { DiscountType } from '../market.models';
+import '../../../core/functions/date-to-json.function';
 import { graphQL } from './cart-price-rule.graphql';
 
 @Component({

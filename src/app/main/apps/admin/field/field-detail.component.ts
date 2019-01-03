@@ -2,9 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { graphQL } from './field.graphql';
-import { FieldGroup, FieldType, DataType } from './../admin.models';
+import { FieldGroup, FieldType, DataType } from '../admin.models';
 
 @Component({
     selector: 'dh2-admin-field-detail',

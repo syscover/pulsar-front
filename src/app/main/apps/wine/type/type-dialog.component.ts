@@ -1,13 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { HttpService } from './../../../core/services/http.service';
+import { ValidationMessageService } from '../../../core/services/validation-message.service';
+import { HttpService } from '../../../core/services/http.service';
 import { graphQL } from './type.graphql';
-import { Lang } from './../../admin/admin.models';
-import { ConfigService } from './../../../core/services/config.service';
-import { Dialog, DialogDecoratorInterface } from './../../../core/decorators/dialog.decorator';
-import { pulsarConfig } from './../../../pulsar-config';
+import { Lang } from '../../admin/admin.models';
+import { ConfigService } from '../../../core/services/config.service';
+import { Dialog, DialogDecoratorInterface } from '../../../core/decorators/dialog.decorator';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Dialog()
 @Component({

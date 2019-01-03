@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorIntl } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthorizationService } from './../core/services/authorization.service';
+import { AuthorizationService } from '../core/services/authorization.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-import { CustomMatPaginatorIntlService } from './../core/services/custom-mat-paginator-int.service';
+import { CustomMatPaginatorIntlService } from '../core/services/custom-mat-paginator-int.service';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 

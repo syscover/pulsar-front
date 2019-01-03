@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { TaxRateZone, CustomerClassTax, ProductClassTax } from './../market.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { TaxRateZone, CustomerClassTax, ProductClassTax } from '../market.models';
 import * as _ from 'lodash';
 import { graphQL } from './tax-rule.graphql';
 

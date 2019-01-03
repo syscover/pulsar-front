@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as marketOrderStatus } from './../order-status/order-status.graphql';
+import { graphQL as marketOrderStatus } from '../order-status/order-status.graphql';
 
 const fields = `
     ix

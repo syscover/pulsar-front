@@ -1,9 +1,9 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { AuthenticationService } from './../../../core/services/authentication.service';
-import { User } from './../admin.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { AuthenticationService } from '../../../core/services/authentication.service';
+import { User } from '../admin.models';
 import { graphQL } from './oauth-access-token.graphql';
 
 @Component({

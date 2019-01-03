@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { graphQL as marketTaxRateZone } from './../tax-rate-zone/tax-rate-zone.graphql';
-import { graphQL as marketCustomerClassTax } from './../customer-class-tax/customer-class-tax.graphql';
-import { graphQL as marketProductClassTax } from './../product-class-tax/product-class-tax.graphql';
+import { graphQL as marketTaxRateZone } from '../tax-rate-zone/tax-rate-zone.graphql';
+import { graphQL as marketCustomerClassTax } from '../customer-class-tax/customer-class-tax.graphql';
+import { graphQL as marketProductClassTax } from '../product-class-tax/product-class-tax.graphql';
 
 const fields = `
     id

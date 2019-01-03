@@ -1,14 +1,14 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from './../../../core/structures/core-list-component';
-import { Status } from './../cms.models';
+import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { Status } from '../cms.models';
 import { graphQL } from './article.graphql';
 
 @Component({
     selector: 'dh2-article-list',
     templateUrl: './article-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
 })
 export class ArticleListComponent extends CoreListComponent
 {
