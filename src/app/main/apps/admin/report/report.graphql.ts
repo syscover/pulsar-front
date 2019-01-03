@@ -4,14 +4,16 @@ const fields = `
     id
     subject
     emails
-    cc
-    schedule_frequency
     filename
     extension
+    frequency_id
     sql
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    adminExtensions: coreConfig (config:$configExtensions)
+    adminFrequencies: coreConfig (config:$configFrequencies)
+`;
 
 export const graphQL = {
     model: 'Syscover\\Admin\\Models\\Report',
@@ -28,6 +30,11 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query AdminGetRelationsReport ($configExtensions:CoreConfigInput! $configFrequencies:CoreConfigInput!) {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
         query AdminGetReports ($sql:[CoreSQLInput]) {
             coreObjects: adminReports (sql:$sql) {
@@ -36,10 +43,11 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query AdminGetReport ($sql:[CoreSQLInput]) {
+        query AdminGetReport ($sql:[CoreSQLInput] $configExtensions:CoreConfigInput! $configFrequencies:CoreConfigInput!) {
             coreObject: adminReport (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`

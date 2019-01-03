@@ -232,7 +232,7 @@
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'CMS.ADD_TAG' | translate }}</mat-label>
                                         <mat-chip-list #tagList>
-                                            <mat-chip *ngFor="let tag of fg.controls['tags'].value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
+                                            <mat-chip *ngFor="let tag of fg.get('tags').value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
                                                 {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
                                         </mat-chip-list>

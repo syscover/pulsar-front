@@ -81,6 +81,12 @@ export class DataType
     type: string;
 }
 
+export class Extension
+{
+    id: string;
+    name: string;
+}
+
 export class Field
 {
     id: number;
@@ -139,6 +145,12 @@ export class FieldValue
     featured: string;
     data_lang: string[];
     data: Object;
+}
+
+export class Frequency
+{
+    id: number;
+    name: string;
 }
 
 export class Lang
