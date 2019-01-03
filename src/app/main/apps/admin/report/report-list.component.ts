@@ -53,6 +53,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                     console.log(data);
                 });
 
+            // go to pagination
             this.router.navigate([this.baseUri]);
         }
         else

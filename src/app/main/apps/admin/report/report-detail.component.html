@@ -91,11 +91,11 @@
                                 <mat-chip *ngFor="let email of fg.get('emails').value" [removable]="true" (removed)="removeTag(fg, 'emails', email)">
                                     {{ email }} <mat-icon matChipRemove>cancel</mat-icon>
                                 </mat-chip>
+                                <input  [matChipInputFor]="emailList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="true"
+                                        (matChipInputTokenEnd)="addTag(fg, 'emails', $event)">
                             </mat-chip-list>
-                            <input  [matChipInputFor]="emailList"
-                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    [matChipInputAddOnBlur]="true"
-                                    (matChipInputTokenEnd)="addTag(fg, 'emails', $event)">
                             <mat-error>{{ formErrors?.emails }}</mat-error>
                         </mat-form-field>
                     </div>
@@ -138,8 +138,7 @@
                                         language="sql"
                                         class="col-12"
                                         formControlName="sql"
-                                        style="height: 200px"
-                                        [editorOptions]="{acceptSuggestionOnCommitCharacter:true, acceptSuggestionOnEnter:true, quickSuggestions:true, wordBasedSuggestions: true}">
+                                        style="height: 200px">
                         </td-code-editor>
                     </div>
 

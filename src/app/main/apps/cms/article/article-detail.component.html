@@ -235,11 +235,11 @@
                                             <mat-chip *ngFor="let tag of fg.get('tags').value" [removable]="true" (removed)="removeTag(fg, 'tags', tag)">
                                                 {{ tag }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
+                                            <input  [matChipInputFor]="tagList"
+                                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                    [matChipInputAddOnBlur]="true"
+                                                    (matChipInputTokenEnd)="addTag(fg, 'tags', $event)">
                                         </mat-chip-list>
-                                        <input  [matChipInputFor]="tagList"
-                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                                [matChipInputAddOnBlur]="true"
-                                                (matChipInputTokenEnd)="addTag(fg, 'tags', $event)">
                                         <mat-error>{{ formErrors?.tags }}</mat-error>
                                     </mat-form-field>
                                 </div>
