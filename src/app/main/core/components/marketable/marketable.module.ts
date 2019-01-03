@@ -16,12 +16,12 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { SpinnerModule } from './../spinner/spinner.module';
-import { FlagIconModule } from './../flag-icon/flag-icon.module';
-import { FuseTranslationLoaderService } from './../../../../../@fuse/services/translation-loader.service';
-import { DirectivesModule } from './../../directives/directives.module';
+import { SpinnerModule } from '../spinner/spinner.module';
+import { FlagIconModule } from '../flag-icon/flag-icon.module';
+import { FuseTranslationLoaderService } from '../../../../../@fuse/services/translation-loader.service';
+import { DirectivesModule } from '../../directives/directives.module';
 import { MarketableService } from './marketable.service';
-import { PipesModule } from './../../pipes/pipes.module';
+import { PipesModule } from '../../pipes/pipes.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 

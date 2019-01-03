@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as foremCategoryGraphQL } from './../category/category.graphql';
+import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 
 const fields = `
     id

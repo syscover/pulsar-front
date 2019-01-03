@@ -87,6 +87,10 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
+                            <button mat-menu-item [routerLink]="[baseUri + '/run', row.id]">
+                                <mat-icon>play_arrow</mat-icon>
+                                <span>{{ 'APPS.RUN' | translate }}</span>
+                            </button>
                             <button mat-menu-item (click)="deleteRecord(row)">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>

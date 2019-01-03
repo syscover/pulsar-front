@@ -111,6 +111,7 @@ const routes: Routes = [
             { path: 'report',                                           component: ReportListComponent },
             { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create' }},
             { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit' }},
+            { path: 'report/run/:id',                                   component: ReportListComponent,                 data: { action: 'run' } },
 
             // Resource
             { path: 'resource',                                         component: ResourceListComponent },

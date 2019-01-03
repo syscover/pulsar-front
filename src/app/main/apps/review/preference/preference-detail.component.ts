@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { User } from './../../admin/admin.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { User } from '../../admin/admin.models';
 import { graphQL } from './preference.graphql';
 
 @Component({

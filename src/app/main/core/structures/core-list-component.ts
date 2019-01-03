@@ -12,7 +12,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
-import { HttpSynchronousService } from './../services/http-synchronous.service';
+import { HttpSynchronousService } from '../services/http-synchronous.service';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
 {
@@ -150,7 +150,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     ngAfterViewInit(): void
     {
-
        this.initDataTable();
     }
 
@@ -165,7 +164,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         }
     }
 
-    async initDataTable ()
+    async initDataTable()
     {
         if (this.httpSynchronousService.running) 
         {

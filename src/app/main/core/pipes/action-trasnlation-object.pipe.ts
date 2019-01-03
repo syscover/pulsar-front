@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Translatable } from './../types/translatable';
-import { Lang } from './../../apps/admin/admin.models';
+import { Translatable } from '../types/translatable';
+import { Lang } from '../../apps/admin/admin.models';
 
 @Pipe({
   name: 'actionTranslationObject'

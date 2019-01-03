@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FuseNavigation } from '@fuse/types';
 import { ConfigService } from './config.service';
-import { Package } from './../../apps/admin/admin.models';
+import { Package } from '../../apps/admin/admin.models';
 import { environment } from 'environments/environment';
 import * as _ from 'lodash';
 

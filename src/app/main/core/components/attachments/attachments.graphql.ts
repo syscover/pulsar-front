@@ -1,5 +1,5 @@
 import { graphQL as adminAttachmentLibraryGraphQL } from './attachments-library.graphql';
-import { graphQL as adminAttachmentFamilyGraphQL } from './../../../apps/admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../../apps/admin/attachment-family/attachment-family.graphql';
 
 const fields = `
     alt

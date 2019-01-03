@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Params, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
-import { Core } from './../structures/core';
+import { Core } from '../structures/core';
 import * as _ from 'lodash';
 
 @Injectable()

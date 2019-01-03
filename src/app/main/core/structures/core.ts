@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { ConfigService } from './../services/config.service';
+import { ConfigService } from '../services/config.service';
 import { environment } from 'environments/environment';
 
 export abstract class Core

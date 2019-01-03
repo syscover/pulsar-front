@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Lang } from './../../../apps/admin/admin.models';
+import { Lang } from '../../../apps/admin/admin.models';
 
 @Component({
     selector: 'dh2-flag-icon',

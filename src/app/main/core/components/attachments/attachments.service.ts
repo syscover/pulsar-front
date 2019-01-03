@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpService } from './../../services/http.service';
+import { HttpService } from '../../services/http.service';
 import { environment } from 'environments/environment';
 import gql from 'graphql-tag';
 

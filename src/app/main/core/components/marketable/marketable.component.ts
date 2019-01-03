@@ -1,15 +1,15 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Category, PriceType, Product, ProductClassTax, ProductClass, Section } from './../../../apps/market/market.models';
+import { Category, PriceType, Product, ProductClassTax, ProductClass, Section } from '../../../apps/market/market.models';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MarketableService } from './marketable.service';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'environments/environment';
-import { DataRoute } from './../../types/data-route';
-import { Lang } from './../../../apps/admin/admin.models';
+import { DataRoute } from '../../types/data-route';
+import { Lang } from '../../../apps/admin/admin.models';
 import { CategoryDialogComponent } from './category-dialog.component';
 import * as _ from 'lodash';
-import { pulsarConfig } from './../../../pulsar-config';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-marketable',

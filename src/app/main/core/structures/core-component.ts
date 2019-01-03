@@ -3,12 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Core } from './core';
-import { HttpService } from './../services/http.service';
-import { Lang } from './../../apps/admin/admin.models';
-import { ConfirmationDialogComponent } from './../components/confirmation-dialog.component';
+import { HttpService } from '../services/http.service';
+import { Lang } from '../../apps/admin/admin.models';
+import { ConfirmationDialogComponent } from '../components/confirmation-dialog.component';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { pulsarConfig } from './../../pulsar-config';
+import { pulsarConfig } from '../../pulsar-config';
+import { DataRoute } from '../types/data-route';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
@@ -24,6 +25,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     objectTranslation: string;                  // translation key from current object
     objectTranslationGender: string;
     objectTranslationTranslated: string;        // string translated from current object
+    dataRoute: DataRoute;                       // static dataRoute Object pass from route module
 
     protected router: Router;
     protected route: ActivatedRoute;
@@ -53,6 +55,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         this.params = this.route.snapshot.params;
         this.langs = this.configService.get('langs');
         this.baseLang = this.configService.get('base_lang');
+        this.dataRoute = <DataRoute>this.route.snapshot.data;   // set object properties
     }
 
     ngOnInit(): void

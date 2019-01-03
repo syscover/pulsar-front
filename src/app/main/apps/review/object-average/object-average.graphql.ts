@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as reviewPoll } from './../poll/poll.graphql';
+import { graphQL as reviewPoll } from '../poll/poll.graphql';
 
 const fields = `
     id

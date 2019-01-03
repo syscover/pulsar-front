@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as reviewQuestionAverage } from './../question-average/question-average.graphql';
-import { graphQL as reviewPoll } from './../poll/poll.graphql';
+import { graphQL as reviewQuestionAverage } from '../question-average/question-average.graphql';
+import { graphQL as reviewPoll } from '../poll/poll.graphql';
 
 const fields = `
     ix

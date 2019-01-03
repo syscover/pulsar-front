@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { pulsarConfig } from './../../../pulsar-config';
+import { ValidationMessageService } from '../../../core/services/validation-message.service';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-stockable-dialog',

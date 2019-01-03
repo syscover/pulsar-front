@@ -5,7 +5,7 @@ import { fromEvent } from 'rxjs/observable/fromEvent';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { from } from 'rxjs/observable/from';
 import { merge } from 'rxjs/observable/merge';
-import { SlugService } from './../services/slug.service';
+import { SlugService } from '../services/slug.service';
 import { environment } from 'environments/environment';
 import { BehaviorSubject } from 'rxjs';
 

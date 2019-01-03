@@ -77,6 +77,7 @@ export const locale = {
             'REPEAT_PASSWORD': 'Repeat your password',
             'REPORT': 'Report',
             'RESOURCE': 'Resource',
+            'RUN': 'Run',
             'SAVE': 'Save',
             'SAVED.F': 'Saved',
             'SAVED.M': 'Saved',

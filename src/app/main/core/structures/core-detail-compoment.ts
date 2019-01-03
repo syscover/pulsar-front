@@ -4,15 +4,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
-import { Lang } from './../../apps/admin/admin.models';
-import { DataRoute } from './../types/data-route';
-import { ValidationMessageService } from './../services/validation-message.service';
-import './../functions/string-capitalize.function';
+import { Lang } from '../../apps/admin/admin.models';
+import { ValidationMessageService } from '../services/validation-message.service';
+import '../functions/string-capitalize.function';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit
 {
-    dataRoute: DataRoute; // static dataRoute Object pass from route module
     formErrors: any = {};
     fg: FormGroup;
     fb: FormBuilder;
@@ -28,9 +26,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         super(injector, graphQL);
         this.fb = injector.get(FormBuilder);
         this.validationMessageService = injector.get(ValidationMessageService);
-
-        // set object properties
-        this.dataRoute = <DataRoute>this.route.snapshot.data;
 
         // create form, this method will be overwrite by child class
         this.createForm();

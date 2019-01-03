@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { graphQL as reviewPoll } from './../poll/poll.graphql';
-import { graphQL as reviewQuestion } from './../question/question.graphql';
-import { graphQL as reviewResponse } from './../response/response.graphql';
+import { graphQL as reviewPoll } from '../poll/poll.graphql';
+import { graphQL as reviewQuestion } from '../question/question.graphql';
+import { graphQL as reviewResponse } from '../response/response.graphql';
 
 const fields = `
     id

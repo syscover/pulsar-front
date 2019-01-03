@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { graphQL as adminUser } from './../../admin/user/user.graphql';
+import { graphQL as adminUser } from '../../admin/user/user.graphql';
 
 const fields = `
     key

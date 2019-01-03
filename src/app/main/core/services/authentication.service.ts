@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpService } from './http.service';
-import { User } from './../../apps/admin/admin.models';
+import { User } from '../../apps/admin/admin.models';
 
 @Injectable()
 export class AuthenticationService extends HttpService

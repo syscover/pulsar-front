@@ -38,7 +38,7 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/m
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { SelectSearchService } from './../services/select-search.service';
+import { SelectSearchService } from '../services/select-search.service';
 
 @NgModule({
     imports: [

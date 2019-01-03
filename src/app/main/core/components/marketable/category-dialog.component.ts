@@ -1,16 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ValidationMessageService } from './../../../core/services/validation-message.service';
-import { HttpService } from './../../../core/services/http.service';
-import { graphQL } from './../../../apps/market/category/category.graphql';
-import { Category } from './../../../apps/market/market.models';
-import { Lang } from './../../../apps/admin/admin.models';
-import { ConfigService } from './../../../core/services/config.service';
+import { ValidationMessageService } from '../../../core/services/validation-message.service';
+import { HttpService } from '../../../core/services/http.service';
+import { graphQL } from '../../../apps/market/category/category.graphql';
+import { Category } from '../../../apps/market/market.models';
+import { Lang } from '../../../apps/admin/admin.models';
+import { ConfigService } from '../../../core/services/config.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SelectSearchService } from './../../services/select-search.service';
-import { pulsarConfig } from './../../../pulsar-config';
+import { SelectSearchService } from '../../services/select-search.service';
+import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({
     selector: 'dh2-market-category-dialog',

@@ -69,5 +69,13 @@ export const graphQL = {
             adminDeleteReport (id:$id) {
                 ${fields}
             }
+        }`,
+
+    // custom query
+    queryRunReport: gql`
+        query AdminRunReport ($id:Int!) {
+            adminRunReport (id:$id) {
+                ${fields}
+            }
         }`
 };

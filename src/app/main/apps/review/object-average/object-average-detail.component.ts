@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
-import { Poll } from './../review.models';
+import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Poll } from '../review.models';
 import { graphQL } from './object-average.graphql';
 
 @Component({
