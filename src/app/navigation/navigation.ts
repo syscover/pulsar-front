@@ -57,6 +57,14 @@ export const navigation: FuseNavigation[] = [
                 'icon' : 'highlight',
                 'children' : [
                     {
+                        'id'        : 'groups',
+                        'title'     : 'Groups',
+                        'translate' : 'NAV.GROUPS',
+                        'type'      : 'item',
+                        'icon'      : 'supervised_user_circle',
+                        'url'       : '/apps/forem/group'
+                    },
+                    {
                         'id'        : 'actions',
                         'title'     : 'Actions',
                         'translate' : 'NAV.ACTIONS',

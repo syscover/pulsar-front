@@ -10,31 +10,37 @@ import { EmploymentOfficeListComponent } from './employment-office/employment-of
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
 import { ExpedientDetailComponent } from './expedient/expedient-detail.component';
 import { ExpedientListComponent } from './expedient/expedient-list.component';
+import { GroupListComponent } from './group/group-list.component';
 
 const routes: Routes = [
     {
         path: '',
         canActivate: [AuthorizationService],
         children: [
-            // EmploymentOffices
-            { path: 'employment-office',                                    component: EmploymentOfficeListComponent },
-            { path: 'employment-office/create',                             component: EmploymentOfficeDetailComponent,         data: { action: 'create' }},
-            { path: 'employment-office/show/:id',                           component: EmploymentOfficeDetailComponent,         data: { action: 'edit' }},
+            // Actions
+            { path: 'action',                                               component: ActionListComponent },
+            { path: 'action/create',                                        component: ActionDetailComponent,                   data: { action: 'create' }},
+            { path: 'action/show/:id',                                      component: ActionDetailComponent,                   data: { action: 'edit' }},
 
             // Categories
             { path: 'category',                                             component: CategoryListComponent },
             { path: 'category/create',                                      component: CategoryDetailComponent,                 data: { action: 'create' }},
             { path: 'category/show/:id',                                    component: CategoryDetailComponent,                 data: { action: 'edit' }},
 
-            // Categories
-            { path: 'action',                                               component: ActionListComponent },
-            { path: 'action/create',                                        component: ActionDetailComponent,                   data: { action: 'create' }},
-            { path: 'action/show/:id',                                      component: ActionDetailComponent,                   data: { action: 'edit' }},
+            // EmploymentOffices
+            { path: 'employment-office',                                    component: EmploymentOfficeListComponent },
+            { path: 'employment-office/create',                             component: EmploymentOfficeDetailComponent,         data: { action: 'create' }},
+            { path: 'employment-office/show/:id',                           component: EmploymentOfficeDetailComponent,         data: { action: 'edit' }},
 
             // Expedients
             { path: 'expedient',                                            component: ExpedientListComponent },
             { path: 'expedient/create',                                     component: ExpedientDetailComponent,                data: { action: 'create' }},
             { path: 'expedient/show/:id',                                   component: ExpedientDetailComponent,                data: { action: 'edit' }},
+
+            // Groups
+            { path: 'group',                                                component: GroupListComponent },
+            // { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create' }},
+            // { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit' }},
         ]  
     }
 ];

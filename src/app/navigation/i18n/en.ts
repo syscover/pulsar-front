@@ -37,6 +37,7 @@ export const locale = {
             'FIELD_GROUPS': 'Field groups',
             'FOREM': 'Forem',
             'GRAPES': 'Grapes',
+            'GROUPS': 'Groups',
             'HOTEL': 'Hotel',
             'LANGUAGES': 'Languages',
             'MARKET': 'Market',
