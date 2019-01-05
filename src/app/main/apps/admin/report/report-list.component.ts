@@ -5,6 +5,7 @@ import { CoreListComponent } from '../../../core/structures/core-list-component'
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'dh2-admin-report-list',
@@ -38,14 +39,15 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                 }
             })
             .valueChanges
-            .subscribe(() => {
+            .subscribe((res) => {
 
+                if (environment.debug) console.log('DEBUG - response execute report: ', res);
 
                 this.http
                     .httpClient()
                     .post(this.http.apiUrl + '/api/v1/admin/file-manager/read',
                         {
-                            filename: 'image.jpg'
+                            file: res.data['adminRunReport']['file']
                         },
                         {
                             responseType: 'blob'
@@ -53,7 +55,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                     )
                     .subscribe((data) => {
 
-                        const blob = new Blob([data], { type: 'image/jpg' });
+                        const blob = new Blob([data], { type: res.data['adminRunReport']['file']['mime'] });
 
                         // IE doesn't allow using a blob object directly as link href
                         // instead it is necessary to use msSaveOrOpenBlob
@@ -63,18 +65,12 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                         }
 
                         const fileUrl = this._sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-                        const fileUrl2 = window.URL.createObjectURL(blob);
 
-
-                        console.log(blob);
-                        console.log(fileUrl);
-                        console.log(fileUrl2);
-
-                        window.open(fileUrl['changingThisBreaksApplicationSecurity']);
+                        if (environment.debug) console.log('DEBUG - response file url to download: ', fileUrl);
 
                         const link = document.createElement('a');
                         link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                        link.download = 'image.jpg';
+                        link.download = res.data['adminRunReport']['filename'] + '.' + res.data['adminRunReport']['extension'];
 
                         // this is necessary as link.click() does not work on the latest firefox
                         link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));

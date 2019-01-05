@@ -76,6 +76,11 @@ export const graphQL = {
         query AdminRunReport ($id:Int!) {
             adminRunReport (id:$id) {
                 ${fields}
+                file {
+                    pathname
+                    mime
+                    size
+                }
             }
         }`
 };
