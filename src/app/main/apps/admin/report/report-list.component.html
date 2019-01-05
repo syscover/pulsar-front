@@ -87,7 +87,7 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item [routerLink]="[baseUri + '/run', row.id]">
+                            <button mat-menu-item (click)="runReport(row)">
                                 <mat-icon>play_arrow</mat-icon>
                                 <span>{{ 'APPS.RUN' | translate }}</span>
                             </button>

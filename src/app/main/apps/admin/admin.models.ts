@@ -178,6 +178,17 @@ export class Profile
     name: string;
 }
 
+export class Report
+{
+    id: number;
+    subject: string;
+    emails: string[];
+    filename: string;
+    extension: string;
+    frequency_id: number;
+    sql: string;
+}
+
 export class Resource
 {
     ix: number;

@@ -20,7 +20,7 @@ export class AuthenticationService extends HttpService
     login(user: any)
     {
         // send credentials to server
-        return this.httpClient
+        return this.http
             .post(this.getEndpoint('login'), {
                     guard: 'admin',
                     user: user.user,

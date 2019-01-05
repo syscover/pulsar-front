@@ -11,7 +11,7 @@ export class HttpService extends Core
 {
     protected headers: HttpHeaders;
     protected options: Object;
-    protected httpClient: HttpClient;
+    protected http: HttpClient;
     protected apollo: Apollo;
     protected router: Router;
     
@@ -20,7 +20,7 @@ export class HttpService extends Core
     ) {
         super(injector);
 
-        this.httpClient = this.injector.get(HttpClient);
+        this.http = this.injector.get(HttpClient);
         this.apollo = this.injector.get(Apollo);
         this.router = this.injector.get(Router);
 
@@ -31,6 +31,11 @@ export class HttpService extends Core
     apolloClient(): Apollo
     {
         return this.apollo;
+    }
+
+    httpClient(): HttpClient
+    {
+        return this.http;
     }
 
     private handleError = (err) => {

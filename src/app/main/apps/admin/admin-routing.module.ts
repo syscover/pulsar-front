@@ -111,7 +111,6 @@ const routes: Routes = [
             { path: 'report',                                           component: ReportListComponent,                 data: { action: 'list' }},
             { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create' }},
             { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit' }},
-            { path: 'report/run/:id',                                   component: ReportListComponent,                 data: { action: 'run' }},
 
             // Resource
             { path: 'resource',                                         component: ResourceListComponent,               data: { action: 'list' }},
