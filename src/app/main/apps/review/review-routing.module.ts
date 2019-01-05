@@ -20,27 +20,27 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Reviews
-            { path: 'review',                                       component: ReviewListComponent },
+            { path: 'review',                                       component: ReviewListComponent,                         data: { action: 'list' }},
             { path: 'review/create',                                component: ReviewDetailComponent,                       data: { action: 'create' }},
             { path: 'review/show/:id',                              component: ReviewDetailComponent,                       data: { action: 'edit' }},
 
             // Comments
-            { path: 'comment',                                       component: CommentListComponent },
-            { path: 'comment/create',                                component: CommentDetailComponent,                       data: { action: 'create' }},
-            { path: 'comment/show/:id',                              component: CommentDetailComponent,                       data: { action: 'edit' }},
+            { path: 'comment',                                       component: CommentListComponent,                       data: { action: 'list' }},
+            { path: 'comment/create',                                component: CommentDetailComponent,                     data: { action: 'create' }},
+            { path: 'comment/show/:id',                              component: CommentDetailComponent,                     data: { action: 'edit' }},
 
             // Averages
-            { path: 'object-average',                               component: ObjectAverageListComponent },
+            { path: 'object-average',                               component: ObjectAverageListComponent,                  data: { action: 'list' }},
             // { path: 'object-average/create',                        component: ObjectAverageDetailComponent,                data: { action: 'create' }},
             { path: 'object-average/show/:id',                      component: ObjectAverageDetailComponent,                data: { action: 'edit' }},
 
             // Polls
-            { path: 'poll',                                         component: PollListComponent },
+            { path: 'poll',                                         component: PollListComponent,                           data: { action: 'list' }},
             { path: 'poll/create',                                  component: PollDetailComponent,                         data: { action: 'create' }},
             { path: 'poll/show/:id',                                component: PollDetailComponent,                         data: { action: 'edit' }},
 
             // Questions
-            { path: 'question',                                     component: QuestionListComponent },
+            { path: 'question',                                     component: QuestionListComponent,                       data: { action: 'list' }},
             { path: 'question/create',                              component: QuestionDetailComponent,                     data: { action: 'create' }},
             { path: 'question/create/:lang_id/:id',                 component: QuestionDetailComponent,                     data: { action: 'create-lang' }},
             { path: 'question/show/:lang_id/:id',                   component: QuestionDetailComponent,                     data: { action: 'edit' }},

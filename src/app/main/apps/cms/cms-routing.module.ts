@@ -18,23 +18,23 @@ const routes: Routes = [
         children: [
 
             // Articles
-            { path: 'article',                                          component: ArticleListComponent },
+            { path: 'article',                                          component: ArticleListComponent,                data: { action: 'list' }},
             { path: 'article/create',                                   component: ArticleDetailComponent,              data: { action: 'create' }},
             { path: 'article/create/:lang_id/:id',                      component: ArticleDetailComponent,              data: { action: 'create-lang' }},
             { path: 'article/show/:lang_id/:id',                        component: ArticleDetailComponent,              data: { action: 'edit' }},
 
             // Sections
-            { path: 'section',                                          component: SectionListComponent },
+            { path: 'section',                                          component: SectionListComponent,                data: { action: 'list' }},
             { path: 'section/create',                                   component: SectionDetailComponent,              data: { action: 'create' }},
             { path: 'section/show/:id',                                 component: SectionDetailComponent,              data: { action: 'edit' }},
 
             // Families
-            { path: 'family',                                           component: FamilyListComponent },
+            { path: 'family',                                           component: FamilyListComponent,                 data: { action: 'list' }},
             { path: 'family/create',                                    component: FamilyDetailComponent,               data: { action: 'create' }},
             { path: 'family/show/:id',                                  component: FamilyDetailComponent,               data: { action: 'edit' }},
 
             // Categories
-            { path: 'category',                                         component: CategoryListComponent },
+            { path: 'category',                                         component: CategoryListComponent,               data: { action: 'list' }},
             { path: 'category/create',                                  component: CategoryDetailComponent,             data: { action: 'create' }},
             { path: 'category/create/:lang_id/:id',                     component: CategoryDetailComponent,             data: { action: 'create-lang' }},
             { path: 'category/show/:lang_id/:id',                       component: CategoryDetailComponent,             data: { action: 'edit' }},

@@ -39,8 +39,9 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     private registerSubscriptions = async () => {
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
-            this.sort.sortChange,
-                fromEvent(this.filter.nativeElement, 'keyup')
+            this.sort
+                .sortChange,
+            fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(500)
                 .distinctUntilChanged()
         )
@@ -150,14 +151,16 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     ngAfterViewInit(): void
     {
-       this.initDataTable();
+        if (this.dataRoute.action === 'list')
+        {
+            this.initDataTable();
+        }
     }
 
     ngOnInit(): void
     {
         super.ngOnInit();
-
-        if (this.filter)
+        if (this.dataRoute.action === 'list' && this.filter)
         {
             // get model reference to get search text
             this.filter.nativeElement.value = localStorage.getItem(this.graphQL.model);

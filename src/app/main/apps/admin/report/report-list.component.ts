@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Injector, OnInit} from '@angular/core';
+import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
 import { graphQL } from './report.graphql';
@@ -24,15 +24,8 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
     ngOnInit(): void
     {
+        super.ngOnInit();
         this.init();
-    }
-
-    ngAfterViewInit(): void
-    {
-        if (! this.dataRoute.action)
-        {
-            super.ngAfterViewInit();
-        }
     }
 
     init(): void
@@ -49,16 +42,9 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                     }
                 })
                 .valueChanges
-                .subscribe(({data}) => {
+                .subscribe((data) => {
                     console.log(data);
                 });
-
-            // go to pagination
-            this.router.navigate([this.baseUri]);
-        }
-        else
-        {
-            super.ngOnInit();
         }
     }
 }

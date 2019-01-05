@@ -45,96 +45,96 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Action
-            { path: 'action',                                           component: ActionListComponent },
+            { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list' }},
             { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create' }},
             { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit' }},
 
             // AttachmentFamily
-            { path: 'attachment-family',                                component: AttachmentFamilyListComponent },
+            { path: 'attachment-family',                                component: AttachmentFamilyListComponent,       data: { action: 'list' }},
             { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create' }},
             { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit' }},
 
             // AttachmentMime
-            { path: 'attachment-mime',                                  component: AttachmentMimeListComponent },
+            { path: 'attachment-mime',                                  component: AttachmentMimeListComponent,         data: { action: 'list' }},
             { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
             { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
 
             // OAuth Client
-            { path: 'oauth-access-token',                               component: OauthAccessTokenListComponent },
+            { path: 'oauth-access-token',                               component: OauthAccessTokenListComponent,       data: { action: 'list' }},
             { path: 'oauth-access-token/create',                        component: OauthAccessTokenDetailComponent,     data: { action: 'create' }},
             { path: 'oauth-access-token/show/:id',                      component: OauthAccessTokenDetailComponent,     data: { action: 'edit' }},
 
             // OAuth Client
-            { path: 'oauth-client',                                     component: OauthClientListComponent },
+            { path: 'oauth-client',                                     component: OauthClientListComponent,            data: { action: 'list' }},
             { path: 'oauth-client/create',                              component: OauthClientDetailComponent,          data: { action: 'create' }},
             { path: 'oauth-client/show/:id',                            component: OauthClientDetailComponent,          data: { action: 'edit' }},
 
             // Country
-            { path: 'country',                                          component: CountryListComponent },
+            { path: 'country',                                          component: CountryListComponent,                data: { action: 'list' }},
             { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
             { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
             { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
 
             // Field
-            { path: 'field',                                            component: FieldListComponent },
+            { path: 'field',                                            component: FieldListComponent,                  data: { action: 'list' }},
             { path: 'field/create',                                     component: FieldDetailComponent,                data: { action: 'create' }},
             { path: 'field/create/:lang_id/:id',                        component: FieldDetailComponent,                data: { action: 'create-lang' }},
             { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit' }},
 
             // FieldGroup
-            { path: 'field-group',                                      component: FieldGroupListComponent },
+            { path: 'field-group',                                      component: FieldGroupListComponent,             data: { action: 'list' }},
             { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create' }},
             { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit' }},
 
             // FieldValue
-            { path: 'field-value/:field_id',                            component: FieldValueListComponent },
+            { path: 'field-value/:field_id',                            component: FieldValueListComponent,             data: { action: 'list' }},
             { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
             { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
             { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
 
             // Lang
-            { path: 'lang',                                             component: LangListComponent },
+            { path: 'lang',                                             component: LangListComponent,                   data: { action: 'list' }},
             { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create' }},
             { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit' }},
 
             // Package
-            { path: 'package',                                          component: PackageListComponent },
+            { path: 'package',                                          component: PackageListComponent,                data: { action: 'list' }},
             { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
             { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
 
             // Profile
-            { path: 'profile',                                          component: ProfileListComponent },
+            { path: 'profile',                                          component: ProfileListComponent,                data: { action: 'list' }},
             { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
             { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
 
             // Report
-            { path: 'report',                                           component: ReportListComponent },
+            { path: 'report',                                           component: ReportListComponent,                 data: { action: 'list' }},
             { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create' }},
             { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit' }},
-            { path: 'report/run/:id',                                   component: ReportListComponent,                 data: { action: 'run' } },
+            { path: 'report/run/:id',                                   component: ReportListComponent,                 data: { action: 'run' }},
 
             // Resource
-            { path: 'resource',                                         component: ResourceListComponent },
+            { path: 'resource',                                         component: ResourceListComponent,               data: { action: 'list' }},
             { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
             { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},
 
             // TerritorialArea1
-            { path: 'country/territorial-area-1/:country_id',           component: TerritorialArea1ListComponent },
+            { path: 'country/territorial-area-1/:country_id',           component: TerritorialArea1ListComponent,       data: { action: 'list' }},
             { path: 'country/territorial-area-1/create/:country_id',    component: TerritorialArea1DetailComponent,     data: { action: 'create' }},
             { path: 'country/territorial-area-1/show/:country_id/:id',  component: TerritorialArea1DetailComponent,     data: { action: 'edit' }},
 
             // TerritorialArea2
-            { path: 'country/territorial-area-2/:country_id',           component: TerritorialArea2ListComponent },
+            { path: 'country/territorial-area-2/:country_id',           component: TerritorialArea2ListComponent,       data: { action: 'list' }},
             { path: 'country/territorial-area-2/create/:country_id',    component: TerritorialArea2DetailComponent,     data: { action: 'create' }},
             { path: 'country/territorial-area-2/show/:country_id/:id',  component: TerritorialArea2DetailComponent,     data: { action: 'edit' }},
 
             // TerritorialArea3
-            { path: 'country/territorial-area-3/:country_id',           component: TerritorialArea3ListComponent },
+            { path: 'country/territorial-area-3/:country_id',           component: TerritorialArea3ListComponent,       data: { action: 'list' }},
             { path: 'country/territorial-area-3/create/:country_id',    component: TerritorialArea3DetailComponent,     data: { action: 'create' }},
             { path: 'country/territorial-area-3/show/:country_id/:id',  component: TerritorialArea3DetailComponent,     data: { action: 'edit' }},
 
             // User
-            { path: 'user',                                             component: UserListComponent },
+            { path: 'user',                                             component: UserListComponent,                   data: { action: 'list' }},
             { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
             { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
         ]  
