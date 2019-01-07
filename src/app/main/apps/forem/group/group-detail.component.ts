@@ -3,27 +3,30 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Category, Target, Assistance, Type } from '../forem.models';
+import { Category, Target, Assistance, Type, Expedient, Action, Modality } from '../forem.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from '../../../core/services/select-search.service';
 import { CategoryDialogComponent } from '../category/category-dialog.component';
 import * as _ from 'lodash';
-import { graphQL } from './action.graphql';
+import { graphQL } from './group.graphql';
 
 @Component({
-    selector: 'dh2-forem-action-detail',
-    templateUrl: 'action-detail.component.html',
+    selector: 'dh2-forem-group-detail',
+    templateUrl: 'group-detail.component.html',
     animations: fuseAnimations
 })
-export class ActionDetailComponent extends CoreDetailComponent  implements OnInit
+export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
-    objectTranslation = 'FOREM.ACTION';
+    objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'F';
     loadingSlug = false;
     targets: Target[] = [];
     assistances: Assistance[] = [];
     types: Type[] = [];
+    expedients: Expedient[] = [];
+    actions: Action[] = [];
+    modalities: Modality[] = [];
 
     // categories
     categories: Category[] = [];
@@ -63,7 +66,10 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             subsidized: false,
             contents: '',
             requirements: '',
-            observations: ''
+            observations: '',
+
+            expedient_id: ['', Validators.required],
+            action_id: ['', Validators.required]
         });
     }
 
@@ -96,10 +102,15 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             key: 'pulsar-forem.types'
         };
 
+        const configModalities = {
+            key: 'pulsar-forem.modalities'
+        };
+
         return {
             configTargets,
             configAssistances,
-            configTypes
+            configTypes,
+            configModalities
         };
     }
 
@@ -113,6 +124,15 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
 
         // set types
         this.types = <Type[]>data.foremTypes;
+
+        // set expedients
+        this.expedients = <Expedient[]>data.foremExpedients;
+
+        // set actions
+        this.actions = <Action[]>data.foremActions;
+
+        // set modalities
+        this.modalities = <Modality[]>data.foremModalities;
 
         // forem categories
         this.categories = data.foremCategories;

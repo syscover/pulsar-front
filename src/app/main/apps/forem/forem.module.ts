@@ -14,6 +14,7 @@ import { EmploymentOfficeDetailComponent } from './employment-office/employment-
 import { CategoryDialogComponent } from './category/category-dialog.component';
 import { ExpedientDetailComponent } from './expedient/expedient-detail.component';
 import { ExpedientListComponent } from './expedient/expedient-list.component';
+import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { GroupListComponent } from './group/group-list.component';
         EmploymentOfficeListComponent,
         ExpedientDetailComponent,
         ExpedientListComponent,
+        GroupDetailComponent,
         GroupListComponent
     ],
     providers: [],

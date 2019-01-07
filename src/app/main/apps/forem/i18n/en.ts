@@ -8,6 +8,7 @@ export const locale = {
             'EMPLOYMENT_OFFICE': 'Employment office',
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',
+            'GROUP': 'Group',
             'HOURS': 'Hours',
             'MODALITY': 'Modality',
             'ONLINE': 'Online',

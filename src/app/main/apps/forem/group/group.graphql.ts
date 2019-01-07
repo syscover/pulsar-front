@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
+import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
+import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
 
 const fields = `
     id
@@ -21,12 +23,19 @@ const fields = `
 `;
 
 const relationsFields = `
+    foremExpedients {
+        ${foremExpedientsGraphQL.fields}
+    }
+    foremActions {
+        ${foremActionsGraphQL.fields}
+    }
     foremCategories {
         ${foremCategoryGraphQL.fields}
     }
     foremTargets: coreConfig (config:$configTargets)
     foremAssistances: coreConfig (config:$configAssistances)
     foremTypes: coreConfig (config:$configTypes)
+    foremModalities: coreConfig (config:$configModalities)
 `;
 
 export const graphQL = {
@@ -45,12 +54,23 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsCategory ($configTargets:CoreConfigInput $configAssistances:CoreConfigInput $configTypes:CoreConfigInput) {
+        query ForemGetRelationsCategory (
+            $configTargets:CoreConfigInput 
+            $configAssistances:CoreConfigInput 
+            $configTypes:CoreConfigInput 
+            $configModalities:CoreConfigInput
+        ) {
             ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query ForemGetGroups ($sql:[CoreSQLInput] $configTargets:CoreConfigInput $configAssistances:CoreConfigInput $configTypes:CoreConfigInput) {
+        query ForemGetGroups (
+            $sql:[CoreSQLInput] 
+            $configTargets:CoreConfigInput 
+            $configAssistances:CoreConfigInput 
+            $configTypes:CoreConfigInput 
+            $configModalities:CoreConfigInput
+        ) {
             coreObjects: foremGroups (sql:$sql) {
                 ${fields}
             }
@@ -58,7 +78,13 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query ForemGetGroup ($sql:[CoreSQLInput] $configTargets:CoreConfigInput $configAssistances:CoreConfigInput $configTypes:CoreConfigInput) {
+        query ForemGetGroup (
+            $sql:[CoreSQLInput] 
+            $configTargets:CoreConfigInput 
+            $configAssistances:CoreConfigInput 
+            $configTypes:CoreConfigInput 
+            $configModalities:CoreConfigInput
+        ) {
             coreObject: foremGroup (sql:$sql) {
                 ${fields}
             }

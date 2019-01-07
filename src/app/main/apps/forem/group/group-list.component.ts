@@ -12,7 +12,7 @@ import { graphQL } from './group.graphql';
 export class GroupListComponent extends CoreListComponent
 {
     objectTranslation = 'FOREM.GROUP';
-    objectTranslationGender = 'F';
+    objectTranslationGender = 'M';
     columnsSearch: string[] = ['forem_group.id', 'forem_group.code', 'forem_group.name'];
     displayedColumns = ['forem_group.id', 'forem_group.code', 'forem_group.name', 'actions'];
 

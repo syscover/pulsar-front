@@ -10,6 +10,7 @@ import { EmploymentOfficeListComponent } from './employment-office/employment-of
 import { EmploymentOfficeDetailComponent } from './employment-office/employment-office-detail.component';
 import { ExpedientDetailComponent } from './expedient/expedient-detail.component';
 import { ExpedientListComponent } from './expedient/expedient-list.component';
+import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
 
 const routes: Routes = [
@@ -39,8 +40,8 @@ const routes: Routes = [
 
             // Groups
             { path: 'group',                                                component: GroupListComponent,                      data: { action: 'list' }},
-            // { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create' }},
-            // { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit' }},
+            { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create' }},
+            { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit' }},
         ]  
     }
 ];

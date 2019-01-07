@@ -41,7 +41,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn mat-white-bg my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'FOREM.ACTION' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'FOREM.GROUP' | translate }}</span>
             </button>
 
         </div>
@@ -65,8 +65,8 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="forem_group.code">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.CODE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.code }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'APPS.CODE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-100">{{ row.code }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
