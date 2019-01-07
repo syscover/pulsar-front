@@ -17,8 +17,8 @@ export class AttachmentFamilyListComponent extends CoreListComponent
     displayedColumns = ['admin_attachment_family.id', 'admin_attachment_family.name', 'admin_resource.name', 'admin_attachment_family.width', 'admin_attachment_family.height', 'actions'];
 
     constructor(
-        protected _injector: Injector
+        protected injector: Injector
     ) {
-        super(_injector, graphQL);
+        super(injector, graphQL);
     }
 }

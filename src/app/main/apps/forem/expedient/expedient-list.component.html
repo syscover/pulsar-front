@@ -64,15 +64,15 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="forem_expedient.code">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.CODE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.code }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
                 <ng-container matColumnDef="forem_expedient.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_expedient.modality_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'FOREM.MODALITY' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-100">{{ modalities | getCollectionObjectValue:'id':row.modality_id:'code' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->

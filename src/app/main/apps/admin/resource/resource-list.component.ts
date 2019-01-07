@@ -17,8 +17,8 @@ export class ResourceListComponent extends CoreListComponent
     displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'actions'];
 
     constructor(
-        private _injector: Injector
+        protected injector: Injector
     ) {
-        super(_injector, graphQL);
+        super(injector, graphQL);
     }
 }

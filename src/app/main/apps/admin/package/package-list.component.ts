@@ -17,8 +17,8 @@ export class PackageListComponent extends CoreListComponent
     displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.sort', 'admin_package.active', 'actions'];
 
     constructor(
-        private _injector: Injector
+        protected injector: Injector
     ) {
-        super(_injector, graphQL);
+        super(injector, graphQL);
     }
 }

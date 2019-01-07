@@ -2,14 +2,16 @@ import gql from 'graphql-tag';
 
 const fields = `
     id
-    code
-    name
+    modality_id
     year
+    name
     starts_at
     ends_at
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    foremModalities: coreConfig (config:$configModalities)
+`;
 
 export const graphQL = {
     model: 'Syscover\\Forem\\Models\\Expedient',
@@ -18,26 +20,34 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query ForemGetExpedientsPagination ($sql:[CoreSQLInput]) {
+        query ForemGetExpedientsPagination ($sql:[CoreSQLInput] $configModalities:CoreConfigInput) {
             coreObjectsPagination: foremExpedientsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
             }
+            ${relationsFields}
+        }`,
+
+    queryRelationsObject: gql`
+        query ForemGetRelationsModality ($configModalities:CoreConfigInput) {
+            ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query ForemGetExpedients ($sql:[CoreSQLInput]) {
+        query ForemGetExpedients ($sql:[CoreSQLInput] $configModalities:CoreConfigInput) {
             coreObjects: foremExpedients (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
-        query ForemGetExpedient ($sql:[CoreSQLInput]) {
+        query ForemGetExpedient ($sql:[CoreSQLInput] $configModalities:CoreConfigInput) {
             coreObject: foremExpedient (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`

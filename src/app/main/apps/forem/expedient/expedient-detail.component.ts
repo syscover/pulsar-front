@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './expedient.graphql';
+import { Modality } from '../forem.models';
 
 @Component({
     selector: 'dh2-forem-expedient-detail',
@@ -13,6 +14,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
 {
     objectTranslation = 'FOREM.EXPEDIENT';
     objectTranslationGender = 'F';
+    modalities: Modality[] = [];
 
     constructor(
         protected injector: Injector
@@ -24,11 +26,28 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
-            code: ['', Validators.required],
-            name: ['', Validators.required],
+            modality_id: ['', Validators.required],
             year: ['', Validators.required],
+            name: ['', Validators.required],
             starts_at: '',
             ends_at: ''
         });
+    }
+
+    argumentsRelationsObject(): Object
+    {
+        const configModalities = {
+            key: 'pulsar-forem.modalities'
+        };
+
+        return {
+            configModalities
+        };
+    }
+
+    setRelationsData(data: any): void
+    {
+        // set modalities
+        this.modalities = <Modality[]>data.foremModalities;
     }
 }

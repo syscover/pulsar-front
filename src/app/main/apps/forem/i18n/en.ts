@@ -9,6 +9,7 @@ export const locale = {
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',
             'HOURS': 'Hours',
+            'MODALITY': 'Modality',
             'ONLINE': 'Online',
             'PRICE_HOUR': 'Price per hour',
             'REQUIREMENTS': 'Requirements',
