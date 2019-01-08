@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Category, Target, Assistance, Type, Expedient, Action, Modality } from '../forem.models';
+import { Category, Target, Assistance, Type, Expedient, Action, Modality, EmploymentOffice } from '../forem.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from '../../../core/services/select-search.service';
@@ -27,6 +27,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     expedients: Expedient[] = [];
     actions: Action[] = [];
     modalities: Modality[] = [];
+    employmentOffices: EmploymentOffice[] = [];
 
     // categories
     categories: Category[] = [];
@@ -68,6 +69,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             requirements: '',
             observations: '',
 
+            employment_office_id: ['', Validators.required],
             expedient_id: ['', Validators.required],
             action_id: ['', Validators.required]
         });
@@ -134,6 +136,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;
 
+        // set employment offices
+        this.employmentOffices = <EmploymentOffice[]>data.foremEmploymentOffices;
+
         // forem categories
         this.categories = data.foremCategories;
         this.filteredCategories.next(this.categories.slice());
@@ -175,5 +180,16 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 }
             }
         });
+    }
+
+    handleChangeAction($event): void
+    {
+        const data = Object.assign({}, <Object>_.find(this.actions, {id: $event.value}));
+
+        // delete id and rewrite code property, to adapt object to group definition
+        delete data['id'];
+        data['code'] = this.fg.get('code').value;
+
+        this.fg.patchValue(data);
     }
 }

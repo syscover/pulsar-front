@@ -84,24 +84,33 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'FOREM.EMPLOYMENT_OFFICE' | translate }}</mat-label>
+                                        <mat-select formControlName="employment_office_id" required>
+                                            <mat-option *ngFor="let employmentOffice of employmentOffices" [value]="employmentOffice.id">{{ employmentOffice.name }} ({{ employmentOffice.code }})</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.employment_office_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
                                         <mat-select formControlName="expedient_id" required>
                                             <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }})</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.expedient_id }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.ACTION' | translate }}</mat-label>
-                                        <mat-select formControlName="expedient_id" required>
-                                            <mat-option *ngFor="let action of actions" [value]="+action.id">{{ action.name }} ({{ action.code }})</mat-option>
+                                        <mat-select formControlName="action_id" required (selectionChange)="handleChangeAction($event)">
+                                            <mat-option *ngFor="let action of actions" [value]="action.id">{{ action.name }} ({{ action.code }})</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.action_id }}</mat-error>
                                     </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                         <input matInput formControlName="code" required>
                                     </mat-form-field>

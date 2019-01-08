@@ -31,6 +31,24 @@ export class Category
     slug: string;
 }
 
+export class EmploymentOffice
+{
+    id: number;
+    profile_id: number;
+    code: string;
+    name: string;
+    slug: string;
+    country_id: string;
+    territorial_area_1_id: string;
+    territorial_area_2_id: string;
+    territorial_area_3_id: string;
+    zip: string;
+    locality: string;
+    address: string;
+    latitude: string;
+    longitude: string;
+}
+
 export class Expedient
 {
     id: number;

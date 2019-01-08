@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
 import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
+import { graphQL as foremEmploymentOffice } from '../employment-office/employment-office.graphql';
 
 const fields = `
     id
@@ -23,6 +24,9 @@ const fields = `
 `;
 
 const relationsFields = `
+    foremEmploymentOffices {
+        ${foremEmploymentOffice.fields}
+    }
     foremExpedients {
         ${foremExpedientsGraphQL.fields}
     }
