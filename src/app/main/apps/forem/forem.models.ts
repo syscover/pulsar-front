@@ -9,8 +9,6 @@ export class Action
     assistance_id: number;
     type_id: number;
     hours: number;
-    online: boolean;
-    subsidized: boolean;
     price: number;
     price_hour: number;
     contents: string;

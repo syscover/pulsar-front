@@ -57,10 +57,8 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             assistance_id: ['', Validators.required],
             type_id: ['', Validators.required],
             hours: ['', Validators.required],
-            online: false,
             price: '',
             price_hour: '',
-            subsidized: false,
             contents: '',
             requirements: '',
             observations: ''

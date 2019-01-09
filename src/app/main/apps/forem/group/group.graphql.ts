@@ -14,8 +14,6 @@ const fields = `
     assistance_id
     type_id
     hours
-    online
-    subsidized
     price    
     price_hour    
     contents    

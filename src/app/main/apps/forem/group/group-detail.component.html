@@ -77,7 +77,7 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
@@ -94,14 +94,16 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
-                                        <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
-                                        <mat-select formControlName="expedient_id" required>
-                                            <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }})</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.expedient_id }}</mat-error>
-                                    </mat-form-field>
-                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <ng-container *ngIf="fg.get('type_id').value === 3">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                            <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
+                                            <mat-select formControlName="expedient_id" required>
+                                                <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }})</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.expedient_id }}</mat-error>
+                                        </mat-form-field>
+                                        <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    </ng-container>
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.ACTION' | translate }}</mat-label>
                                         <mat-select formControlName="action_id" required (selectionChange)="handleChangeAction($event)">
@@ -113,6 +115,24 @@
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                         <input matInput formControlName="code" required>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
+                                        <mat-select formControlName="type_id" required>
+                                            <mat-option *ngFor="let type of types" [value]="+type.id">{{ type.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.type_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                        <mat-label>{{ 'FOREM.ASSIST' | translate }}</mat-label>
+                                        <mat-select formControlName="assistance_id" required>
+                                            <mat-option *ngFor="let assistance of assistances" [value]="+assistance.id">{{ assistance.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.assistance_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -134,49 +154,28 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-11 col-md-6">
-                                        <mat-label>{{ 'NAV.CATEGORIES' | translate }}</mat-label>
-                                        <mat-select formControlName="category_id" required>
-                                            <ngx-mat-select-search [formControl]="categoryFilterCtrl"
-                                                                   placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
-                                                                   noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
-                                            <mat-option *ngFor="let category of filteredCategories | async" [value]="category.id">{{ category.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.category_id }}</mat-error>
-                                    </mat-form-field>
-                                    <button mat-icon-button type="button" class="mt-10" (click)="add(categoryDialogComponent, 'categories', filteredCategories, 'category_id')">
-                                        <mat-icon>add</mat-icon>
-                                    </button>
-                                </div>
-
-                                <div fxLayout="row" class="justify-content-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <div class="col-11 col-md-6">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
+                                            <mat-label>{{ 'NAV.CATEGORIES' | translate }}</mat-label>
+                                            <mat-select formControlName="category_id" required>
+                                                <ngx-mat-select-search [formControl]="categoryFilterCtrl"
+                                                                       placeholderLabel="{{ 'APPS.SEARCH' | translate }}"
+                                                                       noEntriesFoundLabel="{{ 'APPS.NO_MATCHING' | translate }}"></ngx-mat-select-search>
+                                                <mat-option *ngFor="let category of filteredCategories | async" [value]="category.id">{{ category.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.category_id }}</mat-error>
+                                        </mat-form-field>
+                                        <button mat-icon-button type="button" class="mt-10" (click)="add(categoryDialogComponent, 'categories', filteredCategories, 'category_id')">
+                                            <mat-icon>add</mat-icon>
+                                        </button>
+                                    </div>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
                                         <mat-label>{{ 'FOREM.TARGET' | translate }}</mat-label>
                                         <mat-select formControlName="target_id" required>
                                             <mat-option *ngFor="let target of targets" [value]="+target.id">{{ target.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.target_id }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
-                                        <mat-label>{{ 'FOREM.ASSIST' | translate }}</mat-label>
-                                        <mat-select formControlName="assistance_id" required>
-                                            <mat-option *ngFor="let assistance of assistances" [value]="+assistance.id">{{ assistance.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.assistance_id }}</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row" class="justify-content-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
-                                        <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
-                                        <mat-select formControlName="type_id" required>
-                                            <mat-option *ngFor="let type of types" [value]="+type.id">{{ type.name }}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{ formErrors?.type_id }}</mat-error>
-                                    </mat-form-field>
-
-                                    <div class="col-12 col-md-5 py-20">
-                                        <mat-checkbox formControlName="online">{{ 'FOREM.ONLINE' | translate }}</mat-checkbox>
-                                    </div>
                                 </div>
 
                                 <div fxLayout="row">
@@ -195,12 +194,6 @@
                                         <mat-label>{{ 'FOREM.PRICE_HOUR' | translate }}</mat-label>
                                         <input type="number" matInput formControlName="price_hour" required>
                                     </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <div class="col-12 col-md-5 py-20">
-                                        <mat-checkbox formControlName="subsidized">{{ 'FOREM.SUBSIDIZED' | translate }}</mat-checkbox>
-                                    </div>
                                 </div>
 
                                 <div fxLayout="row">
