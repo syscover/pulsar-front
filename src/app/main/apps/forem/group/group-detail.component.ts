@@ -4,12 +4,15 @@ import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { Category, Target, Assistance, Type, Expedient, Action, Modality, EmploymentOffice } from '../forem.models';
+import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from '../../../core/services/select-search.service';
 import { CategoryDialogComponent } from '../category/category-dialog.component';
 import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
+import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
+import { MarketableService } from '../../../core/components/marketable/marketable.service';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -29,6 +32,14 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     modalities: Modality[] = [];
     employmentOffices: EmploymentOffice[] = [];
 
+    // ***** start - marketable variables
+    productCategories: ProductCategory[] = [];
+    sections: Section[] = [];
+    productClasses: ProductClass[] = [];
+    priceTypes: PriceType[] = [];
+    productClassTaxes: ProductClassTax[] = [];
+    // ***** end - marketable variables
+
     // categories
     categories: Category[] = [];
     categoryFilterCtrl: FormControl = new FormControl();
@@ -38,7 +49,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     constructor(
         protected injector: Injector,
         private _selectSearch: SelectSearchService,
-        private _dialog: MatDialog
+        private _dialog: MatDialog,
+        private _marketable: MarketableService
     ) {
         super(injector, graphQL);
     }
@@ -69,7 +81,11 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
             employment_office_id: ['', Validators.required],
             expedient_id: ['', Validators.required],
-            action_id: ['', Validators.required]
+            action_id: ['', Validators.required],
+
+            // marketable
+            is_product: false,
+            product_id: ''
         });
     }
 
@@ -90,6 +106,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     argumentsRelationsObject(): Object
     {
+        // marketable component
+        const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Wine\\Models\\Wine');
+
         const configTargets = {
             key: 'pulsar-forem.targets'
         };
@@ -107,6 +126,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         };
 
         return {
+            ...marketableRelations,
             configTargets,
             configAssistances,
             configTypes,

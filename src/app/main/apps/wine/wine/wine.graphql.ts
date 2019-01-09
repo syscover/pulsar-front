@@ -14,6 +14,41 @@ import { graphQL as winePresentationGraphQL } from './../presentation/presentati
 import { graphQL as wineTypeGraphQL } from './../type/type.graphql';
 import { graphQL as wineWineryGraphQL } from './../winery/winery.graphql';
 
+const relationsFields = `
+    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
+    }
+    adminCountries (sql:$sqlCountry) {
+        ${adminCountryGraphQL.fields}
+    }
+    wineAppellations (sql:$sqlAppellation) {
+        ${wineAppellationGraphQL.fields}
+    }
+    wineAwards (sql:$sqlAward) {
+        ${wineAwardGraphQL.fields}
+    }
+    wineFamilies (sql:$sqlFamily) {
+        ${wineFamilyGraphQL.fields}
+    }
+    wineGrapes (sql:$sqlGrape) {
+        ${wineGrapeGraphQL.fields}
+    }
+    winePairings (sql:$sqlPairing) {
+        ${winePairingGraphQL.fields}
+    }
+    winePresentations (sql:$sqlPresentation) {
+        ${winePresentationGraphQL.fields}
+    }
+    wineTypes (sql:$sqlType) {
+        ${wineTypeGraphQL.fields}
+    }
+    wineWineries (sql:$sqlWinery) {
+        ${wineWineryGraphQL.fields}
+    }
+    ${marketableGraphQL.relationsFields}
+    ${stockableGraphQL.relationsFields}
+`;
+
 const fields = `
     abv
     appellation_id
@@ -79,41 +114,6 @@ const fields = `
     ${marketableGraphQL.fields}
 `;
 
-const relationsFields = `
-    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-        ${adminAttachmentFamilyGraphQL.fields}
-    }
-    adminCountries (sql:$sqlCountry) {
-        ${adminCountryGraphQL.fields}
-    }
-    wineAppellations (sql:$sqlAppellation) {
-        ${wineAppellationGraphQL.fields}
-    }
-    wineAwards (sql:$sqlAward) {
-        ${wineAwardGraphQL.fields}
-    }
-    wineFamilies (sql:$sqlFamily) {
-        ${wineFamilyGraphQL.fields}
-    }
-    wineGrapes (sql:$sqlGrape) {
-        ${wineGrapeGraphQL.fields}
-    }
-    winePairings (sql:$sqlPairing) {
-        ${winePairingGraphQL.fields}
-    }
-    winePresentations (sql:$sqlPresentation) {
-        ${winePresentationGraphQL.fields}
-    }
-    wineTypes (sql:$sqlType) {
-        ${wineTypeGraphQL.fields}
-    }
-    wineWineries (sql:$sqlWinery) {
-        ${wineWineryGraphQL.fields}
-    }
-    ${marketableGraphQL.relationsFields}
-    ${stockableGraphQL.relationsFields}
-`;
-
 export const graphQL = {
 
     model: 'Syscover\\Wine\\Models\\Wine',
@@ -134,13 +134,8 @@ export const graphQL = {
 
     queryRelationsObject: gql`
         query WineGetRelationsWine (
-            $configPriceTypes:CoreConfigInput!
-            $configProductClasses:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput] 
-            $sqlProduct:[CoreSQLInput]
-            $sqlSection:[CoreSQLInput]
             $sqlAppellation:[CoreSQLInput]
             $sqlAward:[CoreSQLInput]
             $sqlFamily:[CoreSQLInput]
@@ -149,6 +144,7 @@ export const graphQL = {
             $sqlPresentation:[CoreSQLInput]
             $sqlType:[CoreSQLInput]
             $sqlWinery:[CoreSQLInput]
+            ${marketableGraphQL.paramenters}
         ) {
             ${relationsFields}
         }`,
@@ -162,14 +158,9 @@ export const graphQL = {
 
     queryObject: gql`
         query WineGetWine (
-            $configPriceTypes:CoreConfigInput!
-            $configProductClasses:CoreConfigInput!
             $sql:[CoreSQLInput] 
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlCountry:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput]
-            $sqlProduct:[CoreSQLInput]
-            $sqlSection:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
             $sqlAppellation:[CoreSQLInput]
             $sqlAward:[CoreSQLInput]
@@ -179,6 +170,7 @@ export const graphQL = {
             $sqlPresentation:[CoreSQLInput]    
             $sqlType:[CoreSQLInput]
             $sqlWinery:[CoreSQLInput]
+            ${marketableGraphQL.paramenters}
         ) {
             coreObject: wineWine (sql:$sql) {
                 ${fields}

@@ -47,13 +47,9 @@ export const graphQL = {
 
     queryRelationsObject: gql`
         query MarketGetRelationsProduct (
-            $sqlProduct:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput]
-            $sqlSection:[CoreSQLInput]
-            $configProductClasses:CoreConfigInput!
-            $configPriceTypes:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlFieldGroup:[CoreSQLInput]
+            ${marketableGraphQL.paramenters}
         ) {
             ${relationsFields}
         }`,
@@ -68,14 +64,10 @@ export const graphQL = {
     queryObject: gql`
         query MarketGetProduct (
             $sql:[CoreSQLInput]
-            $sqlProduct:[CoreSQLInput]
-            $sqlCategory:[CoreSQLInput]
-            $sqlSection:[CoreSQLInput]
-            $configProductClasses:CoreConfigInput!
-            $configPriceTypes:CoreConfigInput!
             $sqlAttachmentFamily:[CoreSQLInput]
             $sqlFieldGroup:[CoreSQLInput]
             $sqlStock:[CoreSQLInput]
+            ${marketableGraphQL.paramenters}
         ) {
             coreObject: marketProduct (sql:$sql) {
                 ${fields}

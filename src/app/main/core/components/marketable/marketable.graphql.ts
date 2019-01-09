@@ -34,28 +34,36 @@ export const graphQL = {
     `,
 
     relationsFields: `
-        marketCategories (sql:$sqlCategory) {
+        marketCategories (sql:$sqlMarketableCategory) {
             ${marketCategoryGraphQL.fields}
         }
-        marketPriceTypes: coreConfig (config:$configPriceTypes)
+        marketPriceTypes: coreConfig (config:$configMarketablePriceTypes)
         marketProductClassTaxes {
             id
             name
         }
-        marketProducts (sql:$sqlProduct) {
+        marketProducts (sql:$sqlMarketableProduct) {
             ix
             id
             lang_id
             name
             sku
         }
-        marketProductClasses: coreConfig (config:$configProductClasses)
-        marketSections (sql:$sqlSection) {
+        marketProductClasses: coreConfig (config:$configMarketableProductClasses)
+        marketSections (sql:$sqlMarketableSection) {
             ix
             id
             lang_id
             name
             slug
         }
+    `,
+
+    paramenters: `
+        $configMarketablePriceTypes:CoreConfigInput!
+        $configMarketableProductClasses:CoreConfigInput!
+        $sqlMarketableCategory:[CoreSQLInput]
+        $sqlMarketableProduct:[CoreSQLInput]
+        $sqlMarketableSection:[CoreSQLInput]
     `
 };

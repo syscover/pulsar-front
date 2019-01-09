@@ -102,7 +102,7 @@ export class MarketableService
 
     getArgumentsRelations(baseLang: string, lang_id: string, product_id?: string, object_type = null): Object
     {
-        const sqlProduct = [
+        const sqlMarketableProduct = [
             {
                 command: 'where',
                 column: 'market_product_lang.lang_id',
@@ -123,7 +123,7 @@ export class MarketableService
         ];
 
         if (product_id) {
-            sqlProduct.push({
+            sqlMarketableProduct.push({
                 command: 'where',
                 column: 'market_product.id',
                 operator: '<>',
@@ -131,7 +131,7 @@ export class MarketableService
             });
         }
 
-        const sqlCategory = [
+        const sqlMarketableCategory = [
             {
                 command: 'where',
                 column: 'lang_id',
@@ -145,7 +145,7 @@ export class MarketableService
             }
         ];
 
-        const sqlSection = [
+        const sqlMarketableSection = [
             {
                 command: 'where',
                 column: 'lang_id',
@@ -159,24 +159,24 @@ export class MarketableService
             }
         ];
 
-        const configProductClasses = {
+        const configMarketableProductClasses = {
             key: 'pulsar-market.product_classes',
             lang: lang_id ? lang_id : baseLang,
             property: 'name'
         };
 
-        const configPriceTypes = {
+        const configMarketablePriceTypes = {
             key: 'pulsar-market.price_types',
             lang: lang_id ? lang_id : baseLang,
             property: 'name'
         };
 
         return {
-            sqlProduct,
-            sqlCategory,
-            sqlSection,
-            configProductClasses,
-            configPriceTypes
+            sqlMarketableProduct,
+            sqlMarketableCategory,
+            sqlMarketableSection,
+            configMarketableProductClasses,
+            configMarketablePriceTypes
         };
     }
 

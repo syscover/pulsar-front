@@ -403,8 +403,8 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
 
     argumentsRelationsObject(): Object
     {
+        // marketable component
         const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Wine\\Models\\Wine');
-
         const stockableRelations = this._stockable.getArgumentsRelations(this.params['product_id']);
 
         const sqlCountry = [
