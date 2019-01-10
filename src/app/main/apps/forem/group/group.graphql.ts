@@ -4,6 +4,7 @@ import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql
 import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
 import { graphQL as foremEmploymentOffice } from '../employment-office/employment-office.graphql';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 
 const fields = `
     id
@@ -25,6 +26,9 @@ const fields = `
 `;
 
 const relationsFields = `
+    adminCountries (sql:$sqlAdminCountry) {
+        ${adminCountryGraphQL.fields}
+    }
     foremEmploymentOffices {
         ${foremEmploymentOffice.fields}
     }
@@ -65,6 +69,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             ${relationsFields}
@@ -77,6 +82,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             coreObjects: foremGroups (sql:$sql) {
@@ -92,6 +98,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             coreObject: foremGroup (sql:$sql) {

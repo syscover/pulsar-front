@@ -73,6 +73,7 @@ export const locale = {
             'PRODUCT': 'Producto',
             'PROFILE': 'Perfil',
             'PROPERTIES': 'Propiedades',
+            'PUBLISH': 'Publicar',
             'REMEMBER_ME': 'Recuérdame',
             'REPEAT_PASSWORD': 'Repita su contraseña',
             'REPORT': 'Informe',

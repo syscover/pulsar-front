@@ -17,39 +17,6 @@ export const navigation: FuseNavigation[] = [
                 'url'       : '/apps/dashboard'
             },
             {
-                'id'   : 'crm',
-                'title': 'CRM',
-                'translate': 'NAV.CRM',
-                'type' : 'collapsable',
-                'icon' : 'supervisor_account',
-                'children' : [
-                    {
-                        'id'        : 'customers',
-                        'title'     : 'Customer',
-                        'translate' : 'NAV.CUSTOMERS',
-                        'type'      : 'item',
-                        'icon'      : 'account_circle',
-                        'url'       : '/apps/crm/customer'
-                    },
-                    {
-                        'id'        : 'groups',
-                        'title'     : 'Groups',
-                        'translate' : 'NAV.CUSTOMER_GROUPS',
-                        'type'      : 'item',
-                        'icon'      : 'people',
-                        'url'       : '/apps/crm/customer-group'
-                    },
-                    {
-                        'id'        : 'address_types',
-                        'title'     : 'Address types',
-                        'translate' : 'NAV.ADDRESS_TYPES',
-                        'type'      : 'item',
-                        'icon'      : 'map',
-                        'url'       : '/apps/crm/address-type'
-                    }
-                ]
-            },
-            {
                 'id'   : 'forem',
                 'title': 'Forem',
                 'translate': 'NAV.FOREM',
@@ -95,6 +62,39 @@ export const navigation: FuseNavigation[] = [
                         'type'      : 'item',
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/forem/category'
+                    }
+                ]
+            },
+            {
+                'id'   : 'crm',
+                'title': 'CRM',
+                'translate': 'NAV.CRM',
+                'type' : 'collapsable',
+                'icon' : 'supervisor_account',
+                'children' : [
+                    {
+                        'id'        : 'customers',
+                        'title'     : 'Customer',
+                        'translate' : 'NAV.CUSTOMERS',
+                        'type'      : 'item',
+                        'icon'      : 'account_circle',
+                        'url'       : '/apps/crm/customer'
+                    },
+                    {
+                        'id'        : 'groups',
+                        'title'     : 'Groups',
+                        'translate' : 'NAV.CUSTOMER_GROUPS',
+                        'type'      : 'item',
+                        'icon'      : 'people',
+                        'url'       : '/apps/crm/customer-group'
+                    },
+                    {
+                        'id'        : 'address_types',
+                        'title'     : 'Address types',
+                        'translate' : 'NAV.ADDRESS_TYPES',
+                        'type'      : 'item',
+                        'icon'      : 'map',
+                        'url'       : '/apps/crm/address-type'
                     }
                 ]
             },

@@ -95,16 +95,14 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <ng-container *ngIf="fg.get('type_id').value === 3">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
-                                            <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
-                                            <mat-select formControlName="expedient_id" required>
-                                                <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }})</mat-option>
-                                            </mat-select>
-                                            <mat-error>{{ formErrors?.expedient_id }}</mat-error>
-                                        </mat-form-field>
-                                        <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
-                                    </ng-container>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
+                                        <mat-select formControlName="expedient_id" required>
+                                            <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }})</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.expedient_id }}</mat-error>
+                                    </mat-form-field>
+                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.ACTION' | translate }}</mat-label>
                                         <mat-select formControlName="action_id" required (selectionChange)="handleChangeAction($event)">
@@ -198,6 +196,50 @@
                                 </div>
 
                                 <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.STARTS_AT' | translate }}</mat-label>
+                                        <input matInput [matDatepicker]="startsAt" formControlName="starts_at">
+                                        <mat-datepicker-toggle matSuffix [for]="startsAt"></mat-datepicker-toggle>
+                                        <mat-datepicker #startsAt></mat-datepicker>
+                                        <mat-error>{{ formErrors?.starts_at }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                        <mat-label>{{ 'FOREM.ENDS_AT' | translate }}</mat-label>
+                                        <input matInput [matDatepicker]="endsAt" formControlName="ends_at">
+                                        <mat-datepicker-toggle matSuffix [for]="endsAt"></mat-datepicker-toggle>
+                                        <mat-datepicker #endsAt></mat-datepicker>
+                                        <mat-error>{{ formErrors?.ends_at }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'FOREM.SCHEDULE' | translate }}</mat-label>
+                                        <input matInput formControlName="schedule">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.SELECTION_DATE' | translate }}</mat-label>
+                                        <input matInput [matDatepicker]="selectionDate" formControlName="selection_date">
+                                        <mat-datepicker-toggle matSuffix [for]="selectionDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #selectionDate></mat-datepicker>
+                                        <mat-error>{{ formErrors?.selection_date }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-5 py-20">
+                                        <mat-checkbox formControlName="publish">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
+                                    </div>
+                                    <div class="col-12 col-md-5 py-20">
+                                        <mat-checkbox formControlName="open">{{ 'FOREM.OPEN' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
                                         <mat-label>{{ 'APPS.OBSERVATIONS' | translate }}</mat-label>
                                         <textarea   matInput
@@ -206,6 +248,69 @@
                                                     formControlName="observations"></textarea>
                                         <mat-error>{{ formErrors?.observations }}</mat-error>
                                     </mat-form-field>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">person_pin_circle</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.GEOLOCATION' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
+                                        <input matInput formControlName="address">
+                                        <mat-error>{{ formErrors?.address }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-5">
+
+                                        <dh2-territories    [formGroup]="fg"
+                                                            [formErrors]="formErrors"
+                                                            [countries]="countries"></dh2-territories>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                                <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
+                                                <input matInput formControlName="zip">
+                                                <mat-error>{{ formErrors?.zip }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                                <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
+                                                <input matInput formControlName="locality">
+                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                                <mat-label>{{ 'APPS.LATITUDE' | translate }}</mat-label>
+                                                <input matInput formControlName="latitude">
+                                                <mat-error>{{ formErrors?.latitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                                <mat-label>{{ 'APPS.LONGITUDE' | translate }}</mat-label>
+                                                <input matInput formControlName="longitude">
+                                                <mat-error>{{ formErrors?.longitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-7">
+                                        <div fxLayout="row">
+                                            <dh2-location-map [formGroup]="fg" class="offset-1 col-11"></dh2-location-map>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>

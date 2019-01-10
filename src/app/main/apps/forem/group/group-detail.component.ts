@@ -13,6 +13,7 @@ import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import { Country } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -31,6 +32,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     actions: Action[] = [];
     modalities: Modality[] = [];
     employmentOffices: EmploymentOffice[] = [];
+    countries: Country[] = [];
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -82,6 +84,23 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             employment_office_id: ['', Validators.required],
             expedient_id: ['', Validators.required],
             action_id: ['', Validators.required],
+            starts_at: '',
+            ends_at: '',
+            selection_date: '',
+            open: false,
+            schedule: '',
+            publish: false,
+
+            // geolocation
+            address: '',
+            country_id: '',
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            zip: '',
+            locality: '',
+            latitude: '',
+            longitude: '',
 
             // marketable
             is_product: false,
@@ -125,8 +144,23 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             key: 'pulsar-forem.modalities'
         };
 
+        const sqlAdminCountry = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_country.name'
+            }
+        ];
+
         return {
             ...marketableRelations,
+            sqlAdminCountry,
             configTargets,
             configAssistances,
             configTypes,
@@ -136,6 +170,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     setRelationsData(data: any): void
     {
+        // set admin countries
+        this.countries = data.adminCountries;
+
         // set targets
         this.targets = <Target[]>data.foremTargets;
 

@@ -12,7 +12,6 @@ export const locale = {
             'EXCERPT_EDITOR': 'Editor de entrada',
             'FAMILY': 'Familia',
             'NEW_WINDOW': 'Nueva ventana',
-            'PUBLISH': 'Publicar',
             'SECTION': 'Sección',
             'TAGS': 'Etiquetas',
             'TITLE': 'Título',
