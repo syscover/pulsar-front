@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
-import { Country } from '../../admin/admin.models';
+import { AttachmentFamily, Country } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -33,6 +33,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     modalities: Modality[] = [];
     employmentOffices: EmploymentOffice[] = [];
     countries: Country[] = [];
+    attachmentFamilies: AttachmentFamily[] = [];
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -104,7 +105,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
             // marketable
             is_product: false,
-            product_id: ''
+            product_id: '',
+
+            attachments: this.fb.array([])
         });
     }
 
@@ -158,9 +161,24 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             }
         ];
 
+        const sqlAdminAttachmentFamily = [
+            {
+                command: 'where',
+                column: 'admin_attachment_family.resource_id',
+                operator: '=',
+                value: 'forem-group'
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_attachment_family.name'
+            }
+        ];
+
         return {
             ...marketableRelations,
             sqlAdminCountry,
+            sqlAdminAttachmentFamily,
             configTargets,
             configAssistances,
             configTypes,
@@ -172,6 +190,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     {
         // set admin countries
         this.countries = data.adminCountries;
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
 
         // set targets
         this.targets = <Target[]>data.foremTargets;

@@ -5,6 +5,8 @@ import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
 import { graphQL as foremEmploymentOffice } from '../employment-office/employment-office.graphql';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     id
@@ -20,7 +22,10 @@ const fields = `
     price_hour    
     contents    
     requirements   
-    observations
+    observations   
+    attachments {
+        ${adminAttachmentsGraphQL.fields}
+    }
     
     ${marketableGraphQL.fields}
 `;
@@ -28,6 +33,9 @@ const fields = `
 const relationsFields = `
     adminCountries (sql:$sqlAdminCountry) {
         ${adminCountryGraphQL.fields}
+    }
+    adminAttachmentFamilies (sql:$sqlAdminAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
     }
     foremEmploymentOffices {
         ${foremEmploymentOffice.fields}
@@ -70,6 +78,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
+            $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             ${relationsFields}
@@ -83,6 +92,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
+            $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             coreObjects: foremGroups (sql:$sql) {
@@ -99,6 +109,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
+            $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
         ) {
             coreObject: foremGroup (sql:$sql) {

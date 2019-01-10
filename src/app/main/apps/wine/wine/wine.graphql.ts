@@ -15,11 +15,11 @@ import { graphQL as wineTypeGraphQL } from './../type/type.graphql';
 import { graphQL as wineWineryGraphQL } from './../winery/winery.graphql';
 
 const relationsFields = `
-    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
-        ${adminAttachmentFamilyGraphQL.fields}
-    }
     adminCountries (sql:$sqlCountry) {
         ${adminCountryGraphQL.fields}
+    }
+    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
     }
     wineAppellations (sql:$sqlAppellation) {
         ${wineAppellationGraphQL.fields}
