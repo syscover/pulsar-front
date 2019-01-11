@@ -22,7 +22,29 @@ const fields = `
     price_hour    
     contents    
     requirements   
-    observations   
+    observations
+    employment_office_id
+    action_id
+    expedient_id
+    starts_at
+    ends_at
+    schedule
+    selection_date
+    publish
+    open
+    country_id
+    territorial_area_1_id
+    territorial_area_2_id
+    territorial_area_3_id
+    zip
+    locality
+    address
+    latitude
+    longitude
+    
+    is_product
+    product_id
+    
     attachments {
         ${adminAttachmentsGraphQL.fields}
     }

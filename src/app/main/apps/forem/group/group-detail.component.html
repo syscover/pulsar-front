@@ -114,6 +114,7 @@
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                         <input matInput formControlName="code" required>
+                                        <mat-error>{{ formErrors?.code }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -187,11 +188,11 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.PRICE' | translate }}</mat-label>
-                                        <input type="number" matInput formControlName="price" required>
+                                        <input type="number" matInput formControlName="price">
                                     </mat-form-field>
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-3 col-md-4">
                                         <mat-label>{{ 'FOREM.PRICE_HOUR' | translate }}</mat-label>
-                                        <input type="number" matInput formControlName="price_hour" required>
+                                        <input type="number" matInput formControlName="price_hour">
                                     </mat-form-field>
                                 </div>
 
@@ -357,7 +358,7 @@
                                 </div>
 
                                 <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
-                                                [hiddenFields]="['parent_id', 'lang_id', 'name', 'slug']"
+                                                [hiddenFields]="['starts_at', 'ends_at', 'parent_id', 'lang_id', 'name', 'slug']"
                                                 [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
                                                 [lang]="lang"
