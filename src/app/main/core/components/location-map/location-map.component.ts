@@ -102,6 +102,8 @@ export class LocationMapComponent implements OnInit
         if (environment.debug) console.log('DEBUG - markerDragEnd event: ', $event);
 
         this.formGroup.get(this.latitudeControlName).setValue($event.coords.lat);
+        this.formGroup.get(this.latitudeControlName).markAsDirty();
         this.formGroup.get(this.longitudeControlName).setValue($event.coords.lng);
+        this.formGroup.get(this.longitudeControlName).markAsDirty();
     }
 }
