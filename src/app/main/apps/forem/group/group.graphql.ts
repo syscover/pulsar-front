@@ -127,7 +127,7 @@ export const graphQL = {
         query ForemGetGroup (
             $sql:[CoreSQLInput] 
             $configTargets:CoreConfigInput 
-            $configAssistances:CoreConfigInput 
+            $configAssistances:CoreConfigInput
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
