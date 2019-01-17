@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
@@ -22,6 +22,8 @@ import { AttachmentFamily, Country } from '../../admin/admin.models';
 })
 export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
+    @ViewChild('slug') slugField;
+
     objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'F';
     loadingSlug = false;
@@ -268,5 +270,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         data['code'] = this.fg.get('code').value;
 
         this.fg.patchValue(data);
+
+        // trigger change event
+        const event = new Event('change');
+        this.slugField.nativeElement.dispatchEvent(event);
     }
 }
