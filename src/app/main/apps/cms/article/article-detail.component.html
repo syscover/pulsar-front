@@ -125,7 +125,7 @@
                                 <div fxLayout="row wrap" class="justify-content-between">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.STATUS' | translate }}</mat-label>
-                                        <mat-select formControlName="status_id">
+                                        <mat-select formControlName="status_id" required>
                                             <mat-option *ngFor="let status of statuses" [value]="+status.id">{{ status.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.status_id }}</mat-error>
@@ -141,7 +141,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.SECTIONS' | translate }}</mat-label>
-                                        <mat-select formControlName="section_id" (selectionChange)="handleChangeSection($event)">
+                                        <mat-select formControlName="section_id" (selectionChange)="handleChangeSection($event)" required>
                                             <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.section_id }}</mat-error>
