@@ -19,8 +19,9 @@ const fields = `
     type_id
     hours
     price    
-    price_hour    
-    contents    
+    price_hour
+    contents_excerpt  
+    contents
     requirements   
     observations
     employment_office_id

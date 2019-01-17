@@ -78,6 +78,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             hours: ['', Validators.required],
             price: '',
             price_hour: '',
+            contents_excerpt: '',
             contents: '',
             requirements: '',
             observations: '',

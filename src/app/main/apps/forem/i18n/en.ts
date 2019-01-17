@@ -5,6 +5,7 @@ export const locale = {
             'ACTION': 'Action',
             'ASSIST': 'Assist',
             'CONTENTS': 'Contents',
+            'CONTENTS_EXCERPT': 'Contents excerpt',
             'EMPLOYMENT_OFFICE': 'Employment office',
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',

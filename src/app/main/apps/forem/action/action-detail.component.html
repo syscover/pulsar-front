@@ -183,6 +183,18 @@
 
                         <mat-tab label="{{ 'FOREM.CONTENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'FOREM.CONTENTS_EXCERPT' | translate }}</mat-label>
+                                        <textarea   matInput
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="4"
+                                                    formControlName="contents_excerpt"></textarea>
+                                        <mat-error>{{ formErrors?.contents_excerpt }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <dh2-froala formControlName="contents"
                                             placeholder="{{ 'FOREM.CONTENTS' | translate }}"
                                             [heightMin]="200"></dh2-froala>

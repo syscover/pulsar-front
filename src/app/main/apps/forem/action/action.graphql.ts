@@ -13,7 +13,8 @@ const fields = `
     hours
     price    
     price_hour    
-    contents    
+    contents_excerpt
+    contents
     requirements   
     observations
 `;
