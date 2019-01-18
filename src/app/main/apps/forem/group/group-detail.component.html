@@ -41,7 +41,7 @@
                     type="submit"
                     form="formDetail"
                     class="mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton"
+                    [disabled]="fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='create'">
                 {{ 'APPS.ADD' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -51,7 +51,7 @@
                     type="submit"
                     form="formDetail"
                     class="mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='edit'">
                 {{ 'APPS.SAVE' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
