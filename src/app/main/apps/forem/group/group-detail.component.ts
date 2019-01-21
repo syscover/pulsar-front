@@ -228,6 +228,10 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.loadingSlug = $event;
     }
 
+    handleCheckingPrice($event): void
+    {
+    }
+
     add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void
     {
         const dialogRef = this._dialog.open(dialog, {
