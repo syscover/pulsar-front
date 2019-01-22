@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Country, Profile } from '../../admin/admin.models';
+import { Country } from '../../admin/admin.models';
 import { graphQL } from './employment-office.graphql';
 
 @Component({
@@ -15,7 +15,6 @@ export class EmploymentOfficeDetailComponent extends CoreDetailComponent  implem
     objectTranslation = 'FOREM.EMPLOYMENT_OFFICE';
     objectTranslationGender = 'F';
     countries: Country[] = [];
-    profiles: Profile[] = [];
     loadingSlug = false;
 
     constructor(
@@ -28,7 +27,6 @@ export class EmploymentOfficeDetailComponent extends CoreDetailComponent  implem
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
-            profile_id: '',
             code: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required],
@@ -69,9 +67,6 @@ export class EmploymentOfficeDetailComponent extends CoreDetailComponent  implem
     {
         // set admin countries
         this.countries = data.adminCountries;
-
-        // set profiles
-        this.profiles = data.adminProfiles;
     }
 
     handleCheckingSlug($event): void

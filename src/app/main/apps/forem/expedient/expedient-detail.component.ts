@@ -28,6 +28,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
             id: [{value: '', disabled: true}],
             modality_id: ['', Validators.required],
             year: ['', Validators.required],
+            code: '',
             name: ['', Validators.required],
             starts_at: '',
             ends_at: ''

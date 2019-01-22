@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Category, Target, Assistance, Type, Expedient, Action, Modality, EmploymentOffice } from '../forem.models';
+import { Category, Target, Assistance, Type, Expedient, Action, Modality } from '../forem.models';
 import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -33,7 +33,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     expedients: Expedient[] = [];
     actions: Action[] = [];
     modalities: Modality[] = [];
-    employmentOffices: EmploymentOffice[] = [];
     countries: Country[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
 
@@ -85,7 +84,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             requirements: '',
             observations: '',
 
-            employment_office_id: ['', Validators.required],
             expedient_id: ['', Validators.required],
             action_id: ['', Validators.required],
             starts_at: '',
@@ -214,9 +212,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;
-
-        // set employment offices
-        this.employmentOffices = <EmploymentOffice[]>data.foremEmploymentOffices;
 
         // forem categories
         this.categories = data.foremCategories;

@@ -80,7 +80,7 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                 <mat-label>{{ 'FOREM.MODALITY' | translate }}</mat-label>
                                 <mat-select formControlName="modality_id" required>
                                     <mat-option *ngFor="let modality of modalities" [value]="+modality.id">{{ modality.name }} ({{ modality.code }})</mat-option>
@@ -92,6 +92,12 @@
                                 <mat-label>{{ 'FOREM.YEAR' | translate }}</mat-label>
                                 <input type="number" min="2000" step="1" matInput formControlName="year" required>
                                 <mat-error>{{ formErrors?.year }}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
+                                <input matInput formControlName="code">
+                                <mat-error>{{ formErrors?.code }}</mat-error>
                             </mat-form-field>
                         </div>
 

@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
 import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
-import { graphQL as foremEmploymentOffice } from '../employment-office/employment-office.graphql';
 import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
@@ -24,7 +23,6 @@ const fields = `
     contents
     requirements   
     observations
-    employment_office_id
     action_id
     expedient_id
     starts_at
@@ -59,9 +57,6 @@ const relationsFields = `
     }
     adminAttachmentFamilies (sql:$sqlAdminAttachmentFamily) {
         ${adminAttachmentFamilyGraphQL.fields}
-    }
-    foremEmploymentOffices {
-        ${foremEmploymentOffice.fields}
     }
     foremExpedients {
         ${foremExpedientsGraphQL.fields}

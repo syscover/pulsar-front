@@ -4,6 +4,7 @@ const fields = `
     id
     modality_id
     year
+    code
     name
     starts_at
     ends_at

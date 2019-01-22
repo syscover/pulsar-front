@@ -1,13 +1,8 @@
 import gql from 'graphql-tag';
-import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 
 const fields = `
     id
-    profile_id
-    profile {
-        ${adminProfileGraphQL.fields}
-    }
     code
     name
     slug
@@ -25,9 +20,6 @@ const fields = `
 const relationsFields = `
     adminCountries (sql:$sqlCountry) {
         ${adminCountryGraphQL.fields}
-    }
-    adminProfiles {
-        ${adminProfileGraphQL.fields}
     }
 `;
 
