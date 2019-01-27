@@ -21,3 +21,18 @@
     margin-top: 3px; 
     margin-bottom: 1px;
 }
+
+// set input search colors in list elements
+body.theme-default {
+    .mat-form-field.search-form-field.mat-focused {
+        .mat-form-field-ripple {
+            background-color: #fff;
+        }
+        .mat-form-field-label {
+            color: #fff;
+        }
+        .mat-input-element {
+            caret-color: #fff;
+        }
+    }
+}
