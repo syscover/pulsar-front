@@ -29,7 +29,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
             id: [{value: '', disabled: true}],
             modality_id: ['', Validators.required],
             year: ['', Validators.required],
-            code: ['', [Validators.minLength(3), Validators.maxLength(3)]],
+            code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
             name: ['', Validators.required],
             starts_at: '',
             ends_at: ''
@@ -53,16 +53,24 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
         this.modalities = <Modality[]>data.foremModalities;
     }
 
-    handleChangeModality($event):void
+    afterPatchValueEdit(): void
+    {
+        this.handleChangeModality({value: this.object.modality_id});
+    }
+
+    handleChangeModality($event): void
     {
         if ($event.value === 1)
         {
-            if (!this.fg.get('code')) this.fg.addControl('code', new FormControl('',[Validators.minLength(3), Validators.maxLength(3)]));
+            this.fg.get('code').setValidators([Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
             this.showCode = true;
         }
-        else {
-            this.fg.removeControl('code');
+        else
+        {
+            this.fg.get('code').clearValidators();
+            this.fg.get('code').setValue('');
             this.showCode = false;
         }
+        this.fg.get('code').updateValueAndValidity();
     }
 }

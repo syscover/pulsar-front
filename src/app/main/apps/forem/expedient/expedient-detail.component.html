@@ -96,7 +96,7 @@
 
                             <mat-form-field *ngIf="showCode" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                <input matInput formControlName="code" maxlength="3" required>
+                                <input matInput formControlName="code" maxlength="3" [required]="showCode">
                                 <mat-error>{{ formErrors?.code }}</mat-error>
                             </mat-form-field>
                         </div>
