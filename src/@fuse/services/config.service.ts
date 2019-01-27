@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { Router, RoutesRecognized } from '@angular/router';
+import { ResolveEnd, Router } from '@angular/router';
 import { Platform } from '@angular/cdk/platform';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -96,7 +96,7 @@ export class FuseConfigService
         // Reload the default layout config on every RoutesRecognized event
         // if the current layout config is different from the default one
         this._router.events
-            .pipe(filter(event => event instanceof RoutesRecognized))
+            .pipe(filter(event => event instanceof ResolveEnd))
             .subscribe(() => {
                 if ( !_.isEqual(this._configSubject.getValue().layout, this._defaultConfig.layout) )
                 {

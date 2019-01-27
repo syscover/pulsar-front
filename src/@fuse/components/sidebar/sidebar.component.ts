@@ -2,7 +2,7 @@ import {
     ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit, Output, Renderer2, ViewEncapsulation
 } from '@angular/core';
 import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
-import { ObservableMedia } from '@angular/flex-layout';
+import { MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -87,7 +87,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseMatchMediaService} _fuseMatchMediaService
      * @param {FuseSidebarService} _fuseSidebarService
-     * @param {ObservableMedia} _observableMedia
+     * @param {MediaObserver} _mediaObserver
      * @param {Renderer2} _renderer
      */
     constructor(
@@ -97,7 +97,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseMatchMediaService: FuseMatchMediaService,
         private _fuseSidebarService: FuseSidebarService,
-        private _observableMedia: ObservableMedia,
+        private _mediaObserver: MediaObserver,
         private _renderer: Renderer2
     )
     {
@@ -319,7 +319,7 @@ export class FuseSidebarComponent implements OnInit, OnDestroy
             .subscribe(() => {
 
                 // Get the active status
-                const isActive = this._observableMedia.isActive(this.lockedOpen);
+                const isActive = this._mediaObserver.isActive(this.lockedOpen);
 
                 // If the both status are the same, don't act
                 if ( this._wasActive === isActive )

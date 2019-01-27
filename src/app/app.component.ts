@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy
 
         // DH2
         // Add languages
-        this._translateService.addLangs(['es', 'en']);
+        this._translateService.addLangs(['en', 'es']);
 
         // DH2
         // Set the default language
@@ -85,9 +85,12 @@ export class AppComponent implements OnInit, OnDestroy
         this._translateService.use('es');
 
         /**
-         * ------------------------------------------------------------------
+         * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix Start
-         * ------------------------------------------------------------------
+         * ----------------------------------------------------------------------------------------------------
+         */
+
+        /**
          * If you are using a language other than the default one, i.e. Turkish in this case,
          * you may encounter an issue where some of the components are not actually being
          * translated when your app first initialized.
@@ -101,16 +104,17 @@ export class AppComponent implements OnInit, OnDestroy
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
-
-        setTimeout(() => {
+        /**
+         setTimeout(() => {
             this._translateService.setDefaultLang('en');
             this._translateService.setDefaultLang('es');
-        });
+         });
+         */
 
         /**
-         * ------------------------------------------------------------------
+         * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix End
-         * ------------------------------------------------------------------
+         * ----------------------------------------------------------------------------------------------------
          */
 
         // Add is-mobile class to the body if the platform is mobile

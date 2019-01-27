@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { ObservableMedia } from '@angular/flex-layout';
+import { MediaObserver } from '@angular/flex-layout';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -35,17 +35,17 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {Renderer2} _renderer
      * @param {CookieService} _cookieService
      * @param {FuseMatchMediaService} _fuseMatchMediaService
      * @param {FuseNavigationService} _fuseNavigationService
-     * @param {ObservableMedia} _observableMedia
+     * @param {MediaObserver} _mediaObserver
+     * @param {Renderer2} _renderer
      */
     constructor(
         private _cookieService: CookieService,
         private _fuseMatchMediaService: FuseMatchMediaService,
         private _fuseNavigationService: FuseNavigationService,
-        private _observableMedia: ObservableMedia,
+        private _mediaObserver: MediaObserver,
         private _renderer: Renderer2
     )
     {
@@ -76,7 +76,6 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         }
         else
         {
-            // DH2
             // User's shortcut items
             this.shortcutItems = [
                 {
@@ -87,6 +86,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                 },
                 {
                     'title': 'Mail',
+                    'type' : 'item',
                     'icon' : 'email',
                     'url'  : '/apps/mail'
                 },
@@ -109,7 +109,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         this._fuseMatchMediaService.onMediaChange
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-                if ( this._observableMedia.isActive('gt-sm') )
+                if ( this._mediaObserver.isActive('gt-sm') )
                 {
                     this.hideMobileShortcutsPanel();
                 }
