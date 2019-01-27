@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './expedient.graphql';
@@ -15,6 +15,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
     objectTranslation = 'FOREM.EXPEDIENT';
     objectTranslationGender = 'F';
     modalities: Modality[] = [];
+    showCode = false;
 
     constructor(
         protected injector: Injector
@@ -28,7 +29,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
             id: [{value: '', disabled: true}],
             modality_id: ['', Validators.required],
             year: ['', Validators.required],
-            code: '',
+            code: ['', [Validators.minLength(3), Validators.maxLength(3)]],
             name: ['', Validators.required],
             starts_at: '',
             ends_at: ''
@@ -50,5 +51,18 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
     {
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;
+    }
+
+    handleChangeModality($event):void
+    {
+        if ($event.value === 1)
+        {
+            if (!this.fg.get('code')) this.fg.addControl('code', new FormControl('',[Validators.minLength(3), Validators.maxLength(3)]));
+            this.showCode = true;
+        }
+        else {
+            this.fg.removeControl('code');
+            this.showCode = false;
+        }
     }
 }

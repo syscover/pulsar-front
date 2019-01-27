@@ -82,7 +82,7 @@
                         <div fxLayout="row">
                             <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                 <mat-label>{{ 'FOREM.MODALITY' | translate }}</mat-label>
-                                <mat-select formControlName="modality_id" required>
+                                <mat-select formControlName="modality_id" (selectionChange)="handleChangeModality($event)" required>
                                     <mat-option *ngFor="let modality of modalities" [value]="+modality.id">{{ modality.name }} ({{ modality.code }})</mat-option>
                                 </mat-select>
                                 <mat-error>{{ formErrors?.modality_id }}</mat-error>
@@ -94,9 +94,9 @@
                                 <mat-error>{{ formErrors?.year }}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                            <mat-form-field *ngIf="showCode" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                <input matInput formControlName="code">
+                                <input matInput formControlName="code" maxlength="3" required>
                                 <mat-error>{{ formErrors?.code }}</mat-error>
                             </mat-form-field>
                         </div>
