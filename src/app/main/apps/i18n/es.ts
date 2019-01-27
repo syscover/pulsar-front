@@ -69,6 +69,7 @@ export const locale = {
             'PERCENTAGE': 'Porcentaje',
             'PHONE': 'Teléfono',
             'PREFIX': 'Prefix',
+            'PERMISSIONS': 'Permisos',
             'PRICE': 'Precio',
             'PRODUCT': 'Producto',
             'PROFILE': 'Perfil',

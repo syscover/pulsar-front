@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">perm_identity</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PROFILES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">fingerprint</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'APPS.PERMISSIONS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -38,11 +38,7 @@
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
-                    class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.PROFILE' | translate }}</span>
-            </button>
+            <div></div>
 
         </div>
         <!-- / HEADER -->
@@ -58,15 +54,21 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_profile.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
+                <ng-container matColumnDef="admin_resource.id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_profile.name">
+                <ng-container matColumnDef="admin_resource.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_package.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'ADMIN.PACKAGE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.admin_package_name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
@@ -77,10 +79,6 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="['/apps/admin/profile/permission', row.id]">
-                                <mat-icon>fingerprint</mat-icon>
-                                <span>{{ 'APPS.PERMISSIONS' | translate }}</span>
-                            </button>
                             <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>

@@ -24,6 +24,7 @@ import { OauthClientListComponent } from './oauth-client/oauth-client-list.compo
 import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { PermissionListComponent } from './permission/premission-list.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ReportDetailComponent } from './report/report-detail.component';
@@ -136,6 +137,11 @@ const routes: Routes = [
             { path: 'user',                                             component: UserListComponent,                   data: { action: 'list' }},
             { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
             { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
+
+            // Permission
+            { path: 'profile/permission/:profile_id',                   component: PermissionListComponent,             data: { action: 'list' }},
+            // { path: 'permission/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
+            // { path: 'permission/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
         ]  
     }
 ];

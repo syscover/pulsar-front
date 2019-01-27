@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorIntl } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthorizationService } from '../core/services/authorization.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { CustomMatPaginatorIntlService } from '../core/services/custom-mat-paginator-int.service';
@@ -69,9 +68,8 @@ const routes = [
 export class AppsModule
 {
     constructor(
-        private translate: TranslateService,
-        private translationLoader: FuseTranslationLoaderService
+        private _translationLoader: FuseTranslationLoaderService
     ) {
-        this.translationLoader.loadTranslations(english, spanish);
+        this._translationLoader.loadTranslations(english, spanish);
     }
 }

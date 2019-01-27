@@ -28,6 +28,7 @@ import { OauthClientListComponent } from './oauth-client/oauth-client-list.compo
 import { OauthClientDetailComponent } from './oauth-client/oauth-client-detail.component';
 import { PackageListComponent } from './package/package-list.component';
 import { PackageDetailComponent } from './package/package-detail.component';
+import { PermissionListComponent } from './permission/premission-list.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ReportDetailComponent } from './report/report-detail.component';
@@ -73,6 +74,7 @@ import { UserDetailComponent } from './user/user-detail.component';
         OauthClientDetailComponent,
         PackageListComponent,
         PackageDetailComponent,
+        PermissionListComponent,
         ProfileListComponent,
         ProfileDetailComponent,
         ReportDetailComponent,
