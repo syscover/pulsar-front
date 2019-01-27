@@ -61,7 +61,7 @@ $custom_palettes: (
 // @ Typography
 // -----------------------------------------------------------------------------------------------------
 
-// Force the input field font sizes to 16px
+// Angular Material typography
 $typography: mat-typography-config(
     $font-family: 'Muli, Helvetica Neue, Arial, sans-serif',
     $title: mat-typography-level(20px, 32px, 600),
