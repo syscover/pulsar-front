@@ -4,6 +4,7 @@ import { ActionTranslationObjectPipe } from './action-trasnlation-object.pipe';
 import { CheckTranslationObjectPipe } from './check-translation-object.pipe';
 import { CurrencyFormatPipe } from './currency-format.pipe';
 import { GetCollectionObjectValuePipe } from './get-collection-object-value.pipe';
+import { GetPermissionActionsPipe } from './get-permission-actions.pipe';
 import { SizeFormatPipe } from './size-format.pipe';
 import { NumbersArrayPipe } from './numbers-array.pipe';
 import { SortByPipe } from './sort-by.pipe';
@@ -22,6 +23,7 @@ import { SumByPipe } from './sum-by.pipe';
         CheckTranslationObjectPipe,
         CurrencyFormatPipe,
         GetCollectionObjectValuePipe,
+        GetPermissionActionsPipe,
         SizeFormatPipe,
         MustTranslatePipe,
         NumbersArrayPipe,
@@ -36,6 +38,7 @@ import { SumByPipe } from './sum-by.pipe';
         CheckTranslationObjectPipe,
         CurrencyFormatPipe,
         GetCollectionObjectValuePipe,
+        GetPermissionActionsPipe,
         SizeFormatPipe,
         MustTranslatePipe,
         NumbersArrayPipe,

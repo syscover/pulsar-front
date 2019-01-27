@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { graphQL as adminResourceGraphQL } from '../resource/resource.graphql';
 import { graphQL as adminPackageGraphQL } from '../package/package.graphql';
 import { graphQL as adminActionGraphQL } from '../action/action.graphql';
 
@@ -26,8 +25,8 @@ const relationsFields = `
 `;
 
 export const graphQL = {
-    model: 'Syscover\\Admin\\Models\\Permission',
-    table: 'admin_permission',
+    model: 'Syscover\\Admin\\Models\\Resource',
+    table: 'admin_resource',
     fields,
     relationsFields,
 
@@ -40,6 +39,10 @@ export const graphQL = {
             }
             ${relationsFields}
         }`,
+
+
+
+
 
 
 

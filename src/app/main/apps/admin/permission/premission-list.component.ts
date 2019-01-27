@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { Action, Permission } from '../admin.models';
 import { graphQL } from './permission.graphql';
 
 @Component({
@@ -14,7 +15,9 @@ export class PermissionListComponent extends CoreListComponent
     objectTranslation = 'APPS.PERMISSION';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_resource.id', 'admin_resource.name', 'admin_package.name'];
-    displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'actions'];
+    displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'permissions'];
+    permissions: Permission[] = [];
+    actions: Action[] = [];
 
     constructor(
         protected injector: Injector
@@ -33,5 +36,18 @@ export class PermissionListComponent extends CoreListComponent
         }];
 
         return args;
+    }
+
+    setRelationsData(data: any): void
+    {
+        this.permissions = data.adminPermissions;
+        this.actions = data.adminActions;
+    }
+
+    handleChangeAction($event, resourceId): void
+    {
+        console.log($event.value);
+        console.log(this.params['profile_id']);
+        console.log(resourceId);
     }
 }

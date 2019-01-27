@@ -172,6 +172,13 @@ export class Package
     sort: number;
 }
 
+export class Permission
+{
+    profile_id: number;
+    resource_id: string;
+    action_id: string;
+}
+
 export class Profile
 {
     id: number;

@@ -71,26 +71,19 @@
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.admin_package_name }}</mat-cell>
                 </ng-container>
 
-                <!-- ACTIONS -->
-                <ng-container matColumnDef="actions">
-                    <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                <!-- PERMISSIONS -->
+                <ng-container matColumnDef="permissions">
+                    <mat-header-cell *matHeaderCellDef>{{ 'APPS.PERMISSIONS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
-                                <mat-icon>mode_edit</mat-icon>
-                                <span>{{ 'APPS.EDIT' | translate }}</span>
-                            </button>
-                            <button mat-menu-item (click)="deleteRecord(row)">
-                                <mat-icon>delete</mat-icon>
-                                <span>{{ 'APPS.DELETE' | translate }}</span>
-                            </button>
-                        </mat-menu>
+                        <mat-form-field class="col-12">
+                            <mat-label>{{ 'APPS.ACTIONS' | translate }}</mat-label>
+                            <mat-select multiple [value]="this.permissions | getPermissionActions:row.id" (selectionChange)="handleChangeAction($event, row.id)">
+                                <mat-option *ngFor="let action of actions" [value]="action.id">{{ action.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </mat-cell>
                 </ng-container>
-                <!-- / ACTIONS -->
+                <!-- / PERMISSIONS -->
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
