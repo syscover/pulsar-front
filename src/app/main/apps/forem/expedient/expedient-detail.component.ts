@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from './../../../core/structures/core-detail-compoment';
 import { graphQL } from './expedient.graphql';
@@ -15,8 +15,6 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
     objectTranslation = 'FOREM.EXPEDIENT';
     objectTranslationGender = 'F';
     modalities: Modality[] = [];
-    showCode = false;
-    showAmbit = false;
 
     constructor(
         protected injector: Injector
@@ -65,13 +63,11 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
         if ($event.value === 1)
         {
             this.fg.get('code').setValidators([Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
-            this.showCode = true;
         }
         else
         {
             this.fg.get('code').clearValidators();
             this.fg.get('code').setValue('');
-            this.showCode = false;
         }
         this.fg.get('code').updateValueAndValidity();
 
@@ -79,13 +75,11 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
         if ($event.value === 6)
         {
             this.fg.get('ambit').setValidators([Validators.required, Validators.minLength(2), Validators.maxLength(2)]);
-            this.showAmbit = true;
         }
         else
         {
             this.fg.get('ambit').clearValidators();
             this.fg.get('ambit').setValue('');
-            this.showAmbit = false;
         }
         this.fg.get('ambit').updateValueAndValidity();
     }

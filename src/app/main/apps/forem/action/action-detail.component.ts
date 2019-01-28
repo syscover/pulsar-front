@@ -24,6 +24,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     targets: Target[] = [];
     assistances: Assistance[] = [];
     types: Type[] = [];
+    showCertificateCode = false;
 
     // categories
     categories: Category[] = [];
@@ -49,13 +50,15 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
-            code: ['', Validators.required],
+            code: '',
             name: ['', Validators.required],
             slug: ['', Validators.required],
             category_id: ['', Validators.required],
             target_id: ['', Validators.required],
             assistance_id: ['', Validators.required],
             type_id: ['', Validators.required],
+            certificate: false,
+            certificate_code: '',
             hours: ['', Validators.required],
             price: '',
             price_hour: '',
@@ -118,9 +121,28 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
         this.filteredCategories.next(this.categories.slice());
     }
 
+    afterPatchValueEdit(): void
+    {
+        this.handleChangeCertificate({checked: this.object.certificate});
+    }
+
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
+    }
+
+    handleChangeCertificate($event): void
+    {
+        if ($event.checked)
+        {
+            this.fg.get('certificate_code').setValidators([Validators.required]);
+        }
+        else
+        {
+            this.fg.get('certificate_code').clearValidators();
+            this.fg.get('certificate_code').setValue('');
+        }
+        this.fg.get('certificate_code').updateValueAndValidity();
     }
 
     add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void

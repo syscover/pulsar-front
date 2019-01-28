@@ -41,7 +41,7 @@
                     type="submit"
                     form="formDetail"
                     class="mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton"
+                    [disabled]="fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='create'">
                 {{ 'APPS.ADD' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -51,7 +51,7 @@
                     type="submit"
                     form="formDetail"
                     class="mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
                     *ngIf="dataRoute.action ==='edit'">
                 {{ 'APPS.SAVE' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
@@ -86,7 +86,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                        <input matInput formControlName="code" required>
+                                        <input matInput formControlName="code">
                                     </mat-form-field>
                                 </div>
 
@@ -98,7 +98,19 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.type_id }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+
+                                    <div class="col-12 offset-md-1 col-md-2 py-20">
+                                        <mat-checkbox formControlName="certificate" (change)="handleChangeCertificate($event)">{{ 'FOREM.CERTIFICATE' | translate }}</mat-checkbox>
+                                    </div>
+
+                                    <mat-form-field *ngIf="fg.get('certificate').value" [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.CERTIFICATE_CODE' | translate }}</mat-label>
+                                        <input matInput formControlName="certificate_code" [required]="showCertificateCode">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.ASSIST' | translate }}</mat-label>
                                         <mat-select formControlName="assistance_id" required>
                                             <mat-option *ngFor="let assistance of assistances" [value]="+assistance.id">{{ assistance.name }}</mat-option>

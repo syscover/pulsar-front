@@ -88,7 +88,7 @@
                                 <mat-error>{{ formErrors?.modality_id }}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field *ngIf="showAmbit" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                            <mat-form-field *ngIf="fg.get('modality_id').value === 6" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'FOREM.AMBIT' | translate }}</mat-label>
                                 <input matInput formControlName="ambit" maxlength="2" [required]="showAmbit">
                                 <mat-error>{{ formErrors?.ambit }}</mat-error>
@@ -100,7 +100,7 @@
                                 <mat-error>{{ formErrors?.year }}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field *ngIf="showCode" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                            <mat-form-field *ngIf="fg.get('modality_id').value === 1" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                 <input matInput formControlName="code" maxlength="3" [required]="showCode">
                                 <mat-error>{{ formErrors?.code }}</mat-error>

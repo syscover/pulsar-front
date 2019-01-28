@@ -76,6 +76,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             target_id: ['', Validators.required],
             assistance_id: ['', Validators.required],
             type_id: ['', Validators.required],
+            certificate: false,
+            certificate_code: '',
             hours: ['', Validators.required],
             price: '',
             price_hour: '',
@@ -218,6 +220,11 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.filteredCategories.next(this.categories.slice());
     }
 
+    afterPatchValueEdit(): void
+    {
+        this.handleChangeCertificate({checked: this.object.certificate});
+    }
+
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
@@ -225,6 +232,20 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     handleCheckingPrice($event): void
     {
+    }
+
+    handleChangeCertificate($event): void
+    {
+        if ($event.checked)
+        {
+            this.fg.get('certificate_code').setValidators([Validators.required]);
+        }
+        else
+        {
+            this.fg.get('certificate_code').clearValidators();
+            this.fg.get('certificate_code').setValue('');
+        }
+        this.fg.get('certificate_code').updateValueAndValidity();
     }
 
     add(dialog, objects: string, filteredObjects: ReplaySubject<any[]>, formGroupName: string, multiple = false): void

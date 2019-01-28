@@ -16,12 +16,14 @@ const fields = `
     target_id
     assistance_id
     type_id
+    certificate
+    certificate_code
     hours
-    price    
+    price
     price_hour
-    contents_excerpt  
+    contents_excerpt
     contents
-    requirements   
+    requirements
     observations
     action_id
     expedient_id
