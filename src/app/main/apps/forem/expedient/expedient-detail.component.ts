@@ -16,6 +16,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
     objectTranslationGender = 'F';
     modalities: Modality[] = [];
     showCode = false;
+    showAmbit = false;
 
     constructor(
         protected injector: Injector
@@ -28,6 +29,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             modality_id: ['', Validators.required],
+            ambit: ['', Validators.required],
             year: ['', Validators.required],
             code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
             name: ['', Validators.required],
@@ -72,5 +74,19 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
             this.showCode = false;
         }
         this.fg.get('code').updateValueAndValidity();
+
+
+        if ($event.value === 6)
+        {
+            this.fg.get('ambit').setValidators([Validators.required, Validators.minLength(2), Validators.maxLength(2)]);
+            this.showAmbit = true;
+        }
+        else
+        {
+            this.fg.get('ambit').clearValidators();
+            this.fg.get('ambit').setValue('');
+            this.showAmbit = false;
+        }
+        this.fg.get('ambit').updateValueAndValidity();
     }
 }

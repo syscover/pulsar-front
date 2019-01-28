@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 const fields = `
     id
     modality_id
+    ambit
     year
     code
     name

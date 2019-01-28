@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'FOREM': {
             'ACTION': 'Acción',
+            'AMBIT': 'Ámbito',
             'ASSIST': 'Asistencia',
             'CONTENTS': 'Contenidos',
             'CONTENTS_EXCERPT': 'Resumen de contenidos',
