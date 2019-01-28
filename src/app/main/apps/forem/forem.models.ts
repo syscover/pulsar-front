@@ -57,6 +57,12 @@ export class Expedient
     ends_at: any;
 }
 
+export class GroupPrefix
+{
+    id: number;
+    name: string;
+}
+
 export class Modality
 {
     id: number;

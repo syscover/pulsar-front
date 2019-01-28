@@ -37,6 +37,7 @@ export const locale = {
             'EXTENSION': 'Extension',
             'FAMILY': 'Family',
             'FAMILIES': 'Families',
+            'FEATURED': 'Featured',
             'FIELD_GROUP': 'Field group',
             'FIELDS': 'Fields',
             'FILENAME': 'Filename',

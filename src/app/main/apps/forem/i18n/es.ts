@@ -22,7 +22,7 @@ export const locale = {
             'SELECTION_DATE': 'Día de selección',
             'SCHEDULE': 'Horario',
             'STARTS_AT': 'Empieza el',
-            'SUBSIDIZED': 'Subvencionado',
+            'SUBSIDIZED_AMOUNT': 'Cantidad subvencionada',
             'TARGET': 'Dirigido',
             'YEAR': 'Año'
         }

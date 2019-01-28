@@ -77,15 +77,13 @@
                         <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                <div fxLayout="row wrap">
+                                    <mat-form-field *ngIf="dataRoute.action === 'edit'" [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
-                                </div>
 
-                                <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3" [ngClass]="{'offset-md-1': dataRoute.action === 'edit'}">
                                         <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
                                         <mat-select formControlName="profile_id" required>
                                             <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
@@ -94,15 +92,15 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
-                                        <mat-select formControlName="expedient_id" required>
+                                        <mat-select formControlName="expedient_id" (selectionChange)="handleChangeExpedient($event)" required>
                                             <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.ambit ? '-' + expedient.ambit : '' }}{{ expedient.year }}{{ expedient.code ? '-' + expedient.code : '' }})</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.expedient_id }}</mat-error>
                                     </mat-form-field>
-                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <div class="mx-10 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.ACTION' | translate }}</mat-label>
                                         <mat-select formControlName="action_id" required (selectionChange)="handleChangeAction($event)">
@@ -110,15 +108,23 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.action_id }}</mat-error>
                                     </mat-form-field>
-                                    <div class="col-md-1 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <div *ngIf="expedient.modality_id !== undefined && expedient.modality_id !== 1" class="mx-10 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <mat-form-field *ngIf="expedient.modality_id !== undefined && expedient.modality_id !== 1" [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
+                                        <mat-label>{{ 'APPS.PREFIX' | translate }}</mat-label>
+                                        <mat-select formControlName="prefix_id" [required]="expedient.modality_id !== 1">
+                                            <mat-option *ngFor="let prefix of groupPrefixes" [value]="prefix.id">({{ prefix.id }}) {{ prefix.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.prefix_id }}</mat-error>
+                                    </mat-form-field>
+                                    <div class="mx-10 d-none d-md-flex justify-content-center align-items-center"><fa-icon [icon]="['fas', 'slash']" rotate="90"></fa-icon></div>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                         <input matInput formControlName="code" required>
                                         <mat-error>{{ formErrors?.code }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
                                         <mat-select formControlName="type_id" required>
@@ -127,13 +133,13 @@
                                         <mat-error>{{ formErrors?.type_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <div class="col-12 offset-md-1 col-md-2 py-20">
+                                    <div class="col-12 offset-md-2 col-md-2 py-20">
                                         <mat-checkbox formControlName="certificate" (change)="handleChangeCertificate($event)">{{ 'FOREM.CERTIFICATE' | translate }}</mat-checkbox>
                                     </div>
 
                                     <mat-form-field *ngIf="fg.get('certificate').value" [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.CERTIFICATE_CODE' | translate }}</mat-label>
-                                        <input matInput formControlName="certificate_code" [required]="showCertificateCode">
+                                        <input matInput formControlName="certificate_code" [required]="fg.get('certificate').value">
                                     </mat-form-field>
                                 </div>
 
@@ -164,7 +170,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
                                     <div class="col-11 col-md-6">
                                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow">
                                             <mat-label>{{ 'NAV.CATEGORIES' | translate }}</mat-label>
@@ -190,24 +196,31 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.HOURS' | translate }}</mat-label>
                                         <input type="number" matInput formControlName="hours" required>
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.SUBSIDIZED_AMOUNT' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="subsidized_amount">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.PRICE' | translate }}</mat-label>
                                         <input type="number" matInput formControlName="price">
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-3 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                         <mat-label>{{ 'FOREM.PRICE_HOUR' | translate }}</mat-label>
                                         <input type="number" matInput formControlName="price_hour">
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.STARTS_AT' | translate }}</mat-label>
                                         <input matInput [matDatepicker]="startsAt" formControlName="starts_at">
@@ -242,12 +255,18 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
-                                    <div class="col-12 col-md-5 py-20">
+                                <div fxLayout="row wrap">
+                                    <div class="col-12 col-md-3 py-20">
                                         <mat-checkbox formControlName="publish">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
                                     </div>
-                                    <div class="col-12 col-md-5 py-20">
+                                    <div class="col-12 col-md-3 py-20">
                                         <mat-checkbox formControlName="open">{{ 'FOREM.OPEN' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-3 py-20">
+                                        <mat-checkbox formControlName="featured">{{ 'APPS.FEATURED' | translate }}</mat-checkbox>
                                     </div>
                                 </div>
 
@@ -277,7 +296,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row wrap">
                                     <div class="col-12 col-md-5">
 
                                         <dh2-territories    [formGroup]="fg"

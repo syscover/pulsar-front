@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Category, Target, Assistance, Type, Expedient, Action, Modality } from '../forem.models';
+import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix } from '../forem.models';
 import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -31,11 +31,13 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     assistances: Assistance[] = [];
     types: Type[] = [];
     expedients: Expedient[] = [];
+    expedient: Expedient = new Expedient();
     actions: Action[] = [];
     modalities: Modality[] = [];
     countries: Country[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
     profiles: Profile[] = [];
+    groupPrefixes: GroupPrefix[] = [];
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -71,6 +73,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             profile_id: ['', Validators.required],
+            prefix_id: ['', Validators.required],
             code: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required],
@@ -81,6 +84,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             certificate: false,
             certificate_code: '',
             hours: ['', Validators.required],
+            subsidized_amount: '',
             price: '',
             price_hour: '',
             contents_excerpt: '',
@@ -94,6 +98,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             ends_at: '',
             selection_date: '',
             open: false,
+            featured: false,
             schedule: '',
             publish: false,
 
@@ -152,6 +157,10 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             key: 'pulsar-forem.modalities'
         };
 
+        const configGroupPrefixes = {
+            key: 'pulsar-forem.group_prefixes'
+        };
+
         const sqlAdminCountry = [
             {
                 command: 'where',
@@ -187,7 +196,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             configTargets,
             configAssistances,
             configTypes,
-            configModalities
+            configModalities,
+            configGroupPrefixes
         };
     }
 
@@ -217,6 +227,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;
 
+        // set group prefixes
+        this.groupPrefixes = <GroupPrefix[]>data.foremGroupPrefixes;
+
         // set profiles
         this.profiles = <Profile[]>data.adminProfiles;
 
@@ -228,6 +241,23 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     afterPatchValueEdit(): void
     {
         this.handleChangeCertificate({checked: this.object.certificate});
+        this.handleChangeExpedient({value: this.object.expedient_id});
+    }
+
+    handleChangeExpedient($event): void
+    {
+        this.expedient = <Expedient>_.find(this.expedients, {id: $event.value});
+
+        if (this.expedient.modality_id === 1)
+        {
+            this.fg.get('prefix_id').clearValidators();
+            this.fg.get('prefix_id').setValue('');
+        }
+        else
+        {
+            this.fg.get('prefix_id').setValidators([Validators.required]);
+        }
+        this.fg.get('prefix_id').updateValueAndValidity();
     }
 
     handleCheckingSlug($event): void

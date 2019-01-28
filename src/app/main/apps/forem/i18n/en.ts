@@ -22,7 +22,7 @@ export const locale = {
             'SELECTION_DATE': 'Section date',
             'SCHEDULE': 'Schedule',
             'STARTS_AT': 'Starts at',
-            'SUBSIDIZED': 'Subsidized',
+            'SUBSIDIZED_AMOUNT': 'Subsidized amount',
             'TARGET': 'Target',
             'YEAR': 'Year'
         }

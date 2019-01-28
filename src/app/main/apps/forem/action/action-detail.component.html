@@ -99,13 +99,13 @@
                                         <mat-error>{{ formErrors?.type_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <div class="col-12 offset-md-1 col-md-2 py-20">
+                                    <div class="col-12 offset-md-2 col-md-2 py-20">
                                         <mat-checkbox formControlName="certificate" (change)="handleChangeCertificate($event)">{{ 'FOREM.CERTIFICATE' | translate }}</mat-checkbox>
                                     </div>
 
                                     <mat-form-field *ngIf="fg.get('certificate').value" [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.CERTIFICATE_CODE' | translate }}</mat-label>
-                                        <input matInput formControlName="certificate_code" [required]="showCertificateCode">
+                                        <input matInput formControlName="certificate_code" [required]="fg.get('certificate').value">
                                     </mat-form-field>
                                 </div>
 

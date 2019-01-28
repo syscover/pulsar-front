@@ -14,6 +14,7 @@ const fields = `
     profile {
         ${adminProfileGraphQL.fields}
     }
+    prefix_id
     code
     name
     slug
@@ -24,6 +25,7 @@ const fields = `
     certificate
     certificate_code
     hours
+    subsidized_amount
     price
     price_hour
     contents_excerpt
@@ -38,6 +40,7 @@ const fields = `
     selection_date
     publish
     open
+    featured
     country_id
     territorial_area_1_id
     territorial_area_2_id
@@ -81,6 +84,7 @@ const relationsFields = `
     foremAssistances: coreConfig (config:$configAssistances)
     foremTypes: coreConfig (config:$configTypes)
     foremModalities: coreConfig (config:$configModalities)
+    foremGroupPrefixes: coreConfig (config:$configGroupPrefixes)
     ${marketableGraphQL.relationsFields}
 `;
 
@@ -105,6 +109,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $configGroupPrefixes:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
@@ -119,6 +124,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $configGroupPrefixes:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
@@ -136,6 +142,7 @@ export const graphQL = {
             $configAssistances:CoreConfigInput
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
+            $configGroupPrefixes:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
