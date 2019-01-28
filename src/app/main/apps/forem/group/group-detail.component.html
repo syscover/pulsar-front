@@ -86,9 +86,19 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
+                                        <mat-select formControlName="profile_id" required>
+                                            <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.profile_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.EXPEDIENT' | translate }}</mat-label>
                                         <mat-select formControlName="expedient_id" required>
-                                            <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.year }}{{ expedient.code ? '-' + expedient.code : '' }})</mat-option>
+                                            <mat-option *ngFor="let expedient of expedients" [value]="+expedient.id">{{ expedient.name }} ({{ modalities | getCollectionObjectValue:'id':expedient.modality_id:'code' }}{{ expedient.ambit ? '-' + expedient.ambit : '' }}{{ expedient.year }}{{ expedient.code ? '-' + expedient.code : '' }})</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.expedient_id }}</mat-error>
                                     </mat-form-field>

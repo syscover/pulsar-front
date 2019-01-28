@@ -6,9 +6,14 @@ import { graphQL as marketableGraphQL } from '../../../core/components/marketabl
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
 import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.graphql';
 
 const fields = `
     id
+    profile_id
+    profile {
+        ${adminProfileGraphQL.fields}
+    }
     code
     name
     slug
@@ -59,6 +64,9 @@ const relationsFields = `
     }
     adminAttachmentFamilies (sql:$sqlAdminAttachmentFamily) {
         ${adminAttachmentFamilyGraphQL.fields}
+    }
+    adminProfiles {
+        ${adminProfileGraphQL.fields}
     }
     foremExpedients {
         ${foremExpedientsGraphQL.fields}

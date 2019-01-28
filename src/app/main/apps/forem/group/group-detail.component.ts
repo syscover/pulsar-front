@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
 import { MarketableService } from '../../../core/components/marketable/marketable.service';
-import { AttachmentFamily, Country } from '../../admin/admin.models';
+import { AttachmentFamily, Country, Profile } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -35,6 +35,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     modalities: Modality[] = [];
     countries: Country[] = [];
     attachmentFamilies: AttachmentFamily[] = [];
+    profiles: Profile[] = [];
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -69,6 +70,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
+            profile_id: ['', Validators.required],
             code: ['', Validators.required],
             name: ['', Validators.required],
             slug: ['', Validators.required],
@@ -214,6 +216,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;
+
+        // set profiles
+        this.profiles = <Profile[]>data.adminProfiles;
 
         // forem categories
         this.categories = data.foremCategories;
