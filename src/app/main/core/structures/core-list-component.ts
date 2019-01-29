@@ -128,6 +128,9 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             // set data source
             this.dataSource.data = data.data.coreObjectsPagination.objects;
 
+            // set data source
+            this.setDataSource(data.data.coreObjectsPagination.objects);
+
             // hide loader data table
             this.isLoadingResults = false;
         }
@@ -276,10 +279,16 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     }
 
     /**
-     * Set data for realations object
+     * Set data for relations object
      * @param data
      */
     setRelationsData(data: Object): void { }
+
+    /**
+     * Set data source
+     * @param data
+     */
+    setDataSource(data: Object): void { }
 
     /**
      *

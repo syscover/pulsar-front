@@ -41,7 +41,7 @@ export const graphQL = {
         }`,
 
     mutationUpdateObject: gql`        
-        mutation AdminUpdatePermissions ($profile_id:Int! $resource_id:String! $actions:[String]!) {
-            adminUpdatePermissions (profile_id:$profile_id resource_id:$resource_id actions:$actions)
+        mutation AdminUpdatePermission ($profile_id:Int! $resource_id:String! $action_id:String! $checked:Boolean!) {
+            adminUpdatePermission (profile_id:$profile_id resource_id:$resource_id action_id:$action_id checked:$checked)
         }`,
 };

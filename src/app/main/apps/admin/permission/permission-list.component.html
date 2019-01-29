@@ -77,8 +77,8 @@
                     <mat-cell *matCellDef="let row">
                         <mat-form-field class="col-12">
                             <mat-label>{{ 'APPS.ACTIONS' | translate }}</mat-label>
-                            <mat-select multiple [value]="this.permissions | getPermissionActions:row.id" (selectionChange)="handleChangeAction($event, row.id)">
-                                <mat-option *ngFor="let action of actions" [value]="action.id">{{ action.name }}</mat-option>
+                            <mat-select multiple [value]="this.permissions | getPermissionActions:row.id">
+                                <mat-option (click)="handleChangeAction($event, row.id, action.id)" *ngFor="let action of actions" [value]="action.id"><div class="d-flex align-items-center">{{ action.name }} <mat-spinner *ngIf="(row.id + action.id) == spinnerActive" mode="indeterminate" diameter="17" class="ml-10"></mat-spinner></div></mat-option>
                             </mat-select>
                         </mat-form-field>
                     </mat-cell>

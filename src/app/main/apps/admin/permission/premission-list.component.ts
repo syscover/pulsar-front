@@ -1,4 +1,5 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
+import { MatSelect } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
 import { Action, Permission } from '../admin.models';
@@ -18,6 +19,9 @@ export class PermissionListComponent extends CoreListComponent
     displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'permissions'];
     permissions: Permission[] = [];
     actions: Action[] = [];
+    spinnerActive: string = null;
+
+    @ViewChildren(MatSelect) selects: QueryList<MatSelect>;
 
     constructor(
         protected injector: Injector
@@ -44,8 +48,11 @@ export class PermissionListComponent extends CoreListComponent
         this.actions = data.adminActions;
     }
 
-    handleChangeAction($event, resourceId): void
+    handleChangeAction($event, resourceId, actionId): void
     {
+        this.spinnerActive = resourceId + actionId;
+
+        // this.isLoadingResults = true;
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -53,12 +60,15 @@ export class PermissionListComponent extends CoreListComponent
                 variables: {
                     profile_id: this.params['profile_id'],
                     resource_id: resourceId,
-                    actions: $event.value
+                    action_id: actionId,
+                    checked: $event.target.parentElement.className.indexOf('mat-selected') === -1
                 }
             })
             .subscribe(data => {
                 ob$.unsubscribe();
 
+                //this.isLoadingResults = false;
+                this.spinnerActive = undefined;
                 this.snackBar.open(
                     this.translations['APPS.CHANGED_PERMISSIONS'],
                     this.translations['APPS.OK'],
@@ -67,7 +77,6 @@ export class PermissionListComponent extends CoreListComponent
                         duration        : 3000
                     }
                 );
-                console.log(data);
             });
     }
 }
