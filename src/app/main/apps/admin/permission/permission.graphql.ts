@@ -40,53 +40,8 @@ export const graphQL = {
             ${relationsFields}
         }`,
 
-
-
-
-
-
-
-
-
-    queryRelationsObject: gql`
-        query AdminGetRelationsPermission {
-            ${relationsFields}
+    mutationUpdateObject: gql`        
+        mutation AdminUpdatePermissions ($profile_id:Int! $resource_id:String! $actions:[String]!) {
+            adminUpdatePermissions (profile_id:$profile_id resource_id:$resource_id actions:$actions)
         }`,
-
-    queryObjects: gql`
-        query AdminGetPermissions ($sql:[CoreSQLInput]) {
-            coreObjects: adminPermissions (sql:$sql) {
-                ${fields}
-            }
-            ${relationsFields}
-        }`,
-
-    queryObject: gql`
-        query AdminGetPermission ($sql:[CoreSQLInput]) {
-            coreObject: adminPermission (sql:$sql) {
-                ${fields}
-            }
-            ${relationsFields}
-        }`,
-
-    mutationCreateObject: gql`
-        mutation AdminCreatePermission ($payload:AdminPermissionInput!) {
-            adminCreatePermission (payload:$payload) {
-                ${fields}
-            }
-        }`,
-
-    mutationUpdateObject: gql`
-        mutation AdminUpdatePermission ($payload:AdminPermissionInput!) {
-            adminUpdatePermission (payload:$payload) {
-                ${fields}
-            }
-        }`,
-
-    mutationDeleteObject: gql`
-        mutation AdminDeletePermission ($id:String!) {
-            adminDeletePermission (id:$id) {
-                ${fields}
-            }
-        }`
 };

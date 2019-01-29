@@ -10,6 +10,7 @@ export const locale = {
             'ATTACHMENTS': 'Attachments',
             'CANCEL': 'Cancel',
             'CATEGORY': 'Category',
+            'CHANGED_PERMISSIONS': 'Changed permissions',
             'CLEAR': 'Clear',
             'CLOSE': 'Close',
             'CODE': 'Code',

@@ -46,8 +46,28 @@ export class PermissionListComponent extends CoreListComponent
 
     handleChangeAction($event, resourceId): void
     {
-        console.log($event.value);
-        console.log(this.params['profile_id']);
-        console.log(resourceId);
+        const ob$ = this.http
+            .apolloClient()
+            .mutate({
+                mutation: this.graphQL.mutationUpdateObject,
+                variables: {
+                    profile_id: this.params['profile_id'],
+                    resource_id: resourceId,
+                    actions: $event.value
+                }
+            })
+            .subscribe(data => {
+                ob$.unsubscribe();
+
+                this.snackBar.open(
+                    this.translations['APPS.CHANGED_PERMISSIONS'],
+                    this.translations['APPS.OK'],
+                    {
+                        verticalPosition: 'top',
+                        duration        : 3000
+                    }
+                );
+                console.log(data);
+            });
     }
 }
