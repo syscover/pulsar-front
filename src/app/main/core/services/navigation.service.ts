@@ -20,9 +20,13 @@ export class NavigationService
         // check packages
         navigation[0].children = this.checkPackages(navigation[0].children);
 
-        const permissions = this._authenticationService.user().profile.permissions;
-        // check resources in navigation
-        navigation[0].children = this.checkResources(navigation[0].children, permissions);
+        // in login page there isn't user
+        if (this._authenticationService.user())
+        {
+            const permissions = this._authenticationService.user().profile.permissions;
+            // check resources in navigation
+            navigation[0].children = this.checkResources(navigation[0].children, permissions);
+        }
 
         return navigation;
     }

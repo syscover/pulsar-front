@@ -47,9 +47,9 @@ const routes: Routes = [
         canActivateChild: [AuthorizationService],
         children: [
             // Action
-            { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list' }},
-            { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create' }},
-            { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit' }},
+            { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list', resource: 'admin-perm-action' }},
+            { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create', resource: 'admin-perm-action' }},
+            { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit', resource: 'admin-perm-action' }},
 
             // AttachmentFamily
             { path: 'attachment-family',                                component: AttachmentFamilyListComponent,       data: { action: 'list' }},
@@ -140,9 +140,7 @@ const routes: Routes = [
             { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
 
             // Permission
-            { path: 'profile/permission/:profile_id',                   component: PermissionListComponent,             data: { action: 'list' }},
-            // { path: 'permission/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
-            // { path: 'permission/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
+            { path: 'profile/permission/:profile_id',                   component: PermissionListComponent,             data: { action: 'list' }}
         ]  
     }
 ];

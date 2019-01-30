@@ -8,6 +8,7 @@ import { ValidationMessageService } from '../../../core/services/validation-mess
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import '../../../core/functions/array-random.function';
 import { pulsarConfig } from '../../../pulsar-config';
+import {AuthorizationService} from '../../../core/services/authorization.service';
 
 @Component({
     selector   : 'dh2-login',
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit
         private formBuilder: FormBuilder,
         private router: Router,
         private authenticationService: AuthenticationService,
+        private authorizationService: AuthorizationService,
         private validationMessageService: ValidationMessageService
     )
     {
@@ -92,14 +94,16 @@ export class LoginComponent implements OnInit
                 // set logged user
                 localStorage.setItem('user_logged',  btoa(JSON.stringify(response['user'])));
 
-                // remenber me function
-                if (this.loginForm.value.remember_me)
-                {
-                    localStorage.setItem('remember_me', JSON.stringify({
-                        user: this.loginForm.value.user,
-                        password: this.loginForm.value.password,
-                    }));
-                }
+                this.authorizationService.refreshPermissions();
+
+                // remember me function
+                // if (this.loginForm.value.remember_me)
+                // {
+                //     localStorage.setItem('remember_me', JSON.stringify({
+                //         user: this.loginForm.value.user,
+                //         password: this.loginForm.value.password,
+                //     }));
+                // }
                 
                 // redirect to admin or retrieve the url you wanted to go
                 if (this.authenticationService.redirectUrl) 

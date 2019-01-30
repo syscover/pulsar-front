@@ -1,25 +1,64 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad, Router, Route, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
+import { Permission } from '../../apps/admin/admin.models';
+import * as _ from 'lodash';
+import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable()
 export class AuthorizationService implements CanActivate, CanActivateChild, CanLoad
 {
+    private _permissions: Permission[] = [];
+    private _translations: Object = {};
+
     constructor(
-        private authenticationService: AuthenticationService,
-        private router: Router
-    ) {}
+        private _authenticationService: AuthenticationService,
+        private _router: Router,
+        private _translateService: TranslateService,
+        private _snackBar: MatSnackBar
+    ) {
+        this._permissions = _authenticationService.user().profile.permissions;
+        this._translateService
+            .get([
+                'APPS.OK',
+                'APPS.DENIED_PERMISSION'
+            ])
+            .subscribe(response => {
+                this._translations = response;
+            });
+    }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
+        if (! this.checkLogin(state.url)) return false;
 
-        console.log(state);
-        return this.checkLogin(state.url);
+        if (route.data.action && route.data.resource)
+        {
+
+            const permission = _.find(this._permissions, {'resource_id': route.data.resource, 'action_id': route.data.action});
+
+            if (permission) {
+                return true;
+            }
+            else {
+                this._snackBar.open(
+                    this._translations['APPS.DENIED_PERMISSION'],
+                     this._translations['APPS.OK'],
+                    {
+                        verticalPosition: 'top',
+                        duration        : 3000
+                    }
+                );
+                return false;
+            }
+        }
+
+        return true;
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
-       nsole.log(state);
        return this.canActivate(route, state);
     }
 
@@ -33,13 +72,18 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
     
     checkLogin(url?: string): boolean
     {
-        if (this.authenticationService.check()) return true;
+        if (this._authenticationService.check()) return true;
                  
         // Store the attempted URL for redirecting
-        if (url) this.authenticationService.redirectUrl = url;
+        if (url) this._authenticationService.redirectUrl = url;
 
         // Navigate to the login page with extras
-        this.router.navigate(['/apps/auth/login']);
+        this._router.navigate(['/apps/auth/login']);
         return false;
+    }
+
+    refreshPermissions(): void
+    {
+        this._permissions = this._authenticationService.user().profile.permissions;
     }
 }

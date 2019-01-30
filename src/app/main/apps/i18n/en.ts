@@ -27,6 +27,7 @@ export const locale = {
             'DELETE_TRANSLATION': 'Delete translation',
             'DELETED.F': 'Borrada',
             'DELETED.M': 'Deleted',
+            'DENIED_PERMISSION': 'Permission denied, check with administrator',
             'DESCRIPTION' : 'Description',
             'DETAIL': 'Detail',
             'DISCOUNT': 'Discount',
