@@ -50,9 +50,9 @@ export class PermissionListComponent extends CoreListComponent
 
     handleChangeAction($event, resourceId, actionId): void
     {
+        // active spinner
         this.spinnerActive = resourceId + actionId;
 
-        // this.isLoadingResults = true;
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -67,7 +67,7 @@ export class PermissionListComponent extends CoreListComponent
             .subscribe(data => {
                 ob$.unsubscribe();
 
-                //this.isLoadingResults = false;
+                // deactivate spinner
                 this.spinnerActive = undefined;
                 this.snackBar.open(
                     this.translations['APPS.CHANGED_PERMISSIONS'],

@@ -183,6 +183,7 @@ export class Profile
 {
     id: number;
     name: string;
+    permissions: Permission[];
 }
 
 export class Report
@@ -239,6 +240,7 @@ export class User
     lang_id: string;
     email: string;
     profile_id: number;
+    profile: Profile;
     active: boolean;
     user: string;
     password: string;

@@ -12,11 +12,14 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
+
+        console.log(state);
         return this.checkLogin(state.url);
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
+       nsole.log(state);
        return this.canActivate(route, state);
     }
 

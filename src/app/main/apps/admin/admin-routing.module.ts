@@ -44,6 +44,7 @@ const routes: Routes = [
     {
         path: '',
         canActivate: [AuthorizationService],
+        canActivateChild: [AuthorizationService],
         children: [
             // Action
             { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list' }},

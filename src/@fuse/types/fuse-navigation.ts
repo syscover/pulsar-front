@@ -3,6 +3,7 @@ export interface FuseNavigationItem
     id: string;
     title: string;
     type: 'item' | 'group' | 'collapsable';
+    resource?: string;  // DH2
     translate?: string;
     icon?: string | [string, string];
     hidden?: boolean;

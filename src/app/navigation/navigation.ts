@@ -484,6 +484,7 @@ export const navigation: FuseNavigation[] = [
                 'title'    : 'Administration',
                 'translate': 'NAV.ADMINISTRATION',
                 'type'     : 'collapsable',
+                'resource' : 'admin',
                 'icon'     : 'settings',
                 'children' : [
                     {
@@ -507,6 +508,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Countries',
                         'translate' : 'NAV.COUNTRIES',
                         'type'      : 'item',
+                        'resource'  : 'admin-country',
                         'icon'      : 'public',
                         'url'       : '/apps/admin/country'
                     },
