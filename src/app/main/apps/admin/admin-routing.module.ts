@@ -52,36 +52,36 @@ const routes: Routes = [
             { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit', resource: 'admin-perm-action' }},
 
             // AttachmentFamily
-            { path: 'attachment-family',                                component: AttachmentFamilyListComponent,       data: { action: 'list' }},
-            { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create' }},
-            { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit' }},
+            { path: 'attachment-family',                                component: AttachmentFamilyListComponent,       data: { action: 'list', resource: 'admin-attachment-family' }},
+            { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create', resource: 'admin-attachment-family' }},
+            { path: 'attachment-family/show/:id',                       component: AttachmentFamilyDetailComponent,     data: { action: 'edit', resource: 'admin-attachment-family' }},
 
             // AttachmentMime
-            { path: 'attachment-mime',                                  component: AttachmentMimeListComponent,         data: { action: 'list' }},
-            { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create' }},
-            { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit' }},
+            { path: 'attachment-mime',                                  component: AttachmentMimeListComponent,         data: { action: 'list', resource: 'admin-attachment-mime' }},
+            { path: 'attachment-mime/create',                           component: AttachmentMimeDetailComponent,       data: { action: 'create', resource: 'admin-attachment-mime' }},
+            { path: 'attachment-mime/show/:id',                         component: AttachmentMimeDetailComponent,       data: { action: 'edit', resource: 'admin-attachment-mime' }},
 
             // OAuth Client
-            { path: 'oauth-access-token',                               component: OauthAccessTokenListComponent,       data: { action: 'list' }},
-            { path: 'oauth-access-token/create',                        component: OauthAccessTokenDetailComponent,     data: { action: 'create' }},
-            { path: 'oauth-access-token/show/:id',                      component: OauthAccessTokenDetailComponent,     data: { action: 'edit' }},
+            { path: 'oauth-access-token',                               component: OauthAccessTokenListComponent,       data: { action: 'list', resource: 'admin-oauth-access-token' }},
+            { path: 'oauth-access-token/create',                        component: OauthAccessTokenDetailComponent,     data: { action: 'create', resource: 'admin-oauth-access-token' }},
+            { path: 'oauth-access-token/show/:id',                      component: OauthAccessTokenDetailComponent,     data: { action: 'edit', resource: 'admin-oauth-access-token' }},
 
             // OAuth Client
-            { path: 'oauth-client',                                     component: OauthClientListComponent,            data: { action: 'list' }},
-            { path: 'oauth-client/create',                              component: OauthClientDetailComponent,          data: { action: 'create' }},
-            { path: 'oauth-client/show/:id',                            component: OauthClientDetailComponent,          data: { action: 'edit' }},
+            { path: 'oauth-client',                                     component: OauthClientListComponent,            data: { action: 'list', resource: 'admin-oauth-client' }},
+            { path: 'oauth-client/create',                              component: OauthClientDetailComponent,          data: { action: 'create', resource: 'admin-oauth-client' }},
+            { path: 'oauth-client/show/:id',                            component: OauthClientDetailComponent,          data: { action: 'edit', resource: 'admin-oauth-client' }},
 
             // Country
-            { path: 'country',                                          component: CountryListComponent,                data: { action: 'list' }},
-            { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create' }},
-            { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang' }},
-            { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit' }},
+            { path: 'country',                                          component: CountryListComponent,                data: { action: 'list', resource: 'admin-country' }},
+            { path: 'country/create',                                   component: CountryDetailComponent,              data: { action: 'create', resource: 'admin-country' }},
+            { path: 'country/create/:lang_id/:id',                      component: CountryDetailComponent,              data: { action: 'create-lang', resource: 'admin-country' }},
+            { path: 'country/show/:lang_id/:id',                        component: CountryDetailComponent,              data: { action: 'edit', resource: 'admin-country' }},
 
             // Field
-            { path: 'field',                                            component: FieldListComponent,                  data: { action: 'list' }},
-            { path: 'field/create',                                     component: FieldDetailComponent,                data: { action: 'create' }},
-            { path: 'field/create/:lang_id/:id',                        component: FieldDetailComponent,                data: { action: 'create-lang' }},
-            { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit' }},
+            { path: 'field',                                            component: FieldListComponent,                  data: { action: 'list', resource: 'admin-field' }},
+            { path: 'field/create',                                     component: FieldDetailComponent,                data: { action: 'create', resource: 'admin-field' }},
+            { path: 'field/create/:lang_id/:id',                        component: FieldDetailComponent,                data: { action: 'create-lang', resource: 'admin-field' }},
+            { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit', resource: 'admin-field' }},
 
             // FieldGroup
             { path: 'field-group',                                      component: FieldGroupListComponent,             data: { action: 'list' }},
