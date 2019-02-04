@@ -70,7 +70,7 @@ export class ReviewDetailComponent extends CoreDetailComponent
         return this.fg.get('responses') as FormArray;
     }
 
-    getCustomArgumentsEditPostRecord(args, object) 
+    getCustomArgumentsEditPostRecord(args, object): Array<any>
     {
         args['action_id'] = args['payload']['action_id'];
 
