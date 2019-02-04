@@ -75,6 +75,28 @@
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.price">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">{{ 'APPS.PRICE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.price }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.publish">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex align-center mw-80">{{ 'APPS.PUBLISH' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex align-center mw-80">
+                        <mat-icon *ngIf="row.publish">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.featured">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex align-center mw-80">{{ 'APPS.FEATURED' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex align-center mw-80">
+                        <mat-icon *ngIf="row.featured">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
