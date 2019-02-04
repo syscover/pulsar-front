@@ -14,7 +14,7 @@ export class ReviewListComponent extends CoreListComponent
     objectTranslation = 'REVIEW.REVIEW';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['review_review.id', 'review_review.object_name', 'review_review.object_email', 'review_review.customer_name', 'review_review.customer_email'];
-    displayedColumns = ['review_review.id', 'review_review.object_name', 'review_review.object_email', 'review_review.average', 'review_review.validated', 'actions'];
+    displayedColumns = ['review_review.id', 'review_review.object_name', 'review_review.object_email', 'review_review.poll.name', 'review_review.average', 'review_review.validated', 'actions'];
 
     constructor(
         protected injector: Injector

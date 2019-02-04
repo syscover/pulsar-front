@@ -14,7 +14,7 @@ export class ObjectAverageListComponent extends CoreListComponent
     objectTranslation = 'REVIEW.POLL';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['review_object_average.id', 'review_object_average.object_name'];
-    displayedColumns = ['review_object_average.id', 'review_object_average.object_name', 'review_object_average.average', 'actions'];
+    displayedColumns = ['review_object_average.id', 'review_object_average.object_name', 'review_review.poll.name', 'review_object_average.average', 'actions'];
 
     constructor(
         protected injector: Injector

@@ -66,6 +66,12 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="review_review.poll.name">
+                    <mat-header-cell *matHeaderCellDef>{{ 'REVIEW.POLL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.poll.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="review_object_average.average">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">{{ 'REVIEW.AVERAGE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="align-center">{{ row.average }}</mat-cell>
