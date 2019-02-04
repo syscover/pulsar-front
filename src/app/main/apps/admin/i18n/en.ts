@@ -4,6 +4,8 @@ export const locale = {
         'ADMIN': {
             'ACCESS_TOKEN': 'Access token',
             'ACTION': 'Action',
+            'ADD_ALL_PERMISSIONS': 'Add all permissions',
+            'ADD_ALL_PERMISSIONS_WARNING': '¿Desea conceder todos los permisos al perfil {{ profile}}?',
             'ATTACHMENT_FAMILY': 'Attachmen family',
             'ATTACHMENT_MIME': 'Attachmen MIME',
             'CLIENT': 'Client',

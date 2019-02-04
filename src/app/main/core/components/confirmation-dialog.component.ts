@@ -30,7 +30,7 @@ export class ConfirmationDialogComponent implements OnInit
     {  
     }
 
-    ngOnInit() 
+    ngOnInit(): void
     {
         // load translations for component
         this.translateService.get('CONFIRM').subscribe(response => {

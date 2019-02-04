@@ -135,7 +135,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
             if (result) 
             {
-                // apperar spinner in delete translate button
+                // appear spinner in delete translate button
                 this.loadingTranslationButton = true;
 
                 this.http

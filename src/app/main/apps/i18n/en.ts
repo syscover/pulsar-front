@@ -25,7 +25,7 @@ export const locale = {
             'DATE': 'DATE',
             'DELETE': 'Delete',
             'DELETE_TRANSLATION': 'Delete translation',
-            'DELETED.F': 'Borrada',
+            'DELETED.F': 'Deleted',
             'DELETED.M': 'Deleted',
             'DENIED_PERMISSION': 'Permission denied, check with administrator',
             'DESCRIPTION' : 'Description',

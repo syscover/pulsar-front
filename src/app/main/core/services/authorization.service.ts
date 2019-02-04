@@ -18,7 +18,7 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
         private _translateService: TranslateService,
         private _snackBar: MatSnackBar
     ) {
-        this._permissions = _authenticationService.user().profile.permissions;
+        this._permissions = _authenticationService.user() ? _authenticationService.user().profile.permissions : null;
         this._translateService
             .get([
                 'APPS.OK',
@@ -35,7 +35,6 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
 
         if (route.data.action && route.data.resource)
         {
-
             const permission = _.find(this._permissions, {'resource_id': route.data.resource, 'action_id': route.data.action});
 
             if (permission) {

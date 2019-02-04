@@ -21,7 +21,7 @@ export class ValidationMessageService
         this.getAndInitTranslations();
     }
 
-    getAndInitTranslations()
+    getAndInitTranslations(): void
     {
         // load translations for component
         this.translateService

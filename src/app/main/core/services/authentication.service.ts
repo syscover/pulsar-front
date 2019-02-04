@@ -2,6 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpService } from './http.service';
 import { User } from '../../apps/admin/admin.models';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService extends HttpService
@@ -17,7 +18,7 @@ export class AuthenticationService extends HttpService
         this.setEndpoint('/api/v1/login'); // set api URL
     }
 
-    login(user: any)
+    login(user: any): Observable<Object>
     {
         // send credentials to server
         return this.http

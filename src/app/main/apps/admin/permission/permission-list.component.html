@@ -38,7 +38,11 @@
             </div>
             <!-- / SEARCH -->
 
-            <div></div>
+            <button mat-raised-button
+                    (click)="handleAddAllPermission()"
+                    class="new-btn mat-white-bg my-12 mt-sm-0">
+                <span>{{ 'ADMIN.ADD_ALL_PERMISSIONS' | translate }}</span>
+            </button>
 
         </div>
         <!-- / HEADER -->

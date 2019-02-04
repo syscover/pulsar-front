@@ -2,8 +2,9 @@ import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
 import { MatSelect } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
-import { Action, Permission } from '../admin.models';
+import {Action, Permission, Profile} from '../admin.models';
 import { graphQL } from './permission.graphql';
+import { ConfirmationDialogComponent } from '../../../core/components/confirmation-dialog.component';
 
 @Component({
     selector: 'dh2-admin-permission-list',
@@ -19,6 +20,7 @@ export class PermissionListComponent extends CoreListComponent
     displayedColumns = ['admin_resource.id', 'admin_resource.name', 'admin_package.name', 'permissions'];
     permissions: Permission[] = [];
     actions: Action[] = [];
+    profile: Profile = new Profile();
     spinnerActive: string = null;
 
     @ViewChildren(MatSelect) selects: QueryList<MatSelect>;
@@ -39,6 +41,13 @@ export class PermissionListComponent extends CoreListComponent
             value: this.params['profile_id']
         }];
 
+        args['sqlProfile'] = [{
+            command: 'where',
+            column: 'admin_profile.id',
+            operator: '=',
+            value: this.params['profile_id']
+        }];
+
         return args;
     }
 
@@ -46,6 +55,7 @@ export class PermissionListComponent extends CoreListComponent
     {
         this.permissions = data.adminPermissions;
         this.actions = data.adminActions;
+        this.profile = data.adminProfile;
     }
 
     handleChangeAction($event, resourceId, actionId): void
@@ -77,6 +87,48 @@ export class PermissionListComponent extends CoreListComponent
                         duration        : 3000
                     }
                 );
+            });
+    }
+
+    handleAddAllPermission(): void
+    {
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+                title: this.translateService.instant('ADMIN.ADD_ALL_PERMISSIONS_WARNING', {'profile': this.profile.name})
+            }
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result)
+                {
+                    // appear spinner in delete translate button
+                    this.showSpinner = true;
+
+                    const ob$ = this.http
+                        .apolloClient()
+                        .mutate({
+                            mutation: this.graphQL.mutationAddAllPermissions,
+                            variables: {
+                                profile_id: this.params['profile_id']
+                            }
+                        })
+                        .subscribe(data => {
+                            ob$.unsubscribe();
+
+                            // deactivate spinner
+                            this.showSpinner = false;
+                            this.snackBar.open(
+                                this.translations['APPS.CHANGED_PERMISSIONS'],
+                                this.translations['APPS.OK'],
+                                {
+                                    verticalPosition: 'top',
+                                    duration        : 3000
+                                }
+                            );
+                            this.initDataTable();
+                        });
+                }
             });
     }
 }
