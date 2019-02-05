@@ -77,6 +77,7 @@ export class ObjectAverage
     reviews: number;
     total: number;
     average: number;
+    fake_average: number;
 }
 
 export class QuestionAverage 

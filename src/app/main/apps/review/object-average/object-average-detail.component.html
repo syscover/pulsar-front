@@ -45,67 +45,79 @@
 
             <!-- CONTENT -->
             <div class="content">
-                <div fxFlex fxLayout="column">
-                    <form   id="formDetail"
-                            [formGroup]="fg"
-                            (ngSubmit)="postRecord(object)">
-                
-                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id">
-                            </mat-form-field>
-                        </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                <mat-label>{{ 'REVIEW.POLL' | translate }}</mat-label>
-                                <mat-select formControlName="poll_id">
-                                    <mat-option *ngFor="let poll of polls" [value]="poll.id">{{ poll.name }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ formErrors?.poll_id }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                <form   id="formDetail"
+                        class="w-100-p"
+                        fxLayout="column"
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input matInput formControlName="object_name">
-                                <mat-error>{{ formErrors?.object_name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <mat-tab-group>
 
-                        <!-- HEADER -->
-                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
-                            <mat-icon class="m-0 mr-16">trending_up</mat-icon>
-                            <div class="h2 secondary-text">{{ 'REVIEW.AVERAGES' | translate }}</div>
-                        </div>
-                        <!-- / HEADER -->
+                        <mat-tab label="{{ 'REVIEW.AVERAGE' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'NAV.REVIEWS' | translate }}</mat-label>
-                                <input matInput formControlName="reviews" type="number">
-                                <mat-hint align="start">{{ 'REVIEW.REVIEWS_DESCRIPTION' | translate }}</mat-hint>
-                            </mat-form-field>
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
 
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
-                                <mat-label>{{ 'APPS.TOTAL' | translate }}</mat-label>
-                                <input matInput formControlName="total" type="number">
-                                <mat-hint align="start">{{ 'REVIEW.TOTAL_DESCRIPTION' | translate }}</mat-hint>
-                            </mat-form-field>
-                        </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'REVIEW.POLL' | translate }}</mat-label>
+                                        <mat-select formControlName="poll_id">
+                                            <mat-option *ngFor="let poll of polls" [value]="poll.id">{{ poll.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.poll_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4 pt-20">
-                                <mat-label>{{ 'REVIEW.AVERAGE' | translate }}</mat-label>
-                                <input matInput formControlName="average" type="number">
-                                <mat-hint align="start">{{ 'REVIEW.AVERAGE_DESCRIPTION' | translate }}</mat-hint>
-                            </mat-form-field>
-                        </div>
-                    
-                    </form>
-                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="object_name">
+                                        <mat-error>{{ formErrors?.object_name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">trending_up</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'REVIEW.AVERAGES' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'NAV.REVIEWS' | translate }}</mat-label>
+                                        <input matInput formControlName="reviews" type="number">
+                                        <mat-hint align="start">{{ 'REVIEW.REVIEWS_DESCRIPTION' | translate }}</mat-hint>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                                        <mat-label>{{ 'APPS.TOTAL' | translate }}</mat-label>
+                                        <input matInput formControlName="total" type="number">
+                                        <mat-hint align="start">{{ 'REVIEW.TOTAL_DESCRIPTION' | translate }}</mat-hint>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4 pt-20">
+                                        <mat-label>{{ 'REVIEW.AVERAGE' | translate }}</mat-label>
+                                        <input matInput formControlName="average" type="number">
+                                        <mat-hint align="start">{{ 'REVIEW.AVERAGE_DESCRIPTION' | translate }}</mat-hint>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
+                </form>
+
             </div>
             <!-- / CONTENT -->
 
