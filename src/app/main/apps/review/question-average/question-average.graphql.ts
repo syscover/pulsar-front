@@ -1,12 +1,9 @@
 import gql from 'graphql-tag';
-import { graphQL as reviewPoll } from './../poll/poll.graphql';
+import { graphQL as reviewPoll } from '../poll/poll.graphql';
 
 const fields = `
     id
-    poll_id
-    poll {
-        ${reviewPoll.fields}
-    }
+    poll_id   
     question_id
     reviews
     total

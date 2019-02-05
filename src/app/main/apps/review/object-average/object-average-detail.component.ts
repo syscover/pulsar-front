@@ -30,7 +30,8 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
             object_name: [{value: '', disabled: true}],
             reviews: [{value: '', disabled: true}, Validators.required],
             total: [{value: '', disabled: true}, Validators.required],
-            average: [{value: '', disabled: true}, Validators.required]
+            average: [{value: '', disabled: true}, Validators.required],
+            fake_average: [{value: '', disabled: true}]
         });
     }
 
