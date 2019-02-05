@@ -86,6 +86,7 @@ export class QuestionAverage
     reviews: number;
     total: number;
     average: number;
+    fake_average: number;
 }
 
 export class Comment 
