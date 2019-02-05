@@ -24,6 +24,8 @@ export const locale = {
             'DEFAULT_HIGH_SCORE': 'Default high score',
             'EXPIRATION_DAYS': 'Expiration days',
             'EXPIRATION_DAYS_DESCRIPTION': 'Previous days before the review is eliminated but it is completed',
+            'FAKE_AVERAGE': 'Fake average',
+            'FAKE_AVERAGE_DESCRIPTION': 'Fake average between fake average questions',
             'HIGH_SCORE': 'High score',
             'MAILING_DAYS': 'Days before shipment',
             'MAILING_DAYS_DESCRIPTION': 'Days that will elapse before sending the review',

@@ -77,6 +77,12 @@
                     <mat-cell *matCellDef="let row" class="align-center mw-100">{{ row.average }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="review_object_average.fake_average">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="align-center mw-100">{{ 'REVIEW.FAKE_AVERAGE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="align-center mw-100">{{ row.fake_average }}</mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
@@ -86,8 +92,12 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
-                                <mat-icon>visibility</mat-icon>
-                                <span>{{ 'APPS.SHOW' | translate }}</span>
+                                <mat-icon>mode_edit</mat-icon>
+                                <span>{{ 'APPS.EDIT' | translate }}</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteRecord(row)">
+                                <mat-icon>delete</mat-icon>
+                                <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>
                         </mat-menu>
                     </mat-cell>

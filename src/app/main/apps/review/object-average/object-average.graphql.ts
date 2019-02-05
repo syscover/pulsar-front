@@ -13,6 +13,7 @@ const fields = `
     reviews
     total
     average
+    fake_average
 `;
 
 const relationsFields = `

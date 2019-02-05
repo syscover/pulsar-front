@@ -24,6 +24,8 @@ export const locale = {
             'DEFAULT_HIGH_SCORE': 'Puntuación máxima predeterminada',
             'EXPIRATION_DAYS': 'Días previos de caducidad',
             'EXPIRATION_DAYS_DESCRIPTION': 'Días previos antes eliminarse la review sino se completa',
+            'FAKE_AVERAGE': 'Media falsa',
+            'FAKE_AVERAGE_DESCRIPTION': 'Media falsa entre las medias falsas de las preguntas',
             'HIGH_SCORE': 'Puntuación máxima',
             'MAILING_DAYS': 'Días previos al envío',
             'MAILING_DAYS_DESCRIPTION': 'Días que transcurrirán antes de realizar el envío de la review',
