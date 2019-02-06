@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
+import {FormArray, Validators} from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { Poll } from '../review.models';
@@ -31,7 +31,9 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
             reviews: [{value: '', disabled: true}, Validators.required],
             total: [{value: '', disabled: true}, Validators.required],
             average: [{value: '', disabled: true}, Validators.required],
-            fake_average: [{value: '', disabled: true}]
+            fake_average: [{value: '', disabled: true}],
+            //
+            question_averages: new FormArray([])
         });
     }
 
