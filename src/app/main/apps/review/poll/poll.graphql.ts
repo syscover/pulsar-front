@@ -12,24 +12,6 @@ const fields = `
     comment_route
     review_email_template
     comment_email_template
-    questions {
-        id
-        lang_id
-        poll_id
-        type_id
-        name
-        description
-        sort
-        high_score
-        data_lang
-        average {
-            id
-            question_id
-            reviews
-            total
-            average
-        }
-    }
 `;
 
 const relationsFields = ``;
