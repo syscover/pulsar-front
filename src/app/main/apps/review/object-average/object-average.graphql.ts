@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { graphQL as reviewPoll } from '../poll/poll.graphql';
+import { graphQL as objectQuestionAverage } from '../object-question-average/object-question-average.graphql';
 
 const fields = `
     id
@@ -14,6 +15,9 @@ const fields = `
     total
     average
     fake_average
+    question_averages {
+        ${objectQuestionAverage.fields}
+    }
 `;
 
 const relationsFields = `
