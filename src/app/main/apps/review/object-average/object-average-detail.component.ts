@@ -53,7 +53,7 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
         // filter questions by baseLang and short
         this.questions = _.sortBy(_.filter(this.questions, obj => {
             return obj.lang_id === this.baseLang;
-        }), ['sort']);;
+        }), ['sort']);
 
         // init question averages formArray structure
         for (const obj of this.questions)
@@ -66,35 +66,10 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
                 object_id: '',
                 reviews: '',
                 total: '',
-                average: [{value: '', disabled: true}],
+                average: [{value: '', disabled: false}],
                 fake_average: ''
             }));
         }
-
-
-        /**
-        // filter questions by baseLang
-        this.questions = _.sortBy(_.filter(this.object.poll.questions, obj => {
-            return obj.lang_id === this.baseLang;
-        }), ['sort']);
-
-        // clone object to avoid readonly properties
-        this.object = Object.assign({}, this.object);
-
-        // assign new responses sort according to the order of the questions
-        this.object.responses = this.object.responses.mapOrder('question_id', _.map(this.questions, 'id'));
-
-        // init responses formArray structure
-        for (const obj of this.questions)
-        {
-            this.responses.push(this.fb.group({
-                id: '',
-                question_id: '',
-                score: '',
-                text: ''
-            }));
-        }
-         */
     }
 
     setRelationsData(data: any): void
