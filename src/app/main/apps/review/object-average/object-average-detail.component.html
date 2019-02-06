@@ -37,6 +37,20 @@
             </div>
             <!-- / APP TITLE -->
 
+            <div fxLayoutGap="30px">
+
+                <button mat-raised-button
+                        type="submit"
+                        form="formDetail"
+                        class="fuse-white mt-16 mt-sm-0"
+                        [disabled]="fg.invalid || fg.pristine || loadingButton"
+                        *ngIf="dataRoute.action ==='edit'">
+                    {{ 'APPS.SAVE' | translate }}
+                    <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+                </button>
+
+            </div>
+
         </div>
         <!-- / HEADER -->
 
@@ -123,6 +137,56 @@
 
                         <mat-tab label="{{ 'NAV.QUESTIONS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-5">
+                                        <!-- HEADER -->
+                                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                            <mat-icon class="m-0 mr-16">assignment_turned_in</mat-icon>
+                                            <div class="h2 secondary-text">{{ 'APPS.REAL' | translate }}</div>
+                                        </div>
+                                        <!-- / HEADER -->
+                                    </div>
+                                    <div class="col-12 offset-md-1 col-md-5">
+                                        <!-- HEADER -->
+                                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                            <mat-icon class="m-0 mr-16">assignment_late</mat-icon>
+                                            <div class="h2 secondary-text">{{ 'APPS.FAKE' | translate }}</div>
+                                        </div>
+                                        <!-- / HEADER -->
+                                    </div>
+                                </div>
+
+                                <ng-container formArrayName="question_averages">
+                                    <div fxLayout="row" class="mb-12" *ngFor="let question of questions; let i=index" [formGroupName]="i">
+
+                                        <input type="hidden" formControlName="id">
+                                        <input type="hidden" formControlName="poll_id">
+                                        <input type="hidden" formControlName="question_id">
+                                        <input type="hidden" formControlName="object_type">
+                                        <input type="hidden" formControlName="object_id">
+                                        <input type="hidden" formControlName="reviews">
+                                        <input type="hidden" formControlName="total">
+                                        <input type="hidden" formControlName="average">
+
+                                        <ng-container [ngSwitch]="question.type_id">
+                                            <ng-container *ngSwitchCase="1">
+                                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <input matInput formControlName="average" type="number" [min]="0" [max]="question.high_score">
+                                                    <mat-hint align="start">{{ question.description }}</mat-hint>
+                                                </mat-form-field>
+
+                                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                                    <mat-label>{{ question.name }}</mat-label>
+                                                    <input matInput formControlName="fake_average" type="number" [min]="0" [max]="question.high_score">
+                                                    <mat-hint align="start">{{ question.description }}</mat-hint>
+                                                </mat-form-field>
+                                            </ng-container>
+                                        </ng-container>
+
+                                    </div>
+                                </ng-container>
 
                             </div>
                         </mat-tab>

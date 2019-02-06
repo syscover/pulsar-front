@@ -63,14 +63,14 @@ export const graphQL = {
         }`,
 
     mutationCreateObject: gql`
-        mutation ReviewCreateObjectAverage ($payload:ReviewAverageInput!) {
+        mutation ReviewCreateObjectAverage ($payload:ReviewObjectAverageInput!) {
             reviewCreateObjectAverage (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
-        mutation ReviewUpdateObjectAverage ($payload:ReviewAverageInput!) {
+        mutation ReviewUpdateObjectAverage ($payload:ReviewObjectAverageInput!) {
             reviewUpdateObjectAverage (payload:$payload) {
                 ${fields}
             }
