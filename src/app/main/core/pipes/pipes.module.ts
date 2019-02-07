@@ -12,6 +12,7 @@ import { ValuesArrayPipe } from './values-array.pipe';
 import { NumberFormatPipe } from './number-format.pipe';
 import { MustTranslatePipe } from './must-translate.pipe';
 import { SumByPipe } from './sum-by.pipe';
+import { DdPipe } from './dd.pipe';
 
 @NgModule({
     providers: [
@@ -22,6 +23,7 @@ import { SumByPipe } from './sum-by.pipe';
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
         CurrencyFormatPipe,
+        DdPipe,
         GetCollectionObjectValuePipe,
         GetPermissionActionsPipe,
         SizeFormatPipe,
@@ -37,6 +39,7 @@ import { SumByPipe } from './sum-by.pipe';
         ActionTranslationObjectPipe,
         CheckTranslationObjectPipe,
         CurrencyFormatPipe,
+        DdPipe,
         GetCollectionObjectValuePipe,
         GetPermissionActionsPipe,
         SizeFormatPipe,
