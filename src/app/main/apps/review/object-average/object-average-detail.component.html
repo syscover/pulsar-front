@@ -173,7 +173,7 @@
                                             <ng-container *ngSwitchCase="1">
                                                 <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
                                                     <mat-label>{{ question.name }}</mat-label>
-                                                    <input matInput formControlName="average" type="number" [min]="0" [max]="question.high_score">
+                                                    <input matInput type="number" [value]="questionAverages.at(i)?.get('average').value" disabled>
                                                     <mat-hint align="start">{{ question.description }}</mat-hint>
                                                 </mat-form-field>
 
