@@ -46,11 +46,6 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         canActivateChild: [AuthorizationService],
         children: [
-            // Action
-            { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list', resource: 'admin-perm-action' }},
-            { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create', resource: 'admin-perm-action' }},
-            { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit', resource: 'admin-perm-action' }},
-
             // AttachmentFamily
             { path: 'attachment-family',                                component: AttachmentFamilyListComponent,       data: { action: 'list', resource: 'admin-attachment-family' }},
             { path: 'attachment-family/create',                         component: AttachmentFamilyDetailComponent,     data: { action: 'create', resource: 'admin-attachment-family' }},
@@ -84,63 +79,68 @@ const routes: Routes = [
             { path: 'field/show/:lang_id/:id',                          component: FieldDetailComponent,                data: { action: 'edit', resource: 'admin-field' }},
 
             // FieldGroup
-            { path: 'field-group',                                      component: FieldGroupListComponent,             data: { action: 'list' }},
-            { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create' }},
-            { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit' }},
+            { path: 'field-group',                                      component: FieldGroupListComponent,             data: { action: 'list', resource: 'admin-field-group' }},
+            { path: 'field-group/create',                               component: FieldGroupDetailComponent,           data: { action: 'create', resource: 'admin-field-group' }},
+            { path: 'field-group/show/:id',                             component: FieldGroupDetailComponent,           data: { action: 'edit', resource: 'admin-field-group' }},
 
             // FieldValue
-            { path: 'field-value/:field_id',                            component: FieldValueListComponent,             data: { action: 'list' }},
-            { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create' }},
-            { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang' }},
-            { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit' }},
+            { path: 'field-value/:field_id',                            component: FieldValueListComponent,             data: { action: 'list', resource: 'admin-field-value' }},
+            { path: 'field-value/create/:field_id',                     component: FieldValueDetailComponent,           data: { action: 'create', resource: 'admin-field-value' }},
+            { path: 'field-value/create/:field_id/:lang_id/:id',        component: FieldValueDetailComponent,           data: { action: 'create-lang', resource: 'admin-field-value' }},
+            { path: 'field-value/show/:field_id/:lang_id/:id',          component: FieldValueDetailComponent,           data: { action: 'edit', resource: 'admin-field-value' }},
 
             // Lang
-            { path: 'lang',                                             component: LangListComponent,                   data: { action: 'list' }},
-            { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create' }},
-            { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit' }},
+            { path: 'lang',                                             component: LangListComponent,                   data: { action: 'list', resource: 'admin-lang' }},
+            { path: 'lang/create',                                      component: LangDetailComponent,                 data: { action: 'create', resource: 'admin-lang' }},
+            { path: 'lang/show/:id',                                    component: LangDetailComponent,                 data: { action: 'edit', resource: 'admin-lang' }},
 
             // Package
-            { path: 'package',                                          component: PackageListComponent,                data: { action: 'list' }},
-            { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create' }},
-            { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit' }},
-
-            // Profile
-            { path: 'profile',                                          component: ProfileListComponent,                data: { action: 'list' }},
-            { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create' }},
-            { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit' }},
+            { path: 'package',                                          component: PackageListComponent,                data: { action: 'list', resource: 'admin-package' }},
+            { path: 'package/create',                                   component: PackageDetailComponent,              data: { action: 'create', resource: 'admin-package' }},
+            { path: 'package/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit', resource: 'admin-package' }},
 
             // Report
-            { path: 'report',                                           component: ReportListComponent,                 data: { action: 'list' }},
-            { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create' }},
-            { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit' }},
+            { path: 'report',                                           component: ReportListComponent,                 data: { action: 'list', resource: 'admin-report' }},
+            { path: 'report/create',                                    component: ReportDetailComponent,               data: { action: 'create', resource: 'admin-report' }},
+            { path: 'report/show/:id',                                  component: ReportDetailComponent,               data: { action: 'edit', resource: 'admin-report' }},
 
-            // Resource
-            { path: 'resource',                                         component: ResourceListComponent,               data: { action: 'list' }},
-            { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create' }},
-            { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit' }},
-
-            // TerritorialArea1
-            { path: 'country/territorial-area-1/:country_id',           component: TerritorialArea1ListComponent,       data: { action: 'list' }},
-            { path: 'country/territorial-area-1/create/:country_id',    component: TerritorialArea1DetailComponent,     data: { action: 'create' }},
-            { path: 'country/territorial-area-1/show/:country_id/:id',  component: TerritorialArea1DetailComponent,     data: { action: 'edit' }},
-
-            // TerritorialArea2
-            { path: 'country/territorial-area-2/:country_id',           component: TerritorialArea2ListComponent,       data: { action: 'list' }},
-            { path: 'country/territorial-area-2/create/:country_id',    component: TerritorialArea2DetailComponent,     data: { action: 'create' }},
-            { path: 'country/territorial-area-2/show/:country_id/:id',  component: TerritorialArea2DetailComponent,     data: { action: 'edit' }},
-
-            // TerritorialArea3
-            { path: 'country/territorial-area-3/:country_id',           component: TerritorialArea3ListComponent,       data: { action: 'list' }},
-            { path: 'country/territorial-area-3/create/:country_id',    component: TerritorialArea3DetailComponent,     data: { action: 'create' }},
-            { path: 'country/territorial-area-3/show/:country_id/:id',  component: TerritorialArea3DetailComponent,     data: { action: 'edit' }},
-
-            // User
-            { path: 'user',                                             component: UserListComponent,                   data: { action: 'list' }},
-            { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create' }},
-            { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit' }},
+            // Action
+            { path: 'action',                                           component: ActionListComponent,                 data: { action: 'list', resource: 'admin-perm-action' }},
+            { path: 'action/create',                                    component: ActionDetailComponent,               data: { action: 'create', resource: 'admin-perm-action' }},
+            { path: 'action/show/:id',                                  component: ActionDetailComponent,               data: { action: 'edit', resource: 'admin-perm-action' }},
 
             // Permission
-            { path: 'profile/permission/:profile_id',                   component: PermissionListComponent,             data: { action: 'list' }}
+            { path: 'profile/permission/:profile_id',                   component: PermissionListComponent,             data: { action: 'list', resource: 'admin-perm-perm' }},
+
+            // Profile
+            { path: 'profile',                                          component: ProfileListComponent,                data: { action: 'list', resource: 'admin-perm-profile' }},
+            { path: 'profile/create',                                   component: ProfileDetailComponent,              data: { action: 'create', resource: 'admin-perm-profile' }},
+            { path: 'profile/show/:id',                                 component: ProfileDetailComponent,              data: { action: 'edit', resource: 'admin-perm-profile' }},
+
+            // Resource
+            { path: 'resource',                                         component: ResourceListComponent,               data: { action: 'list', resource: 'admin-perm-resource' }},
+            { path: 'resource/create',                                  component: ResourceDetailComponent,             data: { action: 'create', resource: 'admin-perm-resource' }},
+            { path: 'resource/show/:id',                                component: ResourceDetailComponent,             data: { action: 'edit', resource: 'admin-perm-resource' }},
+
+            // TerritorialArea1
+            { path: 'country/territorial-area-1/:country_id',           component: TerritorialArea1ListComponent,       data: { action: 'list', resource: 'admin-country-ta1' }},
+            { path: 'country/territorial-area-1/create/:country_id',    component: TerritorialArea1DetailComponent,     data: { action: 'create', resource: 'admin-country-ta1' }},
+            { path: 'country/territorial-area-1/show/:country_id/:id',  component: TerritorialArea1DetailComponent,     data: { action: 'edit', resource: 'admin-country-ta1' }},
+
+            // TerritorialArea2
+            { path: 'country/territorial-area-2/:country_id',           component: TerritorialArea2ListComponent,       data: { action: 'list', resource: 'admin-country-ta2' }},
+            { path: 'country/territorial-area-2/create/:country_id',    component: TerritorialArea2DetailComponent,     data: { action: 'create', resource: 'admin-country-ta2' }},
+            { path: 'country/territorial-area-2/show/:country_id/:id',  component: TerritorialArea2DetailComponent,     data: { action: 'edit', resource: 'admin-country-ta2' }},
+
+            // TerritorialArea3
+            { path: 'country/territorial-area-3/:country_id',           component: TerritorialArea3ListComponent,       data: { action: 'list', resource: 'admin-country-ta3' }},
+            { path: 'country/territorial-area-3/create/:country_id',    component: TerritorialArea3DetailComponent,     data: { action: 'create', resource: 'admin-country-ta3' }},
+            { path: 'country/territorial-area-3/show/:country_id/:id',  component: TerritorialArea3DetailComponent,     data: { action: 'edit', resource: 'admin-country-ta3' }},
+
+            // User
+            { path: 'user',                                             component: UserListComponent,                   data: { action: 'list', resource: 'admin-user' }},
+            { path: 'user/create',                                      component: UserDetailComponent,                 data: { action: 'create', resource: 'admin-user' }},
+            { path: 'user/show/:id',                                    component: UserDetailComponent,                 data: { action: 'edit', resource: 'admin-user' }}
         ]  
     }
 ];
