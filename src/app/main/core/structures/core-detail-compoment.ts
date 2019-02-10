@@ -148,7 +148,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         const ob$ = this.http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: this.graphQL.queryObject,
                 // do it in separate function to may be rewrite, for example in FieldGroupDetailComponent
                 variables: this.argumentsGetRecord(params)
@@ -232,7 +231,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             // check if there are any variable
             if (args) {
                 options = {
-                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryRelationsObject,
                     variables: args
                 };
@@ -240,7 +238,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             else 
             {
                 options = {
-                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryRelationsObject
                 };
             }
@@ -376,6 +373,17 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                         message = data.errors[0].errorInfo[2]
                                   + '\nSQLSTATE: ' + data.errors[0].errorInfo[0]
                                   + '\nCODE: ' + data.errors[0].errorInfo[1];
+                    }
+                    else if (data.errors[0].validationErrors &&  typeof data.errors[0].validationErrors === 'object')
+                    {
+                        message = data.errors[0].message + '. ' + data.errors[0].debugMessage;
+                        for (const property in data.errors[0].validationErrors)
+                        {
+                            if (data.errors[0].validationErrors.hasOwnProperty(property))
+                            {
+                                message += '\n' + property + ': ' + data.errors[0].validationErrors[property];
+                            }
+                        }
                     }
                     else if (data.errors[0].debugMessage)
                     {
