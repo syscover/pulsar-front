@@ -32,7 +32,6 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
         const ob$ = this.http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: graphQL.queryRunReport,
                 variables: {
                     id: report.id

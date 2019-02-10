@@ -33,7 +33,6 @@ export class DynamicFormService extends HttpService
             const ob$ = this
                 .apolloClient()
                 .watchQuery({
-                    fetchPolicy: 'network-only',
                     query: graphQL.queryObjects,
                     variables: {
                         sql: [

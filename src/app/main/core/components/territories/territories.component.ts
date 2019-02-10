@@ -399,7 +399,6 @@ export class TerritoriesComponent implements OnChanges, OnInit, OnDestroy
         const ob$ = this._http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: gql`
                     ${fnArguments}
                     ${graphQLQuery}

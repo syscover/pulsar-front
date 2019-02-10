@@ -70,13 +70,15 @@ export class ApolloService
             link: this.httpLink.create({ uri: graphqlUri }),
             cache: cache,
             defaultOptions: {
-                mutate: {
+                watchQuery: {
+                    fetchPolicy: 'network-only',
                     errorPolicy: 'all'
                 },
                 query: {
+                    fetchPolicy: 'network-only',
                     errorPolicy: 'all'
                 },
-                watchQuery: {
+                mutate: {
                     errorPolicy: 'all'
                 }
             }

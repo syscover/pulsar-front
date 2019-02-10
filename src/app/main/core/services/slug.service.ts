@@ -15,7 +15,6 @@ export class SlugService
         return await this._http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: gql`
                     query CoreSlug (
                         $model:String! 

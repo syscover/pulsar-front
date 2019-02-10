@@ -211,7 +211,6 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         return await this.http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: this.graphQL.queryPaginationObject,
                 variables: args
             })

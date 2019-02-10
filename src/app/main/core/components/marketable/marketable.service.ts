@@ -70,7 +70,6 @@ export class MarketableService
         const ob = this._http
             .apolloClient()
             .watchQuery({
-                fetchPolicy: 'network-only',
                 query: gql`
                     query MarketProductTaxes ($price:Float! $productClassTax:Int $product_tax_prices:Int) {
                         marketProductTaxes (price:$price productClassTax:$productClassTax product_tax_prices:$product_tax_prices)

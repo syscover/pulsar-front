@@ -106,7 +106,6 @@ export class FamilyDialogComponent implements OnInit
             const ob$ = this._http
                 .apolloClient()
                 .watchQuery({
-                    fetchPolicy: 'network-only',
                     query: this.graphQL.queryObject,
                     variables: {
                         sql: [{
