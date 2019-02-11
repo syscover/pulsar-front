@@ -335,12 +335,13 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col hint">
                                         <mat-label>{{ 'WINE.TASTING' | translate }}</mat-label>
                                         <textarea   matInput
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="tasting"></textarea>
+                                        <mat-hint align="start">{{ 'WINE.TASTING_HINT' | translate }}</mat-hint>
                                         <mat-error>{{ formErrors?.tasting }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -407,12 +408,13 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col hint">
                                         <mat-label>{{ 'WINE.VINEYARD' | translate }}</mat-label>
                                         <textarea   matInput
                                                     matTextareaAutosize
                                                     matAutosizeMinRows="4"
                                                     formControlName="vineyard"></textarea>
+                                        <mat-hint align="start">{{ 'WINE.VINEYARD_HINT' | translate }}</mat-hint>
                                         <mat-error>{{ formErrors?.vineyard }}</mat-error>
                                     </mat-form-field>
                                 </div>
