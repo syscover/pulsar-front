@@ -76,6 +76,12 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="admin_profile.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.PROFILE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.profile.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="forem_group.price">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">{{ 'APPS.PRICE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.price }}</mat-cell>
