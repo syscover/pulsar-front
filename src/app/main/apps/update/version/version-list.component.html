@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">rounded_corner</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.RESOURCES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">filter_1</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.VERSIONS' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,15 +40,15 @@
 
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
-                    class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.RESOURCE' | translate }}</span>
+                    class="new-btn mat-white-bg my-12 mt-sm-0">
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'UPDATE.VERSION' | translate }}</span>
             </button>
 
         </div>
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white">
+        <div class="content-card mat-white-bg">
 
             <dh2-spinner [show]="isLoadingResults"></dh2-spinner>
 
@@ -58,21 +58,35 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_resource.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                <ng-container matColumnDef="update_versions.id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_resource.name">
+                <ng-container matColumnDef="update_versions.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_package.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.PACKAGE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.admin_package_name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex mw-100">{{ 'APPS.PACKAGE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex mw-100">{{ row.package.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="update_versions.version">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'APPS.SORT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.version }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="update_versions.publish">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'APPS.ACTIVE.F' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
+                        <mat-icon *ngIf="row.publish">done</mat-icon>
+                    </mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

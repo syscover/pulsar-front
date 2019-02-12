@@ -11,7 +11,7 @@ import { graphQL } from './package.graphql';
 })
 export class PackageListComponent extends CoreListComponent 
 {
-    objectTranslation = 'ADMIN.PACKAGE';
+    objectTranslation = 'APPS.PACKAGE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_package.id', 'admin_package.name', 'admin_package.root'];
     displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.sort', 'admin_package.active', 'actions'];

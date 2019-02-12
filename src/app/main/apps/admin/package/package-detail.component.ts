@@ -11,7 +11,7 @@ import { graphQL } from './package.graphql';
 })
 export class PackageDetailComponent extends CoreDetailComponent 
 {
-    objectTranslation = 'ADMIN.PACKAGE';
+    objectTranslation = 'APPS.PACKAGE';
     objectTranslationGender = 'M';
 
     constructor(

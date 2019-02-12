@@ -480,6 +480,23 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
+                'id'   : 'update',
+                'title': 'Updates',
+                'translate': 'NAV.UPDATES',
+                'type' : 'collapsable',
+                'icon' : 'cloud_download',
+                'children' : [
+                    {
+                        'id'        : 'versions',
+                        'title'     : 'Versions',
+                        'translate' : 'NAV.VERSIONS',
+                        'type'      : 'item',
+                        'icon'      : 'filter_1',
+                        'url'       : '/apps/update/version'
+                    }
+                ]
+            },
+            {
                 'id'       : 'administration',
                 'title'    : 'Administration',
                 'translate': 'NAV.ADMINISTRATION',

@@ -23,6 +23,11 @@ const routes = [
         canLoad     : [AuthorizationService]
     },
     {
+        path        : 'update',
+        loadChildren: './update/update.module#UpdateModule',
+        canLoad     : [AuthorizationService]
+    },
+    {
         path        : 'cms',
         loadChildren: './cms/cms.module#CmsModule',
         canLoad     : [AuthorizationService]

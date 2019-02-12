@@ -69,6 +69,7 @@ export const locale = {
             'NONE.M': 'None',
             'OBSERVATIONS': 'Observations',
             'OK': 'Ok',
+            'PACKAGE': 'Package',
             'PASSWORD': 'Password',
             'PERCENTAGE': 'Percentage',
             'PHONE': 'Phone',
