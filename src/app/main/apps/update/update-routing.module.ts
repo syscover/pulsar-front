@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizationService } from '../../core/services/authorization.service';
 
+import { VersionDetailComponent } from './version/version-detail.component';
 import { VersionListComponent } from './version/version-list.component';
 
 const routes: Routes = [
@@ -12,8 +13,8 @@ const routes: Routes = [
         children: [
             // Version
             { path: 'version',                                          component: VersionListComponent,                data: { action: 'list', resource: 'update-version' }},
-            // { path: 'version/create',                                   component: PackageDetailComponent,              data: { action: 'create', resource: 'update-version' }},
-            // { path: 'version/show/:id',                                 component: PackageDetailComponent,              data: { action: 'edit', resource: 'update-version' }},
+            { path: 'version/create',                                   component: VersionDetailComponent,              data: { action: 'create', resource: 'update-version' }},
+            { path: 'version/show/:id',                                 component: VersionDetailComponent,              data: { action: 'edit', resource: 'update-version' }},
         ]  
     }
 ];

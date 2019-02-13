@@ -71,13 +71,13 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_package.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex mw-100">{{ 'APPS.PACKAGE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex mw-100">{{ row.package.name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.PACKAGE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.package.name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="update_versions.version">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'APPS.SORT' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'UPDATE.VERSION' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.version }}</mat-cell>
                 </ng-container>
 

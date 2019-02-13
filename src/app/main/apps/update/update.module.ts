@@ -5,6 +5,7 @@ import { UpdateRoutingModule } from './update-routing.module';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
+import { VersionDetailComponent } from './version/version-detail.component';
 import { VersionListComponent } from './version/version-list.component';
 
 @NgModule({
@@ -14,8 +15,8 @@ import { VersionListComponent } from './version/version-list.component';
     ],
     exports: [ ],
     declarations: [
+        VersionDetailComponent,
         VersionListComponent
-        // PackageDetailComponent,
     ],
     providers: []
 })

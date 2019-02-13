@@ -1,20 +1,20 @@
 import gql from 'graphql-tag';
-import { graphQL as adminVersionGraphQL } from '../../admin/package/package.graphql';
+import { graphQL as adminPackageGraphQL } from '../../admin/package/package.graphql';
 
 const fields = `
     id
     name
     package_id
     package {
-        ${adminVersionGraphQL.fields}
+        ${adminPackageGraphQL.fields}
     }
     version
     publish
 `;
 
 const relationsFields = `
-    adminVersions {
-        ${adminVersionGraphQL.fields}
+    adminPackages {
+        ${adminPackageGraphQL.fields}
     }
 `;
 
@@ -33,11 +33,17 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query UpdateGetRelationsResource {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
         query UpdateGetVersions ($sql:[CoreSQLInput]) {
             coreObjects: updateVersions (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
@@ -45,6 +51,7 @@ export const graphQL = {
             coreObject: updateVersion (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`

@@ -24,7 +24,7 @@
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    <div class="h2" *ngIf="dataRoute.action ==='edit' || dataRoute.action ==='create-lang'">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
@@ -40,7 +40,7 @@
             <button mat-raised-button
                     type="submit"
                     form="formDetail"
-                    class="mat-white-bg mt-16 mt-sm-0"
+                    class="fuse-white mt-16 mt-sm-0"
                     [disabled]="fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='create'">
                 {{ 'APPS.ADD' | translate }}
@@ -50,7 +50,7 @@
             <button mat-raised-button
                     type="submit"
                     form="formDetail"
-                    class="mat-white-bg mt-16 mt-sm-0"
+                    class="fuse-white mt-16 mt-sm-0"
                     [disabled]="fg.invalid || fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='edit'">
                 {{ 'APPS.SAVE' | translate }}
@@ -60,7 +60,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card mat-white-bg">
+        <div class="content-card fuse-white">
 
             <!-- CONTENT -->
             <div class="content">
