@@ -60,53 +60,80 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white p-24">
+        <div class="content-card fuse-white">
 
             <!-- CONTENT -->
             <div class="content">
 
                 <form   id="formDetail"
+                        class="col-12"
+                        fxLayout="column"
+                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                            <input matInput formControlName="id">
-                        </mat-form-field>
-                    </div>
+                    <mat-tab-group>
+                        <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                            <input matInput formControlName="name" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                            <mat-label>{{ 'APPS.PACKAGE' | translate }}</mat-label>
-                            <mat-select formControlName="package_id" required>
-                                <mat-option *ngFor="let package of packages" [value]="package.id">{{ package.name }}</mat-option>
-                                <mat-error>{{ formErrors?.package_id }}</mat-error>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                            <mat-label>{{ 'UPDATE.VERSION' | translate }}</mat-label>
-                            <input matInput formControlName="version" required>
-                            <mat-error>{{ formErrors?.name }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.PACKAGE' | translate }}</mat-label>
+                                        <mat-select formControlName="package_id" required>
+                                            <mat-option *ngFor="let package of packages" [value]="package.id">{{ package.name }}</mat-option>
+                                            <mat-error>{{ formErrors?.package_id }}</mat-error>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
 
-                    <div fxLayout="row">
-                        <div class="col-6 py-20">
-                            <mat-checkbox formControlName="publish" labelPosition="before">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
-                        </div>
-                    </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'UPDATE.VERSION' | translate }}</mat-label>
+                                        <input matInput formControlName="version" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-6 py-20">
+                                        <mat-checkbox formControlName="publish" labelPosition="before">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'UPDATE.QUERY' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <td-code-editor theme="hc-black"
+                                                    language="sql"
+                                                    class="col-12"
+                                                    formControlName="query"
+                                                    style="height: 200px">
+                                    </td-code-editor>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
                     
                 </form>
 

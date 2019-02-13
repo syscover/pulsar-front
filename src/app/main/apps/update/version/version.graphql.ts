@@ -10,6 +10,7 @@ const fields = `
     }
     version
     publish
+    query
 `;
 
 const relationsFields = `
