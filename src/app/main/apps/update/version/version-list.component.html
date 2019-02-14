@@ -76,6 +76,22 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="update_versions.migration">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-100">{{ 'UPDATE.MIGRATION' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-100">
+                        <mat-icon *ngIf="row.migration">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="update_versions.config">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-100">{{ 'APPS.CONFIG' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-100">
+                        <mat-icon *ngIf="row.config">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="update_versions.version">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'UPDATE.VERSION' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.version }}</mat-cell>

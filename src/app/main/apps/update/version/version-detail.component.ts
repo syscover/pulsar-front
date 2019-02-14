@@ -1,4 +1,4 @@
-import {Component, Injector, ViewChild} from '@angular/core';
+import { Component, Injector, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
@@ -34,8 +34,10 @@ export class VersionDetailComponent extends CoreDetailComponent
             name: ['', Validators.required],
             package_id: ['', Validators.required],
             version: ['', Validators.required],
+            migration: false,
+            config: false,
+            query: '',
             publish: false,
-            sql: '',
         });
     }
 

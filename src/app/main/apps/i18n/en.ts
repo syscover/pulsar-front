@@ -18,6 +18,7 @@ export const locale = {
             'COMPANY': 'Company',
             'COMPLETED.F': 'Completed',
             'COMPLETED.M': 'Completed',
+            'CONFIG': 'Config',
             'COUNTRY': 'Country',
             'CUSTOMER': 'Customer',
             'CUSTOMER_GROUP': 'Customer group',

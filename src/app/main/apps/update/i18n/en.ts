@@ -2,9 +2,10 @@ export const locale = {
     lang: 'en',
     data: {
         'UPDATE': {
-            'VERSION': 'Version',
+            'MIGRATION': 'Migration',
             'QUERIES': 'Queries',
-            'QUERY': 'Query'
+            'QUERY': 'Query',
+            'VERSION': 'Version',
         }
     }
 };

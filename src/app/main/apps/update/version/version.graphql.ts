@@ -9,8 +9,10 @@ const fields = `
         ${adminPackageGraphQL.fields}
     }
     version
-    publish
+    migration
+    config
     query
+    publish
 `;
 
 const relationsFields = `

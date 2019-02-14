@@ -14,7 +14,7 @@ export class VersionListComponent extends CoreListComponent
     objectTranslation = 'UPDATE.VERSION';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['update_versions.id', 'update_versions.name', 'admin_package.name', 'update_versions.version'];
-    displayedColumns = ['update_versions.id', 'update_versions.name', 'admin_package.name', 'update_versions.version', 'update_versions.publish', 'actions'];
+    displayedColumns = ['update_versions.id', 'update_versions.name', 'admin_package.name', 'update_versions.migration', 'update_versions.config', 'update_versions.version', 'update_versions.publish', 'actions'];
 
     constructor(
         protected injector: Injector
