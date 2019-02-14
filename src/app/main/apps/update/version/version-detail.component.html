@@ -95,7 +95,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'UPDATE.VERSION' | translate }}</mat-label>
                             <input matInput formControlName="version" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -103,8 +103,18 @@
                     </div>
 
                     <div fxLayout="row">
+                        <div class="col-6 col-md-4 py-20">
+                            <mat-checkbox formControlName="migration">{{ 'UPDATE.MIGRATION' | translate }}</mat-checkbox>
+                        </div>
+
+                        <div class="col-6 col-md-4 py-20">
+                            <mat-checkbox formControlName="config">{{ 'APPS.CONFIG' | translate }}</mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row">
                         <div class="col-6 py-20">
-                            <mat-checkbox formControlName="publish" labelPosition="before">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
+                            <mat-checkbox formControlName="publish">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
                         </div>
                     </div>
 
