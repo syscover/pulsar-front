@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { 
+import {
     MatAutocompleteModule,
+    MatBadgeModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCheckboxModule,
@@ -33,7 +34,7 @@ import {
     MatTabsModule,
     MatStepperModule,
     DateAdapter
- } from '@angular/material';
+} from '@angular/material';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
@@ -43,6 +44,7 @@ import { SelectSearchService } from '../services/select-search.service';
 @NgModule({
     imports: [
         MatAutocompleteModule,
+        MatBadgeModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,
@@ -83,6 +85,7 @@ import { SelectSearchService } from '../services/select-search.service';
     ],
     exports: [
         MatAutocompleteModule,
+        MatBadgeModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,

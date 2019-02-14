@@ -10,6 +10,7 @@ import { MarketableModule } from './marketable/marketable.module';
 import { TerritoriesModule } from './territories/territories.module';
 import { StockableModule } from './stockable/stockable.module';
 import { FlagIconModule } from './flag-icon/flag-icon.module';
+import { UpdateModule } from './update/update.module';
 
 @NgModule({
     imports: [
@@ -24,8 +25,9 @@ import { FlagIconModule } from './flag-icon/flag-icon.module';
         MatDialogModule,
         MatFormFieldModule,
         MatIconModule,
+        StockableModule,
         TerritoriesModule,
-        StockableModule
+        UpdateModule
     ],
     exports: [
         AttachmentsModule,
@@ -35,8 +37,9 @@ import { FlagIconModule } from './flag-icon/flag-icon.module';
         ImageInputModule,
         LocationMapModule,
         MarketableModule,
+        StockableModule,
         TerritoriesModule,
-        StockableModule
+        UpdateModule
     ],
     declarations: [
         ConfirmationDialogComponent
