@@ -3,8 +3,8 @@ import { CanActivate, CanActivateChild, CanLoad, Router, Route, ActivatedRouteSn
 import { AuthenticationService } from './authentication.service';
 import { Permission } from '../../apps/admin/admin.models';
 import * as _ from 'lodash';
-import {MatSnackBar} from '@angular/material';
-import {TranslateService} from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class AuthorizationService implements CanActivate, CanActivateChild, CanLoad

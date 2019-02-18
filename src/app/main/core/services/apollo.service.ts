@@ -11,15 +11,15 @@ export class ApolloService
         private httpLink: HttpLink
     ) { }
 
-    createApolloClient(graphqlUri: string) 
+    createApolloClient(graphqlUri: string): void
     {
         // id cache policy
         const cache = new InMemoryCache({
             dataIdFromObject: (o: any) => {
 
-                function guid() 
+                function guid(): string
                 {
-                    function s4() 
+                    function s4(): string
                     {
                         return Math.floor((1 + Math.random()) * 0x10000)
                         .toString(16)
