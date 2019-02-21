@@ -3,7 +3,7 @@ export const locale = {
     data: {
         'AUTH': {
             'LOGIN_TO_YOUR_ACCOUNT': 'Accede a tu cuenta',
-            'WELCOME': '¡Bienvenido a DH2!',
+            'WELCOME': '¡Bienvenido a Techedge Cloud!',
             'WELCOME_INTRODUCTION_01': '<span class="excerpt">Nunca olvides que...</span><br><br>Alguien inteligente aprende de la experiencia de los demás',
             'WELCOME_INTRODUCTION_02': '<span class="excerpt">Nunca olvides que...</span><br><br>El conocimiento es orgulloso por lo mucho que ha aprendido; la sabiduría es humilde porque no sabe más.',
             'WELCOME_INTRODUCTION_03': '<span class="excerpt">Nunca olvides que...</span><br><br>Los grandes conocimientos engendran las grandes dudas.',
