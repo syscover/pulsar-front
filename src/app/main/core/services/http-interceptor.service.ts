@@ -68,8 +68,8 @@ export class HttpInterceptorService implements HttpInterceptor
         {
             clone = request.clone({
                 setHeaders: {
-                    Accept: `application/json`,
-                    'Content-Type': `application/json`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             });
@@ -78,8 +78,8 @@ export class HttpInterceptorService implements HttpInterceptor
         {
             clone = request.clone({
                 setHeaders: {
-                    Accept: `application/json`,
-                    'Content-Type': `application/json`
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
                 }
             });
         }

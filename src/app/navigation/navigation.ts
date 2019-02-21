@@ -497,8 +497,8 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'       : 'administration',
-                'title'    : 'Administration',
+                'id'       : 'admin',
+                'title'    : 'Admin',
                 'translate': 'NAV.ADMINISTRATION',
                 'type'     : 'collapsable',
                 'resource' : 'admin',

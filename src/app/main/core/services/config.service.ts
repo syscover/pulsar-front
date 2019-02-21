@@ -7,7 +7,7 @@ export class ConfigService
 
     constructor() {}
 
-    public get(key: any)
+    public get(key: any): any
     {
         if (this.config) 
         {
