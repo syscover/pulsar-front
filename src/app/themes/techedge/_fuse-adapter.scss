@@ -1,0 +1,59 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Define theme fuse adapter
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$techedge-primary-palette: mat-palette($mat-techedege-blue);
+$techedget-accent-palette: mat-palette($mat-techedege-green, 600, 400, 700);
+$techedge-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$theme: mat-light-theme($techedge-primary-palette, $techedget-accent-palette, $techedge-warn-palette);
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-techedge {
+
+    // Create an Angular Material theme from the $theme map
+    @include angular-material-theme($theme);
+
+    // Apply the theme to the Fuse Core
+    @include fuse-core-theme($theme);
+
+    // Apply the theme to the user components
+    @include components-theme($theme);
+
+    // Generate Fuse color classes for primary, accent and warn colors
+    $palettes: (
+            primary: $techedge-primary-palette,
+            accent: $techedget-accent-palette,
+            warn: $techedge-warn-palette
+    );
+
+    @include fuse-color-classes($palettes);
+}
+
+
+body.theme-techedge .accent {
+    // cantoso
+    background-color: #25bdad !important;
+    color: white !important;
+    background: rgba(0,168,22,1);
+    background: -moz-linear-gradient(left, rgba(0,168,22,1) 0%, rgba(0,70,132,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,168,22,1)), color-stop(100%, rgba(0,70,132,1)));
+    background: -webkit-linear-gradient(left, rgba(0,168,22,1) 0%, rgba(0,70,132,1) 100%);
+    background: -o-linear-gradient(left, rgba(0,168,22,1) 0%, rgba(0,70,132,1) 100%);
+    background: -ms-linear-gradient(left, rgba(0,168,22,1) 0%, rgba(0,70,132,1) 100%);
+    background: linear-gradient(to right, rgba(0,168,22,1) 0%, rgba(0,70,132,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#25bdad', endColorstr='#117473', GradientType=1 );
+
+    // menos cantoso
+    background: rgba(15,156,48,1);
+    background: -moz-linear-gradient(left, rgba(15,156,48,1) 0%, rgba(6,78,120,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(15,156,48,1)), color-stop(100%, rgba(6,78,120,1)));
+    background: -webkit-linear-gradient(left, rgba(15,156,48,1) 0%, rgba(6,78,120,1) 100%);
+    background: -o-linear-gradient(left, rgba(15,156,48,1) 0%, rgba(6,78,120,1) 100%);
+    background: -ms-linear-gradient(left, rgba(15,156,48,1) 0%, rgba(6,78,120,1) 100%);
+    background: linear-gradient(to right, rgba(15,156,48,1) 0%, rgba(6,78,120,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f9c30', endColorstr='#064e78', GradientType=1 );
+}

@@ -10,7 +10,7 @@ import { FuseConfig } from '@fuse/types';
 
 export const fuseConfig: FuseConfig = {
     // Color themes can be defined in src/app/app.theme.scss
-    colorTheme      : 'theme-default',
+    colorTheme      : 'theme-techedge',
     customScrollbars: true,
     layout          : {
         style    : 'vertical-layout-1',
