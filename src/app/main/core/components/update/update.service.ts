@@ -19,7 +19,16 @@ export class UpdateService
             .watchQuery({
                 query: gql`
                     query AdminCheckUpdates {
-                        adminCheckUpdates
+                        adminCheckUpdates {
+                            id
+                            name
+                            version
+                            package_id
+                            package {
+                                id
+                                name
+                            }
+                        }
                     }
                 `
             })
