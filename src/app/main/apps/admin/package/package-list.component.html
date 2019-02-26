@@ -76,6 +76,12 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="admin_package.version">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.VERSION' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.version }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="admin_package.sort">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'APPS.SORT' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.sort }}</mat-cell>

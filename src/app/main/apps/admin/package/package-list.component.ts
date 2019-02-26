@@ -13,8 +13,8 @@ export class PackageListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.PACKAGE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['admin_package.id', 'admin_package.name', 'admin_package.root'];
-    displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.sort', 'admin_package.active', 'actions'];
+    columnsSearch: string[] = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.version'];
+    displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.version', 'admin_package.sort', 'admin_package.active', 'actions'];
 
     constructor(
         protected injector: Injector

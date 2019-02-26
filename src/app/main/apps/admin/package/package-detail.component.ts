@@ -26,6 +26,7 @@ export class PackageDetailComponent extends CoreDetailComponent
             id: [{value: '', disabled: true}],
             name: ['', Validators.required],
             root: ['', Validators.required],
+            version: '',
             active: false,
             sort: ['', Validators.required]
         });
