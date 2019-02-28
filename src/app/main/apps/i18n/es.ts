@@ -113,6 +113,7 @@ export const locale = {
             'TYPES': 'Tipos',
             'USER': 'Usuario',
             'VALUES': 'Valores',
+            'VERSION': 'Version',
             'WIDTH': 'Ancho',
             'ZIP': 'CP',
         },

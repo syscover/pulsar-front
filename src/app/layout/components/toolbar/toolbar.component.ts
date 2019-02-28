@@ -34,6 +34,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
     // DH2
     user: User;
+    isAuth = false;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -58,6 +59,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     {
         // DH2
         this.user = this._authenticationService.user();
+        this.isAuth = this._authenticationService.check();
 
         // Set the defaults
         this.userStatusOptions = [

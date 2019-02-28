@@ -93,6 +93,14 @@
                     </div>
 
                     <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'APPS.VERSION' | translate }}</mat-label>
+                            <input matInput formControlName="version">
+                            <mat-error>{{ formErrors?.version }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-sm-6">
                             <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
                             <input matInput formControlName="sort" type="number" required>
