@@ -57,6 +57,11 @@ const routes = [
         loadChildren: './forem/forem.module#ForemModule',
         canLoad     : [AuthorizationService]
     },
+    {
+        path        : 'bcci',
+        loadChildren: './bcci/bcci.module#BcciModule',
+        canLoad     : [AuthorizationService]
+    },
 ];
 
 
