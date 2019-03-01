@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
-import { graphQL } from './package.graphql';
+import { graphQL } from './sappi-ic.graphql';
 
 @Component({
     selector: 'dh2-bcci-sappi-ic-list',
@@ -13,8 +13,8 @@ export class SappiIcListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.PACKAGE';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.version'];
-    displayedColumns = ['admin_package.id', 'admin_package.name', 'admin_package.root', 'admin_package.version', 'admin_package.sort', 'admin_package.active', 'actions'];
+    columnsSearch: string[] = ['bcci_sappi_ic.id', 'bcci_sappi_ic.origin_id', 'bcci_sappi_ic.interface_name', 'bcci_sappi_ic.application_id'];
+    displayedColumns = ['bcci_sappi_ic.id', 'bcci_sappi_ic.origin_id', 'bcci_sappi_ic.interface_name', 'bcci_sappi_ic.application_id', 'bcci_sappi_ic.critical', 'bcci_sappi_ic.complex', 'actions'];
 
     constructor(
         protected injector: Injector

@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">view_module</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PACKAGES' | translate }}</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">share</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.SAPPI_IC' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -38,11 +38,12 @@
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
-                    class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.PACKAGE' | translate }}</span>
-            </button>
+            <div></div>
+            <!--<button mat-raised-button-->
+                    <!--[routerLink]="baseUri + '/create'"-->
+                    <!--class="new-btn fuse-white my-12 mt-sm-0">-->
+                <!--<span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.PACKAGE' | translate }}</span>-->
+            <!--</button>-->
 
         </div>
         <!-- / HEADER -->
@@ -58,40 +59,42 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_package.id">
+                <ng-container matColumnDef="bcci_sappi_ic.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="admin_package.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                <ng-container matColumnDef="bcci_sappi_ic.origin_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'BCCI.ORIGIN_ID' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-100">{{ row.origin_id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_package.root">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'ADMIN.ROOT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.root }}</mat-cell>
+                <ng-container matColumnDef="bcci_sappi_ic.interface_name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'BCCI.INTERFACE_NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.interface_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_package.version">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'APPS.VERSION' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.version }}</mat-cell>
+                <ng-container matColumnDef="bcci_sappi_ic.application_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex mw-100">{{ 'BCCI.APPLICATION_ID' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex mw-100">{{ row.application_id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="admin_package.sort">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'APPS.SORT' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.sort }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="admin_package.active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'APPS.ACTIVE.M' | translate }}</mat-header-cell>
+                <ng-container matColumnDef="bcci_sappi_ic.critical">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'BCCI.CRITICAL' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
-                        <mat-icon *ngIf="row.active">done</mat-icon>
+                        <mat-icon *ngIf="row.critical">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="bcci_sappi_ic.complex">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'BCCI.COMPLEX' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
+                        <mat-icon *ngIf="row.complex">done</mat-icon>
                     </mat-cell>
                 </ng-container>
 
@@ -103,10 +106,10 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
-                                <mat-icon>mode_edit</mat-icon>
-                                <span>{{ 'APPS.EDIT' | translate }}</span>
-                            </button>
+                            <!--<button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">-->
+                                <!--<mat-icon>mode_edit</mat-icon>-->
+                                <!--<span>{{ 'APPS.EDIT' | translate }}</span>-->
+                            <!--</button>-->
                             <button mat-menu-item (click)="deleteRecord(row)">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
