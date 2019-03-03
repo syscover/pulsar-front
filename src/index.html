@@ -181,6 +181,7 @@
             }
         </style>
         <!-- / FUSE Splash Screen CSS -->
+
     </head>
 
     <body>
@@ -215,6 +216,28 @@
 
         </fuse-splash-screen>
         <!-- / FUSE Splash Screen -->
+
+        <script>
+            // DH2
+            fetch('config/config.json')
+                .then(response => response.json())
+                .then(config => {
+                    const leftSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .left .half-circle');
+                    const rightSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .right .half-circle');
+
+                    leftSpinner.style.borderColor = config.splashSpinnerColor;
+                    leftSpinner.style.borderRightColor = 'transparent';
+                    leftSpinner.style.borderBottomColor = 'transparent';
+
+                    rightSpinner.style.borderColor = config.splashSpinnerColor;
+                    rightSpinner.style.borderLeftColor = 'transparent';
+                    rightSpinner.style.borderBottomColor = 'transparent';
+
+                    document.body.querySelector('#fuse-splash-screen .logo img').src = config.splashLogo;
+                    document.head.querySelector('title').innerHTML = config.title;
+                    document.head.querySelector('link[type=image/x-icon]').href = config.favicon;
+                });
+        </script>
 
         <app></app>
 
