@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Define theme fuse adapter
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$techedge-primary-palette: mat-palette($mat-techedege-blue);
+$techedget-accent-palette: mat-palette($mat-techedege-green, 600, 400, 700);
+$techedge-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$theme: mat-light-theme($techedge-primary-palette, $techedget-accent-palette, $techedge-warn-palette);
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-techedge {
+
+    // Create an Angular Material theme from the $theme map
+    @include angular-material-theme($theme);
+
+    // Apply the theme to the Fuse Core
+    @include fuse-core-theme($theme);
+
+    // Apply the theme to the user components
+    @include components-theme($theme);
+
+    // Generate Fuse color classes for primary, accent and warn colors
+    $palettes: (
+            primary: $techedge-primary-palette,
+            accent: $techedget-accent-palette,
+            warn: $techedge-warn-palette
+    );
+
+    @include fuse-color-classes($palettes);
+}
+
+
+body.theme-techedge .accent {
+    // menos cantoso
+    background: rgba(15,156,48,1);
+    background: linear-gradient(to right, rgba(mat-color($mat-techedege-green, 500),1) 0%, rgba(mat-color($mat-techedege-blue, 500),1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = mat-color($mat-techedege-green, 500), endColorstr = mat-color($mat-techedege-blue, 500), GradientType=1);
+}
+
+body.theme-techedge .active.accent {
+    background: none;
+    background-color: mat-color($mat-techedege-green, 500) !important;
+}

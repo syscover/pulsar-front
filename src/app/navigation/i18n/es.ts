@@ -63,6 +63,7 @@ export const locale = {
             'REVIEW': 'Review',
             'REVIEWS': 'Reviews',
             'SALES': 'Ventas',
+            'SAPPI_IC': 'Sappi Ic',
             'SECTIONS': 'Secciones',
             'TABLES': 'Tablas',
             'TAX_RATE_ZONES': 'Zonas de impuestos',
