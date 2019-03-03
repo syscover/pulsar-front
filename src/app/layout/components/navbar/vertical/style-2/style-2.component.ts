@@ -7,6 +7,8 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+// DH2
+import { ConfigService } from '../../../../../main/core/services/config.service';
 
 @Component({
     selector     : 'navbar-vertical-style-2',
@@ -18,6 +20,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+
+    // DH2
+    logoIcon: string;
+    logoText: string;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -35,7 +41,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+
+        // DH2
+        private _configService: ConfigService
     )
     {
         // Set the private defaults
@@ -99,6 +108,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        // DH2
+        this.logoIcon = this._configService.get('logoIcon');
+        this.logoText = this._configService.get('logoText');
+
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),

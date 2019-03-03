@@ -7,8 +7,9 @@ import { environment } from 'environments/environment';
 import { ValidationMessageService } from '../../../core/services/validation-message.service';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import '../../../core/functions/array-random.function';
+import { AuthorizationService } from '../../../core/services/authorization.service';
+import { ConfigService } from '../../../core/services/config.service';
 import { pulsarConfig } from '../../../pulsar-config';
-import {AuthorizationService} from '../../../core/services/authorization.service';
 
 @Component({
     selector   : 'dh2-login',
@@ -35,6 +36,10 @@ export class LoginComponent implements OnInit
         'AUTH.WELCOME_INTRODUCTION_08'
     ];
     welcomeMessage;
+    desktopLogo: string;
+    mobileLogo: string;
+    welcomeText: string;
+
 
     constructor(
         private fuseConfig: FuseConfigService,
@@ -42,7 +47,8 @@ export class LoginComponent implements OnInit
         private router: Router,
         private authenticationService: AuthenticationService,
         private authorizationService: AuthorizationService,
-        private validationMessageService: ValidationMessageService
+        private validationMessageService: ValidationMessageService,
+        private _configService: ConfigService
     )
     {
         this.fuseConfig.setConfig({
@@ -66,6 +72,10 @@ export class LoginComponent implements OnInit
 
     ngOnInit(): void
     {
+        this.desktopLogo = this._configService.get('loginDesktopLogo');
+        this.mobileLogo = this._configService.get('loginMobileLogo');
+        this.welcomeText = this._configService.get('welcomeText');
+
         const remenberme = localStorage.getItem('remember_me') ? JSON.parse(localStorage.getItem('remember_me')) : null;
 
         this.loginForm = this.formBuilder.group({

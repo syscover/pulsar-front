@@ -2,9 +2,10 @@
 
     <!-- DH2 -->
     <div class="logo">
-        <!--<img class="logo-icon" src="assets/images/dh2/logos/digital_h2-mini.svg">-->
-        <img class="logo-icon" src="assets/images/dh2/logos/techedge/techedge_mini_logo.png">
-        <span class="logo-text"><img src="assets/images/dh2/logos/techedge/techedge_mini_text.png"></span>
+        <img class="logo-icon" [src]="logoIcon">
+        <span class="logo-text">
+            <div><img [src]="logoText"></div>
+        </span>
     </div>
 
     <button mat-icon-button class="toggle-sidebar-folded"

@@ -18,6 +18,7 @@ import { locale as navigationSpanish } from 'app/navigation/i18n/es';
 
 // DH2
 import { NavigationService } from 'app/main/core/services/navigation.service';
+import { ConfigService } from './main/core/services/config.service';
 
 @Component({
     selector   : 'app',
@@ -43,6 +44,8 @@ export class AppComponent implements OnInit, OnDestroy
      * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
      * @param {Platform} _platform
      * @param {TranslateService} _translateService
+     * @param _navigationService
+     * @param _configService
      */
     constructor(
         @Inject(DOCUMENT) private document: any,
@@ -55,7 +58,8 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform,
 
         // DH2
-        private _navigationService: NavigationService
+        private _navigationService: NavigationService,
+        private _configService: ConfigService
     )
     {
         // DH2
@@ -164,7 +168,10 @@ export class AppComponent implements OnInit, OnDestroy
                     }
                 }
 
-                this.document.body.classList.add(this.fuseConfig.colorTheme);
+                // DH2
+                this.document.body.classList.add(this._configService.get('colorTheme'));
+                // this.document.body.classList.add(this.fuseConfig.colorTheme);
+
             });
     }
 

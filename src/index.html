@@ -40,22 +40,27 @@
                 transform: translateY(-50%);
             }
 
+            /* DH2 */
             #fuse-splash-screen .logo {
-                /*width: 128px;*/
-                width: 200px;
-                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                /*opacity: 0;*/
+                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .logo img {
                 filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2))
             }
 
+            /* DH2 */
             #fuse-splash-screen .spinner-wrapper {
                 display: block;
                 position: relative;
                 width: 100%;
                 min-height: 100px;
                 height: 100px;
+                /*opacity: 0;*/
+                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .spinner-wrapper .spinner {
@@ -100,8 +105,7 @@
                 width: 100px;
                 height: 100px;
                 box-sizing: border-box;
-                /*border: 10px solid #F0FD31;*/
-                border: 10px solid #80c242;
+                border: 10px solid #fff;
                 border-bottom-color: transparent;
                 border-radius: 50%;
             }
@@ -127,6 +131,31 @@
                 animation: right-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1) infinite;
                 -webkit-animation: right-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1) infinite;
             }
+
+
+            /* DH2 start */
+            .fade-in {
+                opacity: 1;
+                animation-name: fadeInOpacity;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+                animation-duration: 500ms;
+            }
+
+            .hide {
+                opacity: 0;
+                z-index: -10;
+            }
+
+            @keyframes fadeInOpacity {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            /* DH2 end */
 
             @keyframes outer-rotate {
                 0% {
@@ -193,14 +222,13 @@
 
             <div class="center">
 
-                <div class="logo">
+                <div class="logo hide">
                     <!-- DH2 -->
-                    <!--<img width="128" src="assets/images/dh2/logos/digital_h2-mini.svg">-->
-                    <img width="200" src="assets/images/dh2/logos/techedge/techedge_vertical_logo_200.png">
+                    <img src="assets/images/dh2/pixel.svg">
                 </div>
 
                 <!-- Material Design Spinner -->
-                <div class="spinner-wrapper">
+                <div class="spinner-wrapper hide">
                     <div class="spinner">
                         <div class="inner">
                             <div class="gap"></div>
@@ -225,6 +253,12 @@
             fetch('config/config.json')
                 .then(response => response.json())
                 .then(config => {
+
+                    // head
+                    document.head.querySelector('title').innerHTML = config.title;
+                    document.head.querySelector('link[type="image/x-icon"]').href = config.favicon;
+
+                    // spinner
                     const leftSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .left .half-circle');
                     const rightSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .right .half-circle');
 
@@ -236,9 +270,16 @@
                     rightSpinner.style.borderLeftColor = 'transparent';
                     rightSpinner.style.borderBottomColor = 'transparent';
 
-                    document.body.querySelector('#fuse-splash-screen .logo img').src = config.splashLogo;
-                    document.head.querySelector('title').innerHTML = config.title;
-                    document.head.querySelector('link[type=image/x-icon]').href = config.favicon;
+                    // logo
+                    const logo = document.body.querySelector('#fuse-splash-screen .logo img');
+                    logo.src = config.splashLogo;
+                    logo.width = config.splashWidthLogoSize;
+
+                    // show spinner and logo
+                    document.body.querySelector('#fuse-splash-screen .spinner-wrapper').classList.add('fade-in');
+                    document.body.querySelector('#fuse-splash-screen .logo').classList.add('fade-in');
+                    document.body.querySelector('#fuse-splash-screen .spinner-wrapper').classList.remove('hide');
+                    document.body.querySelector('#fuse-splash-screen .logo').classList.remove('hide');
                 });
         </script>
 

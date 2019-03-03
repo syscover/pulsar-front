@@ -8,11 +8,9 @@
 }
 
 navbar-vertical-style-2 .navbar-header .logo .logo-text {
-    margin-left: 20px !important;
-    letter-spacing: 1.5px !important;
-    font-weight: 400 !important;
-    white-space: nowrap !important;
-    color: $dh2-primary-color;
+    width: 130px;
+    margin-left: 15px !important;
+    display: flex;
 }
 
 .tabable .content .mat-tab-label {
