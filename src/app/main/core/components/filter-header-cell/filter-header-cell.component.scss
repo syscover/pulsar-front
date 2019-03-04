@@ -1,0 +1,25 @@
+:host {
+    .filter-container {
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                border: 1px solid rgba(0,0,0,.12) !important;
+                border-radius: 2px;
+                padding: 0 !important;
+                min-width: 18px;
+                line-height: 16px;
+                margin-left: 10px;
+
+                .mat-icon {
+                    display: inline;
+                    font-size: 15px;
+                    min-width: 15px;
+                    min-height: 15px;
+                }
+            }
+        }
+    }
+}

@@ -11,10 +11,10 @@ import { graphQL } from './user.graphql';
 })
 export class UserListComponent extends CoreListComponent 
 {
-    objectTranslation = 'ADMIN.USER';
-    objectTranslationGender = 'M';
-    columnsSearch: string[] = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email'];
-    displayedColumns = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email', 'admin_user.active', 'actions'];
+    public objectTranslation = 'ADMIN.USER';
+    public objectTranslationGender = 'M';
+    public columnsSearch: string[] = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email'];
+    public displayedColumns = ['admin_user.id', 'admin_user.name', 'admin_user.surname', 'admin_user.email', 'admin_user.active', 'actions'];
 
     constructor(
         protected injector: Injector

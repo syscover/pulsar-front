@@ -72,7 +72,10 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="bcci_sappi_ic.interface_name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'BCCI.INTERFACE_NAME' | translate }}</mat-header-cell>
+                    <!--<mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'BCCI.INTERFACE_NAME' | translate }}</mat-header-cell>-->
+                    <mat-header-cell *matHeaderCellDef class="d-none d-sm-flex">
+                        <dh2-filter-header-cell></dh2-filter-header-cell>
+                    </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.interface_name }}</mat-cell>
                 </ng-container>
 

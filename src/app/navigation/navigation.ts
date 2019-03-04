@@ -21,12 +21,12 @@ export const navigation: FuseNavigation[] = [
                 'title': 'B+CCI',
                 'translate': 'NAV.BCCI',
                 'type' : 'collapsable',
-                'icon' : 'highlight',
+                'icon' : ['fas', 'server'],
                 'children' : [
                     {
                         'id'        : 'sappi-ic',
                         'title'     : 'Sappi-ic',
-                        'translate' : 'NAV.SAPPI-IC',
+                        'translate' : 'NAV.SAPPI_IC',
                         'type'      : 'item',
                         'icon'      : 'share',
                         'url'       : '/apps/bcci/sappi-ic'

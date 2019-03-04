@@ -16,6 +16,7 @@ export const locale = {
             'ATTACHMENTS': 'Attachments',
             'AVERAGES': 'Averages',
             'AWARDS': 'Awards',
+            'BCCI': 'B+CCI',
             'CART_PRICE_RULES': 'Cart price rules',
             'CATALOG': 'Catalog',
             'CATEGORIES': 'Categories',
