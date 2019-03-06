@@ -1,27 +1,4 @@
-import { Component, OnInit} from '@angular/core';
-
-export const CONDITIONS_LIST = [
-    { value: 'nono', label: 'Nono' },
-    { value: 'is-empty', label: 'Is empty' },
-    { value: 'is-not-empty', label: 'Is not empty' },
-    { value: 'is-equal', label: 'Is equal' },
-    { value: 'is-not-equal', label: 'Is not equal' }
-];
-
-export const CONDITIONS_FUNCTIONS = { // search method base on conditions list value
-    'is-empty': function (value, filterdValue) {
-        return value === '';
-    },
-    'is-not-empty': function (value, filterdValue) {
-        return value !== '';
-    },
-    'is-equal': function (value, filterdValue) {
-        return value == filterdValue;
-    },
-    'is-not-equal': function (value, filterdValue) {
-        return value != filterdValue;
-    }
-};
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'dh2-filter-header-cell',
@@ -31,35 +8,41 @@ export const CONDITIONS_FUNCTIONS = { // search method base on conditions list v
 
 export class FilterHeaderCellComponent implements OnInit
 {
-    public conditionsList = CONDITIONS_LIST;
-    public searchValue: any = {};
-    public searchCondition: any = {};
-    private _filterMethods = CONDITIONS_FUNCTIONS;
+    public conditions = [
+        { value: 'none', trans: 'FILTER_HEADER_CELL.NONE' },
+        { value: 'IS NULL', trans: 'FILTER_HEADER_CELL.IS_EMPTY' },
+        { value: 'IS NOT NULL', trans: 'FILTER_HEADER_CELL.IS_NOT_EMPTY' },
+        { value: 'LIKE', trans: 'FILTER_HEADER_CELL.IS_EQUAL' },
+        { value: '><', trans: 'FILTER_HEADER_CELL.IS_NOT_EQUAL' }
+    ];
+    public searchValue: string;
+    public searchCondition: string;
 
-    constructor(
+    @Input() column: string;
+    @Input() columnTitle: string;
+    @Input() sort = false;
+    @Output() filter = new EventEmitter<Object>();
 
-    ) { }
+    constructor() { }
 
     ngOnInit(): void
-    {
-
-    }
+    { }
 
     applyFilter(): void
     {
-        const searchFilter: any = {
-            values: this.searchValue,
-            conditions: this.searchCondition,
-            methods: this._filterMethods
-        };
-
-        // this.dataSource.filter = searchFilter;
+        this.filter.emit({
+            value: this.searchValue,
+            operator: this.searchCondition,
+            column: this.column
+        });
     }
 
-    clearColumn(columnKey: string): void
+    clearFilter(): void
     {
-        this.searchValue[columnKey] = null;
-        this.searchCondition[columnKey] = 'none';
-        this.applyFilter();
+        this.filter.emit({
+            value: undefined,
+            operator: undefined,
+            column: this.column
+        });
     }
 }

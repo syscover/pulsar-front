@@ -1,7 +1,7 @@
 <div class="filter-container">
 
 	<div class="header">
-		<div mat-sort-header>{{ 'APPS.NAME' | translate }}</div>
+		<div mat-sort-header [disabled]="!sort">{{ columnTitle | translate }}</div>
 		<button mat-button class="btn-toggle" [matMenuTriggerFor]="menu">
 			<mat-icon>keyboard_arrow_down</mat-icon>
 		</button>
@@ -15,22 +15,21 @@
 
 		<div mat-menu-item dh2FilterItem [disableRipple]="true">
 			<mat-form-field class="col-12">
-				<mat-select [panelClass]="'mat-elevation-z10'" placeholder='Conditions' [(value)]="searchCondition.name">
-					<mat-option *ngFor="let  condition of conditionsList" [value]="condition.value">{{ condition.label }}</mat-option>
+				<mat-select [panelClass]="'mat-elevation-z10'" placeholder='Conditions' [(value)]="searchCondition">
+					<mat-option *ngFor="let  condition of conditions" [value]="condition.value">{{ condition.trans | translate }}</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
 
 		<div mat-menu-item dh2FilterItem [disableRipple]="true">
 			<mat-form-field class="col-12">
-				<input matInput placeholder="Value" [(ngModel)]="searchValue.name">
+				<input matInput placeholder="Value" [(ngModel)]="searchValue">
 			</mat-form-field>
 		</div>
 
-		<div mat-menu-item dh2FilterItem [disableRipple]="true">
-
-			<button mat-raised-button (click)="clearColumn('name')">Clear</button>
-			<button mat-raised-button color="primary" (click)="applyFilter()">Search</button>
+		<div class="buttons-container" mat-menu-item dh2FilterItem [disableRipple]="true">
+			<button mat-raised-button (click)="clearFilter()">{{ 'FILTER_HEADER_CELL.CLEAR' | translate }}</button>
+			<button mat-raised-button color="primary" (click)="applyFilter()">{{ 'FILTER_HEADER_CELL.SEARCH' | translate }}</button>
 		</div>
 
 	</mat-menu>

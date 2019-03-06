@@ -18,7 +18,7 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">share</mat-icon>
+                <mat-icon (click)="testColumn()" class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">share</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.SAPPI_IC' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
@@ -59,34 +59,36 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.id">
+                <ng-container matColumnDef="bcci_sappi_ic.id" *ngIf="columnsPattern['bcci_sappi_ic.id']">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.origin_id">
+                <ng-container matColumnDef="bcci_sappi_ic.origin_id" *ngIf="columnsPattern['bcci_sappi_ic.origin_id']">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'BCCI.ORIGIN_ID' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-100">{{ row.origin_id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.interface_name">
-                    <!--<mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'BCCI.INTERFACE_NAME' | translate }}</mat-header-cell>-->
+                <ng-container matColumnDef="bcci_sappi_ic.interface_name" *ngIf="columnsPattern['bcci_sappi_ic.interface_name']">
                     <mat-header-cell *matHeaderCellDef class="d-none d-sm-flex">
-                        <dh2-filter-header-cell></dh2-filter-header-cell>
+                        <dh2-filter-header-cell column="bcci_sappi_ic.interface_name"
+                                                columnTitle="{{ 'BCCI.INTERFACE_NAME' | translate }}"
+                                                [sort]="true"
+                                                (filter)="setColumnFilter($event)"></dh2-filter-header-cell>
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.interface_name }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.application_id">
+                <ng-container matColumnDef="bcci_sappi_ic.application_id" *ngIf="columnsPattern['bcci_sappi_ic.application_id']">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex mw-100">{{ 'BCCI.APPLICATION_ID' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex mw-100">{{ row.application_id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.critical">
+                <ng-container matColumnDef="bcci_sappi_ic.critical" *ngIf="columnsPattern['bcci_sappi_ic.critical']">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'BCCI.CRITICAL' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
                         <mat-icon *ngIf="row.critical">done</mat-icon>
@@ -94,7 +96,7 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="bcci_sappi_ic.complex">
+                <ng-container matColumnDef="bcci_sappi_ic.complex" *ngIf="columnsPattern['bcci_sappi_ic.complex']">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'BCCI.COMPLEX' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
                         <mat-icon *ngIf="row.complex">done</mat-icon>

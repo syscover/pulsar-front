@@ -32,10 +32,10 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query BcciGetSappiIcsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: bcciSappiIcsPagination (sql:$sql) {
+        query BcciGetSappiIcsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
+            coreObjectsPagination: bcciSappiIcsPagination (filters:$filters sql:$sql) {
                 total
-                objects (sql:$sql)
+                objects (filters:$filters sql:$sql)
                 filtered
             }
         }`,

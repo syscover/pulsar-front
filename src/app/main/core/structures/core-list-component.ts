@@ -13,6 +13,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import { CoreComponent } from './core-component';
 import { HttpSynchronousService } from '../services/http-synchronous.service';
+import * as _ from 'lodash';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
 {
@@ -21,12 +22,13 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     objects: any[] = [];                        // property that can to be overwrite in child class
     totalRecords: number;                       // total records in datatable
     filteredRecords: number;                    // filtered records over total
-    columnsSearch: string[];                    // columns where will be used for global searchs
+    columnsPattern: object;                     // Columns patter to know all possible columns to show
+    columnsSearch: string[];                    // columns where will be used for global searches
     displayedColumns: string[];                 // columns will be displayed
     dataSource = new MatTableDataSource();      // data content to material data table
     resultsLength = 0;                          // total results
     isLoadingResults = true;                    // flag to know if data is loading
-    filters: any[];
+    filters: any[] = [];                        // filters to data table
     
     // view data table components
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,8 +41,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     private registerSubscriptions = async () => {
         // If the user changes the sort order or filter by text, reset back to the first page.
         merge(
-            this.sort
-                .sortChange,
+            this.sort.sortChange,
             fromEvent(this.filter.nativeElement, 'keyup')
                 .debounceTime(500)
                 .distinctUntilChanged()
@@ -48,6 +49,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         .takeUntil(this._onDestroy)
         .subscribe(() => this.paginator.pageIndex = 0);
 
+        // ??
         merge(
             this.refreshTable,
             this.sort.sortChange,
@@ -63,7 +65,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         )
         .takeUntil(this._onDestroy)
         .subscribe(() => {
-            // this response is asynchronous, fron this section can't recover response data from promise
+            // this response is asynchronous, from this section can't recover response data from promise
         });
 
         await this.startTable
@@ -150,12 +152,35 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
         // get Http Organizer, to avoid overwritte token in request
         this.httpSynchronousService = this.injector.get(HttpSynchronousService);
+
+
+    }
+
+    setTableColumns(): void
+    {
+        this.displayedColumns = [];
+        console.log(this.columnsPattern);
+        for (const column in this.columnsPattern)
+        {
+            if (column) {
+                console.log(this.columnsPattern[column]);
+                if (this.columnsPattern[column]) this.displayedColumns.push(column);
+            }
+        }
+
+        this.displayedColumns.push('actions');
+    }
+
+    ngAfterContentInit () {
+        // set table columns
+        this.setTableColumns();
     }
 
     ngAfterViewInit(): void
     {
         if (this.dataRoute.action === 'list')
         {
+            // init data table with async data
             this.initDataTable();
         }
     }
@@ -185,11 +210,28 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     }
 
     /*
-    * Clear input search
+    * Clear common text input search
     */
-    clearFilter(): void
+    setColumnFilter($event): void
     {
-        this.filter.nativeElement.value = '';
+        if (Array.isArray(this.filters)) _.remove(this.filters, {'column': $event.column});
+
+        // check if have to clear filter
+        if ($event.value === undefined && $event.operator === undefined)
+        {
+            if (this.env.debug) console.log('DEBUG - Clear filter to filters array: ', $event);
+            this.filter.nativeElement.value = '';
+        }
+        else
+        {
+            if (this.env.debug) console.log('DEBUG - Apply filter to filters array: ', $event);
+            this.filters.push({
+                'command': 'where',
+                'column': $event.column,
+                'operator': $event.operator,
+                'value': $event.value
+            });
+        }
         this.refreshTable.next();
     }
 

@@ -78,7 +78,7 @@ export function tokenGetter(): string | null
     return localStorage.getItem('access_token');
 }
 
-export function BootstrapLoader(bootstrapService: BootstrapService)
+export function BootstrapLoader(bootstrapService: BootstrapService): Function
 {
     return () => bootstrapService.load();
 }

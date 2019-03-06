@@ -6,11 +6,13 @@ import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     imports: [
         SharedModule,
-        DashboardRoutingModule
+        DashboardRoutingModule,
+        ChartsModule
     ],
     exports: [],
     declarations: [
