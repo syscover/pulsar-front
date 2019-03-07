@@ -14,6 +14,12 @@ import { StockableModule } from './stockable/stockable.module';
 import { UpdateModule } from './update/update.module';
 
 @NgModule({
+    entryComponents: [
+        ConfirmationDialogComponent
+    ],
+    declarations: [
+        ConfirmationDialogComponent
+    ],
     imports: [
         AttachmentsModule,
         CommonModule,
@@ -43,12 +49,6 @@ import { UpdateModule } from './update/update.module';
         StockableModule,
         TerritoriesModule,
         UpdateModule
-    ],
-    declarations: [
-        ConfirmationDialogComponent
-    ],
-    entryComponents: [
-        ConfirmationDialogComponent
     ]
 })
 export class ComponentsModule

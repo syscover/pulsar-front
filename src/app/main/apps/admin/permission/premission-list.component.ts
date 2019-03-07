@@ -2,7 +2,7 @@ import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
 import { MatSelect } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '../../../core/structures/core-list-component';
-import {Action, Permission, Profile} from '../admin.models';
+import { Action, Permission, Profile } from '../admin.models';
 import { graphQL } from './permission.graphql';
 import { ConfirmationDialogComponent } from '../../../core/components/confirmation-dialog.component';
 
