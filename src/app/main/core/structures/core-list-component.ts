@@ -1,4 +1,4 @@
-import { Injector, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core';
+import { Injector, ViewChild, AfterViewInit, AfterContentInit, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
@@ -15,7 +15,7 @@ import { CoreComponent } from './core-component';
 import { HttpSynchronousService } from '../services/http-synchronous.service';
 import * as _ from 'lodash';
 
-export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, OnInit
+export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, AfterContentInit, OnInit
 {
     startTable = new Subject();                 // Create Observable to start table
     refreshTable = new Subject();               // Create Observable to unsubscribe
@@ -158,20 +158,25 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
     setTableColumns(): void
     {
-        this.displayedColumns = [];
-        console.log(this.columnsPattern);
-        for (const column in this.columnsPattern)
+        if (this.columnsPattern && this.columnsPattern instanceof Object)
         {
-            if (column) {
-                console.log(this.columnsPattern[column]);
-                if (this.columnsPattern[column]) this.displayedColumns.push(column);
-            }
-        }
+            // reset displayed columns
+            this.displayedColumns = [];
 
-        this.displayedColumns.push('actions');
+            for (const column in this.columnsPattern)
+            {
+                if (column)
+                {
+                    if (this.columnsPattern[column]) this.displayedColumns.push(column);
+                }
+            }
+
+            this.displayedColumns.push('actions');
+        }
     }
 
-    ngAfterContentInit () {
+    ngAfterContentInit (): void
+    {
         // set table columns
         this.setTableColumns();
     }
