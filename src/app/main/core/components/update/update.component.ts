@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { fuseAnimations } from '../../../../../@fuse/animations';
 import { UpdateService } from './update.service';
 import { environment } from '../../../../../environments/environment';
-import { ConfirmationDialogComponent } from '../confirmation-dialog.component';
+import { UpdateDialogComponent } from './update-dialog.component';
 
 @Component({
     selector: 'dh2-update',
@@ -51,13 +51,20 @@ export class UpdateComponent implements OnInit
                 ob.unsubscribe();
                 if (this.env.debug) console.log('DEBUG - response of adminCheckUpdates query: ', data);
 
-                if (Array.isArray(data.adminCheckUpdates)) this.nVersions = data.adminCheckUpdates.length;
+                if (Array.isArray(data.adminCheckUpdates))
+                {
+                    this.nVersions = data.adminCheckUpdates.length;
+                }
+                else
+                {
+                    this.nVersions = 0;
+                }
             });
     }
 
     handleShowUpdates(): void
     {
-        const dialogRef = this._dialog.open(ConfirmationDialogComponent, {
+        const dialogRef = this._dialog.open(UpdateDialogComponent, {
             data: {
                 title: this._translateService.instant('UPDATE.UPDATES'),
                 question: this._translateService.instant('UPDATE.PENDING_UPDATES')
@@ -66,37 +73,7 @@ export class UpdateComponent implements OnInit
 
         dialogRef.afterClosed()
             .subscribe(result => {
-                if (result)
-                {
-
-                    console.log('Actualizar el sistema');
-                    // appear spinner in delete translate button
-                    // this.showSpinner = true;
-
-                    // const ob$ = this.http
-                    //                     //     .apolloClient()
-                    //                     //     .mutate({
-                    //                     //         mutation: this.graphQL.mutationAddAllPermissions,
-                    //                     //         variables: {
-                    //                     //             profile_id: this.params['profile_id']
-                    //                     //         }
-                    //                     //     })
-                    //                     //     .subscribe(data => {
-                    //                     //         ob$.unsubscribe();
-                    //                     //
-                    //                     //         // deactivate spinner
-                    //                     //         this.showSpinner = false;
-                    //                     //         this.snackBar.open(
-                    //                     //             this.translations['APPS.CHANGED_PERMISSIONS'],
-                    //                     //             this.translations['APPS.OK'],
-                    //                     //             {
-                    //                     //                 verticalPosition: 'top',
-                    //                     //                 duration        : 3000
-                    //                     //             }
-                    //                     //         );
-                    //                     //         this.initDataTable();
-                    //                     //     });
-                }
+                this.nVersions = result;
             });
     }
 }

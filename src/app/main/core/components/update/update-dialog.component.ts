@@ -1,30 +1,36 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
+import { UpdateService } from './update.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'dh2-update-dialog',
     template: `
-        <h1 mat-dialog-title><mat-icon>cloud_download</mat-icon> {{ title }}</h1>
+        <h1 mat-dialog-title>
+            <mat-icon>cloud_download</mat-icon> {{ title }}
+        </h1>
         <div mat-dialog-content>
             <p>{{ question }}</p>
         </div>
         <div mat-dialog-actions>
-            <button mat-raised-button class="mat-accent mr-16" [mat-dialog-close]="true" cdkFocusInitial>{{ ok }}</button>
+            <button mat-raised-button (click)="executeUpdates()" class="mat-accent mr-16" cdkFocusInitial>{{ ok }}</button>
             <button mat-raised-button [mat-dialog-close]="false">{{ cancel}}</button>
         </div>
     `
 })
 export class UpdateDialogComponent implements OnInit
 {
-    title: string;
-    question: string;
-    ok: string;
-    cancel: string;
+    public title: string;
+    public question: string;
+    public ok: string;
+    public cancel: string;
+    public env: any = environment;
 
     constructor(
-        public dialogRef: MatDialogRef<UpdateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
+        private _dialogRef: MatDialogRef<UpdateDialogComponent>,
+        private _updateService: UpdateService,
         private translateService: TranslateService
     ) 
     { }
@@ -38,5 +44,25 @@ export class UpdateDialogComponent implements OnInit
             this.ok         = this.data.ok ? this.data.ok : response['OK'];
             this.cancel     = this.data.cancel ? this.data.cancel : response['CANCEL'];
         });
+    }
+
+    executeUpdates(): void
+    {
+        const ob = this._updateService
+            .executeUpdates()
+            .subscribe(({data}: any) => {
+                ob.unsubscribe();
+
+                if (this.env.debug) console.log('DEBUG - response of adminExecuteUpdates query: ', data);
+
+                if (Array.isArray(data.adminExecuteUpdates))
+                {
+                    this._dialogRef.close(data.adminExecuteUpdates.length);
+                }
+                else
+                {
+                    this._dialogRef.close(0);
+                }
+            });
     }
 }

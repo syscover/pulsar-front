@@ -36,4 +36,27 @@ export class UpdateService
             })
             .valueChanges;
     }
+
+    executeUpdates(): Observable<ApolloQueryResult<Object>>
+    {
+        return this._http
+            .apolloClient()
+            .watchQuery({
+                query: gql`
+                    query AdminExecuteUpdates {
+                        adminExecuteUpdates {
+                            id
+                            name
+                            version
+                            package_id
+                            package {
+                                id
+                                name
+                            }
+                        }
+                    }
+                `
+            })
+            .valueChanges;
+    }
 }
