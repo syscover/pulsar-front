@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { fuseAnimations } from '../../../../../@fuse/animations';
@@ -34,6 +34,8 @@ import { UpdateDialogComponent } from './update-dialog.component';
 
 export class UpdateComponent implements OnInit
 {
+    @Input('panel-version')
+    public panelVersion: string;
     public env: any = environment;
     public nVersions = 0;
 
@@ -46,7 +48,7 @@ export class UpdateComponent implements OnInit
     ngOnInit(): void
     {
         const ob = this._updateService
-            .checkUpdates()
+            .checkUpdates(this.panelVersion)
             .subscribe(({data}: any) => {
                 ob.unsubscribe();
                 if (this.env.debug) console.log('DEBUG - response of adminCheckUpdates query: ', data);
@@ -68,7 +70,8 @@ export class UpdateComponent implements OnInit
             data: {
                 title: this._translateService.instant('UPDATE.UPDATES'),
                 question: this._translateService.instant('UPDATE.PENDING_UPDATES'),
-                updating: this._translateService.instant('UPDATE.UPDATING')
+                updating: this._translateService.instant('UPDATE.UPDATING'),
+                panelVersion: this.panelVersion
             }
         });
 

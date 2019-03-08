@@ -14,6 +14,7 @@ import { navigation } from 'app/navigation/navigation';
 import { AuthenticationService } from 'app/main/core/services/authentication.service';
 import { NavigationService } from 'app/main/core/services/navigation.service';
 import { User } from 'app/main/apps/admin/admin.models';
+import { ConfigService } from '../../../main/core/services/config.service';
 
 @Component({
     selector     : 'toolbar',
@@ -33,8 +34,9 @@ export class ToolbarComponent implements OnInit, OnDestroy
     userStatusOptions: any[];
 
     // DH2
-    user: User;
-    isAuth = false;
+    public user: User;
+    public isAuth = false;
+    public panelVersion: string;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -54,12 +56,14 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // DH2
         private _router: Router,
         private _authenticationService: AuthenticationService,
-        private _navigationService: NavigationService
+        private _navigationService: NavigationService,
+        private _configService: ConfigService
     )
     {
         // DH2
         this.user = this._authenticationService.user();
         this.isAuth = this._authenticationService.check();
+        this.panelVersion = this._configService.get('version');
 
         // Set the defaults
         this.userStatusOptions = [

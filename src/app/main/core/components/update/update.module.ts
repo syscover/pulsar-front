@@ -35,8 +35,8 @@ import { locale as spanish } from './i18n/es';
 export class UpdateModule
 {
     constructor(
-        private translationLoader: FuseTranslationLoaderService
+        private _translationLoader: FuseTranslationLoaderService
     ) {
-        this.translationLoader.loadTranslations(english, spanish);
+        this._translationLoader.loadTranslations(english, spanish);
     }
 }

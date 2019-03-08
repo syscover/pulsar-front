@@ -14,14 +14,14 @@ export class UpdateService
         private _http: HttpService
     ) {}
 
-    checkUpdates(): Observable<ApolloQueryResult<Object>>
+    checkUpdates(panelVersion: string): Observable<ApolloQueryResult<Object>>
     {
         return this._http
             .apolloClient()
             .watchQuery({
                 query: gql`
-                    query AdminCheckUpdates {
-                        adminCheckUpdates {
+                    query AdminCheckUpdates ($panel_version: String!) {
+                        adminCheckUpdates (panel_version: $panel_version) {
                             id
                             name
                             version
@@ -32,19 +32,23 @@ export class UpdateService
                             }
                         }
                     }
-                `
+                `,
+                variables: {
+                    panel_version: panelVersion
+                }
+
             })
             .valueChanges;
     }
 
-    executeUpdates(): Observable<ApolloQueryResult<Object>>
+    executeUpdates(panelVersion: string): Observable<ApolloQueryResult<Object>>
     {
         return this._http
             .apolloClient()
             .watchQuery({
                 query: gql`
-                    query AdminExecuteUpdates {
-                        adminExecuteUpdates {
+                    query AdminExecuteUpdates ($panel_version: String!) {
+                        adminExecuteUpdates (panel_version: $panel_version) {
                             id
                             name
                             version
@@ -55,7 +59,10 @@ export class UpdateService
                             }
                         }
                     }
-                `
+                `,
+                variables: {
+                    panel_version: panelVersion
+                }
             })
             .valueChanges;
     }

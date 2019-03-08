@@ -4,6 +4,8 @@ export const locale = {
         'UPDATE': {
             'COMPOSER': 'Composer',
             'MIGRATION': 'Migration',
+            'MINIMAL_PANEL_VERSION': 'Minimal panel version',
+            'MIN_PANEL': 'Min. panel',
             'PROVIDE': 'Provide',
             'PROVIDE_FROM': 'Provide from',
             'PUBLISH': 'Publish',

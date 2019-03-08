@@ -58,13 +58,13 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.id">
+                <ng-container matColumnDef="update_version.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.name">
+                <ng-container matColumnDef="update_version.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
@@ -76,7 +76,7 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.composer">
+                <ng-container matColumnDef="update_version.composer">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-100">{{ 'UPDATE.COMPOSER' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-100">
                         <mat-icon *ngIf="row.composer">done</mat-icon>
@@ -84,7 +84,7 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.migration">
+                <ng-container matColumnDef="update_version.migration">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-100">{{ 'UPDATE.MIGRATION' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-100">
                         <mat-icon *ngIf="row.migration">done</mat-icon>
@@ -92,13 +92,19 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.version">
+                <ng-container matColumnDef="update_version.version">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'UPDATE.VERSION' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.version }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="update_versions.provide">
+                <ng-container matColumnDef="update_version.minimal_panel_version">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'UPDATE.MIN_PANEL' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.minimal_panel_version }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="update_version.provide">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'UPDATE.PROVIDE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
                         <mat-icon *ngIf="row.provide">done</mat-icon>

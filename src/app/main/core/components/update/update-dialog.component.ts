@@ -37,26 +37,28 @@ export class UpdateDialogComponent implements OnInit
     public ok: string;
     public cancel: string;
     public updating: string;
-    public env: any = environment;
+    public panelVersion: string;
     public showProgressBar = false;
+    public env: any = environment;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _dialogRef: MatDialogRef<UpdateDialogComponent>,
         private _updateService: UpdateService,
-        private translateService: TranslateService
+        private _translateService: TranslateService
     ) 
     { }
 
     ngOnInit(): void
     {
         // load translations for component
-        this.translateService.get('CONFIRM').subscribe(response => {
-            this.title      = this.data.title ? this.data.title : response['TITLE'];
-            this.question   = this.data.question ? this.data.question : response['QUESTION'];
-            this.ok         = this.data.ok ? this.data.ok : response['OK'];
-            this.cancel     = this.data.cancel ? this.data.cancel : response['CANCEL'];
-            this.updating   = this.data.updating;
+        this._translateService.get('CONFIRM').subscribe(response => {
+            this.title          = this.data.title ? this.data.title : response['TITLE'];
+            this.question       = this.data.question ? this.data.question : response['QUESTION'];
+            this.ok             = this.data.ok ? this.data.ok : response['OK'];
+            this.cancel         = this.data.cancel ? this.data.cancel : response['CANCEL'];
+            this.updating       = this.data.updating;
+            this.panelVersion   = this.data.panelVersion;
         });
     }
 
@@ -66,7 +68,7 @@ export class UpdateDialogComponent implements OnInit
         this.showProgressBar = true;
 
         const ob = this._updateService
-            .executeUpdates()
+            .executeUpdates(this.panelVersion)
             .subscribe(({data}: any) => {
                 ob.unsubscribe();
 
