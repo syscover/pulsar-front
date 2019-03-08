@@ -34,10 +34,13 @@ export class VersionDetailComponent extends CoreDetailComponent
             name: ['', Validators.required],
             package_id: ['', Validators.required],
             version: ['', Validators.required],
-            migration: false,
-            config: false,
-            query: '',
+            minimal_panel_version: '',
+            composer: false,
             publish: false,
+            migration: false,
+            query: '',
+            provide: false,
+            provide_from: ''
         });
     }
 

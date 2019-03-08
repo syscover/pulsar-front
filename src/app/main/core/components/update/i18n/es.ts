@@ -3,7 +3,8 @@ export const locale = {
     data: {
         'UPDATE': {
             'UPDATES' : 'Actualizaciones',
-            'PENDING_UPDATES': 'Hay actualizaciones pendientes, ¿desea actualizar el sistema?'
+            'PENDING_UPDATES': 'Hay actualizaciones pendientes, ¿desea actualizar el sistema?',
+            'UPDATING': 'Aplicando actualizaciones'
         }
     }
 };

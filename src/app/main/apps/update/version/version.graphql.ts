@@ -9,10 +9,13 @@ const fields = `
         ${adminPackageGraphQL.fields}
     }
     version
-    migration
-    config
-    query
+    minimal_panel_version
+    composer
     publish
+    migration
+    query
+    provide
+    provide_from
 `;
 
 const relationsFields = `
@@ -23,7 +26,7 @@ const relationsFields = `
 
 export const graphQL = {
     model: 'Syscover\\Update\\Models\\Version',
-    table: 'update_versions',
+    table: 'update_version',
     fields,
     relationsFields,
 

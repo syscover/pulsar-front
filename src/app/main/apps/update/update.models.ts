@@ -1,24 +1,14 @@
 export class Version
 {
     id: number;
+    name: string;
     package_id: number;
     version: string;
-    name: string;
+    minimal_panel_version: string;
+    composer: boolean;
     publish: boolean;
-}
-
-export class Query
-{
-    id: number;
-    version_id: number;
+    migration: boolean;
     query: string;
-    sort: number;
-}
-
-export class Update
-{
-    id: number;
-    start_version: string;
-    end_version: string;
-    license: string;
+    provide: boolean;
+    provide_from: string;
 }

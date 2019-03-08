@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UpdateComponent } from './update.component';
-import { MatBadgeModule, MatButtonModule, MatDialogModule, MatIconModule } from '@angular/material';
+import { MatBadgeModule, MatButtonModule, MatDialogModule, MatIconModule, MatProgressBarModule } from '@angular/material';
 import { UpdateService } from './update.service';
 import { UpdateDialogComponent } from './update-dialog.component';
 import { FuseTranslationLoaderService} from '../../../../../@fuse/services/translation-loader.service';
@@ -21,7 +21,8 @@ import { locale as spanish } from './i18n/es';
         MatBadgeModule,
         MatButtonModule,
         MatDialogModule,
-        MatIconModule
+        MatIconModule,
+        MatProgressBarModule
     ],
     exports: [
         UpdateComponent,
