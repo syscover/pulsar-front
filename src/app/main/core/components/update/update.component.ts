@@ -71,6 +71,7 @@ export class UpdateComponent implements OnInit
                 title: this._translateService.instant('UPDATE.UPDATES'),
                 question: this._translateService.instant('UPDATE.PENDING_UPDATES'),
                 updating: this._translateService.instant('UPDATE.UPDATING'),
+                updating_warning: this._translateService.instant('UPDATE.UPDATING_WARNING'),
                 panelVersion: this.panelVersion
             }
         });

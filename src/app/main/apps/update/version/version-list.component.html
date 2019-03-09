@@ -76,6 +76,20 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="update_version.provide">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'UPDATE.PROVIDE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
+                        <mat-icon *ngIf="row.provide">done</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="update_version.provide_from">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex">{{ 'UPDATE.PROVIDE_FROM' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.provide_from | date:'dd/MM/y h:mm:ss' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="update_version.composer">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-100">{{ 'UPDATE.COMPOSER' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-100">
@@ -101,14 +115,6 @@
                 <ng-container matColumnDef="update_version.minimal_panel_version">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-md-flex mw-80">{{ 'UPDATE.MIN_PANEL' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-md-flex mw-80">{{ row.minimal_panel_version }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="update_version.provide">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">{{ 'UPDATE.PROVIDE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
-                        <mat-icon *ngIf="row.provide">done</mat-icon>
-                    </mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
