@@ -103,7 +103,7 @@
 
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
                             <mat-label>{{ 'UPDATE.MINIMAL_PANEL_VERSION' | translate }}</mat-label>
-                            <input matInput formControlName="minimal_panel_version">
+                            <input matInput formControlName="minimal_panel_version" required>
                             <mat-error>{{ formErrors?.minimal_panel_version }}</mat-error>
                         </mat-form-field>
                     </div>

@@ -34,7 +34,7 @@ export class VersionDetailComponent extends CoreDetailComponent
             name: ['', Validators.required],
             package_id: ['', Validators.required],
             version: ['', Validators.required],
-            minimal_panel_version: '',
+            minimal_panel_version: ['', Validators.required],
             composer: false,
             publish: false,
             migration: false,
