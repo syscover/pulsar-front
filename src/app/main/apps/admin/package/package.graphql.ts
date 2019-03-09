@@ -4,6 +4,7 @@ const fields = `
     id
     name
     root
+    version
     active
     sort
 `;
