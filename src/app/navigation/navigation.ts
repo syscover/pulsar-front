@@ -7,6 +7,7 @@ export const navigation: FuseNavigation[] = [
         'title'     : 'Applications',
         'translate' : 'NAV.APPLICATIONS',
         'type'      : 'group',
+        'resource'  : 'app',
         'children'  : [
             {
                 'id'        : '@',
@@ -497,17 +498,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'   : 'update',
-                'title': 'Updates',
+                'id'       : 'update',
+                'title'    : 'Updates',
                 'translate': 'NAV.UPDATES',
-                'type' : 'collapsable',
-                'icon' : 'cloud_download',
+                'type'     : 'collapsable',
+                'resource' : 'update',
+                'icon'     : 'cloud_download',
                 'children' : [
                     {
                         'id'        : 'versions',
                         'title'     : 'Versions',
                         'translate' : 'NAV.VERSIONS',
                         'type'      : 'item',
+                        'resource'  : 'update-version',
                         'icon'      : 'filter_1',
                         'url'       : '/apps/update/version'
                     }
@@ -526,6 +529,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Reports',
                         'translate' : 'NAV.REPORTS',
                         'type'      : 'item',
+                        'resource'  : 'admin-report',
                         'icon'      : 'equalizer',
                         'url'       : '/apps/admin/report'
                     },
@@ -534,6 +538,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Users',
                         'translate' : 'NAV.USERS',
                         'type'      : 'item',
+                        'resource'  : 'admin-user',
                         'icon'      : 'how_to_reg',
                         'url'       : '/apps/admin/user'
                     },
@@ -551,6 +556,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Languages',
                         'translate' : 'NAV.LANGUAGES',
                         'type'      : 'item',
+                        'resource'  : 'admin-lang',
                         'icon'      : 'translate',
                         'url'       : '/apps/admin/lang'
                     },
@@ -559,6 +565,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Packages',
                         'translate' : 'NAV.PACKAGES',
                         'type'      : 'item',
+                        'resource'  : 'admin-package',
                         'icon'      : 'view_module',
                         'url'       : '/apps/admin/package'
                     },
@@ -567,23 +574,26 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Custom fields',
                         'translate': 'NAV.CUSTOM_FIELDS',
                         'type'     : 'collapsable',
+                        'resource' : 'admin-field',
                         'icon'     : 'text_fields',
                         'children' : [
                             {
-                                'id'   : 'fields',
-                                'title': 'Fields',
+                                'id'       : 'fields',
+                                'title'    : 'Fields',
                                 'translate': 'NAV.FIELDS',
-                                'type' : 'item',
-                                'icon' : 'format_list_bulleted',
-                                'url'  : '/apps/admin/field'
+                                'type'     : 'item',
+                                'resource' : 'admin-field-field',
+                                'icon'     : 'format_list_bulleted',
+                                'url'      : '/apps/admin/field'
                             },
                             {
-                                'id'   : 'field_groups',
-                                'title': 'Field groups',
+                                'id'       : 'field_groups',
+                                'title'    : 'Field groups',
                                 'translate': 'NAV.FIELD_GROUPS',
-                                'type' : 'item',
-                                'icon' : 'dvr',
-                                'url'  : '/apps/admin/field-group'
+                                'type'     : 'item',
+                                'resource' : 'admin-field-group',
+                                'icon'     : 'dvr',
+                                'url'      : '/apps/admin/field-group'
                             }
                         ]
                     },
@@ -592,31 +602,35 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Attachemnts',
                         'translate': 'NAV.ATTACHMENTS',
                         'type'     : 'collapsable',
+                        'resource' : 'admin-attachment',
                         'icon'     : 'attachment',
                         'children' : [
                             {
-                                'id'   : 'attachment_families',
-                                'title': 'Attachment families',
+                                'id'       : 'attachment_families',
+                                'title'    : 'Attachment families',
                                 'translate': 'NAV.ATTACHMENT_FAMILIES',
-                                'type' : 'item',
-                                'icon' : 'photo',
-                                'url'  : '/apps/admin/attachment-family'
+                                'type'     : 'item',
+                                'resource' : 'admin-attachment-family',
+                                'icon'     : 'photo',
+                                'url'      : '/apps/admin/attachment-family'
                             },
                             {
-                                'id'   : 'attachment_mimes',
-                                'title': 'Attachment mimes',
+                                'id'       : 'attachment_mimes',
+                                'title'    : 'Attachment mimes',
                                 'translate': 'NAV.ATTACHMENT_MIMES',
-                                'type' : 'item',
-                                'icon' : 'camera_alt',
-                                'url'  : '/apps/admin/attachment-mime'
+                                'type'     : 'item',
+                                'resource' : 'admin-attachment-mime',
+                                'icon'     : 'camera_alt',
+                                'url'      : '/apps/admin/attachment-mime'
                             } // ,
                             // {
-                            //     'id'   : 'attachment_library',
-                            //     'title': 'Attachment library',
+                            //     'id'       : 'attachment_library',
+                            //     'title'    : 'Attachment library',
                             //     'translate': 'NAV.ATTACHMENT_LIBRARY',
-                            //     'type' : 'item',
-                            //     'icon' : 'photo_library',
-                            //     'url'  : '/apps/admin/attachment-library'
+                            //     'type'     : 'item',
+                            //     'resource' : 'admin-attachment-library',
+                            //     'icon'     : 'photo_library',
+                            //     'url'      : '/apps/admin/attachment-library'
                             // }
                         ]
                     },
@@ -626,23 +640,26 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Apis',
                         'translate': 'NAV.APIS',
                         'type'     : 'collapsable',
+                        'resource' : 'admin-api',
                         'icon'     : 'share',
                         'children' : [
                             {
-                                'id'   : 'clients',
-                                'title': 'clients',
+                                'id'       : 'clients',
+                                'title'    : 'clients',
                                 'translate': 'NAV.CLIENTS',
-                                'type' : 'item',
-                                'icon' : 'people',
-                                'url'  : '/apps/admin/oauth-client'
+                                'type'     : 'item',
+                                'resource' : 'admin-api-oauth-client',
+                                'icon'     : 'people',
+                                'url'      : '/apps/admin/oauth-client'
                             },
                             {
-                                'id'   : 'access_tokens',
-                                'title': 'Access tokens',
+                                'id'       : 'access_tokens',
+                                'title'    : 'Access tokens',
                                 'translate': 'NAV.ACCESS_TOKENS',
-                                'type' : 'item',
-                                'icon' : 'security',
-                                'url'  : '/apps/admin/oauth-access-token'
+                                'type'     : 'item',
+                                'resource' : 'admin-api-oauth-access-token',
+                                'icon'     : 'security',
+                                'url'      : '/apps/admin/oauth-access-token'
                             }
                         ]
                     },
@@ -652,31 +669,35 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Permissions',
                         'translate': 'NAV.PERMISSIONS',
                         'type'     : 'collapsable',
+                        'resource' : 'admin-perm',
                         'icon'     : 'fingerprint',
                         'children' : [
                             {
-                                'id'   : 'profiles',
-                                'title': 'Profiles',
+                                'id'       : 'profiles',
+                                'title'    : 'Profiles',
                                 'translate': 'NAV.PROFILES',
-                                'type' : 'item',
-                                'icon' : 'perm_identity',
-                                'url'  : '/apps/admin/profile'
+                                'type'     : 'item',
+                                'resource' : 'admin-perm-profile',
+                                'icon'     : 'perm_identity',
+                                'url'      : '/apps/admin/profile'
                             },
                             {
-                                'id'   : 'resources',
-                                'title': 'Resources',
+                                'id'       : 'resources',
+                                'title'    : 'Resources',
                                 'translate': 'NAV.RESOURCES',
-                                'type' : 'item',
-                                'icon' : 'rounded_corner',
-                                'url'  : '/apps/admin/resource'
+                                'type'     : 'item',
+                                'resource' : 'admin-perm-resource',
+                                'icon'     : 'rounded_corner',
+                                'url'      : '/apps/admin/resource'
                             },
                             {
-                                'id'   : 'actions',
-                                'title': 'Actions',
+                                'id'       : 'actions',
+                                'title'    : 'Actions',
                                 'translate': 'NAV.ACTIONS',
-                                'type' : 'item',
-                                'icon' : 'flash_on',
-                                'url'  : '/apps/admin/action'
+                                'type'     : 'item',
+                                'resource' : 'admin-perm-action',
+                                'icon'     : 'flash_on',
+                                'url'      : '/apps/admin/action'
                             }
                         ]
                     }
