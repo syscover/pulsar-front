@@ -10,10 +10,11 @@ export const navigation: FuseNavigation[] = [
         'resource'  : 'app',
         'children'  : [
             {
-                'id'        : '@',
+                'id'        : 'dashboard',
                 'title'     : 'Dashboard',
                 'translate' : 'NAV.DASHBOARD',
                 'type'      : 'item',
+                'resource'  : 'dashboard',
                 'icon'      : 'dashboard',
                 'url'       : '/apps/dashboard'
             },
@@ -35,17 +36,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'   : 'forem',
-                'title': 'Forem',
+                'id'       : 'forem',
+                'title'    : 'Forem',
                 'translate': 'NAV.FOREM',
-                'type' : 'collapsable',
-                'icon' : 'highlight',
+                'type'     : 'collapsable',
+                'resource' : 'forem',
+                'icon'     : 'highlight',
                 'children' : [
                     {
                         'id'        : 'groups',
                         'title'     : 'Groups',
                         'translate' : 'NAV.GROUPS',
                         'type'      : 'item',
+                        'resource'  : 'forem-group',
                         'icon'      : 'supervised_user_circle',
                         'url'       : '/apps/forem/group'
                     },
@@ -54,6 +57,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Actions',
                         'translate' : 'NAV.ACTIONS',
                         'type'      : 'item',
+                        'resource'  : 'forem-action',
                         'icon'      : 'wb_incandescent',
                         'url'       : '/apps/forem/action'
                     },
@@ -62,6 +66,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Expedients',
                         'translate' : 'NAV.EXPEDIENTS',
                         'type'      : 'item',
+                        'resource'  : 'forem-expedient',
                         'icon'      : 'all_inbox',
                         'url'       : '/apps/forem/expedient'
                     },
@@ -70,6 +75,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Employment offices',
                         'translate' : 'NAV.EMPLOYMENT_OFFICES',
                         'type'      : 'item',
+                        'resource'  : 'forem-employment-office',
                         'icon'      : 'store_mall_directory',
                         'url'       : '/apps/forem/employment-office'
                     },
@@ -78,23 +84,26 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Categories',
                         'translate' : 'NAV.CATEGORIES',
                         'type'      : 'item',
+                        'resource'  : 'forem-category',
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/forem/category'
                     }
                 ]
             },
             {
-                'id'   : 'crm',
-                'title': 'CRM',
+                'id'       : 'crm',
+                'title'    : 'CRM',
                 'translate': 'NAV.CRM',
-                'type' : 'collapsable',
-                'icon' : 'supervisor_account',
+                'type'     : 'collapsable',
+                'resource' : 'crm',
+                'icon'     : 'supervisor_account',
                 'children' : [
                     {
                         'id'        : 'customers',
                         'title'     : 'Customer',
                         'translate' : 'NAV.CUSTOMERS',
                         'type'      : 'item',
+                        'resource'  : 'crm-customer',
                         'icon'      : 'account_circle',
                         'url'       : '/apps/crm/customer'
                     },
@@ -103,6 +112,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Groups',
                         'translate' : 'NAV.CUSTOMER_GROUPS',
                         'type'      : 'item',
+                        'resource'  : 'crm-group',
                         'icon'      : 'people',
                         'url'       : '/apps/crm/customer-group'
                     },
@@ -111,6 +121,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Address types',
                         'translate' : 'NAV.ADDRESS_TYPES',
                         'type'      : 'item',
+                        'resource'  : 'crm-address-type',
                         'icon'      : 'map',
                         'url'       : '/apps/crm/address-type'
                     }
@@ -126,17 +137,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             }, */
             {
-                'id'   : 'market',
-                'title': 'Market',
+                'id'       : 'market',
+                'title'    : 'Market',
                 'translate': 'NAV.MARKET',
-                'type' : 'collapsable',
-                'icon' : 'store_mall_directory',
+                'type'     : 'collapsable',
+                'resource' : 'market',
+                'icon'     : 'store_mall_directory',
                 'children' : [
                     {
                         'id'       : 'sales',
                         'title'    : 'Sales',
                         'translate': 'NAV.SALES',
                         'type'     : 'collapsable',
+                        'resource' : 'market-sale',
                         'icon'     : 'euro_symbol',
                         'children' : [
                             {
@@ -144,6 +157,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Orders',
                                 'translate' : 'NAV.ORDERS',
                                 'type'      : 'item',
+                                'resource'  : 'market-order',
                                 'icon'      : 'add_shopping_cart',
                                 'url'       : '/apps/market/order'
                             }
@@ -154,6 +168,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Catalog',
                         'translate': 'NAV.CATALOG',
                         'type'     : 'collapsable',
+                        'resource' : 'market-catalog',
                         'icon'     : 'layers',
                         'children' : [
                             {
@@ -161,6 +176,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Products',
                                 'translate' : 'NAV.PRODUCTS',
                                 'type'      : 'item',
+                                'resource'  : 'market-product',
                                 'icon'      : 'devices_other',
                                 'url'       : '/apps/market/product'
                             },
@@ -169,6 +185,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Categories',
                                 'translate' : 'NAV.CATEGORIES',
                                 'type'      : 'item',
+                                'resource'  : 'market-category',
                                 'icon'      : 'chrome_reader_mode',
                                 'url'       : '/apps/market/category'
                             },
@@ -177,6 +194,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Sections',
                                 'translate' : 'NAV.SECTIONS',
                                 'type'      : 'item',
+                                'resource'  : 'market-section',
                                 'icon'      : 'power',
                                 'url'       : '/apps/market/section'
                             },
@@ -185,6 +203,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Warehouses',
                                 'translate' : 'NAV.WAREHOUSES',
                                 'type'      : 'item',
+                                'resource'  : 'market-warehouse',
                                 'icon'      : 'business',
                                 'url'       : '/apps/market/warehouse'
                             }
@@ -195,6 +214,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Marketing',
                         'translate': 'NAV.MARKETING',
                         'type'     : 'collapsable',
+                        'resource' : 'market-marketing',
                         'icon'     : 'my_location',
                         'children' : [
                             {
@@ -202,6 +222,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Cart price rules',
                                 'translate' : 'NAV.CART_PRICE_RULES',
                                 'type'      : 'item',
+                                'resource'  : 'market-cart-price-rule',
                                 'icon'      : 'local_grocery_store',
                                 'url'       : '/apps/market/marketing/cart-price-rule'
                             }
@@ -212,6 +233,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Payment gateways',
                         'translate': 'NAV.PAYMENT_GATEWAYS',
                         'type'     : 'collapsable',
+                        'resource' : 'market-tpv',
                         'icon'     : 'credit_card',
                         'children' : [
                             {
@@ -219,6 +241,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'PayPal',
                                 'translate' : 'NAV.PAYPAL_WEB_PROFILES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tpv-paypal-web-profile',
                                 'icon'      : ['fab', 'paypal'],
                                 'url'       : '/apps/market/payment-gateways/paypal-web-profile'
                             }
@@ -229,6 +252,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Taxes',
                         'translate': 'NAV.TAXES',
                         'type'     : 'collapsable',
+                        'resource' : 'market-tax',
                         'icon'     : 'account_balance',
                         'children' : [
                             {
@@ -236,6 +260,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Tax rules',
                                 'translate' : 'NAV.TAX_RULES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tax-rule',
                                 'icon'      : 'gavel',
                                 'url'       : '/apps/market/taxes/tax-rule'
                             },
@@ -244,6 +269,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Tax rate zones',
                                 'translate' : 'NAV.TAX_RATE_ZONES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tax-rate-zone',
                                 'icon'      : 'language',
                                 'url'       : '/apps/market/taxes/tax-rate-zone'
                             },
@@ -252,6 +278,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Product class taxes',
                                 'translate' : 'NAV.PRODUCT_CLASS_TAXES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tax-product',
                                 'icon'      : 'view_agenda',
                                 'url'       : '/apps/market/taxes/product-class-tax'
                             },
@@ -260,6 +287,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Customer class taxes',
                                 'translate' : 'NAV.CUSTOMER_CLASS_TAXES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tax-customer',
                                 'icon'      : 'assignment_ind',
                                 'url'       : '/apps/market/taxes/customer-class-tax'
                             },
@@ -268,6 +296,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Customer groups customer class taxes',
                                 'translate' : 'NAV.CUSTOMER_GROUPS_CUSTOMER_CLASS_TAXES',
                                 'type'      : 'item',
+                                'resource'  : 'market-tax-customer-group',
                                 'icon'      : 'blur_circular',
                                 'url'       : '/apps/market/taxes/customer-group-customer-class-tax'
                             }
@@ -278,6 +307,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Preferences',
                         'translate': 'NAV.PREFERENCES',
                         'type'     : 'collapsable',
+                        'resource' : 'market-preference',
                         'icon'     : 'settings',
                         'children' : [
                             {
@@ -285,6 +315,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Payment methods',
                                 'translate' : 'NAV.PAYMENT_METHODS',
                                 'type'      : 'item',
+                                'resource'  : 'market-payment-method',
                                 'icon'      : 'credit_card',
                                 'url'       : '/apps/market/payment-method'
                             },
@@ -293,6 +324,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Order statuses',
                                 'translate' : 'NAV.ORDER_STATUSES',
                                 'type'      : 'item',
+                                'resource'  : 'market-order-status',
                                 'icon'      : 'cached',
                                 'url'       : '/apps/market/order-status'
                             }
@@ -301,17 +333,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'   : 'review',
-                'title': 'Review',
+                'id'       : 'review',
+                'title'    : 'Review',
                 'translate': 'NAV.REVIEW',
-                'type' : 'collapsable',
-                'icon' : 'star',
+                'type'     : 'collapsable',
+                'resource' : 'review',
+                'icon'     : 'star',
                 'children' : [
                     {
                         'id'        : 'reviews',
                         'title'     : 'Reviews',
                         'translate' : 'NAV.REVIEWS',
                         'type'      : 'item',
+                        'resource'  : 'review-review',
                         'icon'      : 'offline_pin',
                         'url'       : '/apps/review/review'
                     },
@@ -320,6 +354,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Comments',
                         'translate' : 'NAV.COMMENTS',
                         'type'      : 'item',
+                        'resource'  : 'review-comment',
                         'icon'      : 'question_answer',
                         'url'       : '/apps/review/comment'
                     },
@@ -328,6 +363,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Object averages',
                         'translate' : 'NAV.AVERAGES',
                         'type'      : 'item',
+                        'resource'  : 'review-average',
                         'icon'      : 'trending_up',
                         'url'       : '/apps/review/object-average'
                     },
@@ -336,6 +372,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Polls',
                         'translate' : 'NAV.POLLS',
                         'type'      : 'item',
+                        'resource'  : 'review-poll',
                         'icon'      : 'assignment',
                         'url'       : '/apps/review/poll'
                     },
@@ -344,6 +381,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Questions',
                         'translate' : 'NAV.QUESTIONS',
                         'type'      : 'item',
+                        'resource'  : 'review-question',
                         'icon'      : 'help',
                         'url'       : '/apps/review/question'
                     },
@@ -352,6 +390,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Preferences',
                         'translate' : 'NAV.PREFERENCES',
                         'type'      : 'item',
+                        'resource'  : 'review-preference',
                         'icon'      : 'settings',
                         'url'       : '/apps/review/preference'
                     }
@@ -367,17 +406,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'   : 'cms',
-                'title': 'CMS',
+                'id'       : 'cms',
+                'title'    : 'CMS',
                 'translate': 'NAV.CMS',
-                'type' : 'collapsable',
-                'icon' : 'art_track',
+                'type'     : 'collapsable',
+                'resource' : 'cms',
+                'icon'     : 'art_track',
                 'children' : [
                     {
                         'id'        : 'articles',
                         'title'     : 'Articles',
                         'translate' : 'NAV.ARTICLES',
                         'type'      : 'item',
+                        'resource'  : 'cms-article',
                         'icon'      : 'library_books',
                         'url'       : '/apps/cms/article'
                     },
@@ -386,6 +427,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Sections',
                         'translate' : 'NAV.SECTIONS',
                         'type'      : 'item',
+                        'resource'  : 'cms-section',
                         'icon'      : 'power',
                         'url'       : '/apps/cms/section'
                     },
@@ -394,6 +436,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Families',
                         'translate' : 'NAV.FAMILIES',
                         'type'      : 'item',
+                        'resource'  : 'cms-article-family',
                         'icon'      : 'class',
                         'url'       : '/apps/cms/family'
                     },
@@ -402,23 +445,26 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Categories',
                         'translate' : 'NAV.CATEGORIES',
                         'type'      : 'item',
+                        'resource'  : 'cms-category',
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/cms/category'
                     }
                 ]
             },
             {
-                'id'   : 'wine',
-                'title': 'Wine',
+                'id'       : 'wine',
+                'title'    : 'Wine',
                 'translate': 'NAV.WINE',
-                'type' : 'collapsable',
-                'icon' : ['fas', 'wine-bottle'],
+                'type'     : 'collapsable',
+                'resource' : 'wine',
+                'icon'     : ['fas', 'wine-bottle'],
                 'children' : [
                     {
                         'id'        : 'wines',
                         'title'     : 'Wines',
                         'translate' : 'NAV.WINES',
                         'type'      : 'item',
+                        'resource'  : 'wine-wine',
                         'icon'      : ['fas', 'wine-glass-alt'],
                         'url'       : '/apps/wine/wine'
                     },
@@ -427,6 +473,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Wineries',
                         'translate' : 'NAV.WINERIES',
                         'type'      : 'item',
+                        'resource'  : 'wine-winery',
                         'icon'      : ['fas', 'warehouse'],
                         'url'       : '/apps/wine/winery'
                     },
@@ -435,6 +482,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Database',
                         'translate' : 'NAV.TABLES',
                         'type'      : 'collapsable',
+                        'resource'  : 'wine-table',
                         'icon'      : ['fas', 'database'],
                         'children'  : [
                             {
@@ -442,6 +490,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Appellations',
                                 'translate' : 'NAV.APPELLATIONS',
                                 'type'      : 'item',
+                                'resource'  : 'wine-appellation',
                                 'icon'      : ['fas', 'map-marked-alt'],
                                 'url'       : '/apps/wine/appellation'
                             },
@@ -450,6 +499,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Families',
                                 'translate' : 'NAV.FAMILIES',
                                 'type'      : 'item',
+                                'resource'  : 'wine-family',
                                 'icon'      : 'category',
                                 'url'       : '/apps/wine/family'
                             },
@@ -458,6 +508,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Types',
                                 'translate' : 'NAV.TYPES',
                                 'type'      : 'item',
+                                'resource'  : 'wine-type',
                                 'icon'      : 'bookmarks',
                                 'url'       : '/apps/wine/type'
                             },
@@ -466,6 +517,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Grapes',
                                 'translate' : 'NAV.GRAPES',
                                 'type'      : 'item',
+                                'resource'  : 'wine-grape',
                                 'icon'      : 'hdr_weak',
                                 'url'       : '/apps/wine/grape'
                             },
@@ -474,6 +526,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Pairings',
                                 'translate' : 'NAV.PAIRINGS',
                                 'type'      : 'item',
+                                'resource'  : 'wine-pairing',
                                 'icon'      : 'local_dining',
                                 'url'       : '/apps/wine/pairing'
                             },
@@ -482,6 +535,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Awards',
                                 'translate' : 'NAV.AWARDS',
                                 'type'      : 'item',
+                                'resource'  : 'wine-awards',
                                 'icon'      : ['fas', 'award'],
                                 'url'       : '/apps/wine/award'
                             },
@@ -490,6 +544,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Presentations',
                                 'translate' : 'NAV.PRESENTATIONS',
                                 'type'      : 'item',
+                                'resource'  : 'wine-presentation',
                                 'icon'      : 'photo_size_select_small',
                                 'url'       : '/apps/wine/presentation'
                             }
