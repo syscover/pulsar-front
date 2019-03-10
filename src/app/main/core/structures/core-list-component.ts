@@ -217,6 +217,15 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     /*
     * Clear common text input search
     */
+    clearFilter(): void
+    {
+        this.filter.nativeElement.value = '';
+        this.refreshTable.next();
+    }
+
+    /*
+    * Clear filter or ser filter of column
+    */
     setColumnFilter($event): void
     {
         if (Array.isArray(this.filters)) _.remove(this.filters, {'column': $event.column});
