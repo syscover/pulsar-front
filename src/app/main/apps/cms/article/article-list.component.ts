@@ -26,7 +26,7 @@ export class ArticleListComponent extends CoreListComponent
     }
 
     // overwrite method to get statuses
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {    
         args['config'] = {
             key: 'pulsar-cms.statuses',

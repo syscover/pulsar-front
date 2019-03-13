@@ -71,7 +71,7 @@ export class CommentDetailComponent extends CoreDetailComponent
         return this.fg.get('responses') as FormArray;
     }
 
-    getCustomArgumentsEditPostRecord(args, object): Object
+    getCustomArgumentsEditPostRecord(args, object): object
     {
         args['action_id'] = args['payload']['action_id'];
 

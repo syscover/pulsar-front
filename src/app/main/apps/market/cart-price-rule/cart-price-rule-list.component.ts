@@ -24,7 +24,7 @@ export class CartPriceRuleListComponent extends CoreListComponent
     }
 
     // overwite method to get statuses
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['sql'].push({
             command: 'orderBy',

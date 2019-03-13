@@ -33,7 +33,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     protected params: Params;
     protected langs: Lang[];                    // activated application lang
     protected snackBar: MatSnackBar;
-    protected translations: Object = {};        // translations for used in component
+    protected translations: object = {};        // translations for used in component
     protected dialog: MatDialog;
     protected _onDestroy = new Subject();       // create Observable to unsubscribe
 
@@ -195,5 +195,5 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     }
 
     // method to be overwrite
-    getCustomArgumentsDeleteRecord(object: any, args: Object): Object { return args; }
+    getCustomArgumentsDeleteRecord(object: any, args: object): object { return args; }
 }

@@ -84,7 +84,7 @@ export class Wine extends Marketable
     appellation_id: number;
     attachments: Attachment[];
     country_id: string;
-    data: Object;
+    data: object;
     data_lang: string[];
     decanter: number;
     family_id: number;
@@ -131,7 +131,7 @@ export class Winery
 {
     attachments: Attachment[];
     country_id: string;
-    data: Object;
+    data: object;
     data_lang: string[];
     description: string;
     excerpt: string;

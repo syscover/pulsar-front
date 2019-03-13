@@ -74,7 +74,7 @@ export class WineryDetailComponent extends CoreDetailComponent implements OnInit
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlAttachmentFamily = [
             {

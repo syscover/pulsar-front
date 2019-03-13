@@ -32,7 +32,7 @@ export class AttachmentMimeDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         return {
             configAttachmentResources : {

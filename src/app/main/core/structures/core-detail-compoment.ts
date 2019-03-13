@@ -213,7 +213,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // instance custom arguments, for example in field-detail.component.ts
     // default merge relations arguments with argumens
-    getCustomArgumentsGetRecord(args: Object, params: Params): Object
+    getCustomArgumentsGetRecord(args: object, params: Params): object
     {
         return Object.assign({}, args, this.argumentsRelationsObject());
     }
@@ -263,7 +263,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // get arguments, for example in payment-method-detail.component.ts
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         return undefined;
     }
@@ -443,26 +443,26 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsPostRecord(args: any, object: any): Object { return args; }
+    getCustomArgumentsPostRecord(args: any, object: any): object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsCreatePostRecord(args: any, params: Params): Object { return args; }
+    getCustomArgumentsCreatePostRecord(args: any, params: Params): object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsCreateLangPostRecord(args: any, params: Params): Object { return args; }
+    getCustomArgumentsCreateLangPostRecord(args: any, params: Params): object { return args; }
 
     /**
      * Method to be overwrite
      * @param args  Object
      * @param params Params
      */
-    getCustomArgumentsEditPostRecord(args: any, params: Params): Object { return args; }
+    getCustomArgumentsEditPostRecord(args: any, params: Params): object { return args; }
 }

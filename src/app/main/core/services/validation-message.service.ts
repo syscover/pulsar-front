@@ -66,7 +66,7 @@ export class ValidationMessageService
         }
     }
 
-    setErrors(formGroup: FormGroup, data?: any): Object {
+    setErrors(formGroup: FormGroup, data?: any): object {
 
         if (! formGroup) { return; }
         const formErrors = {};

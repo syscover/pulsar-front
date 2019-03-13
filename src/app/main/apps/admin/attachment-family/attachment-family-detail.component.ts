@@ -46,7 +46,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         return {
             configSizes : {

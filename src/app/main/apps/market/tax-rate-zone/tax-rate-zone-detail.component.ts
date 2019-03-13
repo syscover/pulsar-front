@@ -37,7 +37,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlCountry = [
             {

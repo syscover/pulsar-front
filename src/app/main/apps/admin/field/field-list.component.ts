@@ -25,7 +25,7 @@ export class FieldListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['configFieldTypes'] = {
             key: 'pulsar-admin.field_types'

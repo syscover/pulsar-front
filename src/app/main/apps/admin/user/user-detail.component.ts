@@ -67,7 +67,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         this.profiles = data.adminProfiles;
     }
 
-    getCustomArgumentsCreatePostRecord(args, object): Object
+    getCustomArgumentsCreatePostRecord(args, object): object
     { 
         // delete repeat_password from object to ajust to user class
         delete args['payload']['repeat_password'];
@@ -75,7 +75,7 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
         return args;
     }
 
-    getCustomArgumentsEditPostRecord(args, object): Object
+    getCustomArgumentsEditPostRecord(args, object): object
     {
         // delete repeat_password from object to ajust to user class
         delete args['payload']['repeat_password'];

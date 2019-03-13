@@ -92,7 +92,7 @@ export class FieldDetailComponent extends CoreDetailComponent
         }
     }
 
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         const configFieldTypes = {
             key: 'pulsar-admin.field_types'
@@ -119,7 +119,7 @@ export class FieldDetailComponent extends CoreDetailComponent
 
     // overwrite this method for not implement lang_id property in aguments
     // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): Object
+    getCustomArgumentsGetRecord(args: object, params: Params): object
     {
         return Object.assign({}, {
             sql: [{

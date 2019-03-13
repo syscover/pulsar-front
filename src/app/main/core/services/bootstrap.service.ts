@@ -22,7 +22,7 @@ export class BootstrapService {
                 ._httpClient
                 .get('./config/config.json')
                 .subscribe(
-                    (config: Object) => {
+                    (config: object) => {
                         // init apollo client
                         this._apolloService.createApolloClient(config['graphqlUri']);
 

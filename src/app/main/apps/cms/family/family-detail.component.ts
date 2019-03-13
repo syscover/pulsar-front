@@ -44,7 +44,7 @@ export class FamilyDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlFieldGroup = [
             {

@@ -32,7 +32,7 @@ export class FieldGroupDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         return {
             configFieldGroupResources : {

@@ -46,7 +46,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const configExtensions = {
             key: 'pulsar-admin.extensions',

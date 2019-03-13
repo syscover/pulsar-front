@@ -31,7 +31,7 @@ export class WarehouseDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlCountry = [
             {

@@ -30,7 +30,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
         });
     }
 
-    getCustomArgumentsGetRecord(args, params): Object
+    getCustomArgumentsGetRecord(args, params): object
     {
         return {
             keys: [
@@ -52,7 +52,7 @@ export class PreferenceDetailComponent extends CoreDetailComponent
     }
 
     // instance PreferenceType[] object to do a post
-    getCustomArgumentsPostRecord(args, object): Object
+    getCustomArgumentsPostRecord(args, object): object
     {
         const objectInput = [];
 

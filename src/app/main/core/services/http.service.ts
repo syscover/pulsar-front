@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 export class HttpService extends Core
 {
     protected headers: HttpHeaders;
-    protected options: Object;
+    protected options: object;
     protected http: HttpClient;
     protected apollo: Apollo;
     protected router: Router;

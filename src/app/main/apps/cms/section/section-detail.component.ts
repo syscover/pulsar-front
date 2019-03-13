@@ -39,7 +39,7 @@ export class SectionDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlAttachmentFamily = [
             {

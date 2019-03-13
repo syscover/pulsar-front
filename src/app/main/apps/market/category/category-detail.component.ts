@@ -43,7 +43,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
         this.loadingSlug = $event;
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlCategory = [
             {

@@ -5,7 +5,7 @@ export class StockableService
 {
     constructor() {}
 
-    getArgumentsRelations(product_id: string): Object
+    getArgumentsRelations(product_id: string): object
     {
         const sqlStock = [
             {

@@ -24,7 +24,7 @@ export class ExpedientListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['configModalities'] = {
             key: 'pulsar-forem.modalities'

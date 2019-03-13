@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AuthorizationService implements CanActivate, CanActivateChild, CanLoad
 {
     private _permissions: Permission[] = [];
-    private _translations: Object = {};
+    private _translations: object = {};
 
     constructor(
         private _authenticationService: AuthenticationService,

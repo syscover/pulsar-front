@@ -57,7 +57,7 @@ export class Category
     section_id: number;
     sort: number;
     data_lang: string[];
-    data: Object;
+    data: object;
 }
 
 export class Article 

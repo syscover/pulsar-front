@@ -36,7 +36,7 @@ export class ExpedientDetailComponent extends CoreDetailComponent  implements On
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const configModalities = {
             key: 'pulsar-forem.modalities'

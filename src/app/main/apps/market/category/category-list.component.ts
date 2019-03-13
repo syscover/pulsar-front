@@ -25,7 +25,7 @@ export class CategoryListComponent extends CoreListComponent
         super(_injector, graphQL);
     }
 
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['sqlCategory'] = [{
             command: 'where',

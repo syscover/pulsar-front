@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigService
 {
-    private config: Object = null;
+    private config: object = null;
 
     constructor() {}
 
@@ -19,7 +19,7 @@ export class ConfigService
         }
     }
 
-    public set(config: Object): void
+    public set(config: object): void
     {
         this.config = config;
     }

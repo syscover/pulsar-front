@@ -57,7 +57,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const configDiscountTypes = {
             key: 'pulsar-market.discount_types',
@@ -72,7 +72,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
 
     // overwrite this method for not implement lang_id property in aguments
     // field object has translations in field name in json format
-    getCustomArgumentsGetRecord(args: Object, params: Params): Object
+    getCustomArgumentsGetRecord(args: object, params: Params): object
     {
         return Object.assign({}, {
             sql: [{

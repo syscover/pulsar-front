@@ -32,7 +32,7 @@ export class PermissionListComponent extends CoreListComponent
     }
 
     // overwrite method to get statuses
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['sqlPermissions'] = [{
             command: 'where',

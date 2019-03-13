@@ -22,7 +22,7 @@ export class CommentListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         args['sql'].push({
             command: 'orderBy',

@@ -70,7 +70,7 @@ export class QuestionDetailComponent extends CoreDetailComponent
         if (this.object.type_id !== 1) this.showHighScore = false;
     }
 
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         const configQuestionTypes = {
             key: 'pulsar-review.question_types',

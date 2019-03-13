@@ -69,7 +69,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         }
     }
 
-    getCustomArgumentsCreatePostRecord(args, object): Object
+    getCustomArgumentsCreatePostRecord(args, object): object
     { 
         // delete repeat_password from object to ajust to user class
         delete args['payload']['repeat_password'];
@@ -77,7 +77,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         return args;
     }
 
-    getCustomArgumentsEditPostRecord(args, object): Object
+    getCustomArgumentsEditPostRecord(args, object): object
     {
         // delete repeat_password from object to adjust to user class
         delete args['payload']['repeat_password'];
@@ -85,7 +85,7 @@ export class CustomerDetailComponent extends CoreDetailComponent  implements OnI
         return args;
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlCountry = [
             {

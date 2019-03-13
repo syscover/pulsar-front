@@ -38,7 +38,7 @@ export class PaymentMethodDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlOrderStatus = [
             {

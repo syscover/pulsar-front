@@ -94,7 +94,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         this.fg.get('weight').disable();
     }
     
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         const marketableArguments = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['id'], null);
 
@@ -196,7 +196,7 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         );
     }
 
-    getCustomArgumentsPostRecord(args, object): Object
+    getCustomArgumentsPostRecord(args, object): object
     {
         return this._marketable.getCustomArgumentsPostRecord(args);
     }

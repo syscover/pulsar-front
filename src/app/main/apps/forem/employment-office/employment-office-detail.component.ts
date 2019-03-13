@@ -42,7 +42,7 @@ export class EmploymentOfficeDetailComponent extends CoreDetailComponent  implem
         });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlCountry = [
             {

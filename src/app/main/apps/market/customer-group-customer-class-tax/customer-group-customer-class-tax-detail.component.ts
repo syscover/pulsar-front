@@ -36,7 +36,7 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
         });
     }
 
-    getCustomArgumentsGetRecord(args: Object, params: Params): Object
+    getCustomArgumentsGetRecord(args: object, params: Params): object
     {
         return {
             sql: [{
@@ -69,7 +69,7 @@ export class CustomerGroupCustomerClassTaxDetailComponent extends CoreDetailComp
         this.customerClassTaxes = data.marketCustomerClassTaxes;
     }
 
-    getCustomArgumentsEditPostRecord(args: Object, object: any): Object
+    getCustomArgumentsEditPostRecord(args: object, object: any): object
     {
         args['customer_group_id'] = object.customer_group_id;
         args['customer_class_tax_id'] = object.customer_class_tax_id;

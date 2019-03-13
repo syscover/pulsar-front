@@ -156,7 +156,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
         this.loadingSlug = $event;
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const sqlArticle = [
             {

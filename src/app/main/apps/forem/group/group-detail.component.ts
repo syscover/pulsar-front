@@ -136,7 +136,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         // marketable component
         const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Wine\\Models\\Wine');

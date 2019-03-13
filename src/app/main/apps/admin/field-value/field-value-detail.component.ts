@@ -40,7 +40,7 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         });
     }
 
-    getCustomArgumentsGetRecord(args, params): Object
+    getCustomArgumentsGetRecord(args, params): object
     {
         args.sql.push({
             command: 'where',

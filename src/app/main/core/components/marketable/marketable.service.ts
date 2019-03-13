@@ -99,7 +99,7 @@ export class MarketableService
             });
     }
 
-    getArgumentsRelations(baseLang: string, lang_id: string, product_id?: string, object_type = null): Object
+    getArgumentsRelations(baseLang: string, lang_id: string, product_id?: string, object_type = null): object
     {
         const sqlMarketableProduct = [
             {
@@ -195,7 +195,7 @@ export class MarketableService
         );
     }
 
-    getCustomArgumentsPostRecord(args): Object
+    getCustomArgumentsPostRecord(args): object
     {
         // if product is event, reset cost
         if (args.payload.class_id === 5)

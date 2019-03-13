@@ -84,7 +84,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             });
     }
 
-    argumentsRelationsObject(): Object
+    argumentsRelationsObject(): object
     {
         const configTargets = {
             key: 'pulsar-forem.targets'

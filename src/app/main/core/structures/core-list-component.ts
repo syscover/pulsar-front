@@ -277,7 +277,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             .toPromise();
     }
 
-    argumentsGetRecords(sort: string, order: string, offset: number, limit: number, searchText: string): Object 
+    argumentsGetRecords(sort: string, order: string, offset: number, limit: number, searchText: string): object
     {
         const args: any = {}; // create empty object
 
@@ -337,13 +337,13 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
      * Set data for relations object
      * @param data
      */
-    setRelationsData(data: Object): void { }
+    setRelationsData(data: object): void { }
 
     /**
      * Set data source
      * @param data
      */
-    setDataSource(data: Object): void { }
+    setDataSource(data: object): void { }
 
     /**
      *
@@ -355,7 +355,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     }
 
     // instante custom arguments, for example in article-list.component.ts
-    getCustomArgumentsGetRecords(args: Object): Object
+    getCustomArgumentsGetRecords(args: object): object
     {
         return args;
     }

@@ -115,7 +115,7 @@ export class OrderDetailComponent extends CoreDetailComponent
         });
     }
 
-    argumentsRelationsObject(): Object 
+    argumentsRelationsObject(): object
     {
         const sqlOrderStatus = [
             {
