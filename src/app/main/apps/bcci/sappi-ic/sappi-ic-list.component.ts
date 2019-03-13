@@ -14,7 +14,7 @@ export class SappiIcListComponent extends CoreListComponent
     objectTranslation = 'APPS.PACKAGE';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['bcci_sappi_ic.id', 'bcci_sappi_ic.origin_id', 'bcci_sappi_ic.interface_name', 'bcci_sappi_ic.application_id', 'bcci_sappi_ic.application_id'];
-    columnsPattern: object = {'bcci_sappi_ic.id': true, 'bcci_sappi_ic.origin_id': true, 'bcci_sappi_ic.interface_name': true, 'bcci_sappi_ic.application_id': true, 'bcci_sappi_ic.critical': true, 'bcci_sappi_ic.complex': true};
+    columnsPattern: object = {'bcci_sappi_ic.id': false, 'bcci_sappi_ic.origin_id': true, 'bcci_sappi_ic.interface_name': true, 'bcci_sappi_ic.application_id': true, 'bcci_sappi_ic.critical': true, 'bcci_sappi_ic.complex': true};
 
     constructor(
         protected injector: Injector
