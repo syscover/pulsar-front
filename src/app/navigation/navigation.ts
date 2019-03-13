@@ -36,6 +36,66 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
+                'id'   : 'innova-concrete',
+                'title': 'Innova Concrete',
+                'translate': 'NAV.INNOVA_CONCRETE',
+                'type' : 'collapsable',
+                'icon' : ['fas', 'archway'],
+                'children' : [
+                    {
+                        'id'        : 'monuments',
+                        'title'     : 'Monuments',
+                        'translate' : 'NAV.MONUMENTS',
+                        'type'      : 'item',
+                        'icon'      : ['fas', 'monument'],
+                        'url'       : '/apps/innova-concrete/monuments'
+                    },
+                    {
+                        'id'       : 'database',
+                        'title'    : 'Database',
+                        'translate': 'NAV.TABLES',
+                        'type'     : 'collapsable',
+                        'resource' : 'wine-table',
+                        'icon'     : ['fas', 'database'],
+                        'children': [
+                            {
+                                'id'        : 'characteristic',
+                                'title'     : 'Characteristic',
+                                'translate' : 'NAV.CHARACTERISTICS',
+                                'type'      : 'item',
+                                'icon'      : 'share',
+                                'url'       : '/apps/innova-concrete/characteristic'
+                            },
+                            {
+                                'id'        : 'type',
+                                'title'     : 'Type',
+                                'translate' : 'NAV.TYPES',
+                                'type'      : 'item',
+                                'icon'      : ['fas', 'cubes'],
+                                'url'       : '/apps/innova-concrete/type'
+                            },
+                            {
+                                'id'        : 'people',
+                                'title'     : 'People',
+                                'translate' : 'NAV.PEOPLE',
+                                'type'      : 'item',
+                                'icon'      : ['fas', 'user'],
+                                'url'       : '/apps/innova-concrete/people'
+                            },
+                            {
+                                'id'        : 'group',
+                                'title'     : 'Group',
+                                'translate' : 'NAV.GROUPS',
+                                'type'      : 'item',
+                                'icon'      : ['fas', 'users-cog'],
+                                'url'       : '/apps/innova-concrete/group'
+                            },
+                        ]
+                    }
+                ]
+            },
+
+            {
                 'id'       : 'forem',
                 'title'    : 'Forem',
                 'translate': 'NAV.FOREM',
@@ -87,6 +147,15 @@ export const navigation: FuseNavigation[] = [
                         'resource'  : 'forem-category',
                         'icon'      : 'chrome_reader_mode',
                         'url'       : '/apps/forem/category'
+                    },
+                    {
+                        'id'        : 'provinces',
+                        'title'     : 'Provinces',
+                        'translate' : 'NAV.PROVINCES',
+                        'type'      : 'item',
+                        'resource'  : 'forem-province',
+                        'icon'      : 'chrome_reader_mode',
+                        'url'       : '/apps/forem/province'
                     }
                 ]
             },
