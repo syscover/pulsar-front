@@ -11,11 +11,11 @@ import { graphQL } from './winery.graphql';
 })
 export class WineryListComponent extends CoreListComponent
 {
-    objectTranslation = 'WINE.WINERY';
-    objectTranslationGender = 'F';
-    columnsSearch: string[] = ['wine_winery.id', 'wine_winery.name'];
-    displayedColumns = ['wine_winery.id', 'wine_winery.name', 'translations', 'actions'];
-    filters = [
+    public objectTranslation = 'WINE.WINERY';
+    public objectTranslationGender = 'F';
+    public columnsSearch: string[] = ['wine_winery.id', 'wine_winery.name'];
+    public displayedColumns = ['wine_winery.id', 'wine_winery.name', 'translations', 'actions'];
+    public filters = [
         {'command': 'where', 'column': 'wine_winery_lang.lang_id', 'operator': '=', 'value': this.baseLang }
     ];
 

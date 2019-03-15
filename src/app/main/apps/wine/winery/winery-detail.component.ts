@@ -15,16 +15,16 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class WineryDetailComponent extends CoreDetailComponent implements OnInit
 {
-    objectTranslation = 'WINE.WINERY';
-    objectTranslationGender = 'F';
-    graphQL = graphQL;
-    loadingSlug = false;
-    attachmentFamilies: AttachmentFamily[] = [];
+    public objectTranslation = 'WINE.WINERY';
+    public objectTranslationGender = 'F';
+    public graphQL = graphQL;
+    public loadingSlug = false;
+    public attachmentFamilies: AttachmentFamily[] = [];
 
     // countries
-    countries: Country[] = [];
-    countryFilterCtrl: FormControl = new FormControl();
-    filteredCountries: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
+    public countries: Country[] = [];
+    public countryFilterCtrl: FormControl = new FormControl();
+    public filteredCountries: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
 
     constructor(
         private _injector: Injector,

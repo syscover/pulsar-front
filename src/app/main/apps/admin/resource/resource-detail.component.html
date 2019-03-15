@@ -92,8 +92,8 @@
                             <mat-label>{{ 'APPS.PACKAGE' | translate }}</mat-label>
                             <mat-select formControlName="package_id">
                                 <mat-option *ngFor="let package of packages" [value]="package.id">{{ package.name }}</mat-option>
-                                <mat-error>{{ formErrors?.package_id }}</mat-error>
                             </mat-select>
+                            <mat-error>{{ formErrors?.package_id }}</mat-error>
                         </mat-form-field>
                     </div>
                     
