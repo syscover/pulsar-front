@@ -18,7 +18,7 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <fa-icon [icon]="['fas', 'cubes']" size="2x" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
+                <fa-icon [icon]="['fas', 'cubes']" class="mr-16" size="2x" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.TYPES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
@@ -41,7 +41,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'CRM.ADDRESS_TYPE' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.TYPE' | translate }}</span>
             </button>
 
         </div>

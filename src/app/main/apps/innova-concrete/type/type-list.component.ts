@@ -5,7 +5,7 @@ import { graphQL } from './type.graphql';
 
 @Component({
     selector: 'dh2-innova-concrete-type-list',
-    templateUrl: './innova-concrete-type-list.component.html',
+    templateUrl: './type-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
 })

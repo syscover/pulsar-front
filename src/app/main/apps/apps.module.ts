@@ -62,6 +62,11 @@ const routes = [
         loadChildren: './bcci/bcci.module#BcciModule',
         canLoad     : [AuthorizationService]
     },
+    {
+        path        : 'innova-concrete',
+        loadChildren: './innova-concrete/innova-concrete.module#InnovaConcreteModule',
+        canLoad     : [AuthorizationService]
+    },
 ];
 
 
