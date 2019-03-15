@@ -6,7 +6,7 @@ import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
-//
+import { TypeListComponent } from './type/type-list.component';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     ],
     exports: [ ],
     declarations: [
-
+        TypeListComponent
     ],
     providers: []
 })

@@ -154,7 +154,7 @@ export const navigation: FuseNavigation[] = [
                         'translate' : 'NAV.PROVINCES',
                         'type'      : 'item',
                         'resource'  : 'forem-province',
-                        'icon'      : 'chrome_reader_mode',
+                        'icon'      : 'add_location',
                         'url'       : '/apps/forem/province'
                     }
                 ]
