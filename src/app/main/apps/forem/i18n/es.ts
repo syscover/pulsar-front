@@ -18,6 +18,7 @@ export const locale = {
             'ONLINE': 'Online',
             'OPEN': 'Abierto',
             'PRICE_HOUR': 'Precio por hora',
+            'PROVINCE': 'Provincia',
             'REQUIREMENTS': 'Requerimientos',
             'SELECTION_DATE': 'Día de selección',
             'SCHEDULE': 'Horario',

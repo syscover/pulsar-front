@@ -12,6 +12,8 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { ProvinceDetailComponent } from './province/province-detail.component';
+import { ProvinceListComponent } from './province/province-list.component';
 
 const routes: Routes = [
     {
@@ -19,29 +21,34 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         children: [
             // Actions
-            { path: 'action',                                               component: ActionListComponent,                     data: { action: 'list' }},
-            { path: 'action/create',                                        component: ActionDetailComponent,                   data: { action: 'create' }},
-            { path: 'action/show/:id',                                      component: ActionDetailComponent,                   data: { action: 'edit' }},
+            { path: 'action',                                               component: ActionListComponent,                     data: { action: 'list', resource: 'forem-action' }},
+            { path: 'action/create',                                        component: ActionDetailComponent,                   data: { action: 'create', resource: 'forem-action' }},
+            { path: 'action/show/:id',                                      component: ActionDetailComponent,                   data: { action: 'edit', resource: 'forem-action' }},
 
             // Categories
-            { path: 'category',                                             component: CategoryListComponent,                   data: { action: 'list' }},
-            { path: 'category/create',                                      component: CategoryDetailComponent,                 data: { action: 'create' }},
-            { path: 'category/show/:id',                                    component: CategoryDetailComponent,                 data: { action: 'edit' }},
+            { path: 'category',                                             component: CategoryListComponent,                   data: { action: 'list', resource: 'forem-category' }},
+            { path: 'category/create',                                      component: CategoryDetailComponent,                 data: { action: 'create', resource: 'forem-category' }},
+            { path: 'category/show/:id',                                    component: CategoryDetailComponent,                 data: { action: 'edit', resource: 'forem-category' }},
 
             // EmploymentOffices
-            { path: 'employment-office',                                    component: EmploymentOfficeListComponent,           data: { action: 'list' }},
-            { path: 'employment-office/create',                             component: EmploymentOfficeDetailComponent,         data: { action: 'create' }},
-            { path: 'employment-office/show/:id',                           component: EmploymentOfficeDetailComponent,         data: { action: 'edit' }},
+            { path: 'employment-office',                                    component: EmploymentOfficeListComponent,           data: { action: 'list', resource: 'forem-employment-office' }},
+            { path: 'employment-office/create',                             component: EmploymentOfficeDetailComponent,         data: { action: 'create', resource: 'forem-employment-office' }},
+            { path: 'employment-office/show/:id',                           component: EmploymentOfficeDetailComponent,         data: { action: 'edit', resource: 'forem-employment-office' }},
 
             // Expedients
-            { path: 'expedient',                                            component: ExpedientListComponent,                  data: { action: 'list' }},
-            { path: 'expedient/create',                                     component: ExpedientDetailComponent,                data: { action: 'create' }},
-            { path: 'expedient/show/:id',                                   component: ExpedientDetailComponent,                data: { action: 'edit' }},
+            { path: 'expedient',                                            component: ExpedientListComponent,                  data: { action: 'list', resource: 'forem-expedient' }},
+            { path: 'expedient/create',                                     component: ExpedientDetailComponent,                data: { action: 'create', resource: 'forem-expedient' }},
+            { path: 'expedient/show/:id',                                   component: ExpedientDetailComponent,                data: { action: 'edit', resource: 'forem-expedient' }},
 
             // Groups
-            { path: 'group',                                                component: GroupListComponent,                      data: { action: 'list' }},
-            { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create' }},
-            { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit' }},
+            { path: 'group',                                                component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group' }},
+            { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
+            { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
+
+            // Provinces
+            { path: 'province',                                             component: ProvinceListComponent,                   data: { action: 'list', resource: 'forem-province' }},
+            { path: 'province/create',                                      component: ProvinceDetailComponent,                 data: { action: 'create', resource: 'forem-province' }},
+            { path: 'province/show/:id',                                    component: ProvinceDetailComponent,                 data: { action: 'edit', resource: 'forem-province' }},
         ]  
     }
 ];

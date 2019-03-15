@@ -16,6 +16,8 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { ProvinceDetailComponent } from './province/province-detail.component';
+import { ProvinceListComponent } from './province/province-list.component';
 
 @NgModule({
     imports: [
@@ -34,8 +36,11 @@ import { GroupListComponent } from './group/group-list.component';
         ExpedientDetailComponent,
         ExpedientListComponent,
         GroupDetailComponent,
-        GroupListComponent
+        GroupListComponent,
+        ProvinceDetailComponent,
+        ProvinceListComponent
     ],
+
     providers: [],
     entryComponents: [
         CategoryDialogComponent

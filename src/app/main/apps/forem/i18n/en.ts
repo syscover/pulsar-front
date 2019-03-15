@@ -18,6 +18,7 @@ export const locale = {
             'ONLINE': 'Online',
             'OPEN': 'Open',
             'PRICE_HOUR': 'Price per hour',
+            'PROVINCE': 'Province',
             'REQUIREMENTS': 'Requirements',
             'SELECTION_DATE': 'Section date',
             'SCHEDULE': 'Schedule',
