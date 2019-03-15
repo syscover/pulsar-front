@@ -10,7 +10,11 @@ const fields = `
     name
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    innovaConcreteTypes {
+        ${innovaConcreteTypeGraphQL.fields}
+    }
+`;
 
 export const graphQL = {
     model: 'Techedge\\InnovaConcrete\\Models\\Characteristic',
@@ -27,11 +31,17 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query innovaConcreteGetRelationsCharacteristic {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
         query InnovaConcreteGetCharacteristics ($sql:[CoreSQLInput]) {
             coreObjects: innovaConcreteCharacteristics (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
@@ -39,6 +49,7 @@ export const graphQL = {
             coreObject: innovaConcreteCharacteristic (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`
