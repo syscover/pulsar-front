@@ -20,7 +20,7 @@
                 </button>
 
                 <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon class="logo-icon mr-16">share</mat-icon>
+                    <fa-icon [icon]="['fas', 'user']" class="mr-16" size="2x"></fa-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -28,7 +28,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'INNOVA.CHARACTERISTIC' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ 'INNOVA.PERSON' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -89,9 +89,9 @@
 
                         <div fxLayout="row">
                             <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
-                                <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
-                                <mat-select formControlName="type_id" required>
-                                    <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+                                <mat-label>{{ 'APPS.GROUP' | translate }}</mat-label>
+                                <mat-select formControlName="group_id" required>
+                                    <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
                                 </mat-select>
                                 <mat-error>{{ formErrors?.type_id }}</mat-error>
                             </mat-form-field>

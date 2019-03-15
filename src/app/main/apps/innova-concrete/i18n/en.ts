@@ -2,7 +2,8 @@ export const locale = {
     lang: 'en',
     data: {
         'INNOVA': {
-            'CHARACTERISTIC': 'Characteristic'
+            'CHARACTERISTIC': 'Characteristic',
+            'PERSON': 'Person',
         }
     }
 };

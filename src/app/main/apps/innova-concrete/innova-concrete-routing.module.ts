@@ -6,6 +6,8 @@ import { CharacteristicDetailComponent } from './characteristic/characteristic-d
 import { CharacteristicListComponent } from './characteristic/characteristic-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { PeopleDetailComponent } from './people/people-detail.component';
+import { PeopleListComponent } from './people/people-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
 import { TypeListComponent } from './type/type-list.component';
 
@@ -15,15 +17,20 @@ const routes: Routes = [
         canActivate: [AuthorizationService],
         canActivateChild: [AuthorizationService],
         children: [
-            // characteristic
+            // Characteristic
             { path: 'characteristic',                                   component: CharacteristicListComponent,         data: { action: 'list', resource: 'admin-user' }},
             { path: 'characteristic/create',                            component: CharacteristicDetailComponent,       data: { action: 'create', resource: 'admin-user' }},
             { path: 'characteristic/show/:id',                          component: CharacteristicDetailComponent,       data: { action: 'edit', resource: 'admin-user' }},
 
-            // group
+            // Group
             { path: 'group',                                            component: GroupListComponent,                  data: { action: 'list', resource: 'admin-user' }},
             { path: 'group/create',                                     component: GroupDetailComponent,                data: { action: 'create', resource: 'admin-user' }},
             { path: 'group/show/:id',                                   component: GroupDetailComponent,                data: { action: 'edit', resource: 'admin-user' }},
+
+            // People
+            { path: 'people',                                           component: PeopleListComponent,                 data: { action: 'list', resource: 'admin-user' }},
+            { path: 'people/create',                                    component: PeopleDetailComponent,               data: { action: 'create', resource: 'admin-user' }},
+            { path: 'people/show/:id',                                  component: PeopleDetailComponent,               data: { action: 'edit', resource: 'admin-user' }},
 
             // Type
             { path: 'type',                                             component: TypeListComponent,                   data: { action: 'list', resource: 'admin-user' }},

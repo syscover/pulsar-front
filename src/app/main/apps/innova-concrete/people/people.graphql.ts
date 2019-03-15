@@ -10,54 +10,65 @@ const fields = `
     name
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    innovaConcreteGroups {
+        ${innovaConcreteGroupGraphQL.fields}
+    }
+`;
 
 export const graphQL = {
-    model: 'Techedge\\InnovaConcrete\\Models\\Type',
-    table: 'innova_concrete_type',
+    model: 'Techedge\\InnovaConcrete\\Models\\People',
+    table: 'innova_concrete_people',
     fields,
     relationsFields,
 
     queryPaginationObject: gql`
-        query InnovaConcreteGetTypesPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: innovaConcreteTypesPagination (sql:$sql) {
+        query InnovaConcreteGetPeoplesPagination ($sql:[CoreSQLInput]) {
+            coreObjectsPagination: innovaConcretePeoplesPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
             }
         }`,
 
+    queryRelationsObject: gql`
+        query innovaConcreteGetRelationsPeople {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
-        query InnovaConcreteGetTypes ($sql:[CoreSQLInput]) {
-            coreObjects: innovaConcreteTypes (sql:$sql) {
+        query InnovaConcreteGetPeoples ($sql:[CoreSQLInput]) {
+            coreObjects: innovaConcretePeoples (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
-        query InnovaConcreteGetType ($sql:[CoreSQLInput]) {
-            coreObject: innovaConcreteType (sql:$sql) {
+        query InnovaConcreteGetPeople ($sql:[CoreSQLInput]) {
+            coreObject: innovaConcretePeople (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`
-        mutation InnovaConcreteCreateType ($payload:InnovaConcreteTypeInput!) {
-            innovaConcreteCreateType (payload:$payload) {
+        mutation InnovaConcreteCreatePeople ($payload:InnovaConcretePeopleInput!) {
+            innovaConcreteCreatePeople (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
-        mutation InnovaConcreteUpdateType ($payload:InnovaConcreteTypeInput!) {
-            innovaConcreteUpdateType (payload:$payload) {
+        mutation InnovaConcreteUpdatePeople ($payload:InnovaConcretePeopleInput!) {
+            innovaConcreteUpdatePeople (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
-        mutation InnovaConcreteDeleteType ($id:Int!) {
-            innovaConcreteDeleteType (id:$id) {
+        mutation InnovaConcreteDeletePeople ($id:Int!) {
+            innovaConcreteDeletePeople (id:$id) {
                 ${fields}
             }
         }`
