@@ -9,12 +9,12 @@ import { graphQL } from './characteristic.graphql';
     animations : fuseAnimations,
     styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
 })
-export class CharecteristicListComponent extends CoreListComponent
+export class CharacteristicListComponent extends CoreListComponent
 {
-    objectTranslation = 'CRM.ADDRESS_TYPE';
+    objectTranslation = 'INNOVA.CHARACTERISTIC';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['crm_address_type.id', 'crm_address_type.name'];
-    displayedColumns = ['crm_address_type.id', 'crm_address_type.name', 'actions'];
+    columnsSearch: string[] = ['innova_concrete_characteristic.id', 'innova_concrete_characteristic.name'];
+    displayedColumns = ['innova_concrete_characteristic.id', 'innova_concrete_characteristic.name', 'actions'];
 
     constructor(
         protected injector: Injector

@@ -35,7 +35,7 @@ export const graphQL = {
 
     queryPaginationObject: gql`
         query InnovaConcreteGetMonumentsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: innnovaConcreteMonumentsPagination (sql:$sql) {
+            coreObjectsPagination: innovaConcreteMonumentsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
@@ -44,35 +44,35 @@ export const graphQL = {
 
     queryObjects: gql`
         query InnovaConcreteGetMonuments ($sql:[CoreSQLInput]) {
-            coreObjects: innnovaConcreteMonuments (sql:$sql) {
+            coreObjects: innovaConcreteMonuments (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query InnovaConcreteGetMonument ($sql:[CoreSQLInput]) {
-            coreObject: innnovaConcreteMonument (sql:$sql) {
+            coreObject: innovaConcreteMonument (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation InnovaConcreteCreateMonument ($payload:InnovaConcreteMonumentInput!) {
-            innnovaConcreteCreateMonument (payload:$payload) {
+            innovaConcreteCreateMonument (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation InnovaConcreteUpdateMonument ($payload:InnovaConcreteMonumentInput!) {
-            innnovaConcreteUpdateMonument (payload:$payload) {
+            innovaConcreteUpdateMonument (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation InnovaConcreteDeleteMonument ($id:Int!) {
-            innnovaConcreteDeleteMonument (id:$id) {
+            innovaConcreteDeleteMonument (id:$id) {
                 ${fields}
             }
         }`

@@ -47,7 +47,7 @@ export const locale = {
             'FILENAME': 'Filename',
             'GENERATE_PASSWORD': 'Generate password',
             'GEOLOCATION': 'Geolocation',
-            'GROUP': 'Grupo',
+            'GROUP': 'Group',
             'HEADER': 'Header',
             'HEIGHT': 'Height',
             'ID': 'Id',

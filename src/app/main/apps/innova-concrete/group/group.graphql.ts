@@ -15,7 +15,7 @@ export const graphQL = {
 
     queryPaginationObject: gql`
         query InnovaConcreteGetGroupsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: innnovaConcreteGroupsPagination (sql:$sql) {
+            coreObjectsPagination: innovaConcreteGroupsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
@@ -24,35 +24,35 @@ export const graphQL = {
 
     queryObjects: gql`
         query InnovaConcreteGetGroups ($sql:[CoreSQLInput]) {
-            coreObjects: innnovaConcreteGroups (sql:$sql) {
+            coreObjects: innovaConcreteGroups (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query InnovaConcreteGetGroup ($sql:[CoreSQLInput]) {
-            coreObject: innnovaConcreteGroup (sql:$sql) {
+            coreObject: innovaConcreteGroup (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation InnovaConcreteCreateGroup ($payload:InnovaConcreteGroupInput!) {
-            innnovaConcreteCreateGroup (payload:$payload) {
+            innovaConcreteCreateGroup (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation InnovaConcreteUpdateGroup ($payload:InnovaConcreteGroupInput!) {
-            innnovaConcreteUpdateGroup (payload:$payload) {
+            innovaConcreteUpdateGroup (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation InnovaConcreteDeleteGroup ($id:Int!) {
-            innnovaConcreteDeleteGroup (id:$id) {
+            innovaConcreteDeleteGroup (id:$id) {
                 ${fields}
             }
         }`

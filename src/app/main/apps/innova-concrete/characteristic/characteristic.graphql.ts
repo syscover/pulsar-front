@@ -20,7 +20,7 @@ export const graphQL = {
 
     queryPaginationObject: gql`
         query InnovaConcreteGetCharacteristicsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: innnovaConcreteCharacteristicsPagination (sql:$sql) {
+            coreObjectsPagination: innovaConcreteCharacteristicsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
@@ -29,35 +29,35 @@ export const graphQL = {
 
     queryObjects: gql`
         query InnovaConcreteGetCharacteristics ($sql:[CoreSQLInput]) {
-            coreObjects: innnovaConcreteCharacteristics (sql:$sql) {
+            coreObjects: innovaConcreteCharacteristics (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
         query InnovaConcreteGetCharacteristic ($sql:[CoreSQLInput]) {
-            coreObject: innnovaConcreteCharacteristic (sql:$sql) {
+            coreObject: innovaConcreteCharacteristic (sql:$sql) {
                 ${fields}
             }
         }`,
 
     mutationCreateObject: gql`
         mutation InnovaConcreteCreateCharacteristic ($payload:InnovaConcreteCharacteristicInput!) {
-            innnovaConcreteCreateCharacteristic (payload:$payload) {
+            innovaConcreteCreateCharacteristic (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
         mutation InnovaConcreteUpdateCharacteristic ($payload:InnovaConcreteCharacteristicInput!) {
-            innnovaConcreteUpdateCharacteristic (payload:$payload) {
+            innovaConcreteUpdateCharacteristic (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
         mutation InnovaConcreteDeleteCharacteristic ($id:Int!) {
-            innnovaConcreteDeleteCharacteristic (id:$id) {
+            innovaConcreteDeleteCharacteristic (id:$id) {
                 ${fields}
             }
         }`
