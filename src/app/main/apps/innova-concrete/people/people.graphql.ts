@@ -32,7 +32,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query innovaConcreteGetRelationsPeople {
+        query InnovaConcreteGetRelationsPeople {
             ${relationsFields}
         }`,
 

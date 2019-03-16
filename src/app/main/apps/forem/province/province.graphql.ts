@@ -10,7 +10,7 @@ const relationsFields = ``;
 
 export const graphQL = {
     model: 'Syscover\\Forem\\Models\\Province',
-    table: 'forem_category',
+    table: 'forem_province',
     fields,
     relationsFields,
 

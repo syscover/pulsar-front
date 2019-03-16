@@ -156,6 +156,15 @@ export const navigation: FuseNavigation[] = [
                         'resource'  : 'forem-province',
                         'icon'      : 'add_location',
                         'url'       : '/apps/forem/province'
+                    },
+                    {
+                        'id'        : 'localities',
+                        'title'     : 'Localities',
+                        'translate' : 'NAV.LOCALITIES',
+                        'type'      : 'item',
+                        'resource'  : 'forem-locality',
+                        'icon'      : 'add_location',
+                        'url'       : '/apps/forem/locality'
                     }
                 ]
             },

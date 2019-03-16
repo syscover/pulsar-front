@@ -12,6 +12,8 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { LocalityDetailComponent } from './locality/locality-detail.component';
+import { LocalityListComponent } from './locality/locality-list.component';
 import { ProvinceDetailComponent } from './province/province-detail.component';
 import { ProvinceListComponent } from './province/province-list.component';
 
@@ -49,6 +51,11 @@ const routes: Routes = [
             { path: 'province',                                             component: ProvinceListComponent,                   data: { action: 'list', resource: 'forem-province' }},
             { path: 'province/create',                                      component: ProvinceDetailComponent,                 data: { action: 'create', resource: 'forem-province' }},
             { path: 'province/show/:id',                                    component: ProvinceDetailComponent,                 data: { action: 'edit', resource: 'forem-province' }},
+
+            // Localities
+            { path: 'locality',                                             component: LocalityListComponent,                   data: { action: 'list', resource: 'forem-locality' }},
+            { path: 'locality/create',                                      component: LocalityDetailComponent,                 data: { action: 'create', resource: 'forem-locality' }},
+            { path: 'locality/show/:id',                                    component: LocalityDetailComponent,                 data: { action: 'edit', resource: 'forem-locality' }},
         ]  
     }
 ];
