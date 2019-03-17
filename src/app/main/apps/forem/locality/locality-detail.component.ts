@@ -2,6 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Province } from '../forem.models';
 import { graphQL } from './locality.graphql';
 
 @Component({
@@ -13,7 +14,7 @@ export class LocalityDetailComponent extends CoreDetailComponent  implements OnI
 {
     objectTranslation = 'APPS.PROVINCE';
     objectTranslationGender = 'F';
-    loadingSlug = false;
+    public provinces: Province[] = [];
 
     constructor(
         protected injector: Injector
@@ -26,7 +27,14 @@ export class LocalityDetailComponent extends CoreDetailComponent  implements OnI
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             code: ['', Validators.required],
-            name: ['', Validators.required]
+            name: ['', Validators.required],
+            province_id: ['', Validators.required],
         });
+    }
+
+    setRelationsData(data: any): void
+    {
+        // provinces
+        this.provinces = data.foremProvinces;
     }
 }

@@ -36,17 +36,19 @@ export const navigation: FuseNavigation[] = [
                 ]
             },
             {
-                'id'   : 'innova-concrete',
-                'title': 'Innova Concrete',
+                'id'       : 'innova-concrete',
+                'title'    : 'Innova Concrete',
                 'translate': 'NAV.INNOVA_CONCRETE',
-                'type' : 'collapsable',
-                'icon' : ['fas', 'archway'],
+                'type'     : 'collapsable',
+                'resource' : 'innova',
+                'icon'     : ['fas', 'archway'],
                 'children' : [
                     {
                         'id'        : 'monuments',
                         'title'     : 'Monuments',
                         'translate' : 'NAV.MONUMENTS',
                         'type'      : 'item',
+                        'resource'  : 'innova-monument',
                         'icon'      : ['fas', 'monument'],
                         'url'       : '/apps/innova-concrete/monuments'
                     },
@@ -55,7 +57,7 @@ export const navigation: FuseNavigation[] = [
                         'title'    : 'Database',
                         'translate': 'NAV.TABLES',
                         'type'     : 'collapsable',
-                        'resource' : 'wine-table',
+                        'resource' : 'innova-database',
                         'icon'     : ['fas', 'database'],
                         'children': [
                             {
@@ -63,6 +65,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Characteristic',
                                 'translate' : 'NAV.CHARACTERISTICS',
                                 'type'      : 'item',
+                                'resource'  : 'innova-characteristic',
                                 'icon'      : 'share',
                                 'url'       : '/apps/innova-concrete/characteristic'
                             },
@@ -71,6 +74,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Type',
                                 'translate' : 'NAV.TYPES',
                                 'type'      : 'item',
+                                'resource'  : 'innova-type',
                                 'icon'      : ['fas', 'cubes'],
                                 'url'       : '/apps/innova-concrete/type'
                             },
@@ -79,6 +83,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'People',
                                 'translate' : 'NAV.PEOPLE',
                                 'type'      : 'item',
+                                'resource'  : 'innova-people',
                                 'icon'      : ['fas', 'user'],
                                 'url'       : '/apps/innova-concrete/people'
                             },
@@ -87,6 +92,7 @@ export const navigation: FuseNavigation[] = [
                                 'title'     : 'Group',
                                 'translate' : 'NAV.GROUPS',
                                 'type'      : 'item',
+                                'resource'  : 'innova-group',
                                 'icon'      : ['fas', 'users-cog'],
                                 'url'       : '/apps/innova-concrete/group'
                             },
@@ -149,22 +155,32 @@ export const navigation: FuseNavigation[] = [
                         'url'       : '/apps/forem/category'
                     },
                     {
-                        'id'        : 'provinces',
-                        'title'     : 'Provinces',
-                        'translate' : 'NAV.PROVINCES',
-                        'type'      : 'item',
-                        'resource'  : 'forem-province',
-                        'icon'      : 'add_location',
-                        'url'       : '/apps/forem/province'
-                    },
-                    {
-                        'id'        : 'localities',
-                        'title'     : 'Localities',
-                        'translate' : 'NAV.LOCALITIES',
-                        'type'      : 'item',
-                        'resource'  : 'forem-locality',
-                        'icon'      : 'add_location',
-                        'url'       : '/apps/forem/locality'
+                        'id'       : 'database',
+                        'title'    : 'Database',
+                        'translate': 'NAV.TABLES',
+                        'type'     : 'collapsable',
+                        'resource' : 'forem-database',
+                        'icon'     : ['fas', 'database'],
+                        'children': [
+                            {
+                                'id'        : 'provinces',
+                                'title'     : 'Provinces',
+                                'translate' : 'NAV.PROVINCES',
+                                'type'      : 'item',
+                                'resource'  : 'forem-province',
+                                'icon'      : 'add_location',
+                                'url'       : '/apps/forem/province'
+                            },
+                            {
+                                'id'        : 'localities',
+                                'title'     : 'Localities',
+                                'translate' : 'NAV.LOCALITIES',
+                                'type'      : 'item',
+                                'resource'  : 'forem-locality',
+                                'icon'      : ['fas', 'globe-europe'],
+                                'url'       : '/apps/forem/locality'
+                            }
+                        ]
                     }
                 ]
             },

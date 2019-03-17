@@ -5,7 +5,7 @@ const fields = `
     id
     code
     province_id
-    group {
+    province {
         ${foremProvinceGraphQL.fields}
     }
     name

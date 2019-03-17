@@ -20,7 +20,7 @@
                 </button>
 
                 <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <mat-icon>chrome_reader_mode</mat-icon>
+                    <fa-icon [icon]="['fas', 'globe-europe']" class="mr-16" size="2x"></fa-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -28,7 +28,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'FOREM.PROVINCE' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ 'FOREM.LOCALITY' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -92,6 +92,16 @@
                                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                 <input matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
+                                <mat-select formControlName="province_id" required>
+                                    <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
+                                </mat-select>
+                                <mat-error>{{ formErrors?.province_id }}</mat-error>
                             </mat-form-field>
                         </div>
 

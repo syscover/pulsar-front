@@ -13,8 +13,8 @@ export class LocalityListComponent extends CoreListComponent
 {
     objectTranslation = 'APPS.LOCALITY';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['forem_locality.id', 'forem_locality.code', 'forem_locality.name'];
-    displayedColumns = ['forem_locality.id', 'forem_locality.code', 'forem_locality.name', 'actions'];
+    columnsSearch: string[] = ['forem_locality.id', 'forem_locality.code', 'forem_province.name', 'forem_locality.name'];
+    displayedColumns = ['forem_locality.id', 'forem_locality.code', 'forem_province.name', 'forem_locality.name', 'actions'];
 
     constructor(
         protected injector: Injector

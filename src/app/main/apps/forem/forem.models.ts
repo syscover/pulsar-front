@@ -63,12 +63,28 @@ export class GroupPrefix
     name: string;
 }
 
+export class Locality
+{
+    id: number;
+    code: number;
+    province_id: number;
+    province: Province;
+    name: string;
+}
+
 export class Modality
 {
     id: number;
     name: string;
     code: string;
     inscription_type: number;
+}
+
+export class Province
+{
+    id: number;
+    code: number;
+    name: string;
 }
 
 export class Target

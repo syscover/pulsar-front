@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">add_location</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PROVINCES' | translate }}</span>
+                <fa-icon [icon]="['fas', 'globe-europe']" class="mr-16" size="2x" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.LOCALITIES' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,7 +41,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'FOREM.PROVINCE' | translate }}</span>
+                <span>{{ 'APPS.NEW.F' | translate }} {{ 'FOREM.LOCALITY' | translate }}</span>
             </button>
 
         </div>
@@ -58,19 +58,25 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="forem_province.id">
+                <ng-container matColumnDef="forem_locality.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="forem_province.code">
+                <ng-container matColumnDef="forem_locality.code">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'APPS.CODE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-100">{{ row.code }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->
                 <ng-container matColumnDef="forem_province.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FOREM.PROVINCE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.province?.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_locality.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
