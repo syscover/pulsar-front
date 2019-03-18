@@ -20,7 +20,7 @@
                 </button>
 
                 <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    <fa-icon [icon]="['fas', 'user']" class="mr-16" size="2x"></fa-icon>
+                    <fa-icon [icon]="['fas', 'monument']" class="mr-16" size="2x"></fa-icon>
                 </div>
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
@@ -167,6 +167,14 @@
                                     </mat-form-field>
                                 </div>
 
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-2">
+                                        <mat-label>{{ 'INNOVA.PERCENTAGE_PROGRESS' | translate }}</mat-label>
+                                        <input matInput formControlName="rapporteur_date" type="number">
+                                        <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
                                         <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
@@ -177,7 +185,6 @@
                                         <mat-error>{{ formErrors?.description }}</mat-error>
                                     </mat-form-field>
                                 </div>
-
 
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">

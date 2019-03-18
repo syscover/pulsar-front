@@ -10,6 +10,7 @@ export const locale = {
             'MONUMENT': 'Monumento',
             'ORIGINAL_NAME': 'Nombre original',
             'ORIGINAL_USE': 'Uso original',
+            'PERCENTAGE_PROGRESS': 'Porcentaje de progreso',
             'PERSON': 'Persona',
             'RAPPORTEUR_DATE': 'Año del ponente',
             'RAPPORTEUR_EMAIL': 'Email del ponente',

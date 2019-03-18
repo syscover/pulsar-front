@@ -39,6 +39,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             rapporteur_name: '',
             rapporteur_email: '',
             rapporteur_date: '',
+            percentage_progress: '',
             description: '',
             address: '',
             country_id: ['', Validators.required],

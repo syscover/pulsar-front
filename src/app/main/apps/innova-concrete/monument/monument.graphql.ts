@@ -7,6 +7,7 @@ const fields = `
     id
     original_name
     current_name
+    slug
     other_denominations
     original_use
     current_use
