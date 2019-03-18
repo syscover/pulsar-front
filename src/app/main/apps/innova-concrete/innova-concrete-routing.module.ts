@@ -6,6 +6,7 @@ import { CharacteristicDetailComponent } from './characteristic/characteristic-d
 import { CharacteristicListComponent } from './characteristic/characteristic-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { MonumentDetailComponent } from './monument/monument-detail.component';
 import { MonumentListComponent } from './monument/monument-list.component';
 import { PeopleDetailComponent } from './people/people-detail.component';
 import { PeopleListComponent } from './people/people-list.component';
@@ -30,8 +31,8 @@ const routes: Routes = [
 
             // Monument
             { path: 'monument',                                         component: MonumentListComponent,               data: { action: 'list', resource: 'innova-monument' }},
-            { path: 'monument/create',                                  component: PeopleDetailComponent,               data: { action: 'create', resource: 'innova-monument' }},
-            { path: 'monument/show/:id',                                component: PeopleDetailComponent,               data: { action: 'edit', resource: 'innova-monument' }},
+            { path: 'monument/create',                                  component: MonumentDetailComponent,             data: { action: 'create', resource: 'innova-monument' }},
+            { path: 'monument/show/:id',                                component: MonumentDetailComponent,             data: { action: 'edit', resource: 'innova-monument' }},
 
             // People
             { path: 'people',                                           component: PeopleListComponent,                 data: { action: 'list', resource: 'innova-people' }},
