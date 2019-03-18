@@ -25,7 +25,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="dataRoute.action ==='edit'">
-                        {{ object.name }}
+                        {{ object.current_name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
                         {{ 'APPS.NEW.M' | translate }} {{ 'INNOVA.MONUMENT' | translate }}

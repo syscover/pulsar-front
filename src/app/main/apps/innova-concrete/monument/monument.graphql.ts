@@ -20,6 +20,9 @@ const fields = `
     percentage_progress
     links
     country_id
+    countries {
+        ${adminCountry.fields}
+    }
     province
     address
     locality
