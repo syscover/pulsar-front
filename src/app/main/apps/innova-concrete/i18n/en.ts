@@ -4,6 +4,7 @@ export const locale = {
         'INNOVA': {
             'CHARACTERISTIC': 'Characteristic',
             'PERSON': 'Person',
+            'MONUMENT': 'Monument',
         }
     }
 };
