@@ -13,7 +13,6 @@ export class TypeDetailComponent extends CoreDetailComponent  implements OnInit
 {
     objectTranslation = 'APPS.TYPE';
     objectTranslationGender = 'M';
-    loadingSlug = false;
 
     constructor(
         protected injector: Injector

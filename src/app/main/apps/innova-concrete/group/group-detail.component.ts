@@ -13,7 +13,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
     objectTranslation = 'APPS.GROUP';
     objectTranslationGender = 'M';
-    loadingSlug = false;
 
     constructor(
         protected injector: Injector

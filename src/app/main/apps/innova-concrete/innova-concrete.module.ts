@@ -10,6 +10,7 @@ import { CharacteristicDetailComponent } from './characteristic/characteristic-d
 import { CharacteristicListComponent } from './characteristic/characteristic-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { MonumentDetailComponent } from './monument/monument-detail.component';
 import { MonumentListComponent } from './monument/monument-list.component';
 import { PeopleDetailComponent } from './people/people-detail.component';
 import { PeopleListComponent } from './people/people-list.component';
@@ -30,6 +31,7 @@ import { TypeListComponent } from './type/type-list.component';
         GroupListComponent,
         PeopleDetailComponent,
         PeopleListComponent,
+        MonumentDetailComponent,
         MonumentListComponent,
         TypeDetailComponent,
         TypeListComponent

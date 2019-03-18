@@ -14,7 +14,6 @@ export class CharacteristicDetailComponent extends CoreDetailComponent  implemen
 {
     public objectTranslation = 'INNOVA.CHARACTERISTIC';
     public objectTranslationGender = 'F';
-    public loadingSlug = false;
     public types: Type[] = [];
 
     constructor(

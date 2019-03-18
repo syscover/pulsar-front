@@ -14,7 +14,6 @@ export class PeopleDetailComponent extends CoreDetailComponent  implements OnIni
 {
     public objectTranslation = 'INNOVA.PERSON';
     public objectTranslationGender = 'F';
-    public loadingSlug = false;
     public groups: Group[] = [];
 
     constructor(

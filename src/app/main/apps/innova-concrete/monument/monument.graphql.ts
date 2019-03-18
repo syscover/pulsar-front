@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { graphQL as innovaConcretePeopleGraphQL } from '../people/people.graphql';
 import { graphQL as innovaConcreteCharacteristicGraphQL } from '../characteristic/characteristic.graphql';
+import { graphQL as adminCountry } from '../../admin/country/country.graphql';
 
 const fields = `
     id
@@ -26,7 +27,11 @@ const fields = `
     longitude
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    adminCountries (sql:$sqlCountry) {
+        ${adminCountry.fields}
+    }
+`;
 
 export const graphQL = {
     model: 'Techedge\\InnovaConcrete\\Models\\Monument',
@@ -43,7 +48,10 @@ export const graphQL = {
             }
         }`,
 
-
+    queryRelationsObject : gql`
+        query InnovaConcreteRelationsMonument ($sqlCountry:[CoreSQLInput]) {
+            ${relationsFields}
+        }`,
 
     queryObjects: gql`
         query InnovaConcreteGetMonuments ($sql:[CoreSQLInput]) {
@@ -53,10 +61,11 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query InnovaConcreteGetMonument ($sql:[CoreSQLInput]) {
+        query InnovaConcreteGetMonument ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
             coreObject: innovaConcreteMonument (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`
