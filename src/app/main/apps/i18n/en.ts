@@ -52,6 +52,7 @@ export const locale = {
             'HEIGHT': 'Height',
             'ID': 'Id',
             'INFO': 'Info',
+            'IMAGES': 'Images',
             'IP': 'IP',
             'IS_PRODUCT': 'Is product',
             'LABEL': 'Label',
