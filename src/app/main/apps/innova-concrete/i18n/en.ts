@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'INNOVA': {
             'CHARACTERISTIC': 'Characteristic',
+            'CURRENT_NAME': 'Current name',
             'PERSON': 'Person',
             'MONUMENT': 'Monument',
         }
