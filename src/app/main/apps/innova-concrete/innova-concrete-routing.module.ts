@@ -6,6 +6,7 @@ import { CharacteristicDetailComponent } from './characteristic/characteristic-d
 import { CharacteristicListComponent } from './characteristic/characteristic-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { MonumentListComponent } from './monument/monument-list.component';
 import { PeopleDetailComponent } from './people/people-detail.component';
 import { PeopleListComponent } from './people/people-list.component';
 import { TypeDetailComponent } from './type/type-detail.component';
@@ -18,24 +19,29 @@ const routes: Routes = [
         canActivateChild: [AuthorizationService],
         children: [
             // Characteristic
-            { path: 'characteristic',                                   component: CharacteristicListComponent,         data: { action: 'list', resource: 'admin-user' }},
-            { path: 'characteristic/create',                            component: CharacteristicDetailComponent,       data: { action: 'create', resource: 'admin-user' }},
-            { path: 'characteristic/show/:id',                          component: CharacteristicDetailComponent,       data: { action: 'edit', resource: 'admin-user' }},
+            { path: 'characteristic',                                   component: CharacteristicListComponent,         data: { action: 'list', resource: 'innova-characteristic' }},
+            { path: 'characteristic/create',                            component: CharacteristicDetailComponent,       data: { action: 'create', resource: 'innova-characteristic' }},
+            { path: 'characteristic/show/:id',                          component: CharacteristicDetailComponent,       data: { action: 'edit', resource: 'innova-characteristic' }},
 
             // Group
-            { path: 'group',                                            component: GroupListComponent,                  data: { action: 'list', resource: 'admin-user' }},
-            { path: 'group/create',                                     component: GroupDetailComponent,                data: { action: 'create', resource: 'admin-user' }},
-            { path: 'group/show/:id',                                   component: GroupDetailComponent,                data: { action: 'edit', resource: 'admin-user' }},
+            { path: 'group',                                            component: GroupListComponent,                  data: { action: 'list', resource: 'innova-group' }},
+            { path: 'group/create',                                     component: GroupDetailComponent,                data: { action: 'create', resource: 'innova-group' }},
+            { path: 'group/show/:id',                                   component: GroupDetailComponent,                data: { action: 'edit', resource: 'innova-group' }},
+
+            // Monument
+            { path: 'monument',                                         component: MonumentListComponent,               data: { action: 'list', resource: 'innova-monument' }},
+            { path: 'monument/create',                                  component: PeopleDetailComponent,               data: { action: 'create', resource: 'innova-monument' }},
+            { path: 'monument/show/:id',                                component: PeopleDetailComponent,               data: { action: 'edit', resource: 'innova-monument' }},
 
             // People
-            { path: 'people',                                           component: PeopleListComponent,                 data: { action: 'list', resource: 'admin-user' }},
-            { path: 'people/create',                                    component: PeopleDetailComponent,               data: { action: 'create', resource: 'admin-user' }},
-            { path: 'people/show/:id',                                  component: PeopleDetailComponent,               data: { action: 'edit', resource: 'admin-user' }},
+            { path: 'people',                                           component: PeopleListComponent,                 data: { action: 'list', resource: 'innova-people' }},
+            { path: 'people/create',                                    component: PeopleDetailComponent,               data: { action: 'create', resource: 'innova-people' }},
+            { path: 'people/show/:id',                                  component: PeopleDetailComponent,               data: { action: 'edit', resource: 'innova-people' }},
 
             // Type
-            { path: 'type',                                             component: TypeListComponent,                   data: { action: 'list', resource: 'admin-user' }},
-            { path: 'type/create',                                      component: TypeDetailComponent,                 data: { action: 'create', resource: 'admin-user' }},
-            { path: 'type/show/:id',                                    component: TypeDetailComponent,                 data: { action: 'edit', resource: 'admin-user' }}
+            { path: 'type',                                             component: TypeListComponent,                   data: { action: 'list', resource: 'innova-type' }},
+            { path: 'type/create',                                      component: TypeDetailComponent,                 data: { action: 'create', resource: 'innova-type' }},
+            { path: 'type/show/:id',                                    component: TypeDetailComponent,                 data: { action: 'edit', resource: 'innova-type' }}
         ]  
     }
 ];

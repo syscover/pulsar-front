@@ -44,13 +44,13 @@ export const navigation: FuseNavigation[] = [
                 'icon'     : ['fas', 'archway'],
                 'children' : [
                     {
-                        'id'        : 'monuments',
-                        'title'     : 'Monuments',
+                        'id'        : 'monument',
+                        'title'     : 'Monument',
                         'translate' : 'NAV.MONUMENTS',
                         'type'      : 'item',
                         'resource'  : 'innova-monument',
                         'icon'      : ['fas', 'monument'],
-                        'url'       : '/apps/innova-concrete/monuments'
+                        'url'       : '/apps/innova-concrete/monument'
                     },
                     {
                         'id'       : 'database',

@@ -18,8 +18,8 @@
             <div    class="logo my-12 m-sm-0"
                     fxLayout="row" 
                     fxLayoutAlign="start center">
-                <fa-icon [icon]="['fas', 'user']" class="mr-16" size="2x" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.PEOPLE' | translate }}</span>
+                <fa-icon [icon]="['fas', 'monument']" class="mr-16" size="2x" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}"></fa-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{ 'NAV.MONUMENT' | translate }}</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,7 +41,7 @@
             <button mat-raised-button
                     [routerLink]="baseUri + '/create'"
                     class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'INNOVA.PERSON' | translate }}</span>
+                <span>{{ 'APPS.NEW.M' | translate }} {{ 'INNOVA.MONUMENT' | translate }}</span>
             </button>
 
         </div>
@@ -58,21 +58,15 @@
                         matSortDisableClear>
 
                 <!-- Column -->
-                <ng-container matColumnDef="innova_concrete_person.id">
+                <ng-container matColumnDef="innova_concrete_monument.id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-80">{{ row.id }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
-                <ng-container matColumnDef="innova_concrete_person.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-                </ng-container>
-
-                <!-- Column -->
-                <ng-container matColumnDef="innova_concrete_group.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.GROUP' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.group.name }}</mat-cell>
+                <ng-container matColumnDef="innova_concrete_monument.current_name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'INNOVA.CURRENT_NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.current_name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

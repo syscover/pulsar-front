@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
-import { graphQL as innovaConcreteGroupGraphQL } from '../group/group.graphql';
+import { graphQL as innovaConcretePeopleGraphQL } from '../people/people.graphql';
+import { graphQL as innovaConcreteCharacteristicGraphQL } from '../characteristic/characteristic.graphql';
 
 const fields = `
     id
@@ -41,6 +42,8 @@ export const graphQL = {
                 filtered
             }
         }`,
+
+
 
     queryObjects: gql`
         query InnovaConcreteGetMonuments ($sql:[CoreSQLInput]) {
