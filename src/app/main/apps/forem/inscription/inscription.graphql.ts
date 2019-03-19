@@ -10,93 +10,92 @@ import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.grap
 
 const fields = `
     id
-    profile_id
-    profile {
-        ${adminProfileGraphQL.fields}
-    }
-    prefix_id
-    code
+    group_id
+    student_id
+    exported
+    approved_user
+    approved_date
+    approved
     name
-    slug
-    category_id
-    target_id
-    assistance_id
-    type_id
-    certificate
-    certificate_code
-    hours
-    subsidized_amount
-    price
-    price_hour
-    contents_excerpt
-    contents
-    requirements
-    observations
-    action_id
-    expedient_id
-    starts_at
-    ends_at
-    schedule
-    selection_date
-    publish
-    open
-    featured
-    country_id
-    territorial_area_1_id
-    territorial_area_2_id
-    territorial_area_3_id
+    surname
+    surname2
+    gender_id
+    birth_date
+    id_card
+    ssn
+    email
+    phone
+    mobile
+    code
+    has_registry
+    registry_number
+    registry_date
+    document_type_id
+    document_number
+    road_type_id
     zip
-    locality
     address
-    latitude
-    longitude
-    
-    is_product
-    product_id
-    
-    attachments {
-        ${adminAttachmentsGraphQL.fields}
-    }
-    
-    ${marketableGraphQL.fields}
+    province_id
+    locality_id
+    has_driving_license
+    driving_licenses
+    employment_situation_id
+    unemployed_registration_date
+    unemployed_situation_id
+    employment_office_id
+    professional_category_id
+    functional_area_id
+    worker_code
+    company
+    tin
+    workplace_sector
+    workplace_province_id
+    workplace_locality_id
+    is_big_company
+    workplace_address
+    workplace_zip
+    academic_level_id
+    academic_level_specialty
+    has_other_course
+    other_course
+    reason_request_id
+    other_reason_request
+    ssn_authorization
+    certification_authorization
+    data_authorization
+    marketing_authorization
+    has_agent
+    agent_tin
+    agent_name
+    agent_surname
+    agent_surname2
+    agent_address
+    agent_province_id
+    agent_locality_id
+    agent_zip
+    agent_email
+    agent_phone
+    agent_mobile
+    agent_contact_schedule
+    languages
+    professional_certificates
+    professional_experiences
+    observations
 `;
 
 const relationsFields = `
-    adminCountries (sql:$sqlAdminCountry) {
-        ${adminCountryGraphQL.fields}
-    }
-    adminAttachmentFamilies (sql:$sqlAdminAttachmentFamily) {
-        ${adminAttachmentFamilyGraphQL.fields}
-    }
-    adminProfiles {
-        ${adminProfileGraphQL.fields}
-    }
-    foremExpedients {
-        ${foremExpedientsGraphQL.fields}
-    }
-    foremActions {
-        ${foremActionsGraphQL.fields}
-    }
-    foremCategories {
-        ${foremCategoryGraphQL.fields}
-    }
-    foremTargets: coreConfig (config:$configTargets)
-    foremAssistances: coreConfig (config:$configAssistances)
-    foremTypes: coreConfig (config:$configTypes)
-    foremModalities: coreConfig (config:$configModalities)
-    foremGroupPrefixes: coreConfig (config:$configGroupPrefixes)
-    ${marketableGraphQL.relationsFields}
+    
 `;
 
 export const graphQL = {
-    model: 'Syscover\\Forem\\Models\\Group',
-    table: 'forem_group',
+    model: 'Syscover\\Forem\\Models\\Inscription',
+    table: 'forem_inscription',
     fields,
     relationsFields,
 
     queryPaginationObject: gql`
-        query ForemGetGroupsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: foremGroupsPagination (sql:$sql) {
+        query ForemGetInscriptionsPagination ($sql:[CoreSQLInput]) {
+            coreObjectsPagination: foremInscriptionsPagination (sql:$sql) {
                 total
                 objects (sql:$sql)
                 filtered
@@ -104,7 +103,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsGroup (
+        query ForemGetRelationsInscription (
             $configTargets:CoreConfigInput 
             $configAssistances:CoreConfigInput 
             $configTypes:CoreConfigInput 
