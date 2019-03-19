@@ -12,9 +12,9 @@ export const locale = {
             'ORIGINAL_USE': 'Uso original',
             'PERCENTAGE_PROGRESS': 'Porcentaje de progreso',
             'PERSON': 'Persona',
-            'RAPPORTEUR_DATE': 'Año del ponente',
-            'RAPPORTEUR_EMAIL': 'Email del ponente',
-            'RAPPORTEUR_NAME': 'Nombre del ponente',
+            'RAPPORTEUR_DATE': 'Año de edición',
+            'RAPPORTEUR_EMAIL': 'Email del autor',
+            'RAPPORTEUR_NAME': 'Nombre del autor',
             'OTHER_DENOMINATIONS': 'Otras denominaciones'
         }
     }
