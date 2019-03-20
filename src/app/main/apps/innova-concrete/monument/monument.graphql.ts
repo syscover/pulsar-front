@@ -11,6 +11,9 @@ const fields = `
     other_denominations
     original_use
     current_use
+    peoples {
+        ${innovaConcretePeopleGraphQL.fields}
+    }
     commission
     completion
     description
@@ -34,6 +37,12 @@ const fields = `
 const relationsFields = `
     adminCountries (sql:$sqlCountry) {
         ${adminCountry.fields}
+    }
+    innovaConcreteCharacteristics {
+        ${innovaConcreteCharacteristicGraphQL.fields}
+    }
+    innovaConcretePeoples {
+        ${innovaConcretePeopleGraphQL.fields}
     }
 `;
 

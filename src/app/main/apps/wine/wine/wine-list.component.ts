@@ -12,12 +12,12 @@ import * as _ from 'lodash';
 })
 export class WineListComponent extends CoreListComponent
 {
-    _ = _;
-    objectTranslation = 'WINE.WINE';
-    objectTranslationGender = 'M';
-    columnsSearch: string[] = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage'];
-    displayedColumns = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage', 'wine_wine.price', 'wine_wine.stock', 'translations', 'actions'];
-    filters = [
+    public _ = _;
+    public objectTranslation = 'WINE.WINE';
+    public objectTranslationGender = 'M';
+    public columnsSearch: string[] = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage'];
+    public displayedColumns = ['wine_wine.id', 'wine_wine_lang.name', 'wine_wine.vintage', 'wine_wine.price', 'wine_wine.stock', 'translations', 'actions'];
+    public filters = [
         {'command': 'where', 'column': 'wine_wine_lang.lang_id', 'operator': '=', 'value': this.baseLang }
     ];
 

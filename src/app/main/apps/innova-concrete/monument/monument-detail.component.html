@@ -131,6 +131,56 @@
                                     </mat-form-field>
                                 </div>
 
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">supervised_user_circle</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'NAV.PEOPLE' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row wrap" class="d-flex justify-content-md-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.ARCHITECTS' | translate }}</mat-label>
+                                        <mat-select formControlName="architects_id" multiple>
+                                            <mat-option *ngFor="let architect of architects" [value]="architect.id">{{ architect.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.architects_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.ENGINEERS' | translate }}</mat-label>
+                                        <mat-select formControlName="engineers_id" multiple>
+                                            <mat-option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.others_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" class="d-flex justify-content-md-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.ARTISTS' | translate }}</mat-label>
+                                        <mat-select formControlName="artists_id" multiple>
+                                            <mat-option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.artists_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.OTHERS' | translate }}</mat-label>
+                                        <mat-select formControlName="others_id" multiple>
+                                            <mat-option *ngFor="let other of others" [value]="other.id">{{ other.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.others_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">shared</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'NAV.CHARACTERISTICS' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
                                 <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
                                         <mat-label>{{ 'INNOVA.COMMISSION' | translate }}</mat-label>

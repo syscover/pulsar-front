@@ -51,3 +51,8 @@ export class Monument
     longitude: number;
 }
 
+export const ARQUITECTS = 1;
+export const ENGENIEERS = 2;
+export const ARTISTS = 3;
+export const OTHERS = 4;
+

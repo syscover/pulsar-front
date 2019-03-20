@@ -84,7 +84,7 @@ export const navigation: FuseNavigation[] = [
                                 'translate' : 'NAV.PEOPLE',
                                 'type'      : 'item',
                                 'resource'  : 'innova-people',
-                                'icon'      : ['fas', 'user'],
+                                'icon'      : 'supervised_user_circle',
                                 'url'       : '/apps/innova-concrete/people'
                             },
                             {
