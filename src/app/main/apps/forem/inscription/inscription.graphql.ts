@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { graphQL as foremProvinceGraphQL } from '../province/province.graphql';
+import { graphQL as foremGroupGraphQL } from '../group/group.graphql';
 
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
