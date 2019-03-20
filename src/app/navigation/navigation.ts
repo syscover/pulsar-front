@@ -111,6 +111,15 @@ export const navigation: FuseNavigation[] = [
                 'children' : [
                     {
                         'id'        : 'groups',
+                        'title'     : 'Inscription',
+                        'translate' : 'NAV.INSCRIPTIONS',
+                        'type'      : 'item',
+                        'resource'  : 'forem-inscription',
+                        'icon'      : ['fas', 'passport'],
+                        'url'       : '/apps/forem/inscription'
+                    },
+                    {
+                        'id'        : 'groups',
                         'title'     : 'Groups',
                         'translate' : 'NAV.GROUPS',
                         'type'      : 'item',

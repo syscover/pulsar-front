@@ -42,6 +42,7 @@ export const locale = {
             'GROUPS': 'Grupos',
             'HOTEL': 'Hotel',
             'INNOVA_CONCRETE': 'Innova Concrete',
+            'INSCRIPTIONS': 'Inscripciones',
             'LANGUAGES': 'Idiomas',
             'LOCALITIES': 'Localidades',
             'MARKET': 'Market',

@@ -13,8 +13,8 @@ export class InscriptionListComponent extends CoreListComponent
 {
     objectTranslation = 'FOREM.INSCRIPTION';
     objectTranslationGender = 'F';
-    columnsSearch: string[] = ['forem_inscription.id', 'forem_inscription.code', 'forem_inscription.name'];
-    displayedColumns = ['forem_inscription.id', 'forem_inscription.code', 'forem_inscription.name', 'actions'];
+    columnsSearch: string[] = ['forem_inscription.id', 'forem_inscription.name'];
+    displayedColumns = ['forem_inscription.id', 'forem_inscription.name', 'actions'];
 
     constructor(
         protected injector: Injector

@@ -106,19 +106,10 @@ export const graphQL = {
             }
         }`,
 
-    // queryRelationsObject: gql`
-    //     query ForemGetRelationsInscription (
-    //         $configTargets:CoreConfigInput
-    //         $configAssistances:CoreConfigInput
-    //         $configTypes:CoreConfigInput
-    //         $configModalities:CoreConfigInput
-    //         $configGroupPrefixes:CoreConfigInput
-    //         $sqlAdminCountry:[CoreSQLInput]
-    //         $sqlAdminAttachmentFamily:[CoreSQLInput]
-    //         ${marketableGraphQL.paramenters}
-    //     ) {
-    //         ${relationsFields}
-    //     }`,
+    queryRelationsObject: gql`
+        query ForemGetRelationsInscription {
+            ${relationsFields}
+        }`,
 
     queryObjects: gql`
         query ForemGetGroups (
