@@ -12,6 +12,8 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { InscriptionDetailComponent } from './inscription/inscription-detail.component';
+import { InscriptionListComponent } from './inscription/inscription-list.component';
 import { LocalityDetailComponent } from './locality/locality-detail.component';
 import { LocalityListComponent } from './locality/locality-list.component';
 import { ProvinceDetailComponent } from './province/province-detail.component';
@@ -56,6 +58,11 @@ const routes: Routes = [
             { path: 'locality',                                             component: LocalityListComponent,                   data: { action: 'list', resource: 'forem-locality' }},
             { path: 'locality/create',                                      component: LocalityDetailComponent,                 data: { action: 'create', resource: 'forem-locality' }},
             { path: 'locality/show/:id',                                    component: LocalityDetailComponent,                 data: { action: 'edit', resource: 'forem-locality' }},
+
+            // Inscriptions
+            { path: 'inscription',                                          component: InscriptionListComponent,                data: { action: 'list', resource: 'forem-inscription' }},
+            { path: 'inscription/create',                                   component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription' }},
+            { path: 'inscription/show/:id',                                 component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription' }},
         ]  
     }
 ];

@@ -1,4 +1,6 @@
 import gql from 'graphql-tag';
+import { graphQL as foremProvinceGraphQL } from '../province/province.graphql';
+
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
 import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
@@ -84,7 +86,9 @@ const fields = `
 `;
 
 const relationsFields = `
-    
+    foremProvinces {
+        ${foremProvinceGraphQL.fields}
+    }
 `;
 
 export const graphQL = {
@@ -102,31 +106,23 @@ export const graphQL = {
             }
         }`,
 
-    queryRelationsObject: gql`
-        query ForemGetRelationsInscription (
-            $configTargets:CoreConfigInput 
-            $configAssistances:CoreConfigInput 
-            $configTypes:CoreConfigInput 
-            $configModalities:CoreConfigInput
-            $configGroupPrefixes:CoreConfigInput
-            $sqlAdminCountry:[CoreSQLInput]
-            $sqlAdminAttachmentFamily:[CoreSQLInput]
-            ${marketableGraphQL.paramenters}
-        ) {
-            ${relationsFields}
-        }`,
+    // queryRelationsObject: gql`
+    //     query ForemGetRelationsInscription (
+    //         $configTargets:CoreConfigInput
+    //         $configAssistances:CoreConfigInput
+    //         $configTypes:CoreConfigInput
+    //         $configModalities:CoreConfigInput
+    //         $configGroupPrefixes:CoreConfigInput
+    //         $sqlAdminCountry:[CoreSQLInput]
+    //         $sqlAdminAttachmentFamily:[CoreSQLInput]
+    //         ${marketableGraphQL.paramenters}
+    //     ) {
+    //         ${relationsFields}
+    //     }`,
 
     queryObjects: gql`
         query ForemGetGroups (
-            $sql:[CoreSQLInput] 
-            $configTargets:CoreConfigInput 
-            $configAssistances:CoreConfigInput 
-            $configTypes:CoreConfigInput 
-            $configModalities:CoreConfigInput
-            $configGroupPrefixes:CoreConfigInput
-            $sqlAdminCountry:[CoreSQLInput]
-            $sqlAdminAttachmentFamily:[CoreSQLInput]
-            ${marketableGraphQL.paramenters}
+            $sql:[CoreSQLInput]
         ) {
             coreObjects: foremGroups (sql:$sql) {
                 ${fields}
@@ -136,15 +132,7 @@ export const graphQL = {
 
     queryObject: gql`
         query ForemGetGroup (
-            $sql:[CoreSQLInput] 
-            $configTargets:CoreConfigInput 
-            $configAssistances:CoreConfigInput
-            $configTypes:CoreConfigInput 
-            $configModalities:CoreConfigInput
-            $configGroupPrefixes:CoreConfigInput
-            $sqlAdminCountry:[CoreSQLInput]
-            $sqlAdminAttachmentFamily:[CoreSQLInput]
-            ${marketableGraphQL.paramenters}
+            $sql:[CoreSQLInput]
         ) {
             coreObject: foremGroup (sql:$sql) {
                 ${fields}

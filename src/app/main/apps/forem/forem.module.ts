@@ -16,6 +16,8 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { InscriptionDetailComponent } from './inscription/inscription-detail.component';
+import { InscriptionListComponent } from './inscription/inscription-list.component';
 import { LocalityDetailComponent } from './locality/locality-detail.component';
 import { LocalityListComponent } from './locality/locality-list.component';
 import { ProvinceDetailComponent } from './province/province-detail.component';
@@ -39,6 +41,8 @@ import { ProvinceListComponent } from './province/province-list.component';
         ExpedientListComponent,
         GroupDetailComponent,
         GroupListComponent,
+        InscriptionDetailComponent,
+        InscriptionListComponent,
         LocalityDetailComponent,
         LocalityListComponent,
         ProvinceDetailComponent,

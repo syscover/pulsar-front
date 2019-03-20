@@ -14,6 +14,7 @@ export const locale = {
             'EXPEDIENT': 'Expediente',
             'GROUP': 'Grupo',
             'HOURS': 'Horas',
+            'INSCRIPTION': 'Inscripción',
             'LOCALITY': 'Localidad',
             'MODALITY': 'Modalidad',
             'ONLINE': 'Online',
