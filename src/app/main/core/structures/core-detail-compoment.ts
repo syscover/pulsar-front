@@ -359,7 +359,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         record$
             .subscribe(data => {
 
-                if (this.env.debug) console.log('DEBUG - data error from postRecord method: ', data);
+                if (this.env.debug) console.log('DEBUG - data from postRecord method: ', data);
 
                 // disappear spinner in button
                 this.loadingButton = false;
