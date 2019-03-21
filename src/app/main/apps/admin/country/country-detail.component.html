@@ -166,6 +166,37 @@
                         </mat-form-field>
                     </div>
 
+                    <!-- HEADER -->
+                    <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                        <mat-icon class="m-0 mr-16">person_pin_circle</mat-icon>
+                        <div class="h2 secondary-text">{{ 'APPS.GEOLOCATION' | translate }}</div>
+                    </div>
+                    <!-- / HEADER -->
+
+                    <div fxLayout="row wrap">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-label>{{ 'APPS.LATITUDE' | translate }}</mat-label>
+                            <input matInput formControlName="latitude" type="number">
+                            <mat-error>{{ formErrors?.latitude }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-2 col-md-5">
+                            <mat-label>{{ 'APPS.LONGITUDE' | translate }}</mat-label>
+                            <input matInput formControlName="longitude" type="number">
+                            <mat-error>{{ formErrors?.longitude }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 col-md-2">
+                            <mat-label>{{ 'APPS.ZOOM' | translate }}</mat-label>
+                            <mat-select formControlName="zoom">
+                                <mat-option *ngFor="let zoom of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]" [value]="zoom">{{ zoom }}</mat-option>
+                                <mat-error>{{ formErrors?.zoom }}</mat-error>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
                 </form>
 
             </div>

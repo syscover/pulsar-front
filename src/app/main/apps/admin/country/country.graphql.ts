@@ -12,6 +12,9 @@ const fields = `
     territorial_area_2
     territorial_area_3
     zones
+    latitude
+    longitude
+    zoom
     data_lang
 `;
 

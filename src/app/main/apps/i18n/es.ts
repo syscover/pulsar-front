@@ -117,6 +117,7 @@ export const locale = {
             'VERSION': 'Version',
             'WIDTH': 'Ancho',
             'ZIP': 'CP',
+            'ZOOM': 'Zoom',
         },
         'CONFIRM': {
             'TITLE' : 'Confirmar',
