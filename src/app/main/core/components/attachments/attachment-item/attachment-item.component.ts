@@ -12,18 +12,29 @@ declare const jQuery: any; // jQuery definition
 
 export class AttachmentItemComponent implements OnInit
 {
-    @Input() form: FormGroup;
-    @Input() name: string; // name of form array attachment
-    @Input() index: number; // id to indentify attachement item
-    @Input() families: AttachmentFamily[] = [];
-    @Input() attachment: FormGroup;
-    @Output() enableCrop: EventEmitter<any> = new EventEmitter();
-    @Output() removeItem: EventEmitter<any> = new EventEmitter();
+    @Input()
+    public form: FormGroup;
+    @Input()
+    public name: string; // name of form array attachment
+    @Input()
+    public index: number; // id to identify attachment item
+    @Input()
+    public families: AttachmentFamily[] = [];
+    @Input()
+    public attachment: FormGroup;
+    @Output()
+    public enableCrop: EventEmitter<any> = new EventEmitter();
+    @Output()
+    public removeItem: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild('openOver') openOver;
-    @ViewChild('closeOver') closeOver;
-    @ViewChild('image') image;
-    family: AttachmentFamily;
+    @ViewChild('openOver')
+    public openOver;
+    @ViewChild('closeOver')
+    public closeOver;
+    @ViewChild('image')
+    public image;
+    public family: AttachmentFamily;
+    public showCropButton = false;
 
     constructor(
         private fb: FormBuilder,
@@ -57,12 +68,24 @@ export class AttachmentItemComponent implements OnInit
     changeFamilyHandler($event): void
     {
         this.family =  _.find(this.families, {'id': +$event.target.value});
+        if (
+            this.family.fit_type === 1 ||
+            this.family.fit_type === 4 ||
+            this.family.fit_type === 5
+        )
+        {
+            this.showCropButton = true;
+        }
+        else
+        {
+            this.showCropButton = false;
+        }
     }
 
     activeCropHandler($event): void
     {
         // click to active cropper
-        if (this.attachment.controls['family_id'].value !== '') 
+        if (this.attachment.get('family_id').value !== '')
         {
             this.enableCrop.emit({
                 image: this.image, // add to event image to be updated if crop image

@@ -43,7 +43,10 @@ export class AttachmentFamily
     name: string;
     width: number;
     height: number;
+    fit_type: number;
     sizes: number[];
+    quality: number;
+    format: string;
     data: object;
 }
 

@@ -24,6 +24,7 @@
                     </a>
                 </div>
                 <div class="attachment-over-covered">
+
                     <a #closeOver class="attachment-edit-close"><i class="material-icons">clear</i></a>
 
                     <div class="form-group">
@@ -45,11 +46,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="showCropButton">
                         <button mat-raised-button type="button" (click)="activeCropHandler($event)">
                             <span>{{ 'ATTACHMENTS.CROP' | translate }}</span>
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
