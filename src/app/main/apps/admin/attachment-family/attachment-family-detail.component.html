@@ -109,6 +109,16 @@
                         </mat-form-field>
                     </div>
 
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                            <mat-label>{{ 'ADMIN.FIT_TYPE' | translate }}</mat-label>
+                            <mat-select formControlName="fit_type">
+                                <mat-option *ngFor="let fitType of fitTypes" [value]="+fitType.id">{{ fitType.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.fit_type }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
                     <div fxLayout="row wrap" class="justify-content-between">
                         <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.SIZES' | translate }}</mat-label>

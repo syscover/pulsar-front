@@ -17,6 +17,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'F';
     resources: Resource[] = [];
     sizes: any[] = [];
+    fitTypes: any[] = [];
     formats: any[] = [
         { id: 'jpg', name: 'jpg' },
         { id: 'png', name: 'png' },
@@ -40,9 +41,10 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
             name: ['', Validators.required],
             width: '',
             height: '',
-            sizes: '',
+            fit_type: '',
+            sizes: [],
             quality: '',
-            format: [[]]
+            format: ''
         });
     }
 
@@ -54,6 +56,11 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
             },
             configAttachmentResources : {
                 key: 'pulsar-admin.attachment_resources'
+            },
+            configFitTypes : {
+                key: 'pulsar-admin.fit_types',
+                lang: this.baseLang,
+                property: 'name'
             }
         };
     }
@@ -67,6 +74,9 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
         });
 
         // set sizes
-        this.sizes = data['configSizes'];
+        this.sizes = data.configSizes;
+
+        // set fit types
+        this.fitTypes = data.configFitTypes;
     }
 }

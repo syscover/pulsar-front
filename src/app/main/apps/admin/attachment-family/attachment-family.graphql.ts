@@ -7,6 +7,7 @@ const fields = `
     resource_id
     width
     height
+    fit_type
     sizes
     quality
     format
@@ -21,6 +22,7 @@ const relationsFields = `
     }
     configSizes:coreConfig (config:$configSizes)
     configAttachmentResources:coreConfig (config:$configAttachmentResources)
+    configFitTypes:coreConfig (config:$configFitTypes)
 `;
 
 export const graphQL = {
@@ -39,12 +41,12 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query AdminGetRelationsAttachmentFamily ($configSizes:CoreConfigInput! $configAttachmentResources:CoreConfigInput!) {
+        query AdminGetRelationsAttachmentFamily ($configSizes:CoreConfigInput! $configAttachmentResources:CoreConfigInput! $configFitTypes:CoreConfigInput!) {
             ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query AdminGetAttachmentFamilies ($sql:[CoreSQLInput] $configSizes:CoreConfigInput! $configAttachmentResources:CoreConfigInput!) {
+        query AdminGetAttachmentFamilies ($sql:[CoreSQLInput] $configSizes:CoreConfigInput! $configAttachmentResources:CoreConfigInput! $configFitTypes:CoreConfigInput!) {
             coreObjects: adminAttachmentFamilies (sql:$sql) {
                 ${fields}
             }
@@ -52,7 +54,7 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query AdminGetAttachmentFamily ($sql:[CoreSQLInput] $configSizes:CoreConfigInput $configAttachmentResources:CoreConfigInput!) {
+        query AdminGetAttachmentFamily ($sql:[CoreSQLInput] $configSizes:CoreConfigInput $configAttachmentResources:CoreConfigInput! $configFitTypes:CoreConfigInput!) {
             coreObject: adminAttachmentFamily (sql:$sql) {
                 ${fields}
             }

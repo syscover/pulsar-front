@@ -15,6 +15,7 @@ export const locale = {
             'FEATURED': 'Destacado',
             'FIELD': 'Campo',
             'FIELD_TYPE': 'Tipo de campo',
+            'FIT_TYPE': 'Tipo de ajuste',
             'FORMATS': 'Formatos',
             'FREQUENCY': 'Frecuencia',
             'ICON': 'Icono',
