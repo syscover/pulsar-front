@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { Country } from '../../admin/admin.models';
+import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { REINFORCEMENT_TYPES, ARCHITECTS, ARTISTS, ENGINEERS, OTHERS, Characteristic, People, CONCRETE_TYPES, FINISHES, CONSTRUCTION_MEETHODS, STRUCTURAL_TYPES } from '../innova-concrete.models';
 import { graphQL } from './monument.graphql';
 import * as _ from 'lodash';
@@ -29,6 +29,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
     public finishes: Characteristic[] = [];
     public constructionMethods: Characteristic[] = [];
     public structuralTypes: Characteristic[] = [];
+    public attachmentFamilies: AttachmentFamily[] = [];
 
     constructor(
         protected injector: Injector
@@ -69,6 +70,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             zip: '',
             latitude: '',
             longitude: '',
+            attachments: this.fb.array([])
         });
     }
 
@@ -93,8 +95,23 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             }
         ];
 
+        const sqlAttachmentFamily = [
+            {
+                'command': 'where',
+                'column': 'admin_attachment_family.resource_id',
+                'operator': '=',
+                'value': 'innova-monument'
+            },
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'admin_attachment_family.name'
+            }
+        ];
+
         return {
-            sqlCountry
+            sqlCountry,
+            sqlAttachmentFamily
         };
     }
 
@@ -148,5 +165,8 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
 
         // set structural Types
         this.structuralTypes = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': STRUCTURAL_TYPES});
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
     }
 }

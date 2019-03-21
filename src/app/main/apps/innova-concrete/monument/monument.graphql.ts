@@ -2,6 +2,8 @@ import gql from 'graphql-tag';
 import { graphQL as innovaConcretePeopleGraphQL } from '../people/people.graphql';
 import { graphQL as innovaConcreteCharacteristicGraphQL } from '../characteristic/characteristic.graphql';
 import { graphQL as adminCountry } from '../../admin/country/country.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
 
 const fields = `
     id
@@ -35,6 +37,9 @@ const fields = `
     zip
     latitude
     longitude
+    attachments {
+        ${adminAttachmentsGraphQL.fields}
+    }
 `;
 
 const relationsFields = `
@@ -46,6 +51,9 @@ const relationsFields = `
     }
     innovaConcreteCharacteristics {
         ${innovaConcreteCharacteristicGraphQL.fields}
+    }
+    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
     }
 `;
 
@@ -65,7 +73,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject : gql`
-        query InnovaConcreteRelationsMonument ($sqlCountry:[CoreSQLInput]) {
+        query InnovaConcreteRelationsMonument ($sqlCountry:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
             ${relationsFields}
         }`,
 
@@ -77,7 +85,7 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query InnovaConcreteGetMonument ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput]) {
+        query InnovaConcreteGetMonument ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
             coreObject: innovaConcreteMonument (sql:$sql) {
                 ${fields}
             }
