@@ -181,6 +181,52 @@
                                 </div>
                                 <!-- / HEADER -->
 
+                                <div fxLayout="row wrap" class="d-flex justify-content-md-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.REINFORCEMENT_TYPES' | translate }}</mat-label>
+                                        <mat-select formControlName="reinforcement_types_id" multiple>
+                                            <mat-option *ngFor="let reinforcementType of reinforcementTypes" [value]="reinforcementType.id">{{ reinforcementType.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.reinforcement_types_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.CONCRETE_TYPES' | translate }}</mat-label>
+                                        <mat-select formControlName="concrete_types_id" multiple>
+                                            <mat-option *ngFor="let typeConcrete of concreteTypes" [value]="typeConcrete.id">{{ typeConcrete.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.concrete_types_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" class="d-flex justify-content-md-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.FINISHES' | translate }}</mat-label>
+                                        <mat-select formControlName="finishes_id" multiple>
+                                            <mat-option *ngFor="let finish of finishes" [value]="finish.id">{{ finish.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.finishes_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.CONSTRUCTION_METHODS' | translate }}</mat-label>
+                                        <mat-select formControlName="construction_methods_id" multiple>
+                                            <mat-option *ngFor="let constructionMethod of constructionMethods" [value]="constructionMethod.id">{{ constructionMethod.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.construction_methods_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'INNOVA.STRUCTURAL_TYPES' | translate }}</mat-label>
+                                        <mat-select formControlName="structural_types_id" multiple>
+                                            <mat-option *ngFor="let structuralType of structuralTypes" [value]="structuralType.id">{{ structuralType.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.structural_types_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
                                         <mat-label>{{ 'INNOVA.COMMISSION' | translate }}</mat-label>

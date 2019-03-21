@@ -14,6 +14,9 @@ const fields = `
     peoples {
         ${innovaConcretePeopleGraphQL.fields}
     }
+    characteristics {
+        ${innovaConcreteCharacteristicGraphQL.fields}
+    }
     commission
     completion
     description
@@ -38,11 +41,11 @@ const relationsFields = `
     adminCountries (sql:$sqlCountry) {
         ${adminCountry.fields}
     }
-    innovaConcreteCharacteristics {
-        ${innovaConcreteCharacteristicGraphQL.fields}
-    }
     innovaConcretePeoples {
         ${innovaConcretePeopleGraphQL.fields}
+    }
+    innovaConcreteCharacteristics {
+        ${innovaConcreteCharacteristicGraphQL.fields}
     }
 `;
 

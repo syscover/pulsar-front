@@ -7,12 +7,16 @@ export const locale = {
             'CHARACTERISTIC': 'Characteristic',
             'COMMISSION': 'Commission',
             'COMPLETION': 'Completion',
+            'CONCRETE_TYPES': 'Concretes type',
+            'CONSTRUCTION_METHODS': 'Construction methods',
             'CURRENT_NAME': 'Current name',
             'CURRENT_USE': 'Current use',
             'ENGINEERS': 'Engineers',
+            'FINISHES': 'Finishes',
             'MONUMENT': 'Monument',
             'ORIGINAL_NAME': 'Original name',
             'ORIGINAL_USE': 'Original use',
+            'OTHER_DENOMINATIONS': 'Other denominations',
             'OTHERS': 'Others',
             'PEOPLE': 'People',
             'PERCENTAGE_PROGRESS': 'Percentage progress',
@@ -20,7 +24,8 @@ export const locale = {
             'RAPPORTEUR_DATE': 'Rapporteur date',
             'RAPPORTEUR_EMAIL': 'Rapporteur email',
             'RAPPORTEUR_NAME': 'Rapporteur name',
-            'OTHER_DENOMINATIONS': 'Other denominations'
+            'REINFORCEMENT_TYPES': 'Reinforcements Type',
+            'STRUCTURAL_TYPES': 'Structural types',
         }
     }
 };

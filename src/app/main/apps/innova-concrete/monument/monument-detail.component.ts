@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { Country } from '../../admin/admin.models';
-import { ARQUITECTS, ARTISTS, ENGENIEERS, OTHERS, Characteristic, People } from '../innova-concrete.models';
+import { REINFORCEMENT_TYPES, ARCHITECTS, ARTISTS, ENGINEERS, OTHERS, Characteristic, People, CONCRETE_TYPES, FINISHES, CONSTRUCTION_MEETHODS, STRUCTURAL_TYPES } from '../innova-concrete.models';
 import { graphQL } from './monument.graphql';
 import * as _ from 'lodash';
 
@@ -24,6 +24,11 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
     public engineers: People[] = [];
     public artists: People[] = [];
     public others: People[] = [];
+    public reinforcementTypes: Characteristic[] = [];
+    public concreteTypes: Characteristic[] = [];
+    public finishes: Characteristic[] = [];
+    public constructionMethods: Characteristic[] = [];
+    public structuralTypes: Characteristic[] = [];
 
     constructor(
         protected injector: Injector
@@ -45,6 +50,11 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             engineers_id: [],
             artists_id: [],
             others_id: [],
+            reinforcement_types_id: [],
+            concrete_types_id: [],
+            finishes_id: [],
+            construction_methods_id: [],
+            structural_types_id: [],
             commission: '',
             completion: '',
             rapporteur_name: '',
@@ -90,17 +100,18 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
 
     afterPatchValueEdit(): void
     {
-        // set architects id
-        this.fg.get('architects_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': ARQUITECTS}), 'id'));
-
-        // set engineers id
-        this.fg.get('engineers_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': ENGENIEERS}), 'id'));
-
-        // set artists id
+        // peoples
+        this.fg.get('architects_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': ARCHITECTS}), 'id'));
+        this.fg.get('engineers_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': ENGINEERS}), 'id'));
         this.fg.get('artists_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': ARTISTS}), 'id'));
-
-        // set others id
         this.fg.get('others_id').setValue(_.map(_.filter(this.object.peoples, {'group_id': OTHERS}), 'id'));
+
+        // characteristics
+        this.fg.get('reinforcement_types_id').setValue(_.map(_.filter(this.object.characteristics, {'type_id': REINFORCEMENT_TYPES}), 'id'));
+        this.fg.get('concrete_types_id').setValue(_.map(_.filter(this.object.characteristics, {'type_id': CONCRETE_TYPES}), 'id'));
+        this.fg.get('finishes_id').setValue(_.map(_.filter(this.object.characteristics, {'type_id': FINISHES}), 'id'));
+        this.fg.get('construction_methods_id').setValue(_.map(_.filter(this.object.characteristics, {'type_id': CONSTRUCTION_MEETHODS}), 'id'));
+        this.fg.get('structural_types_id').setValue(_.map(_.filter(this.object.characteristics, {'type_id': STRUCTURAL_TYPES}), 'id'));
     }
 
     setRelationsData(data: any): void
@@ -112,15 +123,30 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
         this.characteristics = data.innovaConcreteCharacteristics;
 
         // set architects
-        this.architects = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': ARQUITECTS});
+        this.architects = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': ARCHITECTS});
 
         // set engineers
-        this.engineers = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': ENGENIEERS});
+        this.engineers = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': ENGINEERS});
 
         // set artists
         this.artists = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': ARTISTS});
 
         // set others
         this.others = <People[]>_.filter(data.innovaConcretePeoples, {'group_id': OTHERS});
+
+        // set reinforcement types
+        this.reinforcementTypes = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': REINFORCEMENT_TYPES});
+
+        // set concrete types
+        this.concreteTypes = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': CONCRETE_TYPES});
+
+        // set finishes
+        this.finishes = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': FINISHES});
+
+        // set construction methods
+        this.constructionMethods = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': CONSTRUCTION_MEETHODS});
+
+        // set structural Types
+        this.structuralTypes = <Characteristic[]>_.filter(data.innovaConcreteCharacteristics, {'type_id': STRUCTURAL_TYPES});
     }
 }

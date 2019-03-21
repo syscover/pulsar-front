@@ -7,12 +7,16 @@ export const locale = {
             'CHARACTERISTIC': 'Característica',
             'COMMISSION': 'Comisión',
             'COMPLETION': 'Terminación',
+            'CONCRETE_TYPES': 'Tipos de hormigón',
+            'CONSTRUCTION_METHODS': 'Métodos de construcción',
             'CURRENT_NAME': 'Nombre actual',
             'CURRENT_USE': 'Uso actual',
             'ENGINEERS': 'Ingenieros',
+            'FINISHES': 'Acabados',
             'MONUMENT': 'Monumento',
             'ORIGINAL_NAME': 'Nombre original',
             'ORIGINAL_USE': 'Uso original',
+            'OTHER_DENOMINATIONS': 'Otras denominaciones',
             'OTHERS': 'Otros',
             'PEOPLE': 'Personas',
             'PERCENTAGE_PROGRESS': 'Porcentaje de progreso',
@@ -20,7 +24,8 @@ export const locale = {
             'RAPPORTEUR_DATE': 'Año de edición',
             'RAPPORTEUR_EMAIL': 'Email del autor',
             'RAPPORTEUR_NAME': 'Nombre del autor',
-            'OTHER_DENOMINATIONS': 'Otras denominaciones'
+            'REINFORCEMENT_TYPES': 'Tipos de refuerzo',
+            'STRUCTURAL_TYPES': 'Typos de estructuras',
         }
     }
 };

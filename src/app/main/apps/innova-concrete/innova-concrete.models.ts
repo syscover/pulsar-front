@@ -51,8 +51,15 @@ export class Monument
     longitude: number;
 }
 
-export const ARQUITECTS = 1;
-export const ENGENIEERS = 2;
+// People
+export const ARCHITECTS = 1;
+export const ENGINEERS = 2;
 export const ARTISTS = 3;
 export const OTHERS = 4;
 
+// Characteristics
+export const REINFORCEMENT_TYPES = 1;
+export const CONCRETE_TYPES = 2;
+export const FINISHES = 3;
+export const CONSTRUCTION_MEETHODS = 4;
+export const STRUCTURAL_TYPES = 5;
