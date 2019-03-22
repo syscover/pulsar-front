@@ -2,6 +2,7 @@ import { Component, Input, Output, OnInit, EventEmitter, ViewChild, Renderer2 } 
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AttachmentFamily } from './../../../../apps/admin/admin.models';
 import * as _ from 'lodash';
+import { CROP_FIT, HEIGHT_FREE_CROP_FIT, WIDTH_FREE_CROP_FIT } from '../attachments.models';
 declare const jQuery: any; // jQuery definition
 
 @Component({
@@ -12,29 +13,19 @@ declare const jQuery: any; // jQuery definition
 
 export class AttachmentItemComponent implements OnInit
 {
-    @Input()
-    public form: FormGroup;
-    @Input()
-    public name: string; // name of form array attachment
-    @Input()
-    public index: number; // id to identify attachment item
-    @Input()
-    public families: AttachmentFamily[] = [];
-    @Input()
-    public attachment: FormGroup;
-    @Output()
-    public enableCrop: EventEmitter<any> = new EventEmitter();
-    @Output()
-    public removeItem: EventEmitter<any> = new EventEmitter();
+    @Input() form: FormGroup;
+    @Input() name: string; // name of form array attachment
+    @Input() index: number; // id to identify attachment item
+    @Input() families: AttachmentFamily[] = [];
+    @Input() attachment: FormGroup;
+    @Output() enableCrop: EventEmitter<any> = new EventEmitter();
+    @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild('openOver')
-    public openOver;
-    @ViewChild('closeOver')
-    public closeOver;
-    @ViewChild('image')
-    public image;
-    public family: AttachmentFamily;
-    public showCropButton = false;
+    @ViewChild('openOver') openOver;
+    @ViewChild('closeOver') closeOver;
+    @ViewChild('image') image;
+    familySelect: AttachmentFamily;
+    showCropButton = false;
 
     constructor(
         private fb: FormBuilder,
@@ -48,10 +39,12 @@ export class AttachmentItemComponent implements OnInit
         });
 
         this.renderer.listen(this.closeOver.nativeElement, 'click', ($event) => {
+            console.log(this.form.value.attachments);
+
             this.renderer.removeClass($event.target.closest('.attachment-item'), 'covered');
         });
       
-        this.family = <AttachmentFamily>_.find(this.families, {'id': this.attachment.get('family_id').value});
+        this.familySelect = <AttachmentFamily>_.find(this.families, {'id': this.attachment.get('family_id').value});
     }
 
     removeItemHandler($event): void
@@ -67,11 +60,12 @@ export class AttachmentItemComponent implements OnInit
 
     changeFamilyHandler($event): void
     {
-        this.family =  _.find(this.families, {'id': +$event.target.value});
+        // get $event.target.value with ngValue that return a object
+        this.familySelect =  _.find(this.families, {'id': +$event.target.value[0]});
         if (
-            this.family.fit_type === 1 ||
-            this.family.fit_type === 4 ||
-            this.family.fit_type === 5
+            this.familySelect.fit_type === CROP_FIT ||
+            this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
+            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT
         )
         {
             this.showCropButton = true;

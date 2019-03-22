@@ -16,7 +16,7 @@
             </div>
             <div class="attachment-over">
                 <div class="attachment-over-uncovered">
-                    <h4 class="attachment-title">{{ family?.name }}</h4>
+                    <h4 class="attachment-title">{{ familySelect?.name }}</h4>
                     <p class="attachment-sub">{{ attachment.get('title').value }}</p>
                     <p class="attachment-size">{{ attachment.get('size').value | sizeFormat }}</p>
                     <a #openOver class="attachment-edit-open">
@@ -37,9 +37,8 @@
 
                     <div class="form-group">
                         <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
-                            <option value="">{{ 'ATTACHMENTS.SELECT_FAMILY' | translate }}</option>
-                            <option *ngFor="let family of families"
-                                    [value]="family.id">{{ family.name }}</option>
+                            <option>{{ 'ATTACHMENTS.SELECT_FAMILY' | translate }}</option>
+                            <option *ngFor="let family of families" [ngValue]="family.id">{{ family.name }}</option>
                         </select>
                         <div class="select-back">
                             <i class="material-icons">keyboard_arrow_down</i>

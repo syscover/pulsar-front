@@ -54,17 +54,18 @@ export class AttachmentsComponent implements OnInit, OnChanges
 
     ngOnInit(): void
     {
+        // TODO, use drag and drop angular native
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragenter', ($event) => {
-            this.dragEnterHandler($event);
+            this._dragEnterHandler($event);
         });
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragover', ($event) => {
-            this.dragOverHandler($event);
+            this._dragOverHandler($event);
         });
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'dragleave', ($event) => {
-            this.dragLeaveHandler($event);
+            this._dragLeaveHandler($event);
         });
         this.renderer.listen(this.attachmentLibrary.nativeElement, 'drop', ($event) => {
-            this.dropHandler($event);
+            this._dropHandler($event);
         });
 
         this.dragulaService.drop('bag-one').subscribe(() => {
@@ -73,7 +74,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
             {
                 (this.attachments.at(i) as FormGroup).controls['sort'].setValue(i);
             }
-            this.touchFormAttachments();
+            this._touchFormAttachments();
         });
 
         if (! this.endpoint) this.endpoint = this.configService.get('apiUrl') + '/api/v1/admin/attachment-upload';
@@ -81,17 +82,10 @@ export class AttachmentsComponent implements OnInit, OnChanges
 
     ngOnChanges(): void
     {
+        // load values from input
         // set value from component, to init with values only 
         // when the component is created or change value input
-        if (this.value) this.setValue(this.value);
-    }
-
-    setValue(attachments: Attachment[]): void
-    {
-        // create and set attachments FormGroup
-        for (const attachment of attachments) this.createAttachment(attachment);
-    
-        if (this.attachments.length > 0) this.disablePlaceholder();    
+        if (this.value) this._setValue(this.value);
     }
 
     get attachments(): FormArray
@@ -99,17 +93,25 @@ export class AttachmentsComponent implements OnInit, OnChanges
         return this.form.get(this.name) as FormArray;
     }
 
-    createAttachment(attachment?): void
+    private _setValue(attachments: Attachment[]): void
+    {
+        // create and set attachments FormGroup
+        for (const attachment of attachments) this._createAttachment(attachment);
+    
+        if (this.attachments.length > 0) this.disablePlaceholder();    
+    }
+
+    private _createAttachment(attachment?): void
     {
         // add attachment FormGroup to attachments FormArray
         // with function attachments get FormArray
         const attachmentFg = this.fb.group({
-            id: null,
+            id: '',
             lang_id: '',
             object_id: '',
             object_type: '',
             family_id: '',
-            sort: [null, Validators.required ],
+            sort: ['', Validators.required ],
             alt: '',
             title: '',
             base_path: ['', Validators.required ],
@@ -117,15 +119,16 @@ export class AttachmentsComponent implements OnInit, OnChanges
             url: ['', Validators.required ],
             mime: ['', Validators.required ],
             extension: ['', Validators.required ],
-            size: [null, Validators.required ],
-            width: null,
-            height: null,
+            size: ['', Validators.required ],
+            width: '',
+            height: '',
             library_id: '',
             library_file_name: '',
+
             // need implement attachment library fields to avoid send __typename field that is included in response from graphQL
             // this field contain AdminAttachmentLibrary value, when we try send values GraphQL expect to optain AdminAttachmentLibraryInput
             attachment_library: this.fb.group({
-                id: null,
+                id: '',
                 name: '',
                 base_path: '',
                 file_name: '',
@@ -138,7 +141,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
                 data: ''
             }),
             data: '',
-            uploaded: null
+            uploaded: ''
         });
 
         if (attachment !== undefined) attachmentFg.patchValue(attachment);
@@ -149,7 +152,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
     /**
      * Methods to upload files
      */
-    onFileSelect($event): void
+    private _dropFile($event): void
     {
         this.files = [];
 
@@ -164,10 +167,10 @@ export class AttachmentsComponent implements OnInit, OnChanges
             this.files.push(files[i]);
         }
 
-        if (this.files && this.files.length > 0) this.upload();
+        if (this.files && this.files.length > 0) this._upload();
     }
 
-    upload(): void
+    private _upload(): void
     {
         const xhr = new XMLHttpRequest();
         const formData = new FormData(); // create forma data to add files and inputs
@@ -203,10 +206,10 @@ export class AttachmentsComponent implements OnInit, OnChanges
                     // save attachments from file uploded
                     for (const attachment of response.data.attachmentsTmp) 
                     {
-                        attachment.uploaded     = true;                                 // mark all attachments that have been loaded
-                        attachment.sort         = this.attachments.controls.length + 1; // set sort value
-                        this.createAttachment(attachment);                              // create formgroup and patch value
-                        this.touchFormAttachments();
+                        attachment.uploaded     = true;                                     // mark all attachments that have been loaded
+                        attachment.sort         = this.attachments.controls.length + 1;     // set sort value
+                        this._createAttachment(attachment);                                 // create formGroup and patch value
+                        this._touchFormAttachments();
                     }
 
                 } else {
@@ -257,7 +260,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
                         // delete attachment from FormArray
                         this.attachments.removeAt(i);
 
-                        this.touchFormAttachments();
+                        this._touchFormAttachments();
 
                         // break to not continue with for, beacuse lenght attachments has changed
                         break;
@@ -272,15 +275,14 @@ export class AttachmentsComponent implements OnInit, OnChanges
             });
     }
 
-    private touchFormAttachments(): void
+    private _touchFormAttachments(): void
     {
         this.form.markAsDirty();
         this.form.markAsTouched();
     }
 
-
     // methods to manage layers
-    private dragEnterHandler($event): void
+    private _dragEnterHandler($event): void
     {
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) 
@@ -289,7 +291,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         }
     }
 
-    private dragOverHandler($event): void
+    private _dragOverHandler($event): void
     {
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement)
@@ -302,7 +304,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         }
     }
 
-    private dragLeaveHandler($event): void
+    private _dragLeaveHandler($event): void
     {
         $event.preventDefault();
         if ($event.currentTarget === this.attachmentLibrary.nativeElement) 
@@ -311,7 +313,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
         }
     }
 
-    private dropHandler($event): void
+    private _dropHandler($event): void
     {
         $event.preventDefault();
         if (this.attachmentLibraryMask.nativeElement.classList.contains('active-mask')) 
@@ -319,7 +321,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
             this.deactivateMask();
             this.disablePlaceholder();
         }
-        this.onFileSelect($event);
+        this._dropFile($event);
     }
 
     private enablePlaceholder(): void
