@@ -1,9 +1,9 @@
 const fields = `
+    id
     base_path
     extension
     file_name
     height
-    id
     mime
     name
     size

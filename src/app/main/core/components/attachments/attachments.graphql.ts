@@ -2,6 +2,9 @@ import { graphQL as adminAttachmentLibraryGraphQL } from './attachments-library.
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../../apps/admin/attachment-family/attachment-family.graphql';
 
 const fields = `
+    ix
+    id
+    title
     alt
     attachment_library {
         ${adminAttachmentLibraryGraphQL.fields}
@@ -11,8 +14,6 @@ const fields = `
     family_id
     file_name
     height
-    id
-    ix
     lang_id
     library_file_name
     library_id
@@ -20,7 +21,6 @@ const fields = `
     object_id
     object_type
     sort
-    title
     url
     size
     width
