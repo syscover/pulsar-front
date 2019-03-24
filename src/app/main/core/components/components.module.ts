@@ -7,10 +7,11 @@ import { FilterHeaderCellModule } from './filter-header-cell/filter-header-cell.
 import { FlagIconModule } from './flag-icon/flag-icon.module';
 import { FroalaModule } from './froala/froala.module';
 import { ImageInputModule } from './image-input/image-input.module';
+import { ListItemsModule } from './list-items/list-items.module';
 import { LocationMapModule } from './location-map/location-map.module';
 import { MarketableModule } from './marketable/marketable.module';
-import { TerritoriesModule } from './territories/territories.module';
 import { StockableModule } from './stockable/stockable.module';
+import { TerritoriesModule } from './territories/territories.module';
 import { UpdateModule } from './update/update.module';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { UpdateModule } from './update/update.module';
         FlagIconModule,
         FroalaModule,
         ImageInputModule,
+        ListItemsModule,
         LocationMapModule,
         MarketableModule,
         MatButtonModule,
@@ -44,6 +46,7 @@ import { UpdateModule } from './update/update.module';
         FlagIconModule,
         FroalaModule,
         ImageInputModule,
+        ListItemsModule,
         LocationMapModule,
         MarketableModule,
         StockableModule,

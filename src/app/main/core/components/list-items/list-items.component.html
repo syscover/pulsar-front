@@ -1,0 +1,47 @@
+<p>
+    {{ title }}
+    <button mat-icon-button type="button" (click)="manageItem()">
+        <mat-icon>add</mat-icon>
+    </button>
+</p>
+
+<div class="pane">
+
+    <table  class="list"
+            mat-table
+            [dataSource]="items.value">
+
+        <ng-container *ngFor="let column of formControls">
+
+            <!-- Column -->
+            <ng-container *ngIf="column.name !== 'actions'" [matColumnDef]="column.name">
+                <mat-header-cell *matHeaderCellDef>{{ column.label }}</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row[column.name] }}</mat-cell>
+            </ng-container>
+
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef class="mw-80">{{ 'ITEMS.ACTIONS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="mw-80">
+                <button type="button" mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button type="button" mat-menu-item (click)="manageItem(row)">
+                        <mat-icon>mode_edit</mat-icon>
+                        <span>{{ 'ITEMS.EDIT' | translate }}</span>
+                    </button>
+                    <button type="button" mat-menu-item (click)="deleteItem(row)">
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ 'ITEMS.DELETE' | translate }}</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+</div>
