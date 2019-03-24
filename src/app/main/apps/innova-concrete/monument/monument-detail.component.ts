@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormArray, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
@@ -14,25 +15,29 @@ import * as _ from 'lodash';
 })
 export class MonumentDetailComponent extends CoreDetailComponent  implements OnInit
 {
-    public objectTranslation = 'INNOVA.MONUMENT';
-    public objectTranslationGender = 'M';
-    public loadingSlug = false;
-    public graphQL = graphQL;
-    public countries: Country[] = [];
-    public characteristics: Characteristic[] = [];
-    public architects: People[] = [];
-    public engineers: People[] = [];
-    public artists: People[] = [];
-    public others: People[] = [];
-    public reinforcementTypes: Characteristic[] = [];
-    public concreteTypes: Characteristic[] = [];
-    public finishes: Characteristic[] = [];
-    public constructionMethods: Characteristic[] = [];
-    public structuralTypes: Characteristic[] = [];
-    public attachmentFamilies: AttachmentFamily[] = [];
+    objectTranslation = 'INNOVA.MONUMENT';
+    objectTranslationGender = 'M';
+    loadingSlug = false;
+    graphQL = graphQL;
+    countries: Country[] = [];
+    characteristics: Characteristic[] = [];
+    architects: People[] = [];
+    engineers: People[] = [];
+    artists: People[] = [];
+    others: People[] = [];
+    reinforcementTypes: Characteristic[] = [];
+    concreteTypes: Characteristic[] = [];
+    finishes: Characteristic[] = [];
+    constructionMethods: Characteristic[] = [];
+    structuralTypes: Characteristic[] = [];
+    attachmentFamilies: AttachmentFamily[] = [];
+
+    // links
+    linkFormControls: Object;
 
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        private _dialog: MatDialog
     ) {
         super(injector, graphQL);
     }
@@ -62,6 +67,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             rapporteur_email: '',
             rapporteur_date: '',
             percentage_progress: '',
+            links: this.fb.array([]),
             description: '',
             address: '',
             country_id: ['', Validators.required],
@@ -72,6 +78,31 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             longitude: '',
             attachments: this.fb.array([])
         });
+
+        // define controls for item component
+        this.linkFormControls = [
+            {
+                name: 'name',
+                control: ['', Validators.required],
+                type: 'input.text',
+                required: true,
+                class: '',
+                label: this.translateService.instant('APPS.NAME')
+            },
+            {
+                name: 'link',
+                control: ['', Validators.required],
+                type: 'input.url',
+                required: true,
+                class: '',
+                label: this.translateService.instant('APPS.LINK')
+            }
+        ];
+    }
+
+    get links(): FormArray
+    {
+        return this.fg.get('links') as FormArray;
     }
 
     handleCheckingSlug($event): void
@@ -113,6 +144,18 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             sqlCountry,
             sqlAttachmentFamily
         };
+    }
+
+    beforePatchValueEdit(): void
+    {
+        // create and set attachments FormGroup
+        for (const link of this.object.links)
+        {
+            this.links.push(this.fb.group({
+                name: '',
+                link: ''
+            }));
+        }
     }
 
     afterPatchValueEdit(): void

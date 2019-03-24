@@ -58,6 +58,7 @@ export const locale = {
             'LABEL': 'Etiqueta',
             'LATITUDE': 'Latitud',
             'LINK': 'Enlace',
+            'LINKS': 'Enlaces',
             'LOCALITY': 'Localidad',
             'LOGIN': 'Iniciar sesión',
             'LONGITUDE': 'Longitud',

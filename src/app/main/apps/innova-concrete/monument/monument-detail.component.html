@@ -78,7 +78,7 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-2">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
@@ -262,20 +262,37 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-2">
-                                        <mat-label>{{ 'INNOVA.RAPPORTEUR_DATE' | translate }}</mat-label>
-                                        <input matInput formControlName="rapporteur_date" type="number">
-                                        <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
-                                    </mat-form-field>
-                                </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-2">
-                                        <mat-label>{{ 'INNOVA.PERCENTAGE_PROGRESS' | translate }}</mat-label>
-                                        <input matInput formControlName="rapporteur_date" type="number">
-                                        <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
-                                    </mat-form-field>
+
+                                    <div class="col-12 col-md-6">
+                                        <div>
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-4">
+                                                <mat-label>{{ 'INNOVA.RAPPORTEUR_DATE' | translate }}</mat-label>
+                                                <input matInput formControlName="rapporteur_date" type="number">
+                                                <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-4">
+                                                <mat-label>{{ 'INNOVA.PERCENTAGE_PROGRESS' | translate }}</mat-label>
+                                                <input matInput formControlName="rapporteur_date" type="number">
+                                                <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 d-flex justify-content-end">
+
+                                        <dh2-list-items name="links"
+                                                        key="name"
+                                                        class="col-12 col-md-10"
+                                                        [form]="fg"
+                                                        [formControls]="linkFormControls"
+                                                        title="{{ 'APPS.LINKS' | translate }}"
+                                                        itemTitle="{{ 'APPS.LINK' | translate }}"></dh2-list-items>
+                                    </div>
+
                                 </div>
 
                                 <div fxLayout="row">

@@ -141,7 +141,7 @@ export class OrderDetailComponent extends CoreDetailComponent
         };
     }
 
-    setRelationsData(data) 
+    setRelationsData(data): void
     {
         // market order statuses
         this.orderStatuses = data.marketOrderStatuses;
@@ -164,7 +164,7 @@ export class OrderDetailComponent extends CoreDetailComponent
         this.logs = data.coreObject.data.logs;
     }
 
-    showInfo(info: any)
+    showInfo(info: any): void
     {
         if (this.env.debug) console.log('DEBUG - Show info order row: ', info);
 
