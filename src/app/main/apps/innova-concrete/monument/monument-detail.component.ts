@@ -89,7 +89,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             },
             {
                 name: 'link',
-                control: ['', Validators.required],
+                control: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
                 type: 'input.url',
                 required: true,
                 class: '',

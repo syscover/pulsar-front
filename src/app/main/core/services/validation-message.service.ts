@@ -44,6 +44,8 @@ export class ValidationMessageService
 
     getMessage(error: string, formControl?: AbstractControl): string 
     {
+        console.log(error);
+
         switch (error) 
         {
             case 'required':
@@ -60,6 +62,9 @@ export class ValidationMessageService
 
             case 'notequal':
                 return this.translateService.instant('VALIDATIONS.NOT_EQUAL', {'fieldname': formControl.errors[error]['fieldName'], 'matchfieldname': formControl.errors[error]['matchFieldName']});
+
+            case 'pattern':
+                return this.translateService.instant('VALIDATIONS.PATTERN', {'fieldname': formControl.errors[error]['fieldName']});
 
             default:
                 return this.translations['VALIDATIONS.DEFAULT'];

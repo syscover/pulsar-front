@@ -139,8 +139,9 @@ export const locale = {
             'LOGIN': 'The user or password is incorrect.',
             'MAXLENGTH' : 'This field may not be greater than {{ maxlength }} characters.',
             'MINLENGTH': 'This field must be at least {{ minlength }} characters.',
+            'NOT_EQUAL': 'Field {{ fieldname }} is not the same as field {{ matchfieldname }}',
             'REQUIRED': 'This field is required.',
-            'NOT_EQUAL': 'Field {{ fieldname }} is not the same as field {{ matchfieldname }}'
+            'PATTERN': 'The field {{ fieldname }} doesn\'t match the indicated pattern',
         }
     }
 };

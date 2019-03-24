@@ -139,8 +139,9 @@ export const locale = {
             'LOGIN': 'El usuario o contraseña no son válidos.',
             'MAXLENGTH' : 'Este campo no puede ser mayor que {{ maxlength }} caracteres.',
             'MINLENGTH': 'Este campo debe tener al menos {{ minlength }} caracteres.',
+            'NOT_EQUAL': 'El campo {{ fieldname }} no es igual que el campo {{ matchfieldname }}',
             'REQUIRED': 'Este campo es requerido.',
-            'NOT_EQUAL': 'El campo {{ fieldname }} no es igual que el campo {{ matchfieldname }}'
+            'PATTERN': 'El valor del campo {{ fieldname }} no coincide con el patrón indicado',
         }
     }
 };
