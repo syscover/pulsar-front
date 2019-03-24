@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ItemDialogComponent } from './item-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog.component';
+import { ConfigFormControls } from './list-items.models';
 import * as _ from 'lodash';
 
 @Component({
@@ -23,10 +24,34 @@ export class ListItemsComponent implements OnInit
     // from where belong this component
     @Input() form: FormGroup;
     // form group controls config that will be compose each row
-    @Input() formControls: Object[];
+    @Input() formControls: ConfigFormControls[];
+
+    // when set object value in edit action, set the FormArray
+    @Input()
+    set object(object: object)
+    {
+        if (Array.isArray(object[this.name]))
+        {
+            for (const i of object[this.name])
+            {
+                const configControls = {};
+
+                for (const config of this.formControls)
+                {
+                    configControls[config['name']] = config['control'];
+                }
+
+                // set form group from parent component
+                this.items.push(this._fb.group(configControls));
+            }
+
+            this.items.setValue(object[this.name]);
+        }
+    }
 
     constructor(
-        private _dialog: MatDialog
+        private _dialog: MatDialog,
+        private _fb: FormBuilder
     ) { }
 
     ngOnInit(): void

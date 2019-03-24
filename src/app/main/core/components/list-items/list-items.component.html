@@ -11,12 +11,22 @@
             mat-table
             [dataSource]="items.value">
 
-        <ng-container *ngFor="let column of formControls">
+        <ng-container *ngFor="let control of formControls">
 
             <!-- Column -->
-            <ng-container *ngIf="column.name !== 'actions'" [matColumnDef]="column.name">
-                <mat-header-cell *matHeaderCellDef>{{ column.label }}</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row[column.name] }}</mat-cell>
+            <ng-container *ngIf="control.name !== 'actions' && control.type === 'input.text'" [matColumnDef]="control.name">
+                <mat-header-cell *matHeaderCellDef>{{ control.label }}</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row[control.name] }}</mat-cell>
+            </ng-container>
+
+            <!-- Column -->
+            <ng-container *ngIf="control.name !== 'actions' && control.type === 'input.url'" [matColumnDef]="control.name">
+                <mat-header-cell *matHeaderCellDef>{{ control.label }}</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <a [href]="row[control.name]" target="_blank">
+                        <mat-icon>link</mat-icon>
+                    </a>
+                </mat-cell>
             </ng-container>
 
         </ng-container>

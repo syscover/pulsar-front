@@ -1,6 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { FormArray, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
@@ -36,8 +35,7 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
     linkFormControls: Object;
 
     constructor(
-        protected injector: Injector,
-        private _dialog: MatDialog
+        protected injector: Injector
     ) {
         super(injector, graphQL);
     }
@@ -100,11 +98,6 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
         ];
     }
 
-    get links(): FormArray
-    {
-        return this.fg.get('links') as FormArray;
-    }
-
     handleCheckingSlug($event): void
     {
         this.loadingSlug = $event;
@@ -144,18 +137,6 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             sqlCountry,
             sqlAttachmentFamily
         };
-    }
-
-    beforePatchValueEdit(): void
-    {
-        // create and set attachments FormGroup
-        for (const link of this.object.links)
-        {
-            this.links.push(this.fb.group({
-                name: '',
-                link: ''
-            }));
-        }
     }
 
     afterPatchValueEdit(): void
