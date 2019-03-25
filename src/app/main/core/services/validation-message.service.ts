@@ -44,8 +44,6 @@ export class ValidationMessageService
 
     getMessage(error: string, formControl?: AbstractControl): string 
     {
-        console.log(error);
-
         switch (error) 
         {
             case 'required':
