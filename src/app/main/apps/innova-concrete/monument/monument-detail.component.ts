@@ -133,9 +133,27 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             }
         ];
 
+        const sqlPeople = [
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'innova_concrete_people.name'
+            }
+        ];
+
+        const sqlCharacteristic = [
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'innova_concrete_characteristic.name'
+            }
+        ];
+
         return {
             sqlCountry,
-            sqlAttachmentFamily
+            sqlAttachmentFamily,
+            sqlPeople,
+            sqlCharacteristic
         };
     }
 

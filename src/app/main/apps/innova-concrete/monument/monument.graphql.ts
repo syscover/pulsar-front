@@ -46,14 +46,14 @@ const relationsFields = `
     adminCountries (sql:$sqlCountry) {
         ${adminCountry.fields}
     }
-    innovaConcretePeoples {
-        ${innovaConcretePeopleGraphQL.fields}
-    }
-    innovaConcreteCharacteristics {
-        ${innovaConcreteCharacteristicGraphQL.fields}
-    }
     adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
         ${adminAttachmentFamilyGraphQL.fields}
+    }
+    innovaConcretePeoples (sql:$sqlPeople) {
+        ${innovaConcretePeopleGraphQL.fields}
+    }
+    innovaConcreteCharacteristics (sql:$sqlCharacteristic) {
+        ${innovaConcreteCharacteristicGraphQL.fields}
     }
 `;
 
@@ -73,7 +73,12 @@ export const graphQL = {
         }`,
 
     queryRelationsObject : gql`
-        query InnovaConcreteRelationsMonument ($sqlCountry:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
+        query InnovaConcreteRelationsMonument (
+            $sqlCountry:[CoreSQLInput] 
+            $sqlAttachmentFamily:[CoreSQLInput] 
+            $sqlPeople:[CoreSQLInput] 
+            $sqlCharacteristic:[CoreSQLInput]
+        ) {
             ${relationsFields}
         }`,
 
@@ -85,7 +90,13 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query InnovaConcreteGetMonument ($sql:[CoreSQLInput] $sqlCountry:[CoreSQLInput] $sqlAttachmentFamily:[CoreSQLInput]) {
+        query InnovaConcreteGetMonument (
+            $sql:[CoreSQLInput]
+            $sqlCountry:[CoreSQLInput] 
+            $sqlAttachmentFamily:[CoreSQLInput]
+            $sqlPeople:[CoreSQLInput]
+            $sqlCharacteristic:[CoreSQLInput]
+        ) {
             coreObject: innovaConcreteMonument (sql:$sql) {
                 ${fields}
             }
