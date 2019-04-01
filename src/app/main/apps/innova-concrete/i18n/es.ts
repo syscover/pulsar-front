@@ -21,6 +21,7 @@ export const locale = {
             'PEOPLE': 'Personas',
             'PERCENTAGE_PROGRESS': 'Porcentaje de progreso',
             'PERSON': 'Persona',
+            'PROVINCE': 'Provincia',
             'RAPPORTEUR_DATE': 'Año de edición',
             'RAPPORTEUR_EMAIL': 'Email del autor',
             'RAPPORTEUR_NAME': 'Nombre del autor',

@@ -336,6 +336,14 @@
                                         </div>
 
                                         <div fxLayout="row">
+                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                                <mat-label>{{ 'INNOVA.PROVINCE' | translate }}</mat-label>
+                                                <input matInput formControlName="province">
+                                                <mat-error>{{ formErrors?.province }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
                                             <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
                                                 <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                                 <input matInput formControlName="zip">

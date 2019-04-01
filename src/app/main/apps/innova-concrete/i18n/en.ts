@@ -21,6 +21,7 @@ export const locale = {
             'PEOPLE': 'People',
             'PERCENTAGE_PROGRESS': 'Percentage progress',
             'PERSON': 'Person',
+            'PROVINCE': 'Province',
             'RAPPORTEUR_DATE': 'Rapporteur date',
             'RAPPORTEUR_EMAIL': 'Rapporteur email',
             'RAPPORTEUR_NAME': 'Rapporteur name',
