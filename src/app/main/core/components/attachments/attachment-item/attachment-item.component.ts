@@ -62,6 +62,7 @@ export class AttachmentItemComponent implements OnInit
     {
         // get $event.target.value with ngValue that return a object
         this.familySelect =  _.find(this.families, {'id': +$event.target.value[0]});
+
         if (
             this.familySelect.fit_type === CROP_FIT ||
             this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
