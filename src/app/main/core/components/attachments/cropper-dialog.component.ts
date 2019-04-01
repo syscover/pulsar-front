@@ -75,10 +75,16 @@ export class CropperDialogComponent implements OnInit, OnDestroy
                 attachment: this.data.attachment.value          // get values from formGroup
             })
             .subscribe(({data}) => {
+                // set attachment image like changed
+                data.adminCropAttachment.attachment.changed_image = true;
+
                 if (environment.debug) console.log('DEBUG - response after crop image: ', data);
 
                 // set attachment family id
                 this.data.attachment.patchValue(data.adminCropAttachment.attachment);
+
+                // set form like dirty
+                this.data.form.markAsDirty();
             });
     }
 }

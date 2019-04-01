@@ -39,12 +39,12 @@ export class AttachmentItemComponent implements OnInit
         });
 
         this.renderer.listen(this.closeOver.nativeElement, 'click', ($event) => {
-            console.log(this.form.value.attachments);
-
             this.renderer.removeClass($event.target.closest('.attachment-item'), 'covered');
         });
       
         this.familySelect = <AttachmentFamily>_.find(this.families, {'id': this.attachment.get('family_id').value});
+
+        this.setShowCropButton();
     }
 
     removeItemHandler($event): void
@@ -63,18 +63,7 @@ export class AttachmentItemComponent implements OnInit
         // get $event.target.value with ngValue that return a object
         this.familySelect =  _.find(this.families, {'id': +$event.target.value[0]});
 
-        if (
-            this.familySelect.fit_type === CROP_FIT ||
-            this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
-            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT
-        )
-        {
-            this.showCropButton = true;
-        }
-        else
-        {
-            this.showCropButton = false;
-        }
+        this.setShowCropButton();
     }
 
     activeCropHandler($event): void
@@ -87,6 +76,22 @@ export class AttachmentItemComponent implements OnInit
                 attachment: this.attachment,
                 family_id: +this.attachment.get('family_id').value
             });
+        }
+    }
+
+    setShowCropButton(): void
+    {
+        if (
+            this.familySelect.fit_type === CROP_FIT ||
+            this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
+            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT
+        )
+        {
+            this.showCropButton = true;
+        }
+        else
+        {
+            this.showCropButton = false;
         }
     }
 }

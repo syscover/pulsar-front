@@ -141,7 +141,8 @@ export class AttachmentsComponent implements OnInit, OnChanges
                 data: ''
             }),
             data: '',
-            uploaded: ''
+            uploaded: '',
+            changed_image: false
         });
 
         if (attachment !== undefined) attachmentFg.patchValue(attachment);
@@ -235,7 +236,8 @@ export class AttachmentsComponent implements OnInit, OnChanges
         const dialogRef = this.dialog.open(CropperDialogComponent, {
             data: { 
                 attachment: $event.attachment,
-                attachmentFamily: _.find(this.families, {'id': $event.family_id})
+                attachmentFamily: _.find(this.families, {'id': $event.family_id}),
+                form: this.form
             },
             height: '90%',
             width: '90%'
