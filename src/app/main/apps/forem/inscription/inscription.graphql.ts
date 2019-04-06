@@ -1,95 +1,102 @@
 import gql from 'graphql-tag';
 import { graphQL as foremProvinceGraphQL } from '../province/province.graphql';
-import { graphQL as foremGroupGraphQL } from '../group/group.graphql';
-
-import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
-import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
-import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
-import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
-import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
-import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
-import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.graphql';
+import { graphQL as foremLocalityGraphQL } from '../locality/locality.graphql';
 
 const fields = `
     id
     group_id
     student_id
     exported
+    reason_request_id
+    other_reason_request
+    observations
+
     approved_user
     approved_date
     approved
-    name
-    surname
-    surname2
-    gender_id
-    birth_date
-    id_card
-    ssn
-    email
-    phone
-    mobile
+    
     code
     has_registry
     registry_number
     registry_date
     document_type_id
     document_number
-    road_type_id
-    zip
+
+    name
+    surname
+    surname2
+    gender_id
+    birth_date
+    tin
+    ssn
+    email
+    phone
+    mobile
+    address_type_id
     address
     province_id
+    zip
     locality_id
-    has_driving_license
-    driving_licenses
-    employment_situation_id
-    unemployed_registration_date
-    unemployed_situation_id
-    employment_office_id
-    professional_category_id
-    functional_area_id
-    worker_code
-    company
-    tin
-    workplace_sector
-    workplace_province_id
-    workplace_locality_id
-    is_big_company
-    workplace_address
-    workplace_zip
-    academic_level_id
-    academic_level_specialty
-    has_other_course
-    other_course
-    reason_request_id
-    other_reason_request
-    ssn_authorization
-    certification_authorization
-    data_authorization
-    marketing_authorization
+
     has_agent
-    agent_tin
     agent_name
     agent_surname
     agent_surname2
+    agent_tin
     agent_address
     agent_province_id
-    agent_locality_id
     agent_zip
+    agent_locality_id
     agent_email
     agent_phone
     agent_mobile
     agent_contact_schedule
+
+    academic_level_id
+    academic_level_specialty
+    has_other_course
+    other_course
     languages
     professional_certificates
     professional_experiences
-    observations
+    has_driving_license
+    driving_licenses
+
+    employment_situation_id
+
+    unemployed_registration_date
+    unemployed_situation_id
+    employment_office_id
+
+    professional_category_id
+    functional_area_id
+    worker_code
+
+    company_name
+    company_tin
+    company_sector
+    company_province_id
+    company_locality_id
+    company_address
+    company_zip
+    big_company
+
+    ssn_authorization
+    certification_authorization
+    data_authorization
+    marketing_authorization
 `;
 
 const relationsFields = `
     foremProvinces {
         ${foremProvinceGraphQL.fields}
     }
+    foremGroups {
+        id
+        name
+    }
+    foremGenders: coreConfig (config:$configGenders)
+    foremAddressTypes: coreConfig (config:$configAddressTypes)
 `;
 
 export const graphQL = {
@@ -108,47 +115,54 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query ForemGetRelationsInscription {
+        query ForemGetRelationsInscription (
+            $configGenders:CoreConfigInput
+            $configAddressTypes:CoreConfigInput
+        ) {
             ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query ForemGetGroups (
+        query ForemGetInscriptions (
             $sql:[CoreSQLInput]
+            $configGenders:CoreConfigInput
+            $configAddressTypes:CoreConfigInput
         ) {
-            coreObjects: foremGroups (sql:$sql) {
+            coreObjects: foremInscriptions (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
         }`,
 
     queryObject: gql`
-        query ForemGetGroup (
+        query ForemGetInscription (
             $sql:[CoreSQLInput]
+            $configGenders:CoreConfigInput
+            $configAddressTypes:CoreConfigInput
         ) {
-            coreObject: foremGroup (sql:$sql) {
+            coreObject: foremInscription (sql:$sql) {
                 ${fields}
             }
             ${relationsFields}
         }`,
 
     mutationCreateObject: gql`
-        mutation ForemCreateGroup ($payload:ForemGroupInput!) {
-            foremCreateGroup (payload:$payload) {
+        mutation ForemCreateInscription ($payload:ForemInscriptionInput!) {
+            foremCreateInscription (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationUpdateObject: gql`
-        mutation ForemUpdateGroup ($payload:ForemGroupInput!) {
-            foremUpdateGroup (payload:$payload) {
+        mutation ForemUpdateInscription ($payload:ForemInscriptionInput!) {
+            foremUpdateInscription (payload:$payload) {
                 ${fields}
             }
         }`,
 
     mutationDeleteObject: gql`
-        mutation ForemDeleteGroup ($id:Int!) {
-            foremDeleteGroup (id:$id) {
+        mutation ForemDeleteInscription ($id:Int!) {
+            foremDeleteInscription (id:$id) {
                 ${fields}
             }
         }`

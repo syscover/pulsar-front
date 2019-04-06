@@ -16,6 +16,12 @@ export class Action
     observations: string;
 }
 
+export class AddressType
+{
+    id: number;
+    name: string;
+}
+
 export class Assistance
 {
     id: number;
@@ -55,6 +61,54 @@ export class Expedient
     name: string;
     starts_at: any;
     ends_at: any;
+}
+
+export class Gender
+{
+    id: number;
+    name: string;
+}
+
+export class Group
+{
+    id: number;
+    profile_id: number;
+    prefix_id: number;
+    code: string;
+    name: string;
+    slug: string;
+    category_id: number;
+    target_id: number;
+    assistance_id: number;
+    type_id: number;
+    certificate: string;
+    certificate_code: string;
+    hours: number;
+    subsidized_amount: number;
+    price: number;
+    price_hour: number;
+    contents_excerpt: string;
+    contents: string;
+    requirements: string;
+    observations: string;
+    action_id: number;
+    expedient_id: number;
+    starts_at: string;
+    ends_at: string;
+    schedule: string;
+    selection_date
+    publish: boolean;
+    open: boolean;
+    featured: boolean;
+    country_id: string;
+    territorial_area_1_id: string;
+    territorial_area_2_id: string;
+    territorial_area_3_id: string;
+    zip: string;
+    locality: string;
+    address: string;
+    latitude: number;
+    longitude: number;
 }
 
 export class GroupPrefix

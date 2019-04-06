@@ -107,7 +107,7 @@ export const graphQL = {
         query ForemGetRelationsGroup (
             $configTargets:CoreConfigInput 
             $configAssistances:CoreConfigInput 
-            $configTypes:CoreConfigInput 
+            $configTypes:CoreConfigInput
             $configModalities:CoreConfigInput
             $configGroupPrefixes:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]

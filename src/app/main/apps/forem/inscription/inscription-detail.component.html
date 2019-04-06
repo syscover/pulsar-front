@@ -1,4 +1,4 @@
-<div class="page-layout carded fullwidth inner-scroll">
+<div class="page-layout carded fullwidth inner-scroll tabable">
 
     <dh2-spinner [show]="showSpinner"></dh2-spinner>
 
@@ -28,7 +28,7 @@
                         {{ object.name }}
                     </div>
                     <div class="h2" *ngIf="dataRoute.action ==='create'">
-                        {{ 'APPS.NEW.F' | translate }} {{ 'FOREM.PROVINCE' | translate }}
+                        {{ 'APPS.NEW.F' | translate }} {{ 'FOREM.INSCRIPTION' | translate }}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>{{ 'APPS.DETAIL' | translate }}</span>
@@ -60,42 +60,234 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white p-24">
+        <div class="content-card">
 
             <!-- CONTENT -->
             <div class="content">
                 
                 <form   id="formDetail"
+                        class="w-100-p"
                         fxLayout="column"
                         fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div class="container">
-                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id">
-                            </mat-form-field>
-                        </div>
+                    <mat-tab-group>
+                    
+                        <mat-tab label="{{ 'FOREM.PERSONAL_DATA' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                <input matInput formControlName="code" type="number" required>
-                                <mat-error>{{ formErrors?.code }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                                <input type="hidden" formControlName="exported">
+                                <input type="hidden" formControlName="student_id">
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input matInput formControlName="name" required>
-                                <mat-error>{{ formErrors?.name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
 
-                    </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.GROUP' | translate }}</mat-label>
+                                        <mat-select formControlName="group_id" required>
+                                            <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.group_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row" class="justify-content-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
+                                        <input matInput formControlName="surname">
+                                        <mat-error>{{ formErrors?.surname }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.SECOND_SURNAME' | translate }}</mat-label>
+                                        <input matInput formControlName="surname2">
+                                        <mat-error>{{ formErrors?.surname2 }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 col-md-2">
+                                        <mat-label>{{ 'APPS.GENDER' | translate }}</mat-label>
+                                        <mat-select formControlName="gender_id">
+                                            <mat-option *ngFor="let gender of genders" [value]="gender.id">{{ gender.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.gender_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 offset-1 col-md-2">
+                                        <mat-label>{{ 'APPS.BIRTH_DATE' | translate }}</mat-label>
+                                        <input matInput [matDatepicker]="birthDate" formControlName="birth_date">
+                                        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #birthDate></mat-datepicker>
+                                        <mat-error>{{ formErrors?.birth_date }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row" class="justify-content-between">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.NIF' | translate }}</mat-label>
+                                        <input matInput formControlName="tin">
+                                        <mat-error>{{ formErrors?.tin }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'APPS.SSN' | translate }}</mat-label>
+                                        <input matInput formControlName="ssn">
+                                        <mat-error>{{ formErrors?.ssn }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
+                                        <input matInput formControlName="email">
+                                        <mat-error>{{ formErrors?.email }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                        <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
+                                        <input matInput formControlName="phone">
+                                        <mat-error>{{ formErrors?.phone }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
+                                        <input matInput formControlName="mobile">
+                                        <mat-error>{{ formErrors?.mobile }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-2">
+                                        <mat-label>{{ 'FOREM.ADDRESS_TYPE' | translate }}</mat-label>
+                                        <mat-select formControlName="address_type_id">
+                                            <mat-option *ngFor="let addressType of addressTypes" [value]="addressType.id">{{ addressType.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.address_type_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                        <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
+                                        <input matInput formControlName="address">
+                                        <mat-error>{{ formErrors?.address }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
+                                        <mat-select formControlName="address_type_id">
+                                            <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.province_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
+                                        <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
+                                        <input matInput formControlName="zip">
+                                        <mat-error>{{ formErrors?.zip }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
+                                        <mat-select formControlName="locality_id">
+                                            <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.locality_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-12 col-md-2 py-20">
+                                    <mat-checkbox formControlName="has_agent" (change)="handleChangeHasAgent($event)">{{ 'FOREM.HAS_AGENT' | translate }}</mat-checkbox>
+                                </div>
+
+                                <div>
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_name">
+                                            <mat-error>{{ formErrors?.agent_name }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row" class="justify-content-between">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_surname">
+                                            <mat-error>{{ formErrors?.agent_surname }}</mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'APPS.SECOND_SURNAME' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_surname2">
+                                            <mat-error>{{ formErrors?.agent_surname2 }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row" class="justify-content-between">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'APPS.NIF' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_tin">
+                                            <mat-error>{{ formErrors?.agent_tin }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_address">
+                                            <mat-error>{{ formErrors?.agent_address }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'FOREM.EMPLOYMENT_DATA' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
+                                        <input matInput formControlName="code" type="number">
+                                        <mat-error>{{ formErrors?.code }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'FOREM.FOCO' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
+                                        <input matInput formControlName="code" type="number">
+                                        <mat-error>{{ formErrors?.code }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
 
                 </form>
             </div>
