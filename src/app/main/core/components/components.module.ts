@@ -13,6 +13,7 @@ import { MarketableModule } from './marketable/marketable.module';
 import { StockableModule } from './stockable/stockable.module';
 import { TerritoriesModule } from './territories/territories.module';
 import { UpdateModule } from './update/update.module';
+import { DatepickerModule } from './datepicker/datepicker.module';
 
 @NgModule({
     entryComponents: [
@@ -24,6 +25,7 @@ import { UpdateModule } from './update/update.module';
     imports: [
         AttachmentsModule,
         CommonModule,
+        DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
         FroalaModule,
@@ -42,6 +44,7 @@ import { UpdateModule } from './update/update.module';
     exports: [
         AttachmentsModule,
         ConfirmationDialogComponent,
+        DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
         FroalaModule,

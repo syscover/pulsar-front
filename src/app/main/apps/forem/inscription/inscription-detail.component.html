@@ -128,13 +128,13 @@
                                         <mat-error>{{ formErrors?.gender_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 offset-1 col-md-2">
-                                        <mat-label>{{ 'APPS.BIRTH_DATE' | translate }}</mat-label>
-                                        <input matInput [matDatepicker]="birthDate" formControlName="birth_date">
-                                        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
-                                        <mat-datepicker #birthDate></mat-datepicker>
-                                        <mat-error>{{ formErrors?.birth_date }}</mat-error>
-                                    </mat-form-field>
+                                    <div class="col-5 offset-1 col-md-2">
+                                        <dh2-datepicker label="{{ 'APPS.BIRTH_DATE' | translate }}"
+                                                        format="YYYY-MM-DD"
+                                                        formControlName="birth_date">
+                                        </dh2-datepicker>
+                                    </div>
+
                                 </div>
 
                                 <div fxLayout="row" class="justify-content-between">
@@ -152,16 +152,10 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="email">
                                         <mat-error>{{ formErrors?.email }}</mat-error>
-                                    </mat-form-field>
-
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
-                                        <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
-                                        <input matInput formControlName="phone">
-                                        <mat-error>{{ formErrors?.phone }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -170,6 +164,12 @@
                                         <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
                                         <input matInput formControlName="mobile">
                                         <mat-error>{{ formErrors?.mobile }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                        <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
+                                        <input matInput formControlName="phone">
+                                        <mat-error>{{ formErrors?.phone }}</mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -281,6 +281,36 @@
                                                 <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
                                             </mat-select>
                                             <mat-error>{{ formErrors?.agent_locality_id }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                            <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
+                                            <input type="email" matInput formControlName="agent_email">
+                                            <mat-error>{{ formErrors?.agent_email }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                            <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_mobile">
+                                            <mat-error>{{ formErrors?.agent_mobile }}</mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                            <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
+                                            <input type="email" matInput formControlName="agent_phone">
+                                            <mat-error>{{ formErrors?.agent_phone }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                            <mat-label>{{ 'FOREM.CONTACT_SCHEDULE' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_contact_schedule">
+                                            <mat-error>{{ formErrors?.agent_contact_schedule }}</mat-error>
                                         </mat-form-field>
                                     </div>
 

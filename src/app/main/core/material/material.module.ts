@@ -33,9 +33,10 @@ import {
     MatTableModule,
     MatTabsModule,
     MatStepperModule,
-    DateAdapter
+    DateAdapter,
+    MAT_DATE_LOCALE
 } from '@angular/material';
-import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -125,7 +126,8 @@ import { SelectSearchService } from '../services/select-search.service';
     ],
     providers: [
         SelectSearchService,
-        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+        { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] }
     ]
 })
 export class MaterialModule

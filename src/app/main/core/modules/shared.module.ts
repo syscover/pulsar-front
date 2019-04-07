@@ -4,7 +4,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { AttachmentsModule } from '../components/attachments/attachments.module';
 import { ComponentsModule } from '../components/components.module';
 import { DynamicFormModule } from '../components/dynamic-form/dynamic-form.module';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './../material/material.module';
 import { CovalentModule } from './covalent.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { DirectivesModule } from '../directives/directives.module';

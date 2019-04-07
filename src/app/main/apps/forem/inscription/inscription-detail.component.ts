@@ -65,6 +65,10 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             agent_province_id: '',
             agent_zip: '',
             agent_locality_id: '',
+            agent_email: '',
+            agent_phone: '',
+            agent_mobile: '',
+            agent_contact_schedule: '',
 
             // FOCO
             code: '',

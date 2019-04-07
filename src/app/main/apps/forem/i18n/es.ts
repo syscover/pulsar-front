@@ -8,6 +8,7 @@ export const locale = {
             'ASSIST': 'Asistencia',
             'CERTIFICATE': 'Certificado',
             'CERTIFICATE_CODE': 'Código de certificado',
+            'CONTACT_SCHEDULE': 'Horario de contacto',
             'CONTENTS': 'Contenidos',
             'CONTENTS_EXCERPT': 'Resumen de contenidos',
             'EMPLOYMENT_DATA': 'Datos de empleo',
