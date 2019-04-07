@@ -182,7 +182,7 @@
                                         <mat-error>{{ formErrors?.address_type_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-9">
                                         <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                         <input matInput formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>
@@ -192,7 +192,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
-                                        <mat-select formControlName="address_type_id">
+                                        <mat-select formControlName="province_id">
                                             <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.province_id }}</mat-error>
@@ -255,6 +255,32 @@
                                             <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                             <input matInput formControlName="agent_address">
                                             <mat-error>{{ formErrors?.agent_address }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                            <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
+                                            <mat-select formControlName="agent_province_id">
+                                                <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.province_id }}</mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
+                                            <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
+                                            <input matInput formControlName="agent_zip">
+                                            <mat-error>{{ formErrors?.agent_zip }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                            <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
+                                            <mat-select formControlName="agent_locality_id">
+                                                <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.agent_locality_id }}</mat-error>
                                         </mat-form-field>
                                     </div>
 
