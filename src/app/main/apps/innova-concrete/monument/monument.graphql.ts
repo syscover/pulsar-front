@@ -3,7 +3,7 @@ import { graphQL as innovaConcretePeopleGraphQL } from '../people/people.graphql
 import { graphQL as innovaConcreteCharacteristicGraphQL } from '../characteristic/characteristic.graphql';
 import { graphQL as adminCountry } from '../../admin/country/country.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '@horus/components/attachments/attachments.graphql';
 
 const fields = `
     id

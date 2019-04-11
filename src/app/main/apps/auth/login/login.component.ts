@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { environment } from 'environments/environment';
-import { ValidationMessageService } from '../../../core/services/validation-message.service';
-import { AuthenticationService } from '../../../core/services/authentication.service';
-import '../../../core/functions/array-random.function';
-import { AuthorizationService } from '../../../core/services/authorization.service';
-import { ConfigService } from '../../../core/services/config.service';
+import { ValidationMessageService } from '@horus/services/validation-message.service';
+import { AuthenticationService } from '@horus/services/authentication.service';
+import '@horus/functions/array-random.function';
+import { AuthorizationService } from '@horus/services/authorization.service';
+import { ConfigService } from '@horus/services/config.service';
 import { pulsarConfig } from '../../../pulsar-config';
 
 @Component({

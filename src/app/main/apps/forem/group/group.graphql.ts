@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 import { graphQL as foremCategoryGraphQL } from '../category/category.graphql';
 import { graphQL as foremExpedientsGraphQL} from '../expedient/expedient.graphql';
 import { graphQL as foremActionsGraphQL } from '../action/action.graphql';
-import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
+import { graphQL as marketableGraphQL } from '@horus/components/marketable/marketable.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
-import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '@horus/components/attachments/attachments.graphql';
 import { graphQL as adminProfileGraphQL } from '../../admin/profile/profile.graphql';
 
 const fields = `

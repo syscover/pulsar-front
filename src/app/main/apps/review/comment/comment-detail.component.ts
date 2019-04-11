@@ -1,10 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { Validators, FormArray } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import * as _ from 'lodash';
 import { Question } from '../review.models';
-import '../../../core/functions/map-order.function';
+import '@horus/functions/map-order.function';
 import { graphQL } from './comment.graphql';
 
 @Component({

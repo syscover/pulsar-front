@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../core/modules/shared.module';
+import { SharedModule } from '@horus/modules/shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { locale as english } from './i18n/en';

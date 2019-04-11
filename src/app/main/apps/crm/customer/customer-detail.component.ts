@@ -1,8 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { notEqual } from '../../../core/validations/not-equal.validation';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { notEqual } from '@horus/validations/not-equal.validation';
 import { CustomerGroup } from '../crm.models';
 import { Country } from '../../admin/admin.models';
 import * as passwordGenerator from 'generate-password-browser';

@@ -19,6 +19,23 @@ export const navigation: FuseNavigation[] = [
                 'url'       : '/apps/dashboard'
             },
             {
+                'id'   : 'peci',
+                'title': 'PECI',
+                'translate': 'NAV.PECI',
+                'type' : 'collapsable',
+                'icon' : ['fas', 'file-contract'],
+                'children' : [
+                    {
+                        'id'        : 'file',
+                        'title'     : 'File',
+                        'translate' : 'NAV.FILES',
+                        'type'      : 'item',
+                        'icon'      : ['fas', 'exchange-alt'],
+                        'url'       : '/apps/peci/file'
+                    }
+                ]
+            },
+            {
                 'id'   : 'bcci',
                 'title': 'B+CCI',
                 'translate': 'NAV.BCCI',

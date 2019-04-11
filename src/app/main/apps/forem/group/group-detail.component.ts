@@ -2,17 +2,17 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix } from '../forem.models';
 import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SelectSearchService } from '../../../core/services/select-search.service';
+import { SelectSearchService } from '@horus/services/select-search.service';
 import { CategoryDialogComponent } from '../category/category-dialog.component';
 import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
-import { MarketableService } from '../../../core/components/marketable/marketable.service';
+import { MarketableService } from '@horus/components/marketable/marketable.service';
 import { AttachmentFamily, Country, Profile } from '../../admin/admin.models';
 
 @Component({

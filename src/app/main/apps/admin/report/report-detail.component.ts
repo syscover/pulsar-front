@@ -3,8 +3,8 @@ import { FormGroup, Validators } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { Chips, ChipsDecoratorInterface } from '../../../core/decorators/chips.decortor';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { Extension, Frequency } from '../admin.models';
 import { graphQL } from './report.graphql';
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationService } from '../../core/services/authorization.service';
+import { AuthorizationService } from '@horus/services/authorization.service';
 
 import { AppellationDetailComponent } from './appellation/appellation-detail.component';
 import { AppellationListComponent } from './appellation/appellation-list.component';

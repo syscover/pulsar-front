@@ -4,17 +4,19 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
-import { ApolloService } from './services/apollo.service';
-import { ConfigService } from './services/config.service';
-import { HttpService } from './services/http.service';
-import { AuthenticationService } from './services/authentication.service';
-import { AuthorizationService } from './services/authorization.service';
-import { BootstrapService } from './services/bootstrap.service';
-import { NavigationService } from './services/navigation.service';
-import { HttpInterceptorService } from './services/http-interceptor.service';
-import { HttpSynchronousService } from './services/http-synchronous.service';
-import { ValidationMessageService } from './services/validation-message.service';
-import { GoogleMapsLoaderService } from './services/google-maps-loader.service';
+
+// services import
+import { ApolloService } from '@horus/services/apollo.service';
+import { AuthenticationService } from '@horus/services/authentication.service';
+import { AuthorizationService } from '@horus/services/authorization.service';
+import { BootstrapService } from '@horus/services/bootstrap.service';
+import { ConfigService } from '@horus/services/config.service';
+import { NavigationService } from '@horus/services/navigation.service';
+import { HttpService } from '@horus/services/http.service';
+import { HttpInterceptorService } from '@horus/services/http-interceptor.service';
+import { HttpSynchronousService } from '@horus/services/http-synchronous.service';
+import { ValidationMessageService } from '@horus/services/validation-message.service';
+import { GoogleMapsLoaderService } from '@horus/services/google-maps-loader.service';
 
 @NgModule({
     declarations: [],

@@ -11,7 +11,7 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { locale as english } from 'app/navigation/i18n/en';
 import { locale as spanish } from 'app/navigation/i18n/es';
-import { SharedModule } from 'app/main/core/modules/shared.module';
+import { SharedModule } from '@horus/modules/shared.module';
 
 @NgModule({
     declarations: [

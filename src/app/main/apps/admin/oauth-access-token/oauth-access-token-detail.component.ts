@@ -1,8 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { AuthenticationService } from '../../../core/services/authentication.service';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { User } from '../admin.models';
 import { graphQL } from './oauth-access-token.graphql';
 

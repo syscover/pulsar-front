@@ -1,0 +1,147 @@
+<div class="page-layout carded fullwidth inner-scroll">
+
+    <dh2-spinner [show]="showSpinner"></dh2-spinner>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <fa-icon [icon]="['fas', 'exchange-alt']" class="mr-16" size="2x"></fa-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'PECI.FILE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='create'">
+                {{ 'APPS.ADD' | translate }}
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='edit'">
+                {{ 'APPS.SAVE' | translate }}
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card fuse-white p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form   id="formDetail"
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
+
+                    <div class="container">
+                        <input type="hidden" formControlName="ix">
+
+                        <div fxLayout="row mb-40" class="justify-content-end">
+                            <button mat-raised-button
+                                    type="button"
+                                    class="mt-16 mt-sm-0">
+                                <fa-icon [icon]="['fas', 'code']" class="mr-16"></fa-icon>
+                                Ver XML
+                            </button>
+
+                            <button mat-raised-button
+                                    type="button"
+                                    class="ml-16 mt-16 mt-sm-0">
+                                <fa-icon [icon]="['fas', 'binoculars']" class="mr-16"></fa-icon>
+                                Visor amigable
+                            </button>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                <mat-label>ID</mat-label>
+                                <input matInput formControlName="id" required>
+                                <mat-error>{{ formErrors?.id }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                <mat-label>Nombre de empleado</mat-label>
+                                <input matInput formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- HEADER -->
+                        <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                            <mat-icon class="m-0 mr-16">subtitles</mat-icon>
+                            <div class="h2 secondary-text">Definición del XML</div>
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                <mat-label>{{ 'APPS.FIELD_GROUP' | translate }}</mat-label>
+                                <mat-select formControlName="field_group_id">
+                                    <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
+                                    <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
+                                </mat-select>
+                                <mat-error>{{ formErrors?.field_group_id }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- DYNAMIC FORM -->
+                        <dh2-dynamic-form   [start]="true"
+                                            [formGroup]="fg"
+                                            [errors]="formErrors"
+                                            [fieldGroupId]="fg.controls['field_group_id']?.value"
+                                            [values]="object.data && object.data.custom_fields ? object.data.custom_fields : undefined"
+                                            [lang]="translateService.currentLang"></dh2-dynamic-form>
+                        <!-- / DYNAMIC FORM -->
+
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>

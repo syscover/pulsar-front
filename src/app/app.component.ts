@@ -11,14 +11,14 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-// DH2
+// @HORUS
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationSpanish } from 'app/navigation/i18n/es';
 
-// DH2
-import { NavigationService } from 'app/main/core/services/navigation.service';
-import { ConfigService } from './main/core/services/config.service';
+// @HORUS
+import { NavigationService } from '@horus/services/navigation.service';
+import { ConfigService } from '@horus/services/config.service';
 
 @Component({
     selector   : 'app',

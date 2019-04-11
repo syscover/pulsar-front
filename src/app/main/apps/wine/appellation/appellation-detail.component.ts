@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { graphQL } from './appellation.graphql';
 
 @Component({

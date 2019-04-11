@@ -1,13 +1,13 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/foundations/core-list-component';
 import { graphQL } from './resource.graphql';
 
 @Component({
     selector: 'dh2-admin-resource-list',
     templateUrl: './resource-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
 export class ResourceListComponent extends CoreListComponent 
 {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorIntl } from '@angular/material';
-import { AuthorizationService } from '../core/services/authorization.service';
+import { AuthorizationService } from '@horus/services/authorization.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-import { CustomMatPaginatorIntlService } from '../core/services/custom-mat-paginator-int.service';
+import { CustomMatPaginatorIntlService } from '@horus/services/custom-mat-paginator-int.service';
 import { locale as english } from './i18n/en';
 import { locale as spanish } from './i18n/es';
 
@@ -60,6 +60,11 @@ const routes = [
     {
         path        : 'bcci',
         loadChildren: './bcci/bcci.module#BcciModule',
+        canLoad     : [AuthorizationService]
+    },
+    {
+        path        : 'peci',
+        loadChildren: './peci/peci.module#PeciModule',
         canLoad     : [AuthorizationService]
     },
     {

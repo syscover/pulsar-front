@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { graphQL as marketableGraphQL } from '../../../core/components/marketable/marketable.graphql';
-import { graphQL as stockableGraphQL } from '../../../core/components/stockable/stockable.graphql';
-import { graphQL as adminAttachmentsGraphQL } from '../../../core/components/attachments/attachments.graphql';
+import { graphQL as marketableGraphQL } from '@horus/components/marketable/marketable.graphql';
+import { graphQL as stockableGraphQL } from '@horus/components/stockable/stockable.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '@horus/components/attachments/attachments.graphql';
 import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 import { graphQL as marketStockGraphQL } from '../../market/stock/stock.graphql';

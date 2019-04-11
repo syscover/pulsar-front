@@ -1,16 +1,16 @@
 import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
 import { MatSelect } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/foundations/core-list-component';
 import { Action, Permission, Profile } from '../admin.models';
 import { graphQL } from './permission.graphql';
-import { ConfirmationDialogComponent } from '../../../core/components/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '@horus/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'dh2-admin-permission-list',
     templateUrl: './permission-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
 export class PermissionListComponent extends CoreListComponent
 {

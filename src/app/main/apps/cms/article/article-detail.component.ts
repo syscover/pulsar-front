@@ -2,13 +2,13 @@ import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
-import { AuthenticationService } from '../../../core/services/authentication.service';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { Section, Family, Article, Category, Status } from '../cms.models';
 import { AttachmentFamily } from '../../admin/admin.models';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { Chips, ChipsDecoratorInterface } from '../../../core/decorators/chips.decortor';
-import '../../../core/functions/date-to-json.function';
+import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
+import '@horus/functions/date-to-json.function';
 import * as _ from 'lodash';
 import { graphQL } from './article.graphql';
 
@@ -17,7 +17,7 @@ import { graphQL } from './article.graphql';
     selector: 'dh2-article-detail',
     templateUrl: './article-detail.component.html',
     animations: fuseAnimations,
-    styleUrls: ['../../../core/scss/improvements/perfect-scroll-bar.scss'],
+    styleUrls: ['../../../../scss/improvements/perfect-scroll-bar.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ArticleDetailComponent extends CoreDetailComponent implements ChipsDecoratorInterface

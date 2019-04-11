@@ -1,13 +1,13 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/foundations/core-list-component';
 import { graphQL } from './field-group.graphql';
 
 @Component({
     selector: 'dh2-admin-field-group-list',
     templateUrl: './field-group-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
 export class FieldGroupListComponent extends CoreListComponent
 {

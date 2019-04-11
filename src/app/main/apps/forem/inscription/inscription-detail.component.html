@@ -131,10 +131,10 @@
                                     <div class="col-5 offset-1 col-md-2">
                                         <dh2-datepicker label="{{ 'APPS.BIRTH_DATE' | translate }}"
                                                         format="YYYY-MM-DD"
-                                                        formControlName="birth_date">
+                                                        formControlName="birth_date"
+                                                        [errors]="formErrors">
                                         </dh2-datepicker>
                                     </div>
-
                                 </div>
 
                                 <div fxLayout="row" class="justify-content-between">

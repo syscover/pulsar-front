@@ -1,7 +1,7 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { Package } from '../../admin/admin.models';
 import { graphQL } from './version.graphql';
 import { MatSort, MatTableDataSource } from '@angular/material';

@@ -10,11 +10,11 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 
-// DH2
-import { AuthenticationService } from 'app/main/core/services/authentication.service';
-import { NavigationService } from 'app/main/core/services/navigation.service';
+// @HORUS
+import { AuthenticationService } from '@horus/services/authentication.service';
+import { NavigationService } from '@horus/services/navigation.service';
 import { User } from 'app/main/apps/admin/admin.models';
-import { ConfigService } from '../../../main/core/services/config.service';
+import { ConfigService } from '@horus/services/config.service';
 
 @Component({
     selector     : 'toolbar',

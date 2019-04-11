@@ -1,7 +1,7 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import {Component, HostBinding, Injector, OnInit} from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { AddressType, Gender, Group, Locality, Province } from '../forem.models';
 import { graphQL } from './inscription.graphql';
 
@@ -12,6 +12,8 @@ import { graphQL } from './inscription.graphql';
 })
 export class InscriptionDetailComponent extends CoreDetailComponent  implements OnInit
 {
+    @HostBinding('style.color') color: string;
+
     objectTranslation = 'FOREM.INSCRIPTION';
     objectTranslationGender = 'F';
     loadingSlug = false;

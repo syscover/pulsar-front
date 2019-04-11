@@ -1,13 +1,13 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/foundations/core-list-component';
 import { graphQL } from './award.graphql';
 
 @Component({
     selector: 'dh2-wine-award-list',
     templateUrl: './award-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['./../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
 export class AwardListComponent extends CoreListComponent
 {

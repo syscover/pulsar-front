@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/structures/core-list-component';
+import { CoreListComponent } from '../../../core/foundations/core-list-component';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
 import 'rxjs/add/operator/toPromise';
@@ -11,7 +11,7 @@ import { environment } from '../../../../../environments/environment';
     selector: 'dh2-admin-report-list',
     templateUrl: './report-list.component.html',
     animations : fuseAnimations,
-    styleUrls: ['../../../core/scss/improvements/core-list-component.scss']
+    styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
 export class ReportListComponent extends CoreListComponent implements AfterViewInit, OnInit
 {

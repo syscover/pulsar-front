@@ -1,11 +1,11 @@
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { graphQL } from './product.graphql';
 import { Product, ProductClass, PriceType, ProductClassTax, Category, Stock, Section } from '../market.models';
 import { FieldGroup, AttachmentFamily } from '../../admin/admin.models';
-import { MarketableService } from '../../../core/components/marketable/marketable.service';
-import { StockableService } from '../../../core/components/stockable/stockable.service';
+import { MarketableService } from '@horus/components/marketable/marketable.service';
+import { StockableService } from '@horus/components/stockable/stockable.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,7 +13,7 @@ import * as _ from 'lodash';
     templateUrl: './product-detail.component.html',
     animations: fuseAnimations,
     styleUrls: [
-        '../../../core/scss/improvements/perfect-scroll-bar.scss'
+        '../../../../scss/improvements/perfect-scroll-bar.scss'
     ],
     encapsulation: ViewEncapsulation.None
 })

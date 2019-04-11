@@ -2,7 +2,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/structures/core-detail-compoment';
+import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
 import { OrderRowInfoDialogComponent } from './order-row-info-dialog.component';
 import { OrderStatus, PaymentMethod, Log } from '../market.models';
 import { CustomerGroup } from '../../crm/crm.models';
