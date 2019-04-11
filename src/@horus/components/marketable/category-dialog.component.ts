@@ -15,7 +15,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
 @Component({
     selector: 'dh2-market-category-dialog',
     template: `
-        <dh2-spinner [show]="showSpinner"></dh2-spinner>
+        <horus-spinner [show]="showSpinner"></horus-spinner>
         <h1 mat-dialog-title>
             <mat-icon>chrome_reader_mode</mat-icon>
             {{ 'APPS.CATEGORY' | translate }}

@@ -15,8 +15,8 @@ import { BehaviorSubject } from 'rxjs';
         SlugService
     ]
 })
-export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy
-{
+export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+
     @Input() model;
     @Input() object: any;
     @Input() column = 'slug';

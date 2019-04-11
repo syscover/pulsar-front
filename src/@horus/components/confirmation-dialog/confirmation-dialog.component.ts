@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-    selector: 'dh2-confirmation-dialog',
+    selector: 'horus-confirmation-dialog',
     template: `
         <h1 mat-dialog-title>{{ title }}</h1>
         <div mat-dialog-content>

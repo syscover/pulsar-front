@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { AttachmentsModule } from './attachments/attachments.module';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { FilterHeaderCellModule } from './filter-header-cell/filter-header-cell.module';
 import { FlagIconModule } from './flag-icon/flag-icon.module';
@@ -14,16 +13,12 @@ import { MarketableModule } from './marketable/marketable.module';
 import { StockableModule } from './stockable/stockable.module';
 import { TerritoriesModule } from './territories/territories.module';
 import { UpdateModule } from './update/update.module';
+import { ConfirmationDialogModule } from './confirmation-dialog/confirmation-dialog.module';
 
 @NgModule({
-    entryComponents: [
-        ConfirmationDialogComponent
-    ],
-    declarations: [
-        ConfirmationDialogComponent
-    ],
     imports: [
         AttachmentsModule,
+        ConfirmationDialogModule,
         CommonModule,
         DatepickerModule,
         FilterHeaderCellModule,
@@ -43,7 +38,7 @@ import { UpdateModule } from './update/update.module';
     ],
     exports: [
         AttachmentsModule,
-        ConfirmationDialogComponent,
+        ConfirmationDialogModule,
         DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,

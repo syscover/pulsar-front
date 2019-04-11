@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 
 @Component({
-    selector: 'dh2-spinner',
+    selector: 'horus-spinner',
     animations: fuseAnimations,
     template: `
         <div *ngIf="show" class="layer">
@@ -25,7 +25,6 @@ import { fuseAnimations } from '@fuse/animations';
     `]
 })
 
-export class SpinnerComponent
-{
+export class SpinnerComponent {
     @Input() show = true;
 }

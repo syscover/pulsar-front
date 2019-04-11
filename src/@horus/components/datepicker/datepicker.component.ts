@@ -1,7 +1,7 @@
-import {Component, Input, forwardRef, Optional, Self, OnInit, DoCheck, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import { Component, Input, forwardRef, Optional, Self, OnInit, DoCheck, ViewChild } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {ErrorStateMatcher, MatFormFieldControl, MatInput, MatSelect} from '@angular/material';
+import { ErrorStateMatcher, MatFormFieldControl, MatInput, MatSelect } from '@angular/material';
 const moment = require('moment');
 
 @Component({

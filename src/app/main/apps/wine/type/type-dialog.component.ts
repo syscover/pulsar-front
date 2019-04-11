@@ -13,7 +13,7 @@ import { pulsarConfig } from '../../../pulsar-config';
 @Component({
     selector: 'dh2-wine-type-dialog',
     template: `
-        <dh2-spinner [show]="showSpinner"></dh2-spinner>
+        <horus-spinner [show]="showSpinner"></horus-spinner>
         <h1 mat-dialog-title>
             <mat-icon>bookmarks</mat-icon>
             {{ 'APPS.TYPE' | translate }}

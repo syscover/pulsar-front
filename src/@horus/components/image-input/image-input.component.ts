@@ -14,8 +14,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         }
     ]
 })
-export class ImageInputComponent implements ControlValueAccessor
-{
+export class ImageInputComponent implements ControlValueAccessor {
+
     private _src: string;
     @Input('src') imgSrc;
     @Input('styleClass') styleClass;
@@ -26,19 +26,18 @@ export class ImageInputComponent implements ControlValueAccessor
         return this._src;
     }
 
-    writeValue(value: string)
-    {
-        if (value !== undefined) 
-        {
+    writeValue(value: string): void {
+        if (value !== undefined) {
             this._src = value;
             this.refresh();
         }
     }
-    registerOnChange(fn) { }
-    registerOnTouched(fn) { }
 
-    refresh() 
-    {
+    registerOnChange(fn): void { }
+
+    registerOnTouched(fn): void { }
+
+    refresh(): void {
         this.imgSrc = this._src + '?' + Math.random();
     }
 }
