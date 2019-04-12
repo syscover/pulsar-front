@@ -90,7 +90,7 @@
 
                             <mat-form-field *ngIf="fg.get('modality_id').value === 6" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'FOREM.AMBIT' | translate }}</mat-label>
-                                <input matInput formControlName="ambit" maxlength="2" [required]="showAmbit">
+                                <input matInput formControlName="ambit" maxlength="2">
                                 <mat-error>{{ formErrors?.ambit }}</mat-error>
                             </mat-form-field>
 
@@ -102,7 +102,7 @@
 
                             <mat-form-field *ngIf="fg.get('modality_id').value === 1" [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                 <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                <input matInput formControlName="code" maxlength="3" [required]="showCode">
+                                <input matInput formControlName="code" maxlength="3">
                                 <mat-error>{{ formErrors?.code }}</mat-error>
                             </mat-form-field>
                         </div>

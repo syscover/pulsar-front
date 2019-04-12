@@ -97,6 +97,7 @@ const relationsFields = `
     }
     foremGenders: coreConfig (config:$configGenders)
     foremAddressTypes: coreConfig (config:$configAddressTypes)
+    foremEmploymentSituations: coreConfig (config:$configEmploymentSituations)
 `;
 
 export const graphQL = {
@@ -118,6 +119,7 @@ export const graphQL = {
         query ForemGetRelationsInscription (
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
+            $configEmploymentSituations:CoreConfigInput
         ) {
             ${relationsFields}
         }`,
@@ -127,6 +129,7 @@ export const graphQL = {
             $sql:[CoreSQLInput]
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
+            $configEmploymentSituations:CoreConfigInput
         ) {
             coreObjects: foremInscriptions (sql:$sql) {
                 ${fields}
@@ -139,6 +142,7 @@ export const graphQL = {
             $sql:[CoreSQLInput]
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
+            $configEmploymentSituations:CoreConfigInput
         ) {
             coreObject: foremInscription (sql:$sql) {
                 ${fields}

@@ -13,6 +13,7 @@ export const locale = {
             'CONTENTS_EXCERPT': 'Resumen de contenidos',
             'EMPLOYMENT_DATA': 'Datos de empleo',
             'EMPLOYMENT_OFFICE': 'Oficina de empleo',
+            'EMPLOYMENT_SITUATION': 'Situación de empleo',
             'ENDS_AT': 'Termina el',
             'EXPEDIENT': 'Expediente',
             'FOCO': 'Foco',

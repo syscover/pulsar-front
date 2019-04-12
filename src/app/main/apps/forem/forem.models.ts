@@ -53,6 +53,12 @@ export class EmploymentOffice
     longitude: string;
 }
 
+export class EmploymentSituation
+{
+    id: number;
+    name: string;
+}
+
 export class Expedient
 {
     id: number;

@@ -1,8 +1,8 @@
-import {Component, HostBinding, Injector, OnInit} from '@angular/core';
+import { Component, HostBinding, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
-import { AddressType, Gender, Group, Locality, Province } from '../forem.models';
+import { AddressType, EmploymentSituation, Gender, Group, Locality, Province } from '../forem.models';
 import { graphQL } from './inscription.graphql';
 
 @Component({
@@ -23,6 +23,7 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     groups: Group[] = [];
     provinces: Province[] = [];
     localities: Locality[] = [];
+    employmentSituations: EmploymentSituation[] = [];
 
     constructor(
         protected injector: Injector
@@ -72,8 +73,11 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             agent_mobile: '',
             agent_contact_schedule: '',
 
+            // Employment situation
+            employment_situation_id: '',
+
             // FOCO
-            code: '',
+            code: ''
         });
     }
 
@@ -87,9 +91,14 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             key: 'pulsar-forem.address_types'
         };
 
+        const configEmploymentSituations = {
+            key: 'pulsar-forem.employment_situations'
+        };
+
         return {
             configGenders,
-            configAddressTypes
+            configAddressTypes,
+            configEmploymentSituations
         };
     }
 
@@ -103,6 +112,9 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
 
         // set address types
         this.addressTypes = data.foremAddressTypes;
+
+        // set employment situations
+        this.employmentSituations = data.foremEmploymentSituations;
 
         // set provinces
         this.provinces = data.foremProvinces;

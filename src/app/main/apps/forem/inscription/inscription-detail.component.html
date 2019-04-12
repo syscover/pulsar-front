@@ -321,13 +321,17 @@
 
                         <mat-tab label="{{ 'FOREM.EMPLOYMENT_DATA' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
+
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
-                                        <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
-                                        <input matInput formControlName="code" type="number">
-                                        <mat-error>{{ formErrors?.code }}</mat-error>
+                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'FOREM.EMPLOYMENT_SITUATION' | translate }}</mat-label>
+                                        <mat-select formControlName="employment_situation_id">
+                                            <mat-option *ngFor="let employmentSituation of employmentSituations" [value]="employmentSituation.id">{{ employmentSituation.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.employment_situation_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
+
                             </div>
                         </mat-tab>
 
