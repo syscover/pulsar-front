@@ -17,6 +17,7 @@ export const locale = {
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',
             'FOCO': 'Foco',
+            'FUNCTIONAL_AREA': 'Functional area',
             'GROUP': 'Group',
             'HAS_AGENT': 'Has agent',
             'HOURS': 'Hours',
@@ -27,6 +28,7 @@ export const locale = {
             'OPEN': 'Open',
             'PERSONAL_DATA': 'Personal data',
             'PRICE_HOUR': 'Price per hour',
+            'PROFESSIONAL_CATEGORY': 'Professional category',
             'PROVINCE': 'Province',
             'REQUIREMENTS': 'Requirements',
             'SELECTION_DATE': 'Section date',
@@ -34,6 +36,9 @@ export const locale = {
             'STARTS_AT': 'Starts at',
             'SUBSIDIZED_AMOUNT': 'Subsidized amount',
             'TARGET': 'Target',
+            'UNEMPLOYED_REGISTRATION_DATE': 'Unemployed registration date',
+            'UNEMPLOYMENT_SITUATION': 'Unemployment situation',
+            'WORKER_CODE': 'Worker code',
             'YEAR': 'Year'
         }
     }

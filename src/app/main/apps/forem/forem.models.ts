@@ -69,6 +69,12 @@ export class Expedient
     ends_at: any;
 }
 
+export class FunctionalArea
+{
+    id: number;
+    name: string;
+}
+
 export class Gender
 {
     id: number;
@@ -140,6 +146,12 @@ export class Modality
     inscription_type: number;
 }
 
+export class ProffesionalCategory
+{
+    id: number;
+    name: string;
+}
+
 export class Province
 {
     id: number;
@@ -154,6 +166,12 @@ export class Target
 }
 
 export class Type
+{
+    id: number;
+    name: string;
+}
+
+export class UnemployedSituation
 {
     id: number;
     name: string;

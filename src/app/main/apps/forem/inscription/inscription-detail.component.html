@@ -323,6 +323,7 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
+
                                     <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'FOREM.EMPLOYMENT_SITUATION' | translate }}</mat-label>
                                         <mat-select formControlName="employment_situation_id">
@@ -330,7 +331,67 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.employment_situation_id }}</mat-error>
                                     </mat-form-field>
+
                                 </div>
+
+                                <div>
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'FOREM.UNEMPLOYMENT_SITUATION' | translate }}</mat-label>
+                                            <mat-select formControlName="unemployed_situation_id">
+                                                <mat-option *ngFor="let unemployedSituation of unemployedSituations" [value]="unemployedSituation.id">{{ unemployedSituation.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.unemployed_situation_id }}</mat-error>
+                                        </mat-form-field>
+
+                                        <div class="col-5 offset-md-1 col-md-3">
+                                            <dh2-datepicker label="{{ 'FOREM.UNEMPLOYED_REGISTRATION_DATE' | translate }}"
+                                                            format="YYYY-MM-DD"
+                                                            formControlName="unemployed_registration_date"
+                                                            [errors]="formErrors">
+                                            </dh2-datepicker>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'FOREM.EMPLOYMENT_OFFICE' | translate }}</mat-label>
+                                            <mat-select formControlName="employment_office_id">
+                                                <mat-option *ngFor="let employmentOffice of employmentOffices" [value]="employmentOffice.id">{{ employmentOffice.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.employment_office_id }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-label>{{ 'FOREM.PROFESSIONAL_CATEGORY' | translate }}</mat-label>
+                                            <mat-select formControlName="professional_category_id">
+                                                <mat-option *ngFor="let professionalCategory of professionalCategories" [value]="professionalCategory.id">{{ professionalCategory.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.professional_category_id }}</mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                            <mat-label>{{ 'FOREM.FUNCTIONAL_AREA' | translate }}</mat-label>
+                                            <mat-select formControlName="functional_area_id">
+                                                <mat-option *ngFor="let functionalArea of functionalAreas" [value]="functionalArea.id">{{ functionalArea.name }}</mat-option>
+                                            </mat-select>
+                                            <mat-error>{{ formErrors?.functional_area_id }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                            <mat-label>{{ 'FOREM.WORKER_CODE' | translate }}</mat-label>
+                                            <input matInput formControlName="worker_code">
+                                            <mat-error>{{ formErrors?.worker_code }}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
 
                             </div>
                         </mat-tab>

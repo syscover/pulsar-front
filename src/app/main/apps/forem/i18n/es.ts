@@ -17,6 +17,7 @@ export const locale = {
             'ENDS_AT': 'Termina el',
             'EXPEDIENT': 'Expediente',
             'FOCO': 'Foco',
+            'FUNCTIONAL_AREA': 'Area funcional',
             'GROUP': 'Grupo',
             'HAS_AGENT': 'Tiene representante',
             'HOURS': 'Horas',
@@ -27,6 +28,7 @@ export const locale = {
             'OPEN': 'Abierto',
             'PERSONAL_DATA': 'Datos personales',
             'PRICE_HOUR': 'Precio por hora',
+            'PROFESSIONAL_CATEGORY': 'Categoría profesional',
             'PROVINCE': 'Provincia',
             'REQUIREMENTS': 'Requerimientos',
             'SELECTION_DATE': 'Día de selección',
@@ -34,6 +36,9 @@ export const locale = {
             'STARTS_AT': 'Empieza el',
             'SUBSIDIZED_AMOUNT': 'Cantidad subvencionada',
             'TARGET': 'Dirigido',
+            'UNEMPLOYED_REGISTRATION_DATE': 'Fecha de desempleo',
+            'UNEMPLOYMENT_SITUATION': 'Situación de desempleo',
+            'WORKER_CODE': 'Código del trabajador',
             'YEAR': 'Año'
         }
     }

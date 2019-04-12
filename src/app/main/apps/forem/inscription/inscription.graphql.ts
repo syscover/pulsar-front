@@ -95,9 +95,16 @@ const relationsFields = `
         id
         name
     }
+    foremEmploymentOffices {
+        id
+        name
+    }
     foremGenders: coreConfig (config:$configGenders)
     foremAddressTypes: coreConfig (config:$configAddressTypes)
     foremEmploymentSituations: coreConfig (config:$configEmploymentSituations)
+    foremUnemployedSituations: coreConfig (config:$configUnemployedSituations)
+    foremProfessionalCategories: coreConfig (config:$configProfessionalCategories)
+    foremFunctionalAreas: coreConfig (config:$configFunctionalAreas)
 `;
 
 export const graphQL = {
@@ -120,6 +127,9 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
             $configEmploymentSituations:CoreConfigInput
+            $configUnemployedSituations:CoreConfigInput
+            $configProfessionalCategories:CoreConfigInput
+            $configFunctionalAreas:CoreConfigInput
         ) {
             ${relationsFields}
         }`,
@@ -130,6 +140,9 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
             $configEmploymentSituations:CoreConfigInput
+            $configUnemployedSituations:CoreConfigInput
+            $configProfessionalCategories:CoreConfigInput
+            $configFunctionalAreas:CoreConfigInput
         ) {
             coreObjects: foremInscriptions (sql:$sql) {
                 ${fields}
@@ -143,6 +156,9 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAddressTypes:CoreConfigInput
             $configEmploymentSituations:CoreConfigInput
+            $configUnemployedSituations:CoreConfigInput
+            $configProfessionalCategories:CoreConfigInput
+            $configFunctionalAreas:CoreConfigInput
         ) {
             coreObject: foremInscription (sql:$sql) {
                 ${fields}

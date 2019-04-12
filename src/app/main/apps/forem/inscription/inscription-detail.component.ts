@@ -2,7 +2,7 @@ import { Component, HostBinding, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
-import { AddressType, EmploymentSituation, Gender, Group, Locality, Province } from '../forem.models';
+import {AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProffesionalCategory, Province, UnemployedSituation} from '../forem.models';
 import { graphQL } from './inscription.graphql';
 
 @Component({
@@ -24,6 +24,10 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     provinces: Province[] = [];
     localities: Locality[] = [];
     employmentSituations: EmploymentSituation[] = [];
+    unemployedSituations: UnemployedSituation[] = [];
+    employmentOffices: EmploymentOffice[] = [];
+    professionalCategories: ProffesionalCategory[] = [];
+    functionalAreas: FunctionalArea[] = [];
 
     constructor(
         protected injector: Injector
@@ -76,6 +80,13 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             // Employment situation
             employment_situation_id: '',
 
+            unemployed_registration_date: '',
+            unemployed_situation_id: '',
+            employment_office_id: '',
+            professional_category_id: '',
+            functional_area_id: '',
+            worker_code: '',
+
             // FOCO
             code: ''
         });
@@ -95,10 +106,25 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             key: 'pulsar-forem.employment_situations'
         };
 
+        const configUnemployedSituations = {
+            key: 'pulsar-forem.unemployed_situations'
+        };
+
+        const configProfessionalCategories = {
+            key: 'pulsar-forem.professional_categories'
+        };
+
+        const configFunctionalAreas = {
+            key: 'pulsar-forem.functional_areas'
+        };
+
         return {
             configGenders,
             configAddressTypes,
-            configEmploymentSituations
+            configEmploymentSituations,
+            configUnemployedSituations,
+            configProfessionalCategories,
+            configFunctionalAreas
         };
     }
 
@@ -115,6 +141,18 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
 
         // set employment situations
         this.employmentSituations = data.foremEmploymentSituations;
+
+        // set unemployment situations
+        this.unemployedSituations = data.foremUnemployedSituations;
+
+        // set employment offices
+        this.employmentOffices = data.foremEmploymentOffices;
+
+        // set professional categories
+        this.professionalCategories = data.foremProfessionalCategories;
+
+        // set functional areas
+        this.functionalAreas = data.foremFunctionalAreas;
 
         // set provinces
         this.provinces = data.foremProvinces;
