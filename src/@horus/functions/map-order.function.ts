@@ -1,6 +1,8 @@
-declare interface Array<T> {
+declare interface Array<T>
+{
     mapOrder(property: string, arrayPattern: Array<T>): Array<T>;
 }
+
 Array.prototype.mapOrder = function(property: string, arrayPattern: Array<any>) 
 {
     const arr = Object.assign([], this);
