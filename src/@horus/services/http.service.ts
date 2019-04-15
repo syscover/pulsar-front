@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Params, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs/Observable';
+import { throwError } from 'rxjs';
 import { Core } from '../../app/main/core/foundations/core';
 import * as _ from 'lodash';
 
@@ -42,7 +42,7 @@ export class HttpService extends Core
         console.log(err);
         if (err.status === 401) this.router.navigate(['/pulsar/login']); // redirect to login if token is invalid
        
-        return Observable.throw('Error Observable.throw: ' + err.statusText);
+        return throwError('Error Observable.throw: ' + err.statusText);
     }
 
     protected setEndpoint(urlAddons: string): void

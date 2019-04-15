@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { throwError } from 'rxjs';
 import { ConfigService } from './config.service';
 import { ApolloService } from './apollo.service';
 
 @Injectable()
-export class BootstrapService {
+export class BootstrapService
+{
     constructor(
         private _httpClient: HttpClient,
         private _configService: ConfigService,
         private _apolloService: ApolloService
-    ) { }
+    ) {}
 
     public load(): Promise<Object>
     {
@@ -38,14 +39,15 @@ export class BootstrapService {
                             (error: any) => {
                                 console.error('Error to load coreBootstrapConfig query');
                                 resolve(error);
-                                return Observable.throw(error.json().error || 'Server error');
+                                return throwError(error.json().error || 'Server error');
                             });
                     },
                     (error: any): any => {
                         console.log(error);
                         console.error('Configuration file "config.json" could not be read, please create config.json file');
                         resolve(true);
-                        return Observable.throw(error.json().error || 'Server error');
+
+                        return throwError(error.json().error || 'Server error');
                     }
                 );
         });
