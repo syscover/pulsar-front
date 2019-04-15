@@ -9,7 +9,7 @@ export class ApolloService
     constructor(
         private apollo: Apollo,
         private httpLink: HttpLink
-    ) { }
+    ) {}
 
     createApolloClient(graphqlUri: string): void
     {

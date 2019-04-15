@@ -5,8 +5,6 @@ export class ConfigService
 {
     private config: object = null;
 
-    constructor() {}
-
     public get(key: any): any
     {
         if (this.config) 

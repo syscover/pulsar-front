@@ -17,7 +17,8 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
-// DH2
+// HORUS
+import { HorusModule } from '@horus/horus.module';
 import { CoreModule } from 'app/main/core/core.module';
 
 // DH2
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
 
-        // DH2
+        // HORUS
+        HorusModule,
         CoreModule
     ],
     bootstrap   : [
