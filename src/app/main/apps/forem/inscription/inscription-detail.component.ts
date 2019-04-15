@@ -2,7 +2,7 @@ import { Component, HostBinding, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
-import {AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProffesionalCategory, Province, UnemployedSituation} from '../forem.models';
+import { AcademicLevel, AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProffesionalCategory, Province, UnemployedSituation } from '../forem.models';
 import { graphQL } from './inscription.graphql';
 
 @Component({
@@ -28,6 +28,7 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     employmentOffices: EmploymentOffice[] = [];
     professionalCategories: ProffesionalCategory[] = [];
     functionalAreas: FunctionalArea[] = [];
+    academicLevels: AcademicLevel[] = [];
 
     constructor(
         protected injector: Injector
@@ -77,15 +78,31 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             agent_mobile: '',
             agent_contact_schedule: '',
 
-            // Employment situation
+            // knowledge
+            academic_level_id: '',
+
+            // employment situation
             employment_situation_id: '',
 
+            // unemployment data
             unemployed_registration_date: '',
             unemployed_situation_id: '',
             employment_office_id: '',
+
+            // employment data
             professional_category_id: '',
             functional_area_id: '',
             worker_code: '',
+
+            // company
+            company_name: '',
+            company_tin: '',
+            company_sector: '',
+            company_province_id: '',
+            company_locality_id: '',
+            company_address: '',
+            company_zip: '',
+            is_big_company: '',
 
             // FOCO
             code: ''
@@ -118,13 +135,18 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             key: 'pulsar-forem.functional_areas'
         };
 
+        const configAcademicLevels = {
+            key: 'pulsar-forem.academic_levels'
+        };
+
         return {
             configGenders,
             configAddressTypes,
             configEmploymentSituations,
             configUnemployedSituations,
             configProfessionalCategories,
-            configFunctionalAreas
+            configFunctionalAreas,
+            configAcademicLevels
         };
     }
 
@@ -153,6 +175,9 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
 
         // set functional areas
         this.functionalAreas = data.foremFunctionalAreas;
+
+        // set academic levels
+        this.academicLevels = data.foremAcademicLevels;
 
         // set provinces
         this.provinces = data.foremProvinces;

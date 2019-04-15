@@ -2,6 +2,7 @@ export const locale = {
     lang: 'es',
     data: {
         'FOREM': {
+            'ACADEMIC_LEVEL': 'Nivel académico',
             'ACTION': 'Acción',
             'ADDRESS_TYPE': 'Tipo de dirección',
             'AMBIT': 'Ámbito',
@@ -22,6 +23,8 @@ export const locale = {
             'HAS_AGENT': 'Tiene representante',
             'HOURS': 'Horas',
             'INSCRIPTION': 'Inscripción',
+            'IS_BIG_COMPANY': 'Empresa de más de 250 trabajadores',
+            'KNOWLEDGE': 'Conocimiento',
             'LOCALITY': 'Localidad',
             'MODALITY': 'Modalidad',
             'ONLINE': 'Online',

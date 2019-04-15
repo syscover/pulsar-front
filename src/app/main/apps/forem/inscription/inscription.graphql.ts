@@ -79,7 +79,7 @@ const fields = `
     company_locality_id
     company_address
     company_zip
-    big_company
+    is_big_company
 
     ssn_authorization
     certification_authorization
@@ -105,6 +105,7 @@ const relationsFields = `
     foremUnemployedSituations: coreConfig (config:$configUnemployedSituations)
     foremProfessionalCategories: coreConfig (config:$configProfessionalCategories)
     foremFunctionalAreas: coreConfig (config:$configFunctionalAreas)
+    foremAcademicLevels: coreConfig (config:$configAcademicLevels)
 `;
 
 export const graphQL = {
@@ -130,6 +131,7 @@ export const graphQL = {
             $configUnemployedSituations:CoreConfigInput
             $configProfessionalCategories:CoreConfigInput
             $configFunctionalAreas:CoreConfigInput
+            $configAcademicLevels:CoreConfigInput
         ) {
             ${relationsFields}
         }`,
@@ -143,6 +145,7 @@ export const graphQL = {
             $configUnemployedSituations:CoreConfigInput
             $configProfessionalCategories:CoreConfigInput
             $configFunctionalAreas:CoreConfigInput
+            $configAcademicLevels:CoreConfigInput
         ) {
             coreObjects: foremInscriptions (sql:$sql) {
                 ${fields}
@@ -159,6 +162,7 @@ export const graphQL = {
             $configUnemployedSituations:CoreConfigInput
             $configProfessionalCategories:CoreConfigInput
             $configFunctionalAreas:CoreConfigInput
+            $configAcademicLevels:CoreConfigInput
         ) {
             coreObject: foremInscription (sql:$sql) {
                 ${fields}

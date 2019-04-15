@@ -1,3 +1,9 @@
+export class AcademicLevel
+{
+    id: number;
+    name: string;
+}
+
 export class Action
 {
     id: number;
