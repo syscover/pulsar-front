@@ -101,6 +101,7 @@ export const locale = {
             'SECOND_SURNAME': 'Segundo apellido',
             'SECTION': 'Sección',
             'SECTIONS': 'Secciones',
+            'SECTOR': 'Sector',
             'SETTINGS': 'Ajustes',
             'SETTING': 'Ajuste',
             'SHOW': 'Ver',
