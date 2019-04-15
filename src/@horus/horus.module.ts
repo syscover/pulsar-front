@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, NgModule, Optional, SkipSelf } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatPaginatorIntl } from '@angular/material';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ApolloModule } from 'apollo-angular';
@@ -11,6 +12,7 @@ import { AuthenticationService } from '@horus/services/authentication.service';
 import { AuthorizationService } from '@horus/services/authorization.service';
 import { BootstrapService } from '@horus/services/bootstrap.service';
 import { ConfigService } from '@horus/services/config.service';
+import { CustomMatPaginatorIntlService } from '@horus//services/custom-mat-paginator-int.service';
 import { NavigationService } from '@horus/services/navigation.service';
 import { HttpService } from '@horus/services/http.service';
 import { HttpInterceptorService } from '@horus/services/http-interceptor.service';
@@ -53,6 +55,10 @@ export function BootstrapLoader(bootstrapService: BootstrapService): Function
             provide: HTTP_INTERCEPTORS,
             useClass: HttpInterceptorService,
             multi: true
+        },
+        {
+            provide: MatPaginatorIntl,
+            useClass: CustomMatPaginatorIntlService
         }
     ],
     imports: [
