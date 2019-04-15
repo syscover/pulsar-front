@@ -47,6 +47,4 @@ library.add(fas, far, fab);
         PipesModule
     ]
 })
-export class SharedModule
-{ 
-}
+export class SharedModule {}

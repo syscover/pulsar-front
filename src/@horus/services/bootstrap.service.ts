@@ -24,8 +24,8 @@ export class BootstrapService
                 .get('./config/config.json')
                 .subscribe(
                     (config: object) => {
-                        // init apollo client
-                        this._apolloService.createApolloClient(config['graphqlUri']);
+
+                        this.createApolloClient(config['graphqlUri']);
 
                         // start config from server depending of environment
                         this._httpClient
@@ -33,7 +33,7 @@ export class BootstrapService
                             .subscribe((bootstrapConfig) => {
                                 // merge config from database with static config from config.json
                                 // init config service
-                                this._configService.set(Object.assign(config, bootstrapConfig));
+                                this._configService.set(Object.assign({}, config, bootstrapConfig));
                                 resolve(true);
                             },
                             (error: any) => {
@@ -51,5 +51,11 @@ export class BootstrapService
                     }
                 );
         });
+    }
+
+    // create apollo client
+    private createApolloClient(config): void
+    {
+        this._apolloService.createApolloClient(config);
     }
 }

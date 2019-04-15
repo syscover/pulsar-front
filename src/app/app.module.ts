@@ -21,7 +21,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { HorusModule } from '@horus/horus.module';
 import { CoreModule } from 'app/main/core/core.module';
 
-// DH2
+// HORUS
 const appRoutes: Routes = [
     {
         path: '',
@@ -72,13 +72,11 @@ const appRoutes: Routes = [
         LayoutModule,
 
         // HORUS
-        HorusModule,
-        CoreModule
+        CoreModule,
+        HorusModule
     ],
     bootstrap   : [
         AppComponent
     ]
 })
-export class AppModule
-{
-}
+export class AppModule {}

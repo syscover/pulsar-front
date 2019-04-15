@@ -13,6 +13,4 @@ import { MaintenanceModule } from './maintenance/maintenence.module';
         MaintenanceModule,
     ]
 })
-export class FusePagesModule 
-{
-}
+export class FusePagesModule {}

@@ -10,8 +10,6 @@ import { CovalentChipsModule } from '@covalent/core/chips';
     exports: [
         CovalentChipsModule,
         CovalentCodeEditorModule
-    ],
-    providers: []
+    ]
 })
-export class CovalentModule
-{}
+export class CovalentModule {}

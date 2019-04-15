@@ -45,12 +45,6 @@ import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        AdminRoutingModule,
-        MatPasswordStrengthModule
-    ],
-    exports: [ ],
     declarations: [
         ActionListComponent,
         ActionDetailComponent,
@@ -90,7 +84,12 @@ import { UserDetailComponent } from './user/user-detail.component';
         UserListComponent,
         UserDetailComponent
     ],
-    providers: []
+    imports: [
+        SharedModule,
+        AdminRoutingModule,
+        MatPasswordStrengthModule
+    ],
+    exports: []
 })
 
 export class AdminModule
