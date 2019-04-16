@@ -72,19 +72,20 @@ export class AppComponent implements OnInit, OnDestroy
         // Set the main navigation as our current navigation
         this._fuseNavigationService.setCurrentNavigation('main');
 
-        // DH2
+        // @HORUS
         // Add languages
         this._translateService.addLangs(['en', 'es']);
 
-        // DH2
+        // @HORUS
         // Set the default language
         this._translateService.setDefaultLang('es');
 
-        // DH2
+        // @HORUS
         // Set the navigation translations
         this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationSpanish);
 
-        // DH2
+        // TODO get user language
+        // @HORUS
         // Use a language
         this._translateService.use('es');
 
@@ -109,10 +110,13 @@ export class AppComponent implements OnInit, OnDestroy
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
 
-         setTimeout(() => {
-            this._translateService.setDefaultLang('en');
-            this._translateService.setDefaultLang('es');
-         });
+        // @HORUS
+        // this problem is resolved in dashboard component
+
+        // setTimeout(() => {
+        //    this._translateService.setDefaultLang('en');
+        //    this._translateService.setDefaultLang('es');
+        // });
 
 
         /**

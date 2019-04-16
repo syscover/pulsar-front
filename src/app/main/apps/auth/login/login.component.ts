@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { environment } from 'environments/environment';
@@ -48,7 +49,8 @@ export class LoginComponent implements OnInit
         private authenticationService: AuthenticationService,
         private authorizationService: AuthorizationService,
         private validationMessageService: ValidationMessageService,
-        private _configService: ConfigService
+        private _configService: ConfigService,
+        private _translateService: TranslateService
     )
     {
         this.fuseConfig.setConfig({
@@ -105,6 +107,10 @@ export class LoginComponent implements OnInit
                 localStorage.setItem('user_logged',  btoa(JSON.stringify(response['user'])));
 
                 this.authorizationService.refreshPermissions();
+
+                // @HORUS
+                // Use the user language for translations
+                this._translateService.use(response['user']['lang_id']);
 
                 // remember me function
                 // if (this.loginForm.value.remember_me)
