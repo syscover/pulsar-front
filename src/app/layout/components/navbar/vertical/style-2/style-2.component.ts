@@ -8,7 +8,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-// HORUS
+// @HORUS
 import { ConfigService } from '@horus/services/config.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
     fuseConfig: any;
     navigation: any;
 
-    // DH2
+    // @HORUS
     logoIcon: string;
     logoText: string;
 
@@ -44,7 +44,7 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _router: Router,
 
-        // DH2
+        // @HORUS
         private _configService: ConfigService
     )
     {
@@ -109,7 +109,7 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        // DH2
+        // @HORUS
         this.logoIcon = this._configService.get('logoIcon');
         this.logoText = this._configService.get('logoText');
 

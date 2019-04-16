@@ -54,7 +54,7 @@
                         class="submit-button"
                         aria-label="LOGIN" 
                         [disabled]="loginForm.invalid" 
-                        (click)="login(object)">
+                        (click)="login()">
                         <span class="uppercase">{{ 'APPS.LOGIN' | translate }}</span>
                         <mat-spinner mode="indeterminate" diameter="17" *ngIf="loadingButton"></mat-spinner>
                 </button>

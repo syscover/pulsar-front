@@ -94,7 +94,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
             }
         ];
 
-        // DH2
+        // @HORUS
         this.languages = [
             {
                 id   : 'es',
@@ -186,7 +186,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this._translateService.use(lang.id);
     }
 
-    // DH2
+    // @HORUS
     logout(): void
     {
         this._authenticationService.logout();

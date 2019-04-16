@@ -17,11 +17,11 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
-// HORUS
+// @HORUS
 import { HorusModule } from '@horus/horus.module';
 import { CoreModule } from 'app/main/core/core.module';
 
-// HORUS
+// @HORUS
 const appRoutes: Routes = [
     {
         path: '',
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
 
-        // HORUS
+        // @HORUS
         CoreModule,
         HorusModule
     ],
