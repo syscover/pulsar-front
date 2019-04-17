@@ -7,7 +7,7 @@ import { graphQL } from './type.graphql';
 import { Lang } from '../../admin/admin.models';
 import { ConfigService } from '@horus/services/config.service';
 import { Dialog, DialogDecoratorInterface } from '@horus/decorators/dialog.decorator';
-import { horusConfig } from '../../../horus-config';
+import { horusConfig } from 'app/horus-config';
 
 @Dialog()
 @Component({
