@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Field, Lang } from 'app/main/apps/admin/admin.models';
+import { Lang } from '@horus/types/lang';
+import { Field } from 'app/main/apps/admin/admin.models';
 
 @Pipe({
   name: 'getFieldLabel'

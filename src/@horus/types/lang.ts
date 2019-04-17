@@ -1,7 +1,7 @@
 export interface Lang
 {
-    id: number;
-    code: string;
+    ix: number;
+    id: string;
     name: string;
     icon: string;
     sort: number;

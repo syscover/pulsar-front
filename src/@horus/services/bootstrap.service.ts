@@ -25,7 +25,7 @@ export class BootstrapService
                 .subscribe(
                     (config: object) => {
 
-                        this.createApolloClient(config['graphqlUri']);
+                        this.createApolloClient(config['graphQLUrl']);
 
                         // start config from server depending of environment
                         this._httpClient

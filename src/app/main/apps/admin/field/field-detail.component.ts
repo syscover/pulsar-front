@@ -87,7 +87,7 @@ export class FieldDetailComponent extends CoreDetailComponent
                 );
 
                 // disabled elements if edit diferent language that base lang
-                if (this.lang.code !== this.baseLang) this.disabledForm();
+                if (this.lang.id !== this.baseLang) this.disabledForm();
             }
         }
     }

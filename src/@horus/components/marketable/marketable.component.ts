@@ -6,7 +6,7 @@ import { MarketableService } from './marketable.service';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'environments/environment';
 import { DataRoute } from '../../types/data-route';
-import { Lang } from '../../../app/main/apps/admin/admin.models';
+import { Lang } from '@horus/types/lang';
 import { CategoryDialogComponent } from './category-dialog.component';
 import * as _ from 'lodash';
 import { horusConfig } from 'app/horus-config';

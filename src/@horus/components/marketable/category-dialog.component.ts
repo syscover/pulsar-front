@@ -5,7 +5,7 @@ import { ValidationMessageService } from '@horus/services/validation-message.ser
 import { HttpService } from '@horus/services/http.service';
 import { graphQL } from '../../../app/main/apps/market/category/category.graphql';
 import { Category } from '../../../app/main/apps/market/market.models';
-import { Lang } from '../../../app/main/apps/admin/admin.models';
+import { Lang } from '@horus/types/lang';
 import { ConfigService } from '@horus/services/config.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

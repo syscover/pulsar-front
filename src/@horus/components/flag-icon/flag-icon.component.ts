@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Lang } from 'app/main/apps/admin/admin.models';
+import { Lang } from '@horus/types/lang';
 
 @Component({
     selector: 'dh2-flag-icon',
@@ -20,7 +20,8 @@ import { Lang } from 'app/main/apps/admin/admin.models';
         <ng-container *ngIf="lang">
             <span class="flag-icon flag-icon-{{ lang.icon }}"
                   [ngClass]="{'rounded': rounded}"
-                  [ngStyle]="{'flag-icon-squared': squared, 'rounded': rounded, 'font-size': size}"></span> {{ lang.name }}
+                  [ngStyle]="{'flag-icon-squared': squared, 'rounded': rounded, 'font-size': size}"></span>
+            <ng-content></ng-content>
         </ng-container>
     `
 })
