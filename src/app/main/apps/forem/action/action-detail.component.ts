@@ -74,7 +74,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
         // category
         this.categoryFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.categoryFilterCtrl,
