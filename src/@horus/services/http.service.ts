@@ -48,7 +48,7 @@ export class HttpService extends Core
     protected setEndpoint(urlAddons: string): void
     {
         // set api URL
-        this.apiUrl = this.apiUrl + urlAddons;
+        this.restUrl = this.restUrl + urlAddons;
     }
 
     protected getEndpoint(action: string, params?: Params): string
@@ -63,12 +63,12 @@ export class HttpService extends Core
         }
 
         if (action === 'search') {
-            return `${this.apiUrl}/search${urlParams}`;
+            return `${this.restUrl}/search${urlParams}`;
         }
 
         /**
          * For actions get, find, store, update and delete
         */
-        return `${this.apiUrl}${urlParams}`;
+        return `${this.restUrl}${urlParams}`;
     }
 }

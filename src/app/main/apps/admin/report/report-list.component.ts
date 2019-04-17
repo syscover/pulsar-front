@@ -44,7 +44,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
                 this.http
                     .httpClient()
-                    .post(this.http.apiUrl + '/api/v1/admin/file-manager/read',
+                    .post(this.http.restUrl + '/api/v1/admin/file-manager/read',
                         {
                             file: res.data['adminRunReport']['file']
                         },

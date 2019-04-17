@@ -77,7 +77,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
             this._touchFormAttachments();
         });
 
-        if (! this.endpoint) this.endpoint = this.configService.get('apiUrl') + '/api/v1/admin/attachment-upload';
+        if (! this.endpoint) this.endpoint = this.configService.get('restUrl') + '/api/v1/admin/attachment-upload';
     }
 
     ngOnChanges(): void

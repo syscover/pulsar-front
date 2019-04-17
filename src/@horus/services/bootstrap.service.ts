@@ -29,7 +29,7 @@ export class BootstrapService
 
                         // start config from server depending of environment
                         this._httpClient
-                            .get(config['apiUrl'] + '/api/v1/admin/config/bootstrap')
+                            .get(config['restUrl'] + '/api/v1/admin/config/bootstrap')
                             .subscribe((bootstrapConfig) => {
                                 // merge config from database with static config from config.json
                                 // init config service

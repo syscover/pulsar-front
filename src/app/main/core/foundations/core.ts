@@ -5,17 +5,17 @@ import { environment } from 'environments/environment';
 export abstract class Core
 {
     configService: ConfigService;
-    graphqlUri: string;
-    apiUrl: string;
+    graphQLUrl: string;
+    restUrl: string;
     env: any = environment;
 
-    constructor(
+    protected constructor(
         protected injector: Injector
     ) {
         this.configService = injector.get(ConfigService);
 
         // set properties 
-        this.graphqlUri = this.configService.get('graphqlUri');
-        this.apiUrl = this.configService.get('apiUrl');
+        this.graphQLUrl = this.configService.get('graphQLUrl');
+        this.restUrl = this.configService.get('restUrl');
     }
 }

@@ -73,7 +73,7 @@ export class FroalaComponent implements OnInit
 
     ngOnInit(): void
     {
-        if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('apiUrl') + '/api/v1/admin/wysiwyg/upload';
+        if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('restUrl') + '/api/v1/admin/wysiwyg/upload';
 
         // set froala option properties
         this.froalaOptions.key = this.configService.get('froalaKey');

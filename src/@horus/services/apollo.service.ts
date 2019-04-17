@@ -11,7 +11,7 @@ export class ApolloService
         private httpLink: HttpLink
     ) {}
 
-    createApolloClient(graphqlUri: string): void
+    createApolloClient(graphQLUrl: string): void
     {
         // id cache policy
         const cache = new InMemoryCache({
@@ -67,7 +67,7 @@ export class ApolloService
         });
 
         this.apollo.create({
-            link: this.httpLink.create({ uri: graphqlUri }),
+            link: this.httpLink.create({ uri: graphQLUrl }),
             cache: cache,
             defaultOptions: {
                 watchQuery: {
