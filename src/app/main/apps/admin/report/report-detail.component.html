@@ -70,14 +70,14 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                             <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.SUBJECT' | translate }}</mat-label>
                             <input matInput formControlName="subject" required>
                             <mat-error>{{ formErrors?.subject }}</mat-error>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'ADMIN.INSERT_EMAILS' | translate }}</mat-label>
                             <mat-chip-list #emailList>
                                 <mat-chip *ngFor="let email of fg.get('emails').value" [removable]="true" (removed)="removeTag(fg, 'emails', email)">
@@ -101,13 +101,13 @@
                     </div>
 
                     <div fxLayout="row wrap">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-8 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-8 col-md-6">
                             <mat-label>{{ 'APPS.FILENAME' | translate }}</mat-label>
                             <input matInput formControlName="filename" required>
                             <mat-error>{{ formErrors?.filename }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-3 ml-20 col-md-2">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-3 ml-20 col-md-2">
                             <mat-label>{{ 'APPS.EXTENSION' | translate }}</mat-label>
                             <mat-select formControlName="extension" required>
                                 <mat-option *ngFor="let extension of extensions" [value]="extension.id">{{ extension.name }}</mat-option>
@@ -117,7 +117,7 @@
                     </div>
 
                     <div fxLayout="row" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-4 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-4 col-md-6">
                             <mat-label>{{ 'ADMIN.FREQUENCY' | translate }}</mat-label>
                             <mat-select formControlName="frequency_id" required>
                                 <mat-option *ngFor="let frequency of frequencies" [value]="+frequency.id">{{ frequency.name }}</mat-option>

@@ -2,24 +2,24 @@ import { Injector, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
-import { Core } from './core';
+import { Core } from '@horus/foundations/core';
 import { HttpService } from '@horus/services/http.service';
-import { Lang } from '../../apps/admin/admin.models';
 import { ConfirmationDialogComponent } from '@horus/components/confirmation-dialog/confirmation-dialog.component';
+import { Lang } from '@horus/types/lang';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { pulsarConfig } from '../../pulsar-config';
 import { DataRoute } from '@horus/types/data-route';
+import { horusConfig } from 'app/horus-config';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
     loadingButton = false;
     loadingTranslationButton = false;
     showSpinner = false;
     translateService: TranslateService;
-    baseUri: string;                            // baseUri to set component urls in templete, this property must to be public because is used in template
-    baseLang: string;                           // base languague of application, this variable is required for multi-language objects
+    baseUri: string;                            // baseUri to set component urls in template, this property must to be public because is used in template
+    baseLang: string;                           // base language of application, this variable is required for multi-language objects
     packagePath: string;                        // path of package and resource
     resourcePath: string;
     objectTranslation: string;                  // translation key from current object
@@ -35,7 +35,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     protected snackBar: MatSnackBar;
     protected translations: object = {};        // translations for used in component
     protected dialog: MatDialog;
-    protected _onDestroy = new Subject();       // create Observable to unsubscribe
+    protected $onDestroy = new Subject();       // create Observable to unsubscribe
 
     constructor(
         protected injector: Injector,
@@ -86,8 +86,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 
     ngOnDestroy(): void
     {
-        this._onDestroy.next();
-        this._onDestroy.complete();
+        this.$onDestroy.next();
+        this.$onDestroy.complete();
         if (this.env.debug) console.log('DEBUG - Core component destroyed');
     }
 

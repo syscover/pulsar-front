@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix } from '../forem.models';
 import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';

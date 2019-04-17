@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/foundations/core-list-component';
+import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
 import 'rxjs/add/operator/toPromise';

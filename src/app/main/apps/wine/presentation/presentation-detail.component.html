@@ -91,14 +91,14 @@
 
                     <div fxLayout="row wrap">
                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <input matInput formControlName="id">
                         </mat-form-field>
                         <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -106,7 +106,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                             <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
                             <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>

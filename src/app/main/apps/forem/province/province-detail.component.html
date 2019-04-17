@@ -73,14 +73,14 @@
 
                     <div class="container">
                         <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                 <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                 <input matInput formControlName="id">
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                 <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                 <input matInput formControlName="code" type="number" required>
                                 <mat-error>{{ formErrors?.code }}</mat-error>
@@ -88,7 +88,7 @@
                         </div>
 
                         <div fxLayout="row">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                 <input matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>

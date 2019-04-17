@@ -69,7 +69,7 @@
                         (ngSubmit)="postRecord(object)">
                 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'APPS.CUSTOMER_GROUP' | translate }}</mat-label>
                             <mat-select formControlName="customer_group_id" required>
                                 <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>                                            
@@ -79,7 +79,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}</mat-label>
                             <mat-select formControlName="customer_class_tax_id" required>
                                 <mat-option *ngFor="let customerClassTaxe of customerClassTaxes" [value]="customerClassTaxe.id">{{ customerClassTaxe.name }}</mat-option>                                            

@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { graphQL } from './winery.graphql';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { SelectSearchService } from '@horus/services/select-search.service';
@@ -44,7 +44,7 @@ export class WineryDetailComponent extends CoreDetailComponent implements OnInit
         // country
         this.countryFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.countryFilterCtrl,

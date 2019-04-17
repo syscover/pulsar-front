@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, Input, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form.service';
-import { Field } from '../../../app/main/apps/admin/admin.models';
-import { pulsarConfig } from '../../../app/main/pulsar-config';
+import { Field } from 'app/main/apps/admin/admin.models';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-dynamic-form',
@@ -14,7 +14,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
                     <ng-container [ngSwitch]="field?.field_type_id">
 
                         <div fxLayout="row" *ngSwitchCase="'text'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <input matInput [formControlName]="field.name" [required]="field.required">
                                 <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
@@ -22,7 +22,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'number'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-6 col-md-4'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-6 col-md-4'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <input type="number" matInput [formControlName]="field.name" [required]="field.required">
                                 <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
@@ -30,7 +30,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'select'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <mat-select [formControlName]="field.name" [required]="field.required">
                                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
@@ -41,7 +41,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'select-multiple'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <mat-select [formControlName]="field.name" [required]="field.required" multiple>
                                     <mat-option *ngFor="let value of field.values | getSelectValues:lang" [value]="value.id">{{ value.name }}</mat-option>
@@ -66,7 +66,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'datetime-local'">
-                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-4'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-4'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <input type="datetime-local" matInput [formControlName]="field.name" [required]="field.required">
                                 <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
@@ -99,7 +99,7 @@ export class DynamicFormComponent implements OnInit, OnChanges
     @Input() start = true; // this flag allow
 
     fields: Field[];
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
     private _fieldGroupId: number;
 
     constructor(

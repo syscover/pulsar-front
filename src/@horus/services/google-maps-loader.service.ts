@@ -1,7 +1,7 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { MapsAPILoader, LAZY_MAPS_API_CONFIG, LazyMapsAPILoaderConfigLiteral, GoogleMapsScriptProtocol } from '@agm/core';
 import { DocumentRef, WindowRef } from '@agm/core/utils/browser-globals';
-import { ConfigService } from './config.service';
+import { ConfigService } from '@horus/services/config.service';
 
 @Injectable()
 export class GoogleMapsLoaderService extends MapsAPILoader
@@ -73,8 +73,7 @@ export class GoogleMapsLoaderService extends MapsAPILoader
 
     protected _getScriptSrc(callbackName: string): string
     {
-        let protocolType: GoogleMapsScriptProtocol =
-            (this._config && this._config.protocol) || GoogleMapsScriptProtocol.HTTPS;
+        let protocolType: GoogleMapsScriptProtocol = (this._config && this._config.protocol) || GoogleMapsScriptProtocol.HTTPS;
         let protocol: string;
 
         switch (protocolType) {

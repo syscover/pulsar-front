@@ -77,14 +77,14 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.CUSTOMER_GROUP' | translate }}</mat-label>
                                         <mat-select formControlName="group_id" required>
                                             <mat-option *ngFor="let customerGroup of customerGroups" [value]="customerGroup.id">{{ customerGroup.name }}</mat-option>
@@ -94,7 +94,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.COMPANY' | translate }}</mat-label>
                                         <input matInput formControlName="company">
                                         <mat-error>{{ formErrors?.company }}</mat-error>
@@ -102,7 +102,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.TIN' | translate }}</mat-label>
                                         <input matInput formControlName="tin">
                                         <mat-error>{{ formErrors?.tin }}</mat-error>
@@ -110,12 +110,12 @@
                                 </div>
             
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                         <input matInput formControlName="name">
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-6">
                                         <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
                                         <input matInput formControlName="surname">
                                         <mat-error>{{ formErrors?.surname }}</mat-error>
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="email" required>
                                         <mat-error>{{ formErrors?.email }}</mat-error>
@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.USER' | translate }}</mat-label>
                                         <input matInput formControlName="user" required>
                                         <mat-error>{{ formErrors?.user }}</mat-error>
@@ -152,7 +152,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.PASSWORD' | translate }}</mat-label>
                                         <mat-icon matSuffix matTooltip="{{ 'APPS.SHOW_PASSWORD' | translate }}" class="pointer" (mousedown)="inputType = 'text'" (mouseup)="inputType = 'password'" (mouseleave)="inputType = 'password'">remove_red_eye</mat-icon>
                                         <mat-icon matSuffix matTooltip="{{ 'APPS.GENERATE_PASSWORD' | translate }}" class="pointer ml-12" (click)="generatePassword()">cached</mat-icon>
@@ -166,7 +166,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.REPEAT_PASSWORD' | translate }}</mat-label>
                                         <input matInput formControlName="repeat_password" type="password" [required]="dataRoute.action === 'create'" autocomplete="new-password">
                                         <mat-hint align="end" aria-live="polite">{{ fg.controls['repeat_password'].value?.length }}</mat-hint>
@@ -182,7 +182,7 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                         <input matInput formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>
@@ -197,7 +197,7 @@
                                                             [countries]="countries"></dh2-territories>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                                 <input matInput formControlName="zip">
                                                 <mat-error>{{ formErrors?.zip }}</mat-error>
@@ -205,7 +205,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                                 <input matInput formControlName="locality">
                                                 <mat-error>{{ formErrors?.locality }}</mat-error>
@@ -213,7 +213,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LATITUDE' | translate }}</mat-label>
                                                 <input matInput formControlName="latitude">
                                                 <mat-error>{{ formErrors?.latitude }}</mat-error>
@@ -221,7 +221,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LONGITUDE' | translate }}</mat-label>
                                                 <input matInput formControlName="longitude">
                                                 <mat-error>{{ formErrors?.longitude }}</mat-error>

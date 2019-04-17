@@ -70,14 +70,14 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                             <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'APPS.PACKAGE' | translate }}</mat-label>
                             <mat-select formControlName="package_id" required>
                                 <mat-option *ngFor="let package of packages" [value]="package.id">{{ package.name }}</mat-option>
@@ -95,13 +95,13 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'UPDATE.VERSION' | translate }}</mat-label>
                             <input matInput formControlName="version" required>
                             <mat-error>{{ formErrors?.version }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
                             <mat-label>{{ 'UPDATE.MINIMAL_PANEL_VERSION' | translate }}</mat-label>
                             <input matInput formControlName="minimal_panel_version" required>
                             <mat-error>{{ formErrors?.minimal_panel_version }}</mat-error>
@@ -128,7 +128,7 @@
                         <div class="col-4 py-20">
                             <mat-checkbox formControlName="provide">{{ 'UPDATE.PROVIDE' | translate }}</mat-checkbox>
                         </div>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 py-20">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-5 py-20">
                             <mat-label>{{ 'UPDATE.PROVIDE_FROM' | translate }}</mat-label>
                             <input matInput formControlName="provide_from" type="datetime-local">
                             <mat-error>{{ formErrors?.provide_from }}</mat-error>

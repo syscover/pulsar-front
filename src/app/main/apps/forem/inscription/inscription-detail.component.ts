@@ -1,7 +1,7 @@
 import { Component, HostBinding, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { AcademicLevel, AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProffesionalCategory, Province, UnemployedSituation } from '../forem.models';
 import { graphQL } from './inscription.graphql';
 

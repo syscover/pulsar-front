@@ -10,7 +10,7 @@ import { AuthenticationService } from '@horus/services/authentication.service';
 import '@horus/functions/array-random.function';
 import { AuthorizationService } from '@horus/services/authorization.service';
 import { ConfigService } from '@horus/services/config.service';
-import { pulsarConfig } from '../../../pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector   : 'dh2-login',
@@ -21,7 +21,7 @@ import { pulsarConfig } from '../../../pulsar-config';
 })
 export class LoginComponent implements OnInit
 {
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
     loginError = false;
     loginForm: FormGroup;
     loginFormErrors: any;

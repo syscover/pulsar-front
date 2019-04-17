@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
-import { pulsarConfig } from '../../../app/main/pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-stockable-dialog',
@@ -17,14 +17,14 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
 
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.STOCK' | translate }}</mat-label>
                             <input matInput formControlName="stock" type="number">
                             <mat-error>{{ formErrors?.stock }}</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'STOCKABLE.MINIMUM_STOCK' | translate }}</mat-label>
                             <input matInput formControlName="minimum_stock" type="number">
                             <mat-error>{{ formErrors?.minimum_stock }}</mat-error>
@@ -43,7 +43,7 @@ export class StockableDialogComponent implements OnInit
 {
     fg: FormGroup;
     formErrors: any = {};
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

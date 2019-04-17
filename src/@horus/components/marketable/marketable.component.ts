@@ -9,7 +9,7 @@ import { DataRoute } from '../../types/data-route';
 import { Lang } from '../../../app/main/apps/admin/admin.models';
 import { CategoryDialogComponent } from './category-dialog.component';
 import * as _ from 'lodash';
-import { pulsarConfig } from '../../../app/main/pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-marketable',
@@ -37,7 +37,7 @@ export class MarketableComponent implements OnInit
     loadingSlug = false;
     modelProductLang = 'Syscover\\Market\\Models\\ProductLang';
     marketableFg: FormGroup;
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     // categories
     @Input() categories: Category[] = [];

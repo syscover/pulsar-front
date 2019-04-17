@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from 'app/main/core/foundations/core-list-component';
+import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './expedient.graphql';
 import { Modality } from '../forem.models';
 

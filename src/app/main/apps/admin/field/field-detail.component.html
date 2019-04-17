@@ -91,7 +91,7 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                             <input matInput formControlName="id">
                         </mat-form-field>
@@ -99,7 +99,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'APPS.FIELD_GROUP' | translate }}</mat-label>
                             <mat-select formControlName="field_group_id" required>
                                 <mat-option *ngFor="let fieldGroup of fieldGroups" [value]="fieldGroup.id">{{ fieldGroup.name }}</mat-option>
@@ -109,7 +109,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.LABEL' | translate }}</mat-label>
                             <input matInput formControlName="label" required>
                             <mat-error>{{ formErrors?.label }}</mat-error>
@@ -117,7 +117,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -125,7 +125,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'ADMIN.FIELD_TYPE' | translate }}</mat-label>
                             <mat-select formControlName="field_type_id" required>
                                 <mat-option *ngFor="let fieldType of fieldTypes" [value]="fieldType.id">{{ fieldType.name }}</mat-option>
@@ -135,7 +135,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'ADMIN.DATA_TYPE' | translate }}</mat-label>
                             <mat-select formControlName="data_type_id" required>
                                 <mat-option *ngFor="let dataType of dataTypes" [value]="+dataType.id">{{ dataType.name }}</mat-option>
@@ -145,7 +145,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-4">
                             <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
                             <input matInput formControlName="sort" type="number">
                             <mat-error>{{ formErrors?.sort }}</mat-error>
@@ -159,7 +159,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-4">
                             <mat-label>{{ 'ADMIN.MAXIMUM_LENGTH' | translate }}</mat-label>
                             <input matInput formControlName="max_length" type="number">
                             <mat-error>{{ formErrors?.max_length }}</mat-error>
@@ -167,7 +167,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'ADMIN.PATTERN' | translate }}</mat-label>
                             <input matInput formControlName="pattern">
                             <mat-error>{{ formErrors?.pattern }}</mat-error>
@@ -175,13 +175,13 @@
                     </div>
 
                     <div fxLayout="row" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.COMPONENT_CLASS' | translate }}</mat-label>
                             <input matInput formControlName="component_class">
                             <mat-error>{{ formErrors?.component_class }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.LABEL_CLASS' | translate }}</mat-label>
                             <input matInput formControlName="label_class">
                             <mat-error>{{ formErrors?.label_class }}</mat-error>

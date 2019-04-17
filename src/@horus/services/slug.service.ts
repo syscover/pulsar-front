@@ -10,7 +10,7 @@ export class SlugService
         private _http: HttpService
     ) {}
 
-    async checkSlug(model: string, slug: string, object?: any, column?: string)
+    async checkSlug(model: string, slug: string, object?: any, column?: string): Promise<Object>
     {
         return await this._http
             .apolloClient()

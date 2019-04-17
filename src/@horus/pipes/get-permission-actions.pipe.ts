@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Permission } from '../../app/main/apps/admin/admin.models';
+import { Permission } from 'app/main/apps/admin/admin.models';
 import * as _ from 'lodash';
 
 @Pipe({

@@ -1,8 +1,19 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/foundations/core-list-component';
+import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './action.graphql';
 
+/**
+ * Inherited properties
+ *
+ * env: any;
+ * configService: ConfigService;
+ * graphQLUrl: string;
+ * restUrl: string;
+ *
+ *
+ *
+ */
 @Component({
     selector: 'dh2-admin-action-list',
     templateUrl: './action-list.component.html',

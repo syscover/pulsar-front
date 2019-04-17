@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/foundations/core-list-component';
+import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './field.graphql';
 import { FieldType } from '../admin.models';
 import * as _ from 'lodash';

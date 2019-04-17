@@ -70,14 +70,14 @@
                         (ngSubmit)="postRecord(object)">
                 
                     <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                             <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.TRANSLATION' | translate }}</mat-label>
                             <input matInput formControlName="translation" required>
                             <mat-error>{{ formErrors?.translation }}</mat-error>
@@ -93,7 +93,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'MARKET.TAX_RATE_ZONE' | translate }}</mat-label>
                             <mat-select formControlName="tax_rate_zones_id" multiple required>
                                 <mat-option *ngFor="let taxRateZone of taxRateZones" [value]="taxRateZone.id">{{ taxRateZone.name }}</mat-option>                                            
@@ -103,7 +103,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'MARKET.CUSTOMER_CLASS_TAX' | translate }}</mat-label>
                             <mat-select formControlName="customer_class_taxes_id" multiple required>
                                 <mat-option *ngFor="let customerClassTax of customerClassTaxes" [value]="customerClassTax.id">{{ customerClassTax.name }}</mat-option>                                            
@@ -113,7 +113,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'MARKET.PRODUCT_CLASS_TAX' | translate }}</mat-label>
                             <mat-select formControlName="product_class_taxes_id" multiple required>
                                 <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>                                            
@@ -123,12 +123,12 @@
                     </div>
 
                     <div fxLayout="row wrap">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'MARKET.PRIORITY' | translate }}</mat-label>
                             <input matInput formControlName="priority" type="number">
                             <mat-error>{{ formErrors?.priority }}</mat-error>
                         </mat-form-field>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
                             <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
                             <input matInput formControlName="sort" type="number">
                             <mat-error>{{ formErrors?.sort }}</mat-error>

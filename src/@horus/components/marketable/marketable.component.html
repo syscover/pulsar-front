@@ -4,13 +4,13 @@
         <input type="hidden" formControlName="subtotal">
 
         <div fxLayout="row wrap">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
                 <mat-label>{{ 'MARKETABLE.SKU' | translate }}</mat-label>
                 <input matInput formControlName="sku">
                 <mat-error>{{ formErrors?.sku }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5" *ngIf="hiddenFields.indexOf('parent_id') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5" *ngIf="hiddenFields.indexOf('parent_id') === -1">
                 <mat-label>{{ 'MARKETABLE.PARENT_PRODUCT' | translate }}</mat-label>
                 <mat-select formControlName="parent_id">
                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
@@ -23,7 +23,7 @@
 
         <div fxLayout="row">
             <div class="col-12">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" fxFlex="grow" *ngIf="hiddenFields.indexOf('categories_id') === -1">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" fxFlex="grow" *ngIf="hiddenFields.indexOf('categories_id') === -1">
                     <mat-label>{{ 'MARKETABLE.CATEGORIES' | translate }}</mat-label>
                     <mat-select formControlName="categories_id" multiple required>
                         <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
@@ -41,7 +41,7 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12" *ngIf="hiddenFields.indexOf('sections_id') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12" *ngIf="hiddenFields.indexOf('sections_id') === -1">
                 <mat-label>{{ 'MARKETABLE.SECTIONS' | translate }}</mat-label>
                 <mat-select formControlName="sections_id" multiple>
                     <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
@@ -51,7 +51,7 @@
         </div>
 
         <div fxLayout="row" *ngIf="hiddenFields.indexOf('name') === -1">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                 <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                 <mat-error>{{ formErrors?.name }}</mat-error>
@@ -59,7 +59,7 @@
         </div>
 
         <div fxLayout="row" *ngIf="hiddenFields.indexOf('slug') === -1">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                 <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                 <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
                 <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
@@ -68,7 +68,7 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                 <mat-label>{{ 'MARKETABLE.PRODUCT_CLASS' | translate }}</mat-label>
                 <mat-select formControlName="class_id" required>
                     <mat-option *ngFor="let productClass of productClasses" [value]="+productClass.id">{{ productClass.name }}</mat-option>
@@ -92,13 +92,13 @@
                     </mat-expansion-panel-header>
 
                     <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.ENABLE_FROM' | translate }}</mat-label>
                             <input matInput formControlName="enable_from" type="datetime-local">
                             <mat-error>{{ formErrors?.enable_from }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.ENABLE_TO' | translate }}</mat-label>
                             <input matInput formControlName="enable_to" type="datetime-local">
                             <mat-error>{{ formErrors?.enable_to }}</mat-error>
@@ -121,13 +121,13 @@
                     </mat-expansion-panel-header>
 
                     <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.STARTS_AT' | translate }}</mat-label>
                             <input matInput formControlName="starts_at" type="datetime-local">
                             <mat-error>{{ formErrors?.starts_at }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.ENDS_AT' | translate }}</mat-label>
                             <input matInput formControlName="ends_at" type="datetime-local">
                             <mat-error>{{ formErrors?.ends_at }}</mat-error>
@@ -135,7 +135,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'MARKETABLE.LIMITED_CAPACITY' | translate }}</mat-label>
                             <input matInput formControlName="limited_capacity" type="number">
                             <mat-icon matSuffix>supervised_user_circle</mat-icon>
@@ -144,13 +144,13 @@
                     </div>
 
                     <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.FIXED_COST' | translate }}</mat-label>
                             <input matInput formControlName="fixed_cost" type="number">
                             <mat-error>{{ formErrors?.fixed_cost }}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.COST_PER_SALE' | translate }}</mat-label>
                             <input matInput formControlName="cost_per_sale" type="number">
                             <mat-error>{{ formErrors?.cost_per_sale }}</mat-error>
@@ -165,7 +165,7 @@
 
         <!-- product types transportable, them it must to have a weight -->
         <div fxLayout="row" *ngIf="fg.get('class_id').value === 2 || fg.get('class_id').value === 3">
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                 <mat-label>{{ 'MARKETABLE.WEIGHT' | translate }}</mat-label>
                 <input matInput formControlName="weight" type="number">
                 <mat-icon matSuffix>line_weight</mat-icon>
@@ -177,7 +177,7 @@
             <div class="col-12 col-md-5 py-20" *ngIf="hiddenFields.indexOf('active') === -1">
                 <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
             </div>
-            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4" *ngIf="hiddenFields.indexOf('active') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4" *ngIf="hiddenFields.indexOf('active') === -1">
                 <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
                 <input matInput formControlName="sort" type="number">
                 <mat-error>{{ formErrors?.sort }}</mat-error>
@@ -196,7 +196,7 @@
             <div class="col-6">
 
                 <div fxLayout="row">
-                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                         <mat-label>{{ 'MARKETABLE.PRICE_TYPE' | translate }}</mat-label>
                         <mat-select formControlName="price_type_id" required>
                             <mat-option *ngFor="let priceType of priceTypes" [value]="+priceType.id">{{ priceType.name }}</mat-option>
@@ -207,7 +207,7 @@
 
                 <ng-container>
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.PRODUCT_CLASS_TAX' | translate }}</mat-label>
                             <mat-select formControlName="product_class_tax_id" (selectionChange)="handleGetProductTaxes()" required>
                                 <mat-option *ngFor="let productClassTax of productClassTaxes" [value]="productClassTax.id">{{ productClassTax.name }}</mat-option>
@@ -217,12 +217,12 @@
                     </div>
 
                     <div fxLayout="row" *ngIf="fg.get('class_id').value !== 5">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'MARKETABLE.COST' | translate }}</mat-label>
                             <input matInput formControlName="cost" (change)="handleChangeCost($event)" type="number">
                             <mat-error>{{ formErrors?.cost }}</mat-error>
                         </mat-form-field>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-sm-1 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-sm-1 col-md-5">
                             <mat-label>{{ 'MARKETABLE.PROFITABILITY' | translate }}</mat-label>
                             <span matSuffix>%</span>
                             <input matInput formControlName="profitability">
@@ -235,7 +235,7 @@
             <div class="col-6" *ngIf="fg.get('price_type_id').value === 1">
 
                 <div fxLayout="row">
-                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                         <mat-label>{{ 'MARKETABLE.PRICE' | translate }}</mat-label>
                         <input matInput formControlName="price" type="number" (change)="handleGetProductTaxes()">
                         <mat-spinner *ngIf="loadingPrice" matSuffix mode="indeterminate" diameter="17"></mat-spinner>
@@ -244,7 +244,7 @@
                 </div>
 
                 <div fxLayout="row">
-                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                         <mat-label>{{ 'MARKETABLE.SUBTOTAL' | translate }}</mat-label>
                         <input matInput formControlName="subtotal_format" required>
                         <mat-error>{{ formErrors?.subtotal_format }}</mat-error>
@@ -252,7 +252,7 @@
                 </div>
 
                 <div fxLayout="row">
-                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                         <mat-label>{{ 'MARKETABLE.TAX' | translate }}</mat-label>
                         <input matInput formControlName="tax_format" required>
                         <mat-error>{{ formErrors?.tax_format }}</mat-error>
@@ -260,7 +260,7 @@
                 </div>
 
                 <div fxLayout="row">
-                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                         <mat-label>{{ 'MARKETABLE.TOTAL' | translate }}</mat-label>
                         <input matInput formControlName="total_format" required>
                         <mat-error>{{ formErrors?.total_format }}</mat-error>

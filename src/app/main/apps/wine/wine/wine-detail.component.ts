@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { graphQL } from './wine.graphql';
 import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
@@ -255,7 +255,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // appellation
         this.appellationFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.appellationFilterCtrl,
@@ -267,7 +267,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // award
         this.awardFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.awardFilterCtrl,
@@ -279,7 +279,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // family
         this.familyFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.familyFilterCtrl,
@@ -291,7 +291,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // grape
         this.grapeFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.grapeFilterCtrl,
@@ -303,7 +303,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // pairing
         this.pairingFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.pairingFilterCtrl,
@@ -315,7 +315,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // presentation
         this.presentationFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.presentationFilterCtrl,
@@ -327,7 +327,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // type
         this.typeFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.typeFilterCtrl,
@@ -339,7 +339,7 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         // winery
         this.wineryFilterCtrl
             .valueChanges
-            .pipe(takeUntil(this._onDestroy))
+            .pipe(takeUntil(this.$onDestroy))
             .subscribe(() => {
                 this._selectSearch.filterSelect(
                     this.wineryFilterCtrl,

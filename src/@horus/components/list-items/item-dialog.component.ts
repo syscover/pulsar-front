@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
-import { pulsarConfig } from 'app/main/pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-item-dialog',
@@ -22,7 +22,7 @@ import { pulsarConfig } from 'app/main/pulsar-config';
                         <ng-container [ngSwitch]="control.type.split('.')[0]">
 
                             <div fxLayout="row" *ngSwitchCase="'input'">
-                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" [class]="control.class ? control.class : 'col-12'">
+                                <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="control.class ? control.class : 'col-12'">
                                     <mat-label>{{ control.label }}</mat-label>
                                     <input matInput [type]="control.type.split('.')[1]" [formControlName]="control.name" [required]="control.required">
                                     <mat-error>{{ formErrors[control.name] }}</mat-error>
@@ -59,7 +59,7 @@ export class ItemDialogComponent implements OnInit
     oldObject: object;
 
     formErrors: any = {};
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

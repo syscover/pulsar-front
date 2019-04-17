@@ -1,12 +1,12 @@
 import { Injector, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CoreComponent } from '@horus/foundations/core-component';
+import '@horus/functions/string-capitalize.function';
+import { Lang } from '@horus/types/lang';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/takeUntil';
-import { CoreComponent } from './core-component';
-import { Lang } from '../../apps/admin/admin.models';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
-import '@horus/functions/string-capitalize.function';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit
@@ -100,7 +100,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     {
         if (this.dataRoute.action === 'create') 
         {
-            this.lang = <Lang>_.find(this.langs, {'id': this.baseLang}); // get baseLang object
+            this.lang = <Lang>_.find(this.langs, ['id', this.baseLang]); // get baseLang object
 
             // to create a new object, do all queries to get relations data to create new object
             this.relationsObject();

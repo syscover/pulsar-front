@@ -1,9 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Params, Router } from '@angular/router';
+import { Core } from '@horus/foundations/core';
 import { Apollo } from 'apollo-angular';
 import { throwError } from 'rxjs';
-import { Core } from '../../app/main/core/foundations/core';
 import * as _ from 'lodash';
 
 @Injectable()

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import { Lang } from '../../admin/admin.models';
-import { pulsarConfig } from '../../../pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-wine-percentage-grape-dialog',
@@ -22,7 +22,7 @@ import { pulsarConfig } from '../../../pulsar-config';
                 
                 <div fxLayout="column" fxFlex>
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input matInput formControlName="name" readonly>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -30,7 +30,7 @@ import { pulsarConfig } from '../../../pulsar-config';
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6">
                             <mat-label>{{ 'APPS.PERCENTAGE' | translate }}</mat-label>
                             <input matInput formControlName="percentage" type="number" required>
                             <span matSuffix>%</span>
@@ -66,7 +66,7 @@ export class PercentageGrapeDialogComponent implements OnInit
     lang: Lang;
     formErrors: any = {};
     loadingButton = false;
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,

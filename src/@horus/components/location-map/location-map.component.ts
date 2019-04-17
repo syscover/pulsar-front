@@ -2,7 +2,7 @@ import { Component, Input, OnInit, NgZone, ViewChild, ElementRef } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { environment } from 'environments/environment';
-import { pulsarConfig } from 'app/main/pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 @Component({
     selector: 'dh2-location-map',
@@ -20,7 +20,7 @@ import { pulsarConfig } from 'app/main/pulsar-config';
     template: `        
         <div class="d-flex justify-content-center">
             <div fxLayout="row" class="search-box justify-content-center">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-11">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-11">
                     <mat-label>{{ 'APPS.SEARCH_LOCATION' | translate }}</mat-label>
                     <input  matInput
                             #search>
@@ -56,7 +56,7 @@ export class LocationMapComponent implements OnInit
     dedaultLatitude = 40.420179;
     dedaultLongitude = -3.703927;
     mapTypeControlOptions: any;
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     constructor(
         private mapsAPILoader: MapsAPILoader,

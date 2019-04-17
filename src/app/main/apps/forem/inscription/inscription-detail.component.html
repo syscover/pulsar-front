@@ -81,14 +81,14 @@
                                 <input type="hidden" formControlName="student_id">
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'APPS.GROUP' | translate }}</mat-label>
                                         <mat-select formControlName="group_id" required>
                                             <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
@@ -98,7 +98,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                         <input matInput formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
@@ -106,13 +106,13 @@
                                 </div>
 
                                 <div fxLayout="row" class="justify-content-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
                                         <input matInput formControlName="surname">
                                         <mat-error>{{ formErrors?.surname }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.SECOND_SURNAME' | translate }}</mat-label>
                                         <input matInput formControlName="surname2">
                                         <mat-error>{{ formErrors?.surname2 }}</mat-error>
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-5 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-5 col-md-2">
                                         <mat-label>{{ 'APPS.GENDER' | translate }}</mat-label>
                                         <mat-select formControlName="gender_id">
                                             <mat-option *ngFor="let gender of genders" [value]="gender.id">{{ gender.name }}</mat-option>
@@ -138,13 +138,13 @@
                                 </div>
 
                                 <div fxLayout="row" class="justify-content-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.NIF' | translate }}</mat-label>
                                         <input matInput formControlName="tin">
                                         <mat-error>{{ formErrors?.tin }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.SSN' | translate }}</mat-label>
                                         <input matInput formControlName="ssn">
                                         <mat-error>{{ formErrors?.ssn }}</mat-error>
@@ -152,7 +152,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="email">
                                         <mat-error>{{ formErrors?.email }}</mat-error>
@@ -160,13 +160,13 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
                                         <input matInput formControlName="mobile">
                                         <mat-error>{{ formErrors?.mobile }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                         <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
                                         <input matInput formControlName="phone">
                                         <mat-error>{{ formErrors?.phone }}</mat-error>
@@ -174,7 +174,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-2">
                                         <mat-label>{{ 'FOREM.ADDRESS_TYPE' | translate }}</mat-label>
                                         <mat-select formControlName="address_type_id">
                                             <mat-option *ngFor="let addressType of addressTypes" [value]="addressType.id">{{ addressType.name }}</mat-option>
@@ -182,7 +182,7 @@
                                         <mat-error>{{ formErrors?.address_type_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-9">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-9">
                                         <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                         <input matInput formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>
@@ -190,7 +190,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
                                         <mat-select formControlName="province_id">
                                             <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
@@ -198,7 +198,7 @@
                                         <mat-error>{{ formErrors?.province_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
                                         <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                         <input matInput formControlName="zip">
                                         <mat-error>{{ formErrors?.zip }}</mat-error>
@@ -206,7 +206,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                         <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                         <mat-select formControlName="locality_id">
                                             <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
@@ -221,7 +221,7 @@
 
                                 <div>
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                             <input matInput formControlName="agent_name">
                                             <mat-error>{{ formErrors?.agent_name }}</mat-error>
@@ -229,13 +229,13 @@
                                     </div>
 
                                     <div fxLayout="row" class="justify-content-between">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
                                             <input matInput formControlName="agent_surname">
                                             <mat-error>{{ formErrors?.agent_surname }}</mat-error>
                                         </mat-form-field>
 
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'APPS.SECOND_SURNAME' | translate }}</mat-label>
                                             <input matInput formControlName="agent_surname2">
                                             <mat-error>{{ formErrors?.agent_surname2 }}</mat-error>
@@ -243,7 +243,7 @@
                                     </div>
 
                                     <div fxLayout="row" class="justify-content-between">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'APPS.NIF' | translate }}</mat-label>
                                             <input matInput formControlName="agent_tin">
                                             <mat-error>{{ formErrors?.agent_tin }}</mat-error>
@@ -251,7 +251,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                             <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                             <input matInput formControlName="agent_address">
                                             <mat-error>{{ formErrors?.agent_address }}</mat-error>
@@ -259,7 +259,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
                                             <mat-select formControlName="agent_province_id">
                                                 <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
@@ -267,7 +267,7 @@
                                             <mat-error>{{ formErrors?.agent_province_id }}</mat-error>
                                         </mat-form-field>
 
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
                                             <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                             <input matInput formControlName="agent_zip">
                                             <mat-error>{{ formErrors?.agent_zip }}</mat-error>
@@ -275,7 +275,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                             <mat-select formControlName="agent_locality_id">
                                                 <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
@@ -285,7 +285,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                             <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
                                             <input type="email" matInput formControlName="agent_email">
                                             <mat-error>{{ formErrors?.agent_email }}</mat-error>
@@ -293,13 +293,13 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
                                             <input matInput formControlName="agent_mobile">
                                             <mat-error>{{ formErrors?.agent_mobile }}</mat-error>
                                         </mat-form-field>
 
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                             <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
                                             <input type="email" matInput formControlName="agent_phone">
                                             <mat-error>{{ formErrors?.agent_phone }}</mat-error>
@@ -307,7 +307,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                             <mat-label>{{ 'FOREM.CONTACT_SCHEDULE' | translate }}</mat-label>
                                             <input matInput formControlName="agent_contact_schedule">
                                             <mat-error>{{ formErrors?.agent_contact_schedule }}</mat-error>
@@ -324,7 +324,7 @@
                                 <div fxLayout="row">
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'FOREM.ACADEMIC_LEVEL' | translate }}</mat-label>
                                             <mat-select formControlName="academic_level_id">
                                                 <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
@@ -343,7 +343,7 @@
 
                                 <div fxLayout="row">
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'FOREM.EMPLOYMENT_SITUATION' | translate }}</mat-label>
                                         <mat-select formControlName="employment_situation_id">
                                             <mat-option *ngFor="let employmentSituation of employmentSituations" [value]="employmentSituation.id">{{ employmentSituation.name }}</mat-option>
@@ -355,7 +355,7 @@
 
                                 <div>
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'FOREM.UNEMPLOYMENT_SITUATION' | translate }}</mat-label>
                                             <mat-select formControlName="unemployed_situation_id">
                                                 <mat-option *ngFor="let unemployedSituation of unemployedSituations" [value]="unemployedSituation.id">{{ unemployedSituation.name }}</mat-option>
@@ -373,7 +373,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'FOREM.EMPLOYMENT_OFFICE' | translate }}</mat-label>
                                             <mat-select formControlName="employment_office_id">
                                                 <mat-option *ngFor="let employmentOffice of employmentOffices" [value]="employmentOffice.id">{{ employmentOffice.name }}</mat-option>
@@ -385,7 +385,7 @@
 
                                 <div>
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'FOREM.PROFESSIONAL_CATEGORY' | translate }}</mat-label>
                                             <mat-select formControlName="professional_category_id">
                                                 <mat-option *ngFor="let professionalCategory of professionalCategories" [value]="professionalCategory.id">{{ professionalCategory.name }}</mat-option>
@@ -393,7 +393,7 @@
                                             <mat-error>{{ formErrors?.professional_category_id }}</mat-error>
                                         </mat-form-field>
 
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
                                             <mat-label>{{ 'FOREM.FUNCTIONAL_AREA' | translate }}</mat-label>
                                             <mat-select formControlName="functional_area_id">
                                                 <mat-option *ngFor="let functionalArea of functionalAreas" [value]="functionalArea.id">{{ functionalArea.name }}</mat-option>
@@ -403,7 +403,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                             <mat-label>{{ 'FOREM.WORKER_CODE' | translate }}</mat-label>
                                             <input matInput formControlName="worker_code">
                                             <mat-error>{{ formErrors?.worker_code }}</mat-error>
@@ -418,7 +418,7 @@
                                     <!-- / HEADER -->
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                             <input matInput formControlName="company_name">
                                             <mat-error>{{ formErrors?.company_name }}</mat-error>
@@ -426,7 +426,7 @@
                                     </div>
 
                                     <div fxLayout="row" class="justify-content-between">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                             <mat-label>{{ 'APPS.TIN' | translate }}</mat-label>
                                             <input matInput formControlName="company_tin">
                                             <mat-error>{{ formErrors?.company_tin }}</mat-error>
@@ -434,7 +434,7 @@
                                     </div>
 
                                     <div fxLayout="row" class="justify-content-between">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                             <mat-label>{{ 'APPS.SECTOR' | translate }}</mat-label>
                                             <input matInput formControlName="company_sector">
                                             <mat-error>{{ formErrors?.company_sector }}</mat-error>
@@ -442,7 +442,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                             <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                             <input matInput formControlName="company_address">
                                             <mat-error>{{ formErrors?.company_address }}</mat-error>
@@ -450,7 +450,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
                                             <mat-select formControlName="company_province_id">
                                                 <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
@@ -458,7 +458,7 @@
                                             <mat-error>{{ formErrors?.company_province_id }}</mat-error>
                                         </mat-form-field>
 
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 offset-md-1 col-md-3">
                                             <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                             <input matInput formControlName="company_zip">
                                             <mat-error>{{ formErrors?.company_zip }}</mat-error>
@@ -466,7 +466,7 @@
                                     </div>
 
                                     <div fxLayout="row">
-                                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-3">
+                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
                                             <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                             <mat-select formControlName="company_locality_id">
                                                 <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
@@ -490,7 +490,7 @@
                         <mat-tab label="{{ 'FOREM.FOCO' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.CODE' | translate }}</mat-label>
                                         <input matInput formControlName="code" type="number">
                                         <mat-error>{{ formErrors?.code }}</mat-error>

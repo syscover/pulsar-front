@@ -2,7 +2,7 @@ import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { Section, Family, Article, Category, Status } from '../cms.models';
 import { AttachmentFamily } from '../../admin/admin.models';

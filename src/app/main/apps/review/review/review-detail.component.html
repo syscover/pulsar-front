@@ -81,19 +81,19 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'REVIEW.OBJECT_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="object_name" required>
                                         <mat-error>{{ formErrors?.object_name }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
                                         <mat-label>{{ 'REVIEW.OBJECT_EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="object_email" required>
                                         <mat-error>{{ formErrors?.object_email }}</mat-error>
@@ -101,12 +101,12 @@
                                 </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'REVIEW.CUSTOMER_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="customer_name" required>
                                         <mat-error>{{ formErrors?.customer_name }}</mat-error>
                                     </mat-form-field>
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
                                         <mat-label>{{ 'REVIEW.CUSTOMER_EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="customer_email" required>
                                         <mat-error>{{ formErrors?.customer_email }}</mat-error>
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'REVIEW.AVERAGE' | translate }}</mat-label>
                                         <input matInput formControlName="average" [dh2NumberPipe]="'1.2-2'" required>
                                         <mat-error>{{ formErrors?.average }}</mat-error>
@@ -139,7 +139,7 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                         <mat-label>{{ 'REVIEW.ACTIONS' | translate }}</mat-label>
                                         <mat-select formControlName="action_id" required>
                                             <mat-option>{{ 'APPS.NONE.F' | translate }}</mat-option>
@@ -166,7 +166,7 @@
                                         <ng-container [ngSwitch]="question.type_id">
 
                                             <ng-container *ngSwitchCase="1">
-                                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                                                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                                     <mat-label>{{ question.name }}</mat-label>
                                                     <mat-select formControlName="score">
                                                         <mat-option *ngFor="let number of question.high_score | numbersArray" [value]="number">{{ number }}</mat-option>
@@ -176,7 +176,7 @@
                                             </ng-container>
 
                                             <ng-container *ngSwitchCase="2">
-                                                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                                     <mat-label>{{ question.name }}</mat-label>
                                                     <textarea   matInput
                                                                 matTextareaAutosize 

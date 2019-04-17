@@ -8,7 +8,7 @@ import { environment } from 'environments/environment';
 import gql from 'graphql-tag';
 import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
-import { pulsarConfig } from '../../../app/main/pulsar-config';
+import { horusConfig } from 'app/horus-config';
 
 /* tslint:disable:max-line-length */
 @Component({
@@ -17,7 +17,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
         <div [formGroup]="formGroup">
             
             <div fxLayout="row">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                     <mat-label>{{ 'APPS.COUNTRY' | translate }}</mat-label>
                     <mat-select [formControlName]="countryControlName" (selectionChange)="handleChangeCountry($event)" [required]="required.indexOf('country') > -1">
                         <ngx-mat-select-search [formControl]="countryFilterCtrl"
@@ -30,7 +30,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas1">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                     <mat-label>{{ country?.territorial_area_1 }}</mat-label>
                     <mat-select [formControlName]="territorialArea1ControlName" (selectionChange)="handleChangeTerritorialArea1($event)" [required]="required.indexOf('territorial_area_1') > -1">
                         <mat-option *ngFor="let territorialArea1 of territorialAreas1" [value]="territorialArea1.id">{{ territorialArea1.name }}</mat-option>
@@ -40,7 +40,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas2">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                     <mat-label>{{ country?.territorial_area_2 }}</mat-label>
                     <mat-select [formControlName]="territorialArea2ControlName" (selectionChange)="handleChangeTerritorialArea2($event)" [required]="required.indexOf('territorial_area_2') > -1">
                         <mat-option *ngFor="let territorialArea2 of territorialAreas2" [value]="territorialArea2.id">{{ territorialArea2.name }}</mat-option>
@@ -50,7 +50,7 @@ import { pulsarConfig } from '../../../app/main/pulsar-config';
             </div>
 
             <div fxLayout="row" *ngIf="showTerritorialAreas3">
-                <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                     <mat-label>{{ country?.territorial_area_2 }}</mat-label>
                     <mat-select [formControlName]="territorialArea3ControlName" [required]="required.indexOf('territorial_area_3') > -1">
                         <mat-option *ngFor="let territorialArea3 of territorialAreas3" [value]="territorialArea3.id">{{ territorialArea3.name }}</mat-option>
@@ -86,7 +86,7 @@ export class TerritoriesComponent implements OnChanges, OnInit, OnDestroy
     showTerritorialAreas2 = false;
     showTerritorialAreas3 = false;
     isLoadedComponent = false;
-    pulsarConfig = pulsarConfig;
+    horusConfig = horusConfig;
 
     private _onDestroy = new Subject();
 

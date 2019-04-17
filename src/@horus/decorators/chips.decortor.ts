@@ -6,9 +6,12 @@ export interface ChipsDecoratorInterface {
     removeTag: Function;
 }
 
-export function Chips(): Function {
-    return function(target: Function): void {
-        target.prototype.addTag = function (formGroup: FormGroup, name: string, event: MatChipInputEvent): void {
+export function Chips(): Function
+{
+    return function(target: Function): void
+    {
+        target.prototype.addTag = function (formGroup: FormGroup, name: string, event: MatChipInputEvent): void
+        {
             const input = event.input;
             const value = event.value;
             const formControl: AbstractControl = formGroup.controls[name];
@@ -29,7 +32,8 @@ export function Chips(): Function {
             if ( input ) input.value = '';
         };
 
-        target.prototype.removeTag = function (formGroup: FormGroup, name: string, tag): void {
+        target.prototype.removeTag = function (formGroup: FormGroup, name: string, tag): void
+        {
             const formControl: AbstractControl = formGroup.controls[name];
             const tags = Object.assign([], formControl.value);
             const index = tags.indexOf(tag);

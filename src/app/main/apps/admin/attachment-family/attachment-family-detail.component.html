@@ -70,14 +70,14 @@
                         (ngSubmit)="postRecord(object)">
 
                     <div fxLayout="row" *ngIf="dataRoute.action ==='edit'">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-4">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                             <input matInput formControlName="id">
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-6">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                             <mat-label>{{ 'APPS.RESOURCE' | translate }}</mat-label>
                             <mat-select formControlName="resource_id" required>
                                 <mat-option *ngFor="let resource of resources" [value]="resource.id">{{ resource.name }} - {{ resource.package.name }}</mat-option>
@@ -87,7 +87,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                             <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                             <input matInput formControlName="name" required>
                             <mat-error>{{ formErrors?.name }}</mat-error>
@@ -95,13 +95,13 @@
                     </div>
 
                     <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'APPS.WIDTH' | translate }}</mat-label>
                             <span matSuffix>px</span>
                             <input matInput formControlName="width" type="number">
                             <mat-error>{{ formErrors?.width }}</mat-error>
                         </mat-form-field>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'APPS.HEIGHT' | translate }}</mat-label>
                             <span matSuffix>px</span>
                             <input matInput formControlName="height" type="number">
@@ -110,7 +110,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.FIT_TYPE' | translate }}</mat-label>
                             <mat-select formControlName="fit_type">
                                 <mat-option *ngFor="let fitType of fitTypes" [value]="+fitType.id">{{ fitType.name }}</mat-option>
@@ -120,14 +120,14 @@
                     </div>
 
                     <div fxLayout="row wrap" class="justify-content-between">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.SIZES' | translate }}</mat-label>
                             <mat-select formControlName="sizes" multiple>
                                 <mat-option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.sizes }}</mat-error>
                         </mat-form-field>
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.QUALITY' | translate }}</mat-label>
                             <span matSuffix>%</span>
                             <input matInput formControlName="quality" min="1" max="100" type="number">
@@ -136,7 +136,7 @@
                     </div>
 
                     <div fxLayout="row">
-                        <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                             <mat-label>{{ 'ADMIN.FORMATS' | translate }}</mat-label>
                             <mat-select formControlName="format">
                                 <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>

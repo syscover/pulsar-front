@@ -99,7 +99,7 @@
                                 <input type="hidden" formControlName="ix">
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" *ngIf="dataRoute.action !== 'create'" class="col-12 col-md-4">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
@@ -127,7 +127,7 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'APPS.FIELD_GROUP' | translate }}</mat-label>
                                         <mat-select formControlName="field_group_id">
                                             <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>

@@ -78,14 +78,14 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-2">
                                         <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'INNOVA.ORIGINAL_NAME' | translate }}</mat-label>
                                         <input dh2Slug matInput formControlName="original_name">
                                         <mat-error>{{ formErrors?.original_name }}</mat-error>
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'INNOVA.CURRENT_NAME' | translate }}</mat-label>
                                         <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="current_name" required>
                                         <mat-error>{{ formErrors?.current_name }}</mat-error>
@@ -101,7 +101,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                                         <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                                         <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
                                         <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
@@ -110,7 +110,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6">
                                         <mat-label>{{ 'INNOVA.OTHER_DENOMINATIONS' | translate }}</mat-label>
                                         <input matInput formControlName="other_denominations">
                                         <mat-error>{{ formErrors?.other_denominations }}</mat-error>
@@ -118,13 +118,13 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.ORIGINAL_USE' | translate }}</mat-label>
                                         <input matInput formControlName="original_use">
                                         <mat-error>{{ formErrors?.original_use }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.CURRENT_USE' | translate }}</mat-label>
                                         <input matInput formControlName="current_use">
                                         <mat-error>{{ formErrors?.current_use }}</mat-error>
@@ -139,7 +139,7 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.ARCHITECTS' | translate }}</mat-label>
                                         <mat-select formControlName="architects_id" multiple>
                                             <mat-option *ngFor="let architect of architects" [value]="architect.id">{{ architect.name }}</mat-option>
@@ -147,7 +147,7 @@
                                         <mat-error>{{ formErrors?.architects_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.ENGINEERS' | translate }}</mat-label>
                                         <mat-select formControlName="engineers_id" multiple>
                                             <mat-option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.name }}</mat-option>
@@ -157,7 +157,7 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.ARTISTS' | translate }}</mat-label>
                                         <mat-select formControlName="artists_id" multiple>
                                             <mat-option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</mat-option>
@@ -165,7 +165,7 @@
                                         <mat-error>{{ formErrors?.artists_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.OTHERS' | translate }}</mat-label>
                                         <mat-select formControlName="others_id" multiple>
                                             <mat-option *ngFor="let other of others" [value]="other.id">{{ other.name }}</mat-option>
@@ -182,7 +182,7 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.REINFORCEMENT_TYPES' | translate }}</mat-label>
                                         <mat-select formControlName="reinforcement_types_id" multiple>
                                             <mat-option *ngFor="let reinforcementType of reinforcementTypes" [value]="reinforcementType.id">{{ reinforcementType.name }}</mat-option>
@@ -190,7 +190,7 @@
                                         <mat-error>{{ formErrors?.reinforcement_types_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.CONCRETE_TYPES' | translate }}</mat-label>
                                         <mat-select formControlName="concrete_types_id" multiple>
                                             <mat-option *ngFor="let typeConcrete of concreteTypes" [value]="typeConcrete.id">{{ typeConcrete.name }}</mat-option>
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.FINISHES' | translate }}</mat-label>
                                         <mat-select formControlName="finishes_id" multiple>
                                             <mat-option *ngFor="let finish of finishes" [value]="finish.id">{{ finish.name }}</mat-option>
@@ -208,7 +208,7 @@
                                         <mat-error>{{ formErrors?.finishes_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.CONSTRUCTION_METHODS' | translate }}</mat-label>
                                         <mat-select formControlName="construction_methods_id" multiple>
                                             <mat-option *ngFor="let constructionMethod of constructionMethods" [value]="constructionMethod.id">{{ constructionMethod.name }}</mat-option>
@@ -218,7 +218,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.STRUCTURAL_TYPES' | translate }}</mat-label>
                                         <mat-select formControlName="structural_types_id" multiple>
                                             <mat-option *ngFor="let structuralType of structuralTypes" [value]="structuralType.id">{{ structuralType.name }}</mat-option>
@@ -235,13 +235,13 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-2">
                                         <mat-label>{{ 'INNOVA.COMMISSION' | translate }}</mat-label>
                                         <input matInput formControlName="commission" type="number">
                                         <mat-error>{{ formErrors?.commission }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 offset-md-1 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-2">
                                         <mat-label>{{ 'INNOVA.COMPLETION' | translate }}</mat-label>
                                         <input matInput formControlName="completion" type="number">
                                         <mat-error>{{ formErrors?.completion }}</mat-error>
@@ -249,13 +249,13 @@
                                 </div>
 
                                 <div fxLayout="row wrap" class="d-flex justify-content-md-between">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.RAPPORTEUR_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="rapporteur_name">
                                         <mat-error>{{ formErrors?.rapporteur_name }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                         <mat-label>{{ 'INNOVA.RAPPORTEUR_EMAIL' | translate }}</mat-label>
                                         <input matInput formControlName="rapporteur_email">
                                         <mat-error>{{ formErrors?.rapporteur_email }}</mat-error>
@@ -267,14 +267,14 @@
 
                                     <div class="col-12 col-md-6">
                                         <div>
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-4">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-4">
                                                 <mat-label>{{ 'INNOVA.RAPPORTEUR_DATE' | translate }}</mat-label>
                                                 <input matInput formControlName="rapporteur_date" type="number">
                                                 <mat-error>{{ formErrors?.rapporteur_date }}</mat-error>
                                             </mat-form-field>
                                         </div>
                                         <div>
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-6 col-md-4">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-4">
                                                 <mat-label>{{ 'INNOVA.PERCENTAGE_PROGRESS' | translate }}</mat-label>
                                                 <input matInput formControlName="percentage_progress" type="number">
                                                 <mat-error>{{ formErrors?.percentage_progress }}</mat-error>
@@ -297,7 +297,7 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
                                         <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
                                         <textarea   matInput
                                                     matTextareaAutosize
@@ -315,7 +315,7 @@
                                 <!-- / HEADER -->
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                         <input dh2Slug matInput formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>
@@ -326,7 +326,7 @@
                                     <div class="col-12 col-md-5">
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.COUNTRY' | translate }}</mat-label>
                                                 <mat-select formControlName="country_id" required>
                                                     <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
@@ -336,7 +336,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'INNOVA.PROVINCE' | translate }}</mat-label>
                                                 <input matInput formControlName="province">
                                                 <mat-error>{{ formErrors?.province }}</mat-error>
@@ -344,7 +344,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-5">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
                                                 <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
                                                 <input matInput formControlName="zip">
                                                 <mat-error>{{ formErrors?.zip }}</mat-error>
@@ -352,7 +352,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                                 <input dh2Slug matInput formControlName="locality" required>
                                                 <mat-error>{{ formErrors?.locality }}</mat-error>
@@ -360,7 +360,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LATITUDE' | translate }}</mat-label>
                                                 <input matInput formControlName="latitude" required>
                                                 <mat-error>{{ formErrors?.latitude }}</mat-error>
@@ -368,7 +368,7 @@
                                         </div>
 
                                         <div fxLayout="row">
-                                            <mat-form-field [appearance]="pulsarConfig.fieldAppearance" class="col-12 col-md-10">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-10">
                                                 <mat-label>{{ 'APPS.LONGITUDE' | translate }}</mat-label>
                                                 <input matInput formControlName="longitude" required>
                                                 <mat-error>{{ formErrors?.longitude }}</mat-error>

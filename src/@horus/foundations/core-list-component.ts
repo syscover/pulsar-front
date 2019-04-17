@@ -1,5 +1,7 @@
 import { Injector, ViewChild, AfterViewInit, AfterContentInit, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { HttpSynchronousService } from '@horus/services/http-synchronous.service';
+import { CoreComponent } from '@horus/foundations/core-component';
 import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
@@ -11,8 +13,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
-import { CoreComponent } from './core-component';
-import { HttpSynchronousService } from '@horus/services/http-synchronous.service';
 import * as _ from 'lodash';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, AfterContentInit, OnInit
@@ -46,7 +46,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 .debounceTime(500)
                 .distinctUntilChanged()
         )
-        .takeUntil(this._onDestroy)
+        .takeUntil(this.$onDestroy)
         .subscribe(() => this.paginator.pageIndex = 0);
 
         // ??
@@ -63,7 +63,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 await this.loadDataSource();
             })
         )
-        .takeUntil(this._onDestroy)
+        .takeUntil(this.$onDestroy)
         .subscribe(() => {
             // this response is asynchronous, from this section can't recover response data from promise
         });

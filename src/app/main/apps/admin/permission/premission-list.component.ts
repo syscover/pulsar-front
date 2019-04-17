@@ -1,7 +1,7 @@
 import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
 import { MatSelect } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreListComponent } from '../../../core/foundations/core-list-component';
+import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { Action, Permission, Profile } from '../admin.models';
 import { graphQL } from './permission.graphql';
 import { ConfirmationDialogComponent } from '@horus/components/confirmation-dialog/confirmation-dialog.component';

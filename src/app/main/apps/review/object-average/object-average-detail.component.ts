@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { FormArray, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '../../../core/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { Poll, Question } from '../review.models';
 import { graphQL } from './object-average.graphql';
 import * as _ from 'lodash';

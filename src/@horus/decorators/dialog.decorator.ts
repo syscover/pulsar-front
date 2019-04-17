@@ -1,9 +1,12 @@
 export interface DialogDecoratorInterface {
     getObject: Function;
 }
-export function Dialog(): Function {
-    return function(target: Function): void {
-        target.prototype.getObject = function (): void {
+export function Dialog(): Function
+{
+    return function(target: Function): void
+    {
+        target.prototype.getObject = function (): void
+        {
             const ob$ = this._http
                 .apolloClient()
                 .watchQuery({

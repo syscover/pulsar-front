@@ -1,4 +1,4 @@
-export interface PulsarConfig
+export interface HorusConfig
 {
     fieldAppearance: 'legacy' | 'standard' | 'fill' | 'outline';
 }
