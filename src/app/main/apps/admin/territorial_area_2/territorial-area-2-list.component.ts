@@ -40,7 +40,7 @@ export class TerritorialArea2ListComponent extends CoreListComponent
             command: 'where',
             column: 'admin_country.lang_id',
             operator: '=',
-            value: this.baseLang
+            value: this.baseLang.id
         }];
         
         return args;

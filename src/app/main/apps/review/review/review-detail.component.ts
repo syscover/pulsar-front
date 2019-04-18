@@ -44,7 +44,7 @@ export class ReviewDetailComponent extends CoreDetailComponent
     {
         // filter questions by baseLang
         this.questions = _.sortBy(_.filter(this.object.poll.questions, obj => {
-            return obj.lang_id === this.baseLang;
+            return obj.lang_id === this.baseLang.id;
         }), ['sort']);
 
         // clone object to avoid readonly properties

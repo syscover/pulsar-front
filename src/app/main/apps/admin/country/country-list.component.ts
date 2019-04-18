@@ -15,7 +15,7 @@ export class CountryListComponent extends CoreListComponent
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['admin_country.id', 'admin_country.name', 'admin_country.slug'];
     displayedColumns = ['admin_country.id', 'admin_country.name', 'admin_country.slug',  'territories', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected injector: Injector

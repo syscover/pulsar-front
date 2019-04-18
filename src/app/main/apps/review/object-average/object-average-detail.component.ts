@@ -52,7 +52,7 @@ export class ObjectAverageDetailComponent extends CoreDetailComponent
 
         // filter questions by baseLang and short
         this.questions = _.sortBy(_.filter(this.questions, obj => {
-            return obj.lang_id === this.baseLang;
+            return obj.lang_id === this.baseLang.id;
         }), ['sort']);
 
         // init question averages formArray structure

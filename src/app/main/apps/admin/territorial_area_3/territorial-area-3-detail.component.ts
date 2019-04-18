@@ -54,7 +54,7 @@ export class TerritorialArea3DetailComponent extends CoreDetailComponent
                 command: 'where',
                 column: 'admin_country.lang_id',
                 operator: '=',
-                value: this.baseLang
+                value: this.baseLang.id
             }
         ];
 

@@ -126,8 +126,8 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation CmsDeleteArticle ($lang_id:String! $id:Int!) {
-            cmsDeleteArticle (lang_id:$lang_id id:$id) {
+        mutation CmsDeleteArticle ($id:Int! $lang_id:Int!) {
+            cmsDeleteArticle (id:$id lang_id:$lang_id) {
                 ${fields}
             }
         }`

@@ -15,7 +15,7 @@ export class PairingListComponent extends CoreListComponent
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['wine_pairing.id', 'wine_pairing.name'];
     displayedColumns = ['wine_pairing.id', 'wine_pairing.name', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected _injector: Injector

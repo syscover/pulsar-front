@@ -15,7 +15,7 @@ export class OrderStatusListComponent extends CoreListComponent
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['market_order_status.id', 'market_order_status.name'];
     displayedColumns = ['market_order_status.id', 'market_order_status.name', 'market_order_status.active', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected injector: Injector

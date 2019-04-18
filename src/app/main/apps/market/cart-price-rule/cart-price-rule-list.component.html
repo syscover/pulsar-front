@@ -129,11 +129,11 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', baseLang, row.id]">
+                            <button mat-menu-item [routerLink]="[baseUri + '/show', baseLang.id, row.id]">
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
-                            <button mat-menu-item (click)="deleteRecord(row, {lang_id: baseLang})">
+                            <button mat-menu-item (click)="deleteRecord(row, {lang_id: baseLang.id})">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>

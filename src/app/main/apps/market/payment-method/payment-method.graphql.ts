@@ -73,8 +73,8 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation MarketDeletePaymentMethod ($lang_id:String! $id:Int!) {
-            marketDeletePaymentMethod (lang_id:$lang_id id:$id) {
+        mutation MarketDeletePaymentMethod ($id:Int! $lang_id:Int!) {
+            marketDeletePaymentMethod (id:$id lang_id:$lang_id) {
                 ${fields}
             }
         }`

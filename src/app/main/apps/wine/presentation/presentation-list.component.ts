@@ -15,7 +15,7 @@ export class PresentationListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['wine_presentation.id', 'wine_presentation.name'];
     displayedColumns = ['wine_presentation.id', 'wine_presentation.name', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected _injector: Injector

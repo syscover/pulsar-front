@@ -16,7 +16,7 @@ export class WineryListComponent extends CoreListComponent
     public columnsSearch: string[] = ['wine_winery.id', 'wine_winery.name'];
     public displayedColumns = ['wine_winery.id', 'wine_winery.name', 'translations', 'actions'];
     public filters = [
-        {'command': 'where', 'column': 'wine_winery_lang.lang_id', 'operator': '=', 'value': this.baseLang }
+        {'command': 'where', 'column': 'wine_winery_lang.lang_id', 'operator': '=', 'value': this.baseLang.id }
     ];
 
     constructor(

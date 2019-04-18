@@ -74,7 +74,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             else if (this.dataRoute.action === 'edit')
             {
                 // disabled elements if edit different language that base lang
-                if (this.lang && this.lang.id !== this.baseLang) this.disableForm();
+                if (this.lang && this.lang.id !== this.baseLang.id) this.disableForm();
             }
         }
 
@@ -100,7 +100,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     {
         if (this.dataRoute.action === 'create') 
         {
-            this.lang = <Lang>_.find(this.langs, ['id', this.baseLang]); // get baseLang object
+            this.lang = <Lang>_.find(this.langs, {id: this.baseLang.id}); // get baseLang object
 
             // to create a new object, do all queries to get relations data to create new object
             this.relationsObject();
@@ -119,14 +119,14 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         // Create lang or edit object for objects with multi language
         if (this.params['lang_id'] !== undefined) 
         {
-            this.lang = <Lang>_.find(this.langs, {'id': this.params['lang_id']}); // get lang object
+            this.lang = <Lang>_.find(this.langs, {id: +this.params['lang_id']}); // get lang object
 
             // get baseLang record
             if (this.dataRoute.action === 'create-lang') 
             {
                 // create copy object for change readonly properties
                 const baseParams = _.clone(this.params); // clone object because params properties are read-only, you can use Object.assign({}, this.params)
-                baseParams['lang_id'] = this.baseLang; // set baseLang to get object
+                baseParams['lang_id'] = this.baseLang.id; // set baseLang to get object
 
                 this.getRecord(baseParams); // get baseLang object
             }

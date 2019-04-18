@@ -16,7 +16,7 @@ export class ArticleListComponent extends CoreListComponent
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_article.slug', 'cms_section.id', 'cms_section.name'];
     displayedColumns = ['cms_article.id', 'cms_article.name', 'cms_article.publish', 'cms_section.name', 'status_id', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
     statuses: Status[] = [];
 
     constructor(
@@ -30,7 +30,7 @@ export class ArticleListComponent extends CoreListComponent
     {    
         args['config'] = {
             key: 'pulsar-cms.statuses',
-            lang: this.baseLang,
+            lang: this.baseLang.id,
             property: 'name'
         };
 

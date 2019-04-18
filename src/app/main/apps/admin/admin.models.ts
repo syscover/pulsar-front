@@ -1,3 +1,5 @@
+import { Lang as  LangInterface } from '@horus/types/lang';
+
 export class Action
 {
     ix: number;
@@ -156,10 +158,10 @@ export class Frequency
     name: string;
 }
 
-export class Lang
+export class Lang implements LangInterface
 {
-    ix: number;
-    id: string;
+    id: number;
+    code: string;
     name: string;
     icon: string;
     sort: number;
@@ -241,6 +243,7 @@ export class User
     name: string;
     surname: string;
     lang_id: string;
+    lang: Lang;
     email: string;
     profile_id: number;
     profile: Profile;

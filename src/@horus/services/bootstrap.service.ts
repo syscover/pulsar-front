@@ -33,7 +33,7 @@ export class BootstrapService
                             .subscribe((bootstrapConfig) => {
                                 // merge config from database with static config from config.json
                                 // init config service
-                                this._configService.set(Object.assign({}, config, bootstrapConfig));
+                                this._configService.set(Object.assign({}, config, bootstrapConfig['data']));
                                 resolve(true);
                             },
                             (error: any) => {

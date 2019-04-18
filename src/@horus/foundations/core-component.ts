@@ -19,7 +19,7 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
     showSpinner = false;
     translateService: TranslateService;
     baseUri: string;                            // baseUri to set component urls in template, this property must to be public because is used in template
-    baseLang: string;                           // base language of application, this variable is required for multi-language objects
+    baseLang: Lang;                             // base language of application, this variable is required for multi-language objects
     packagePath: string;                        // path of package and resource
     resourcePath: string;
     objectTranslation: string;                  // translation key from current object

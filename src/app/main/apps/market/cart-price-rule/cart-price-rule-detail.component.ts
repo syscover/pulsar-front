@@ -61,7 +61,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
     {
         const configDiscountTypes = {
             key: 'pulsar-market.discount_types',
-            lang: this.baseLang,
+            lang: this.baseLang.id,
             property: 'name'
         };
 
@@ -98,7 +98,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
             if (this.dataRoute.action === 'create-lang') 
             {
                 this.name = this.object.names.find((el) => {
-                    return el['id'] === this.baseLang;
+                    return el['id'] === this.baseLang.id;
                 })['value'];
 
                 // set name field
@@ -107,7 +107,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
                 // set description field
                 this.fg.controls['description'].setValue(
                     this.object.descriptions.find((el) => {
-                        return el['id'] === this.baseLang;
+                        return el['id'] === this.baseLang.id;
                     })['value']
                 );
 
@@ -137,7 +137,7 @@ export class CartPriceRuleDetailComponent extends CoreDetailComponent
                 }
 
                 // disabled elemetns if edit diferent language that base lang
-                if (this.lang.id !== this.baseLang) this.disabledForm();
+                if (this.lang.id !== this.baseLang.id) this.disabledForm();
             }
         }
     } 

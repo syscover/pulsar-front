@@ -15,7 +15,7 @@ export class PaymentMethodListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['market_payment_method.id', 'market_payment_method.name'];
     displayedColumns = ['market_payment_method.id', 'market_payment_method.name', 'market_payment_method.active', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected injector: Injector

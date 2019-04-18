@@ -50,7 +50,7 @@ export class CategoryDetailComponent extends CoreDetailComponent
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang.id
             },
             {
                 command: 'orderBy',

@@ -15,7 +15,7 @@ export class CategoryListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['cms_category.id', 'cms_category.name', 'cms_section.name'];
     displayedColumns = ['cms_category.id', 'cms_category.name', 'cms_section.name', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected injector: Injector

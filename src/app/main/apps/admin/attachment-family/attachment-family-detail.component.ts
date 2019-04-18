@@ -59,7 +59,7 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
             },
             configFitTypes : {
                 key: 'pulsar-admin.fit_types',
-                lang: this.baseLang,
+                lang: this.baseLang.id,
                 property: 'name'
             }
         };

@@ -44,7 +44,7 @@ export class TaxRateZoneDetailComponent extends CoreDetailComponent
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang.id
             },
             {
                 command: 'orderBy',

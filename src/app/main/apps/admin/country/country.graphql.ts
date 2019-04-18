@@ -1,9 +1,13 @@
 import gql from 'graphql-tag';
+import { graphQL as adminLangGraphQL } from '../lang/lang.graphql';
 
 const fields = `
     ix
     id
     lang_id
+    lang {
+        ${adminLangGraphQL.fields}
+    }
     name
     slug
     sort
@@ -64,7 +68,7 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation AdminDeleteCountry ($id:String! $lang_id:String!) {
+        mutation AdminDeleteCountry ($id:String! $lang_id:Int!) {
             adminDeleteCountry (id:$id lang_id:$lang_id) {
                 ${fields}
             }

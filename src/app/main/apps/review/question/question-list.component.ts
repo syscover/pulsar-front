@@ -15,7 +15,7 @@ export class QuestionListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['review_question.id', 'review_question.name'];
     displayedColumns = ['review_question.id', 'review_question.name', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected injector: Injector

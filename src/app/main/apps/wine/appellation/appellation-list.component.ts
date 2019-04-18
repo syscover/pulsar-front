@@ -15,7 +15,7 @@ export class AppellationListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['wine_appellation.id', 'wine_appellation.name'];
     displayedColumns = ['wine_appellation.id', 'wine_appellation.name', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
 
     constructor(
         protected _injector: Injector

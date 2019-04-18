@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { environment } from 'environments/environment';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import { AuthenticationService } from '@horus/services/authentication.service';
-import '@horus/functions/array-random.function';
 import { AuthorizationService } from '@horus/services/authorization.service';
 import { ConfigService } from '@horus/services/config.service';
+import '@horus/functions/array-random.function';
+import { environment } from 'environments/environment';
 import { horusConfig } from 'app/horus-config';
+import { User } from 'app/main/apps/admin/admin.models';
 
 @Component({
     selector   : 'dh2-login',
@@ -103,14 +104,16 @@ export class LoginComponent implements OnInit
                 // set token
                 localStorage.setItem('access_token', response['access_token']);
 
+                const user = <User>response['user'];
+
                 // set logged user
-                localStorage.setItem('user_logged',  btoa(JSON.stringify(response['user'])));
+                localStorage.setItem('user_logged',  btoa(JSON.stringify(user)));
 
                 this.authorizationService.refreshPermissions();
 
                 // @HORUS
                 // Use the user language for translations
-                this._translateService.use(response['user']['lang_id']);
+                this._translateService.use(user.lang.code);
 
                 // remember me function
                 // if (this.loginForm.value.remember_me)

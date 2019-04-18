@@ -55,7 +55,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
         const configFrequencies = {
             key: 'pulsar-admin.frequencies',
-            lang: this.baseLang,
+            lang: this.baseLang.id,
             property: 'name'
         };
 

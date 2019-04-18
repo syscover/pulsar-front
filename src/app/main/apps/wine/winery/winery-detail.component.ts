@@ -95,7 +95,7 @@ export class WineryDetailComponent extends CoreDetailComponent implements OnInit
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang.id
             },
             {
                 command: 'orderBy',

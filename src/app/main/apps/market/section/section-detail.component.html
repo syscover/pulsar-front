@@ -71,9 +71,9 @@
                 <button mat-raised-button
                         class="mat-red-400-bg primary-text mt-16 mt-sm-0"
                         [disabled]="loadingTranslationButton"
-                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang"
+                        *ngIf="dataRoute.action ==='edit' && lang.id !== baseLang.id"
                         (click)="deleteRecord(object)">
-                    <span *ngIf="lang.id !== baseLang">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
+                    <span *ngIf="lang.id !== baseLang.id">{{ 'APPS.DELETE_TRANSLATION' | translate }}</span>
                     <mat-spinner *ngIf="loadingTranslationButton" mode="indeterminate" diameter="17"></mat-spinner>
                 </button>
             </div>

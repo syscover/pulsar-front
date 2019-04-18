@@ -15,7 +15,7 @@ export class Question
 {
     ix: number;
     id: number;
-    lang_id: string;
+    lang_id: number;
     poll_id: number;
     type_id: number;
     name: string;

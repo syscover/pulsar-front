@@ -17,7 +17,7 @@ export class FieldValueListComponent extends CoreListComponent
     displayedColumns = ['admin_field_value.id', 'admin_field_value.name', 'translations', 'actions'];
     field_id: number;
     filters = [
-        {'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang},
+        {'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id},
         {'command': 'where', 'column': 'admin_field_value.field_id', 'operator': '=', 'value': this.params['field_id']}
     ];
 

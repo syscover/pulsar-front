@@ -139,7 +139,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     argumentsRelationsObject(): object
     {
         // marketable component
-        const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang, this.params['lang_id'], this.params['product_id'], 'Syscover\\Forem\\Models\\Group');
+        const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang.id, this.params['lang_id'], this.params['product_id'], 'Syscover\\Forem\\Models\\Group');
 
         const configTargets = {
             key: 'pulsar-forem.targets'
@@ -166,7 +166,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang'] ? this.params['lang'] : this.baseLang
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang.id
             },
             {
                 command: 'orderBy',

@@ -163,7 +163,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
                 command: 'where',
                 column: 'cms_article.lang_id',
                 operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang.id
             },
             {
                 command: 'orderBy',
@@ -217,13 +217,13 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang
+                value: this.params['lang_id'] ? this.params['lang_id'] : this.baseLang.id
             }
         ];
 
         const configStatuses = {
             key: 'pulsar-cms.statuses',
-            lang: this.baseLang,
+            lang: this.baseLang.id,
             property: 'name'
         };
 

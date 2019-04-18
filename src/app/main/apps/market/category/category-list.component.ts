@@ -16,7 +16,7 @@ export class CategoryListComponent extends CoreListComponent
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['market_category.id', 'market_category.name'];
     displayedColumns = ['market_category.id', 'market_category.name', 'market_category.parent_id', 'market_category.active', 'translations', 'actions'];
-    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang }];
+    filters = [{'command': 'where', 'column': 'lang_id', 'operator': '=', 'value': this.baseLang.id }];
     categories: Category[] = [];
 
     constructor(
@@ -31,7 +31,7 @@ export class CategoryListComponent extends CoreListComponent
             command: 'where',
             column: 'lang_id',
             operator: '=',
-            value: this.baseLang
+            value: this.baseLang.id
         }];
 
         return args;
