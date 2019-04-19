@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { NumberPipeDirective } from './number-pipe.directive';
-import { SlugDirective } from './slug.directive';
 
 @NgModule({
-    imports: [
+    declarations: [
+        NumberPipeDirective
     ],
     exports: [
-        NumberPipeDirective,
-        SlugDirective
-    ],
-    declarations: [
-        NumberPipeDirective,
-        SlugDirective
+        NumberPipeDirective
     ]
 })
-export class DirectivesModule
-{
-}
+export class DirectivesModule {}

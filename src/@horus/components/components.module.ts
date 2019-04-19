@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule } from '@angular/material';
-import { AttachmentsModule } from './attachments/attachments.module';
-import { DatepickerModule } from './datepicker/datepicker.module';
-import { FilterHeaderCellModule } from './filter-header-cell/filter-header-cell.module';
-import { FlagIconModule } from './flag-icon/flag-icon.module';
-import { FroalaModule } from './froala/froala.module';
-import { ImageInputModule } from './image-input/image-input.module';
-import { ListItemsModule } from './list-items/list-items.module';
-import { LocationMapModule } from './location-map/location-map.module';
-import { MarketableModule } from './marketable/marketable.module';
-import { StockableModule } from './stockable/stockable.module';
-import { TerritoriesModule } from './territories/territories.module';
-import { UpdateModule } from './update/update.module';
-import { ConfirmationDialogModule } from './confirmation-dialog/confirmation-dialog.module';
+import { AttachmentsModule } from '@horus/components/attachments/attachments.module';
+import { ConfirmationDialogModule } from '@horus/components/confirmation-dialog/confirmation-dialog.module';
+import { DatepickerModule } from '@horus/components/datepicker/datepicker.module';
+import { FilterHeaderCellModule } from '@horus/components/filter-header-cell/filter-header-cell.module';
+import { FlagIconModule } from '@horus/components/flag-icon/flag-icon.module';
+import { FroalaModule } from '@horus/components/froala/froala.module';
+import { ImageInputModule } from '@horus/components/image-input/image-input.module';
+import { ListItemsModule } from '@horus/components/list-items/list-items.module';
+import { LocationMapModule } from '@horus/components/location-map/location-map.module';
+import { MarketableModule } from '@horus/components/marketable/marketable.module';
+import { StockableModule } from '@horus/components/stockable/stockable.module';
+import { SlugModule } from '@horus/components/slug/slug.module';
+import { TerritoriesModule } from '@horus/components/territories/territories.module';
+import { UpdateModule } from '@horus/components/update/update.module';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import { ConfirmationDialogModule } from './confirmation-dialog/confirmation-dia
         MatDialogModule,
         MatFormFieldModule,
         MatIconModule,
+        SlugModule,
         StockableModule,
         TerritoriesModule,
         UpdateModule
@@ -48,10 +50,9 @@ import { ConfirmationDialogModule } from './confirmation-dialog/confirmation-dia
         LocationMapModule,
         MarketableModule,
         StockableModule,
+        SlugModule,
         TerritoriesModule,
         UpdateModule
     ]
 })
-export class ComponentsModule
-{
-}
+export class ComponentsModule {}

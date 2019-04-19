@@ -1,7 +1,7 @@
 import { Directive, Input, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MatFormFieldControl } from '@angular/material';
-import './../functions/number-decimals-length.function';
+import '@horus/functions/number-decimals-length.function';
 
 @Directive({
     selector: '[dh2NumberPipe]',
