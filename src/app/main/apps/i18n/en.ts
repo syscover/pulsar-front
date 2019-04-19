@@ -127,12 +127,6 @@ export const locale = {
             'ZIP': 'ZIP',
             'ZOOM': 'Zoom',
         },
-        'CONFIRM': {
-            'TITLE' : 'Confirm',
-            'QUESTION' : 'Do you want to confirm this operation?',
-            'OK' : 'Confirm',
-            'CANCEL' : 'Cancel',
-        },
         'PAGINATOR': {
             'ITEMS_PER_PAGE' : 'Items per page',
             'NEXT_PAGE' : 'Next page',

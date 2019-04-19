@@ -6,10 +6,10 @@ import { Core } from '@horus/foundations/core';
 import { HttpService } from '@horus/services/http.service';
 import { ConfirmationDialogComponent } from '@horus/components/confirmation-dialog/confirmation-dialog.component';
 import { Lang } from '@horus/types/lang';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map';
 import { DataRoute } from '@horus/types/data-route';
 import { horusConfig } from 'app/horus-config';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {

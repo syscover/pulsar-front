@@ -1,4 +1,5 @@
 import { Lang as  LangInterface } from '@horus/types/lang';
+import { Permission as  PermissionInterface } from '@horus/types/permission';
 
 export class Action
 {
@@ -177,7 +178,7 @@ export class Package
     sort: number;
 }
 
-export class Permission
+export class Permission implements PermissionInterface
 {
     profile_id: number;
     resource_id: string;

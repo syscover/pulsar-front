@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApolloService } from '@horus/services/apollo.service';
+import { ConfigService } from '@horus/services/config.service';
 import { throwError } from 'rxjs';
-import { ConfigService } from './config.service';
-import { ApolloService } from './apollo.service';
 
 @Injectable()
 export class BootstrapService

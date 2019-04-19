@@ -2,11 +2,11 @@ import { Injector, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CoreComponent } from '@horus/foundations/core-component';
-import '@horus/functions/string-capitalize.function';
 import { Lang } from '@horus/types/lang';
+import { ValidationMessageService } from '@horus/services/validation-message.service';
+import '@horus/functions/string-capitalize.function';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/takeUntil';
-import { ValidationMessageService } from '@horus/services/validation-message.service';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit
