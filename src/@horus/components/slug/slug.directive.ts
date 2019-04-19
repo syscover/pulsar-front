@@ -1,29 +1,26 @@
 import { Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { SlugService } from '@horus/components/slug/slug.service';
 import { Subject } from 'rxjs/Subject';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { from } from 'rxjs/observable/from';
 import { merge } from 'rxjs/observable/merge';
-import { SlugService } from '../services/slug.service';
 import { environment } from 'environments/environment';
 import { BehaviorSubject } from 'rxjs';
 
 @Directive({
-    selector: '[dh2Slug]',
-    providers: [
-        SlugService
-    ]
+    selector: '[dh2Slug]'
 })
-export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
-
+export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy
+{
     @Input() model;
     @Input() object: any;
     @Input() column = 'slug';
     @Input() value: string;
     @Output() checkingSlug = new EventEmitter<boolean>();
 
-    private _onDestroy = new Subject();
+    private $onDestroy = new Subject();
     private running = false; // boolean true when is consulting through Http
     private buffer: any;
     private value$: BehaviorSubject<string>;
@@ -118,14 +115,14 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
                     }
                 })
             )
-            .takeUntil(this._onDestroy)
+            .takeUntil(this.$onDestroy)
             .subscribe();
     }
 
     ngOnDestroy(): void
     {
-        this._onDestroy.next();
-        this._onDestroy.complete();
+        this.$onDestroy.next();
+        this.$onDestroy.complete();
         if (environment.debug) console.log('DEBUG - SlugDirective destroyed');
     }
 }

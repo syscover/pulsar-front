@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from '@horus/services/http.service';
 import gql from 'graphql-tag';
 import { first } from 'rxjs/operators/first';
 
