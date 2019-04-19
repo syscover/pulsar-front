@@ -25,6 +25,4 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     providers: [
     ],
 })
-export class TerritoriesModule
-{
-}
+export class TerritoriesModule {}

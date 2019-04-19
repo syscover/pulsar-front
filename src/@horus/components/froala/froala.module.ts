@@ -18,6 +18,4 @@ import 'froala-editor/js/froala_editor.pkgd.min.js';
     ],
     providers: [],
 })
-export class FroalaModule
-{
-}
+export class FroalaModule {}

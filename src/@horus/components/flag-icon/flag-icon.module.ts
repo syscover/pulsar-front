@@ -14,6 +14,4 @@ import { FlagIconComponent } from './flag-icon.component';
     ],
     providers: [],
 })
-export class FlagIconModule
-{
-}
+export class FlagIconModule {}

@@ -25,6 +25,4 @@ import { LocationMapComponent } from './location-map.component';
     providers: [
     ],
 })
-export class LocationMapModule
-{
-}
+export class LocationMapModule {}

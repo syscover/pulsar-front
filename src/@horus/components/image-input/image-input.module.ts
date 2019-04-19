@@ -11,6 +11,4 @@ import { ImageInputComponent } from './image-input.component';
         ImageInputComponent
     ]
 })
-export class ImageInputModule
-{
-}
+export class ImageInputModule {}

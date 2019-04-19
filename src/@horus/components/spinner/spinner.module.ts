@@ -16,5 +16,4 @@ import { SpinnerComponent } from './spinner.component';
     ],
     providers: [],
 })
-export class SpinnerModule
-{ }
+export class SpinnerModule {}

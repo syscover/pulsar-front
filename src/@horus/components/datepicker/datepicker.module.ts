@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatePickerComponent } from './datepicker.component';
+import { DatePickerComponent } from '@horus/components/datepicker/datepicker.component';
 import {
     MatDatepickerModule,
     MatFormFieldModule,
@@ -24,6 +24,4 @@ import {
         DatePickerComponent
     ]
 })
-export class DatepickerModule
-{
-}
+export class DatepickerModule {}

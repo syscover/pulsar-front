@@ -42,6 +42,4 @@ import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
         DynamicFormService
     ],
 })
-export class DynamicFormModule
-{
-}
+export class DynamicFormModule {}
