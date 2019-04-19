@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule, MatMenuModule, MatInputModule, MatIconModule, MatSelectModule, MatTableModule, MatSortModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-import { FilterHeaderCellComponent } from './filter-header-cell.component';
-import { FilterItemDirective } from './filter-item.directive';
-import { locale as english } from './i18n/en';
-import { locale as spanish } from './i18n/es';
+import { FilterHeaderCellComponent } from '@horus/components/filter-header-cell/filter-header-cell.component';
+import { FilterItemDirective } from '@horus/components/filter-header-cell/filter-item.directive';
+import { locale as english } from '@horus/components/filter-header-cell/i18n/en';
+import { locale as spanish } from '@horus/components/filter-header-cell/i18n/es';
 
 @NgModule({
     declarations: [

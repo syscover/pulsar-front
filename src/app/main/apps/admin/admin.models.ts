@@ -1,5 +1,7 @@
-import { Lang as  LangInterface } from '@horus/types/lang';
-import { Permission as  PermissionInterface } from '@horus/types/permission';
+import {
+    Lang as  LangInterface,
+    Permission as  PermissionInterface,
+    User as  UserInterface } from '@horus/types';
 
 export class Action
 {
@@ -238,7 +240,7 @@ export class TerritorialArea3
     slug: string;
 }
 
-export class User
+export class User implements UserInterface
 {
     id: string;
     name: string;

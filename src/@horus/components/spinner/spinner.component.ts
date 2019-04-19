@@ -25,6 +25,7 @@ import { fuseAnimations } from '@fuse/animations';
     `]
 })
 
-export class SpinnerComponent {
+export class SpinnerComponent
+{
     @Input() show = true;
 }

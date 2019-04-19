@@ -21,4 +21,16 @@ export class MonumentListComponent extends CoreListComponent
     ) {
         super(injector, graphQL);
     }
+
+    // overwrite method to get statuses
+    getCustomArgumentsGetRecords(args: object): object
+    {
+        args['sql'].push({
+            command: 'orderBy',
+            operator: 'desc',
+            column: 'innova_concrete_monument.id'
+        });
+
+        return args;
+    }
 }

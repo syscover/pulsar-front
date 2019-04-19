@@ -39,8 +39,8 @@ import {
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
+import { SelectSearchService } from '@horus/services/select-search.service';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { SelectSearchService } from '../services/select-search.service';
 
 @NgModule({
     imports: [

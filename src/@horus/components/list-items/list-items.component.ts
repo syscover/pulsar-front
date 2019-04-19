@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { ItemDialogComponent } from './item-dialog.component';
+import { ItemDialogComponent } from '@horus/components/list-items/item-dialog.component';
 import { ConfirmationDialogComponent } from '@horus/components/confirmation-dialog/confirmation-dialog.component';
-import { ConfigFormControls } from './list-items.models';
+import { ConfigFormControls } from '@horus/components/list-items/types';
 import * as _ from 'lodash';
 
 @Component({

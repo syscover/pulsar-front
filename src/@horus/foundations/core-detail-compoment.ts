@@ -2,7 +2,7 @@ import { Injector, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CoreComponent } from '@horus/foundations/core-component';
-import { Lang } from '@horus/types/lang';
+import { Lang } from '@horus/types';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import '@horus/functions/string-capitalize.function';
 import { Observable } from 'rxjs/Observable';

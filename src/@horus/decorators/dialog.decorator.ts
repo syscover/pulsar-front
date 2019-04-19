@@ -1,6 +1,8 @@
-export interface DialogDecoratorInterface {
+export interface DialogDecoratorInterface
+{
     getObject: Function;
 }
+
 export function Dialog(): Function
 {
     return function(target: Function): void

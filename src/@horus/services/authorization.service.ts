@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad, Router, Route, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AuthenticationService } from './authentication.service';
-import { Permission } from '../../app/main/apps/admin/admin.models';
-import * as _ from 'lodash';
-import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '@horus/services/authentication.service';
+import { Permission } from '@horus/types';
+import { MatSnackBar } from '@angular/material';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AuthorizationService implements CanActivate, CanActivateChild, CanLoad

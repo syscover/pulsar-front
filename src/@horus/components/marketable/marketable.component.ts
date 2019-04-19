@@ -5,8 +5,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MarketableService } from './marketable.service';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'environments/environment';
-import { DataRoute } from '../../types/data-route';
-import { Lang } from '@horus/types/lang';
+import { DataRoute } from '@horus/types';
+import { Lang } from '@horus/types';
 import { CategoryDialogComponent } from './category-dialog.component';
 import * as _ from 'lodash';
 import { horusConfig } from 'app/horus-config';

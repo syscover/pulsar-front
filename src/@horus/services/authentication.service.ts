@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpService } from './http.service';
-import { User } from '../../app/main/apps/admin/admin.models';
+import { HttpService } from '@horus/services/http.service';
+import { User } from '@horus/types';
 import { Observable } from 'rxjs';
 
 @Injectable()

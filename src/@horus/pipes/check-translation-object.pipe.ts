@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Translatable } from '../types/translatable';
-import { Lang } from '@horus/types/lang';
+import { Translatable } from '@horus/types';
+import { Lang } from '@horus/types';
 
 @Pipe({
   name: 'checkTranslationObject'

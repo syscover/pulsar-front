@@ -1,7 +1,8 @@
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 
-export interface ChipsDecoratorInterface {
+export interface ChipsDecoratorInterface
+{
     addTag: Function;
     removeTag: Function;
 }

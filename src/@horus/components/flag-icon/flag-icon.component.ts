@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Lang } from '@horus/types/lang';
+import { Lang } from '@horus/types';
 
 @Component({
     selector: 'dh2-flag-icon',

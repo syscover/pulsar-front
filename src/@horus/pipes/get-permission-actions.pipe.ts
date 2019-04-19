@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Permission } from '@horus/types/permission';
+import { Permission } from '@horus/types';
 import * as _ from 'lodash';
 
 @Pipe({

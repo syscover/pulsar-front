@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { FuseNavigation, FuseNavigationItem } from '@fuse/types';
-import { ConfigService } from './config.service';
-import { Package } from '../../app/main/apps/admin/admin.models';
+import { FuseNavigation } from '@fuse/types';
+import { ConfigService } from '@horus/services/config.service';
+import { Application } from '@horus/types';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { environment } from 'environments/environment';
-import { AuthenticationService } from './authentication.service';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -34,12 +34,12 @@ export class NavigationService
     private checkPackages(navigation): any
     {
         const navigationResponse = [];
-        const packages: Package[] = this._configService.get('packages');
+        const packages: Application[] = this._configService.get('packages');
 
         // check if packages is publish
         for (const item of navigation)
         {
-            const pkg = <Package>_.find(packages, {root: item.id});
+            const pkg = <Application>_.find(packages, {root: item.id});
             if (pkg && pkg.active) navigationResponse.push(item);
         }
 

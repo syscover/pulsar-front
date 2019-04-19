@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ImageInputComponent } from './image-input.component';
+import { ImageInputComponent } from '@horus/components/image-input/image-input.component';
 
 @NgModule({
     imports: [

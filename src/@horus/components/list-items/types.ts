@@ -1,4 +1,5 @@
-export class ConfigFormControls {
+export class ConfigFormControls
+{
     name: string;
     control: any;
     type: string;

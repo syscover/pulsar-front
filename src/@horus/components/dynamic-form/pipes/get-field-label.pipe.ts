@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Lang } from '@horus/types/lang';
+import { Lang } from '@horus/types';
 import { Field } from 'app/main/apps/admin/admin.models';
 
 @Pipe({

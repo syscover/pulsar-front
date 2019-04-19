@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NumberPipeDirective } from './number-pipe.directive';
+import { NumberPipeDirective } from '@horus/directives/number-pipe.directive';
 
 @NgModule({
     declarations: [

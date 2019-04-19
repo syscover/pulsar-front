@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlagIconComponent } from './flag-icon.component';
+import { FlagIconComponent } from '@horus/components/flag-icon/flag-icon.component';
 
 @NgModule({
     imports: [

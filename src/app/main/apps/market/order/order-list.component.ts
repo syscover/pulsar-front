@@ -22,7 +22,7 @@ export class OrderListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    // overwite method to get statuses
+    // overwrite method to get statuses
     getCustomArgumentsGetRecords(args: object): object
     {    
         args['sql'].push({
