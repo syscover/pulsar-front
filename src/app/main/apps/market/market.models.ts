@@ -4,7 +4,7 @@ export class Category
 {
     ix: number;
     id: number;
-    lang_id: string;
+    lang_id: number;
     lang: Lang;
     parent: number;
     name: string;
@@ -33,7 +33,7 @@ export class Marketable
     ends_at: any;
     fixed_cost: number;
     lang: Lang;
-    lang_id: string;
+    lang_id: number;
     limited_capacity: number;
     name: string;
     parent_id; number;
@@ -101,7 +101,7 @@ export class OrderStatus
 {
     ix: number;
     id: number;
-    lang_id: string;
+    lang_id: number;
     lang: Lang;
     name: string;
     active: boolean;
@@ -111,7 +111,7 @@ export class OrderStatus
 export class PaymentMethod 
 {
     id: number;
-    lang_id: string;
+    lang_id: number;
     lang: Lang;
     name: string;
     order_status_successful_id: number;
@@ -243,7 +243,7 @@ export class Order
 export class OrderRow 
 {
     id: number;
-    lang_id: string;
+    lang_id: number;
     order_id: number;
     product_id: number;
     name: string;

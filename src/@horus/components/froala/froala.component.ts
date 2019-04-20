@@ -1,7 +1,7 @@
 import { Component, Renderer2, Input, OnInit, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService } from '../../services/config.service';
+import { ConfigService } from '@horus/services/config.service';
 import { AttachmentFamily } from 'app/main/apps/admin/admin.models';
 import * as _ from 'lodash';
 declare const jQuery: any;

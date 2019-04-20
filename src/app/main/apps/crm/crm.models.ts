@@ -7,7 +7,7 @@ export class CustomerGroup
 export class Customer 
 {
     id: number;
-    lang_id: string;
+    lang_id: number;
     remember_token: string;
     group_id: number;
     date: any;

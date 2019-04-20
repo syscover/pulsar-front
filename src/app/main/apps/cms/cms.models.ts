@@ -43,7 +43,7 @@ export class Section
 export class Tag 
 {
     id: number;
-    lang_id: string;
+    lang_id: number;
     name: string;
 }
 
@@ -51,7 +51,7 @@ export class Category
 {
     ix: number;
     id: number;
-    lang_id: string;
+    lang_id: number;
     name: string;
     slug: string;
     section_id: number;
@@ -64,7 +64,7 @@ export class Article
 {
     ix: number;
     id: number;
-    lang_id: string;
+    lang_id: number;
     parent_id: number;
     name: string;
     author_id: number;

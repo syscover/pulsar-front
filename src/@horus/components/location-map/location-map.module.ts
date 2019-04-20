@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { AgmCoreModule } from '@agm/core';
-import { LocationMapComponent } from './location-map.component';
+import { LocationMapComponent } from '@horus/components/location-map/location-map.component';
 
 @NgModule({
     imports: [

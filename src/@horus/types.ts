@@ -52,7 +52,7 @@ export interface User
     id: string;
     name: string;
     surname: string;
-    lang_id: string;
+    lang_id: number;
     lang: Lang;
     email: string;
     profile_id: number;
