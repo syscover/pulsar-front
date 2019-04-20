@@ -97,17 +97,13 @@
                                     <button mat-menu-item 
                                         *ngIf="(row | actionTranslationObject:lang) === 'edit'" 
                                         [routerLink]="[baseUri + '/show', lang.id, row.id]">
-                                        <dh2-flag-icon [lang]="lang" [rounded]="true">
-                                            {{ 'APPS.EDIT' | translate }}
-                                        </dh2-flag-icon>
+                                        <dh2-flag-icon [lang]="lang" [rounded]="true">{{ 'APPS.EDIT' | translate }}</dh2-flag-icon>
                                     </button>
 
                                     <button mat-menu-item 
                                         *ngIf="(row | actionTranslationObject:lang) === 'create'" 
                                         [routerLink]="[baseUri + '/create', lang.id, row.id]">
-                                        <dh2-flag-icon [lang]="lang" [rounded]="true">
-                                            {{ 'APPS.TRANSLATE' | translate }}
-                                        </dh2-flag-icon>
+                                        <dh2-flag-icon [lang]="lang" [rounded]="true">{{ 'APPS.TRANSLATE' | translate }}</dh2-flag-icon>
                                     </button>
                                     
                                 </ng-container>
