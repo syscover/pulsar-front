@@ -15,6 +15,7 @@ export interface DataRoute
 export interface HorusConfig
 {
     fieldAppearance: 'legacy' | 'standard' | 'fill' | 'outline';
+    graphQLMock: boolean;
 }
 
 export interface Lang

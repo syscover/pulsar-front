@@ -260,7 +260,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     async getRecords(sort: string, order: string, offset: number, limit: number, searchText: string) 
     {
         // set params
-        const args = this.argumentsGetRecords(sort, order, offset, limit, searchText);
+        const args = this.horusConfig.graphQLMock ? {} : this.argumentsGetRecords(sort, order, offset, limit, searchText);
 
         if (this.env.debug) console.log('DEBUG - Args pass to Query Objects Pagination: ', args);
 
@@ -268,7 +268,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             .apolloClient()
             .watchQuery({
                 query: this.graphQL.queryPaginationObject,
-                variables: args
+                variables: this.horusConfig.mockGraphQL ? {} : args
             })
             .valueChanges
             .pipe(

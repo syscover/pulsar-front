@@ -66,22 +66,24 @@ export class ApolloService
             }
         });
 
-        this.apollo.create({
-            link: this.httpLink.create({ uri: graphQLUrl }),
-            cache: cache,
-            defaultOptions: {
-                watchQuery: {
-                    fetchPolicy: 'network-only',
-                    errorPolicy: 'all'
-                },
-                query: {
-                    fetchPolicy: 'network-only',
-                    errorPolicy: 'all'
-                },
-                mutate: {
-                    errorPolicy: 'all'
+        this
+            .apollo
+            .create({
+                link: this.httpLink.create({ uri: graphQLUrl }),
+                cache: cache,
+                defaultOptions: {
+                    watchQuery: {
+                        fetchPolicy: 'network-only',
+                        errorPolicy: 'all'
+                    },
+                    query: {
+                        fetchPolicy: 'network-only',
+                        errorPolicy: 'all'
+                    },
+                    mutate: {
+                        errorPolicy: 'all'
+                    }
                 }
-            }
-        });
+            });
     }
 }
