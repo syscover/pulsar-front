@@ -268,7 +268,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
             .apolloClient()
             .watchQuery({
                 query: this.graphQL.queryPaginationObject,
-                variables: this.horusConfig.mockGraphQL ? {} : args
+                variables: this.horusConfig.graphQLMock ? {} : args
             })
             .valueChanges
             .pipe(
