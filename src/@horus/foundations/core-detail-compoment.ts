@@ -325,7 +325,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
         if (this.dataRoute.action === 'create-lang')
         {
-            // remove id to avoid confict with duplicate id
+            // remove id to avoid conflict with duplicate id
             delete args['payload']['ix'];
 
             // call method that can to be overwrite by children

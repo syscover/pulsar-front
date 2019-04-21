@@ -180,13 +180,12 @@
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.date">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
-                                        <mat-label>{{ 'APPS.DATE' | translate }}</mat-label>
-                                        <input matInput [matDatepicker]="date" formControlName="date">
-                                        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-                                        <mat-datepicker #date></mat-datepicker>
-                                        <mat-error>{{ formErrors?.date }}</mat-error>
-                                    </mat-form-field>                                    
+                                    <dh2-datepicker class="col-12 col-md-5"
+                                                    label="{{ 'APPS.DATE' | translate }}"
+                                                    format="YYYY-MM-DD"
+                                                    formControlName="date"
+                                                    [errors]="formErrors">
+                                    </dh2-datepicker>
                                 </div>
 
                                 <div fxLayout="row" *ngIf="family?.title">

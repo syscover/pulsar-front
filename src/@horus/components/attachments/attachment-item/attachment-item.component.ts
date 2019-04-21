@@ -82,9 +82,10 @@ export class AttachmentItemComponent implements OnInit
     setShowCropButton(): void
     {
         if (
+            this.familySelect && (
             this.familySelect.fit_type === CROP_FIT ||
             this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
-            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT
+            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT)
         )
         {
             this.showCropButton = true;

@@ -2,12 +2,12 @@ import { Component, Input, Optional, Self, OnInit, ViewChild } from '@angular/co
 import { ControlValueAccessor, FormControl, FormControlName, NgControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ErrorStateMatcher, MatFormFieldControl, MatInput } from '@angular/material';
-const moment = require('moment');
+import * as moment from 'moment';
 
 @Component({
     selector: 'dh2-datepicker',
     template: `
-        <mat-form-field>
+        <mat-form-field [class]="class">
             <mat-label>{{ label }}</mat-label>
             <input matInput
                    #input
@@ -16,8 +16,7 @@ const moment = require('moment');
                    [matDatepicker]="picker" 
                    [value]="value"
                    (dateInput)="handleInput('input', $event)">
-            <mat-datepicker-toggle matSuffix 
-                                   [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error>{{ errors[controlName] }}</mat-error>
         </mat-form-field>
@@ -33,79 +32,103 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit
 {
     @Input() format = 'YYYY-MM-DD HH:mm:ss';
     @Input() label: string;
+    @Input() class: string;
     @Input() required = false;
+    @Input() debug = false;
     @Input() errors: object = {};
-    controlName: String;
-
-    ngControl: NgControl;
-
 
     @Input()
-    get errorStateMatcher(): ErrorStateMatcher {
-        return this.input.errorStateMatcher;
-    }
-    set errorStateMatcher(val) {
-        this.input.errorStateMatcher = val;
-    }
-
-    @Input()
-    get placeholder(): string {
-        return this.input.placeholder;
-    }
-    set placeholder(plh) {
-        this.input.placeholder = plh;
-    }
-
-    get errorState() {
-        return this.ngControl.errors !== null && !!this.ngControl.touched;
-    }
-
-    get value(): string { return moment(this._value, this.format); }
-    set value(val) {
-        if (moment(val).isValid()) {
-            this._value = moment(val).format(this.format);
+    get value(): moment.Moment
+    {
+        if (moment(this._value, this.format).isValid())
+        {
+            return moment(this._value, this.format);
         }
-        else {
+        else
+        {
+            return null;
+        }
+    }
+    set value(value)
+    {
+        if (this.debug) console.log('DEBUG - dh2-datepicker set value: ' + value);
+
+        if (moment(value).isValid())
+        {
+            this._value = moment(value).format(this.format);
+        }
+        else
+        {
             this._value = '';
         }
         this.propagateChange(this._value);
     }
-    @Input() _value;
+
+    @Input()
+    get errorStateMatcher(): ErrorStateMatcher
+    {
+        return this.input.errorStateMatcher;
+    }
+    set errorStateMatcher(value)
+    {
+        this.input.errorStateMatcher = value;
+    }
+    @Input()
+    get placeholder(): string
+    {
+        return this.input.placeholder;
+    }
+    set placeholder(plh)
+    {
+        this.input.placeholder = plh;
+    }
 
     @ViewChild('input')
     input: MatInput;
 
+    controlName: String;
     control: FormControl;
+    propagateChange = (_: any) => { };
+    private _value: string;
 
     constructor(
-        @Optional() @Self() ngControl: NgControl,
-        @Optional() private _controlName: FormControlName) {
-        if (ngControl) {
-            ngControl.valueAccessor = this;
-        }
+        @Optional() @Self() private _ngControl: NgControl,
+        @Optional() private _controlName: FormControlName
+    )
+    {
+        if (_ngControl) _ngControl.valueAccessor = this;
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void
+    {
         this.control = this._controlName.control;
         this.controlName = this._controlName.name;
     }
 
-    handleInput(type: string, event: MatDatepickerInputEvent<Date>): void {
+    handleInput(type: string, event: MatDatepickerInputEvent<Date>): void
+    {
+        if (this.debug) console.log('DEBUG - dh2-datepicker with name: ' + this._ngControl.name + ' change with value: ', event.value);
         this.value = moment(event.value, this.format);
     }
 
     // initialise the value.
-    writeValue(value: any): void {
-        this.value = moment(value, this.format);
+    writeValue(value: any): void
+    {
+        if (this.debug) console.log('DEBUG - dh2-datepicker with name: ' + this._ngControl.name + ' init value: ', value);
+        if (moment(value).isValid())
+        {
+            this.value = moment(value, this.format);
+        }
+        else
+        {
+            this.value = null;
+        }
     }
-
-
-
-    propagateChange = (_: any) => { };
 
     // Registers a callback function is called by the forms API on initialization
     // to update the form model on blur.
-    registerOnChange(fn): void {
+    registerOnChange(fn): void
+    {
         this.propagateChange = fn;
     }
 

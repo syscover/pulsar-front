@@ -20,8 +20,8 @@ export interface HorusConfig
 
 export interface Lang
 {
-    id: number;
-    code: string;       // ISO 639-1 code
+    ix: number;
+    id: string;       // ISO 639-1 code
     name: string;
     icon: string;
     sort: number;
