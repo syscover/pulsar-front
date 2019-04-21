@@ -68,7 +68,7 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation CmsDeleteCategory ($id:Int! $lang_id:Int!) {
+        mutation CmsDeleteCategory ($id:Int! $lang_id:String!) {
             cmsDeleteCategory (id:$id lang_id:$lang_id) {
                 ${fields}
             }

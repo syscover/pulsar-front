@@ -28,7 +28,7 @@ export class AttachmentLibrary
 export class Attachment extends AttachmentLibrary
 {
     ix: number;
-    lang_id: number;
+    lang_id: string;
     object_id: number;
     object_type: string;
     family_id: number;
@@ -65,7 +65,7 @@ export class AttachmentMime
 export class Country
 {
     id: string;
-    lang_id: number;
+    lang_id: string;
     lang: Lang;
     name: string;
     slug: string;
@@ -146,7 +146,7 @@ export class FieldValue
     ix: number;
     id: string;
     counter: number;
-    lang_id: number;
+    lang_id: string;
     field_id: number;
     name: string;
     sort: string;
@@ -163,8 +163,8 @@ export class Frequency
 
 export class Lang implements LangInterface
 {
-    id: number;
-    code: string;
+    ix: number;
+    id: string;
     name: string;
     icon: string;
     sort: number;
@@ -245,7 +245,7 @@ export class User implements UserInterface
     id: string;
     name: string;
     surname: string;
-    lang_id: number;
+    lang_id: string;
     lang: Lang;
     email: string;
     profile_id: number;

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const fields = `
+    ix
     id
-    code
     name 
     icon 
     sort 

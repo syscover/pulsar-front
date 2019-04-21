@@ -58,7 +58,7 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation AdminDeleteFieldValue ($id:String! $lang_id:Int! $field_id:Int!) {
+        mutation AdminDeleteFieldValue ($id:String! $lang_id:String! $field_id:Int!) {
             adminDeleteFieldValue (id:$id lang_id:$lang_id field_id:$field_id) {
                 ${fields}
             }

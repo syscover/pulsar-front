@@ -44,7 +44,7 @@ export interface Profile
 
 export interface Translatable
 {
-    data_lang: number[];
+    data_lang: string[];
 }
 
 export interface User
@@ -52,7 +52,7 @@ export interface User
     id: string;
     name: string;
     surname: string;
-    lang_id: number;
+    lang_id: string;
     lang: Lang;
     email: string;
     profile_id: number;

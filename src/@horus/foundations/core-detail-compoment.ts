@@ -38,10 +38,56 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         this.init();
     }
 
+    init(): void
+    {
+        if (this.dataRoute.action === 'create') 
+        {
+            this.lang = <Lang>_.find(this.langs, ['id', this.baseLang.id]); // get baseLang object
+
+            // to create a new object, do all queries to get relations data to create new object
+            this.relationsObject();
+
+            // set lang_id if form has this field
+            // call after setData() to overwrite lang_id field with correct value
+            if (this.fg.contains('lang_id')) 
+            {
+                this.fg.patchValue({
+                    lang_id: this.lang.id // set lang id in form from object with multiple language
+                });
+            }
+            return;
+        }
+
+        // Create lang or edit object for objects with multi language
+        if (this.params['lang_id'] !== undefined) 
+        {
+            this.lang = <Lang>_.find(this.langs, ['id', this.params['lang_id']]); // get lang object
+
+            // get baseLang record
+            if (this.dataRoute.action === 'create-lang') 
+            {
+                // create copy object for change readonly properties
+                const baseParams = _.clone(this.params); // clone object because params properties are read-only, you can use Object.assign({}, this.params)
+                baseParams['lang_id'] = this.baseLang.id; // set baseLang to get object
+
+                this.getRecord(baseParams); // get baseLang object
+            }
+            else if (this.dataRoute.action === 'edit') 
+            {
+                this.getRecord(this.params);
+            }
+        } 
+        else 
+        {
+            // edit object without multilanguague and create lang
+            this.getRecord(this.params);
+        }
+    }
+
     // Function that can to be overwrite in child class
     setData(response?): void
     {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang')
         {
             this.object = response; // function to set custom data
 
@@ -52,7 +98,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             this.afterPatchValueEdit();
 
             // only form objects with create lang action
-            if (this.dataRoute.action === 'create-lang') 
+            if (this.dataRoute.action === 'create-lang')
             {
                 this.fg.patchValue({
                     // set lang id in form from object with multiple language
@@ -95,52 +141,6 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
 
     // method that will be overwrite
     createForm(): void {}
-
-    init(): void
-    {
-        if (this.dataRoute.action === 'create') 
-        {
-            this.lang = <Lang>_.find(this.langs, {id: this.baseLang.id}); // get baseLang object
-
-            // to create a new object, do all queries to get relations data to create new object
-            this.relationsObject();
-
-            // set lang_id if form has this field
-            // call after setData() to overwrite lang_id field with correct value
-            if (this.fg.contains('lang_id')) 
-            {
-                this.fg.patchValue({
-                    lang_id: this.lang.id // set lang id in form from object with multiple language
-                });
-            }
-            return;
-        }
-
-        // Create lang or edit object for objects with multi language
-        if (this.params['lang_id'] !== undefined) 
-        {
-            this.lang = <Lang>_.find(this.langs, {id: +this.params['lang_id']}); // get lang object
-
-            // get baseLang record
-            if (this.dataRoute.action === 'create-lang') 
-            {
-                // create copy object for change readonly properties
-                const baseParams = _.clone(this.params); // clone object because params properties are read-only, you can use Object.assign({}, this.params)
-                baseParams['lang_id'] = this.baseLang.id; // set baseLang to get object
-
-                this.getRecord(baseParams); // get baseLang object
-            }
-            else if (this.dataRoute.action === 'edit') 
-            {
-                this.getRecord(this.params);
-            }
-        } 
-        else 
-        {
-            // edit object without multilanguague and create lang
-            this.getRecord(this.params);
-        }
-    }
 
     // function to get record in edit action or create lang action
     getRecord(params: Params): void
@@ -229,7 +229,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             let options;
 
             // check if there are any variable
-            if (args) {
+            if (args)
+            {
                 options = {
                     query: this.graphQL.queryRelationsObject,
                     variables: args

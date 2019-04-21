@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit
 
                 // @HORUS
                 // Use the user language for translations
-                this._translateService.use(user.lang.code);
+                this._translateService.use(user.lang.id);
 
                 // remember me function
                 // if (this.loginForm.value.remember_me)

@@ -58,7 +58,7 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation WineDeleteFamily ($id:Int! $lang_id:Int!) {
+        mutation WineDeleteFamily ($id:Int! $lang_id:String!) {
             wineDeleteFamily (id:$id lang_id:$lang_id) {
                 ${fields}
             }

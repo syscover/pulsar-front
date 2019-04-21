@@ -79,7 +79,7 @@ export const graphQL = {
         }`,
 
     mutationDeleteObject: gql`
-        mutation ReviewDeleteQuestion ($id:Int! $lang_id:Int!) {
+        mutation ReviewDeleteQuestion ($id:Int! $lang_id:String!) {
             reviewDeleteQuestion (id:$id lang_id:$lang_id) {
                 ${fields}
             }

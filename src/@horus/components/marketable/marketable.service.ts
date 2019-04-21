@@ -99,14 +99,14 @@ export class MarketableService
             });
     }
 
-    getArgumentsRelations(baseLangId: number, langId: number, productId?: string, objectType = null): object
+    getArgumentsRelations(baseLang: string, langId: number, productId?: string, objectType = null): object
     {
         const sqlMarketableProduct = [
             {
                 command: 'where',
                 column: 'market_product_lang.lang_id',
                 operator: '=',
-                value: langId ? langId : baseLangId
+                value: langId ? langId : baseLang
             },
             {
                 command: 'where',
@@ -136,7 +136,7 @@ export class MarketableService
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: langId ? langId : baseLangId
+                value: langId ? langId : baseLang
             },
             {
                 command: 'orderBy',
@@ -150,7 +150,7 @@ export class MarketableService
                 command: 'where',
                 column: 'lang_id',
                 operator: '=',
-                value: langId ? langId : baseLangId
+                value: langId ? langId : baseLang
             },
             {
                 command: 'orderBy',
@@ -161,13 +161,13 @@ export class MarketableService
 
         const configMarketableProductClasses = {
             key: 'pulsar-market.product_classes',
-            lang: langId ? langId : baseLangId,
+            lang: langId ? langId : baseLang,
             property: 'name'
         };
 
         const configMarketablePriceTypes = {
             key: 'pulsar-market.price_types',
-            lang: langId ? langId : baseLangId,
+            lang: langId ? langId : baseLang,
             property: 'name'
         };
 

@@ -7,7 +7,7 @@ export class Appellation
     description: string;
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -17,7 +17,7 @@ export class Award
     data_lang: string[];
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -27,7 +27,7 @@ export class Family
     data_lang: string[];
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -38,7 +38,7 @@ export class Grape
     description: string;
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
     composition: CompositionGrape;
@@ -53,7 +53,7 @@ export class Pairing
     data_lang: string[];
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -63,7 +63,7 @@ export class Presentation
     data_lang: string[];
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -73,7 +73,7 @@ export class Type
     data_lang: string[];
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
@@ -91,7 +91,7 @@ export class Wine extends Marketable
     id: number;
     is_product: boolean;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     parker: number;
     penin: number;
@@ -138,7 +138,7 @@ export class Winery
     header: string;
     id: number;
     ix: number;
-    lang_id: number;
+    lang_id: string;
     name: string;
     slug: string;
 }
