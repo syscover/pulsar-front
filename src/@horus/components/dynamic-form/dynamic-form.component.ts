@@ -65,7 +65,16 @@ import { horusConfig } from 'app/horus-config';
                             </div>
                         </div>
 
-                        <div fxLayout="row" *ngSwitchCase="'datetime-local'">
+                        <div fxLayout="row" *ngSwitchCase="'date'">
+                            <dh2-datepicker [class]="field.component_class ? field.component_class : 'col-6 col-md-4'"
+                                            label="{{ field | getFieldLabel:lang }}"
+                                            format="YYYY-MM-DD"
+                                            [formControlName]="field.name"
+                                            [errors]="errors">
+                            </dh2-datepicker>
+                        </div>
+
+                        <div fxLayout="row" *ngSwitchCase="'datetime'">
                             <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-4'">
                                 <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
                                 <input type="datetime-local" matInput [formControlName]="field.name" [required]="field.required">

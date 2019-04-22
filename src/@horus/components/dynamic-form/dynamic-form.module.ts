@@ -10,16 +10,18 @@ import {
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
-import { FroalaModule } from './../froala/froala.module';
-import { DynamicFormComponent } from './dynamic-form.component';
-import { DynamicFormService } from './dynamic-form.service';
+import { DatepickerModule} from '@horus/components/datepicker/datepicker.module';
+import { FroalaModule } from '@horus/components/froala/froala.module';
+import { DynamicFormComponent } from '@horus/components/dynamic-form/dynamic-form.component';
+import { DynamicFormService } from '@horus/components/dynamic-form/dynamic-form.service';
 
-import { GetFieldLabelPipe } from './pipes/get-field-label.pipe';
-import { GetSelectValuesPipe } from './pipes/get-select-values.pipe';
+import { GetFieldLabelPipe } from '@horus/components/dynamic-form//pipes/get-field-label.pipe';
+import { GetSelectValuesPipe } from '@horus/components/dynamic-form/pipes/get-select-values.pipe';
 
 @NgModule({
     imports: [
         CommonModule,
+        DatepickerModule,
         FlexLayoutModule,
         FroalaModule,
         MatCheckboxModule,
