@@ -499,6 +499,30 @@
                             </div>
                         </mat-tab>
 
+                        <mat-tab label="{{ 'FOREM.GRPD' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_ssn_authorization">{{ 'FOREM.HAS_SSN_AUTHORIZATION' | translate }}</mat-checkbox>
+                                    </div>
+                                    <div class="col-12 col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_certification_authorization">{{ 'FOREM.HAS_CERTIFICATION_AUTHORIZATION' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_data_authorization">{{ 'FOREM.HAS_DATA_AUTHORIZATION' | translate }}</mat-checkbox>
+                                    </div>
+                                    <div class="col-12 col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_marketing_authorization">{{ 'FOREM.HAS_MARKETING_AUTHORIZATION' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
                     </mat-tab-group>
 
                 </form>

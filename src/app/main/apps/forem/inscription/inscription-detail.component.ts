@@ -105,7 +105,13 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             is_big_company: '',
 
             // FOCO
-            code: ''
+            code: '',
+
+            // GRPD
+            has_ssn_authorization: false,
+            has_certification_authorization: false,
+            has_data_authorization: false,
+            has_marketing_authorization: false
         });
     }
 
