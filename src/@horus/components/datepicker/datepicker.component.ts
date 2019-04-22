@@ -24,11 +24,11 @@ import * as moment from 'moment';
     providers: [
         {
             provide: MatFormFieldControl,
-            useExisting: DatePickerComponent
+            useExisting: DatepickerComponent
         }
     ],
 })
-export class DatePickerComponent implements ControlValueAccessor, OnInit
+export class DatepickerComponent implements ControlValueAccessor, OnInit
 {
     @Input() format = 'YYYY-MM-DD HH:mm:ss';
     @Input() label: string;
@@ -86,7 +86,7 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit
     @ViewChild('input')
     input: MatInput;
 
-    controlName: String;
+    controlName: string;
     control: FormControl;
     propagateChange = (_: any) => { };
     private _value: string;
