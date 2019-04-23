@@ -89,8 +89,8 @@ export class MonumentDetailComponent extends CoreDetailComponent  implements OnI
             },
             {
                 name: 'link',
-                control: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
-                type: 'input.url',
+                control: ['', [Validators.required]],
+                type: 'input.text',
                 required: true,
                 class: '',
                 label: this.translateService.instant('APPS.LINK')
