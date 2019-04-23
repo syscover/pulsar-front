@@ -80,6 +80,7 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
 
             // knowledge
             academic_level_id: '',
+            academic_level_specialty: ['', Validators.required],
 
             // employment situation
             employment_situation_id: '',

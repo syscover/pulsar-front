@@ -81,10 +81,10 @@ const fields = `
     company_zip
     is_big_company
 
-    ssn_authorization
-    certification_authorization
-    data_authorization
-    marketing_authorization
+    has_ssn_authorization
+    has_certification_authorization
+    has_data_authorization
+    has_marketing_authorization
 `;
 
 const relationsFields = `

@@ -322,17 +322,21 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'FOREM.ACADEMIC_LEVEL' | translate }}</mat-label>
+                                        <mat-select formControlName="academic_level_id">
+                                            <mat-option *ngFor="let academicLevel of academicLevels" [value]="academicLevel.id">{{ academicLevel.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.academic_level_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
 
-                                    <div fxLayout="row">
-                                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
-                                            <mat-label>{{ 'FOREM.ACADEMIC_LEVEL' | translate }}</mat-label>
-                                            <mat-select formControlName="academic_level_id">
-                                                <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
-                                            </mat-select>
-                                            <mat-error>{{ formErrors?.academic_level_id }}</mat-error>
-                                        </mat-form-field>
-                                    </div>
-
+                                    <hr-input formControlName="academic_level_specialty"
+                                              label="{{ 'FOREM.ACADEMIC_LEVEL_SPECIALTY' | translate }}"
+                                              class="col-12 col-md-5"
+                                              required
+                                              [error]="formErrors?.academic_level_specialty"></hr-input>
                                 </div>
 
                             </div>
