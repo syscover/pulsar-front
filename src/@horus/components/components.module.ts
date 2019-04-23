@@ -6,6 +6,7 @@ import { ConfirmationDialogModule } from '@horus/components/confirmation-dialog/
 import { DatepickerModule } from '@horus/components/datepicker/datepicker.module';
 import { FilterHeaderCellModule } from '@horus/components/filter-header-cell/filter-header-cell.module';
 import { FlagIconModule } from '@horus/components/flag-icon/flag-icon.module';
+import { FormsModule } from '@horus/components/forms/forms.module';
 import { FroalaModule } from '@horus/components/froala/froala.module';
 import { ImageInputModule } from '@horus/components/image-input/image-input.module';
 import { ListItemsModule } from '@horus/components/list-items/list-items.module';
@@ -24,6 +25,7 @@ import { UpdateModule } from '@horus/components/update/update.module';
         DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
+        FormsModule,
         FroalaModule,
         ImageInputModule,
         ListItemsModule,
@@ -44,6 +46,7 @@ import { UpdateModule } from '@horus/components/update/update.module';
         DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
+        FormsModule,
         FroalaModule,
         ImageInputModule,
         ListItemsModule,
