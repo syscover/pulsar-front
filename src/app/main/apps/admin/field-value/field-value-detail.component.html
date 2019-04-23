@@ -93,13 +93,13 @@
                     <input type="hidden" formControlName="ix">
 
                     <div fxLayout="row wrap">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-5 col-md-4">
+                        <mat-form-field *ngIf="dataRoute.action === 'edit' || enableId" [appearance]="horusConfig.fieldAppearance" class="col-3 col-md-2">
                             <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                            <input matInput formControlName="id" required>
+                            <input matInput formControlName="id" [required]="enableId">
                             <mat-error>{{ formErrors?.id }}</mat-error>
                         </mat-form-field>
-                        <div class="offset-1 col-6 offset-md-1 col-md-2 py-20">
-                            <mat-checkbox (change)="handleEnableId($event)">{{ 'ADMIN.EDIT_ID' | translate }}</mat-checkbox>
+                        <div [ngClass]="{'offset-1': dataRoute.action === 'edit' || enableId}" class="offset-1 col-6 col-md-2 py-20">
+                            <mat-checkbox (change)="handleEnableId()">{{ 'ADMIN.EDIT_ID' | translate }}</mat-checkbox>
                         </div>
                         <dh2-flag-icon class="col-12 offset-md-1 col-md-4" [lang]="lang" size="22px" [rounded]="true" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'25px'}}"></dh2-flag-icon>
                     </div>

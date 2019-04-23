@@ -11,9 +11,10 @@ import { graphQL } from './field-value.graphql';
 })
 export class FieldValueDetailComponent extends CoreDetailComponent
 {
-    objectTranslation = 'ADMIN.VALUE';
-    objectTranslationGender = 'M';
-    field_id: number;
+    public objectTranslation = 'ADMIN.VALUE';
+    public objectTranslationGender = 'M';
+    public field_id: number;
+    public enableId = false;
 
     constructor(
         protected injector: Injector
@@ -52,15 +53,19 @@ export class FieldValueDetailComponent extends CoreDetailComponent
         return args;
     } 
 
-    handleEnableId($event): void
+    handleEnableId(): void
     {
         if (this.fg.controls['id'].disabled) 
         {
             this.fg.controls['id'].enable();
+            this.fg.controls['id'].setValidators([Validators.required]);
+            this.enableId = true;
         } 
         else 
         {
             this.fg.controls['id'].disable();
+            this.fg.controls['id'].setValidators(null);
+            this.enableId = false;
         }
     }
 }
