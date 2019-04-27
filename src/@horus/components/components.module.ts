@@ -58,4 +58,5 @@ import { UpdateModule } from '@horus/components/update/update.module';
         UpdateModule
     ]
 })
-export class ComponentsModule {}
+export class ComponentsModule
+{}
