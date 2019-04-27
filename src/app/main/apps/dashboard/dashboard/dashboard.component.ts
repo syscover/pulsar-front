@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit
     ngOnInit(): void
     {
         // set translation service after login
-        this._translateService.setDefaultLang('en');
+        // this._translateService.setDefaultLang('en');
         this._translateService.setDefaultLang('es');
     }
 }

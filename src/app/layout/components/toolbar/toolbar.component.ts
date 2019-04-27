@@ -13,7 +13,7 @@ import { navigation } from 'app/navigation/navigation';
 // @HORUS
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { NavigationService } from '@horus/services/navigation.service';
-import { User } from 'app/main/apps/admin/admin.models';
+import { User } from '@horus/types';
 import { ConfigService } from '@horus/services/config.service';
 
 @Component({

@@ -29,7 +29,8 @@ export class AttachmentFamilyDetailComponent extends CoreDetailComponent
 
     constructor(
         private _injector: Injector
-    ) {
+    )
+    {
         super(_injector, graphQL);
     }
 
