@@ -301,7 +301,7 @@
 
                                         <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-3">
                                             <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
-                                            <input type="email" matInput formControlName="agent_phone">
+                                            <input matInput formControlName="agent_phone">
                                             <mat-error>{{ formErrors?.agent_phone }}</mat-error>
                                         </mat-form-field>
                                     </div>
@@ -331,12 +331,23 @@
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'FOREM.ACADEMIC_LEVEL_SPECIALTY' | translate }}</mat-label>
+                                        <input matInput formControlName="academic_level_specialty" required>
+                                        <mat-error>{{ formErrors?.academic_level_specialty }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                                    <hr-input formControlName="academic_level_specialty"
-                                              label="{{ 'FOREM.ACADEMIC_LEVEL_SPECIALTY' | translate }}"
-                                              class="col-12 col-md-5"
-                                              required
-                                              [error]="formErrors?.academic_level_specialty"></hr-input>
+                                <div fxLayout="row">
+                                    <div class="col-12 col-md-2 py-20">
+                                        <mat-checkbox formControlName="has_other_course">{{ 'FOREM.HAS_OTHER_COURSE' | translate }}</mat-checkbox>
+                                    </div>
+                                    
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
+                                        <mat-label>{{ 'FOREM.OTHER_COURSE' | translate }}</mat-label>
+                                        <input matInput formControlName="other_course" required>
+                                        <mat-error>{{ formErrors?.other_course }}</mat-error>
+                                    </mat-form-field>
                                 </div>
 
                             </div>

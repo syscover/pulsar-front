@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'FOREM': {
             'ACADEMIC_LEVEL': 'Academic level',
+            'ACADEMIC_LEVEL_SPECIALTY': 'Academic level specialty',
             'ACTION': 'Action',
             'ADDRESS_TYPE': 'Address type',
             'AMBIT': 'Ambit',
@@ -25,6 +26,7 @@ export const locale = {
             'HAS_CERTIFICATION_AUTHORIZATION': 'Has certification authorization',
             'HAS_DATA_AUTHORIZATION': 'Has data authorization',
             'HAS_MARKETING_AUTHORIZATION': 'Has marketing auhtorization',
+            'HAS_OTHER_COURSE': 'Has other course',
             'HAS_SSN_AUTHORIZATION': 'Has ssn authorization',
             'HOURS': 'Hours',
             'INSCRIPTION': 'Inscription',
@@ -34,6 +36,7 @@ export const locale = {
             'MODALITY': 'Modality',
             'ONLINE': 'Online',
             'OPEN': 'Open',
+            'OTHER_COURSE': 'Other course',
             'PERSONAL_DATA': 'Personal data',
             'PRICE_HOUR': 'Price per hour',
             'PROFESSIONAL_CATEGORY': 'Professional category',
