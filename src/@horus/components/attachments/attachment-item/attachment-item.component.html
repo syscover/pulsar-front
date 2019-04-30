@@ -37,7 +37,7 @@
 
                     <div class="form-group">
                         <select formControlName="family_id" class="form-control" (change)="changeFamilyHandler($event)">
-                            <option>{{ 'ATTACHMENTS.SELECT_FAMILY' | translate }}</option>
+                            <option value="">{{ 'ATTACHMENTS.SELECT_FAMILY' | translate }}</option>
                             <option *ngFor="let family of families" [value]="+family.id">{{ family.name }}</option>
                         </select>
                         <div class="select-back">

@@ -67,6 +67,7 @@ export const locale = {
             'PRODUCTS': 'Productos',
             'PROFILES': 'Perfiles',
             'PROVINCES': 'Provincias',
+            'RECORDS': 'Registros',
             'REPORTS': 'Provincias',
             'QUESTIONS': 'Preguntas',
             'RESOURCES': 'Recursos',

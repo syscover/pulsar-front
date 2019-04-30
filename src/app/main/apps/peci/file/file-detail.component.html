@@ -53,7 +53,7 @@
                     class="fuse-white mt-16 mt-sm-0"
                     [disabled]="fg.invalid || fg.pristine || loadingButton"
                     *ngIf="dataRoute.action ==='edit'">
-                {{ 'APPS.SAVE' | translate }}
+                Enviar A SAP
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
         </div>
@@ -73,19 +73,21 @@
                         <input type="hidden" formControlName="ix">
 
                         <div fxLayout="row mb-40" class="justify-content-end">
-                            <button mat-raised-button
-                                    type="button"
+                            <a mat-raised-button
+                                    target="_blank"
+                                    href="/assets/peci/visor.xsl"
                                     class="mt-16 mt-sm-0">
                                 <fa-icon [icon]="['fas', 'code']" class="mr-16"></fa-icon>
                                 Ver XML
-                            </button>
+                            </a>
 
-                            <button mat-raised-button
-                                    type="button"
+                            <a mat-raised-button
+                                    target="_blank"
+                                    href="assets/peci/visor.html"
                                     class="ml-16 mt-16 mt-sm-0">
                                 <fa-icon [icon]="['fas', 'binoculars']" class="mr-16"></fa-icon>
                                 Visor amigable
-                            </button>
+                            </a>
                         </div>
 
                         <div fxLayout="row">
@@ -104,10 +106,18 @@
                             </mat-form-field>
                         </div>
 
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-4">
+                                <mat-label>Tipo de operación</mat-label>
+                                <input matInput formControlName="type" disabled>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
                         <!-- HEADER -->
                         <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                             <mat-icon class="m-0 mr-16">subtitles</mat-icon>
-                            <div class="h2 secondary-text">Definición del XML</div>
+                            <div class="h2 secondary-text">Datos adicionales</div>
                         </div>
                         <!-- / HEADER -->
 

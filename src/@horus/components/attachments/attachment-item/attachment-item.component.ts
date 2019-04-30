@@ -30,7 +30,8 @@ export class AttachmentItemComponent implements OnInit
     constructor(
         private fb: FormBuilder,
         private renderer: Renderer2
-    ) { }
+    )
+    {}
 
     ngOnInit(): void
     {
@@ -83,9 +84,10 @@ export class AttachmentItemComponent implements OnInit
     {
         if (
             this.familySelect && (
-            this.familySelect.fit_type === CROP_FIT ||
-            this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
-            this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT)
+                this.familySelect.fit_type === CROP_FIT ||
+                this.familySelect.fit_type === WIDTH_FREE_CROP_FIT ||
+                this.familySelect.fit_type === HEIGHT_FREE_CROP_FIT
+            )
         )
         {
             this.showCropButton = true;

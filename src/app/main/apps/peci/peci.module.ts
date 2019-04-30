@@ -7,6 +7,8 @@ import { locale as spanish } from './i18n/es';
 
 import { FileDetailComponent } from './file/file-detail.component';
 import { FileListComponent } from './file/file-list.component';
+import { RecordDetailComponent } from './record/record-detail.component';
+import { RecordListComponent } from './record/record-list.component';
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { FileListComponent } from './file/file-list.component';
     exports: [ ],
     declarations: [
         FileDetailComponent,
-        FileListComponent
+        FileListComponent,
+        RecordDetailComponent,
+        RecordListComponent,
     ],
     providers: [],
     entryComponents: [

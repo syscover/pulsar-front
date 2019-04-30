@@ -26,6 +26,14 @@ export const navigation: FuseNavigation[] = [
                 'icon' : ['fas', 'file-contract'],
                 'children' : [
                     {
+                        'id'        : 'record',
+                        'title'     : 'Record',
+                        'translate' : 'NAV.RECORDS',
+                        'type'      : 'item',
+                        'icon'      : ['fas', 'laptop-medical'],
+                        'url'       : '/apps/peci/record'
+                    },
+                    {
                         'id'        : 'file',
                         'title'     : 'File',
                         'translate' : 'NAV.FILES',

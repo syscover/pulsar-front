@@ -4,8 +4,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { graphQL } from './file.graphql';
 import { FieldGroup } from '../../admin/admin.models';
-import {Stock} from '../../market/market.models';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-peci-file-detail',
@@ -32,12 +30,9 @@ export class FileDetailComponent extends CoreDetailComponent
             ix: '',
             id: [998765, [Validators.required, Validators.minLength(2)]],
             name: ['John Doe', Validators.required],
+            type: 'Modificación',
             field_group_id: ''
         });
-    }
-
-    test(): string {
-        return 'hola mundo';
     }
 
     argumentsRelationsObject(): object

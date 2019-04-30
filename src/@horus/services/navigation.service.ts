@@ -4,11 +4,14 @@ import { ConfigService } from '@horus/services/config.service';
 import { Application } from '@horus/types';
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { environment } from 'environments/environment';
+import { horusConfig } from 'app/horus-config';
 import * as _ from 'lodash';
 
 @Injectable()
 export class NavigationService
 {
+    private _horusConfig = horusConfig;
+
     constructor(
         private _configService: ConfigService,
         private _authenticationService: AuthenticationService
@@ -17,6 +20,9 @@ export class NavigationService
 
     getNavigation(navigation: FuseNavigation[]): FuseNavigation[]
     {
+        // return all navigation in mock status
+        if (this._horusConfig.graphQLMock) return navigation;
+
         // check packages
         navigation[0].children = this.checkPackages(navigation[0].children);
 

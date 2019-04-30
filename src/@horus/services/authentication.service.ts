@@ -23,11 +23,11 @@ export class AuthenticationService extends HttpService
         // send credentials to server
         return this.http
             .post(this.getEndpoint('login'), {
-                    guard: 'admin',
-                    user: user.user,
-                    password: user.password,
-                    remember_me: user.remember_me
-                }, this.options);
+                guard: 'admin',
+                user: user.user,
+                password: user.password,
+                remember_me: user.remember_me
+            }, this.options);
     }
 
     logout(): void

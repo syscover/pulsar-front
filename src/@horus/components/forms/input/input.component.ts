@@ -1,4 +1,4 @@
-import { Component, Input, Optional, Self, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, Optional, Self, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { ControlValueAccessor, FormControl, FormControlName, NgControl } from '@angular/forms';
 import { ErrorStateMatcher, MatFormFieldControl, MatInput } from '@angular/material';
 import { MatFormFieldAppearance } from '@angular/material/typings/form-field';
@@ -6,8 +6,7 @@ import { MatFormFieldAppearance } from '@angular/material/typings/form-field';
 @Component({
     selector: 'hr-input',
     template: `
-        <mat-form-field [appearance]="appearance" 
-                        [class]="class">
+        <mat-form-field class="w-100-p" [appearance]="appearance">
             <mat-label>{{ label }}</mat-label>
             <input #input 
                    matInput
@@ -26,7 +25,6 @@ import { MatFormFieldAppearance } from '@angular/material/typings/form-field';
 export class InputComponent implements ControlValueAccessor, OnInit
 {
     @Input() appearance: MatFormFieldAppearance;
-    @Input() class: string;
     @Input() label: string;
     @Input() required = false;
     @Input() debug = false;
@@ -36,6 +34,7 @@ export class InputComponent implements ControlValueAccessor, OnInit
     controlName: string;
     control: FormControl;
     private _value: string | number;
+
     propagateChange = (_: any) => { };
 
     @Input()
@@ -54,7 +53,6 @@ export class InputComponent implements ControlValueAccessor, OnInit
     get errorStateMatcher(): ErrorStateMatcher
     {
         console.log(this.input.errorStateMatcher);
-
         return this.input.errorStateMatcher;
     }
     set errorStateMatcher(value)
@@ -72,7 +70,6 @@ export class InputComponent implements ControlValueAccessor, OnInit
     {
         this.input.placeholder = plh;
     }
-
 
     constructor(
         @Optional() @Self() private _ngControl: NgControl,

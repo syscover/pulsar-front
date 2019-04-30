@@ -37,8 +37,6 @@ export class AttachmentsComponent implements OnInit, OnChanges
     files: File[];                          // files uploaded across XMLHttpRequest
     attachment: FormGroup;                  // formGroup that contain attachment that will be crop
     attachmentFamily: AttachmentFamily;     // variable to contain attachment family where we take crop properties
-
-    // displayDialog = false;
     progress = 0;
 
     constructor(

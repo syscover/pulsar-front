@@ -38,16 +38,8 @@
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
-                    class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.M' | translate }} {{ 'PECI.FILE' | translate }}</span>
-            </button>
-
         </div>
         <!-- / HEADER -->
-
-        {{ miVariable | dd }}
 
         <!-- CONTENT CARD -->
         <div class="content-card fuse-white">
@@ -61,14 +53,22 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="admin_action.id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">#</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-80">{{ faker.random.number | call }}</mat-cell>
                 </ng-container>
         
                 <!-- Column -->
                 <ng-container matColumnDef="admin_action.name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre del fichero</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ faker.system.fileName | call }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_action.process">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-sm-flex justify-content-center mw-80">Procesado</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-sm-flex justify-content-center mw-80">
+                        <mat-icon *ngIf="faker.random.boolean | call">done</mat-icon>
+                    </mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->
@@ -79,14 +79,14 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item [routerLink]="[baseUri + '/show', row.id]">
-                                <mat-icon>mode_edit</mat-icon>
-                                <span>{{ 'APPS.EDIT' | translate }}</span>
-                            </button>
-                            <button mat-menu-item (click)="deleteRecord(row)">
-                                <mat-icon>delete</mat-icon>
-                                <span>{{ 'APPS.DELETE' | translate }}</span>
-                            </button>
+                            <a mat-menu-item target="_blank" href="/assets/peci/visor.xml">
+                                <fa-icon [icon]="['fas', 'code']" class="mr-16"></fa-icon>
+                                <span>Ver XML</span>
+                            </a>
+                            <a mat-menu-item target="_blank" href="assets/peci/visor.html">
+                                <fa-icon [icon]="['fas', 'binoculars']" class="mr-16"></fa-icon>
+                                <span>Visor amigable</span>
+                            </a>
                         </mat-menu>
                     </mat-cell>
                 </ng-container>
