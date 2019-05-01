@@ -57,12 +57,12 @@ export class AppComponent implements OnInit, OnDestroy
         private _translateService: TranslateService,
         private _platform: Platform,
 
-        // DH2
+        // @HORUS
         private _navigationService: NavigationService,
         private _configService: ConfigService
     )
     {
-        // DH2
+        // @HORUS
         // Get default navigation
         this.navigation = _navigationService.getNavigation(navigation);
 

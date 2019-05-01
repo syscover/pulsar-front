@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     selectedLanguage: any;
     userStatusOptions: any[];
 
-    // DH2
+    // @HORUS
     public user: User;
     public isAuth = false;
     public panelVersion: string;
@@ -53,14 +53,14 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
 
-        // DH2
+        // @HORUS
         private _router: Router,
         private _authenticationService: AuthenticationService,
         private _navigationService: NavigationService,
         private _configService: ConfigService
     )
     {
-        // DH2
+        // @HORUS
         this.user = this._authenticationService.user();
         this.isAuth = this._authenticationService.check();
         this.panelVersion = this._configService.get('version');
@@ -108,7 +108,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
             }
         ];
 
-        // DH2
+        // @HORUS
         this.navigation = _navigationService.getNavigation(navigation);
 
         // Set the private defaults

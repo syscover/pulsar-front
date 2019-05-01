@@ -40,10 +40,11 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
             if (permission) {
                 return true;
             }
-            else {
+            else
+            {
                 this._snackBar.open(
                     this._translations['APPS.DENIED_PERMISSION'],
-                     this._translations['APPS.OK'],
+                    this._translations['APPS.OK'],
                     {
                         verticalPosition: 'top',
                         duration        : 3000
@@ -58,7 +59,7 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
-       return this.canActivate(route, state);
+        return this.canActivate(route, state);
     }
 
     canLoad(route: Route): boolean 
