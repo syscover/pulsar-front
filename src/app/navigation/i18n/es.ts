@@ -68,7 +68,7 @@ export const locale = {
             'PROFILES': 'Perfiles',
             'PROVINCES': 'Provincias',
             'RECORDS': 'Registros',
-            'REPORTS': 'Provincias',
+            'REPORTS': 'Informes',
             'QUESTIONS': 'Preguntas',
             'RESOURCES': 'Recursos',
             'REVIEW': 'Review',

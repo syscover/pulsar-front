@@ -17,5 +17,6 @@ export class DashboardComponent implements OnInit
         // set translation service after login
         // this._translateService.setDefaultLang('en');
         this._translateService.setDefaultLang('es');
+        this._translateService.use('es');
     }
 }

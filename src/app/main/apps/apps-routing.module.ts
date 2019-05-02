@@ -63,11 +63,6 @@ const routes = [
         canLoad     : [AuthorizationService]
     },
     {
-        path        : 'peci',
-        loadChildren: './peci/peci.module#PeciModule',
-        canLoad     : [AuthorizationService]
-    },
-    {
         path        : 'innova-concrete',
         loadChildren: './innova-concrete/innova-concrete.module#InnovaConcreteModule',
         canLoad     : [AuthorizationService]
