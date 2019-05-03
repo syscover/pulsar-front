@@ -40,8 +40,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
     
     constructor(
         protected injector: Injector,
-        private authenticationService: AuthenticationService
-    ) {
+        private _authenticationService: AuthenticationService
+    )
+    {
         super(injector, graphQL);
     }
 
@@ -259,7 +260,7 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
         this._attachmentFamilies = data.adminAttachmentFamilies;
 
         // cms author
-        const user = this.authenticationService.user();
+        const user = this._authenticationService.user();
         this.fg.patchValue({
             author_id: user.id,
             author_name: user.name + ' ' + user.surname

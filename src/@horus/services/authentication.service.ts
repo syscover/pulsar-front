@@ -13,7 +13,8 @@ export class AuthenticationService extends HttpService
     constructor(
         protected injector: Injector,
         private jwtHelperService: JwtHelperService
-    ) {
+    )
+    {
         super(injector);
         this.setEndpoint('/api/v1/login'); // set api URL
     }

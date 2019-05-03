@@ -12,23 +12,24 @@ import { environment } from 'environments/environment';
 export class HttpInterceptorService implements HttpInterceptor 
 {
     constructor(
-        private router: Router,
-    ) { }
+        private router: Router
+    )
+    {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
     {
-        // clone the request to add the new header.
-        // const authReq = req.clone({ headers: req.headers.set('headerName', 'headerValue')});
-
+        // clone and add token to request, if user is authenticate
         const requestWithToken = this.addToken(request);
 
         // send the newly created request
-        return next.handle(requestWithToken)
+        return next
+            .handle(requestWithToken)
             .do(
-                evt => {
+                evt =>
+                {
                     if (evt instanceof HttpResponse) 
                     {
-                        // get authorization from header
+                        // get authorization token from response header, and save
                         const authorization = evt.headers.get('Authorization');
                         if (authorization) 
                         {
@@ -37,7 +38,8 @@ export class HttpInterceptorService implements HttpInterceptor
                         }
                     }
                 },
-                (err) => {
+                (err) =>
+                {
                     if (err instanceof HttpErrorResponse)
                     {
                         if (environment.debug) console.log('DEBUG - Error status: ' + err.status);
@@ -48,7 +50,8 @@ export class HttpInterceptorService implements HttpInterceptor
                     }
                 }
             )
-            .catch((error, caught) => {
+            .catch((error, caught) =>
+            {
                 // intercept the respons error and displace it to the console
                 console.log('Error Occurred');
                 console.log(error);

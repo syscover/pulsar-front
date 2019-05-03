@@ -128,19 +128,24 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // method to implement actions befere patch value in edit action
-    beforePatchValueEdit(): void {}
+    beforePatchValueEdit(): void
+    {}
 
     // method to implement actions after set data action
-    afterPatchValueEdit(): void {}
+    afterPatchValueEdit(): void
+    {}
 
     // method to disable fields in detail component multi languages
-    disableForm(): void {}
+    disableForm(): void
+    {}
 
     // method to implement actions after patch value in edit action
-    afterSetData(): void {}
+    afterSetData(): void
+    {}
 
     // method that will be overwrite
-    createForm(): void {}
+    createForm(): void
+    {}
 
     // function to get record in edit action or create lang action
     getRecord(params: Params): void

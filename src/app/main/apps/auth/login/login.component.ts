@@ -97,13 +97,14 @@ export class LoginComponent implements OnInit
 
         this.authenticationService
             .login(this.loginForm.value)
-            .subscribe(response => {
-
+            .subscribe(response =>
+            {
                 if (environment.debug) console.log('DEBUG - response after login: ', response);
 
                 // set token
                 localStorage.setItem('access_token', response['access_token']);
 
+                // get user from response
                 const user = <User>response['user'];
 
                 // set logged user
@@ -133,7 +134,9 @@ export class LoginComponent implements OnInit
                 {
                     this.router.navigate(['/apps/dashboard']);
                 }
-            }, (error) => {
+            },
+            (error) =>
+            {
                 this.loadingButton = false;
                 this.loginError = true;
             });

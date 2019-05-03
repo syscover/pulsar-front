@@ -43,7 +43,8 @@ export class InnovaConcreteModule
 {
     constructor(
         private translationLoader: FuseTranslationLoaderService
-    ) {
+    )
+    {
         this.translationLoader.loadTranslations(english, spanish);
     }
 }

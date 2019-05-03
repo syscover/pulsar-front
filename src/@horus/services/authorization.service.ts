@@ -24,7 +24,8 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
                 'APPS.OK',
                 'APPS.DENIED_PERMISSION'
             ])
-            .subscribe(response => {
+            .subscribe(response =>
+            {
                 this._translations = response;
             });
     }
@@ -37,7 +38,8 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
         {
             const permission = _.find(this._permissions, {'resource_id': route.data.resource, 'action_id': route.data.action});
 
-            if (permission) {
+            if (permission)
+            {
                 return true;
             }
             else

@@ -20,7 +20,8 @@ export class OauthAccessTokenDetailComponent extends CoreDetailComponent impleme
     constructor(
         protected injector: Injector,
         private _authenticationService: AuthenticationService
-    ) {
+    )
+    {
         super(injector, graphQL);
         this.user = this._authenticationService.user();
     }
