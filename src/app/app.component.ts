@@ -4,6 +4,7 @@ import { Platform } from '@angular/cdk/platform';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
@@ -17,8 +18,9 @@ import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationSpanish } from 'app/navigation/i18n/es';
 
 // @HORUS
-import { NavigationService } from '@horus/services/navigation.service';
+import { AuthenticationService } from '../@horus/services/authentication.service';
 import { ConfigService } from '@horus/services/config.service';
+import { NavigationService } from '@horus/services/navigation.service';
 
 @Component({
     selector   : 'app',
@@ -59,7 +61,8 @@ export class AppComponent implements OnInit, OnDestroy
 
         // @HORUS
         private _navigationService: NavigationService,
-        private _configService: ConfigService
+        private _configService: ConfigService,
+        private _authenticationService: AuthenticationService
     )
     {
         // @HORUS
@@ -78,16 +81,23 @@ export class AppComponent implements OnInit, OnDestroy
 
         // @HORUS
         // Set the default language
-        this._translateService.setDefaultLang('es');
+        this._translateService.setDefaultLang('en');
 
         // @HORUS
         // Set the navigation translations
         this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationSpanish);
 
-        // TODO get user language
         // @HORUS
-        // Use a language
-        this._translateService.use('es');
+        if (environment.debug) console.log('DEBUG - register user: ', this._authenticationService.user());
+        if (this._authenticationService.user())
+        {
+            this._translateService.use(this._authenticationService.user().lang.id);
+        }
+        else
+        {
+            // TODO GET LANGUAGE FROM BROWSER
+            this._translateService.use('en');
+        }
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -113,10 +123,10 @@ export class AppComponent implements OnInit, OnDestroy
         // @HORUS
         // this problem is resolved in dashboard component
 
-        // setTimeout(() => {
-        //    this._translateService.setDefaultLang('en');
-        //    this._translateService.setDefaultLang('es');
-        // });
+        // setTimeout(() =>
+        // {
+        //     this._translateService.use(this._authenticationService.user().lang.id);
+        // }, 1000);
 
 
         /**
