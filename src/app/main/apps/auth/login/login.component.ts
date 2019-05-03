@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit
     mobileLogo: string;
     welcomeText: string;
 
-
     constructor(
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
