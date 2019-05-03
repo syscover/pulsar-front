@@ -28,6 +28,7 @@ export class CharacteristicDetailComponent extends CoreDetailComponent  implemen
             id: [{value: '', disabled: true}],
             type_id: ['', Validators.required],
             name: ['', Validators.required],
+            description: ''
         });
     }
 

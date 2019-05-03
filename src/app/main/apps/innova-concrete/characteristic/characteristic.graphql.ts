@@ -8,6 +8,7 @@ const fields = `
         ${innovaConcreteTypeGraphQL.fields}
     }
     name
+    description
 `;
 
 const relationsFields = `
