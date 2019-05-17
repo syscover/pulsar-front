@@ -18,7 +18,8 @@ export class AwardDetailComponent extends CoreDetailComponent
 
     constructor(
         protected _injector: Injector
-    ) {
+    )
+    {
         super(_injector, graphQL);
     }
 

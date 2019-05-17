@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { Type } from './../innova-concrete.models';
 import { graphQL } from './characteristic.graphql';
+import { AttachmentFamily } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-innova-concrete-characteristic-detail',
@@ -15,10 +16,12 @@ export class CharacteristicDetailComponent extends CoreDetailComponent  implemen
     public objectTranslation = 'INNOVA.CHARACTERISTIC';
     public objectTranslationGender = 'F';
     public types: Type[] = [];
+    public attachmentFamilies: AttachmentFamily[] = [];
 
     constructor(
         protected injector: Injector
-    ) {
+    )
+    {
         super(injector, graphQL);
     }
 
@@ -28,13 +31,38 @@ export class CharacteristicDetailComponent extends CoreDetailComponent  implemen
             id: [{value: '', disabled: true}],
             type_id: ['', Validators.required],
             name: ['', Validators.required],
-            description: ''
+            description: '',
+            attachments: this.fb.array([])
         });
+    }
+
+    argumentsRelationsObject(): object
+    {
+        const sqlAttachmentFamily = [
+            {
+                'command': 'where',
+                'column': 'admin_attachment_family.resource_id',
+                'operator': '=',
+                'value': 'innova-characteristic'
+            },
+            {
+                'command': 'orderBy',
+                'operator': 'asc',
+                'column': 'admin_attachment_family.name'
+            }
+        ];
+
+        return {
+            sqlAttachmentFamily
+        };
     }
 
     setRelationsData(data: any): void
     {
         // innova concrete types
         this.types = data.innovaConcreteTypes;
+
+        // admin attachment families
+        this.attachmentFamilies = data.adminAttachmentFamilies;
     }
 }

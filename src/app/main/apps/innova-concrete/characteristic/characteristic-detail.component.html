@@ -1,4 +1,4 @@
-<div class="page-layout carded fullwidth inner-scroll">
+<div class="page-layout carded fullwidth inner-scroll tabable">
 
     <horus-spinner [show]="showSpinner"></horus-spinner>
 
@@ -60,7 +60,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white p-24">
+        <div class="content-card">
 
             <!-- CONTENT -->
             <div class="content">
@@ -71,43 +71,62 @@
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div class="container">
-                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
-                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                                <input matInput formControlName="id">
-                            </mat-form-field>
-                        </div>
+                    <mat-tab-group>
+                        <mat-tab label="{{ 'APPS.PROPERTIES' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
-                                <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
-                                <mat-select formControlName="type_id" required>
-                                    <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ formErrors?.type_id }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
+                                        <mat-label>{{ 'APPS.TYPE' | translate }}</mat-label>
+                                        <mat-select formControlName="type_id" required>
+                                            <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.type_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                        <div fxLayout="row">
-                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
-                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                <input matInput formControlName="name" required>
-                                <mat-error>{{ formErrors?.name }}</mat-error>
-                            </mat-form-field>
-                        </div>
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="name" required>
+                                        <mat-error>{{ formErrors?.name }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
-                            <textarea   matInput
-                                        matTextareaAutosize
-                                        matAutosizeMinRows="5"
-                                        formControlName="description"></textarea>
-                            <mat-error>{{ formErrors?.description }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                    <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
+                                    <textarea   matInput
+                                                matTextareaAutosize
+                                                matAutosizeMinRows="5"
+                                                formControlName="description"></textarea>
+                                    <mat-error>{{ formErrors?.description }}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'APPS.IMAGES' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <dh2-attachments    name="attachments"
+                                                    placeholder="{{ 'APPS.DRAG_FILES' | translate }}"
+                                                    [value]="object.attachments"
+                                                    [form]="fg"
+                                                    [families]="attachmentFamilies">
+                                </dh2-attachments>
+
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
 
                 </form>
+
             </div>
             <!-- / CONTENT -->
 

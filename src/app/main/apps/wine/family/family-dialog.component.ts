@@ -138,7 +138,8 @@ export class FamilyDialogComponent implements OnInit
                 });
         }
         // create action
-        else {
+        else
+        {
             // set new lang
             this.fg.patchValue({
                 lang_id: this.lang.id   // set lang id in form from object with multiple language

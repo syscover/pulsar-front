@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 import { graphQL as innovaConcreteTypeGraphQL } from '../type/type.graphql';
+import { graphQL as adminAttachmentFamilyGraphQL } from '../../admin/attachment-family/attachment-family.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '@horus/components/attachments/attachments.graphql';
 
 const fields = `
     id
@@ -9,11 +11,17 @@ const fields = `
     }
     name
     description
+    attachments {
+        ${adminAttachmentsGraphQL.fields}
+    }
 `;
 
 const relationsFields = `
     innovaConcreteTypes {
         ${innovaConcreteTypeGraphQL.fields}
+    }
+    adminAttachmentFamilies (sql:$sqlAttachmentFamily) {
+        ${adminAttachmentFamilyGraphQL.fields}
     }
 `;
 
@@ -33,7 +41,7 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query InnovaConcreteGetRelationsCharacteristic {
+        query InnovaConcreteGetRelationsCharacteristic ($sqlAttachmentFamily:[CoreSQLInput]) {
             ${relationsFields}
         }`,
 
@@ -46,7 +54,10 @@ export const graphQL = {
         }`,
 
     queryObject: gql`
-        query InnovaConcreteGetCharacteristic ($sql:[CoreSQLInput]) {
+        query InnovaConcreteGetCharacteristic (
+            $sql:[CoreSQLInput] 
+            $sqlAttachmentFamily:[CoreSQLInput]
+        ) {
             coreObject: innovaConcreteCharacteristic (sql:$sql) {
                 ${fields}
             }

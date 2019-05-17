@@ -57,8 +57,8 @@ const fields = `
     has_other_course
     other_course
     languages
-    professional_certificates
-    professional_experiences
+    educations
+    experiences
     has_driving_license
     driving_licenses
 

@@ -147,10 +147,11 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     constructor(
         protected injector: Injector,
         protected graphQL: any
-    ) {
+    )
+    {
         super(injector, graphQL);
 
-        // get Http Organizer, to avoid overwritte token in request
+        // get Http Organizer, to avoid overwrite token in request
         this.httpSynchronousService = this.injector.get(HttpSynchronousService);
 
 
