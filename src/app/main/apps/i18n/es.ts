@@ -110,6 +110,7 @@ export const locale = {
             'SORT': 'Orden',
             'SSN': 'Seguridad social',
             'STATUS': 'Estado',
+            'STEPS': 'Pasos',
             'STOCK': 'Stock',
             'SUBJECT': 'Asunto',
             'SURNAME': 'Apellidos',

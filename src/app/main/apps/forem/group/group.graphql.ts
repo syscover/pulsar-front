@@ -14,6 +14,7 @@ const fields = `
     profile {
         ${adminProfileGraphQL.fields}
     }
+    steps
     prefix_id
     code
     name
@@ -85,6 +86,7 @@ const relationsFields = `
     foremTypes: coreConfig (config:$configTypes)
     foremModalities: coreConfig (config:$configModalities)
     foremGroupPrefixes: coreConfig (config:$configGroupPrefixes)
+    foremSteps: coreConfig (config:$configSteps)
     ${marketableGraphQL.relationsFields}
 `;
 
@@ -110,6 +112,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput
             $configModalities:CoreConfigInput
             $configGroupPrefixes:CoreConfigInput
+            $configSteps:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
@@ -125,6 +128,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $configGroupPrefixes:CoreConfigInput
+            $configSteps:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}
@@ -143,6 +147,7 @@ export const graphQL = {
             $configTypes:CoreConfigInput 
             $configModalities:CoreConfigInput
             $configGroupPrefixes:CoreConfigInput
+            $configSteps:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
             $sqlAdminAttachmentFamily:[CoreSQLInput]
             ${marketableGraphQL.paramenters}

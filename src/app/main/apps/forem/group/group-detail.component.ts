@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
-import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix } from '../forem.models';
+import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix, Step } from '../forem.models';
 import { Category as ProductCategory } from '../../market/market.models';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -38,6 +38,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     attachmentFamilies: AttachmentFamily[] = [];
     profiles: Profile[] = [];
     groupPrefixes: GroupPrefix[] = [];
+    steps: Step[] = [];
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -73,6 +74,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             profile_id: ['', Validators.required],
+            steps: [],
             prefix_id: ['', Validators.required],
             code: ['', Validators.required],
             name: ['', Validators.required],
@@ -161,6 +163,10 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             key: 'pulsar-forem.group_prefixes'
         };
 
+        const configSteps = {
+            key: 'pulsar-forem.steps'
+        };
+
         const sqlAdminCountry = [
             {
                 command: 'where',
@@ -197,7 +203,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             configAssistances,
             configTypes,
             configModalities,
-            configGroupPrefixes
+            configGroupPrefixes,
+            configSteps
         };
     }
 
@@ -229,6 +236,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
         // set group prefixes
         this.groupPrefixes = <GroupPrefix[]>data.foremGroupPrefixes;
+
+        // set steps
+        this.steps = <Step[]>data.foremSteps;
 
         // set profiles
         this.profiles = <Profile[]>data.adminProfiles;

@@ -77,8 +77,15 @@
 
                 <!-- Column -->
                 <ng-container matColumnDef="forem_inscription.tin">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NIF' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.tin }}</mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'APPS.NIF' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="mw-100">{{ row.tin }}</mat-cell>
+                </ng-container>
+
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FOREM.GROUP' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.group.name }}</mat-cell>
                 </ng-container>
 
                 <!-- ACTIONS -->

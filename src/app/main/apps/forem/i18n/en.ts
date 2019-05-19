@@ -19,6 +19,7 @@ export const locale = {
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',
             'FOCO': 'Foco',
+            'FORM_STEPS': 'Form steps',
             'FUNCTIONAL_AREA': 'Functional area',
             'GROUP': 'Group',
             'GRPD': 'GRPD',

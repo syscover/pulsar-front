@@ -165,6 +165,13 @@ export class Province
     name: string;
 }
 
+export class Step
+{
+    id: number;
+    name: string;
+    active: boolean;
+}
+
 export class Target
 {
     id: number;

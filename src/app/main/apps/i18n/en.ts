@@ -110,6 +110,7 @@ export const locale = {
             'SORT': 'Sort',
             'SSN': 'SSN',
             'STATUS': 'Status',
+            'STEPS': 'Steps',
             'STOCK': 'Stock',
             'SUBJECT': 'Subject',
             'SURNAME': 'Surname',
