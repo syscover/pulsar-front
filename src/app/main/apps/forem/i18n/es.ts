@@ -31,6 +31,7 @@ export const locale = {
             'HAS_SSN_AUTHORIZATION': 'Tiene permiso para Seguridad Social',
             'HOURS': 'Horas',
             'INSCRIPTION': 'Inscripción',
+            'INSCRIPTION_EXPORT': 'Exportación de inscripción',
             'IS_BIG_COMPANY': 'Empresa de más de 250 trabajadores',
             'KNOWLEDGE': 'Conocimiento',
             'LOCALITY': 'Localidad',

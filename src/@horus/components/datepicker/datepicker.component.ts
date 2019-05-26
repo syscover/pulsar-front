@@ -7,7 +7,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'dh2-datepicker',
     template: `
-        <mat-form-field [class]="class">
+        <mat-form-field [class]="class" [appearance]="appearance">
             <mat-label>{{ label }}</mat-label>
             <input matInput
                    #input
@@ -28,8 +28,9 @@ import * as moment from 'moment';
         }
     ],
 })
-export class DatepickerComponent implements ControlValueAccessor, OnInit
-{
+export class DatepickerComponent implements ControlValueAccessor, OnInit {
+
+    @Input() appearance: string = 'standard'; //'legacy' | 'standard' | 'fill' | 'outline'
     @Input() format = 'YYYY-MM-DD HH:mm:ss';
     @Input() label: string;
     @Input() class: string;

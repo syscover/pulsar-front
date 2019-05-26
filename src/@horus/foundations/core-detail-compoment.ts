@@ -85,10 +85,10 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     }
 
     // Function that can to be overwrite in child class
-    setData(response?): void
-    {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang')
-        {
+    setData(response?): void {
+
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
+
             this.object = response; // function to set custom data
 
             this.beforePatchValueEdit();

@@ -39,6 +39,7 @@ export const locale = {
             'ERROR': 'Error',
             'EXCERPT': 'Resumen',
             'EXTENSION': 'Extensión',
+            'EXPORT': 'Exportar',
             'FAKE': 'Falso',
             'FAMILY': 'Familia',
             'FAMILIES': 'Familias',

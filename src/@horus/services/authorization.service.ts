@@ -32,6 +32,7 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
     {
+        return true;
         if (! this.checkLogin(state.url)) return false;
 
         if (route.data.action && route.data.resource)

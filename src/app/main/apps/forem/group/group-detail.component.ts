@@ -138,8 +138,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             });
     }
 
-    argumentsRelationsObject(): object
-    {
+    argumentsRelationsObject(): object {
+
         // marketable component
         const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang.id, this.params['lang_id'], this.params['product_id'], 'Syscover\\Forem\\Models\\Group');
 

@@ -38,11 +38,21 @@
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button
-                    [routerLink]="baseUri + '/create'"
-                    class="new-btn fuse-white my-12 mt-sm-0">
-                <span>{{ 'APPS.NEW.F' | translate }} {{ 'FOREM.INSCRIPTION' | translate }}</span>
-            </button>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menuExport" [disableRipple]="false">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menuExport="matMenu">
+                    <button mat-menu-item [routerLink]="baseUri + '/create'">
+                        <mat-icon>edit</mat-icon>
+                        <span>{{ 'APPS.NEW.F' | translate }} {{ 'FOREM.INSCRIPTION' | translate }}</span>
+                    </button>
+                    <button mat-menu-item (click)="exportDialog()">
+                        <mat-icon>backup</mat-icon>
+                        <span>{{ 'APPS.EXPORT' | translate }}</span>
+                    </button>
+                </mat-menu>
+            </div>
 
         </div>
         <!-- / HEADER -->
@@ -80,7 +90,6 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-100">{{ 'APPS.NIF' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row" class="mw-100">{{ row.tin }}</mat-cell>
                 </ng-container>
-
 
                 <!-- Column -->
                 <ng-container matColumnDef="forem_group.name">

@@ -1,6 +1,6 @@
 import { HorusConfig } from '@horus/types';
 
 export const horusConfig: HorusConfig = {
-    fieldAppearance: 'legacy',
+    fieldAppearance: 'standard', //'legacy' | 'standard' | 'fill' | 'outline'
     graphQLMock: false
 };

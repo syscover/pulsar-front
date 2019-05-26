@@ -17,6 +17,7 @@ import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
 import { InscriptionDetailComponent } from './inscription/inscription-detail.component';
+import { InscriptionExportDialogComponent } from './inscription/inscription-export-dialog.component';
 import { InscriptionListComponent } from './inscription/inscription-list.component';
 import { LocalityDetailComponent } from './locality/locality-detail.component';
 import { LocalityListComponent } from './locality/locality-list.component';
@@ -42,6 +43,7 @@ import { ProvinceListComponent } from './province/province-list.component';
         GroupDetailComponent,
         GroupListComponent,
         InscriptionDetailComponent,
+        InscriptionExportDialogComponent,
         InscriptionListComponent,
         LocalityDetailComponent,
         LocalityListComponent,
@@ -51,7 +53,8 @@ import { ProvinceListComponent } from './province/province-list.component';
 
     providers: [],
     entryComponents: [
-        CategoryDialogComponent
+        CategoryDialogComponent,
+        InscriptionExportDialogComponent
     ]
 })
 

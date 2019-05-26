@@ -1,4 +1,6 @@
 export default `
+    scalar Date
+
     interface CorePagination {
         total: Int!
         filtered: Int

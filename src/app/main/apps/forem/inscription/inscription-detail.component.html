@@ -130,6 +130,7 @@
                                         <dh2-datepicker label="{{ 'APPS.BIRTH_DATE' | translate }}"
                                                         format="YYYY-MM-DD"
                                                         formControlName="birth_date"
+                                                        [appearance]="horusConfig.fieldAppearance"
                                                         [errors]="formErrors">
                                         </dh2-datepicker>
                                     </div>
@@ -172,7 +173,7 @@
                                 </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-2">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-6 col-md-3">
                                         <mat-label>{{ 'FOREM.ADDRESS_TYPE' | translate }}</mat-label>
                                         <mat-select formControlName="address_type_id">
                                             <mat-option *ngFor="let addressType of addressTypes" [value]="addressType.id">{{ addressType.name }}</mat-option>
@@ -180,7 +181,7 @@
                                         <mat-error>{{ formErrors?.address_type_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-9">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-8">
                                         <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
                                         <input matInput formControlName="address">
                                         <mat-error>{{ formErrors?.address }}</mat-error>

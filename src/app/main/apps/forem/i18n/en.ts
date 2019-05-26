@@ -31,6 +31,7 @@ export const locale = {
             'HAS_SSN_AUTHORIZATION': 'Has ssn authorization',
             'HOURS': 'Hours',
             'INSCRIPTION': 'Inscription',
+            'INSCRIPTION_EXPORT': 'Inscription export',
             'IS_BIG_COMPANY': 'Is big company',
             'KNOWLEDGE': 'Knowledge',
             'LOCALITY': 'Locality',

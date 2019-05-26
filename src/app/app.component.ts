@@ -89,14 +89,16 @@ export class AppComponent implements OnInit, OnDestroy
 
         // @HORUS
         if (environment.debug) console.log('DEBUG - register user: ', this._authenticationService.user());
-        if (this._authenticationService.user())
-        {
+        if (this._authenticationService.user()) {
+
             this._translateService.use(this._authenticationService.user().lang.id);
+
         }
-        else
-        {
+        else {
+
             // TODO GET LANGUAGE FROM BROWSER
             this._translateService.use('en');
+
         }
 
         /**

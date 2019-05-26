@@ -16,10 +16,11 @@ module.exports = {
 		'sourceType': 'module'
 	},
 	'rules': {
-		'brace-style': ['error', 'allman'],
+		'brace-style': ['error', 'stroustrup'],
 		'indent': ['error', 4],
 		'linebreak-style': ['error', 'unix'],
 		'quotes': ['error', 'single'],
-		'semi': ['error', 'always']
+		'semi': ['error', 'always'],
+		'padded-blocks': ['error', 'always']
 	}
 };
