@@ -229,21 +229,21 @@
                                 </div>
 
                                 <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
-                                        <mat-label>{{ 'FOREM.STARTS_AT' | translate }}</mat-label>
-                                        <input matInput [matDatepicker]="startsAt" formControlName="starts_at">
-                                        <mat-datepicker-toggle matSuffix [for]="startsAt"></mat-datepicker-toggle>
-                                        <mat-datepicker #startsAt></mat-datepicker>
-                                        <mat-error>{{ formErrors?.starts_at }}</mat-error>
-                                    </mat-form-field>
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.STARTS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="starts_at"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [errors]="formErrors">
+                                    </hr-datepicker>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-3">
-                                        <mat-label>{{ 'FOREM.ENDS_AT' | translate }}</mat-label>
-                                        <input matInput [matDatepicker]="endsAt" formControlName="ends_at">
-                                        <mat-datepicker-toggle matSuffix [for]="endsAt"></mat-datepicker-toggle>
-                                        <mat-datepicker #endsAt></mat-datepicker>
-                                        <mat-error>{{ formErrors?.ends_at }}</mat-error>
-                                    </mat-form-field>
+                                    <hr-datepicker class="offset-md-1 col-md-3"
+                                                   label="{{ 'FOREM.ENDS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="ends_at"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [errors]="formErrors">
+                                    </hr-datepicker>
                                 </div>
 
                                 <div fxLayout="row">
@@ -254,13 +254,13 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
-                                        <mat-label>{{ 'FOREM.SELECTION_DATE' | translate }}</mat-label>
-                                        <input matInput [matDatepicker]="selectionDate" formControlName="selection_date">
-                                        <mat-datepicker-toggle matSuffix [for]="selectionDate"></mat-datepicker-toggle>
-                                        <mat-datepicker #selectionDate></mat-datepicker>
-                                        <mat-error>{{ formErrors?.selection_date }}</mat-error>
-                                    </mat-form-field>
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.SELECTION_DATE' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="selection_date"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [errors]="formErrors">
+                                    </hr-datepicker>
                                 </div>
 
                                 <div fxLayout="row wrap">

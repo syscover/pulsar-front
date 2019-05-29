@@ -126,14 +126,14 @@
                                         <mat-error>{{ formErrors?.gender_id }}</mat-error>
                                     </mat-form-field>
 
-                                    <div class="col-5 offset-1 col-md-2">
-                                        <hr-datepicker label="{{ 'APPS.BIRTH_DATE' | translate }}"
-                                                        format="YYYY-MM-DD"
-                                                        formControlName="birth_date"
-                                                        [appearance]="horusConfig.fieldAppearance"
-                                                        [errors]="formErrors">
-                                        </hr-datepicker>
-                                    </div>
+                                    <hr-datepicker  class="col-5 offset-1 col-md-2"
+                                                    label="{{ 'APPS.BIRTH_DATE' | translate }}"
+                                                    format="YYYY-MM-DD"
+                                                    formControlName="birth_date"
+                                                    [appearance]="horusConfig.fieldAppearance"
+                                                    [errors]="formErrors">
+                                    </hr-datepicker>
+
                                 </div>
 
                                 <div fxLayout="row wrap" class="justify-content-between">
@@ -377,13 +377,12 @@
                                             <mat-error>{{ formErrors?.unemployed_situation_id }}</mat-error>
                                         </mat-form-field>
 
-                                        <div class="col-5 offset-md-1 col-md-3">
-                                            <hr-datepicker label="{{ 'FOREM.UNEMPLOYED_REGISTRATION_DATE' | translate }}"
-                                                            format="YYYY-MM-DD"
-                                                            formControlName="unemployed_registration_date"
-                                                            [errors]="formErrors">
-                                            </hr-datepicker>
-                                        </div>
+                                        <hr-datepicker  class="col-5 offset-md-1 col-md-3"
+                                                        label="{{ 'FOREM.UNEMPLOYED_REGISTRATION_DATE' | translate }}"
+                                                        format="YYYY-MM-DD"
+                                                        formControlName="unemployed_registration_date"
+                                                        [errors]="formErrors">
+                                        </hr-datepicker>
                                     </div>
 
                                     <div fxLayout="row">
