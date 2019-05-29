@@ -1,4 +1,4 @@
-import { Component, Input, Optional, Self, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Optional, Self, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormControlName, NgControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ErrorStateMatcher, MatFormFieldControl, MatInput } from '@angular/material';
@@ -7,7 +7,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'hr-datepicker',
     template: `
-        <mat-form-field [class]="class" [appearance]="appearance">
+        <mat-form-field [appearance]="appearance">
             <mat-label>{{ label }}</mat-label>
             <input matInput
                    #input
@@ -21,12 +21,13 @@ import * as moment from 'moment';
             <mat-error>{{ errors[controlName] }}</mat-error>
         </mat-form-field>
     `,
+    styleUrls: ['./datepicker.component.scss'],
     providers: [
         {
             provide: MatFormFieldControl,
             useExisting: DatepickerComponent
         }
-    ],
+    ]
 })
 export class DatepickerComponent implements ControlValueAccessor, OnInit {
 
