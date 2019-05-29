@@ -5,7 +5,7 @@ import { ErrorStateMatcher, MatFormFieldControl, MatInput } from '@angular/mater
 import * as moment from 'moment';
 
 @Component({
-    selector: 'dh2-datepicker',
+    selector: 'hr-datepicker',
     template: `
         <mat-form-field [class]="class" [appearance]="appearance">
             <mat-label>{{ label }}</mat-label>
@@ -30,7 +30,7 @@ import * as moment from 'moment';
 })
 export class DatepickerComponent implements ControlValueAccessor, OnInit {
 
-    @Input() appearance: string = 'standard'; //'legacy' | 'standard' | 'fill' | 'outline'
+    @Input() appearance: string = 'standard'; // 'legacy' | 'standard' | 'fill' | 'outline'
     @Input() format = 'YYYY-MM-DD HH:mm:ss';
     @Input() label: string;
     @Input() class: string;
@@ -39,20 +39,23 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
     @Input() errors: object = {};
 
     @Input()
-    get value(): moment.Moment
-    {
-        if (moment(this._value, this.format).isValid())
-        {
+    get value(): moment.Moment {
+
+        if (moment(this._value, this.format).isValid()) {
+
             return moment(this._value, this.format);
+
         }
-        else
-        {
+        else {
+
             return null;
+
         }
+
     }
     set value(value)
     {
-        if (this.debug) console.log('DEBUG - dh2-datepicker set value: ' + value);
+        if (this.debug) console.log('DEBUG - hr-datepicker set value: ' + value);
 
         if (moment(value).isValid())
         {
@@ -108,14 +111,14 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
 
     handleInput(type: string, event: MatDatepickerInputEvent<Date>): void
     {
-        if (this.debug) console.log('DEBUG - dh2-datepicker with name: ' + this._ngControl.name + ' change with value: ', event.value);
+        if (this.debug) console.log('DEBUG - hr-datepicker with name: ' + this._ngControl.name + ' change with value: ', event.value);
         this.value = moment(event.value, this.format);
     }
 
     // initialise the value.
     writeValue(value: any): void
     {
-        if (this.debug) console.log('DEBUG - dh2-datepicker with name: ' + this._ngControl.name + ' init value: ', value);
+        if (this.debug) console.log('DEBUG - hr-datepicker with name: ' + this._ngControl.name + ' init value: ', value);
         if (moment(value).isValid())
         {
             this.value = moment(value, this.format);

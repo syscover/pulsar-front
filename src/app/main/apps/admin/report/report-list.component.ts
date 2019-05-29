@@ -5,7 +5,7 @@ import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
 import 'rxjs/add/operator/toPromise';
-import { environment } from '../../../../../environments/environment';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'dh2-admin-report-list',
@@ -75,9 +75,9 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                         link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
                         setTimeout(function () {
-                             // For Firefox it is necessary to delay revoking the ObjectURL
-                             window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
-                             link.remove();
+                            // For Firefox it is necessary to delay revoking the ObjectURL
+                            window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
+                            link.remove();
                         }, 100);
 
 

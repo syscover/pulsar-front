@@ -66,12 +66,12 @@ import { horusConfig } from 'app/horus-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'date'">
-                            <dh2-datepicker [class]="field.component_class ? field.component_class : 'col-6 col-md-4'"
+                            <hr-datepicker [class]="field.component_class ? field.component_class : 'col-6 col-md-4'"
                                             label="{{ field | getFieldLabel:lang }}"
                                             format="YYYY-MM-DD"
                                             [formControlName]="field.name"
                                             [errors]="errors">
-                            </dh2-datepicker>
+                            </hr-datepicker>
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'datetime'">

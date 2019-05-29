@@ -16,15 +16,18 @@ export class HttpService extends Core
     protected router: Router;
 
     private handleError = (err) => {
+
         console.log(err);
         if (err.status === 401) this.router.navigate(['/pulsar/login']); // redirect to login if token is invalid
 
         return throwError('Error Observable.throw: ' + err.statusText);
+
     }
     
     constructor(
         protected injector: Injector
     ) {
+
         super(injector);
 
         this.http = this.injector.get(HttpClient);
@@ -33,11 +36,13 @@ export class HttpService extends Core
 
         this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         this.options = { headers: this.headers };
+
     }
 
-    apolloClient(): Apollo
-    {
+    apolloClient(): Apollo {
+
         return this.apollo;
+
     }
 
     httpClient(): HttpClient

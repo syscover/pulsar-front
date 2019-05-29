@@ -27,14 +27,16 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     constructor(
         protected injector: Injector
     ) {
+
         super(injector, graphQL);
+
     }
 
     addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
     removeTag: (formGroup: FormGroup, name: string, tag) => void;
 
-    createForm(): void
-    {
+    createForm(): void {
+
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             subject: ['', Validators.required],
@@ -44,10 +46,11 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             frequency_id: ['', Validators.required],
             sql: ['', Validators.required],
         });
+
     }
 
-    argumentsRelationsObject(): object
-    {
+    argumentsRelationsObject(): object {
+
         const configExtensions = {
             key: 'pulsar-admin.extensions',
             property: 'name'
@@ -63,6 +66,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             configExtensions,
             configFrequencies
         };
+
     }
 
     setRelationsData(data: any): void
@@ -73,4 +77,5 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         // admin frequencies
         this.frequencies = data.adminFrequencies;
     }
+
 }
