@@ -1,11 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import { HttpService } from '@horus/services/http.service';
 import { horusConfig } from 'app/horus-config';
 import { Group } from '../forem.models';
 import gql from 'graphql-tag';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'dh2-forem-inscription-export-dialog',
@@ -66,7 +68,8 @@ export class InscriptionExportDialogComponent implements OnInit {
         private _dialogRef: MatDialogRef<InscriptionExportDialogComponent>,
         private _fb: FormBuilder,
         private _validationMessageService: ValidationMessageService,
-        private _http: HttpService
+        private _http: HttpService,
+        private _sanitizer: DomSanitizer
     ) {
 
         this.createForm();
@@ -140,14 +143,54 @@ export class InscriptionExportDialogComponent implements OnInit {
                         id: this.fg.get('group_id').value
                     }
                 })
-                .subscribe(res => {
+                .subscribe(({data}) => {
 
-                    console.log(res);
+                    this._http
+                        .httpClient()
+                        .post(this._http.restUrl + '/api/v1/admin/file-manager/read', {
+                            mime: 'application/zip',
+                            pathname: 'app/public/forem/export/' + data.foremExportInscription
+                        },
+                        {
+                            responseType: 'blob'
+                        })
+                        .subscribe((res) => {
+
+                            const blob = new Blob([res], { type: data.foremExportInscription });
+
+                            // IE doesn't allow using a blob object directly as link href
+                            // instead it is necessary to use msSaveOrOpenBlob
+                            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+
+                                window.navigator.msSaveOrOpenBlob(blob);
+                                return;
+
+                            }
+
+                            const fileUrl = this._sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+                            if (environment.debug) console.log('DEBUG - response file url to download: ', fileUrl);
+
+                            const link = document.createElement('a');
+                            link.href = fileUrl['changingThisBreaksApplicationSecurity'];
+                            link.download = data.foremExportInscription;
+
+                            // this is necessary as link.click() does not work on the latest firefox
+                            link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+                            setTimeout(() => {
+
+                                // For Firefox it is necessary to delay revoking the ObjectURL
+                                window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
+                                link.remove();
+
+                                this.loadingButton = false;
+                                this._dialogRef.close(data.foremExportInscription);
+
+                            }, 100);
+
+                        });
 
                     ob$.unsubscribe();
-                    this.loadingButton = false;
-                    this._dialogRef.close(res.data.foremExportInscription);
-
                 });
 
         }
