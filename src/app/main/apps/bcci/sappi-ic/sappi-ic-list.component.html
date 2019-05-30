@@ -73,10 +73,10 @@
                 <!-- Column -->
                 <ng-container matColumnDef="bcci_sappi_ic.interface_name" *ngIf="columnsPattern['bcci_sappi_ic.interface_name']">
                     <mat-header-cell *matHeaderCellDef class="d-none d-sm-flex">
-                        <dh2-filter-header-cell column="bcci_sappi_ic.interface_name"
+                        <hr-filter-header-cell column="bcci_sappi_ic.interface_name"
                                                 columnTitle="{{ 'BCCI.INTERFACE_NAME' | translate }}"
                                                 [sort]="true"
-                                                (filter)="setColumnFilter($event)"></dh2-filter-header-cell>
+                                                (filter)="setColumnFilter($event)"></hr-filter-header-cell>
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="d-none d-sm-flex">{{ row.interface_name }}</mat-cell>
                 </ng-container>

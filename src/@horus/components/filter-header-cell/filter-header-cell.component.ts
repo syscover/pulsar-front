@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'dh2-filter-header-cell',
+    selector: 'hr-filter-header-cell',
     templateUrl: './filter-header-cell.component.html',
     styleUrls: ['./filter-header-cell.component.scss']
 })
