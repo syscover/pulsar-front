@@ -127,10 +127,6 @@ export class InscriptionExportDialogComponent implements OnInit {
 
             this.loadingButton = true;
 
-            console.log(this.fg.value);
-
-
-
             const ob$ = this._http
                 .apolloClient()
                 .mutate({
@@ -144,6 +140,15 @@ export class InscriptionExportDialogComponent implements OnInit {
                     }
                 })
                 .subscribe(({data}) => {
+
+                    ob$.unsubscribe();
+                    if (! data.foremExportInscription) {
+
+                        this.loadingButton = false;
+                        this._dialogRef.close(data.foremExportInscription);
+                        return;
+
+                    }
 
                     this._http
                         .httpClient()
@@ -190,7 +195,6 @@ export class InscriptionExportDialogComponent implements OnInit {
 
                         });
 
-                    ob$.unsubscribe();
                 });
 
         }
