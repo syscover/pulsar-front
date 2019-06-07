@@ -5,7 +5,7 @@ import { MatChipInputEvent } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
-import { Extension, Frequency } from '../admin.models';
+import { Extension, Frequency, Profile } from '../admin.models';
 import { graphQL } from './report.graphql';
 
 @Chips()
@@ -22,6 +22,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     frequencies: Frequency[] = [];
     extensions: Extension[] = [];
     emails: String[] = [];
+    profiles: Profile[] = [];
     separatorKeysCodes = [ENTER, COMMA];
 
     constructor(
@@ -41,6 +42,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             id: [{value: '', disabled: true}],
             subject: ['', Validators.required],
             emails: [],
+            profiles: [],
             filename: ['', Validators.required],
             extension: ['', Validators.required],
             frequency_id: ['', Validators.required],
@@ -76,6 +78,8 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
         // admin frequencies
         this.frequencies = data.adminFrequencies;
-    }
 
+        // admin profiles
+        this.profiles = data.adminProfiles;
+    }
 }

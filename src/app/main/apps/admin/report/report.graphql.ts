@@ -4,6 +4,7 @@ const fields = `
     id
     subject
     emails
+    profiles
     filename
     extension
     frequency_id
@@ -13,6 +14,10 @@ const fields = `
 const relationsFields = `
     adminExtensions: coreConfig (config:$configExtensions)
     adminFrequencies: coreConfig (config:$configFrequencies)
+    adminProfiles {
+        id
+        name
+    }
 `;
 
 export const graphQL = {
