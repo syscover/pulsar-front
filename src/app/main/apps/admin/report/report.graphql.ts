@@ -82,6 +82,7 @@ export const graphQL = {
             adminRunReport (id:$id) {
                 ${fields}
                 file {
+                    url
                     filename
                     pathname
                     mime
