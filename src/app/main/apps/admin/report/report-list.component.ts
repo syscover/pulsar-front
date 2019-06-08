@@ -23,12 +23,15 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
     constructor(
         protected injector: Injector,
         private _sanitizer: DomSanitizer
-    ) {
+    )
+    {
         super(injector, graphQL);
     }
 
     runReport(report: Report): void
     {
+        this.isLoadingResults = true;
+
         const ob$ = this.http
             .apolloClient()
             .watchQuery({
@@ -38,8 +41,8 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                 }
             })
             .valueChanges
-            .subscribe((res) => {
-
+            .subscribe((res) =>
+            {
                 if (environment.debug) console.log('DEBUG - response execute report: ', res);
 
                 this.http
@@ -52,13 +55,14 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                             responseType: 'blob'
                         }
                     )
-                    .subscribe((data) => {
-
+                    .subscribe((data) =>
+                    {
                         const blob = new Blob([data], { type: res.data['adminRunReport']['file']['mime'] });
 
                         // IE doesn't allow using a blob object directly as link href
                         // instead it is necessary to use msSaveOrOpenBlob
-                        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                        if (window.navigator && window.navigator.msSaveOrOpenBlob)
+                        {
                             window.navigator.msSaveOrOpenBlob(blob);
                             return;
                         }
@@ -69,7 +73,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
                         const link = document.createElement('a');
                         link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                        link.download = res.data['adminRunReport']['filename'] + '.' + res.data['adminRunReport']['extension'];
+                        link.download = res.data['adminRunReport']['file']['filename'];
 
                         // this is necessary as link.click() does not work on the latest firefox
                         link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
@@ -80,6 +84,8 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                             window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
                             link.remove();
                         }, 100);
+
+                        this.isLoadingResults = false;
                     });
             });
     }
