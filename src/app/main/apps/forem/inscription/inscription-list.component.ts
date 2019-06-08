@@ -2,10 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { graphQL } from './inscription.graphql';
 import { InscriptionExportDialogComponent } from './inscription-export-dialog.component';
-import { ReplaySubject } from 'rxjs';
-import * as _ from "lodash";
 
 @Component({
     selector: 'dh2-forem-inscription-list',
@@ -23,13 +22,14 @@ export class InscriptionListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
-        private _dialog: MatDialog,
-    ) {
+        private _dialog: MatDialog
+    )
+    {
         super(injector, graphQL);
     }
 
-    exportDialog(): void {
-
+    exportDialog(): void
+    {
         const dialogRef = this._dialog.open(this.inscriptionExportDialogComponent, {
             data: {
                 id: ''// this.object[formGroupName]
@@ -39,10 +39,10 @@ export class InscriptionListComponent extends CoreListComponent
 
         dialogRef
             .afterClosed()
-            .subscribe((object: any) => {
-
-                if (object) {
-
+            .subscribe((object: any) =>
+            {
+                if (object)
+                {
                     // if (this.env.debug) console.log('DEBUG - Add element: ', object);
                     //
                     // // Objects is the name of property, by to get reference.

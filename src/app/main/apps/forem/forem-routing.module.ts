@@ -49,6 +49,11 @@ const routes: Routes = [
             { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
             { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
 
+            // Groups office
+            { path: 'group-office',                                         component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group', checkProfile: true }},
+            { path: 'group-office/create',                                  component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
+            { path: 'group-office/show/:id',                                component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
+
             // Provinces
             { path: 'province',                                             component: ProvinceListComponent,                   data: { action: 'list', resource: 'forem-province' }},
             { path: 'province/create',                                      component: ProvinceDetailComponent,                 data: { action: 'create', resource: 'forem-province' }},
@@ -63,6 +68,11 @@ const routes: Routes = [
             { path: 'inscription',                                          component: InscriptionListComponent,                data: { action: 'list', resource: 'forem-inscription' }},
             { path: 'inscription/create',                                   component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription' }},
             { path: 'inscription/show/:id',                                 component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription' }},
+
+            // Inscriptions for employment offices
+            { path: 'inscription-office',                                   component: InscriptionListComponent,                data: { action: 'list', resource: 'forem-inscription' }},
+            { path: 'inscription-office/create',                            component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription' }},
+            { path: 'inscription-office/show/:id',                          component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription' }},
         ]  
     }
 ];

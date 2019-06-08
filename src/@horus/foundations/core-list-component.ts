@@ -46,8 +46,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
                 .debounceTime(500)
                 .distinctUntilChanged()
         )
-        .takeUntil(this.$onDestroy)
-        .subscribe(() => this.paginator.pageIndex = 0);
+            .takeUntil(this.$onDestroy)
+            .subscribe(() => this.paginator.pageIndex = 0);
 
         // ??
         merge(

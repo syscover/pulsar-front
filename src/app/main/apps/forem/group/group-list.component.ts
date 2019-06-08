@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { graphQL } from './group.graphql';
 
 @Component({
@@ -17,8 +18,15 @@ export class GroupListComponent extends CoreListComponent
     displayedColumns = ['forem_group.id', 'forem_group.code', 'forem_group.name', 'admin_profile.name', 'forem_group.price', 'forem_group.publish', 'forem_group.featured', 'actions'];
 
     constructor(
-        protected injector: Injector
-    ) {
+        protected injector: Injector,
+        private _authenticationService: AuthenticationService
+    )
+    {
         super(injector, graphQL);
+
+        if (this.dataRoute['checkProfile'])
+        {
+            this.filters = [{'command': 'where', 'column': 'forem_group.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
+        }
     }
 }

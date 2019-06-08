@@ -135,7 +135,7 @@ export const navigation: FuseNavigation[] = [
                 'icon'     : 'highlight',
                 'children' : [
                     {
-                        'id'        : 'groups',
+                        'id'        : 'inscription',
                         'title'     : 'Inscription',
                         'translate' : 'NAV.INSCRIPTIONS',
                         'type'      : 'item',
@@ -151,6 +151,15 @@ export const navigation: FuseNavigation[] = [
                         'resource'  : 'forem-group',
                         'icon'      : 'supervised_user_circle',
                         'url'       : '/apps/forem/group'
+                    },
+                    {
+                        'id'        : 'groups-office',
+                        'title'     : 'Groups',
+                        'translate' : 'NAV.GROUPS',
+                        'type'      : 'item',
+                        'resource'  : 'forem-group',
+                        'icon'      : 'supervised_user_circle',
+                        'url'       : '/apps/forem/group-office'
                     },
                     {
                         'id'        : 'actions',
