@@ -6,7 +6,7 @@ const fields = `
     id
     group_id
     student_id
-    exported
+    is_exported
     reason_request_id
     other_reason_request
     observations

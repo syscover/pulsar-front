@@ -51,14 +51,11 @@ const fields = `
     address
     latitude
     longitude
-    
     is_product
     product_id
-    
     attachments {
         ${adminAttachmentsGraphQL.fields}
     }
-    
     ${marketableGraphQL.fields}
 `;
 

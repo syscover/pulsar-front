@@ -42,7 +42,7 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
             id: [{value: '', disabled: true}],
 
             // hidden
-            exported: false,
+            is_exported: false,
             student_id: '',
         
             group_id: ['', Validators.required],

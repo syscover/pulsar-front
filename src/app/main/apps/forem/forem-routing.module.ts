@@ -50,9 +50,9 @@ const routes: Routes = [
             { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
 
             // Groups office
-            { path: 'group-office',                                         component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group', checkProfile: true }},
-            { path: 'group-office/create',                                  component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
-            { path: 'group-office/show/:id',                                component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
+            { path: 'group-office',                                         component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group-office', checkProfile: true }},
+            { path: 'group-office/create',                                  component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group-office' }},
+            { path: 'group-office/show/:id',                                component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group-office' }},
 
             // Provinces
             { path: 'province',                                             component: ProvinceListComponent,                   data: { action: 'list', resource: 'forem-province' }},

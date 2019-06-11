@@ -27,7 +27,7 @@ import { environment } from 'environments/environment';
                                         class="col-12">
                             <mat-label>{{ 'APPS.GROUP' | translate }}</mat-label>
                             <mat-select formControlName="group_id" required>
-                                <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>
+                                <mat-option *ngFor="let group of groups" [value]="group.id">({{ group.id }}) {{ group.name }}</mat-option>
                             </mat-select>
                             <mat-error>{{ formErrors?.group_id }}</mat-error>
                         </mat-form-field>
@@ -54,8 +54,8 @@ import { environment } from 'environments/environment';
         </div>
     `
 })
-export class InscriptionExportDialogComponent implements OnInit {
-
+export class InscriptionExportDialogComponent implements OnInit 
+{
     fg: FormGroup;
     horusConfig = horusConfig;
     groups: Group[] = [];
@@ -76,16 +76,15 @@ export class InscriptionExportDialogComponent implements OnInit {
 
     }
 
-    createForm(): void {
-
+    createForm(): void 
+    {
         this.fg = this._fb.group({
             group_id: ['', Validators.required]
         });
-
     }
 
-    ngOnInit(): void {
-
+    ngOnInit(): void 
+    {
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
 
         this.showSpinner = true;
@@ -98,6 +97,7 @@ export class InscriptionExportDialogComponent implements OnInit {
                         foremGroups (sql:$sql) {
                             id
                             name
+                            code
                         }
                     }`,
                 variables: {
