@@ -4,8 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -17,12 +16,29 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
 
+// @HORUS
+import { HorusModule } from '@horus/horus.module';
+import { CoreModule } from 'app/main/core/core.module';
+
+// @HORUS
 const appRoutes: Routes = [
     {
+        path: '',
+        redirectTo: 'apps/auth/login',
+        pathMatch: 'full'
+    },
+    {
+        path        : 'apps',
+        loadChildren: 'app/main/apps/apps.module#AppsModule'
+    },
+    {
+        path        : 'pages',
+        loadChildren: 'app/main/pages/pages.module#FusePagesModule'
+    },
+    {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'pages/errors/error-404'
     }
 ];
 
@@ -54,12 +70,13 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
+
+        // @HORUS
+        CoreModule,
+        HorusModule
     ],
     bootstrap   : [
         AppComponent
     ]
 })
-export class AppModule
-{
-}
+export class AppModule {}

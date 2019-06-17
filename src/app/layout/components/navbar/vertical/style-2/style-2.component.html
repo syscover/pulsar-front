@@ -1,9 +1,13 @@
 <div class="navbar-header" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
 
+    <!-- @HORUS -->
     <div class="logo">
-        <img class="logo-icon" src="assets/images/logos/fuse.svg">
-        <span class="logo-text">FUSE</span>
+        <img class="logo-icon" [src]="logoIcon">
+        <span class="logo-text">
+            <div><img [src]="logoText"></div>
+        </span>
     </div>
+    <!-- /@HORUS -->
 
     <button mat-icon-button class="toggle-sidebar-folded"
             (click)="toggleSidebarFolded()" fxHide.lt-lg>

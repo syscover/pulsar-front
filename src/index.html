@@ -3,14 +3,14 @@
 
     <head>
 
-        <title>Fuse - Angular 8+ Material Design Admin Template</title>
+        <title>HORUS</title>
         <base href="/">
 
+        <!-- @HORUS -->
         <meta charset="utf-8">
-        <meta name="description" content="Material design admin template with pre-built apps and pages">
-        <meta name="keywords"
-              content="HTML,CSS,AngularJS,Angular,Angular 2,Angular 4,Angular 5,Angular 6,Angular 7,Material,Material 2">
-        <meta name="author" content="Withinpixels">
+        <meta name="description" content="HORUS Material Control Panel">
+        <meta name="keywords" content="HORUS Material Control Panel">
+        <meta name="author" content="Digital H2">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -40,21 +40,27 @@
                 transform: translateY(-50%);
             }
 
+            /* @HORUS */
             #fuse-splash-screen .logo {
-                width: 128px;
-                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                /*opacity: 0;*/
+                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .logo img {
                 filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2))
             }
 
+            /* @HORUS */
             #fuse-splash-screen .spinner-wrapper {
                 display: block;
                 position: relative;
                 width: 100%;
                 min-height: 100px;
                 height: 100px;
+                /*opacity: 0;*/
+                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .spinner-wrapper .spinner {
@@ -91,6 +97,7 @@
                 overflow: hidden;
             }
 
+            /* @HORUS */
             #fuse-splash-screen .spinner-wrapper .spinner .inner .left .half-circle,
             #fuse-splash-screen .spinner-wrapper .spinner .inner .right .half-circle {
                 position: absolute;
@@ -98,7 +105,7 @@
                 width: 100px;
                 height: 100px;
                 box-sizing: border-box;
-                border: 10px solid #4285F4;
+                border: 10px solid #fff;
                 border-bottom-color: transparent;
                 border-radius: 50%;
             }
@@ -124,6 +131,31 @@
                 animation: right-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1) infinite;
                 -webkit-animation: right-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1) infinite;
             }
+
+
+            /* @HORUS start */
+            .fade-in {
+                opacity: 1;
+                animation-name: fadeInOpacity;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+                animation-duration: 500ms;
+            }
+
+            .hide {
+                opacity: 0;
+                z-index: -10;
+            }
+
+            @keyframes fadeInOpacity {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            /* @HORUS end */
 
             @keyframes outer-rotate {
                 0% {
@@ -180,6 +212,7 @@
             }
         </style>
         <!-- / FUSE Splash Screen CSS -->
+
     </head>
 
     <body>
@@ -189,12 +222,13 @@
 
             <div class="center">
 
-                <div class="logo">
-                    <img width="128" src="assets/images/logos/fuse.svg">
+                <div class="logo hide">
+                    <!-- @HORUS -->
+                    <img src="assets/images/dh2/pixel.svg">
                 </div>
 
                 <!-- Material Design Spinner -->
-                <div class="spinner-wrapper">
+                <div class="spinner-wrapper hide">
                     <div class="spinner">
                         <div class="inner">
                             <div class="gap"></div>
@@ -213,6 +247,41 @@
 
         </fuse-splash-screen>
         <!-- / FUSE Splash Screen -->
+
+        <script>
+            // @HORUS
+            fetch('config/config.json')
+                .then(response => response.json())
+                .then(config => {
+
+                    // head
+                    document.head.querySelector('title').innerHTML = config.title;
+                    document.head.querySelector('link[type="image/x-icon"]').href = config.favicon;
+
+                    // spinner
+                    const leftSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .left .half-circle');
+                    const rightSpinner = document.body.querySelector('#fuse-splash-screen .spinner-wrapper .spinner .inner .right .half-circle');
+
+                    leftSpinner.style.borderColor = config.splashSpinnerColor;
+                    leftSpinner.style.borderRightColor = 'transparent';
+                    leftSpinner.style.borderBottomColor = 'transparent';
+
+                    rightSpinner.style.borderColor = config.splashSpinnerColor;
+                    rightSpinner.style.borderLeftColor = 'transparent';
+                    rightSpinner.style.borderBottomColor = 'transparent';
+
+                    // logo
+                    const logo = document.body.querySelector('#fuse-splash-screen .logo img');
+                    logo.src = config.splashLogo;
+                    logo.width = config.splashWidthLogoSize;
+
+                    // show spinner and logo
+                    document.body.querySelector('#fuse-splash-screen .spinner-wrapper').classList.add('fade-in');
+                    document.body.querySelector('#fuse-splash-screen .logo').classList.add('fade-in');
+                    document.body.querySelector('#fuse-splash-screen .spinner-wrapper').classList.remove('hide');
+                    document.body.querySelector('#fuse-splash-screen .logo').classList.remove('hide');
+                });
+        </script>
 
         <app></app>
 

@@ -8,6 +8,9 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
+// @HORUS
+import { ConfigService } from '@horus/services/config.service';
+
 @Component({
     selector     : 'navbar-vertical-style-2',
     templateUrl  : './style-2.component.html',
@@ -18,6 +21,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+
+    // @HORUS
+    logoIcon: string;
+    logoText: string;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -35,7 +42,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+
+        // @HORUS
+        private _configService: ConfigService
     )
     {
         // Set the private defaults
@@ -47,7 +57,7 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
 
     // Directive
-    @ViewChild(FusePerfectScrollbarDirective, {static: true})
+    @ViewChild(FusePerfectScrollbarDirective)
     set directive(theDirective: FusePerfectScrollbarDirective)
     {
         if ( !theDirective )
@@ -75,7 +85,16 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
             )
             .subscribe(() => {
                     setTimeout(() => {
-                        this._fusePerfectScrollbar.scrollToElement('navbar .nav-link.active', -120);
+                        const activeNavItem: any = document.querySelector('navbar .nav-link.active');
+
+                        if ( activeNavItem )
+                        {
+                            const activeItemOffsetTop       = activeNavItem.offsetTop,
+                                  activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
+                                  scrollDistance            = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3);
+
+                            this._fusePerfectScrollbar.scrollToTop(scrollDistance);
+                        }
                     });
                 }
             );
@@ -90,6 +109,10 @@ export class NavbarVerticalStyle2Component implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        // @HORUS
+        this.logoIcon = this._configService.get('logoIcon');
+        this.logoText = this._configService.get('logoText');
+
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
