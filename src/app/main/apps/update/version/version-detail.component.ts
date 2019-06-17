@@ -17,7 +17,7 @@ export class VersionDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'F';
     packages: Package[] = [];
 
-    @ViewChild(MatSort, {static: false}) sort: MatSort;
+    @ViewChild(MatSort) sort: MatSort;
     displayedColumns = ['id', 'query', 'sort', 'actions'];
     dataSource = new MatTableDataSource();
 

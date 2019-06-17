@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
+import { merge } from 'rxjs/observable/merge';
 import { TranslateService } from '@ngx-translate/core';
-import { merge } from 'rxjs';
-import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class ValidationMessageService
 
     constructor(
         private translateService: TranslateService
-    )
+    ) 
     {
         this.translateService.onLangChange.subscribe((e: Event) => {
             this.getAndInitTranslations();
@@ -26,7 +26,7 @@ export class ValidationMessageService
         // load translations for component
         this.translateService
             .get(['VALIDATIONS'])
-            .pipe(map(translations => {
+            .map(translations => {
                 if (translations['VALIDATIONS'])
                 {
                     for (const index in translations['VALIDATIONS'])
@@ -36,15 +36,15 @@ export class ValidationMessageService
                     delete translations.APPS;
                     return translations;
                 }
-            }))
+            })
             .subscribe(response => {
                 this.translations = response;
             });
     }
 
-    getMessage(error: string, formControl?: AbstractControl): string
+    getMessage(error: string, formControl?: AbstractControl): string 
     {
-        switch (error)
+        switch (error) 
         {
             case 'required':
                 return this.translations['VALIDATIONS.REQUIRED'];
@@ -74,7 +74,7 @@ export class ValidationMessageService
         if (! formGroup) { return; }
         const formErrors = {};
         const fields = _.keysIn(formGroup.controls); // get fields array, form control is a object
-
+    
         for (const field of fields)
         {
             const formControl = formGroup.get(field);
@@ -89,27 +89,23 @@ export class ValidationMessageService
         return formErrors;
     }
 
-    subscribeForm(formGroup: FormGroup, formErrors: any): void
+    subscribeForm(formGroup: FormGroup, formErrors: any) 
     {
-        // check that exist formGroup
-        if (formGroup)
+        for (const field of _.keysIn(formGroup.controls))
         {
-            for (const field of _.keysIn(formGroup.controls))
-            {
-                merge(
-                    formGroup.get(field).valueChanges,
-                    formGroup.get(field).statusChanges
-                ).subscribe(
-                    data => {
-                        formErrors[field] = this.onChange(formGroup.get(field));
-                    }
-                );
-            }
-        }
+            merge(
+                formGroup.get(field).valueChanges,
+                formGroup.get(field).statusChanges
+            ).subscribe(
+                data => {
+                    formErrors[field] = this.onChange(formGroup.get(field));
+                }
+            );   
+        }   
     }
 
     // add controls to validate and get message error
-    addControl(name: string, formControl: FormControl, formErrors: any): void
+    addControl(name: string, formControl: FormControl, formErrors: any) 
     {
         merge(
             formControl.valueChanges,
@@ -118,14 +114,14 @@ export class ValidationMessageService
             data => {
                 formErrors[name] = this.onChange(formControl);
             }
-        );
+        );  
     }
 
-    onChange(formControl: AbstractControl): string
+    onChange(formControl: AbstractControl): string 
     {
         if (! formControl) { return; }
         let formError;
-
+        
         if (formControl && formControl.dirty && formControl.invalid)
         {
             for (const error in formControl.errors)

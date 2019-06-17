@@ -4,8 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -18,11 +17,11 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
-// @horus
+// @HORUS
 import { HorusModule } from '@horus/horus.module';
 import { CoreModule } from 'app/main/core/core.module';
 
-// @horus
+// @HORUS
 const appRoutes: Routes = [
     {
         path: '',
@@ -72,7 +71,7 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
 
-        // @horus
+        // @HORUS
         CoreModule,
         HorusModule
     ],
@@ -80,6 +79,4 @@ const appRoutes: Routes = [
         AppComponent
     ]
 })
-export class AppModule
-{
-}
+export class AppModule {}

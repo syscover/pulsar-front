@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
@@ -12,7 +12,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
     templateUrl: './shortcuts.component.html',
     styleUrls  : ['./shortcuts.component.scss']
 })
-export class FuseShortcutsComponent implements OnInit, AfterViewInit, OnDestroy
+export class FuseShortcutsComponent implements OnInit, OnDestroy
 {
     shortcutItems: any[];
     navigationItems: any[];
@@ -23,10 +23,10 @@ export class FuseShortcutsComponent implements OnInit, AfterViewInit, OnDestroy
     @Input()
     navigation: any;
 
-    @ViewChild('searchInput', {static: false})
+    @ViewChild('searchInput')
     searchInputField;
 
-    @ViewChild('shortcuts', {static: false})
+    @ViewChild('shortcuts')
     shortcutsEl: ElementRef;
 
     // Private
@@ -79,36 +79,32 @@ export class FuseShortcutsComponent implements OnInit, AfterViewInit, OnDestroy
             // User's shortcut items
             this.shortcutItems = [
                 {
-                    title: 'Calendar',
-                    type : 'item',
-                    icon : 'today',
-                    url  : '/apps/calendar'
+                    'title': 'Calendar',
+                    'type' : 'item',
+                    'icon' : 'today',
+                    'url'  : '/apps/calendar'
                 },
                 {
-                    title: 'Mail',
-                    type : 'item',
-                    icon : 'email',
-                    url  : '/apps/mail'
+                    'title': 'Mail',
+                    'type' : 'item',
+                    'icon' : 'email',
+                    'url'  : '/apps/mail'
                 },
                 {
-                    title: 'Contacts',
-                    type : 'item',
-                    icon : 'account_box',
-                    url  : '/apps/contacts'
+                    'title': 'Contacts',
+                    'type' : 'item',
+                    'icon' : 'account_box',
+                    'url'  : '/apps/contacts'
                 },
                 {
-                    title: 'To-Do',
-                    type : 'item',
-                    icon : 'check_box',
-                    url  : '/apps/todo'
+                    'title': 'To-Do',
+                    'type' : 'item',
+                    'icon' : 'check_box',
+                    'url'  : '/apps/todo'
                 }
             ];
         }
 
-    }
-
-    ngAfterViewInit(): void
-    {
         // Subscribe to media changes
         this._fuseMatchMediaService.onMediaChange
             .pipe(takeUntil(this._unsubscribeAll))

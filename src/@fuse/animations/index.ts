@@ -51,23 +51,26 @@ export const fuseAnimations = [
     ]),
 
     trigger('fadeInOut', [
-        state('0, void', style({
+        state('0', style({
+            display: 'none',
             opacity: 0
         })),
-        state('1, *', style({
+        state('1', style({
+            display: 'block',
             opacity: 1
         })),
         transition('1 => 0', animate('300ms ease-out')),
-        transition('0 => 1', animate('300ms ease-in')),
-        transition('void <=> *', animate('300ms ease-in'))
+        transition('0 => 1', animate('300ms ease-in'))
     ]),
 
     trigger('slideInOut', [
         state('0', style({
-            height: '0px'
+            height : '0px',
+            display: 'none'
         })),
         state('1', style({
-            height: '*'
+            height : '*',
+            display: 'block'
         })),
         transition('1 => 0', animate('300ms ease-out')),
         transition('0 => 1', animate('300ms ease-in'))
@@ -117,15 +120,17 @@ export const fuseAnimations = [
                     })
                 )
             ]
-        )
+        ),
     ]),
 
     trigger('slideInLeft', [
         state('void', style({
             transform: 'translateX(-100%)',
+            display  : 'none'
         })),
         state('*', style({
             transform: 'translateX(0)',
+            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -134,9 +139,11 @@ export const fuseAnimations = [
     trigger('slideInRight', [
         state('void', style({
             transform: 'translateX(100%)',
+            display  : 'none'
         })),
         state('*', style({
             transform: 'translateX(0)',
+            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -145,9 +152,11 @@ export const fuseAnimations = [
     trigger('slideInTop', [
         state('void', style({
             transform: 'translateY(-100%)',
+            display  : 'none'
         })),
         state('*', style({
             transform: 'translateY(0)',
+            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -157,9 +166,11 @@ export const fuseAnimations = [
         state('void',
             style({
                 transform: 'translateY(100%)',
+                display  : 'none'
             })),
         state('*', style({
             transform: 'translateY(0)',
+            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -179,7 +190,7 @@ export const fuseAnimations = [
     // -----------------------------------------------------------------------------------------------------
     // @ Router animations
     // -----------------------------------------------------------------------------------------------------
-
+    
     trigger('routerTransitionLeft', [
 
         transition('* => *', [

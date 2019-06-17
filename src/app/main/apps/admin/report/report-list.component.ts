@@ -43,7 +43,6 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
             .valueChanges
             .subscribe((res) =>
             {
-                ob$.unsubscribe();
                 if (environment.debug) console.log('DEBUG - response execute report: ', res);
 
                 this.http
