@@ -101,12 +101,11 @@ export class InscriptionExportDialogComponent implements OnInit
                         }
                     }`,
                 variables: {
-                    // sql: [{
-                    //     command: 'where',
-                    //     column: 'forem_group.id',
-                    //     operator: '=',
-                    //     value: this.data.id
-                    // }]
+                    sql: [{
+                        command: 'orderBy',
+                        operator: 'asc',
+                        column: 'forem_group.id'
+                    }]
                 }
             })
             .valueChanges
@@ -121,10 +120,10 @@ export class InscriptionExportDialogComponent implements OnInit
 
     }
 
-    postRecord(): void {
-
-        if (this.fg.valid) {
-
+    postRecord(): void 
+    {
+        if (this.fg.valid) 
+        {
             this.loadingButton = true;
 
             const ob$ = this._http
