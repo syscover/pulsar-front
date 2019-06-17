@@ -27,9 +27,6 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
     // Private
     private _unsubscribeAll: Subject<any>;
 
-    // Public
-    public array = Array;
-
     /**
      * Constructor
      *

@@ -4,7 +4,6 @@ import { Platform } from '@angular/cdk/platform';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { environment } from 'environments/environment';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
@@ -12,15 +11,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-// @HORUS
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
-import { locale as navigationSpanish } from 'app/navigation/i18n/es';
-
-// @HORUS
-import { AuthenticationService } from '../@horus/services/authentication.service';
-import { ConfigService } from '@horus/services/config.service';
-import { NavigationService } from '@horus/services/navigation.service';
+import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 
 @Component({
     selector   : 'app',
@@ -46,8 +39,6 @@ export class AppComponent implements OnInit, OnDestroy
      * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
      * @param {Platform} _platform
      * @param {TranslateService} _translateService
-     * @param _navigationService
-     * @param _configService
      */
     constructor(
         @Inject(DOCUMENT) private document: any,
@@ -57,17 +48,11 @@ export class AppComponent implements OnInit, OnDestroy
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
-        private _platform: Platform,
-
-        // @HORUS
-        private _navigationService: NavigationService,
-        private _configService: ConfigService,
-        private _authenticationService: AuthenticationService
+        private _platform: Platform
     )
     {
-        // @HORUS
         // Get default navigation
-        this.navigation = _navigationService.getNavigation(navigation);
+        this.navigation = navigation;
 
         // Register the navigation to the service
         this._fuseNavigationService.register('main', this.navigation);
@@ -75,31 +60,17 @@ export class AppComponent implements OnInit, OnDestroy
         // Set the main navigation as our current navigation
         this._fuseNavigationService.setCurrentNavigation('main');
 
-        // @HORUS
         // Add languages
-        this._translateService.addLangs(['en', 'es']);
+        this._translateService.addLangs(['en', 'tr']);
 
-        // @HORUS
         // Set the default language
         this._translateService.setDefaultLang('en');
 
-        // @HORUS
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationSpanish);
+        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
 
-        // @HORUS
-        if (environment.debug) console.log('DEBUG - register user: ', this._authenticationService.user());
-        if (this._authenticationService.user()) {
-
-            this._translateService.use(this._authenticationService.user().lang.id);
-
-        }
-        else {
-
-            // TODO GET LANGUAGE FROM BROWSER
-            this._translateService.use('en');
-
-        }
+        // Use a language
+        this._translateService.use('en');
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -121,15 +92,12 @@ export class AppComponent implements OnInit, OnDestroy
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
-
-        // @HORUS
-        // this problem is resolved in dashboard component
-
-        // setTimeout(() =>
-        // {
-        //     this._translateService.use(this._authenticationService.user().lang.id);
-        // }, 1000);
-
+        /**
+         setTimeout(() => {
+            this._translateService.setDefaultLang('en');
+            this._translateService.setDefaultLang('tr');
+         });
+         */
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -184,10 +152,7 @@ export class AppComponent implements OnInit, OnDestroy
                     }
                 }
 
-                // DH2
-                this.document.body.classList.add(this._configService.get('colorTheme'));
-                // this.document.body.classList.add(this.fuseConfig.colorTheme);
-
+                this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
     }
 

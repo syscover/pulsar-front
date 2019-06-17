@@ -3,9 +3,8 @@ export interface FuseNavigationItem
     id: string;
     title: string;
     type: 'item' | 'group' | 'collapsable';
-    resource?: string;  // @HORUS
     translate?: string;
-    icon?: string | [string, string];   // @HORUS
+    icon?: string;
     hidden?: boolean;
     url?: string;
     classes?: string;

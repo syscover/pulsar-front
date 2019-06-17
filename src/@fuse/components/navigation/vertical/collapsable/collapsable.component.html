@@ -44,14 +44,7 @@
     </a>
 
     <ng-template #itemContent>
-        <mat-icon class="nav-link-icon"
-                  *ngIf="item.icon && !array.isArray(item.icon)">
-            {{item.icon}}
-        </mat-icon>
-        <fa-icon class="nav-link-icon"
-                 *ngIf="item.icon && array.isArray(item.icon)"
-                 [icon]="item.icon">
-        </fa-icon>
+        <mat-icon class="nav-link-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
         <span class="nav-link-title" [translate]="item.translate">{{item.title}}</span>
         <span class="nav-link-badge" *ngIf="item.badge" [translate]="item.badge.translate"
               [ngStyle]="{'background-color': item.badge.bg,'color': item.badge.fg}">

@@ -101,12 +101,11 @@ export class InscriptionExportDialogComponent implements OnInit
                         }
                     }`,
                 variables: {
-                    // sql: [{
-                    //     command: 'where',
-                    //     column: 'forem_group.id',
-                    //     operator: '=',
-                    //     value: this.data.id
-                    // }]
+                    sql: [{
+                        command: 'orderBy',
+                        operator: 'asc',
+                        column: 'forem_group.id'
+                    }]
                 }
             })
             .valueChanges
@@ -121,10 +120,10 @@ export class InscriptionExportDialogComponent implements OnInit
 
     }
 
-    postRecord(): void {
-
-        if (this.fg.valid) {
-
+    postRecord(): void 
+    {
+        if (this.fg.valid) 
+        {
             this.loadingButton = true;
 
             const ob$ = this._http
@@ -132,44 +131,51 @@ export class InscriptionExportDialogComponent implements OnInit
                 .mutate({
                     mutation: gql`
                         mutation ForemExportInscriptions ($id:Int!) {
-                            foremExportInscription (id:$id)
+                            foremExportInscription (id:$id) {
+                                url
+                                filename
+                                pathname
+                                mime
+                                size
+                            }
                         }
                     `,
                     variables: {
                         id: this.fg.get('group_id').value
                     }
                 })
-                .subscribe(({data}) => {
-
+                .subscribe((res) => 
+                {
                     ob$.unsubscribe();
-                    if (! data.foremExportInscription) {
-
+                    if (environment.debug) console.log('DEBUG - response execute export inscription: ', res);
+                    
+                    if (! res.data.foremExportInscription) 
+                    {
                         this.loadingButton = false;
-                        this._dialogRef.close(data.foremExportInscription);
+                        this._dialogRef.close(res.data.foremExportInscription);
                         return;
-
                     }
 
                     this._http
                         .httpClient()
-                        .post(this._http.restUrl + '/api/v1/admin/file-manager/read', {
-                            mime: 'application/zip',
-                            pathname: 'app/public/forem/export/' + data.foremExportInscription
-                        },
+                        .post(this._http.restUrl + '/api/v1/admin/file-manager/read', 
+                            {
+                                file: res.data.foremExportInscription
+                            },
+                            {
+                                responseType: 'blob'
+                            }
+                        )
+                        .subscribe((data) => 
                         {
-                            responseType: 'blob'
-                        })
-                        .subscribe((res) => {
-
-                            const blob = new Blob([res], { type: data.foremExportInscription });
+                            const blob = new Blob([data], { type: res.data['foremExportInscription']['mime'] });
 
                             // IE doesn't allow using a blob object directly as link href
                             // instead it is necessary to use msSaveOrOpenBlob
-                            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-
+                            if (window.navigator && window.navigator.msSaveOrOpenBlob) 
+                            {
                                 window.navigator.msSaveOrOpenBlob(blob);
                                 return;
-
                             }
 
                             const fileUrl = this._sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
@@ -177,28 +183,23 @@ export class InscriptionExportDialogComponent implements OnInit
 
                             const link = document.createElement('a');
                             link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                            link.download = data.foremExportInscription;
+                            link.download = res.data['foremExportInscription']['filename'];
 
                             // this is necessary as link.click() does not work on the latest firefox
                             link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
-                            setTimeout(() => {
-
+                            setTimeout(() => 
+                            {
                                 // For Firefox it is necessary to delay revoking the ObjectURL
                                 window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
                                 link.remove();
 
                                 this.loadingButton = false;
-                                this._dialogRef.close(data.foremExportInscription);
-
+                                this._dialogRef.close(res.foremExportInscription);
                             }, 100);
 
                         });
-
                 });
-
         }
-
     }
-
 }
