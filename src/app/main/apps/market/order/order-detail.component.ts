@@ -25,12 +25,12 @@ export class OrderDetailComponent extends CoreDetailComponent
     // Products
     displayedColumnsOrderRow = ['name', 'quantity', 'subtotal', 'data'];
     dataSourceOrderRow = new MatTableDataSource();
-    @ViewChild(MatSort) sortRow: MatSort;
+    @ViewChild(MatSort, {static: false}) sortRow: MatSort;
 
     // Discounts
     displayedColumnsOrderDiscount = ['names', 'coupon_code', 'free_shipping'];
     dataSourceOrderDiscount = new MatTableDataSource();
-    @ViewChild(MatSort) sortDiscount: MatSort;
+    @ViewChild(MatSort, {static: false}) sortDiscount: MatSort;
 
     constructor(
         protected injector: Injector

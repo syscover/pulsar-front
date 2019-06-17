@@ -5,8 +5,7 @@ import { CoreComponent } from '@horus/foundations/core-component';
 import { Lang } from '@horus/types';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import '@horus/functions/string-capitalize.function';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/takeUntil';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 export abstract class CoreDetailComponent extends CoreComponent implements OnInit
