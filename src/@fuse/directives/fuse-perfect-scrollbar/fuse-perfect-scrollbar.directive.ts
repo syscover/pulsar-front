@@ -1,23 +1,24 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Platform } from '@angular/cdk/platform';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as _ from 'lodash';
-
+import { FusePerfectScrollbarGeometry, FusePerfectScrollbarPosition } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.interfaces';
 import { FuseConfigService } from '@fuse/services/config.service';
 
 @Directive({
     selector: '[fusePerfectScrollbar]'
 })
-export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
+export class FusePerfectScrollbarDirective implements OnInit, AfterViewInit, OnDestroy
 {
     isInitialized: boolean;
     isMobile: boolean;
     ps: PerfectScrollbar | any;
 
     // Private
+    private _animation: number | null;
     private _enabled: boolean | '';
     private _debouncedUpdate: any;
     private _options: any;
@@ -43,6 +44,7 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
         this.isMobile = false;
 
         // Set the private defaults
+        this._animation = null;
         this._enabled = false;
         this._debouncedUpdate = _.debounce(this.update, 150);
         this._options = {
@@ -65,6 +67,15 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
     {
         // Merge the options
         this._options = _.merge({}, this._options, value);
+
+        // Destroy and re-init the PerfectScrollbar to update its options
+        setTimeout(() => {
+            this._destroy();
+        });
+
+        setTimeout(() => {
+            this._init();
+        });
     }
 
     get fusePerfectScrollbarOptions(): any
@@ -119,6 +130,24 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * On init
+     */
+    ngOnInit(): void
+    {
+        // Subscribe to window resize event
+        fromEvent(window, 'resize')
+            .pipe(
+                takeUntil(this._unsubscribeAll),
+                debounceTime(150)
+            )
+            .subscribe(() => {
+
+                // Update the PerfectScrollbar
+                this.update();
+            });
+    }
 
     /**
      * After view init
@@ -293,6 +322,71 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
     }
 
     /**
+     * Returns the geometry of the scrollable element
+     *
+     * @param prefix
+     */
+    geometry(prefix: string = 'scroll'): FusePerfectScrollbarGeometry
+    {
+        return new FusePerfectScrollbarGeometry(
+            this.elementRef.nativeElement[prefix + 'Left'],
+            this.elementRef.nativeElement[prefix + 'Top'],
+            this.elementRef.nativeElement[prefix + 'Width'],
+            this.elementRef.nativeElement[prefix + 'Height']
+        );
+    }
+
+    /**
+     * Returns the position of the scrollable element
+     *
+     * @param absolute
+     */
+    position(absolute: boolean = false): FusePerfectScrollbarPosition
+    {
+        if ( !absolute && this.ps )
+        {
+            return new FusePerfectScrollbarPosition(
+                this.ps.reach.x || 0,
+                this.ps.reach.y || 0
+            );
+        }
+        else
+        {
+            return new FusePerfectScrollbarPosition(
+                this.elementRef.nativeElement.scrollLeft,
+                this.elementRef.nativeElement.scrollTop
+            );
+        }
+    }
+
+    /**
+     * Scroll to
+     *
+     * @param x
+     * @param y
+     * @param speed
+     */
+    scrollTo(x: number, y?: number, speed?: number): void
+    {
+        if ( y == null && speed == null )
+        {
+            this.animateScrolling('scrollTop', x, speed);
+        }
+        else
+        {
+            if ( x != null )
+            {
+                this.animateScrolling('scrollLeft', x, speed);
+            }
+
+            if ( y != null )
+            {
+                this.animateScrolling('scrollTop', y, speed);
+            }
+        }
+    }
+
+    /**
      * Scroll to X
      *
      * @param {number} x
@@ -344,9 +438,8 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
      */
     scrollToRight(offset?: number, speed?: number): void
     {
-        const width = this.elementRef.nativeElement.scrollWidth;
-
-        this.animateScrolling('scrollLeft', width - (offset || 0), speed);
+        const left = this.elementRef.nativeElement.scrollWidth - this.elementRef.nativeElement.clientWidth;
+        this.animateScrolling('scrollLeft', left - (offset || 0), speed);
     }
 
     /**
@@ -357,27 +450,64 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
      */
     scrollToBottom(offset?: number, speed?: number): void
     {
-        const height = this.elementRef.nativeElement.scrollHeight;
+        const top = this.elementRef.nativeElement.scrollHeight - this.elementRef.nativeElement.clientHeight;
+        this.animateScrolling('scrollTop', top - (offset || 0), speed);
+    }
 
-        this.animateScrolling('scrollTop', height - (offset || 0), speed);
+    /**
+     * Scroll to element
+     *
+     * @param qs
+     * @param offset
+     * @param speed
+     */
+    scrollToElement(qs: string, offset?: number, speed?: number): void
+    {
+        const element = this.elementRef.nativeElement.querySelector(qs);
+
+        if ( !element )
+        {
+            return;
+        }
+
+        const elementPos = element.getBoundingClientRect();
+        const scrollerPos = this.elementRef.nativeElement.getBoundingClientRect();
+
+        if ( this.elementRef.nativeElement.classList.contains('ps--active-x') )
+        {
+            const currentPos = this.elementRef.nativeElement['scrollLeft'];
+            const position = elementPos.left - scrollerPos.left + currentPos;
+
+            this.animateScrolling('scrollLeft', position + (offset || 0), speed);
+        }
+
+        if ( this.elementRef.nativeElement.classList.contains('ps--active-y') )
+        {
+            const currentPos = this.elementRef.nativeElement['scrollTop'];
+            const position = elementPos.top - scrollerPos.top + currentPos;
+
+            this.animateScrolling('scrollTop', position + (offset || 0), speed);
+        }
     }
 
     /**
      * Animate scrolling
      *
-     * @param {string} target
-     * @param {number} value
-     * @param {number} speed
+     * @param target
+     * @param value
+     * @param speed
      */
     animateScrolling(target: string, value: number, speed?: number): void
     {
-        if ( !speed )
+        if ( this._animation )
+        {
+            window.cancelAnimationFrame(this._animation);
+            this._animation = null;
+        }
+
+        if ( !speed || typeof window === 'undefined' )
         {
             this.elementRef.nativeElement[target] = value;
-
-            // PS has weird event sending order, this is a workaround for that
-            this.update();
-            this.update();
         }
         else if ( value !== this.elementRef.nativeElement[target] )
         {
@@ -389,9 +519,8 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
 
             const cosParameter = (oldValue - value) / 2;
 
-            const step = (newTimestamp) => {
+            const step = (newTimestamp: number) => {
                 scrollCount += Math.PI / (speed / (newTimestamp - oldTimestamp));
-
                 newValue = Math.round(value + cosParameter + cosParameter * Math.cos(scrollCount));
 
                 // Only continue animation if scroll position has not changed
@@ -399,20 +528,17 @@ export class FusePerfectScrollbarDirective implements AfterViewInit, OnDestroy
                 {
                     if ( scrollCount >= Math.PI )
                     {
-                        this.elementRef.nativeElement[target] = value;
-
-                        // PS has weird event sending order, this is a workaround for that
-                        this.update();
-
-                        this.update();
+                        this.animateScrolling(target, value, 0);
                     }
                     else
                     {
-                        this.elementRef.nativeElement[target] = oldValue = newValue;
+                        this.elementRef.nativeElement[target] = newValue;
 
+                        // On a zoomed out page the resulting offset may differ
+                        oldValue = this.elementRef.nativeElement[target];
                         oldTimestamp = newTimestamp;
 
-                        window.requestAnimationFrame(step);
+                        this._animation = window.requestAnimationFrame(step);
                     }
                 }
             };
