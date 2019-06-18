@@ -25,6 +25,7 @@ export class FuseNavHorizontalCollapsableComponent implements OnInit, OnDestroy
     // Private
     private _unsubscribeAll: Subject<any>;
 
+    // @horus
     // Public
     public array = Array;
 

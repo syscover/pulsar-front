@@ -13,6 +13,7 @@ export class FuseNavHorizontalItemComponent
     @Input()
     item: any;
 
+    // @horus
     // Public
     public array = Array;
 
