@@ -8,6 +8,7 @@
   font-style: normal;
 }
 
+/* @horus */
 i:not(.fa), .icomoon-liga, .material-icons {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'material-outline-icons' !important;

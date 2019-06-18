@@ -1,6 +1,6 @@
 import { FuseNavigation } from '@fuse/types';
 
-// DH2
+// @horus
 export const navigation: FuseNavigation[] = [
     {
         'id'        : 'applications',
