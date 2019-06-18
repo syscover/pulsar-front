@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatIconModule, MatRippleModule } from '@angular/material';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -12,6 +13,7 @@ import { FuseNavVerticalGroupComponent } from './vertical/group/group.component'
 import { FuseNavHorizontalItemComponent } from './horizontal/item/item.component';
 import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/collapsable.component';
 
+// @horus
 // font awesome icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -24,11 +26,13 @@ library.add(fas, far, fab);
     imports     : [
         CommonModule,
         RouterModule,
-        FontAwesomeModule,
         MatIconModule,
         MatRippleModule,
 
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+
+        // @horus
+        FontAwesomeModule
     ],
     exports     : [
         FuseNavigationComponent

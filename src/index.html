@@ -3,14 +3,13 @@
 
     <head>
 
-        <title>HORUS</title>
+        <title>horus</title>
         <base href="/">
 
-        <!-- @HORUS -->
         <meta charset="utf-8">
-        <meta name="description" content="HORUS Material Control Panel">
-        <meta name="keywords" content="HORUS Material Control Panel">
-        <meta name="author" content="Digital H2">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -40,27 +39,23 @@
                 transform: translateY(-50%);
             }
 
-            /* @HORUS */
+            /* @horus */
             #fuse-splash-screen .logo {
                 display: flex;
                 justify-content: center;
-                /*opacity: 0;*/
-                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .logo img {
                 filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2))
             }
 
-            /* @HORUS */
+            /* @horus */
             #fuse-splash-screen .spinner-wrapper {
                 display: block;
                 position: relative;
                 width: 100%;
                 min-height: 100px;
                 height: 100px;
-                /*opacity: 0;*/
-                /*z-index: -10;*/
             }
 
             #fuse-splash-screen .spinner-wrapper .spinner {
@@ -97,7 +92,7 @@
                 overflow: hidden;
             }
 
-            /* @HORUS */
+            /* @horus */
             #fuse-splash-screen .spinner-wrapper .spinner .inner .left .half-circle,
             #fuse-splash-screen .spinner-wrapper .spinner .inner .right .half-circle {
                 position: absolute;
@@ -133,7 +128,7 @@
             }
 
 
-            /* @HORUS start */
+            /* @horus start */
             .fade-in {
                 opacity: 1;
                 animation-name: fadeInOpacity;
@@ -155,7 +150,7 @@
                     opacity: 1;
                 }
             }
-            /* @HORUS end */
+            /* @horus end */
 
             @keyframes outer-rotate {
                 0% {
@@ -212,7 +207,6 @@
             }
         </style>
         <!-- / FUSE Splash Screen CSS -->
-
     </head>
 
     <body>
@@ -223,7 +217,7 @@
             <div class="center">
 
                 <div class="logo hide">
-                    <!-- @HORUS -->
+                    <!-- @horus -->
                     <img src="assets/images/dh2/pixel.svg">
                 </div>
 
@@ -249,7 +243,7 @@
         <!-- / FUSE Splash Screen -->
 
         <script>
-            // @HORUS
+            // @horus
             fetch('config/config.json')
                 .then(response => response.json())
                 .then(config => {
