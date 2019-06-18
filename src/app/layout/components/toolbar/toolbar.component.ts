@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +9,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 
-// @HORUS
+// @horus
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { NavigationService } from '@horus/services/navigation.service';
 import { User } from '@horus/types';
@@ -33,10 +32,11 @@ export class ToolbarComponent implements OnInit, OnDestroy
     selectedLanguage: any;
     userStatusOptions: any[];
 
-    // @HORUS
-    public user: User;
-    public isAuth = false;
-    public panelVersion: string;
+    // @horus
+    user: User;
+    isAuth = false;
+    panelVersion: string;
+
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -53,14 +53,14 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
 
-        // @HORUS
+        // @horus
         private _router: Router,
         private _authenticationService: AuthenticationService,
         private _navigationService: NavigationService,
         private _configService: ConfigService
     )
     {
-        // @HORUS
+        // @horus
         this.user = this._authenticationService.user();
         this.isAuth = this._authenticationService.check();
         this.panelVersion = this._configService.get('version');
@@ -68,47 +68,47 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Set the defaults
         this.userStatusOptions = [
             {
-                'title': 'Online',
-                'icon' : 'icon-checkbox-marked-circle',
-                'color': '#4CAF50'
+                title: 'Online',
+                icon : 'icon-checkbox-marked-circle',
+                color: '#4CAF50'
             },
             {
-                'title': 'Away',
-                'icon' : 'icon-clock',
-                'color': '#FFC107'
+                title: 'Away',
+                icon : 'icon-clock',
+                color: '#FFC107'
             },
             {
-                'title': 'Do not Disturb',
-                'icon' : 'icon-minus-circle',
-                'color': '#F44336'
+                title: 'Do not Disturb',
+                icon : 'icon-minus-circle',
+                color: '#F44336'
             },
             {
-                'title': 'Invisible',
-                'icon' : 'icon-checkbox-blank-circle-outline',
-                'color': '#BDBDBD'
+                title: 'Invisible',
+                icon : 'icon-checkbox-blank-circle-outline',
+                color: '#BDBDBD'
             },
             {
-                'title': 'Offline',
-                'icon' : 'icon-checkbox-blank-circle-outline',
-                'color': '#616161'
+                title: 'Offline',
+                icon : 'icon-checkbox-blank-circle-outline',
+                color: '#616161'
             }
         ];
 
-        // @HORUS
+        // @horus
         this.languages = [
-            {
-                id   : 'es',
-                title: 'Español',
-                flag : 'es'
-            },
             {
                 id   : 'en',
                 title: 'English',
                 flag : 'us'
+            },
+            {
+                id   : 'es',
+                title: 'Español',
+                flag : 'es'
             }
         ];
 
-        // @HORUS
+        // @horus
         this.navigation = _navigationService.getNavigation(navigation);
 
         // Set the private defaults
@@ -134,7 +134,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
             });
 
         // Set the selected language from default languages
-        this.selectedLanguage = _.find(this.languages, {'id': this._translateService.currentLang});
+        this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
     }
 
     /**
@@ -186,10 +186,11 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this._translateService.use(lang.id);
     }
 
-    // @HORUS
+    // @horus
     logout(): void
     {
         this._authenticationService.logout();
         this._router.navigate(['/apps/auth/login']);
     }
+
 }
