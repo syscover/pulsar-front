@@ -4,7 +4,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
-import 'rxjs/add/operator/toPromise';
 import { environment } from 'environments/environment';
 
 @Component({
