@@ -12,12 +12,12 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-// @HORUS
+// @horus
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationSpanish } from 'app/navigation/i18n/es';
 
-// @HORUS
+// @horus
 import { AuthenticationService } from '../@horus/services/authentication.service';
 import { ConfigService } from '@horus/services/config.service';
 import { NavigationService } from '@horus/services/navigation.service';
@@ -46,8 +46,6 @@ export class AppComponent implements OnInit, OnDestroy
      * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
      * @param {Platform} _platform
      * @param {TranslateService} _translateService
-     * @param _navigationService
-     * @param _configService
      */
     constructor(
         @Inject(DOCUMENT) private document: any,
@@ -59,13 +57,13 @@ export class AppComponent implements OnInit, OnDestroy
         private _translateService: TranslateService,
         private _platform: Platform,
 
-        // @HORUS
+        // @horus
         private _navigationService: NavigationService,
         private _configService: ConfigService,
         private _authenticationService: AuthenticationService
     )
     {
-        // @HORUS
+        // @horus
         // Get default navigation
         this.navigation = _navigationService.getNavigation(navigation);
 
@@ -75,30 +73,28 @@ export class AppComponent implements OnInit, OnDestroy
         // Set the main navigation as our current navigation
         this._fuseNavigationService.setCurrentNavigation('main');
 
-        // @HORUS
+        // @horus
         // Add languages
         this._translateService.addLangs(['en', 'es']);
 
-        // @HORUS
+        // @horus
         // Set the default language
         this._translateService.setDefaultLang('en');
 
-        // @HORUS
+        // @horus
         // Set the navigation translations
         this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationSpanish);
 
-        // @HORUS
+        // @horus
         if (environment.debug) console.log('DEBUG - register user: ', this._authenticationService.user());
-        if (this._authenticationService.user()) {
-
+        if (this._authenticationService.user())
+        {
             this._translateService.use(this._authenticationService.user().lang.id);
-
         }
-        else {
-
+        else
+        {
             // TODO GET LANGUAGE FROM BROWSER
             this._translateService.use('en');
-
         }
 
         /**
@@ -121,15 +117,12 @@ export class AppComponent implements OnInit, OnDestroy
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
-
-        // @HORUS
-        // this problem is resolved in dashboard component
-
-        // setTimeout(() =>
-        // {
-        //     this._translateService.use(this._authenticationService.user().lang.id);
-        // }, 1000);
-
+        /**
+         setTimeout(() => {
+            this._translateService.setDefaultLang('en');
+            this._translateService.setDefaultLang('tr');
+         });
+         */
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -184,10 +177,8 @@ export class AppComponent implements OnInit, OnDestroy
                     }
                 }
 
-                // DH2
+                // @horus
                 this.document.body.classList.add(this._configService.get('colorTheme'));
-                // this.document.body.classList.add(this.fuseConfig.colorTheme);
-
             });
     }
 
