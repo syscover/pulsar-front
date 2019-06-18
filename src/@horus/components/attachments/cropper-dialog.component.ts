@@ -25,8 +25,8 @@ import { environment } from 'environments/environment';
 })
 export class CropperDialogComponent implements OnInit, OnDestroy
 {
-    @ViewChild('cropperImage') cropperImage;
-    @ViewChild('cropperPreview') cropperPreview;
+    @ViewChild('cropperImage', {static: false}) cropperImage;
+    @ViewChild('cropperPreview', {static: false}) cropperPreview;
     cropper: Cropper;
     title: string;
     crop: string;

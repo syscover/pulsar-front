@@ -1,11 +1,8 @@
 import { Directive, AfterViewInit, ElementRef, Input, Output, OnChanges, OnDestroy, EventEmitter, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { SlugService } from '@horus/components/slug/slug.service';
-import { Subject } from 'rxjs/Subject';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { from } from 'rxjs/observable/from';
-import { merge } from 'rxjs/observable/merge';
+import { Subject, merge, from, fromEvent } from 'rxjs';
+import { switchMap, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { BehaviorSubject } from 'rxjs';
 
@@ -42,81 +39,80 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
     ngAfterViewInit(): void
     {
         merge(
-                fromEvent(this.element.nativeElement, 'change'),
-                this.value$
-            )
-            .debounceTime(250)
-            .distinctUntilChanged()
-            .pipe(
-                switchMap(async (event: any) => {
+            fromEvent(this.element.nativeElement, 'change'),
+            this.value$
+        ).pipe(
+            debounceTime(250),
+            distinctUntilChanged(),
+            switchMap(async (event: any) => {
 
-                    let source = null;
-                    if (typeof event === 'string' && event)
-                    {
-                        source = event;
-                    }
-                    else if (event) {
-                        source = event.target.value;
-                    }
+                let source = null;
+                if (typeof event === 'string' && event)
+                {
+                    source = event;
+                }
+                else if (event) {
+                    source = event.target.value;
+                }
 
-                    // check if there are value and there isn't a request in progress
-                    if (source)
+                // check if there are value and there isn't a request in progress
+                if (source)
+                {
+                    if (! this.running)
                     {
-                        if (! this.running)
+                        this.checkingSlug.emit(true);
+                        this.running = true;
+                        let data: any;
+
+                        data = await this.slugService
+                            .checkSlug(
+                                this.model,
+                                source,
+                                this.object,
+                                this.column
+                            );
+
+                        // check buffer
+                        while (this.buffer)
                         {
-                            this.checkingSlug.emit(true);
-                            this.running = true;
-                            let data: any;
-
+                            const bufferValue = this.buffer;
                             data = await this.slugService
                                 .checkSlug(
                                     this.model,
-                                    source,
+                                    this.buffer,
                                     this.object,
                                     this.column
                                 );
-
-                            // check buffer
-                            while (this.buffer)
-                            {
-                                const bufferValue = this.buffer;
-                                data = await this.slugService
-                                    .checkSlug(
-                                        this.model,
-                                        this.buffer,
-                                        this.object,
-                                        this.column
-                                    );
-                                // reset buffer
-                                this.buffer = undefined;
-                            }
-
-                            if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
-                            if (data)
-                            {
-                                this.control.control.parent.controls[this.column].setValue(data.data.slug);
-                            }
-
-                            this.running = false;
-                            this.checkingSlug.emit(false);
-
-                            return data;
+                            // reset buffer
+                            this.buffer = undefined;
                         }
-                        else
+
+                        if (environment.debug) console.log('DEBUG - Data from slug Query: ', data.data);
+                        if (data)
                         {
-                            // add event tu buffer
-                            this.buffer = source;
-                            return from([]);
+                            this.control.control.parent.controls[this.column].setValue(data.data.slug);
                         }
+
+                        this.running = false;
+                        this.checkingSlug.emit(false);
+
+                        return data;
                     }
                     else
                     {
+                        // add event tu buffer
+                        this.buffer = source;
                         return from([]);
                     }
-                })
-            )
-            .takeUntil(this.$onDestroy)
-            .subscribe();
+                }
+                else
+                {
+                    return from([]);
+                }
+            }),
+            takeUntil(this.$onDestroy)
+        )
+        .subscribe();
     }
 
     ngOnDestroy(): void

@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 export class StockableComponent implements OnChanges
 {
     @Input() stocksData = [];
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatSort, {static: false}) sort: MatSort;
 
     displayedColumns = ['warehouse_id', 'warehouse_name', 'stock', 'minimum_stock', 'actions'];
     dataSource = new MatTableDataSource();

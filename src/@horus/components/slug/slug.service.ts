@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@horus/services/http.service';
+import { first } from 'rxjs/operators';
 import gql from 'graphql-tag';
-import { first } from 'rxjs/operators/first';
 
 @Injectable()
 export class SlugService

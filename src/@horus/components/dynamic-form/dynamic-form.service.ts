@@ -5,7 +5,7 @@ import { ValidationMessageService } from '@horus/services/validation-message.ser
 import { graphQL } from 'app/main/apps/admin/field/field.graphql';
 import { Field } from 'app/main/apps/admin/admin.models';
 import { environment } from 'environments/environment';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class DynamicFormService extends HttpService

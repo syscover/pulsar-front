@@ -88,7 +88,7 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
         this.input.placeholder = plh;
     }
 
-    @ViewChild('input')
+    @ViewChild('input', {static: false})
     input: MatInput;
 
     controlName: string;

@@ -22,7 +22,7 @@ import { AttachmentFamily, Country, Profile } from '../../admin/admin.models';
 })
 export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
-    @ViewChild('slug') slugField;
+    @ViewChild('slug', {static: false}) slugField;
 
     objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'F';

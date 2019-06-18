@@ -2,17 +2,8 @@ import { Injector, ViewChild, AfterViewInit, AfterContentInit, ElementRef, OnIni
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { HttpSynchronousService } from '@horus/services/http-synchronous.service';
 import { CoreComponent } from '@horus/foundations/core-component';
-import { Subject } from 'rxjs/Subject';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { merge } from 'rxjs/observable/merge';
-import { startWith } from 'rxjs/operators/startWith';
-import { switchMap } from 'rxjs/operators/switchMap';
-import { first } from 'rxjs/operators/first';
-import { from } from 'rxjs/observable/from';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/takeUntil';
+import { first, switchMap, startWith, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Subject, from, merge, fromEvent } from 'rxjs';
 import * as _ from 'lodash';
 
 export abstract class CoreListComponent extends CoreComponent implements AfterViewInit, AfterContentInit, OnInit
@@ -31,40 +22,51 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     filters: any[] = [];                        // filters to data table
     
     // view data table components
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-    @ViewChild('filter') filter: ElementRef;
+    @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+    @ViewChild(MatSort, {static: false}) sort: MatSort;
+    @ViewChild('filter', {static: false}) filter: ElementRef;
 
     private httpSynchronousService: HttpSynchronousService;
     private running = false; // boolean true when is consulting through Http
     private buffer: any;
     private registerSubscriptions = async () => {
-        // If the user changes the sort order or filter by text, reset back to the first page.
-        merge(
-            this.sort.sortChange,
-            fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(500)
-                .distinctUntilChanged()
-        )
-            .takeUntil(this.$onDestroy)
-            .subscribe(() => this.paginator.pageIndex = 0);
 
-        // ??
-        merge(
-            this.refreshTable,
-            this.sort.sortChange,
-            this.paginator.page, 
+        // compose source events to get pagination values
+        const sourceFilterEvents: any[] = [this.refreshTable, this.sort.sortChange, this.paginator.page];
+
+        if (this.filter)
+        {
+            // If the user changes the sort order or filter by text, reset back to the first page.
+            merge(
+                this.sort.sortChange,
                 fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(400)
-                .distinctUntilChanged()
-        )
-        .pipe(
-            switchMap(async () => {
+                    .pipe(
+                        debounceTime(500),
+                        distinctUntilChanged()
+                    )
+            ).pipe(
+                takeUntil(this.$onDestroy)
+            ).subscribe(() => this.paginator.pageIndex = 0);
+
+            // if exist global filter add from event rxjs function
+            sourceFilterEvents.push(
+                fromEvent(this.filter.nativeElement, 'keyup')
+                    .pipe(
+                        debounceTime(400),
+                        distinctUntilChanged()
+                    )
+            );
+        }
+
+        // use propagation operator to send parameters
+        merge(...sourceFilterEvents).pipe(
+            switchMap(async () =>
+            {
                 await this.loadDataSource();
-            })
-        )
-        .takeUntil(this.$onDestroy)
-        .subscribe(() => {
+            }),
+            takeUntil(this.$onDestroy)
+        ).subscribe(() =>
+        {
             // this response is asynchronous, from this section can't recover response data from promise
         });
 

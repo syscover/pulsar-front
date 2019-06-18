@@ -29,7 +29,7 @@ export class InputComponent implements ControlValueAccessor, OnInit
     @Input() required = false;
     @Input() debug = false;
     @Input() error: string;
-    @ViewChild('input') input: MatInput;
+    @ViewChild('input', {static: false}) input: MatInput;
 
     controlName: string;
     control: FormControl;

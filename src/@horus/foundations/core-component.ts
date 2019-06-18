@@ -8,8 +8,8 @@ import { ConfirmationDialogComponent } from '@horus/components/confirmation-dial
 import { Lang } from '@horus/types';
 import { DataRoute } from '@horus/types';
 import { horusConfig } from 'app/horus-config';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export abstract class CoreComponent extends Core implements OnInit, OnDestroy
 {
@@ -68,17 +68,20 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
         // load translations for component
         this.translateService
             .get(keys)
-            .map(translations => {
-                if (translations['APPS'])
+            .pipe(
+                map(translations =>
                 {
-                    for (const index in translations['APPS'])
+                    if (translations['APPS'])
                     {
-                        if (index) translations['APPS.' + index] = translations['APPS'][index];
+                        for (const index in translations['APPS'])
+                        {
+                            if (index) translations['APPS.' + index] = translations['APPS'][index];
+                        }
+                        delete translations.APPS;
+                        return translations;
                     }
-                    delete translations.APPS;
-                    return translations;
-                }
-            })
+                })
+            )
             .subscribe(response => {
                 this.translations = Object.assign(this.translations, response);
             });

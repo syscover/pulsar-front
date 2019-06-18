@@ -29,8 +29,8 @@ export class AttachmentsComponent implements OnInit, OnChanges
     // @Input() withCredentials: boolean;                      // property for XMLHttpRequest object
 
     // View elements
-    @ViewChild('attachmentLibrary')  attachmentLibrary;
-    @ViewChild('attachmentLibraryMask') attachmentLibraryMask;
+    @ViewChild('attachmentLibrary', {static: false})  attachmentLibrary;
+    @ViewChild('attachmentLibraryMask', {static: false}) attachmentLibraryMask;
     @ViewChildren(AttachmentItemComponent) attachmentItems: QueryList<AttachmentItemComponent>;
 
     items: FormArray;

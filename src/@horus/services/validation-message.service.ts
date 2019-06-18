@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { merge } from 'rxjs/observable/merge';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/operator/map';
+import { merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class ValidationMessageService
         // load translations for component
         this.translateService
             .get(['VALIDATIONS'])
-            .map(translations => {
+            .pipe(map(translations => {
                 if (translations['VALIDATIONS'])
                 {
                     for (const index in translations['VALIDATIONS'])
@@ -36,7 +36,7 @@ export class ValidationMessageService
                     delete translations.APPS;
                     return translations;
                 }
-            })
+            }))
             .subscribe(response => {
                 this.translations = response;
             });

@@ -4,7 +4,8 @@ import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
 import { Package } from '../../admin/admin.models';
 import { graphQL } from './version.graphql';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'dh2-update-version-detail',
@@ -17,7 +18,7 @@ export class VersionDetailComponent extends CoreDetailComponent
     objectTranslationGender = 'F';
     packages: Package[] = [];
 
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatSort, {static: false}) sort: MatSort;
     displayedColumns = ['id', 'query', 'sort', 'actions'];
     dataSource = new MatTableDataSource();
 

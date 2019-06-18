@@ -1,5 +1,5 @@
 import { Component, Injector, QueryList, ViewChildren } from '@angular/core';
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
 import { Action, Permission, Profile } from '../admin.models';
