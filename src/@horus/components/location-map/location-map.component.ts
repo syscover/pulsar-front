@@ -50,8 +50,8 @@ export class LocationMapComponent implements OnInit
     @Input() latitudeControlName = 'latitude';
     @Input() longitudeControlName = 'longitude';
     @Input() height = '300px';
-    @ViewChild('search') serachBox: ElementRef;
-    @ViewChild('marker') marker: ElementRef;
+    @ViewChild('search', {static: false}) serachBox: ElementRef;
+    @ViewChild('marker', {static: false}) marker: ElementRef;
 
     dedaultLatitude = 40.420179;
     dedaultLongitude = -3.703927;
