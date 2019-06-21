@@ -11,6 +11,7 @@ export const locale = {
             'CLIENT': 'Client',
             'COMPONENT_CLASS': 'Component class',
             'DATA_TYPE': 'Data type',
+            'COPY_PERMISSIONS': 'Copy permissions',
             'EDIT_ID': 'Edit Id',
             'FEATURED': 'Featured',
             'FIELD': 'Field',

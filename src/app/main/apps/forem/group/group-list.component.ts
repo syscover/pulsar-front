@@ -24,7 +24,7 @@ export class GroupListComponent extends CoreListComponent
     {
         super(injector, graphQL);
 
-        if (this.dataRoute['checkProfile'])
+        if (this.dataRoute['resource'] === 'forem-group-office')
         {
             this.filters = [{'command': 'where', 'column': 'forem_group.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
         }

@@ -10,6 +10,7 @@ export const locale = {
             'ATTACHMENT_MIME': 'MIME de adjunto',
             'CLIENT': 'Cliente',
             'COMPONENT_CLASS': 'Clase del componente',
+            'COPY_PERMISSIONS': 'Copiar permisos',
             'DATA_TYPE': 'Tipo de dato',
             'EDIT_ID': 'Editar Id',
             'FEATURED': 'Destacado',

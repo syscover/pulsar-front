@@ -12,8 +12,9 @@ import { CategoryDialogComponent } from '../category/category-dialog.component';
 import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { MarketableService } from '@horus/components/marketable/marketable.service';
-import { AttachmentFamily, Country, Profile } from '../../admin/admin.models';
+import { AttachmentFamily, Country, Profile, User } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -39,6 +40,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     profiles: Profile[] = [];
     groupPrefixes: GroupPrefix[] = [];
     steps: Step[] = [];
+    user: User;
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -58,9 +60,11 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         protected injector: Injector,
         private _selectSearch: SelectSearchService,
         private _dialog: MatDialog,
-        private _marketable: MarketableService
+        private _marketable: MarketableService,
+        private _authenticationService: AuthenticationService
     ) {
         super(injector, graphQL);
+        this.user = this._authenticationService.user();
     }
 
     ngOnInit(): void

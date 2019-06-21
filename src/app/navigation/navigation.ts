@@ -157,7 +157,7 @@ export const navigation: FuseNavigation[] = [
                         'title'     : 'Groups',
                         'translate' : 'NAV.GROUPS',
                         'type'      : 'item',
-                        'resource'  : 'forem-group',
+                        'resource'  : 'forem-group-office',
                         'icon'      : 'supervised_user_circle',
                         'url'       : '/apps/forem/group-office'
                     },

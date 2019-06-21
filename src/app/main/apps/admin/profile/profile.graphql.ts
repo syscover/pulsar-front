@@ -5,7 +5,11 @@ const fields = `
     name
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    adminProfiles {
+        ${fields}
+    }
+`;
 
 export const graphQL = {
     model: 'Syscover\\Admin\\Models\\Profile',
@@ -22,6 +26,11 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query AdminGetRelationsProfile {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
         query AdminGetProfiles ($sql:[CoreSQLInput]) {
             coreObjects: adminProfiles (sql:$sql) {
@@ -34,6 +43,7 @@ export const graphQL = {
             coreObject: adminProfile (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`
