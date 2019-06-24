@@ -19,48 +19,6 @@ export const navigation: FuseNavigation[] = [
                 'url'       : '/apps/dashboard'
             },
             {
-                'id'   : 'peci',
-                'title': 'PECI',
-                'translate': 'NAV.PECI',
-                'type' : 'collapsable',
-                'icon' : ['fas', 'file-contract'],
-                'children' : [
-                    {
-                        'id'        : 'record',
-                        'title'     : 'Record',
-                        'translate' : 'NAV.RECORDS',
-                        'type'      : 'item',
-                        'icon'      : ['fas', 'laptop-medical'],
-                        'url'       : '/apps/peci/record'
-                    },
-                    {
-                        'id'        : 'file',
-                        'title'     : 'File',
-                        'translate' : 'NAV.FILES',
-                        'type'      : 'item',
-                        'icon'      : ['fas', 'exchange-alt'],
-                        'url'       : '/apps/peci/file'
-                    }
-                ]
-            },
-            {
-                'id'   : 'bcci',
-                'title': 'B+CCI',
-                'translate': 'NAV.BCCI',
-                'type' : 'collapsable',
-                'icon' : ['fas', 'server'],
-                'children' : [
-                    {
-                        'id'        : 'sappi-ic',
-                        'title'     : 'Sappi-ic',
-                        'translate' : 'NAV.SAPPI_IC',
-                        'type'      : 'item',
-                        'icon'      : 'share',
-                        'url'       : '/apps/bcci/sappi-ic'
-                    }
-                ]
-            },
-            {
                 'id'       : 'innova-concrete',
                 'title'    : 'Innova Concrete',
                 'translate': 'NAV.INNOVA_CONCRETE',
@@ -135,13 +93,22 @@ export const navigation: FuseNavigation[] = [
                 'icon'     : 'highlight',
                 'children' : [
                     {
-                        'id'        : 'inscription',
-                        'title'     : 'Inscription',
+                        'id'        : 'inscriptions',
+                        'title'     : 'Inscriptions',
                         'translate' : 'NAV.INSCRIPTIONS',
                         'type'      : 'item',
                         'resource'  : 'forem-inscription',
                         'icon'      : ['fas', 'passport'],
                         'url'       : '/apps/forem/inscription'
+                    },
+                    {
+                        'id'        : 'inscriptions-office',
+                        'title'     : 'Inscriptions',
+                        'translate' : 'NAV.INSCRIPTIONS',
+                        'type'      : 'item',
+                        'resource'  : 'forem-inscription-office',
+                        'icon'      : ['fas', 'passport'],
+                        'url'       : '/apps/forem/inscription-office'
                     },
                     {
                         'id'        : 'groups',

@@ -69,10 +69,10 @@ const routes: Routes = [
             { path: 'inscription/create',                                   component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription' }},
             { path: 'inscription/show/:id',                                 component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription' }},
 
-            // Inscriptions for employment offices
-            { path: 'inscription-office',                                   component: InscriptionListComponent,                data: { action: 'list', resource: 'forem-inscription' }},
-            { path: 'inscription-office/create',                            component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription' }},
-            { path: 'inscription-office/show/:id',                          component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription' }},
+            // Inscriptions office
+            { path: 'inscription-office',                                   component: InscriptionListComponent,                data: { action: 'list', resource: 'forem-inscription-office' }},
+            { path: 'inscription-office/create',                            component: InscriptionDetailComponent,              data: { action: 'create', resource: 'forem-inscription-office' }},
+            { path: 'inscription-office/show/:id',                          component: InscriptionDetailComponent,              data: { action: 'edit', resource: 'forem-inscription-office' }},
         ]  
     }
 ];

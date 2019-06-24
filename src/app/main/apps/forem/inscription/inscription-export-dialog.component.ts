@@ -89,6 +89,17 @@ export class InscriptionExportDialogComponent implements OnInit
 
         this.showSpinner = true;
 
+        let sql = [];
+        if (this.data.restrictByProfile)
+        {
+            sql.push({
+                command: 'where',
+                column: 'forem_group.profile_id',
+                operator: '=',
+                value: this.data.profile_id
+            })
+        }
+
         const ob$ = this._http
             .apolloClient()
             .watchQuery({
@@ -100,14 +111,7 @@ export class InscriptionExportDialogComponent implements OnInit
                             code
                         }
                     }`,
-                variables: {
-                    // sql: [{
-                    //     command: 'where',
-                    //     column: 'forem_group.id',
-                    //     operator: '=',
-                    //     value: this.data.id
-                    // }]
-                }
+                variables: {sql}
             })
             .valueChanges
             .subscribe(({data}) => {
@@ -116,15 +120,13 @@ export class InscriptionExportDialogComponent implements OnInit
 
                 this.groups = data['foremGroups'];
                 this.showSpinner = false;
-
             });
-
     }
 
-    postRecord(): void {
-
-        if (this.fg.valid) {
-
+    postRecord(): void
+    {
+        if (this.fg.valid)
+        {
             this.loadingButton = true;
 
             const ob$ = this._http
@@ -139,15 +141,14 @@ export class InscriptionExportDialogComponent implements OnInit
                         id: this.fg.get('group_id').value
                     }
                 })
-                .subscribe(({data}) => {
-
+                .subscribe(({data}) =>
+                {
                     ob$.unsubscribe();
-                    if (! data.foremExportInscription) {
-
+                    if (! data.foremExportInscription)
+                    {
                         this.loadingButton = false;
                         this._dialogRef.close(data.foremExportInscription);
                         return;
-
                     }
 
                     this._http
@@ -159,17 +160,16 @@ export class InscriptionExportDialogComponent implements OnInit
                         {
                             responseType: 'blob'
                         })
-                        .subscribe((res) => {
-
+                        .subscribe((res) =>
+                        {
                             const blob = new Blob([res], { type: data.foremExportInscription });
 
                             // IE doesn't allow using a blob object directly as link href
                             // instead it is necessary to use msSaveOrOpenBlob
-                            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-
+                            if (window.navigator && window.navigator.msSaveOrOpenBlob)
+                            {
                                 window.navigator.msSaveOrOpenBlob(blob);
                                 return;
-
                             }
 
                             const fileUrl = this._sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
@@ -192,13 +192,8 @@ export class InscriptionExportDialogComponent implements OnInit
                                 this._dialogRef.close(data.foremExportInscription);
 
                             }, 100);
-
                         });
-
                 });
-
         }
-
     }
-
 }

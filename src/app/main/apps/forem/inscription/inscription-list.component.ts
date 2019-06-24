@@ -22,17 +22,24 @@ export class InscriptionListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector,
+        private _authenticationService: AuthenticationService,
         private _dialog: MatDialog
     )
     {
         super(injector, graphQL);
+
+        if (this.dataRoute['resource'] === 'forem-inscription-office')
+        {
+            this.filters = [{'command': 'where', 'column': 'forem_inscription.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
+        }
     }
 
     exportDialog(): void
     {
         const dialogRef = this._dialog.open(this.inscriptionExportDialogComponent, {
             data: {
-                id: ''// this.object[formGroupName]
+                restrictByProfile: this.dataRoute['resource'] === 'forem-inscription-office',
+                profile_id: this._authenticationService.user().profile_id
             },
             width: '80vw'
         });
