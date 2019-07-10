@@ -8,6 +8,7 @@ export const locale = {
             'ADDRESS_TYPE': 'Address type',
             'AMBIT': 'Ambit',
             'ASSIST': 'Assist',
+            'ASSISTANCE': 'Assistance',
             'CERTIFICATE': 'Certificate',
             'CERTIFICATE_CODE': 'Certificate code',
             'CONTACT_SCHEDULE': 'Contact schedule',
