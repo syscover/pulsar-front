@@ -75,6 +75,18 @@
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="forem_action.type_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.TYPE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ types | getCollectionObjectValue:'id':row.type_id:'name' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_action.assistance_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FOREM.ASSISTANCE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ assistances | getCollectionObjectValue:'id':row.assistance_id:'name' }}</mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
