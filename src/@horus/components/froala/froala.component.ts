@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '@horus/services/config.service';
 import { AttachmentFamily } from 'app/main/apps/admin/admin.models';
 import * as _ from 'lodash';
-declare const jQuery: any;
+declare const $: any;
 const noop = () => {};
 
 @Component({
@@ -87,7 +87,7 @@ export class FroalaComponent implements OnInit
         this.froalaOptions.placeholderText = this.placeholder;
         this.froalaOptions.heightMin = this.heightMin;
         this.froalaOptions.heightMax = this.heightMax;
-        this.froalaOptions.enter = jQuery.FroalaEditor.ENTER_DIV;
+        this.froalaOptions.enter = $.FroalaEditor.ENTER_DIV;
         this.froalaOptions.tabSpaces = 4;
         this.froalaOptions.pluginsEnabled = [
             'align',

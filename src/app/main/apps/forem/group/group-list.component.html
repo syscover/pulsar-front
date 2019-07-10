@@ -82,9 +82,27 @@
                 </ng-container>
 
                 <!-- Column -->
-                <ng-container matColumnDef="forem_group.price">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="mw-80">{{ 'APPS.PRICE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="mw-80">{{ row.price }}</mat-cell>
+                <ng-container matColumnDef="forem_group.type_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.TYPE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ types | getCollectionObjectValue:'id':row.type_id:'name' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.assistance_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FOREM.ASSISTANCE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ assistances | getCollectionObjectValue:'id':row.assistance_id:'name' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.starts_at">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-lg-flex">{{ 'APPS.STARTS_AT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-lg-flex">{{ row.starts_at | date:'dd/MM/y' }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_group.ends_at">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="d-none d-lg-flex">{{ 'APPS.ENDS_AT' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="d-none d-lg-flex">{{ row.ends_at | date:'dd/MM/y' }}</mat-cell>
                 </ng-container>
 
                 <!-- Column -->

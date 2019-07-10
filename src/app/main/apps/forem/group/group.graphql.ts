@@ -94,12 +94,14 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query ForemGetGroupsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput]) {
+        query ForemGetGroupsPagination ($filters:[CoreSQLInput] $sql:[CoreSQLInput] $configAssistances:CoreConfigInput $configTypes:CoreConfigInput) {
             coreObjectsPagination: foremGroupsPagination (filters:$filters sql:$sql) {
                 total
                 objects (filters:$filters sql:$sql)
                 filtered
             }
+            foremAssistances: coreConfig (config:$configAssistances)
+            foremTypes: coreConfig (config:$configTypes)
         }`,
 
     queryRelationsObject: gql`
