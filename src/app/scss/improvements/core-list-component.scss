@@ -28,6 +28,9 @@
     .mat-column-translations {
         max-width: 100px;
     }
+    .mat-cell:not(:first-of-type), .mat-header-cell:not(:first-of-type) {
+        padding-left: 8px;
+    }
     .top-bg {
         @include media-breakpoint(xs) {
             height: 240px;
@@ -43,4 +46,3 @@
         background-color: #e26363;
     }
 }
-

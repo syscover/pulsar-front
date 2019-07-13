@@ -10,6 +10,7 @@ export interface Application
 export interface DataRoute
 {
     action: string;
+    resource?: string;
 }
 
 export interface HorusConfig
