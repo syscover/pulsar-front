@@ -15,8 +15,8 @@ export class GroupListComponent extends CoreListComponent
 {
     objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['forem_group.id', 'forem_group.code', 'forem_group.name', 'admin_profile.name', 'forem_group.price', 'forem_group.publish', 'forem_group.featured'];
-    displayedColumns = ['forem_group.id', 'forem_group.code', 'forem_group.name', 'admin_profile.name', 'forem_group.type_id', 'forem_group.assistance_id', 'forem_group.starts_at', 'forem_group.ends_at', 'forem_group.publish', 'forem_group.featured', 'actions'];
+    columnsSearch: string[] = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.price', 'forem_group.publish', 'forem_group.featured'];
+    displayedColumns = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.type_id', 'forem_group.assistance_id', 'forem_group.starts_at', 'forem_group.ends_at', 'forem_group.publish', 'forem_group.featured', 'actions'];
     types: Type[] = [];
     assistances: Assistance[] = [];
 
@@ -27,7 +27,7 @@ export class GroupListComponent extends CoreListComponent
     {
         super(injector, graphQL);
 
-        if (this.dataRoute['resource'] === 'forem-group-office')
+        if (this.dataRoute.resource === 'forem-group-office')
         {
             this.filters = [{'command': 'where', 'column': 'forem_group.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
         }

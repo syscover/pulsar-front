@@ -51,6 +51,12 @@ const fields = `
     address
     latitude
     longitude
+    trainer_name_1
+    trainer_hours_1
+    trainer_name_2
+    trainer_hours_2
+    trainer_name_3
+    trainer_hours_3
     is_product
     product_id
     attachments {

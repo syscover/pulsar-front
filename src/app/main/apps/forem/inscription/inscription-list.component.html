@@ -74,6 +74,18 @@
                 </ng-container>
 
                 <!-- Column -->
+                <ng-container matColumnDef="forem_group.composite_code">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.CODE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.group.composite_code }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="admin_profile.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.PROFILE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.group.profile.name }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
                 <ng-container matColumnDef="forem_inscription.name">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>

@@ -83,7 +83,7 @@
                                         <input matInput formControlName="id">
                                     </mat-form-field>
 
-                                    <mat-form-field *ngIf="dataRoute['resource'] !== 'forem-group-office'" [appearance]="horusConfig.fieldAppearance" class="col-md-3" [ngClass]="{'offset-md-1': dataRoute.action === 'edit'}">
+                                    <mat-form-field *ngIf="dataRoute.resource !== 'forem-group-office'" [appearance]="horusConfig.fieldAppearance" class="col-md-3" [ngClass]="{'offset-md-1': dataRoute.action === 'edit'}">
                                         <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
                                         <mat-select formControlName="profile_id" required>
                                             <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
@@ -94,7 +94,7 @@
                                     <input type="hidden"
                                            formControlName="profile_id"
                                            [value]="user.profile_id"
-                                           *ngIf="dataRoute['resource'] !== 'forem-group-office'">
+                                           *ngIf="dataRoute.resource !== 'forem-group-office'">
                                 </div>
 
                                 <div fxLayout="row wrap">
@@ -401,6 +401,48 @@
                                                     [form]="fg"
                                                     [families]="attachmentFamilies">
                                 </dh2-attachments>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'FOREM.TRAINERS' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_name_1">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_hours_1">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_name_2">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_hours_2">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_name_3">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                        <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_hours_3">
+                                    </mat-form-field>
+                                </div>
 
                             </div>
                         </mat-tab>

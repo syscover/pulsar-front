@@ -17,7 +17,7 @@ export class InscriptionListComponent extends CoreListComponent
     objectTranslation = 'FOREM.INSCRIPTION';
     objectTranslationGender = 'F';
     columnsSearch: string[] = ['forem_inscription.id', 'forem_inscription.name', 'forem_inscription.surname', 'forem_inscription.tin', 'forem_group.name'];
-    displayedColumns = ['forem_inscription.id', 'forem_inscription.name', 'forem_inscription.surname', 'forem_inscription.tin', 'forem_group.name', 'actions'];
+    displayedColumns = ['forem_inscription.id', 'forem_group.name', 'forem_group.composite_code', 'admin_profile.name',  'forem_inscription.name', 'forem_inscription.surname', 'forem_inscription.tin', 'actions'];
     inscriptionExportDialogComponent = InscriptionExportDialogComponent;
 
     constructor(
@@ -28,8 +28,9 @@ export class InscriptionListComponent extends CoreListComponent
     {
         super(injector, graphQL);
 
-        if (this.dataRoute['resource'] === 'forem-inscription-office')
+        if (this.dataRoute.resource === 'forem-inscription-office')
         {
+            this.displayedColumns = ['forem_inscription.id', 'forem_group.name', 'forem_group.composite_code', 'forem_inscription.name', 'forem_inscription.surname', 'forem_inscription.tin', 'actions'];
             this.filters = [{'command': 'where', 'column': 'forem_inscription.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
         }
     }
@@ -38,7 +39,7 @@ export class InscriptionListComponent extends CoreListComponent
     {
         const dialogRef = this._dialog.open(this.inscriptionExportDialogComponent, {
             data: {
-                restrictByProfile: this.dataRoute['resource'] === 'forem-inscription-office',
+                restrictByProfile: this.dataRoute.resource === 'forem-inscription-office',
                 profile_id: this._authenticationService.user().profile_id
             },
             width: '80vw'

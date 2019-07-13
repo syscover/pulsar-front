@@ -127,6 +127,12 @@ export class Group
     address: string;
     latitude: number;
     longitude: number;
+    trainer_name_1: string;
+    trainer_hours_1: string;
+    trainer_name_2: string;
+    trainer_hours_2: string;
+    trainer_name_3: string;
+    trainer_hours_3: string;
 }
 
 export class GroupPrefix
