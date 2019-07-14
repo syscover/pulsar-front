@@ -80,6 +80,7 @@ export const locale = {
             'TAX_RATE_ZONES': 'Zonas de impuestos',
             'TAX_RULES': 'Reglas de impuestos',
             'TAXES': 'Impuestos',
+            'TRAINERS': 'Profesores',
             'TYPES': 'Tipos',
             'UPDATES': 'Actualizaciones',
             'USERS': 'Usuarios',

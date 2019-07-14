@@ -165,6 +165,15 @@ export const navigation: FuseNavigation[] = [
                         'url'       : '/apps/forem/category'
                     },
                     {
+                        'id'        : 'trainers',
+                        'title'     : 'Trainers',
+                        'translate' : 'NAV.TRAINERS',
+                        'type'      : 'item',
+                        'resource'  : 'forem-trainer',
+                        'icon'      : 'school',
+                        'url'       : '/apps/forem/trainer'
+                    },
+                    {
                         'id'       : 'database',
                         'title'    : 'Database',
                         'translate': 'NAV.TABLES',
