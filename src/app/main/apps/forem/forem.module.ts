@@ -23,6 +23,8 @@ import { LocalityDetailComponent } from './locality/locality-detail.component';
 import { LocalityListComponent } from './locality/locality-list.component';
 import { ProvinceDetailComponent } from './province/province-detail.component';
 import { ProvinceListComponent } from './province/province-list.component';
+import { TrainerDetailComponent } from './trainer/trainer-detail.component';
+import { TrainerListComponent } from './trainer/trainer-list.component';
 
 @NgModule({
     imports: [
@@ -48,7 +50,9 @@ import { ProvinceListComponent } from './province/province-list.component';
         LocalityDetailComponent,
         LocalityListComponent,
         ProvinceDetailComponent,
-        ProvinceListComponent
+        ProvinceListComponent,
+        TrainerListComponent,
+        TrainerDetailComponent
     ],
 
     providers: [],

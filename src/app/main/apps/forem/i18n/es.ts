@@ -52,6 +52,7 @@ export const locale = {
             'TARGET': 'Dirigido',
             'TRAINER_HOURS': 'Horas del profesor',
             'TRAINER_NAME': 'Nombre del profesor',
+            'TRAINER': 'Profesor',
             'TRAINERS': 'Profesores',
             'UNEMPLOYED_REGISTRATION_DATE': 'Fecha de desempleo',
             'UNEMPLOYMENT_SITUATION': 'Situación de desempleo',

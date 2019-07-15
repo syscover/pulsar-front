@@ -52,6 +52,7 @@ export const locale = {
             'TARGET': 'Target',
             'TRAINER_HOURS': 'Teachers hours',
             'TRAINER_NAME': 'Teacher\'s name',
+            'TRAINER': 'Teacher',
             'TRAINERS': 'Teachers',
             'UNEMPLOYED_REGISTRATION_DATE': 'Unemployed registration date',
             'UNEMPLOYMENT_SITUATION': 'Unemployment situation',
