@@ -164,6 +164,13 @@ export class ProffesionalCategory
     name: string;
 }
 
+export class Profile
+{
+    id: number;
+    name: string;
+    publish: boolean;
+}
+
 export class Province
 {
     id: number;

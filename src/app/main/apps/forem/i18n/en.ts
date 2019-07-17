@@ -43,6 +43,7 @@ export const locale = {
             'PERSONAL_DATA': 'Personal data',
             'PRICE_HOUR': 'Price per hour',
             'PROFESSIONAL_CATEGORY': 'Professional category',
+            'PROFILE': 'Profile',
             'PROVINCE': 'Province',
             'REQUIREMENTS': 'Requirements',
             'SELECTION_DATE': 'Section date',

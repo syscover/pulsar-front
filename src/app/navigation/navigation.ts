@@ -198,7 +198,16 @@ export const navigation: FuseNavigation[] = [
                                 'resource'  : 'forem-locality',
                                 'icon'      : ['fas', 'globe-europe'],
                                 'url'       : '/apps/forem/locality'
-                            }
+                            },
+                            {
+                                'id'        : 'profiles',
+                                'title'     : 'Profiles',
+                                'translate' : 'NAV.PROFILES',
+                                'type'      : 'item',
+                                'resource'  : 'forem-profile',
+                                'icon'      : ['fas', 'id-badge'],
+                                'url'       : '/apps/forem/profile'
+                            },
                         ]
                     }
                 ]

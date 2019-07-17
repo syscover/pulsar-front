@@ -1,0 +1,108 @@
+<div class="page-layout carded fullwidth inner-scroll">
+
+    <horus-spinner [show]="showSpinner"></horus-spinner>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="baseUri">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <fa-icon [icon]="['fas', 'id-badge']" class="mr-16" size="2x"></fa-icon>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="dataRoute.action ==='edit'">
+                        {{ object.name }}
+                    </div>
+                    <div class="h2" *ngIf="dataRoute.action ==='create'">
+                        {{ 'APPS.NEW.M' | translate }} {{ 'FOREM.PROFILE' | translate }}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{ 'APPS.DETAIL' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='create'">
+                {{ 'APPS.ADD' | translate }}
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+
+            <button mat-raised-button
+                    type="submit"
+                    form="formDetail"
+                    class="fuse-white mt-16 mt-sm-0"
+                    [disabled]="fg.invalid || fg.pristine || loadingButton"
+                    *ngIf="dataRoute.action ==='edit'">
+                {{ 'APPS.SAVE' | translate }}
+                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card fuse-white p-24">
+
+            <!-- CONTENT -->
+            <div class="content">
+                
+                <form   id="formDetail"
+                        fxLayout="column"
+                        fxFlex
+                        [formGroup]="fg"
+                        (ngSubmit)="postRecord(object)">
+
+                    <div class="container">
+                        <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
+                                <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                <input matInput formControlName="id">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
+                                <input matInput formControlName="name" required>
+                                <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div class="col-12 col-md-6 py-20">
+                                <mat-checkbox formControlName="publish">{{ 'APPS.PUBLISH' | translate }}</mat-checkbox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+    
+</div>
