@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { graphQL as foremProfilesGraphQL } from '../profile/profile.graphql';
 
 const fields = `
     id
@@ -8,11 +9,12 @@ const fields = `
     surname
     surname2
     gender_id
+    birth_date
+    tin
     email
     phone
     mobile
-    birth_date
-    tin
+    
     availability
     authorization
     country_id
@@ -28,17 +30,21 @@ const fields = `
     is_register_jccm
     categories
     teacher_training
-    teacher_training
     teaching_months
     occupation_months
     description
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+    foremProfiles {
+        ${foremProfilesGraphQL.fields}
+    }
+    foremGenders: coreConfig (config:$configGenders)
+`;
 
 export const graphQL = {
     model: 'Syscover\\Forem\\Models\\Trainer',
-    table: 'forem_province',
+    table: 'forem_trainer',
     fields,
     relationsFields,
 
@@ -51,18 +57,33 @@ export const graphQL = {
             }
         }`,
 
+    queryRelationsObject: gql`
+        query ForemGetRelationsProfile (
+            $configGenders:CoreConfigInput
+        ) {
+            ${relationsFields}
+        }`,
+
     queryObjects: gql`
-        query ForemGetTrainers ($sql:[CoreSQLInput]) {
+        query ForemGetTrainers (
+            $sql:[CoreSQLInput] 
+            $configGenders:CoreConfigInput
+        ) {
             coreObjects: foremTrainers (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     queryObject: gql`
-        query ForemGetTrainer ($sql:[CoreSQLInput]) {
+        query ForemGetTrainer (
+            $sql:[CoreSQLInput] 
+            $configGenders:CoreConfigInput
+        ) {
             coreObject: foremTrainer (sql:$sql) {
                 ${fields}
             }
+            ${relationsFields}
         }`,
 
     mutationCreateObject: gql`

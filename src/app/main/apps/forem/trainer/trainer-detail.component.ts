@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
-import { Province } from '../forem.models';
+import { Profile, Gender } from '../forem.models';
 import { graphQL } from './trainer.graphql';
 
 @Component({
@@ -14,7 +14,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 {
     objectTranslation = 'FOREM.TRAINER';
     objectTranslationGender = 'M';
-    // public provinces: Province[] = [];
+    profiles: Profile[] = [];
+    genders: Gender[] = [];
 
     constructor(
         protected injector: Injector
@@ -26,14 +27,32 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
     {
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
-            profile_id: ['1', Validators.required],
-            name: ['', Validators.required]
+            profile_id: ['', Validators.required],
+            name: ['', Validators.required],
+            surname: '',
+            surname2: '',
+            gender_id: '',
+            birth_date: ''
         });
+    }
+
+    argumentsRelationsObject(): object
+    {
+        const configGenders = {
+            key: 'pulsar-forem.genders'
+        };
+
+        return {
+            configGenders
+        };
     }
 
     setRelationsData(data: any): void
     {
-        // provinces
-        // this.provinces = data.foremProvinces;
+        // profiles
+        this.profiles = data.foremProfiles;
+
+        // set genders
+        this.genders = data.foremGenders;
     }
 }
