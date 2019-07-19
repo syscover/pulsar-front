@@ -138,6 +138,56 @@
                                     </hr-datepicker>
 
                                 </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'APPS.NIF' | translate }}</mat-label>
+                                        <input matInput formControlName="tin">
+                                        <mat-error>{{ formErrors?.tin }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-4">
+                                        <mat-label>{{ 'APPS.EMAIL' | translate }}</mat-label>
+                                        <input matInput formControlName="email">
+                                        <mat-error>{{ formErrors?.email }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                        <mat-label>{{ 'APPS.MOBILE' | translate }}</mat-label>
+                                        <input matInput formControlName="mobile">
+                                        <mat-error>{{ formErrors?.mobile }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-3">
+                                        <mat-label>{{ 'APPS.PHONE' | translate }}</mat-label>
+                                        <input matInput formControlName="phone">
+                                        <mat-error>{{ formErrors?.phone }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-6">
+                                        <mat-label>{{ 'FOREM.AVAILABILITIES' | translate }}</mat-label>
+                                        <mat-select formControlName="availabilities" multiple>
+                                            <mat-option *ngFor="let availability of availabilities" [value]="availability.id">{{ availability.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.availabilities }}</mat-error>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div fxLayout="row">
+                                    <div class="col-md-6 py-20">
+                                        <mat-checkbox formControlName="has_authorization">{{ 'FOREM.HAS_AUTHORIZATION' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </mat-tab>
                     </mat-tab-group>

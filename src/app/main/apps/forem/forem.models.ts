@@ -34,6 +34,12 @@ export class Assistance
     name: string;
 }
 
+export class Availability 
+{
+    id: number;
+    name: string;
+}
+
 export class Category
 {
     id: number;

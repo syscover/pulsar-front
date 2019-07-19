@@ -15,8 +15,8 @@ const fields = `
     phone
     mobile
     
-    availability
-    authorization
+    availabilities
+    has_authorization
     country_id
     territorial_area_1_id
     territorial_area_2_id
@@ -40,6 +40,7 @@ const relationsFields = `
         ${foremProfilesGraphQL.fields}
     }
     foremGenders: coreConfig (config:$configGenders)
+    foremAvailabilities: coreConfig (config:$configAvailabilities)
 `;
 
 export const graphQL = {
@@ -60,6 +61,7 @@ export const graphQL = {
     queryRelationsObject: gql`
         query ForemGetRelationsProfile (
             $configGenders:CoreConfigInput
+            $configAvailabilities:CoreConfigInput
         ) {
             ${relationsFields}
         }`,
@@ -68,6 +70,7 @@ export const graphQL = {
         query ForemGetTrainers (
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
+            $configAvailabilities:CoreConfigInput
         ) {
             coreObjects: foremTrainers (sql:$sql) {
                 ${fields}
@@ -79,6 +82,7 @@ export const graphQL = {
         query ForemGetTrainer (
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
+            $configAvailabilities:CoreConfigInput
         ) {
             coreObject: foremTrainer (sql:$sql) {
                 ${fields}

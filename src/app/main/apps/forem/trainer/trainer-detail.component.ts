@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
-import { Profile, Gender } from '../forem.models';
+import { Profile, Gender, Availability } from '../forem.models';
 import { graphQL } from './trainer.graphql';
 
 @Component({
@@ -16,6 +16,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
     objectTranslationGender = 'M';
     profiles: Profile[] = [];
     genders: Gender[] = [];
+    availabilities: Availability[] = [];
 
     constructor(
         protected injector: Injector
@@ -32,7 +33,13 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             surname: '',
             surname2: '',
             gender_id: '',
-            birth_date: ''
+            birth_date: '',
+            tin: '',
+            email: '',
+            phone: '',
+            mobile: '',
+            has_authorization: false,
+            availabilities: []
         });
     }
 
@@ -42,8 +49,13 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             key: 'pulsar-forem.genders'
         };
 
+        const configAvailabilities = {
+            key: 'pulsar-forem.availabilities'
+        };
+
         return {
-            configGenders
+            configGenders,
+            configAvailabilities
         };
     }
 
@@ -54,5 +66,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
         // set genders
         this.genders = data.foremGenders;
+
+        // set availabilities
+        this.availabilities = data.foremAvailabilities;
     }
 }
