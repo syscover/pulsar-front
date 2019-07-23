@@ -28,10 +28,14 @@ import { ProvinceListComponent } from './province/province-list.component';
 import { TrainerDetailComponent } from './trainer/trainer-detail.component';
 import { TrainerListComponent } from './trainer/trainer-list.component';
 
+// Quill Editor
+import { QuillModule } from 'ngx-quill';
+
 @NgModule({
     imports: [
         SharedModule,
-        ForemRoutingModule
+        ForemRoutingModule,
+        
     ],
     exports: [ ],
     declarations: [

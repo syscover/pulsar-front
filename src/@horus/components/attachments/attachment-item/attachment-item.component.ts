@@ -21,8 +21,8 @@ export class AttachmentItemComponent implements OnInit
     @Output() enableCrop: EventEmitter<any> = new EventEmitter();
     @Output() removeItem: EventEmitter<any> = new EventEmitter();
 
-    @ViewChild('openOver', {static: false}) openOver;
-    @ViewChild('closeOver', {static: false}) closeOver;
+    @ViewChild('openOver', {static: true}) openOver;
+    @ViewChild('closeOver', {static: true}) closeOver;
     @ViewChild('image', {static: false}) image;
     familySelect: AttachmentFamily;
     showCropButton = false;

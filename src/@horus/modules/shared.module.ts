@@ -19,6 +19,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 library.add(fas, far, fab);
 
+// Quill Editor
+import { QuillModule } from 'ngx-quill';
+
 @NgModule({
     imports: [
         AttachmentsModule,
@@ -28,10 +31,11 @@ library.add(fas, far, fab);
         DynamicFormModule,
         FuseSharedModule,
         FontAwesomeModule,
+        MaterialModule,
+        PipesModule,
+        QuillModule.forRoot(),
         SpinnerModule,
         TranslateModule,
-        MaterialModule,
-        PipesModule
     ],
     exports: [
         AttachmentsModule,
@@ -41,10 +45,11 @@ library.add(fas, far, fab);
         DynamicFormModule,
         FuseSharedModule,
         FontAwesomeModule,
+        MaterialModule,
+        PipesModule,
+        QuillModule,
         SpinnerModule,
         TranslateModule,
-        MaterialModule,
-        PipesModule
     ]
 })
 export class SharedModule {}

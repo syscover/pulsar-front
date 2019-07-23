@@ -376,18 +376,19 @@
                                     </mat-form-field>
                                 </div>
 
-                                <dh2-froala formControlName="contents"
-                                            placeholder="{{ 'FOREM.CONTENTS' | translate }}"
-                                            [heightMin]="200"></dh2-froala>
+                                <quill-editor   placeholder="{{ 'FOREM.CONTENTS' | translate }}"
+                                                formControlName="contents" 
+                                                [modules]="quillEditorConfig" ></quill-editor>
                                 <mat-error>{{ formErrors?.contents }}</mat-error>
                             </div>
                         </mat-tab>
 
                         <mat-tab label="{{ 'FOREM.REQUIREMENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                <dh2-froala formControlName="requirements"
-                                            placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}"
-                                            [heightMin]="200"></dh2-froala>
+                                
+                                <quill-editor   placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}" 
+                                                formControlName="requirements" 
+                                                [modules]="quillEditorConfig" ></quill-editor>
                                 <mat-error>{{ formErrors?.requirements }}</mat-error>
                             </div>
                         </mat-tab>
