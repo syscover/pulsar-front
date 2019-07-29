@@ -170,7 +170,6 @@
                                 </div>
 
                                 <div fxLayout="row">
-
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-6">
                                         <mat-label>{{ 'FOREM.AVAILABILITIES' | translate }}</mat-label>
                                         <mat-select formControlName="availabilities" multiple>
@@ -178,7 +177,6 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.availabilities }}</mat-error>
                                     </mat-form-field>
-
                                 </div>
 
                                 <div fxLayout="row">
@@ -187,6 +185,97 @@
                                     </div>
                                 </div>
 
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">person_pin_circle</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.GEOLOCATION' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <div class="col-md-6 py-20">
+                                        <mat-checkbox formControlName="is_register_jccm">{{ 'FOREM.IS_REGISTER_JCCM' | translate }}</mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-6">
+                                    <mat-label>{{ 'FOREM.SPECIALTY' | translate }}</mat-label>
+                                    <input matInput formControlName="specialty">
+                                    <mat-error>{{ formErrors?.specialty }}</mat-error>
+                                </mat-form-field>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-6">
+                                        <mat-label>{{ 'APPS.CATEGORIES' | translate }}</mat-label>
+                                        <mat-select formControlName="categories" multiple>
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.categories }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">person_pin_circle</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.GEOLOCATION' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.ADDRESS' | translate }}</mat-label>
+                                        <input matInput formControlName="address">
+                                        <mat-error>{{ formErrors?.address }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <div class="col-md-5">
+
+                                        <dh2-territories    [formGroup]="fg"
+                                                            [formErrors]="formErrors"
+                                                            [countries]="countries"></dh2-territories>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-10">
+                                                <mat-label>{{ 'APPS.ZIP' | translate }}</mat-label>
+                                                <input matInput formControlName="zip">
+                                                <mat-error>{{ formErrors?.zip }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-10">
+                                                <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
+                                                <input matInput formControlName="locality">
+                                                <mat-error>{{ formErrors?.locality }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-10">
+                                                <mat-label>{{ 'APPS.LATITUDE' | translate }}</mat-label>
+                                                <input matInput formControlName="latitude">
+                                                <mat-error>{{ formErrors?.latitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-10">
+                                                <mat-label>{{ 'APPS.LONGITUDE' | translate }}</mat-label>
+                                                <input matInput formControlName="longitude">
+                                                <mat-error>{{ formErrors?.longitude }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <div fxLayout="row">
+                                            <dh2-location-map [formGroup]="fg" class="offset-1 col-11"></dh2-location-map>
+                                        </div>
+                                    </div>
+
+                                </div>
 
                             </div>
                         </mat-tab>

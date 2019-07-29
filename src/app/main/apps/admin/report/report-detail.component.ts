@@ -4,7 +4,7 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { Extension, Frequency, Profile } from '../admin.models';
 import { graphQL } from './report.graphql';
 

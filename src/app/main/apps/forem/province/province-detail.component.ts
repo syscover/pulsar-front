@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { graphQL } from './province.graphql';
 
 @Component({

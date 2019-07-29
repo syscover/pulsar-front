@@ -11,6 +11,7 @@ export const locale = {
             'BIRTH_DATE': 'Fecha de nacimiento',
             'CANCEL': 'Cancelar',
             'CATEGORY': 'Categoría',
+            'CATEGORIES': 'Categorias',
             'CHANGED_PERMISSIONS': 'Permisos cambiados',
             'CLEAR': 'Limpiar',
             'CLOSE': 'Cerrar',

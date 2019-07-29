@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { Country, TerritorialArea2 } from '../admin.models';
 import * as _ from 'lodash';
 import { graphQL } from './territorial-area-3.graphql';

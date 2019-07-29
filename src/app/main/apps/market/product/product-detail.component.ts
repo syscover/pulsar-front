@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { graphQL } from './product.graphql';
 import { Product, ProductClass, PriceType, ProductClassTax, Category, Stock, Section } from '../market.models';
 import { FieldGroup, AttachmentFamily } from '../../admin/admin.models';

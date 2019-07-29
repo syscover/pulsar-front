@@ -1,9 +1,10 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
-import { Profile, Gender, Availability } from '../forem.models';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
+import { Profile, Gender, Availability, Category } from '../forem.models';
 import { graphQL } from './trainer.graphql';
+import { Country } from '../../admin/admin.models';
 
 @Component({
     selector: 'dh2-forem-trainer-detail',
@@ -17,6 +18,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
     profiles: Profile[] = [];
     genders: Gender[] = [];
     availabilities: Availability[] = [];
+    countries: Country[] = [];
+    categories: Category[] = [];
 
     constructor(
         protected injector: Injector
@@ -39,12 +42,41 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             phone: '',
             mobile: '',
             has_authorization: false,
-            availabilities: []
+            availabilities: [],
+
+            // geolocation
+            address: '',
+            country_id: '',
+            territorial_area_1_id: '',
+            territorial_area_2_id: '',
+            territorial_area_3_id: '',
+            zip: '',
+            locality: '',
+            latitude: '',
+            longitude: '',
+
+            is_register_jccm: false,
+            specialty: '',
+            categories: []
         });
     }
 
     argumentsRelationsObject(): object
     {
+        const sqlAdminCountry = [
+            {
+                command: 'where',
+                column: 'lang_id',
+                operator: '=',
+                value: this.params['lang'] ? this.params['lang'] : this.baseLang.id
+            },
+            {
+                command: 'orderBy',
+                operator: 'asc',
+                column: 'admin_country.name'
+            }
+        ];
+
         const configGenders = {
             key: 'pulsar-forem.genders'
         };
@@ -54,6 +86,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
         };
 
         return {
+            sqlAdminCountry,
             configGenders,
             configAvailabilities
         };
@@ -61,8 +94,14 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
     setRelationsData(data: any): void
     {
+        // set admin countries
+        this.countries = data.adminCountries;
+
         // profiles
         this.profiles = data.foremProfiles;
+
+        // categories
+        this.categories = data.foremCategories;
 
         // set genders
         this.genders = data.foremGenders;

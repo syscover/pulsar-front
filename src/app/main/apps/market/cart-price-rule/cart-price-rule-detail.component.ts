@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { CustomerGroup } from '../../crm/crm.models';
 import { DiscountType } from '../market.models';
 import '@horus/functions/date-to-json.function';

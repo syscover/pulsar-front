@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 import { graphQL as foremProfilesGraphQL } from '../profile/profile.graphql';
+import { graphQL as foremCategoriesGraphQL } from '../category/category.graphql';
+import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
 
 const fields = `
     id
@@ -14,7 +16,6 @@ const fields = `
     email
     phone
     mobile
-    
     availabilities
     has_authorization
     country_id
@@ -26,8 +27,9 @@ const fields = `
     address
     latitude
     longitude
-    specialty
+
     is_register_jccm
+    specialty
     categories
     teacher_training
     teaching_months
@@ -36,8 +38,14 @@ const fields = `
 `;
 
 const relationsFields = `
+    adminCountries (sql:$sqlAdminCountry) {
+        ${adminCountryGraphQL.fields}
+    }
     foremProfiles {
         ${foremProfilesGraphQL.fields}
+    }
+    foremCategories {
+        ${foremCategoriesGraphQL.fields}
     }
     foremGenders: coreConfig (config:$configGenders)
     foremAvailabilities: coreConfig (config:$configAvailabilities)
@@ -62,6 +70,7 @@ export const graphQL = {
         query ForemGetRelationsProfile (
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
         ) {
             ${relationsFields}
         }`,
@@ -71,6 +80,7 @@ export const graphQL = {
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObjects: foremTrainers (sql:$sql) {
                 ${fields}
@@ -83,6 +93,7 @@ export const graphQL = {
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObject: foremTrainer (sql:$sql) {
                 ${fields}

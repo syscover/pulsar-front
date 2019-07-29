@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { User } from '../../admin/admin.models';
 import { graphQL } from './preference.graphql';
 

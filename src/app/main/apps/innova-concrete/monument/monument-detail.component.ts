@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
-import { CoreDetailComponent } from '@horus/foundations/core-detail-compoment';
+import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { AttachmentFamily, Country } from '../../admin/admin.models';
 import { REINFORCEMENT_TYPES, ARCHITECTS, ARTISTS, ENGINEERS, OTHERS, Characteristic, People, CONCRETE_TYPES, FINISHES, CONSTRUCTION_MEETHODS, STRUCTURAL_TYPES } from '../innova-concrete.models';
 import { graphQL } from './monument.graphql';
