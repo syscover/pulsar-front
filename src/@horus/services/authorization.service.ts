@@ -17,7 +17,8 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
         private _router: Router,
         private _translateService: TranslateService,
         private _snackBar: MatSnackBar
-    ) {
+    ) 
+    {
         this._permissions = _authenticationService.user() ? _authenticationService.user().profile.permissions : null;
         this._translateService
             .get([

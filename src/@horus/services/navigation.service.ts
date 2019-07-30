@@ -33,7 +33,6 @@ export class NavigationService
             // check resources in navigation
             navigation[0].children = this.checkResources(navigation[0].children, permissions);
         }
-
         return navigation;
     }
 
