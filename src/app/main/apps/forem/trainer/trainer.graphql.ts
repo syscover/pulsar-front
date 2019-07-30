@@ -47,8 +47,9 @@ const relationsFields = `
     foremCategories {
         ${foremCategoriesGraphQL.fields}
     }
-    foremGenders: coreConfig (config:$configGenders)
     foremAvailabilities: coreConfig (config:$configAvailabilities)
+    foremGenders: coreConfig (config:$configGenders)
+    foremTeacherTrainings: coreConfig (config:$configTeacherTrainings)
 `;
 
 export const graphQL = {
@@ -70,6 +71,7 @@ export const graphQL = {
         query ForemGetRelationsProfile (
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $configTeacherTrainings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             ${relationsFields}
@@ -80,6 +82,7 @@ export const graphQL = {
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $configTeacherTrainings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObjects: foremTrainers (sql:$sql) {
@@ -93,6 +96,7 @@ export const graphQL = {
             $sql:[CoreSQLInput] 
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
+            $configTeacherTrainings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObject: foremTrainer (sql:$sql) {

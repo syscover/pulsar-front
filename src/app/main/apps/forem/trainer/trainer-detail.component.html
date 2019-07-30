@@ -214,6 +214,41 @@
                                     </mat-form-field>
                                 </div>
 
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-6">
+                                        <mat-label>{{ 'FOREM.TEACHER_TRAINING' | translate }}</mat-label>
+                                        <mat-select formControlName="teacher_training">
+                                            <mat-option *ngFor="let teacherTraining of teacherTrainings" [value]="teacherTraining.id">{{ teacherTraining.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.teacher_training }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                        <mat-label>{{ 'FOREM.TEACHING_MONTHS' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="teaching_months">
+                                        <mat-error>{{ formErrors?.teaching_months }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-5">
+                                        <mat-label>{{ 'FOREM.OCCUPATION_MONTHS' | translate }}</mat-label>
+                                        <input type="number" matInput formControlName="occupation_months">
+                                        <mat-error>{{ formErrors?.occupation_months }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col">
+                                        <mat-label>{{ 'APPS.DESCRIPTION' | translate }}</mat-label>
+                                        <textarea   matInput
+                                                    matTextareaAutosize
+                                                    matAutosizeMinRows="6"
+                                                    formControlName="description"></textarea>
+                                        <mat-error>{{ formErrors?.description }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
                                 <!-- HEADER -->
                                 <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
                                     <mat-icon class="m-0 mr-16">person_pin_circle</mat-icon>

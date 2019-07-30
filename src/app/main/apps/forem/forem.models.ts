@@ -197,6 +197,12 @@ export class Target
     name: string;
 }
 
+export class TeacherTraining
+{
+    id: number;
+    name: string;
+}
+
 export class Type
 {
     id: number;

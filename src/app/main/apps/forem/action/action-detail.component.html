@@ -111,7 +111,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-3">
-                                        <mat-label>{{ 'FOREM.ASSIST' | translate }}</mat-label>
+                                        <mat-label>{{ 'FOREM.ASSISTANCE' | translate }}</mat-label>
                                         <mat-select formControlName="assistance_id" required>
                                             <mat-option *ngFor="let assistance of assistances" [value]="+assistance.id">{{ assistance.name }}</mat-option>
                                         </mat-select>

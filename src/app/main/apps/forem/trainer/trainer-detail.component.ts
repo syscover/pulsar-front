@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
-import { Profile, Gender, Availability, Category } from '../forem.models';
+import { Profile, Gender, Availability, Category, TeacherTraining } from '../forem.models';
 import { graphQL } from './trainer.graphql';
 import { Country } from '../../admin/admin.models';
 
@@ -20,6 +20,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
     availabilities: Availability[] = [];
     countries: Country[] = [];
     categories: Category[] = [];
+    teacherTrainings: TeacherTraining[] = [];
 
     constructor(
         protected injector: Injector
@@ -57,7 +58,11 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
             is_register_jccm: false,
             specialty: '',
-            categories: []
+            categories: [],
+            teacher_training: '',
+            teaching_months: '',
+            occupation_months: '',
+            description: ''
         });
     }
 
@@ -85,10 +90,15 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             key: 'pulsar-forem.availabilities'
         };
 
+        const configTeacherTrainings = {
+            key: 'pulsar-forem.teacher_trainings'
+        };
+
         return {
             sqlAdminCountry,
             configGenders,
-            configAvailabilities
+            configAvailabilities,
+            configTeacherTrainings
         };
     }
 
@@ -108,5 +118,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
         // set availabilities
         this.availabilities = data.foremAvailabilities;
+
+        // set teacher trainings
+        this.teacherTrainings = data.foremTeacherTrainings;
     }
 }
