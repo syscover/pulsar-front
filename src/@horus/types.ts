@@ -13,6 +13,15 @@ export interface DataRoute
     resource?: string;
 }
 
+export interface File 
+{
+    url: string;
+    filename: string;
+    pathname: string;
+    mime: string;
+    size: number;
+}
+
 export interface HorusConfig
 {
     fieldAppearance: 'legacy' | 'standard' | 'fill' | 'outline';

@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import { HttpService } from '@horus/services/http.service';
+import { File } from '@horus/types';
 import { horusConfig } from 'app/horus-config';
 import { Group } from '../forem.models';
 import gql from 'graphql-tag';
@@ -70,10 +71,9 @@ export class InscriptionExportDialogComponent implements OnInit
         private _validationMessageService: ValidationMessageService,
         private _http: HttpService,
         private _sanitizer: DomSanitizer
-    ) {
-
+    ) 
+    {
         this.createForm();
-
     }
 
     createForm(): void 
@@ -134,35 +134,47 @@ export class InscriptionExportDialogComponent implements OnInit
                 .mutate({
                     mutation: gql`
                         mutation ForemExportInscriptions ($id:Int!) {
-                            foremExportInscription (id:$id)
+                            foremExportInscription (id:$id) {
+                                url
+                                filename
+                                pathname
+                                mime
+                                size
+                            }
                         }
                     `,
                     variables: {
                         id: this.fg.get('group_id').value
                     }
                 })
-                .subscribe(({data}) =>
+                .subscribe((res) =>
                 {
                     ob$.unsubscribe();
-                    if (! data.foremExportInscription)
+
+                    if (environment.debug) console.log('DEBUG - response execute report: ', res);
+
+                    // casting to file
+                    const file = <File>res.data['foremExportInscription'];
+
+                    if (! file)
                     {
                         this.loadingButton = false;
-                        this._dialogRef.close(data.foremExportInscription);
+                        this._dialogRef.close(file.filename);
                         return;
                     }
 
                     this._http
                         .httpClient()
-                        .post(this._http.restUrl + '/api/v1/admin/file-manager/read', {
-                            mime: 'application/zip',
-                            pathname: 'app/public/forem/export/' + data.foremExportInscription
+                        .post(this._http.restUrl + '/api/v1/admin/file-manager/read', 
+                        {
+                            file
                         },
                         {
-                            responseType: 'blob'
+                            responseType: 'blob' // set data type that will go to get
                         })
-                        .subscribe((res) =>
+                        .subscribe((data) =>
                         {
-                            const blob = new Blob([res], { type: data.foremExportInscription });
+                            const blob = new Blob([data], { type: file.mime });
 
                             // IE doesn't allow using a blob object directly as link href
                             // instead it is necessary to use msSaveOrOpenBlob
@@ -177,7 +189,7 @@ export class InscriptionExportDialogComponent implements OnInit
 
                             const link = document.createElement('a');
                             link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                            link.download = data.foremExportInscription;
+                            link.download = file.filename;
 
                             // this is necessary as link.click() does not work on the latest firefox
                             link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
@@ -189,7 +201,7 @@ export class InscriptionExportDialogComponent implements OnInit
                                 link.remove();
 
                                 this.loadingButton = false;
-                                this._dialogRef.close(data.foremExportInscription);
+                                this._dialogRef.close(file.filename);
 
                             }, 100);
                         });

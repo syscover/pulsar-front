@@ -77,8 +77,8 @@ export const graphQL = {
         }`,
 
     // custom query
-    queryRunReport: gql`
-        query AdminRunReport ($id:Int!) {
+    mutationRunReport: gql`
+        mutation AdminRunReport ($id:Int!) {
             adminRunReport (id:$id) {
                 ${fields}
                 file {

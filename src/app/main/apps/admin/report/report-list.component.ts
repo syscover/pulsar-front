@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
+import { File } from '@horus/types';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
 import { environment } from 'environments/environment';
@@ -33,30 +34,34 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
         const ob$ = this.http
             .apolloClient()
-            .watchQuery({
-                query: graphQL.queryRunReport,
+            .mutate({
+                mutation: graphQL.mutationRunReport,
                 variables: {
                     id: report.id
                 }
             })
-            .valueChanges
             .subscribe((res) =>
             {
+                ob$.unsubscribe();
+                
                 if (environment.debug) console.log('DEBUG - response execute report: ', res);
-
+                
+                // casting to file
+                const file = <File>res.data['adminRunReport'];
+                
                 this.http
                     .httpClient()
                     .post(this.http.restUrl + '/api/v1/admin/file-manager/read',
                         {
-                            file: res.data['adminRunReport']['file']
+                            file
                         },
                         {
-                            responseType: 'blob'
+                            responseType: 'blob' // set data type that will go to get
                         }
                     )
                     .subscribe((data) =>
                     {
-                        const blob = new Blob([data], { type: res.data['adminRunReport']['file']['mime'] });
+                        const blob = new Blob([data], { type: file.mime });
 
                         // IE doesn't allow using a blob object directly as link href
                         // instead it is necessary to use msSaveOrOpenBlob
@@ -72,7 +77,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
                         const link = document.createElement('a');
                         link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                        link.download = res.data['adminRunReport']['file']['filename'];
+                        link.download = file.filename;
 
                         // this is necessary as link.click() does not work on the latest firefox
                         link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));

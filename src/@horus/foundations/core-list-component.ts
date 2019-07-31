@@ -29,8 +29,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
     private httpSynchronousService: HttpSynchronousService;
     private running = false; // boolean true when is consulting through Http
     private buffer: any;
-    private registerSubscriptions = async () => {
-
+    private registerSubscriptions = async () => 
+    {
         // compose source events to get pagination values
         const sourceFilterEvents: any[] = [this.refreshTable, this.sort.sortChange, this.paginator.page];
 
