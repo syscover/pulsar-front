@@ -73,7 +73,8 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
         await this.startTable
             .pipe(
                 startWith({}),
-                switchMap(async () => {
+                switchMap(async () => 
+                {
                     await this.loadDataSource();
                 }),
                 first()
@@ -292,24 +293,24 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
         // set limit sql
         args['sql'].push({
-                command: 'limit',
-                value: limit
-            });
+            command: 'limit',
+            value: limit
+        });
 
         // set offset sql
         args['sql'].push({
-                command: 'offset',
-                value: offset
-            });
+            command: 'offset',
+            value: offset
+        });
 
         // set orderBy sql
         if (sort) 
         {
             args['sql'].push({
-                    command: 'orderBy',
-                    operator: order ? order : 'asc',
-                    column: sort
-                });
+                command: 'orderBy',
+                operator: order ? order : 'asc',
+                column: sort
+            });
         }
 
         // set search by text
@@ -320,7 +321,7 @@ export abstract class CoreListComponent extends CoreComponent implements AfterVi
 
             for (const column of this.columnsSearch) 
             {
-                 args['sql'].push({
+                args['sql'].push({
                     command: 'orWhere',
                     column: column,
                     operator: 'like',
