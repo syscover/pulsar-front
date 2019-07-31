@@ -9,12 +9,16 @@ import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SelectSearchService } from '@horus/services/select-search.service';
 import { CategoryDialogComponent } from '../category/category-dialog.component';
-import * as _ from 'lodash';
 import { graphQL } from './group.graphql';
 import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/market.models';
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { MarketableService } from '@horus/components/marketable/marketable.service';
+import { DownloadService } from '@horus/services/download.service';
+import { File } from '@horus/types';
 import { AttachmentFamily, Country, Profile, User } from '../../admin/admin.models';
+import { environment } from 'environments/environment';
+import gql from 'graphql-tag';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'dh2-forem-group-detail',
@@ -81,7 +85,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         private _selectSearch: SelectSearchService,
         private _dialog: MatDialog,
         private _marketable: MarketableService,
-        private _authenticationService: AuthenticationService
+        private _authenticationService: AuthenticationService,
+        private _downloadService: DownloadService
     ) {
         super(injector, graphQL);
         this.user = this._authenticationService.user();
@@ -170,8 +175,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             });
     }
 
-    argumentsRelationsObject(): object {
-
+    argumentsRelationsObject(): object 
+    {
         // marketable component
         const marketableRelations = this._marketable.getArgumentsRelations(this.baseLang.id, this.params['lang_id'], this.params['product_id'], 'Syscover\\Forem\\Models\\Group');
 
@@ -371,5 +376,48 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         // trigger change event
         const event = new Event('change');
         this.slugField.nativeElement.dispatchEvent(event);
+    }
+
+    exportInscriptions(): void
+    {
+        const ob$ = this.http
+            .apolloClient()
+            .mutate({
+                mutation: gql`
+                    mutation ForemExportInscriptions ($id:Int!) {
+                        foremExportInscription (id:$id) {
+                            url
+                            filename
+                            pathname
+                            mime
+                            size
+                        }
+                    }
+                `,
+                variables: {
+                    id: this.fg.get('id').value
+                }
+            })
+            .subscribe((res) =>
+            {
+                ob$.unsubscribe();
+
+                if (environment.debug) console.log('DEBUG - response execute report: ', res);
+
+                // casting to file
+                const file = <File>res.data['foremExportInscription'];
+                
+                if (! file)
+                {
+                    this.loadingButton = false;
+                    return;
+                }
+
+                // call download service
+                this._downloadService
+                    .download(file, () => {
+                        this.loadingButton = false;
+                    });
+            });
     }
 }

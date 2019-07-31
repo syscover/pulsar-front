@@ -13,6 +13,7 @@ import { AuthorizationService } from '@horus/services/authorization.service';
 import { BootstrapService } from '@horus/services/bootstrap.service';
 import { ConfigService } from '@horus/services/config.service';
 import { CustomMatPaginatorIntlService } from '@horus//services/custom-mat-paginator-int.service';
+import { DownloadService } from '@horus/services/download.service';
 import { NavigationService } from '@horus/services/navigation.service';
 import { HttpService } from '@horus/services/http.service';
 import { HttpInterceptorService } from '@horus/services/http-interceptor.service';
@@ -36,6 +37,7 @@ export function BootstrapLoader(bootstrapService: BootstrapService): Function
         AuthenticationService,
         AuthorizationService,
         ConfigService,
+        DownloadService,
         HttpService,
         HttpSynchronousService,
         NavigationService,

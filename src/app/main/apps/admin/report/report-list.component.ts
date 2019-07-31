@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreListComponent } from '@horus/foundations/core-list-component';
+import { DownloadService } from '@horus/services/download.service';
 import { File } from '@horus/types';
 import { graphQL } from './report.graphql';
 import { Report } from '../admin.models';
@@ -22,7 +23,7 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
 
     constructor(
         protected injector: Injector,
-        private _sanitizer: DomSanitizer
+        private _downloadService: DownloadService
     )
     {
         super(injector, graphQL);
@@ -49,46 +50,9 @@ export class ReportListComponent extends CoreListComponent implements AfterViewI
                 // casting to file
                 const file = <File>res.data['adminRunReport'];
                 
-                this.http
-                    .httpClient()
-                    .post(this.http.restUrl + '/api/v1/admin/file-manager/read',
-                        {
-                            file
-                        },
-                        {
-                            responseType: 'blob' // set data type that will go to get
-                        }
-                    )
-                    .subscribe((data) =>
-                    {
-                        const blob = new Blob([data], { type: file.mime });
-
-                        // IE doesn't allow using a blob object directly as link href
-                        // instead it is necessary to use msSaveOrOpenBlob
-                        if (window.navigator && window.navigator.msSaveOrOpenBlob)
-                        {
-                            window.navigator.msSaveOrOpenBlob(blob);
-                            return;
-                        }
-
-                        const fileUrl = this._sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-
-                        if (environment.debug) console.log('DEBUG - response file url to download: ', fileUrl);
-
-                        const link = document.createElement('a');
-                        link.href = fileUrl['changingThisBreaksApplicationSecurity'];
-                        link.download = file.filename;
-
-                        // this is necessary as link.click() does not work on the latest firefox
-                        link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-
-                        setTimeout(function ()
-                        {
-                            // For Firefox it is necessary to delay revoking the ObjectURL
-                            window.URL.revokeObjectURL(fileUrl['changingThisBreaksApplicationSecurity']);
-                            link.remove();
-                        }, 100);
-
+                // call download service
+                this._downloadService
+                    .download(file, () => {
                         this.isLoadingResults = false;
                     });
             });
