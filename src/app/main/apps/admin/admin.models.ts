@@ -10,6 +10,20 @@ export class Action
     name: string;
 }
 
+export class Wildcard 
+{
+    label: string;
+    name: string;
+    field_type_id: string;
+    field_type_name: string;
+    data_type_id: string;
+    data_type_name: string;
+    graphQLQuery: string;
+    modelId: string;
+    modelName: string;
+    value: string | number;
+}
+
 export class AttachmentLibrary
 {
     id: number;
@@ -86,7 +100,6 @@ export class DataType
 {
     id: number;
     name: string;
-    type: string;
 }
 
 export class Extension

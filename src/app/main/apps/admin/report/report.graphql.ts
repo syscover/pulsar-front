@@ -12,6 +12,8 @@ const fields = `
 `;
 
 const relationsFields = `
+    coreConfigFieldTypes:coreConfig (config:$configFieldTypes)
+    coreConfigDataTypes:coreConfig (config:$configDataTypes)
     adminExtensions: coreConfig (config:$configExtensions)
     adminFrequencies: coreConfig (config:$configFrequencies)
     adminProfiles {
@@ -36,19 +38,36 @@ export const graphQL = {
         }`,
 
     queryRelationsObject: gql`
-        query AdminGetRelationsReport ($configExtensions:CoreConfigInput! $configFrequencies:CoreConfigInput!) {
+        query AdminGetRelationsReport (
+            $configFieldTypes:CoreConfigInput! 
+            $configDataTypes:CoreConfigInput!
+            $configExtensions:CoreConfigInput! 
+            $configFrequencies:CoreConfigInput!
+        ) {
             ${relationsFields}
         }`,
 
     queryObjects: gql`
-        query AdminGetReports ($sql:[CoreSQLInput]) {
+        query AdminGetReports (
+            $sql:[CoreSQLInput]
+            $configFieldTypes:CoreConfigInput! 
+            $configDataTypes:CoreConfigInput!
+            $configExtensions:CoreConfigInput! 
+            $configFrequencies:CoreConfigInput!
+        ) {
             coreObjects: adminReports (sql:$sql) {
                 ${fields}
             }
         }`,
 
     queryObject: gql`
-        query AdminGetReport ($sql:[CoreSQLInput] $configExtensions:CoreConfigInput! $configFrequencies:CoreConfigInput!) {
+        query AdminGetReport (
+            $sql:[CoreSQLInput]
+            $configFieldTypes:CoreConfigInput! 
+            $configDataTypes:CoreConfigInput!
+            $configExtensions:CoreConfigInput! 
+            $configFrequencies:CoreConfigInput!
+        ) {
             coreObject: adminReport (sql:$sql) {
                 ${fields}
             }

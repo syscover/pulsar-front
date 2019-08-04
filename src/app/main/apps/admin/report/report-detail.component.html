@@ -1,4 +1,4 @@
-<div class="page-layout carded fullwidth inner-scroll">
+<div class="page-layout carded fullwidth inner-scroll tabable">
 
     <horus-spinner [show]="showSpinner"></horus-spinner>
 
@@ -37,7 +37,23 @@
             </div>
             <!-- / APP TITLE -->
 
-            <button mat-raised-button
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menuList" [disableRipple]="false">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menuList="matMenu">
+                    <button mat-menu-item [routerLink]="baseUri + '/create'">
+                        <mat-icon>add_circle_outline</mat-icon>
+                        <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.REPORT' | translate }}</span>
+                    </button>
+                    <button mat-menu-item (click)="handleWildcard()">
+                        <mat-icon>list_alt</mat-icon>
+                        <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.WILDCARD' | translate }} </span>
+                    </button>
+                </mat-menu>
+            </div>
+
+            <!-- <button mat-raised-button
                     type="submit"
                     form="formDetail"
                     class="fuse-white mt-16 mt-sm-0"
@@ -55,102 +71,138 @@
                     *ngIf="dataRoute.action ==='edit'">
                 {{ 'APPS.SAVE' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+            </button> -->
         </div>
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card fuse-white p-24">
+        <div class="content-card fuse-white">
 
             <!-- CONTENT -->
             <div class="content">
 
                 <form   id="formDetail"
+                        class="col-12"
+                        fxLayout="column"
+                        fxFlex
                         [formGroup]="fg"
                         (ngSubmit)="postRecord(object)">
 
-                    <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
-                            <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
-                            <input matInput formControlName="id">
-                        </mat-form-field>
-                    </div>
+                    <mat-tab-group>
+                        
+                        <mat-tab label="{{ 'APPS.REPORT' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                
+                                <div fxLayout="row" *ngIf="dataRoute.action === 'edit'">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'APPS.ID' | translate }}</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.SUBJECT' | translate }}</mat-label>
+                                        <input matInput formControlName="subject" required>
+                                        <mat-error>{{ formErrors?.subject }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'ADMIN.INSERT_EMAILS' | translate }}</mat-label>
+                                        <mat-chip-list #emailList>
+                                            <mat-chip *ngFor="let email of fg.get('emails').value" [removable]="true" (removed)="removeTag(fg, 'emails', email)">
+                                                {{ email }} <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                            <input  [matChipInputFor]="emailList"
+                                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                    [matChipInputAddOnBlur]="true"
+                                                    (matChipInputTokenEnd)="addTag(fg, 'emails', $event)">
+                                        </mat-chip-list>
+                                        <mat-error>{{ formErrors?.emails }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxLayout="row">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
+                                        <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
+                                        <mat-select formControlName="profiles" multiple required>
+                                            <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.profiles }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxLayout="row wrap">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-8 col-md-6">
+                                        <mat-label>{{ 'APPS.FILENAME' | translate }}</mat-label>
+                                        <input matInput formControlName="filename" required>
+                                        <mat-error>{{ formErrors?.filename }}</mat-error>
+                                    </mat-form-field>
+            
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-3 ml-20 col-md-2">
+                                        <mat-label>{{ 'APPS.EXTENSION' | translate }}</mat-label>
+                                        <mat-select formControlName="extension" required>
+                                            <mat-option *ngFor="let extension of extensions" [value]="extension.id">{{ extension.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.extension }}</mat-error>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxLayout="row" class="justify-content-between">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-4 col-md-6">
+                                        <mat-label>{{ 'ADMIN.FREQUENCY' | translate }}</mat-label>
+                                        <mat-select formControlName="frequency_id" required>
+                                            <mat-option *ngFor="let frequency of frequencies" [value]="+frequency.id">{{ frequency.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.frequency_id }}</mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'APPS.SUBJECT' | translate }}</mat-label>
-                            <input matInput formControlName="subject" required>
-                            <mat-error>{{ formErrors?.subject }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                            </div>
+                        </mat-tab>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'ADMIN.INSERT_EMAILS' | translate }}</mat-label>
-                            <mat-chip-list #emailList>
-                                <mat-chip *ngFor="let email of fg.get('emails').value" [removable]="true" (removed)="removeTag(fg, 'emails', email)">
-                                    {{ email }} <mat-icon matChipRemove>cancel</mat-icon>
-                                </mat-chip>
-                                <input  [matChipInputFor]="emailList"
-                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                        [matChipInputAddOnBlur]="true"
-                                        (matChipInputTokenEnd)="addTag(fg, 'emails', $event)">
-                            </mat-chip-list>
-                            <mat-error>{{ formErrors?.emails }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon class="m-0 mr-16">code</mat-icon> SQL
+                            </ng-template>
+                            <div class="tab-content p-24" fusePerfectScrollbar>
 
-                    <div fxLayout="row">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
-                            <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
-                            <mat-select formControlName="profiles" multiple required>
-                                <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.profiles }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                                <div fxLayout="row">
+                                    <td-code-editor theme="hc-black"
+                                                    language="sql"
+                                                    class="col-12"
+                                                    formControlName="sql"
+                                                    style="height: 200px">
+                                    </td-code-editor>
+                                </div>
+                                
+                            </div>
+                        </mat-tab>
 
-                    <div fxLayout="row wrap">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-8 col-md-6">
-                            <mat-label>{{ 'APPS.FILENAME' | translate }}</mat-label>
-                            <input matInput formControlName="filename" required>
-                            <mat-error>{{ formErrors?.filename }}</mat-error>
-                        </mat-form-field>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon class="m-0 mr-16">list_alt</mat-icon> {{ 'APPS.WILDCARDS' | translate | uppercase }}
+                            </ng-template>
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+    
+                                <div fxLayout="row">
+                                    <div>
 
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-3 ml-20 col-md-2">
-                            <mat-label>{{ 'APPS.EXTENSION' | translate }}</mat-label>
-                            <mat-select formControlName="extension" required>
-                                <mat-option *ngFor="let extension of extensions" [value]="extension.id">{{ extension.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.extension }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                                    </div>
+                                </div>
 
-                    <div fxLayout="row" class="justify-content-between">
-                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-4 col-md-6">
-                            <mat-label>{{ 'ADMIN.FREQUENCY' | translate }}</mat-label>
-                            <mat-select formControlName="frequency_id" required>
-                                <mat-option *ngFor="let frequency of frequencies" [value]="+frequency.id">{{ frequency.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>{{ formErrors?.frequency_id }}</mat-error>
-                        </mat-form-field>
-                    </div>
+                            </div>
+                        </mat-tab>
 
-                    <!-- HEADER -->
-                    <div fxLayout="row" fxLayoutAlign="start center" class="mt-20 mb-5 header-section">
-                        <mat-icon class="m-0 mr-16">code</mat-icon>
-                        <div class="h2 secondary-text">SQL</div>
-                    </div>
-                    <!-- / HEADER -->
-
-                    <div fxLayout="row">
-                        <td-code-editor theme="hc-black"
-                                        language="sql"
-                                        class="col-12"
-                                        formControlName="sql"
-                                        style="height: 200px">
-                        </td-code-editor>
-                    </div>
+                        <mat-tab label="{{ 'FOREM.CURSING' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+    
+                            </div>
+                        </mat-tab>
+                    
+                    </mat-tab-group>
 
                 </form>
 

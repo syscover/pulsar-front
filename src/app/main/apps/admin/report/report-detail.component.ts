@@ -1,11 +1,12 @@
 import { Component, Injector } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
-import { Extension, Frequency, Profile } from '../admin.models';
+import { Extension, Frequency, Profile, FieldType, DataType } from '../admin.models';
+import { WildcardDialogComponent } from './wildcard-dialog.component';
 import { graphQL } from './report.graphql';
 
 @Chips()
@@ -25,8 +26,12 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     profiles: Profile[] = [];
     separatorKeysCodes = [ENTER, COMMA];
 
+    fieldTypes: FieldType[] = [];
+    dataTypes: DataType[] = [];
+
     constructor(
-        protected injector: Injector
+        protected injector: Injector,
+        private _dialog: MatDialog,
     ) {
 
         super(injector, graphQL);
@@ -51,7 +56,15 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
     }
 
-    argumentsRelationsObject(): object {
+    argumentsRelationsObject(): object 
+    {
+        const configFieldTypes = {
+            key: 'pulsar-admin.field_types'
+        };
+
+        const configDataTypes = {
+            key: 'pulsar-admin.data_types'
+        };
 
         const configExtensions = {
             key: 'pulsar-admin.extensions',
@@ -65,6 +78,8 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         };
 
         return {
+            configFieldTypes,
+            configDataTypes,
             configExtensions,
             configFrequencies
         };
@@ -73,6 +88,12 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
     setRelationsData(data: any): void
     {
+        // set fields types
+        this.fieldTypes = data.coreConfigFieldTypes;
+
+        // set data types
+        this.dataTypes = data.coreConfigDataTypes;
+
         // admin extensions
         this.extensions = data.adminExtensions;
 
@@ -81,5 +102,16 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
         // admin profiles
         this.profiles = data.adminProfiles;
+    }
+
+    handleWildcard()
+    {
+        const dialogRef = this._dialog.open(WildcardDialogComponent, {
+            data: {
+                fieldTypes: this.fieldTypes,
+                dataTypes: this.dataTypes
+            },
+            width: '80vw'
+        });
     }
 }

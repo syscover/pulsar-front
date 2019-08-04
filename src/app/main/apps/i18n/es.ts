@@ -129,6 +129,8 @@ export const locale = {
             'VALUES': 'Valores',
             'VERSION': 'Version',
             'WIDTH': 'Ancho',
+            'WILDCARD': 'Comodín',
+            'WILDCARDS': 'Comodines',
             'ZIP': 'CP',
             'ZOOM': 'Zoom',
         },

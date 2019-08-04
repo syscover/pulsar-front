@@ -43,6 +43,7 @@ import { TerritorialArea3ListComponent } from './territorial_area_3/territorial-
 import { TerritorialArea3DetailComponent } from './territorial_area_3/territorial-area-3-detail.component';
 import { UserListComponent } from './user/user-list.component';
 import { UserDetailComponent } from './user/user-detail.component';
+import { WildcardDialogComponent } from './report/wildcard-dialog.component';
 
 @NgModule({
     declarations: [
@@ -82,14 +83,18 @@ import { UserDetailComponent } from './user/user-detail.component';
         TerritorialArea3ListComponent,
         TerritorialArea3DetailComponent,
         UserListComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        WildcardDialogComponent
     ],
     imports: [
         SharedModule,
         AdminRoutingModule,
         MatPasswordStrengthModule
     ],
-    exports: []
+    exports: [],
+    entryComponents: [
+        WildcardDialogComponent
+    ]
 })
 
 export class AdminModule

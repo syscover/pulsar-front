@@ -77,7 +77,8 @@ export class ListItemsComponent implements OnInit
             width: '80vw'
         });
 
-        dialogRef.afterClosed().subscribe((response: any) => {
+        dialogRef.afterClosed().subscribe((response: any) => 
+        {
             if (response)
             {
                 if (response.oldObject)
@@ -106,7 +107,8 @@ export class ListItemsComponent implements OnInit
             }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(result => 
+        {
             if (result)
             {
                 // find item index
