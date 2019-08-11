@@ -10,20 +10,6 @@ export class Action
     name: string;
 }
 
-export class Wildcard 
-{
-    label: string;
-    name: string;
-    field_type_id: string;
-    field_type_name: string;
-    data_type_id: string;
-    data_type_name: string;
-    graphQLQuery: string;
-    modelId: string;
-    modelName: string;
-    value: string | number;
-}
-
 export class AttachmentLibrary
 {
     id: number;
@@ -207,6 +193,15 @@ export class Profile
     permissions: Permission[];
 }
 
+export class ReportRelation
+{
+    id: number;
+    name: string;
+    translateable: boolean;
+    type: string;
+    package: number;
+}
+
 export class Report
 {
     id: number;
@@ -216,6 +211,7 @@ export class Report
     extension: string;
     frequency_id: number;
     sql: string;
+    wildcards: Wildcard[]
 }
 
 export class Resource
@@ -266,4 +262,22 @@ export class User implements UserInterface
     active: boolean;
     user: string;
     password: string;
+}
+
+export class Wildcard 
+{
+    label: string;
+    name: string;
+    field_type_id: string;
+    field_type_name: string;
+    data_type_id: number;
+    data_type_name: string;
+    data_source_id: number;
+    data_source_name: string;
+
+    optionValues: object;       // values obtain from back
+    optionId: string;
+    optionName: string;
+    
+    value: string | number;
 }

@@ -1,11 +1,9 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
-import { HttpService } from '@horus/services/http.service';
-// import { graphQL } from './winery.graphql';
 import { Country, Lang } from '../../admin/admin.models';
 import { SelectSearchService } from '@horus/services/select-search.service';
 import { horusConfig } from 'app/horus-config';
@@ -16,7 +14,7 @@ import { horusConfig } from 'app/horus-config';
         <horus-spinner [show]="showSpinner"></horus-spinner>
 
         <h1 mat-dialog-title>
-            <fa-icon [icon]="['fas', 'warehouse']"></fa-icon>
+            <mat-icon>list_alt</mat-icon>
             {{ 'APPS.WILDCARD' | translate }} 
         </h1>
 
@@ -43,7 +41,7 @@ import { horusConfig } from 'app/horus-config';
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="row">
+                    <div fxLayout="row wrap">
                         <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                             <mat-label>{{ 'ADMIN.FIELD_TYPE' | translate }}</mat-label>
                             <mat-select formControlName="field_type_id" required>
@@ -51,7 +49,26 @@ import { horusConfig } from 'app/horus-config';
                             </mat-select>
                             <mat-error>{{ formErrors?.field_type_id }}</mat-error>
                         </mat-form-field>
+
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-4">
+                            <mat-label>{{ 'ADMIN.DATA_TYPE' | translate }}</mat-label>
+                            <mat-select formControlName="data_type_id" required>
+                                <mat-option *ngFor="let dataType of data.dataTypes" [value]="dataType.id">{{ dataType.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.data_type_id }}</mat-error>
+                        </mat-form-field>
                     </div>
+
+                    <div fxLayout="row">
+                        <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
+                            <mat-label>{{ 'ADMIN.DATA_SOURCE' | translate }}</mat-label>
+                            <mat-select formControlName="data_source_id">
+                                <mat-option *ngFor="let reportRelation of data.reportRelations" [value]="reportRelation.id">{{ reportRelation.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>{{ formErrors?.data_source_id }}</mat-error>
+                        </mat-form-field>
+                    </div>
+
                 </div>
 
             </form>
@@ -63,8 +80,7 @@ import { horusConfig } from 'app/horus-config';
                     type="submit"
                     form="formWineryDialogDetail"
                     class="mat-accent mr-16"
-                    [disabled]="fg.pristine || loadingButton || loadingSlug" 
-                    cdkFocusInitial>
+                    [disabled]="fg.pristine || loadingButton || loadingSlug">
                 {{ 'APPS.SAVE' | translate }}
                 <mat-spinner class="ml-15" *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
@@ -77,30 +93,21 @@ import { horusConfig } from 'app/horus-config';
         </div>
     `
 })
-export class WildcardDialogComponent implements OnInit, OnDestroy
+export class WildcardDialogComponent implements OnInit
 {
     fg: FormGroup;
     formErrors: any = {};
-    // graphQL = graphQL;
+    
     loadingSlug = false;
     loadingButton = false;
     showSpinner = false;
     horusConfig = horusConfig;
 
-    // countries
-   /*  countries: Country[] = [];
-    countryFilterCtrl: FormControl = new FormControl();
-    filteredCountries: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1); */
-
-    protected _onDestroy = new Subject();
-
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _dialogRef: MatDialogRef<WildcardDialogComponent>,
         private _fb: FormBuilder,
-        private _validationMessageService: ValidationMessageService,
-        private _http: HttpService,
-        private _selectSearch: SelectSearchService
+        private _validationMessageService: ValidationMessageService
     ) 
     {
         this.createForm();
@@ -111,7 +118,9 @@ export class WildcardDialogComponent implements OnInit, OnDestroy
         this.fg = this._fb.group({
             label: ['', Validators.required],
             name: ['', Validators.required],
-            field_type_id: ['', Validators.required]
+            field_type_id: ['', Validators.required],
+            data_type_id: ['', Validators.required],
+            data_source_id: ['']
         });
     }
 
@@ -120,41 +129,18 @@ export class WildcardDialogComponent implements OnInit, OnDestroy
         this.showSpinner = true;
 
         this._validationMessageService.subscribeForm(this.fg, this.formErrors);
-        // this.lang = this.data.lang;
-
-        // countries
-        // this.countries = this.data.countries;
-        // this.filteredCountries.next(this.countries.slice());
 
         /* this.fg.patchValue({
             lang_id: this.lang.id // set lang id in form from object with multiple language
-        }); */
-
-        // this.setSelectSearch();
+        }); */ 
 
         this.showSpinner = false;
-    }
 
-    ngOnDestroy(): void
-    {
-        this._onDestroy.next();
-        this._onDestroy.complete();
+        if(this.data.wildcard)
+        {
+            this.fg.patchValue(this.data.wildcard);
+        }
     }
-
-    /* setSelectSearch(): void
-    {
-        // country
-        this.countryFilterCtrl
-            .valueChanges
-            .pipe(takeUntil(this._onDestroy))
-            .subscribe(() => {
-                this._selectSearch.filterSelect(
-                    this.countryFilterCtrl,
-                    this.countries,
-                    this.filteredCountries
-                );
-            });
-    } */
 
     /* postRecord(): void
     {
@@ -178,6 +164,16 @@ export class WildcardDialogComponent implements OnInit, OnDestroy
                 });
         }
     } */
+
+    postRecord(): void 
+    {
+        if (this.fg.valid)
+        {
+            this._dialogRef.close({
+                fg: this.fg
+            });
+        }
+    }  
 
     handleCheckingSlug($event): void
     {

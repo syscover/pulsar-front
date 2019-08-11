@@ -133,7 +133,8 @@ export class DynamicFormComponent implements OnInit, OnChanges
     {
         this.dynamicFormService
             .fieldsLoaded 
-            .subscribe((fields: Field[]) => {
+            .subscribe((fields: Field[]) => 
+            {
                 this.fields = fields;
             });
     }

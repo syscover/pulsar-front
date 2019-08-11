@@ -8,14 +8,16 @@ const fields = `
     filename
     extension
     frequency_id
+    wildcards
     sql
 `;
 
 const relationsFields = `
     coreConfigFieldTypes:coreConfig (config:$configFieldTypes)
     coreConfigDataTypes:coreConfig (config:$configDataTypes)
-    adminExtensions: coreConfig (config:$configExtensions)
-    adminFrequencies: coreConfig (config:$configFrequencies)
+    adminConfigExtensions: coreConfig (config:$configExtensions)
+    adminConfigFrequencies: coreConfig (config:$configFrequencies)
+    adminConfigReportRelations: coreConfig (config:$configReportRelations)
     adminProfiles {
         id
         name
@@ -43,6 +45,7 @@ export const graphQL = {
             $configDataTypes:CoreConfigInput!
             $configExtensions:CoreConfigInput! 
             $configFrequencies:CoreConfigInput!
+            $configReportRelations:CoreConfigInput!
         ) {
             ${relationsFields}
         }`,
@@ -54,6 +57,7 @@ export const graphQL = {
             $configDataTypes:CoreConfigInput!
             $configExtensions:CoreConfigInput! 
             $configFrequencies:CoreConfigInput!
+            $configReportRelations:CoreConfigInput!
         ) {
             coreObjects: adminReports (sql:$sql) {
                 ${fields}
@@ -67,6 +71,7 @@ export const graphQL = {
             $configDataTypes:CoreConfigInput!
             $configExtensions:CoreConfigInput! 
             $configFrequencies:CoreConfigInput!
+            $configReportRelations:CoreConfigInput!
         ) {
             coreObject: adminReport (sql:$sql) {
                 ${fields}
@@ -99,14 +104,11 @@ export const graphQL = {
     mutationRunReport: gql`
         mutation AdminRunReport ($id:Int!) {
             adminRunReport (id:$id) {
-                ${fields}
-                file {
-                    url
-                    filename
-                    pathname
-                    mime
-                    size
-                }
+                url
+                filename
+                pathname
+                mime
+                size
             }
         }`
 };

@@ -12,6 +12,7 @@ export const locale = {
             'COMPONENT_CLASS': 'Clase del componente',
             'COPY_PERMISSIONS': 'Copiar permisos',
             'DATA_TYPE': 'Tipo de dato',
+            'DATA_SOURCE': 'Fuente de datos',
             'EDIT_ID': 'Editar Id',
             'FEATURED': 'Destacado',
             'FIELD': 'Campo',

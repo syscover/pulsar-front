@@ -26,7 +26,8 @@ export class ValidationMessageService
         // load translations for component
         this.translateService
             .get(['VALIDATIONS'])
-            .pipe(map(translations => {
+            .pipe(map(translations => 
+            {
                 if (translations['VALIDATIONS'])
                 {
                     for (const index in translations['VALIDATIONS'])

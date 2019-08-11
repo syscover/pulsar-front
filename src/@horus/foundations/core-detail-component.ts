@@ -78,16 +78,16 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         } 
         else 
         {
-            // edit object without multilanguague and create lang
+            // edit object without multi language and create lang
             this.getRecord(this.params);
         }
     }
 
     // Function that can to be overwrite in child class
-    setData(response?): void {
-
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') {
-
+    setData(response?): void 
+    {
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
+        {
             this.object = response; // function to set custom data
 
             this.beforePatchValueEdit();
@@ -362,8 +362,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
         }
 
         record$
-            .subscribe(data => {
-
+            .subscribe(data => 
+            {
                 if (this.env.debug) console.log('DEBUG - data from postRecord method: ', data);
 
                 // disappear spinner in button
