@@ -131,13 +131,13 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         }
     }
 
+    // set default profile if is empty
     getCustomArgumentsPostRecord(args, object): object
     {
         if (!args.payload.profiles)
         {
             args.payload.profiles = [this._authenticationService.user().profile.id];
         }
-
         return args;
     }
 
