@@ -120,7 +120,7 @@ export class WildcardDialogComponent implements OnInit
             name: ['', Validators.required],
             field_type_id: ['', Validators.required],
             data_type_id: ['', Validators.required],
-            data_source_id: ['']
+            data_source_id: ''
         });
     }
 

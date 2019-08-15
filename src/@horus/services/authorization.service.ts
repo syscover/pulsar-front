@@ -86,6 +86,15 @@ export class AuthorizationService implements CanActivate, CanActivateChild, CanL
         return false;
     }
 
+    // function create to check if have permission
+    canDo(resourceId: string, actionId: string)
+    {
+        return this._permissions.find((permission) => 
+        {
+            return permission.resource_id === resourceId && permission.action_id === actionId;
+        });
+    }
+
     refreshPermissions(): void
     {
         this._permissions = this._authenticationService.user().profile.permissions;

@@ -1,8 +1,10 @@
+import { AuthorizationService } from '@horus/services/authorization.service';
 import { Component, Injector, ViewChild, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, Validators, Form } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatDialog, MatTableDataSource, MatSort } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
+import { AuthenticationService } from '@horus/services/authentication.service';
 import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { Extension, Frequency, Profile, FieldType, DataType, ReportRelation, Wildcard } from './../admin.models';
@@ -40,6 +42,8 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     constructor(
         protected injector: Injector,
         private _dialog: MatDialog,
+        private _authenticationService: AuthenticationService,
+        public authorizationService: AuthorizationService,
     ) 
     {
         super(injector, graphQL);
@@ -53,12 +57,12 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             subject: ['', Validators.required],
-            emails: [],
+            emails: [[], Validators.required],
             profiles: [],
             filename: ['', Validators.required],
             extension: ['', Validators.required],
             frequency_id: ['', Validators.required],
-            sql: ['', Validators.required],
+            sql: '',
             wildcards: [[]]
         });
     }
@@ -85,7 +89,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         };
 
         const configReportRelations = {
-            key: 'pulsar-admin.report_relations',
+            key: 'pulsar-admin.report_data_sources',
             lang: this.baseLang.id,
             property: 'name'
         }
@@ -119,12 +123,25 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         // admin profiles
         this.profiles = data.adminProfiles;
 
-        // set mat-table with wildcard data
-        this.wildcards = data.coreObject.wildcards;
-        this.dataSourceWildcard.data = this.wildcards;
+        if (this.dataRoute.action ==='edit')
+        {
+            // set mat-table with wildcard data
+            this.wildcards = data.coreObject.wildcards;
+            this.dataSourceWildcard.data = this.wildcards;
+        }
     }
 
-    editWildcard(wildcard = null)
+    getCustomArgumentsPostRecord(args, object): object
+    {
+        if (!args.payload.profiles)
+        {
+            args.payload.profiles = [this._authenticationService.user().profile.id];
+        }
+
+        return args;
+    }
+
+    handleWildcard(wildcard = null)
     {
         const dialogRef = this._dialog.open(WildcardDialogComponent, {
             data: {

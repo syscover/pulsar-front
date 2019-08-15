@@ -25,6 +25,8 @@ export const locale = {
             'LABEL_CLASS': 'Clase de la etiqueta',
             'LANGUAGE': 'Idioma',
             'MAXIMUM_LENGTH': 'Longitud máxima',
+            'OPTION_ID': 'Id de opción',
+            'OPTION_NAME': 'Nombre de opción',
             'PATTERN': 'Patrón',
             'QUALITY': 'Calidad',
             'REDIRECT_URL': 'Url de redirección',

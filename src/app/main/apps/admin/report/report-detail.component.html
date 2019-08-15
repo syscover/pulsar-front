@@ -48,7 +48,7 @@
                             type="submit"
                             form="formDetail">
                         <mat-icon>add_circle_outline</mat-icon>
-                        <span>{{ 'APPS.NEW.M' | translate }} {{ 'APPS.REPORT' | translate }}</span>
+                        <span>{{ 'APPS.SAVE' | translate }} {{ 'APPS.REPORT' | translate }}</span>
                     </button>
                     <button mat-menu-item 
                             *ngIf="dataRoute.action ==='edit'"
@@ -65,25 +65,6 @@
                 </mat-menu>
             </div>
 
-            <!-- <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton"
-                    *ngIf="dataRoute.action ==='create'">
-                {{ 'APPS.ADD' | translate }}
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
-
-            <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton"
-                    *ngIf="dataRoute.action ==='edit'">
-                {{ 'APPS.SAVE' | translate }}
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button> -->
         </div>
         <!-- / HEADER -->
 
@@ -123,7 +104,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'ADMIN.INSERT_EMAILS' | translate }}</mat-label>
-                                        <mat-chip-list #emailList>
+                                        <mat-chip-list #emailList required>
                                             <mat-chip *ngFor="let email of fg.get('emails').value" [removable]="true" (removed)="removeTag(fg, 'emails', email)">
                                                 {{ email }} <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
@@ -136,7 +117,7 @@
                                     </mat-form-field>
                                 </div>
             
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="authorizationService.canDo('admin-report-profile','show')">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.PROFILE' | translate }}</mat-label>
                                         <mat-select formControlName="profiles" multiple required>
@@ -175,7 +156,7 @@
                             </div>
                         </mat-tab>
 
-                        <mat-tab>
+                        <mat-tab *ngIf="authorizationService.canDo('admin-report-sql','show')">
                             <ng-template mat-tab-label>
                                 <mat-icon class="m-0 mr-16">code</mat-icon> SQL
                             </ng-template>
@@ -193,7 +174,7 @@
                             </div>
                         </mat-tab>
 
-                        <mat-tab>
+                        <mat-tab *ngIf="authorizationService.canDo('admin-report-wildcard','show')">
                             <ng-template mat-tab-label>
                                 <mat-icon class="m-0 mr-16">list_alt</mat-icon> {{ 'APPS.WILDCARDS' | translate | uppercase }}
                             </ng-template>
@@ -218,7 +199,7 @@
                                             <!-- column -->
                                             <ng-container matColumnDef="name">
                                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
-                                                <mat-cell *matCellDef="let row" [innerHtml]="row.name"></mat-cell>
+                                                <mat-cell *matCellDef="let row">#{{ row.name }}#</mat-cell>
                                             </ng-container>
                                             <!-- /column -->
 
@@ -230,7 +211,7 @@
                                                         <mat-icon>more_vert</mat-icon>
                                                     </button>
                                                     <mat-menu #menuWildcard="matMenu">
-                                                        <button mat-menu-item (click)="editWildcard(row)">
+                                                        <button mat-menu-item (click)="handleWildcard(row)">
                                                             <mat-icon>mode_edit</mat-icon>
                                                             <span>{{ 'APPS.EDIT' | translate }}</span>
                                                         </button>
@@ -252,7 +233,7 @@
                             </div>
                         </mat-tab>
 
-                        <mat-tab label="{{ 'APPS.VALUES' | translate | uppercase }}">
+                        <mat-tab label="{{ 'APPS.VALUES' | translate | uppercase }}" *ngIf="dataRoute.action ==='edit'">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 
                                 <ng-container *ngFor="let wildcard of wildcards">
@@ -277,45 +258,37 @@
                                                 <mat-label>{{ wildcard.label }}</mat-label>
                                                 <mat-select [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}">
                                                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
-                                                    <mat-option *ngFor="let option of wildcard.optionValues" 
-                                                                [value]="option[wildcard.optionId]">{{ option[wildcard.optionName] }}</mat-option>
+                                                    <mat-option *ngFor="let option of wildcard.option_values" 
+                                                                [value]="option.id">{{ option.name }}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row" *ngSwitchCase="'select-multiple'">
+                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
+                                                <mat-label>{{ wildcard.label }}</mat-label>
+                                                <mat-select [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}" multiple>
+                                                    <mat-option *ngFor="let option of wildcard.option_values" 
+                                                                [value]="option.id">{{ option.name }}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div fxLayout="row" *ngSwitchCase="'date'">
+                                            <hr-datepicker  class="col-12 col-md-6"
+                                                            label="{{ wildcard.label }}"
+                                                            format="YYYY-MM-DD"
+                                                            [(ngModel)]="wildcard.value" 
+                                                            [ngModelOptions]="{standalone: true}">
+                                            </hr-datepicker>
                                         </div>
                                         
                                         <!-- 
-                                        <div fxLayout="row" *ngSwitchCase="'select-multiple'">
-                                            <mat-form-field [appearance]="horusConfig.fieldAppearance" [class]="field.component_class ? field.component_class : 'col-12 col-md-6'">
-                                                <mat-label>{{ field | getFieldLabel:lang }}</mat-label>
-                                                <mat-select [formControlName]="field.name" [required]="field.required" multiple>
-                                                    <mat-option *ngFor="let value of field.values | getSelectValues:lang" [value]="value.id">{{ value.name }}</mat-option>
-                                                </mat-select>
-                                                <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
-                                            </mat-form-field>
-                                        </div>
-                
-                                        <div fxLayout="row" *ngSwitchCase="'wysiwyg'">
-                                            <dh2-froala [formControlName]="field.name"
-                                                        [class]="field.component_class ? field.component_class : 'col-12'"
-                                                        placeholder="{{ field | getFieldLabel:lang }}"
-                                                        [heightMin]="200"></dh2-froala>
-                                            <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
-                                        </div>
-                
                                         <div fxLayout="row" *ngSwitchCase="'checkbox'">
                                             <div [class]="field.component_class ? field.component_class + ' py-20' : 'col-12 col-md-2 py-20'">
                                                 <mat-checkbox [formControlName]="field.name">{{ field | getFieldLabel:lang }}</mat-checkbox>
                                                 <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
                                             </div>
-                                        </div>
-                
-                                        <div fxLayout="row" *ngSwitchCase="'date'">
-                                            <hr-datepicker [class]="field.component_class ? field.component_class : 'col-6 col-md-4'"
-                                                            label="{{ field | getFieldLabel:lang }}"
-                                                            format="YYYY-MM-DD"
-                                                            [formControlName]="field.name"
-                                                            [errors]="errors">
-                                            </hr-datepicker>
                                         </div>
                 
                                         <div fxLayout="row" *ngSwitchCase="'datetime'">
@@ -329,7 +302,6 @@
                                         <div *ngSwitchDefault>Error field {{ wildcard.field_type_id }} nor implemented</div>
                                     </ng-container>
                                 </ng-container>
-
 
                             </div>
                         </mat-tab>

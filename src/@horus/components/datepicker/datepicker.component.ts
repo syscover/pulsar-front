@@ -92,7 +92,7 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
     input: MatInput;
 
     controlName: string;
-    control: FormControl;
+    control: FormControl = new FormControl();
     propagateChange = (_: any) => { };
     private _value: string;
 
@@ -106,8 +106,11 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
 
     ngOnInit(): void
     {
-        this.control = this._controlName.control;
-        this.controlName = this._controlName.name;
+        if (this._controlName)
+        {
+            this.control = this._controlName.control;
+            this.controlName = this._controlName.name;
+        }
     }
 
     handleInput(type: string, event: MatDatepickerInputEvent<Date>): void

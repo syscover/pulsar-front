@@ -275,9 +275,9 @@ export class Wildcard
     data_source_id: number;
     data_source_name: string;
 
-    optionValues: object;       // values obtain from back
-    optionId: string;
-    optionName: string;
+    option_values: object;       // values obtain from back
+    option_id: string;
+    option_name: string;
     
     value: string | number;
 }
