@@ -54,7 +54,8 @@ export class AttachmentItemComponent implements OnInit
             attachment: this.attachment
         });
 
-        jQuery($event.target.closest('dh2-attachment-item')).fadeOut(300, function () {
+        jQuery($event.target.closest('dh2-attachment-item')).fadeOut(300, function () 
+        {
             jQuery($event.target.closest('dh2-attachment-item')).remove();
         });
     }
@@ -62,7 +63,7 @@ export class AttachmentItemComponent implements OnInit
     changeFamilyHandler($event): void
     {
         // get $event.target.value with ngValue that return a object
-        this.familySelect =  _.find(this.families, {'id': +$event.target.value[0]});
+        this.familySelect =  _.find(this.families, {'id': +$event.target.value});
 
         this.setShowCropButton();
     }
