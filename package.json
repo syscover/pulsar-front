@@ -59,7 +59,7 @@
         "rxjs": "6.5.2",
         "web-animations-js": "2.3.2",
         "zone.js": "0.9.1",
-
+        
         "@auth0/angular-jwt": "3.0.0",
         "@ckeditor/ckeditor5-angular": "1.1.0",
         "@covalent/code-editor": "2.1.1",
@@ -86,7 +86,7 @@
         "jquery": "3.4.1",
         "ng2-dragula": "2.1.1",
         "ngx-mat-select-search": "1.8.0",
-        "popper.js": "1.15.0",
+        "popper.js": "1.15.0"
     },
     "devDependencies": {
         "@angular/cli": "8.1.2",
@@ -116,6 +116,6 @@
         "@types/googlemaps": "3.37.4",
         "@typescript-eslint/eslint-plugin": "2.0.0",
         "@typescript-eslint/parser": "2.0.0",
-        "eslint": "6.1.0",
+        "eslint": "6.1.0"
     }
 }
