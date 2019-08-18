@@ -144,7 +144,7 @@
             .datatable-footer-inner {
                 padding: 0 24px;
 
-                @include media-breakpoint('sm') {
+                @include media-breakpoint('lt-md') {
                     flex-direction: column;
                     padding: 16px 0;
                     height: auto !important;
@@ -166,7 +166,18 @@
                         li {
 
                             a {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
                                 text-decoration: none !important;
+
+                                i {
+                                    width: 20px;
+                                    min-width: 20px;
+                                    height: 20px;
+                                    min-height: 20px;
+                                    padding: 0;
+                                }
                             }
                         }
                     }

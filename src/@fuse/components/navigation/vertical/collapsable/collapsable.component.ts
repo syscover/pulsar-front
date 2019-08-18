@@ -207,23 +207,30 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
      */
     isChildrenOf(parent, item): boolean
     {
-        if ( !parent.children )
+        const children = parent.children;
+
+        if ( !children )
         {
             return false;
         }
 
-        if ( parent.children.indexOf(item) !== -1 )
+        if ( children.indexOf(item) > -1 )
         {
             return true;
         }
 
-        for ( const children of parent.children )
+        for ( const child of children )
         {
-            if ( children.children )
+            if ( child.children )
             {
-                return this.isChildrenOf(children, item);
+                if ( this.isChildrenOf(child, item) )
+                {
+                    return true;
+                }
             }
         }
+
+        return false;
     }
 
     /**
@@ -236,22 +243,24 @@ export class FuseNavVerticalCollapsableComponent implements OnInit, OnDestroy
      */
     isUrlInChildren(parent, url): boolean
     {
-        if ( !parent.children )
+        const children = parent.children;
+
+        if ( !children )
         {
             return false;
         }
 
-        for ( let i = 0; i < parent.children.length; i++ )
+        for ( const child of children )
         {
-            if ( parent.children[i].children )
+            if ( child.children )
             {
-                if ( this.isUrlInChildren(parent.children[i], url) )
+                if ( this.isUrlInChildren(child, url) )
                 {
                     return true;
                 }
             }
 
-            if ( parent.children[i].url === url || url.includes(parent.children[i].url) )
+            if ( child.url === url || url.includes(child.url) )
             {
                 return true;
             }
