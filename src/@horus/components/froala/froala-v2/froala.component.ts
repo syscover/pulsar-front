@@ -8,7 +8,7 @@ declare const $: any;
 const noop = () => {};
 
 @Component({
-    selector: 'hr-froala',
+    selector: 'dh2-froala',
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -16,10 +16,7 @@ const noop = () => {};
             multi: true
         }
     ],
-    template: `
-        <div    [froalaEditor]="froalaOptions" 
-                [(froalaModel)]="value"></div>
-    `,
+    template: '<div [froalaEditor]="froalaOptions" [(froalaModel)]="value"></div>',
     styles: [`
         :host{
             margin-bottom: 20px;
@@ -36,28 +33,14 @@ export class FroalaComponent implements OnInit
     @Input() placeholder: string;
     @Input() heightMin: number;
     @Input() heightMax: number;
-    @Input()
-    get value(): string
-    {
-        return this._value;
-    }
-    set value(value: string)
-    {
-        console.log('DEBUG - hr-froala set value: ' + value);
-
-        this._value = value;
-        this.propagateChange(this._value);
-    }
-    private _value: string;
-
-    propagateChange: Function = (_: any) => { };
-    propagateTouch: Function = (_: any) => { };
-
-    
     @Input() attachmentFamilies: AttachmentFamily[] = [];
     @Input() imageUploadURL: string;
     froalaOptions: any = {};
+    value: string;
     
+    private onTouchedCallback: () => void = noop;
+    private onChangeCallback: (o: any) => void = noop;
+
     constructor(
         private configService: ConfigService,
         private renderer: Renderer2,
@@ -81,11 +64,11 @@ export class FroalaComponent implements OnInit
     }
     registerOnChange(fn): void
     {
-        this.propagateChange = fn;
+        this.onChangeCallback = fn;
     }
     registerOnTouched(fn): void
     { 
-        this.propagateTouch = fn;
+        this.onTouchedCallback = fn;
     }
 
     ngOnInit(): void
@@ -93,64 +76,19 @@ export class FroalaComponent implements OnInit
         if (! this.imageUploadURL) this.imageUploadURL = this.configService.get('restUrl') + '/api/v1/admin/wysiwyg/upload';
 
         // set froala option properties
-        this.froalaOptions.key                      = this.configService.get('froalaKey');
-        this.froalaOptions.placeholderText          = this.placeholder;
-        this.froalaOptions.heightMin                = this.heightMin;
-        this.froalaOptions.heightMax                = this.heightMax;
-        this.froalaOptions.tabSpaces                = 4;
-        
-        this.froalaOptions.fontSizeSelection        = true;
-        this.froalaOptions.fontSize                 = ['8', '9', '10', '11', '12', '14', '18', '24', '30', '36', '48', '60', '72', '96'];
+        this.froalaOptions.key = this.configService.get('froalaKey');
 
-        this.froalaOptions.toolbarButtons = {
-            'moreText': {
-              'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
-            },
-            'moreParagraph': {
-              'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
-            },
-            'moreRich': {
-              'buttons': ['insertLink', 'insertImage', 'insertVideo', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertFile', 'insertHR']
-            },
-            'moreMisc': {
-              'buttons': ['undo', 'redo', 'fullscreen', 'print', 'getPDF', 'spellChecker', 'selectAll', 'html', 'help'],
-              'align': 'right',
-              'buttonsVisible': 2
-            }
-          };
-
-
-        
-        /* this.froalaOptions.fontFamilySelection      = true;
-        this.froalaOptions.fontFamily               = {
-            "Roboto,sans-serif": 'Roboto',
-            "Oswald,sans-serif": 'Oswald',
-            "Montserrat,sans-serif": 'Montserrat',
-            "'Open Sans Condensed',sans-serif": 'Open Sans Condensed'
-          }; */
-
-        // this.froalaOptions.enter            = $.FroalaEditor.ENTER_DIV;
+        // set fontawesome 5
+        this.froalaOptions.iconsTemplate = 'font_awesome_5';
 
         // TODO, Detect change language, now is not possible
         // https://github.com/froala/angular-froala-wysiwyg/issues/66
-        // this.froalaOptions.language = this.translateService.currentLang;
-        
-        this.froalaOptions.toolbarButtons = {
-            'moreText': {
-              'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
-            },
-            'moreParagraph': {
-              'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
-            },
-            'moreRich': {
-              'buttons': ['insertLink', 'insertImage', 'insertVideo', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertFile', 'insertHR']
-            },
-            'moreMisc': {
-              'buttons': ['undo', 'redo', 'fullscreen', 'print', 'getPDF', 'spellChecker', 'selectAll', 'html', 'help'],
-              'align': 'right',
-              'buttonsVisible': 2
-            }
-          };
+        this.froalaOptions.language = this.translateService.currentLang;
+        this.froalaOptions.placeholderText = this.placeholder;
+        this.froalaOptions.heightMin = this.heightMin;
+        this.froalaOptions.heightMax = this.heightMax;
+       //  this.froalaOptions.enter = $.FroalaEditor.ENTER_DIV;
+        this.froalaOptions.tabSpaces = 4;
         this.froalaOptions.pluginsEnabled = [
             'align',
             'charCounter',
@@ -158,21 +96,16 @@ export class FroalaComponent implements OnInit
             'codeView',
             'colors',
             'draggable',
-            'embedly',
             'emoticons',
             'entities',
             // 'file',
-            'fontAwesome',
             'fontFamily',
             'fontSize',
             'fullscreen',
             'image',
-            'imageTUI',
             // 'imageManager',
             'inlineStyle',
-            'inlineClass',
             'lineBreaker',
-            'lineHeight',
             'link',
             'lists',
             'paragraphFormat',
@@ -186,7 +119,7 @@ export class FroalaComponent implements OnInit
             'wordPaste'
         ];
 
-        /* this.froalaOptions.events = {
+        this.froalaOptions.events = {
             'froalaEditor.blur' : (e, editor, response) => {
                 this.onTouchedCallback();
             },
@@ -240,9 +173,9 @@ export class FroalaComponent implements OnInit
                     }
                 }
             }
-        }; */
+        };
 
-        /* if (this.imageUploadURL) 
+        if (this.imageUploadURL) 
         {
             this.froalaOptions.imageUploadMethod = 'post';
             this.froalaOptions.requestWithCORS = true;
@@ -251,14 +184,14 @@ export class FroalaComponent implements OnInit
             this.froalaOptions.imageRoundPercent = true;
             this.froalaOptions.imageDefaultWidth = 100;
             this.froalaOptions.imageSplitHTML = true;
-        } */
+        }
 
-        /* this.froalaOptions.imageStyles = Object.assign({},
+        this.froalaOptions.imageStyles = Object.assign({},
             this.imageStyles,
             {
                 'fr-rounded': 'Rounded',
                 'fr-bordered': 'Bordered'
             }
-        ); */
+        );
     }
 }
