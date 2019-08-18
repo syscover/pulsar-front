@@ -14,7 +14,6 @@ export class FuseNavHorizontalItemComponent
     item: any;
 
     // @horus
-    // Public
     public array = Array;
 
     /**

@@ -22,7 +22,6 @@ export class FuseNavVerticalItemComponent implements OnInit, OnDestroy
     private _unsubscribeAll: Subject<any>;
 
     // @horus
-    // Public
     public array = Array;
 
     /**

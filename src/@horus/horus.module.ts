@@ -36,13 +36,13 @@ export function BootstrapLoader(bootstrapService: BootstrapService): Function
         ApolloService,
         AuthenticationService,
         AuthorizationService,
+        BootstrapService,
         ConfigService,
         DownloadService,
         HttpService,
         HttpSynchronousService,
         NavigationService,
         ValidationMessageService,
-        BootstrapService,
         {
             provide: MapsAPILoader,
             useClass: GoogleMapsLoaderService
