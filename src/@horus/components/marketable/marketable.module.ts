@@ -26,14 +26,11 @@ import { locale as english } from '@horus/components/marketable/i18n/en';
 import { locale as spanish } from '@horus/components/marketable/i18n/es';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
-
 // font awesome icons
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-library.add(fas, far, fab);
 
 @NgModule({
     declarations: [
@@ -75,8 +72,13 @@ library.add(fas, far, fab);
 export class MarketableModule
 {
     constructor(
-        private translationLoader: FuseTranslationLoaderService
-    ) {
+        private translationLoader: FuseTranslationLoaderService,
+        private library: FaIconLibrary
+    ) 
+    {
         this.translationLoader.loadTranslations(english, spanish);
+
+        // Add an icon to the library for convenient access in other components
+        library.addIconPacks(fas, far, fab);
     }
 }
