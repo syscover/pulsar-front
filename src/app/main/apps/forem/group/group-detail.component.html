@@ -38,24 +38,34 @@
             <!-- / APP TITLE -->
 
             <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.pristine || loadingButton || loadingSlug"
-                    *ngIf="dataRoute.action ==='create'">
+                type="submit"
+                form="formDetail"
+                class="fuse-white mt-16 mt-sm-0"
+                [disabled]="fg.pristine || loadingButton || loadingSlug"
+                *ngIf="dataRoute.action ==='create'">
                 {{ 'APPS.ADD' | translate }}
                 <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
             </button>
 
-            <button mat-raised-button
-                    type="submit"
-                    form="formDetail"
-                    class="fuse-white mt-16 mt-sm-0"
-                    [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug"
-                    *ngIf="dataRoute.action ==='edit'">
-                {{ 'APPS.SAVE' | translate }}
-                <mat-spinner *ngIf="loadingButton" mode="indeterminate" diameter="17"></mat-spinner>
-            </button>
+            <div *ngIf="dataRoute.action ==='edit'">
+                <button mat-icon-button [matMenuTriggerFor]="menuList" [disableRipple]="false">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menuList="matMenu">
+                    <button mat-menu-item 
+                            type="submit"
+                            form="formDetail"
+                            [disabled]="fg.invalid || fg.pristine || loadingButton || loadingSlug">
+                        <mat-icon>save</mat-icon>
+                        <span>{{ 'APPS.SAVE' | translate }}</span>
+                    </button>
+                    <button mat-menu-item
+                            (click)="exportInscriptions()">
+                        <mat-icon>cloud_download</mat-icon>
+                        <span>{{ 'APPS.EXPORT' | translate }}</span>
+                    </button>
+                </mat-menu>
+            </div>
         </div>
         <!-- / HEADER -->
 
@@ -160,7 +170,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
-                                        <mat-label>{{ 'FOREM.ASSIST' | translate }}</mat-label>
+                                        <mat-label>{{ 'FOREM.ASSISTANCE' | translate }}</mat-label>
                                         <mat-select formControlName="assistance_id" required>
                                             <mat-option *ngFor="let assistance of assistances" [value]="+assistance.id">{{ assistance.name }}</mat-option>
                                         </mat-select>
@@ -376,9 +386,9 @@
                                     </mat-form-field>
                                 </div>
 
-                                <quill-editor   placeholder="{{ 'FOREM.CONTENTS' | translate }}"
+                                <!-- <quill-editor   placeholder="{{ 'FOREM.CONTENTS' | translate }}"
                                                 formControlName="contents" 
-                                                [modules]="quillEditorConfig" ></quill-editor>
+                                                [modules]="quillEditorService.config" ></quill-editor> -->
                                 <mat-error>{{ formErrors?.contents }}</mat-error>
                             </div>
                         </mat-tab>
@@ -386,9 +396,9 @@
                         <mat-tab label="{{ 'FOREM.REQUIREMENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 
-                                <quill-editor   placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}" 
+                                <<!-- quill-editor   placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}" 
                                                 formControlName="requirements" 
-                                                [modules]="quillEditorConfig" ></quill-editor>
+                                                [modules]="quillEditorService.config" ></quill-editor> -->
                                 <mat-error>{{ formErrors?.requirements }}</mat-error>
                             </div>
                         </mat-tab>
@@ -444,6 +454,57 @@
                                         <input matInput formControlName="trainer_hours_3">
                                     </mat-form-field>
                                 </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'FOREM.INSCRIBED' | translate | uppercase }}">
+                            <div class="tab-content p-12" fusePerfectScrollbar>
+
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-table [dataSource]="dataSourceInscription"
+                                                    fusePerfectScrollbar
+                                                    matSort
+                                                    matSortDisableClear>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="tin">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.TIN' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.tin }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="name">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.name"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="surname">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.surname"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="email">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.email"></mat-cell>
+                                            </ng-container>
+                                            
+                                            <mat-header-row *matHeaderRowDef="displayedColumnsInscription"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumnsInscription;"></mat-row>
+                                        </mat-table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="{{ 'FOREM.CURSING' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                
 
                             </div>
                         </mat-tab>

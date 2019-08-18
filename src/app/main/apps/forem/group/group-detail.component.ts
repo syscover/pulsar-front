@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatSort } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { Category, Target, Assistance, Type, Expedient, Action, Modality, GroupPrefix, Step } from '../forem.models';
@@ -29,28 +29,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
     @ViewChild('slug', {static: false}) slugField;
 
-    quillEditorConfig = {
-        toolbar: [
-          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-          ['code-block'],
-      
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-          [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-          [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-          [{ 'direction': 'rtl' }],                         // text direction
-      
-          [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      
-          [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-          [{ 'align': [] }],
-          ['clean'],                                         // remove formatting button
-          ['link']                         // link and image, video
-        ]
-      };
-
     objectTranslation = 'FOREM.GROUP';
-    objectTranslationGender = 'F';
+    objectTranslationGender = 'M';
     loadingSlug = false;
     targets: Target[] = [];
     assistances: Assistance[] = [];
@@ -65,6 +45,11 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     groupPrefixes: GroupPrefix[] = [];
     steps: Step[] = [];
     user: User;
+
+    // Inscriptions
+    displayedColumnsInscription = ['tin', 'name', 'surname', 'email'];
+    dataSourceInscription = new MatTableDataSource();
+    @ViewChild(MatSort, {static: false}) sortInscription: MatSort;
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -87,7 +72,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         private _marketable: MarketableService,
         private _authenticationService: AuthenticationService,
         private _downloadService: DownloadService
-    ) {
+    ) 
+    {
         super(injector, graphQL);
         this.user = this._authenticationService.user();
     }
@@ -283,6 +269,10 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         // forem categories
         this.categories = data.foremCategories;
         this.filteredCategories.next(this.categories.slice());
+
+        // forem inscriptions
+        this.dataSourceInscription.sort = this.sortInscription;
+        this.dataSourceInscription.data = data.coreObject.inscriptions;
     }
 
     afterPatchValueEdit(): void
@@ -380,6 +370,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     exportInscriptions(): void
     {
+        this.showSpinner = true;
+
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -409,14 +401,14 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 
                 if (! file)
                 {
-                    this.loadingButton = false;
+                    this.showSpinner = false;
                     return;
                 }
 
                 // call download service
                 this._downloadService
                     .download(file, () => {
-                        this.loadingButton = false;
+                        this.showSpinner = false;
                     });
             });
     }
