@@ -62,6 +62,13 @@ const fields = `
     attachments {
         ${adminAttachmentsGraphQL.fields}
     }
+    inscriptions {
+        id
+        tin
+        name
+        surname
+        email
+    }
     ${marketableGraphQL.fields}
 `;
 
