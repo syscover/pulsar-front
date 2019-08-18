@@ -152,10 +152,8 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row">
                                     <div class="col-12">
-                                        <dh2-froala formControlName="description"
-                                                    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                        <hr-ckeditor    placeholder="{{ 'APPS.DESCRIPTION' | translate }}"
+                                                        formControlName="description"></hr-ckeditor>              
                                         <mat-error>{{ formErrors?.description }}</mat-error>
                                     </div>
                                 </div>

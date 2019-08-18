@@ -1,16 +1,19 @@
 import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
 import { AuthenticationService } from '@horus/services/authentication.service';
-import { Section, Family, Article, Category, Status } from '../cms.models';
-import { AttachmentFamily } from '../../admin/admin.models';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { CKEditorService } from '@horus/components/ckeditor/ckeditor.service';
 import { Chips, ChipsDecoratorInterface } from '@horus/decorators/chips.decortor';
+import { AttachmentFamily } from '../../admin/admin.models';
+import { Section, Family, Article, Category, Status } from '../cms.models';
 import '@horus/functions/date-to-json.function';
 import * as _ from 'lodash';
+
 import { graphQL } from './article.graphql';
+
 
 @Chips()
 @Component({
@@ -36,11 +39,12 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
     family: Family; // family for adapt article form
     separatorKeysCodes = [ENTER, COMMA];
     loadingSlug = false;
-    private _attachmentFamilies: AttachmentFamily[];
+    private _attachmentFamilies: AttachmentFamily[]; 
     
     constructor(
         protected injector: Injector,
-        private _authenticationService: AuthenticationService
+        private _authenticationService: AuthenticationService,
+        public cKEditorService: CKEditorService
     )
     {
         super(injector, graphQL);

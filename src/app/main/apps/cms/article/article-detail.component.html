@@ -283,10 +283,9 @@
                                         </mat-form-field>
 
                                         <div class="col-12" *ngSwitchCase="2">
-                                            <dh2-froala formControlName="excerpt"
-                                                        placeholder="{{ 'CMS.EXCERPT' | translate }}"
-                                                        [heightMin]="400"
-                                                        [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                                        
+                                            <hr-ckeditor    placeholder="{{ 'CMS.EXCERPT' | translate }}"
+                                                            formControlName="excerpt"></hr-ckeditor>
                                             <mat-error>{{ formErrors?.excerpt }}</mat-error>
                                         </div>
                                     </div>
@@ -307,10 +306,8 @@
                                     </mat-form-field>
 
                                     <div class="col-12" *ngSwitchCase="2">
-                                        <dh2-froala formControlName="article"
-                                                    placeholder="{{ 'CMS.ARTICLE' | translate }}"
-                                                    [heightMin]="400"
-                                                    [attachmentFamilies]="attachmentFamilies"></dh2-froala>
+                                        <hr-ckeditor    placeholder="{{ 'CMS.ARTICLE' | translate }}"
+                                                        formControlName="article"></hr-ckeditor>
                                         <mat-error>{{ formErrors?.article }}</mat-error>
                                     </div>
 

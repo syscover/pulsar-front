@@ -7,7 +7,6 @@ import { DatepickerModule } from '@horus/components/datepicker/datepicker.module
 import { FilterHeaderCellModule } from '@horus/components/filter-header-cell/filter-header-cell.module';
 import { FlagIconModule } from '@horus/components/flag-icon/flag-icon.module';
 
-import { FroalaModule } from '@horus/components/froala/froala.module';
 import { ImageInputModule } from '@horus/components/image-input/image-input.module';
 import { ListItemsModule } from '@horus/components/list-items/list-items.module';
 import { LocationMapModule } from '@horus/components/location-map/location-map.module';
@@ -16,6 +15,7 @@ import { StockableModule } from '@horus/components/stockable/stockable.module';
 import { SlugModule } from '@horus/components/slug/slug.module';
 import { TerritoriesModule } from '@horus/components/territories/territories.module';
 import { UpdateModule } from '@horus/components/update/update.module';
+import { WysiwygCKEditorModule } from './ckeditor/ckeditor.module';
 
 @NgModule({
     imports: [
@@ -25,7 +25,6 @@ import { UpdateModule } from '@horus/components/update/update.module';
         DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
-        FroalaModule,
         ImageInputModule,
         ListItemsModule,
         LocationMapModule,
@@ -37,7 +36,8 @@ import { UpdateModule } from '@horus/components/update/update.module';
         SlugModule,
         StockableModule,
         TerritoriesModule,
-        UpdateModule
+        UpdateModule,
+        WysiwygCKEditorModule
     ],
     exports: [
         AttachmentsModule,
@@ -45,7 +45,6 @@ import { UpdateModule } from '@horus/components/update/update.module';
         DatepickerModule,
         FilterHeaderCellModule,
         FlagIconModule,
-        FroalaModule,
         ImageInputModule,
         ListItemsModule,
         LocationMapModule,
@@ -53,7 +52,8 @@ import { UpdateModule } from '@horus/components/update/update.module';
         StockableModule,
         SlugModule,
         TerritoriesModule,
-        UpdateModule
+        UpdateModule,
+        WysiwygCKEditorModule
     ]
 })
 export class ComponentsModule

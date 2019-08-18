@@ -51,10 +51,9 @@ import { horusConfig } from 'app/horus-config';
                         </div>
 
                         <div fxLayout="row" *ngSwitchCase="'wysiwyg'">
-                            <dh2-froala [formControlName]="field.name"
-                                        [class]="field.component_class ? field.component_class : 'col-12'"
-                                        placeholder="{{ field | getFieldLabel:lang }}"
-                                        [heightMin]="200"></dh2-froala>
+                            <hr-ckeditor    placeholder="{{ field | getFieldLabel:lang }}"
+                                            [class]="field.component_class ? field.component_class : 'col-12'"
+                                            [formControlName]="field.name"></hr-ckeditor>            
                             <mat-error>{{ errors['custom_fields.' + field.name] }}</mat-error>
                         </div>
 

@@ -11,7 +11,7 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerModule} from '@horus/components/datepicker/datepicker.module';
-import { FroalaModule } from '@horus/components/froala/froala.module';
+import { WysiwygCKEditorModule } from './../ckeditor/ckeditor.module';
 import { DynamicFormComponent } from '@horus/components/dynamic-form/dynamic-form.component';
 import { DynamicFormService } from '@horus/components/dynamic-form/dynamic-form.service';
 
@@ -23,14 +23,14 @@ import { GetSelectValuesPipe } from '@horus/components/dynamic-form/pipes/get-se
         CommonModule,
         DatepickerModule,
         FlexLayoutModule,
-        FroalaModule,
         MatCheckboxModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
         MatSelectModule,
         ReactiveFormsModule,
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        WysiwygCKEditorModule
     ],
     exports: [
         DynamicFormComponent,
