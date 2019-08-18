@@ -40,14 +40,10 @@
                         "styles": [
                             "src/styles.scss",
                             "./node_modules/cropperjs/dist/cropper.min.css",
-                            "./node_modules/dragula/dist/dragula.css",
-                            "./node_modules/froala-editor/css/froala_editor.pkgd.min.css"
+                            "./node_modules/dragula/dist/dragula.css"
                         ],
                         "scripts": [
-                            "./node_modules/jquery/dist/jquery.min.js",
-                            "./node_modules/froala-editor/js/froala_editor.pkgd.min.js",
-                            "./node_modules/froala-editor/js/languages/es.js",
-                            "./node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+                            "./node_modules/jquery/dist/jquery.min.js"
                         ],
                         "showCircularDependencies": false
                     },
