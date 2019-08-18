@@ -40,19 +40,16 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
     @Input() errors: object = {};
 
     @Input()
-    get value(): moment.Moment {
-
-        if (moment(this._value, this.format).isValid()) {
-
+    get value(): moment.Moment 
+    {
+        if (moment(this._value, this.format).isValid()) 
+        {
             return moment(this._value, this.format);
-
         }
-        else {
-
+        else 
+        {
             return null;
-
         }
-
     }
     set value(value)
     {
@@ -119,7 +116,7 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
         this.value = moment(event.value, this.format);
     }
 
-    // initialise the value.
+    // init the value.
     writeValue(value: any): void
     {
         if (this.debug) console.log('DEBUG - hr-datepicker with name: ' + this._ngControl.name + ' init value: ', value);
