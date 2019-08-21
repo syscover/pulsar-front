@@ -32,10 +32,10 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query AdminGetReportsPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: adminReportsPagination (sql:$sql) {
+        query AdminGetReportsPagination ($sql:[CoreSQLInput] $filters:[CoreSQLInput]) {
+            coreObjectsPagination: adminReportsPagination (sql:$sql filters:$filters) {
                 total
-                objects (sql:$sql)
+                objects (sql:$sql filters:$filters)
                 filtered
             }
         }`,

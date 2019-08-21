@@ -19,7 +19,8 @@ export class CountryListComponent extends CoreListComponent
 
     constructor(
         protected injector: Injector
-    ) {
+    ) 
+    {
         super(injector, graphQL);
     }
 }

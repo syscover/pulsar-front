@@ -134,7 +134,8 @@ export abstract class CoreComponent extends Core implements OnInit, OnDestroy
             }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(result => 
+        {
 
             if (result) 
             {

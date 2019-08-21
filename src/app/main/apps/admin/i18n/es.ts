@@ -14,6 +14,8 @@ export const locale = {
             'DATA_TYPE': 'Tipo de dato',
             'DATA_SOURCE': 'Fuente de datos',
             'EDIT_ID': 'Editar Id',
+            'EMPTY_QUERY_MESSAGE': 'La consulta realizada no ha generado ningún resultado',
+            'EMPTY_QUERY_TITLE': 'Consulta vacía',
             'FEATURED': 'Destacado',
             'FIELD': 'Campo',
             'FIELD_TYPE': 'Tipo de campo',

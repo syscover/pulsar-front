@@ -14,6 +14,8 @@ export const locale = {
             'DATA_SOURCE': 'Data source',
             'COPY_PERMISSIONS': 'Copy permissions',
             'EDIT_ID': 'Edit Id',
+            'EMPTY_QUERY_MESSAGE': 'The query has not generated any results',
+            'EMPTY_QUERY_TITLE': 'Empty query',
             'FEATURED': 'Featured',
             'FIELD': 'Field',
             'FIELD_TYPE': 'Field type',
