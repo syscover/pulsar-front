@@ -78,6 +78,7 @@
         "apollo-cache-inmemory": "1.6.3",
         "apollo-client": "2.6.4",
         "apollo-link-schema": "1.2.3",
+        "faker": "4.1.0",
         "bootstrap": "4.3.1",
         "cropperjs": "1.5.5",
         "flag-icon-css": "3.3.0",

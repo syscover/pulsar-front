@@ -210,6 +210,7 @@ export class Report
     filename: string;
     extension: string;
     frequency_id: number;
+    statement: string;
     sql: string;
     wildcards: Wildcard[]
 }

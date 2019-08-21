@@ -162,12 +162,33 @@
                             </ng-template>
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">code</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.STATEMENT' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+                                <div fxLayout="row">
+                                    <td-code-editor theme="hc-black"
+                                                    language="sql"
+                                                    class="col-12"
+                                                    formControlName="statement"
+                                                    style="height: 100px">
+                                    </td-code-editor>
+                                </div>
+                                
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">code</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.QUERY' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
                                 <div fxLayout="row">
                                     <td-code-editor theme="hc-black"
                                                     language="sql"
                                                     class="col-12"
                                                     formControlName="sql"
-                                                    style="height: 200px">
+                                                    style="height: 400px">
                                     </td-code-editor>
                                 </div>
                                 

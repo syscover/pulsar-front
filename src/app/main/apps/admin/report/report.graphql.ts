@@ -9,6 +9,7 @@ const fields = `
     extension
     frequency_id
     wildcards
+    statement
     sql
 `;
 
