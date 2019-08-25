@@ -69,6 +69,13 @@ const fields = `
         surname
         email
     }
+    course {
+        id
+        tin
+        name
+        surname
+        email
+    }
     ${marketableGraphQL.fields}
 `;
 

@@ -21,6 +21,7 @@ export const locale = {
             'EMPLOYMENT_SITUATION': 'Situación de empleo',
             'ENDS_AT': 'Termina el',
             'EXPEDIENT': 'Expediente',
+            'EXPORT_INSCRIPTIONS': 'Exportar inscripciones',
             'FOCO': 'Foco',
             'FORM_STEPS': 'Pasos de formulario',
             'FUNCTIONAL_AREA': 'Area funcional',
@@ -34,6 +35,7 @@ export const locale = {
             'HAS_OTHER_COURSE': 'Tiene otro curso',
             'HAS_SSN_AUTHORIZATION': 'Tiene permiso para Seguridad Social',
             'HOURS': 'Horas',
+            'IMPORT_STUDYING': 'Importar cursando',
             'INSCRIBED': 'Inscritos',
             'INSCRIPTION': 'Inscripción',
             'INSCRIPTION_EXPORT': 'Exportación de inscripción',
@@ -56,6 +58,7 @@ export const locale = {
             'SCHEDULE': 'Horario',
             'STARTS_AT': 'Empieza el',
             'SPECIALTY': 'Especialidad',
+            'SUBSCRIBE_STUDENT': 'Inscribir estudiante',
             'SUBSIDIZED_AMOUNT': 'Cantidad subvencionada',
             'TARGET': 'Dirigido',
             'TEACHER_TRAINING': 'Formación docente',
@@ -66,6 +69,7 @@ export const locale = {
             'TRAINERS': 'Profesores',
             'UNEMPLOYED_REGISTRATION_DATE': 'Fecha de desempleo',
             'UNEMPLOYMENT_SITUATION': 'Situación de desempleo',
+            'UNSUBSCRIBE_STUDENT': 'Quitar estudiante',
             'WORKER_CODE': 'Código del trabajador',
             'YEAR': 'Año'
         }

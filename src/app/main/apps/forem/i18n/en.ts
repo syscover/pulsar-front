@@ -21,6 +21,7 @@ export const locale = {
             'EMPLOYMENT_SITUATION': 'Employment situation',
             'ENDS_AT': 'Ends at',
             'EXPEDIENT': 'Expedient',
+            'EXPORT_INSCRIPTIONS': 'Export inscriptions',
             'FOCO': 'Foco',
             'FORM_STEPS': 'Form steps',
             'FUNCTIONAL_AREA': 'Functional area',
@@ -34,6 +35,7 @@ export const locale = {
             'HAS_OTHER_COURSE': 'Has other course',
             'HAS_SSN_AUTHORIZATION': 'Has ssn authorization',
             'HOURS': 'Hours',
+            'IMPORT_STUDYING': 'Import studying',
             'INSCRIBED': 'Inscribed',
             'INSCRIPTION': 'Inscription',
             'INSCRIPTION_EXPORT': 'Inscription export',
@@ -56,6 +58,7 @@ export const locale = {
             'SCHEDULE': 'Schedule',
             'STARTS_AT': 'Starts at',
             'SPECIALTY': 'Specialty',
+            'SUBSCRIBE_STUDENT': 'Subscribe student',
             'SUBSIDIZED_AMOUNT': 'Subsidized amount',
             'TARGET': 'Target',
             'TEACHER_TRAINING': 'Teacher training',
@@ -66,6 +69,7 @@ export const locale = {
             'TRAINERS': 'Teachers',
             'UNEMPLOYED_REGISTRATION_DATE': 'Unemployed registration date',
             'UNEMPLOYMENT_SITUATION': 'Unemployment situation',
+            'UNSUBSCRIBE_STUDENT': 'Unsubscribe student',
             'WORKER_CODE': 'Worker code',
             'YEAR': 'Year'
         }

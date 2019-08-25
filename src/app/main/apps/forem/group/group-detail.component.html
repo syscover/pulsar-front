@@ -61,8 +61,13 @@
                     </button>
                     <button mat-menu-item
                             (click)="exportInscriptions()">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <span>{{ 'FOREM.EXPORT_INSCRIPTIONS' | translate }}</span>
+                    </button>
+                    <button mat-menu-item
+                            (click)="exportInscriptions()">
                         <mat-icon>cloud_download</mat-icon>
-                        <span>{{ 'APPS.EXPORT' | translate }}</span>
+                        <span>{{ 'FOREM.IMPORT_STUDYING' | translate }}</span>
                     </button>
                 </mat-menu>
             </div>
@@ -385,20 +390,17 @@
                                         <mat-error>{{ formErrors?.contents_excerpt }}</mat-error>
                                     </mat-form-field>
                                 </div>
-
-                                <!-- <quill-editor   placeholder="{{ 'FOREM.CONTENTS' | translate }}"
-                                                formControlName="contents" 
-                                                [modules]="quillEditorService.config" ></quill-editor> -->
+                                
+                                <hr-ckeditor    placeholder="{{ 'FOREM.CONTENTS' | translate }}"
+                                                formControlName="contents"></hr-ckeditor>
                                 <mat-error>{{ formErrors?.contents }}</mat-error>
                             </div>
                         </mat-tab>
 
                         <mat-tab label="{{ 'FOREM.REQUIREMENTS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
-                                
-                                <<!-- quill-editor   placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}" 
-                                                formControlName="requirements" 
-                                                [modules]="quillEditorService.config" ></quill-editor> -->
+                                <hr-ckeditor    placeholder="{{ 'FOREM.REQUIREMENTS' | translate }}"
+                                                formControlName="requirements"></hr-ckeditor>
                                 <mat-error>{{ formErrors?.requirements }}</mat-error>
                             </div>
                         </mat-tab>
@@ -491,6 +493,22 @@
                                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row" [innerHtml]="row.email"></mat-cell>
                                             </ng-container>
+
+                                            <!-- actions -->
+                                            <ng-container matColumnDef="actions">
+                                                <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    <button type="button" mat-icon-button [matMenuTriggerFor]="menuInscriptions">
+                                                        <mat-icon>more_vert</mat-icon>
+                                                    </button>
+                                                    <mat-menu #menuInscriptions="matMenu">
+                                                        <button type="button" mat-menu-item (click)="subscribe(row)">
+                                                            <mat-icon>delete</mat-icon>
+                                                            <span>{{ 'FOREM.SUBSCRIBE_STUDENT' | translate }}</span>
+                                                        </button>
+                                                    </mat-menu>
+                                                </mat-cell>
+                                            </ng-container>
                                             
                                             <mat-header-row *matHeaderRowDef="displayedColumnsInscription"></mat-header-row>
                                             <mat-row *matRowDef="let row; columns: displayedColumnsInscription;"></mat-row>
@@ -502,9 +520,60 @@
                         </mat-tab>
 
                         <mat-tab label="{{ 'FOREM.CURSING' | translate | uppercase }}">
-                            <div class="tab-content p-24" fusePerfectScrollbar>
+                            <div class="tab-content p-12" fusePerfectScrollbar>
 
-                                
+                                <div fxLayout="row">
+                                    <div class="col-12">
+                                        <mat-table [dataSource]="dataSourceCourse"
+                                                    fusePerfectScrollbar
+                                                    matSort
+                                                    matSortDisableClear>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="tin">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.TIN' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{ row.tin }}</mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="name">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.NAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.name"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="surname">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.surname"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="email">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.EMAIL' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row" [innerHtml]="row.email"></mat-cell>
+                                            </ng-container>
+
+                                            <!-- actions -->
+                                            <ng-container matColumnDef="actions">
+                                                <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    <button type="button" mat-icon-button [matMenuTriggerFor]="menuCourse">
+                                                        <mat-icon>more_vert</mat-icon>
+                                                    </button>
+                                                    <mat-menu #menuCourse="matMenu">
+                                                        <button type="button" mat-menu-item (click)="unsubscribe(row)">
+                                                            <mat-icon>delete</mat-icon>
+                                                            <span>{{ 'FOREM.UNSUBSCRIBE_STUDENT' | translate }}</span>
+                                                        </button>
+                                                    </mat-menu>
+                                                </mat-cell>
+                                            </ng-container>
+                                            
+                                            <mat-header-row *matHeaderRowDef="displayedColumnsCourse"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns: displayedColumnsCourse;"></mat-row>
+                                        </mat-table>
+                                    </div>
+                                </div>
 
                             </div>
                         </mat-tab>

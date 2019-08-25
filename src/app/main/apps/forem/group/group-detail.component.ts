@@ -47,9 +47,14 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     user: User;
 
     // Inscriptions
-    displayedColumnsInscription = ['tin', 'name', 'surname', 'email'];
+    displayedColumnsInscription = ['tin', 'name', 'surname', 'email', 'actions'];
     dataSourceInscription = new MatTableDataSource();
     @ViewChild(MatSort, {static: false}) sortInscription: MatSort;
+
+    // Course
+    displayedColumnsCourse = ['tin', 'name', 'surname', 'email', 'actions'];
+    dataSourceCourse = new MatTableDataSource();
+    @ViewChild(MatSort, {static: false}) sortCourse: MatSort;
 
     // ***** start - marketable variables
     productCategories: ProductCategory[] = [];
@@ -152,7 +157,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.categoryFilterCtrl
             .valueChanges
             .pipe(takeUntil(this.$onDestroy))
-            .subscribe(() => {
+            .subscribe(() => 
+            {
                 this._selectSearch.filterSelect(
                     this.categoryFilterCtrl,
                     this.categories,
@@ -273,6 +279,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         // forem inscriptions
         this.dataSourceInscription.sort = this.sortInscription;
         this.dataSourceInscription.data = data.coreObject.inscriptions;
+
+        this.dataSourceCourse.sort = this.sortCourse;
+        this.dataSourceCourse.data = data.coreObject.course;
     }
 
     afterPatchValueEdit(): void
@@ -407,9 +416,63 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
                 // call download service
                 this._downloadService
-                    .download(file, () => {
+                    .download(file, () => 
+                    {
                         this.showSpinner = false;
                     });
+            });
+    }
+
+    subscribe(inscription) 
+    {
+        console.log(inscription);
+
+        const ob$ = this.http
+            .apolloClient()
+            .mutate({
+                mutation: gql`
+                    mutation ForemSubscribeGroup ($id:Int!) {
+                        foremSubscribeGroup (id:$id)
+                    }
+                `,
+                variables: {
+                    id: inscription.id
+                }
+            })
+            .subscribe(res => 
+            {
+                ob$.unsubscribe();
+                console.log(res);
+                this.dataSourceCourse.data.push(inscription);
+                // this.loadingButton = false;
+                // this._dialogRef.close(res.data.marketCreateCategory);
+            });
+
+    }
+
+    unsubscribe(course) 
+    {
+        console.log(course);
+        const ob$ = this.http
+            .apolloClient()
+            .mutate({
+                mutation: gql`
+                    mutation ForemUnsubscribeGroup ($id:Int!) {
+                        foremUnsubscribeGroup (id:$id)
+                    }
+                `,
+                variables: {
+                    id: course.id
+                }
+            })
+            .subscribe(res => 
+            {
+                ob$.unsubscribe();
+                console.log(res);
+                this.dataSourceCourse.data = this.dataSourceCourse.data.filter(item => item['id'] !== course.id);
+                
+                // this.loadingButton = false;
+                // this._dialogRef.close(res.data.marketCreateCategory);
             });
     }
 }
