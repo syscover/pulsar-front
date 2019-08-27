@@ -425,8 +425,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     subscribe(inscription) 
     {
-        console.log(inscription);
-
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -452,7 +450,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     unsubscribe(course) 
     {
-        console.log(course);
         const ob$ = this.http
             .apolloClient()
             .mutate({
