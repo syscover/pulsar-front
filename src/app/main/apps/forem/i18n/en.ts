@@ -30,6 +30,7 @@ export const locale = {
             'HAS_AGENT': 'Has agent',
             'HAS_AUTHORIZATION': 'Has authorization',
             'HAS_CERTIFICATION_AUTHORIZATION': 'Has certification authorization',
+            'HAS_COMMUNICATION': 'Has communication',
             'HAS_DATA_AUTHORIZATION': 'Has data authorization',
             'HAS_MARKETING_AUTHORIZATION': 'Has marketing auhtorization',
             'HAS_OTHER_COURSE': 'Has other course',

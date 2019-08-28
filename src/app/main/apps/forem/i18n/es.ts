@@ -30,6 +30,7 @@ export const locale = {
             'HAS_AGENT': 'Tiene representante',
             'HAS_AUTHORIZATION': 'Tiene autorización',
             'HAS_CERTIFICATION_AUTHORIZATION': 'Tiene permiso para certificación',
+            'HAS_COMMUNICATION': 'Autorización para comunicaciones',
             'HAS_DATA_AUTHORIZATION': 'Tiene permiso para datos',
             'HAS_MARKETING_AUTHORIZATION': 'Tiene permiso para marketing',
             'HAS_OTHER_COURSE': 'Tiene otro curso',

@@ -42,6 +42,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             email: '',
             phone: '',
             mobile: '',
+            has_communication: false,
             has_authorization: false,
             availabilities: [],
 

@@ -17,6 +17,7 @@ const fields = `
     phone
     mobile
     availabilities
+    has_communication
     has_authorization
     country_id
     territorial_area_1_id
