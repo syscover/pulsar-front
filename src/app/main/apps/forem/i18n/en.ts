@@ -41,6 +41,7 @@ export const locale = {
             'INSCRIPTION': 'Inscription',
             'INSCRIPTION_EXPORT': 'Inscription export',
             'IS_BIG_COMPANY': 'Is big company',
+            'IS_COUNTDOWN': 'Is countdown',
             'IS_REGISTER_JCCM': 'Is register JCCM',
             'KNOWLEDGE': 'Knowledge',
             'LOCALITY': 'Locality',

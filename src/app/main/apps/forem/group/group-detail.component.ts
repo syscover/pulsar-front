@@ -105,6 +105,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             type_id: ['', Validators.required],
             certificate: false,
             certificate_code: '',
+            is_countdown: false,
             hours: ['', Validators.required],
             subsidized_amount: '',
             price: '',

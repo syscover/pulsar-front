@@ -106,6 +106,10 @@
                                         <mat-error>{{ formErrors?.profile_id }}</mat-error>
                                     </mat-form-field>
 
+                                    <div class="offset-md-1 col-md-3 py-20">
+                                        <mat-checkbox formControlName="is_countdown">{{ 'FOREM.IS_COUNTDOWN' | translate }}</mat-checkbox>
+                                    </div>
+                                    
                                     <input type="hidden"
                                            formControlName="profile_id"
                                            [value]="user.profile_id"

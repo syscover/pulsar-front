@@ -25,6 +25,7 @@ const fields = `
     type_id
     certificate
     certificate_code
+    is_countdown
     hours
     subsidized_amount
     price
