@@ -499,7 +499,15 @@
                                             </ng-container>
 
                                             <!-- Column -->
-                                            <ng-container matColumnDef="completed">
+                                            <ng-container matColumnDef="is_coursed">
+                                                <mat-header-cell class="mw-80" *matHeaderCellDef mat-sort-header>{{ 'FOREM.CURSING' | translate }}</mat-header-cell>
+                                                <mat-cell class="mw-80 justify-content-center" *matCellDef="let row">
+                                                    <mat-icon *ngIf="row.is_coursed">done</mat-icon>
+                                                </mat-cell>
+                                            </ng-container>
+
+                                            <!-- Column -->
+                                            <ng-container matColumnDef="is_completed">
                                                 <mat-header-cell class="mw-80" *matHeaderCellDef mat-sort-header>{{ 'APPS.COMPLETED.M' | translate }}</mat-header-cell>
                                                 <mat-cell class="mw-80 justify-content-center" *matCellDef="let row">
                                                     <mat-icon *ngIf="row.is_completed">done</mat-icon>

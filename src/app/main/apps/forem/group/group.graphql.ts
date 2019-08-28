@@ -69,6 +69,7 @@ const fields = `
         name
         surname
         email
+        is_coursed
         is_completed
     }
     course {

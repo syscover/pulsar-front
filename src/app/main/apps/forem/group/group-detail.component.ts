@@ -47,7 +47,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     user: User;
 
     // Inscriptions
-    displayedColumnsInscription = ['tin', 'name', 'surname', 'email', 'completed', 'actions'];
+    displayedColumnsInscription = ['tin', 'name', 'surname', 'email', 'is_coursed', 'is_completed', 'actions'];
     dataSourceInscription = new MatTableDataSource();
     @ViewChild(MatSort, {static: false}) sortInscription: MatSort;
 
