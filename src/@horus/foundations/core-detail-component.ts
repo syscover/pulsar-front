@@ -157,7 +157,8 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 variables: this.argumentsGetRecord(params)
             })
             .valueChanges
-            .subscribe(({data}) => {
+            .subscribe(({data}) => 
+            {
                 ob$.unsubscribe();
 
                 if (this.env.debug) console.log('DEBUG - response of query to get object: ', data);

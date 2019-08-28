@@ -74,6 +74,7 @@ const fields = `
     }
     course {
         id
+        inscription_id
         tin
         name
         surname

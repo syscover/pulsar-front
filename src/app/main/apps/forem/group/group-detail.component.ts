@@ -426,6 +426,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     subscribe(inscription) 
     {
+        this.showSpinner = true;
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -441,16 +442,16 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             .subscribe(res => 
             {
                 ob$.unsubscribe();
-                console.log(res);
+                inscription.is_coursed = true;
                 this.dataSourceCourse.data.push(inscription);
-                // this.loadingButton = false;
-                // this._dialogRef.close(res.data.marketCreateCategory);
+                this.dataSourceCourse.data = this.dataSourceCourse.data.slice(0);
+                this.showSpinner = false;
             });
-
     }
 
     unsubscribe(course) 
     {
+        this.showSpinner = true;
         const ob$ = this.http
             .apolloClient()
             .mutate({
@@ -465,12 +466,18 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             })
             .subscribe(res => 
             {
+                this.dataSourceInscription.data.map(item => 
+                {
+                    if(item['id'] === course['inscription_id'])
+                    {
+                        return item['is_coursed'] = false;
+                    }
+                    return item;
+                });
+
                 ob$.unsubscribe();
-                console.log(res);
                 this.dataSourceCourse.data = this.dataSourceCourse.data.filter(item => item['id'] !== course.id);
-                
-                // this.loadingButton = false;
-                // this._dialogRef.close(res.data.marketCreateCategory);
+                this.showSpinner = false;
             });
     }
 }
