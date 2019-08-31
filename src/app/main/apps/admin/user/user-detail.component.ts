@@ -22,7 +22,8 @@ export class UserDetailComponent extends CoreDetailComponent implements OnInit
 
     constructor(
         protected injector: Injector
-    ) {
+    ) 
+    {
         super(injector, graphQL);
     }
 

@@ -524,7 +524,7 @@
                                                         </button>
                                                         <mat-menu #menuInscriptions="matMenu">
                                                             <button type="button" mat-menu-item (click)="subscribe(row)">
-                                                                <mat-icon>delete</mat-icon>
+                                                                <mat-icon>school</mat-icon>
                                                                 <span>{{ 'FOREM.SUBSCRIBE_STUDENT' | translate }}</span>
                                                             </button>
                                                         </mat-menu>
@@ -579,15 +579,17 @@
                                             <ng-container matColumnDef="actions">
                                                 <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row">
-                                                    <button type="button" mat-icon-button [matMenuTriggerFor]="menuCourse">
-                                                        <mat-icon>more_vert</mat-icon>
-                                                    </button>
-                                                    <mat-menu #menuCourse="matMenu">
-                                                        <button type="button" mat-menu-item (click)="unsubscribe(row)">
-                                                            <mat-icon>delete</mat-icon>
-                                                            <span>{{ 'FOREM.UNSUBSCRIBE_STUDENT' | translate }}</span>
+                                                    <ng-container *ngIf="row.inscription_id">
+                                                        <button type="button" mat-icon-button [matMenuTriggerFor]="menuCourse">
+                                                            <mat-icon>more_vert</mat-icon>
                                                         </button>
-                                                    </mat-menu>
+                                                        <mat-menu #menuCourse="matMenu">
+                                                            <button type="button" mat-menu-item (click)="unsubscribe(row)">
+                                                                <mat-icon>delete</mat-icon>
+                                                                <span>{{ 'FOREM.UNSUBSCRIBE_STUDENT' | translate }}</span>
+                                                            </button>
+                                                        </mat-menu>
+                                                    </ng-container>
                                                 </mat-cell>
                                             </ng-container>
                                             

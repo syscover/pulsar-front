@@ -439,11 +439,20 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                     id: inscription.id
                 }
             })
-            .subscribe(res => 
+            .subscribe(({data}) => 
             {
                 ob$.unsubscribe();
+                if (this.env.debug) console.log('DEBUG - subscribe inscription: ', data, inscription);
+
                 inscription.is_coursed = true;
-                this.dataSourceCourse.data.push(inscription);
+
+                // create course
+                const course = Object.assign({}, inscription);
+                course.id = data.foremSubscribeGroup;
+                course.inscription_id = inscription.id;
+
+                // add course
+                this.dataSourceCourse.data.push(course);
                 this.dataSourceCourse.data = this.dataSourceCourse.data.slice(0);
                 this.showSpinner = false;
             });
@@ -466,16 +475,17 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             })
             .subscribe(res => 
             {
-                this.dataSourceInscription.data.map(item => 
+                ob$.unsubscribe();
+                if (this.env.debug) console.log('DEBUG - unsubscribe inscription: ', res);
+
+                // change inscriptions datatable
+                this.dataSourceInscription.data = this.dataSourceInscription.data.map(item => 
                 {
-                    if(item['id'] === course['inscription_id'])
-                    {
-                        return item['is_coursed'] = false;
-                    }
+                    if(item['id'] === course['inscription_id']) item['is_coursed'] = false;
                     return item;
                 });
-
-                ob$.unsubscribe();
+ 
+                // delete course from datatable
                 this.dataSourceCourse.data = this.dataSourceCourse.data.filter(item => item['id'] !== course.id);
                 this.showSpinner = false;
             });
