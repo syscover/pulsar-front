@@ -65,10 +65,15 @@
                         <span>{{ 'FOREM.EXPORT_INSCRIPTIONS' | translate }}</span>
                     </button>
                     <button mat-menu-item
-                            (click)="exportInscriptions()">
+                            (click)="fileInput.click()">
                         <mat-icon>cloud_download</mat-icon>
                         <span>{{ 'FOREM.IMPORT_STUDYING' | translate }}</span>
                     </button>
+                    <input  hidden 
+                            type="file" 
+                            #fileInput 
+                            (change)="importInscriptions($event.target.files)" 
+                            required>
                 </mat-menu>
             </div>
         </div>

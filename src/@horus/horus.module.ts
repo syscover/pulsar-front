@@ -18,6 +18,7 @@ import { NavigationService } from '@horus/services/navigation.service';
 import { HttpService } from '@horus/services/http.service';
 import { HttpInterceptorService } from '@horus/services/http-interceptor.service';
 import { HttpSynchronousService } from '@horus/services/http-synchronous.service';
+import { UploadService } from '@horus/services/upload.service';
 import { ValidationMessageService } from '@horus/services/validation-message.service';
 import { GoogleMapsLoaderService } from '@horus/services/google-maps-loader.service';
 
@@ -42,6 +43,7 @@ export function BootstrapLoader(bootstrapService: BootstrapService): Function
         HttpService,
         HttpSynchronousService,
         NavigationService,
+        UploadService,
         ValidationMessageService,
         {
             provide: MapsAPILoader,

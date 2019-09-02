@@ -58,4 +58,13 @@ export class AuthenticationService extends HttpService
 
         return null;
     }
+
+    getAuthToken (): any
+    {
+        if (localStorage.getItem('access_token'))
+        {
+            return JSON.parse(localStorage.getItem('access_token'));
+        }
+        return null;
+    }
 }

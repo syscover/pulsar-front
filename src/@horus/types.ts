@@ -1,3 +1,9 @@
+export interface AdditionalField
+{
+    name: string;       // name of field
+    value: string;      // value
+}
+
 export interface Application
 {
     id: number;

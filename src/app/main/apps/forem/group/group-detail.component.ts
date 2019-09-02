@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatTableDataSource, MatSort } from '@angular/material';
@@ -14,9 +15,10 @@ import { PriceType, ProductClass, ProductClassTax, Section } from '../../market/
 import { AuthenticationService } from '@horus/services/authentication.service';
 import { MarketableService } from '@horus/components/marketable/marketable.service';
 import { DownloadService } from '@horus/services/download.service';
-import { File } from '@horus/types';
+import { UploadService } from '@horus/services/upload.service';
 import { AttachmentFamily, Country, Profile, User } from '../../admin/admin.models';
 import { environment } from 'environments/environment';
+import { File } from '@horus/types';
 import gql from 'graphql-tag';
 import * as _ from 'lodash';
 
@@ -45,6 +47,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     groupPrefixes: GroupPrefix[] = [];
     steps: Step[] = [];
     user: User;
+    file;
 
     // Inscriptions
     displayedColumnsInscription = ['tin', 'name', 'surname', 'email', 'is_coursed', 'is_completed', 'actions'];
@@ -76,7 +79,9 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         private _dialog: MatDialog,
         private _marketable: MarketableService,
         private _authenticationService: AuthenticationService,
-        private _downloadService: DownloadService
+        private _downloadService: DownloadService,
+        private _sanitizer: DomSanitizer,
+        private _uploadService: UploadService
     ) 
     {
         super(injector, graphQL);
@@ -421,6 +426,19 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                     {
                         this.showSpinner = false;
                     });
+            });
+    }
+
+    importInscriptions(files: FileList): void 
+    {
+        this.file = files.item(0);
+        this.file['objectURL'] = this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files.item(0)));
+
+        this._uploadService
+            .uploadFile(`${this.restUrl}/file`, this.file)
+            .subscribe(data => 
+            {
+                console.log(data);
             });
     }
 
