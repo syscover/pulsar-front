@@ -190,7 +190,9 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
             this.object.sections,
             this.fg.get('subtotal').value,
             true,
-            () => { // callback, all http petition must to be sequential to pass JWT
+            () => 
+            {   
+                // callback, all http petition must to be sequential to pass JWT
                 // allow start dh2-dynamic-form component to avoid failures in the JWT
                 this.startCustomFields = true;
             }

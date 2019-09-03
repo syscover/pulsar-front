@@ -49,7 +49,8 @@ export class MarketableComponent implements OnInit
         private _marketable: MarketableService,
         private _fb: FormBuilder,
         private _dialog: MatDialog
-    ) {
+    ) 
+    {
         this.init();
     }
 
@@ -87,7 +88,7 @@ export class MarketableComponent implements OnInit
     }
 
     ngOnInit(): void
-    {
+    { 
         // set lang id if is defined like parameter
         if (this.lang)
         {
@@ -99,7 +100,8 @@ export class MarketableComponent implements OnInit
             // subscribe to name marketable changes
             this.fg.get('is_product')
                 .valueChanges
-                .subscribe(val => {
+                .subscribe(val => 
+                {
                     this.setReactiveForm(! val);
                 });
         }
@@ -127,7 +129,8 @@ export class MarketableComponent implements OnInit
             subtotal,
             forceCalculatePriceWithoutTax, // force to calculate price without tax
             callback, // callback, all http petition must to be sequential to pass JWT
-            (value) => { // pass argument like function to respect scope
+            (value) => // pass argument like function to respect scope
+            {
                 this.loadingPrice = value;
                 this.checkingPrice.emit(value);
             }
@@ -173,8 +176,8 @@ export class MarketableComponent implements OnInit
             width: '80vw'
         });
 
-        dialogRef.afterClosed().subscribe((object: any) => {
-
+        dialogRef.afterClosed().subscribe((object: any) => 
+        {
             if (object)
             {
                 if (this.env.debug) console.log('DEBUG - Add element: ', object);

@@ -102,7 +102,8 @@ export class WineDetailComponent extends CoreDetailComponent implements OnInit
         private _stockable: StockableService,
         private _selectSearch: SelectSearchService,
         private _dialog: MatDialog
-    ) {
+    ) 
+    {
         super(_injector, graphQL);
     }
 
