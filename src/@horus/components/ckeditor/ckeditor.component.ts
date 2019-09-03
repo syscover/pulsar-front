@@ -18,7 +18,6 @@ import ClassicEditor from '@horus/components/ckeditor/build/ckeditor';
                     (ready)="handleOnReady($event)" 
                     [(ngModel)]="value"
                     [config]="{ 
-                        placeholder: placeholder, 
                         toolbar: cKEditorService.toolbar,
                         extraPlugins: cKEditorService.extraPlugins
                     }"></ckeditor>
@@ -29,7 +28,7 @@ import ClassicEditor from '@horus/components/ckeditor/build/ckeditor';
 export class CKEditorComponent implements OnInit 
 {
     editorInstance = ClassicEditor;
-    @Input() placeholder: string;
+    @Input() placeholder: string; //placeholder: placeholder, not work
     @Input() debug = false;
     @Input()
     get value(): string 

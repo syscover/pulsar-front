@@ -81,7 +81,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         private _authenticationService: AuthenticationService,
         private _downloadService: DownloadService,
         private _sanitizer: DomSanitizer,
-        private _uploadService: UploadService
+        private _uploadService: UploadService,
     ) 
     {
         super(injector, graphQL);
@@ -245,6 +245,23 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     setRelationsData(data: any): void
     {
+        // ***** start - marketable relations
+        // market category
+        this.categories = data.marketCategories;
+
+        // market product section
+        this.sections = data.marketSections;
+
+        // market product classes
+        this.productClasses = data.marketProductClasses;
+
+        // market price types
+        this.priceTypes = data.marketPriceTypes;
+
+        // market product class taxes
+        this.productClassTaxes = data.marketProductClassTaxes;
+        // ***** end - marketable relations
+
         // set admin countries
         this.countries = data.adminCountries;
 
@@ -294,6 +311,24 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     {
         this.handleChangeCertificate({checked: this.object.certificate});
         this.handleChangeExpedient({value: this.object.expedient_id});
+
+        if (this.fg.get('is_product').value)
+        {
+            console.log(this.fg.get('subtotal').value);
+            console.log(this.fg.value);
+            this._marketable.afterPatchValueEdit(
+                this.fg,
+                this.object.categories,
+                this.object.sections,
+                this.fg.get('subtotal').value,
+                true
+            );
+        }
+    }
+
+    getCustomArgumentsPostRecord(args, object): object
+    {
+        return this._marketable.getCustomArgumentsPostRecord(args);
     }
 
     handleChangeExpedient($event): void
