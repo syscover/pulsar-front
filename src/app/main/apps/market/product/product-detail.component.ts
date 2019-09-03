@@ -41,7 +41,8 @@ export class ProductDetailComponent extends CoreDetailComponent implements OnIni
         private _injector: Injector,
         private _marketable: MarketableService,
         private _stockable: StockableService
-    ) {
+    ) 
+    {
         super(_injector, graphQL);
     }
 
