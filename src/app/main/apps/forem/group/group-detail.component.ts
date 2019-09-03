@@ -314,8 +314,6 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
         if (this.fg.get('is_product').value)
         {
-            console.log(this.fg.get('subtotal').value);
-            console.log(this.fg.value);
             this._marketable.afterPatchValueEdit(
                 this.fg,
                 this.object.categories,
