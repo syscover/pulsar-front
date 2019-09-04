@@ -1,5 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatTableDataSource, MatSort } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
@@ -30,6 +30,7 @@ import * as _ from 'lodash';
 export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 {
     @ViewChild('slug', {static: false}) slugField;
+    @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
 
     objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'M';
@@ -377,8 +378,8 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             width: '80vw'
         });
 
-        dialogRef.afterClosed().subscribe((object: any) => {
-
+        dialogRef.afterClosed().subscribe((object: any) => 
+        {
             if (object)
             {
                 if (this.env.debug) console.log('DEBUG - Add element: ', object);
@@ -390,11 +391,13 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 this[objects] = _.orderBy(this[objects], ['name'], ['asc']);
                 filteredObjects.next(this[objects].slice());
 
-                if (multiple) {
+                if (multiple) 
+                {
                     this.fg.get(formGroupName).value.push(object.id);
                     this.fg.get(formGroupName).markAsDirty();
                 }
-                else {
+                else 
+                {
                     this.fg.get(formGroupName).setValue(object.id);
                 }
             }
@@ -464,14 +467,36 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
 
     importInscriptions(files: FileList): void 
     {
+        this.showSpinner = true;
         this.file = files.item(0);
         this.file['objectURL'] = this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files.item(0)));
 
         this._uploadService
-            .uploadFile(`${this.restUrl}/file`, this.file)
-            .subscribe(data => 
+            .uploadFile(`${this.restUrl}/api/v1/admin/upload`, this.file)
+            .subscribe(({data}) => 
             {
-                console.log(data);
+                let ob$ = this.http
+                    .apolloClient()
+                    .mutate({
+                        mutation: gql`
+                            mutation ForemImportCourseGroup ($fileName:String! $groupId:String!) {
+                                foremImportCourseGroup (fileName:$fileName groupId:$groupId)
+                            }
+                        `,
+                        variables: {
+                            fileName: data.uploads[0].file_name,
+                            groupId: this.object.id
+                        }
+                    })
+                    .subscribe(({data}) => 
+                    {
+                        ob$.unsubscribe();
+                        if (this.env.debug) console.log('DEBUG - import course: ', data);
+                        
+                        // reset fileInput
+                        this.fileInput.nativeElement.value = '';
+                        this.showSpinner = false;
+                    });
             });
     }
 

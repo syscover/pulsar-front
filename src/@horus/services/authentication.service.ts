@@ -63,7 +63,7 @@ export class AuthenticationService extends HttpService
     {
         if (localStorage.getItem('access_token'))
         {
-            return JSON.parse(localStorage.getItem('access_token'));
+            return localStorage.getItem('access_token');
         }
         return null;
     }

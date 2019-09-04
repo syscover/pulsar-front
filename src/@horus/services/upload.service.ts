@@ -14,7 +14,7 @@ export class UploadService
         private _authenticationService: AuthenticationService
     ) {}
 
-    public uploadFile(endPoint: string, file: File, additionalFields?: AdditionalField[], callback: Function = () => {}): Observable<any>
+    public uploadFile(endPoint: string, file: File, additionalFields: AdditionalField[] = [], callback: Function = () => {}): Observable<any>
     {
         const xhr       = new XMLHttpRequest();
         const formData  = new FormData(); // create forma data to add files and inputs
