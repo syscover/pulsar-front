@@ -251,7 +251,7 @@
                                 <div fxLayout="row wrap">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'APPS.PRICE' | translate }}</mat-label>
-                                        <input type="number" matInput formControlName="price">
+                                        <input type="number" matInput formControlName="price_total">
                                     </mat-form-field>
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-1 col-md-3">
                                         <mat-label>{{ 'FOREM.PRICE_HOUR' | translate }}</mat-label>
@@ -617,7 +617,7 @@
                                 </div>
 
                                 <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
-                                                [hiddenFields]="['starts_at', 'ends_at', 'parent_id', 'lang_id', 'name', 'slug', 'price']"
+                                                [hiddenFields]="['starts_at', 'ends_at', 'parent_id', 'lang_id', 'name', 'slug']"
                                                 [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
                                                 [lang]="baseLang"

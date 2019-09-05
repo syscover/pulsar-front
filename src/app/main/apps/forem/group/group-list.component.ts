@@ -15,7 +15,7 @@ export class GroupListComponent extends CoreListComponent
 {
     objectTranslation = 'FOREM.GROUP';
     objectTranslationGender = 'M';
-    columnsSearch: string[] = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.price', 'forem_group.publish', 'forem_group.featured'];
+    columnsSearch: string[] = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.price_total', 'forem_group.publish', 'forem_group.featured'];
     displayedColumns = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.type_id', 'forem_group.assistance_id', 'forem_group.starts_at', 'forem_group.ends_at', 'forem_group.publish', 'forem_group.featured', 'actions'];
     types: Type[] = [];
     assistances: Assistance[] = [];

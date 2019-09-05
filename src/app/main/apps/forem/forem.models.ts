@@ -15,7 +15,7 @@ export class Action
     assistance_id: number;
     type_id: number;
     hours: number;
-    price: number;
+    price_total: number;
     price_hour: number;
     contents: string;
     requirements: string;
@@ -109,7 +109,7 @@ export class Group
     certificate_code: string;
     hours: number;
     subsidized_amount: number;
-    price: number;
+    price_total: number;
     price_hour: number;
     contents_excerpt: string;
     contents: string;

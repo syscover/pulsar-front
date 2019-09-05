@@ -114,7 +114,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
             is_countdown: false,
             hours: ['', Validators.required],
             subsidized_amount: '',
-            price: '',
+            price_total: '',
             price_hour: '',
             contents_excerpt: '',
             contents: '',

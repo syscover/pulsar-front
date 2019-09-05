@@ -13,7 +13,7 @@ const fields = `
     certificate
     certificate_code
     hours
-    price    
+    price_total
     price_hour    
     contents_excerpt
     contents

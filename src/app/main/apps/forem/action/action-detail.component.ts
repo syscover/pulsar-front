@@ -60,7 +60,7 @@ export class ActionDetailComponent extends CoreDetailComponent  implements OnIni
             certificate: false,
             certificate_code: '',
             hours: ['', Validators.required],
-            price: '',
+            price_total: '',
             price_hour: '',
             contents_excerpt: '',
             contents: '',

@@ -28,7 +28,7 @@ const fields = `
     is_countdown
     hours
     subsidized_amount
-    price
+    price_total
     price_hour
     contents_excerpt
     contents
