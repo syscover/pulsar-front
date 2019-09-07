@@ -300,12 +300,15 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.categories = data.foremCategories;
         this.filteredCategories.next(this.categories.slice());
 
-        // forem inscriptions
-        this.dataSourceInscription.sort = this.sortInscription;
-        this.dataSourceInscription.data = data.coreObject.inscriptions;
+        if (this.dataRoute.action !== 'create')
+        {
+            // forem inscriptions
+            this.dataSourceInscription.sort = this.sortInscription;
+            this.dataSourceInscription.data = data.coreObject.inscriptions;
 
-        this.dataSourceCourse.sort = this.sortCourse;
-        this.dataSourceCourse.data = data.coreObject.course;
+            this.dataSourceCourse.sort = this.sortCourse;
+            this.dataSourceCourse.data = data.coreObject.course;
+        }
     }
 
     afterPatchValueEdit(): void
