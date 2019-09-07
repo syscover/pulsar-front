@@ -265,7 +265,7 @@
                                                    format="YYYY-MM-DD"
                                                    formControlName="starts_at"
                                                    [appearance]="horusConfig.fieldAppearance"
-                                                   [errors]="formErrors">
+                                                   [error]="formErrors.starts_at">
                                     </hr-datepicker>
 
                                     <hr-datepicker class="offset-md-1 col-md-3"
@@ -273,9 +273,11 @@
                                                    format="YYYY-MM-DD"
                                                    formControlName="ends_at"
                                                    [appearance]="horusConfig.fieldAppearance"
-                                                   [errors]="formErrors">
+                                                   [error]="formErrors.ends_at">
                                     </hr-datepicker>
                                 </div>
+
+                                {{ fg.get('starts_at').value }}
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
@@ -290,7 +292,7 @@
                                                    format="YYYY-MM-DD"
                                                    formControlName="selection_date"
                                                    [appearance]="horusConfig.fieldAppearance"
-                                                   [errors]="formErrors">
+                                                   [error]="formErrors.selection_date">
                                     </hr-datepicker>
                                 </div>
 
@@ -616,7 +618,7 @@
                                     </div>
                                 </div>
 
-                                <!-- <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
+                                <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
                                                 [hiddenFields]="['starts_at', 'ends_at', 'parent_id', 'lang_id', 'name', 'slug']"
                                                 [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
@@ -626,7 +628,7 @@
                                                 [productClasses]="productClasses"
                                                 [priceTypes]="priceTypes"
                                                 [productClassTaxes]="productClassTaxes"
-                                                [categories]="categories"></dh2-marketable> -->
+                                                [categories]="categories"></dh2-marketable>
 
                             </div>
                         </mat-tab>

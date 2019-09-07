@@ -89,6 +89,9 @@ export class MarketableComponent implements OnInit
 
     ngOnInit(): void
     { 
+        // set hidden files
+        this._marketable.hiddenFields = this.hiddenFields;
+
         // set lang id if is defined like parameter
         if (this.lang)
         {

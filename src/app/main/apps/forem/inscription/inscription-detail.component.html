@@ -131,7 +131,7 @@
                                                     format="YYYY-MM-DD"
                                                     formControlName="birth_date"
                                                     [appearance]="horusConfig.fieldAppearance"
-                                                    [errors]="formErrors">
+                                                    [error]="formErrors.birth_date">
                                     </hr-datepicker>
 
                                     <div class="offset-2 col-md-2 py-20">
@@ -385,7 +385,7 @@
                                                         label="{{ 'FOREM.UNEMPLOYED_REGISTRATION_DATE' | translate }}"
                                                         format="YYYY-MM-DD"
                                                         formControlName="unemployed_registration_date"
-                                                        [errors]="formErrors">
+                                                        [error]="formErrors.unemployed_registration_date">
                                         </hr-datepicker>
                                     </div>
 

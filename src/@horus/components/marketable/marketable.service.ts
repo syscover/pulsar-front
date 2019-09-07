@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 export class MarketableService
 {
     env: any = environment;
+    hiddenFields: string[] = [];
 
     constructor(
         private _http: HttpService,
@@ -201,16 +202,16 @@ export class MarketableService
         // if product is event, reset cost
         if (args.payload.class_id === 5)
         {
-            args.payload.cost = null;
+            if (! this.hiddenFields.includes('cost')) args.payload.cost = null;
         }
         // else reset event fields
         else
         {
-            args.payload.starts_at = null;
-            args.payload.ends_at = null;
-            args.payload.limited_capacity = null;
-            args.payload.fixed_cost = null;
-            args.payload.cost_per_sale = null;
+            if (! this.hiddenFields.includes('starts_at')) args.payload.starts_at = null;
+            if (! this.hiddenFields.includes('ends_at')) args.payload.ends_at = null;
+            if (! this.hiddenFields.includes('limited_capacity')) args.payload.limited_capacity = null;
+            if (! this.hiddenFields.includes('fixed_cost')) args.payload.fixed_cost = null;
+            if (! this.hiddenFields.includes('cost_per_sale')) args.payload.cost_per_sale = null;
         }
 
         return args;

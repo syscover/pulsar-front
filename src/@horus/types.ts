@@ -13,6 +13,8 @@ export interface Application
     sort: number;
 }
 
+export type Appearance = 'legacy' | 'standard' | 'fill' | 'outline';
+
 export interface DataRoute
 {
     action: string;

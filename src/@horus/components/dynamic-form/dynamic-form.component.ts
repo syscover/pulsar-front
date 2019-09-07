@@ -69,7 +69,7 @@ import { horusConfig } from 'app/horus-config';
                                             label="{{ field | getFieldLabel:lang }}"
                                             format="YYYY-MM-DD"
                                             [formControlName]="field.name"
-                                            [errors]="errors">
+                                            [error]="errors[field.name]">
                             </hr-datepicker>
                         </div>
 

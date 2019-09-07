@@ -121,7 +121,7 @@
                                            format="YYYY-MM-DD"
                                            formControlName="starts_at"
                                            [appearance]="horusConfig.fieldAppearance"
-                                           [errors]="formErrors">
+                                           [error]="formErrors.starts_at">
                             </hr-datepicker>
 
                             <hr-datepicker class="offset-md-1 col-md-3"
@@ -129,7 +129,7 @@
                                            format="YYYY-MM-DD"
                                            formControlName="ends_at"
                                            [appearance]="horusConfig.fieldAppearance"
-                                           [errors]="formErrors">
+                                           [error]="formErrors.ends_at">
                             </hr-datepicker>
                         </div>
 
