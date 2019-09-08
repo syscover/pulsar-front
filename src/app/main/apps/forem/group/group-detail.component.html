@@ -195,7 +195,7 @@
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
-                                        <input dh2Slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
+                                        <input dh2Slug [model]="graphQL.model" [object]="object" [hasCheckLang]="false" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
                                         <mat-error>{{ formErrors?.name }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -204,7 +204,7 @@
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                                         <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                                         <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
-                                        <input dh2Slug #slug [model]="graphQL.model" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
+                                        <input dh2Slug #slug [model]="graphQL.model" [object]="object" [hasCheckLang]="false" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="slug" required>
                                         <mat-error>{{ formErrors?.slug }}</mat-error>
                                     </mat-form-field>
                                 </div>
@@ -276,8 +276,6 @@
                                                    [error]="formErrors.ends_at">
                                     </hr-datepicker>
                                 </div>
-
-                                {{ fg.get('starts_at').value }}
 
                                 <div fxLayout="row">
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
@@ -619,7 +617,7 @@
                                 </div>
 
                                 <dh2-marketable (checkingPrice)="handleCheckingPrice($event)"
-                                                [hiddenFields]="['starts_at', 'ends_at', 'parent_id', 'lang_id', 'name', 'slug']"
+                                                [hiddenFields]="['sku', 'active', 'categories_id', 'sections_id', 'starts_at', 'ends_at', 'enable_from', 'enable_to', 'parent_id', 'name', 'slug']"
                                                 [hidden]="! fg.get('is_product').value"
                                                 [fg]="fg"
                                                 [lang]="baseLang"
@@ -627,8 +625,7 @@
                                                 [sections]="sections"
                                                 [productClasses]="productClasses"
                                                 [priceTypes]="priceTypes"
-                                                [productClassTaxes]="productClassTaxes"
-                                                [categories]="categories"></dh2-marketable>
+                                                [productClassTaxes]="productClassTaxes"></dh2-marketable>
 
                             </div>
                         </mat-tab>

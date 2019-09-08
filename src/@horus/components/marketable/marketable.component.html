@@ -1,16 +1,16 @@
 <ng-container *ngIf="! hidden">
     <div [formGroup]="fg">
-        <input type="hidden" formControlName="lang_id" *ngIf="hiddenFields.indexOf('lang_id') === -1">
+        <input type="hidden" formControlName="lang_id">
         <input type="hidden" formControlName="subtotal">
 
         <div fxLayout="row wrap">
-            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6" *ngIf="hiddenFields.indexOf('sku') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6" *ngIf="!hiddenFields.includes('sku')">
                 <mat-label>{{ 'MARKETABLE.SKU' | translate }}</mat-label>
                 <input matInput formControlName="sku">
                 <mat-error>{{ formErrors?.sku }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5" *ngIf="hiddenFields.indexOf('parent_id') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5" *ngIf="!hiddenFields.includes('parent_id')">
                 <mat-label>{{ 'MARKETABLE.PARENT_PRODUCT' | translate }}</mat-label>
                 <mat-select formControlName="parent_id">
                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
@@ -21,9 +21,9 @@
             </mat-form-field>
         </div>
 
-        <div fxLayout="row">
+        <div fxLayout="row" *ngIf="!hiddenFields.includes('categories_id')">
             <div class="col-12">
-                <mat-form-field [appearance]="horusConfig.fieldAppearance" fxFlex="grow" *ngIf="hiddenFields.indexOf('categories_id') === -1">
+                <mat-form-field [appearance]="horusConfig.fieldAppearance" fxFlex="grow">
                     <mat-label>{{ 'MARKETABLE.CATEGORIES' | translate }}</mat-label>
                     <mat-select formControlName="categories_id" multiple required>
                         <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
@@ -41,7 +41,7 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12" *ngIf="hiddenFields.indexOf('sections_id') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12" *ngIf="!hiddenFields.includes('sections_id')">
                 <mat-label>{{ 'MARKETABLE.SECTIONS' | translate }}</mat-label>
                 <mat-select formControlName="sections_id" multiple>
                     <mat-option *ngFor="let section of sections" [value]="section.id">{{ section.name }}</mat-option>
@@ -50,7 +50,7 @@
             </mat-form-field>
         </div>
 
-        <div fxLayout="row" *ngIf="hiddenFields.indexOf('name') === -1">
+        <div fxLayout="row" *ngIf="!hiddenFields.includes('name')">
             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                 <input dh2Slug [model]="modelProductLang" [object]="object" (checkingSlug)="handleCheckingSlug($event)" matInput formControlName="name" required>
@@ -58,7 +58,7 @@
             </mat-form-field>
         </div>
 
-        <div fxLayout="row" *ngIf="hiddenFields.indexOf('slug') === -1">
+        <div fxLayout="row" *ngIf="!hiddenFields.includes('slug')">
             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12">
                 <mat-label>{{ 'APPS.SLUG' | translate }}</mat-label>
                 <mat-spinner *ngIf="loadingSlug" matPrefix mode="indeterminate" diameter="17" class="mr-10"></mat-spinner>
@@ -77,10 +77,11 @@
             </mat-form-field>
         </div>
 
-        <div class="my-20">
+        <div class="my-20" *ngIf="!hiddenFields.includes('enable_from') || !hiddenFields.includes('enable_to') || !hiddenFields.includes('starts_at') || !hiddenFields.includes('ends_at')">
             <mat-accordion [multi]="true">
                 <!-- SCHEDULE -->
-                <mat-expansion-panel [expanded]="fg.get('enable_from').value || fg.get('enable_to').value">
+                <mat-expansion-panel    [expanded]="fg.get('enable_from').value || fg.get('enable_to').value"
+                                        *ngIf="!hiddenFields.includes('enable_from') || !hiddenFields.includes('enable_to')">
 
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -109,7 +110,8 @@
                 <!-- /. SCHEDULE -->
 
                 <!-- EVENT -->
-                <mat-expansion-panel [expanded]="true" *ngIf="fg.get('class_id').value === 5">
+                <mat-expansion-panel    [expanded]="true" 
+                                        *ngIf="(!hiddenFields.includes('starts_at') || !hiddenFields.includes('ends_at')) && fg.get('class_id').value === 5">
 
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -174,10 +176,10 @@
         </div>
 
         <div fxLayout="row wrap">
-            <div class="col-12 col-md-5 py-20" *ngIf="hiddenFields.indexOf('active') === -1">
+            <div class="col-12 col-md-5 py-20" *ngIf="!hiddenFields.includes('active')">
                 <mat-checkbox formControlName="active">{{ 'APPS.ACTIVE.M' | translate }}</mat-checkbox>
             </div>
-            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4" *ngIf="hiddenFields.indexOf('active') === -1">
+            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4" *ngIf="!hiddenFields.includes('active')">
                 <mat-label>{{ 'APPS.SORT' | translate }}</mat-label>
                 <input matInput formControlName="sort" type="number">
                 <mat-error>{{ formErrors?.sort }}</mat-error>

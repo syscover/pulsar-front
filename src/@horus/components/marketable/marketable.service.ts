@@ -183,11 +183,17 @@ export class MarketableService
 
     afterPatchValueEdit(fg: FormGroup, categories: Category[], sections: Section[], subtotal: number, forceCalculatePriceWithoutTax?: boolean, callback?: Function): void
     {
-        // set market categories extracting ids
-        fg.get('categories_id').setValue(_.uniq(_.map(categories, 'id')));
+        if (!this.hiddenFields.includes('categories_id'))
+        {
+            // set market categories extracting ids
+            fg.get('categories_id').setValue(_.uniq(_.map(categories, 'id')));
+        }
 
-        // set market sections extracting ids
-        fg.get('sections_id').setValue(_.uniq(_.map(sections, 'id')));
+        if (!this.hiddenFields.includes('sections_id'))
+        {
+            // set market sections extracting ids
+            fg.get('sections_id').setValue(_.uniq(_.map(sections, 'id')));
+        }
 
         this.handleGetProductTaxes(
             fg,

@@ -15,6 +15,7 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
     @Input() object: any;
     @Input() column = 'slug';
     @Input() value: string;
+    @Input() hasCheckLang: boolean = true;
     @Output() checkingSlug = new EventEmitter<boolean>();
 
     private $onDestroy = new Subject();
@@ -68,6 +69,7 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
                             .checkSlug(
                                 this.model,
                                 source,
+                                this.hasCheckLang,
                                 this.object,
                                 this.column
                             );
@@ -80,6 +82,7 @@ export class SlugDirective implements OnChanges, OnInit, AfterViewInit, OnDestro
                                 .checkSlug(
                                     this.model,
                                     this.buffer,
+                                    this.hasCheckLang,
                                     this.object,
                                     this.column
                                 );
