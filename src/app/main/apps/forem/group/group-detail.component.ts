@@ -82,7 +82,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         private _authenticationService: AuthenticationService,
         private _downloadService: DownloadService,
         private _sanitizer: DomSanitizer,
-        private _uploadService: UploadService,
+        private _uploadService: UploadService
     ) 
     {
         super(injector, graphQL);
@@ -331,6 +331,25 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
     getCustomArgumentsPostRecord(args, object): object
     {
         return this._marketable.getCustomArgumentsPostRecord(args);
+    }
+
+    downloadTemplate()
+    {
+        this.showSpinner = true;
+
+        const file: File = {
+            url: '',
+            filename: 'importacion_alumnos_cusando_grupo.xlsx',
+            pathname: 'app/public/course/importacion_alumnos_cusando_grupo.xlsx',
+            mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            size: 1
+        };
+
+        this._downloadService
+            .download(file, () => 
+            {
+                this.showSpinner = false;
+            });
     }
 
     handleChangeExpedient($event): void

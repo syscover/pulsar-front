@@ -65,6 +65,7 @@ export const locale = {
             'TARGET': 'Target',
             'TEACHER_TRAINING': 'Teacher training',
             'TEACHING_MONTHS': 'Teaching months',
+            'TEMPLATE_IMPORT_STUDYING': 'Template import studying',
             'TRAINER_HOURS': 'Teachers hours',
             'TRAINER_NAME': 'Teacher\'s name',
             'TRAINER': 'Teacher',

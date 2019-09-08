@@ -69,6 +69,11 @@
                         <mat-icon>cloud_download</mat-icon>
                         <span>{{ 'FOREM.IMPORT_STUDYING' | translate }}</span>
                     </button>
+                    <button mat-menu-item
+                            (click)="downloadTemplate()">
+                        <mat-icon>grid_on</mat-icon>
+                        <span>{{ 'FOREM.TEMPLATE_IMPORT_STUDYING' | translate }}</span>
+                    </button>
                     <input  hidden 
                             type="file" 
                             #fileInput

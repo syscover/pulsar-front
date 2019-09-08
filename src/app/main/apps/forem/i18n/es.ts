@@ -65,6 +65,7 @@ export const locale = {
             'TARGET': 'Dirigido',
             'TEACHER_TRAINING': 'Formación docente',
             'TEACHING_MONTHS': 'Meses de experiencia como docente',
+            'TEMPLATE_IMPORT_STUDYING': 'Plantilla importación estudiantes',
             'TRAINER_HOURS': 'Horas del profesor',
             'TRAINER_NAME': 'Nombre del profesor',
             'TRAINER': 'Profesor',
