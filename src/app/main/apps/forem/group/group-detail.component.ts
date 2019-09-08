@@ -340,7 +340,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         const file: File = {
             url: '',
             filename: 'importacion_alumnos_cusando_grupo.xlsx',
-            pathname: 'app/public/course/importacion_alumnos_cusando_grupo.xlsx',
+            pathname: 'app/public/forem/course/importacion_alumnos_cusando_grupo.xlsx',
             mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             size: 1
         };
