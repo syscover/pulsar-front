@@ -46,6 +46,7 @@ export const locale = {
             'KNOWLEDGE': 'Conocimiento',
             'LOCALITY': 'Localidad',
             'MODALITY': 'Modalidad',
+            'NO_INSCRIPTIONS_TO_EXPORT': 'Actuamente no hay inscripciones pendientes de exportación',
             'OCCUPATION_MONTHS': 'Meses de experiencia en la ocupación',
             'ONLINE': 'Online',
             'OPEN': 'Abierto',

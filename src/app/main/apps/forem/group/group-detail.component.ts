@@ -463,18 +463,28 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                     id: this.fg.get('id').value
                 }
             })
-            .subscribe((res) =>
+            .subscribe(({data}) =>
             {
                 ob$.unsubscribe();
 
-                if (environment.debug) console.log('DEBUG - response execute report: ', res);
+                if (environment.debug) console.log('DEBUG - response execute report: ', data);
 
                 // casting to file
-                const file = <File>res.data['foremExportInscription'];
+                const file = <File>data['foremExportInscription'];
                 
                 if (! file)
                 {
                     this.showSpinner = false;
+
+                    this.snackBar.open(
+                        this.translateService.instant('FOREM.NO_INSCRIPTIONS_TO_EXPORT'),
+                        this.translations['APPS.OK'], 
+                        {
+                            verticalPosition: 'top',
+                            duration        : 4000,
+                        }
+                    );
+
                     return;
                 }
 
