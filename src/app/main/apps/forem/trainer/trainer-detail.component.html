@@ -320,6 +320,19 @@
 
                             </div>
                         </mat-tab>
+
+                        <mat-tab label="{{ 'APPS.ATTACHMENTS' | translate | uppercase }}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <dh2-attachments    name="attachments"
+                                                    placeholder="{{ 'APPS.DRAG_FILES' | translate }}"
+                                                    [value]="object.attachments"
+                                                    [form]="fg">
+                                </dh2-attachments>
+
+                            </div>
+                        </mat-tab>
+
                     </mat-tab-group>
 
                 </form>

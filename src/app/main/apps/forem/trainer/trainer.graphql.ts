@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { graphQL as foremProfilesGraphQL } from '../profile/profile.graphql';
 import { graphQL as foremCategoriesGraphQL } from '../category/category.graphql';
 import { graphQL as adminCountryGraphQL } from '../../admin/country/country.graphql';
+import { graphQL as adminAttachmentsGraphQL } from '@horus/components/attachments/attachments.graphql';
 
 const fields = `
     id
@@ -36,6 +37,10 @@ const fields = `
     teaching_months
     occupation_months
     description
+
+    attachments {
+        ${adminAttachmentsGraphQL.fields}
+    }
 `;
 
 const relationsFields = `

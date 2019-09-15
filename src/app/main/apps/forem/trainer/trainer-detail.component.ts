@@ -24,7 +24,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
     constructor(
         protected injector: Injector
-    ) {
+    ) 
+    {
         super(injector, graphQL);
     }
 
@@ -63,7 +64,9 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             teacher_training: '',
             teaching_months: '',
             occupation_months: '',
-            description: ''
+            description: '',
+            
+            attachments: this.fb.array([])
         });
     }
 
