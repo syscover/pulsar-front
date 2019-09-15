@@ -40,6 +40,8 @@ export const locale = {
             'INSCRIBED': 'Inscritos',
             'INSCRIPTION': 'Inscripción',
             'INSCRIPTION_EXPORT': 'Exportación de inscripción',
+            'INSCRIPTION_SUBSCRIBE': 'Inscripción registrada',
+            'INSCRIPTION_UNSUBSCRIBE': 'Inscripción borrada',
             'IS_BIG_COMPANY': 'Empresa de más de 250 trabajadores',
             'IS_COUNTDOWN': 'Publicar en cuenta atrás',
             'IS_REGISTER_JCCM': 'Inscrito/a en el Registro de la JCCM',

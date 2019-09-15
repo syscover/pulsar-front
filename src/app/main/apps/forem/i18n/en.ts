@@ -40,6 +40,8 @@ export const locale = {
             'INSCRIBED': 'Inscribed',
             'INSCRIPTION': 'Inscription',
             'INSCRIPTION_EXPORT': 'Inscription export',
+            'INSCRIPTION_SUBSCRIBE': 'Inscription subscribe',
+            'INSCRIPTION_UNSUBSCRIBE': 'Inscription unsubscribe',
             'IS_BIG_COMPANY': 'Is big company',
             'IS_COUNTDOWN': 'Is countdown',
             'IS_REGISTER_JCCM': 'Is register JCCM',

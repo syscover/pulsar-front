@@ -563,6 +563,15 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 this.dataSourceCourse.data.push(course);
                 this.dataSourceCourse.data = this.dataSourceCourse.data.slice(0);
                 this.showSpinner = false;
+
+                this.snackBar.open(
+                    this.translateService.instant('FOREM.INSCRIPTION_SUBSCRIBE'),
+                    this.translations['APPS.OK'], 
+                    {
+                        verticalPosition: 'top',
+                        duration        : 4000,
+                    }
+                );
             });
     }
 
@@ -596,6 +605,15 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
                 // delete course from datatable
                 this.dataSourceCourse.data = this.dataSourceCourse.data.filter(item => item['id'] !== course.id);
                 this.showSpinner = false;
+
+                this.snackBar.open(
+                    this.translateService.instant('FOREM.INSCRIPTION_UNSUBSCRIBE'),
+                    this.translations['APPS.OK'], 
+                    {
+                        verticalPosition: 'top',
+                        duration        : 4000,
+                    }
+                );
             });
     }
 }
