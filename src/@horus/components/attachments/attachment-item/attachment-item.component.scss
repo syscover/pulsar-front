@@ -18,8 +18,10 @@
         overflow: hidden;
     }
     .attachment-img {
-        display: block;
+        display: flex;
         position: relative;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         height: 100%;
     }
@@ -65,7 +67,7 @@
     }
     .attachment-item:not(.covered) .attachment-over-uncovered {
         max-height: none;
-        padding:15px 45px 15px 15px;
+        padding:15px 45px 15px 45px;
         opacity: 1;
     }
     .attachment-item:not(.covered) .attachment-over-covered {
@@ -84,6 +86,7 @@
         opacity: 1;
     }
     
+    .attachment-download,
     .attachment-edit-open,
     .attachment-edit-close {
         display: block;
@@ -104,6 +107,10 @@
         -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
+    .attachment-download {
+        top: 10px;
+        left: 5px;
+    }
     .attachment-edit-open {
         top: 10px;
         right: 5px;
@@ -112,6 +119,8 @@
         top:5px;
         right:5px;
     }
+
+    .attachment-download i,
     .attachment-edit-open i,
     .attachment-edit-close i {
         display: block;
@@ -119,11 +128,15 @@
         line-height: 20px;
         color: rgb(255,255,255);
     }
+
+    .attachment-download:hover,
     .attachment-edit-open:hover,
     .attachment-edit-close:hover {
         background-color: rgb(96, 125, 139);
         text-decoration: none !important;
     }
+
+    .attachment-download:hover i,
     .attachment-edit-open:hover i,
     .attachment-edit-close:hover i {
         color: rgb(255,255,255);

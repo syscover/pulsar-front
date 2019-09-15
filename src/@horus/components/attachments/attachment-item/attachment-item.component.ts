@@ -1,6 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AttachmentFamily } from 'app/main/apps/admin/admin.models';
+import { DownloadService } from '@horus/services/download.service';
+import { File } from '@horus/types';
 import * as _ from 'lodash';
 import { CROP_FIT, HEIGHT_FREE_CROP_FIT, WIDTH_FREE_CROP_FIT } from '../attachments.models';
 declare const jQuery: any; // jQuery definition
@@ -29,7 +31,8 @@ export class AttachmentItemComponent implements OnInit
 
     constructor(
         private fb: FormBuilder,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private _downloadService: DownloadService
     )
     {}
 
@@ -97,5 +100,22 @@ export class AttachmentItemComponent implements OnInit
         {
             this.showCropButton = false;
         }
+    }
+
+    download(): void
+    {
+        const attachmentValue = this.attachment.value;
+
+        const file = {
+            url: attachmentValue.url,
+            filename: attachmentValue.file_name,
+            pathname: attachmentValue.base_path.slice(attachmentValue.base_path.indexOf('app/public')) + '/' + attachmentValue.file_name,
+            mime: attachmentValue.mime,
+            size: attachmentValue.size
+        };
+
+        // call download service
+        this._downloadService
+            .download(<File>file);
     }
 }

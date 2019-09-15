@@ -12,17 +12,28 @@
             <input type="hidden" formControlName="data">
 
             <div class="attachment-img">
-                <dh2-image-input #image formControlName="url" styleClass="img-fluid"></dh2-image-input>
+                <dh2-image-input    *ngIf="attachment.get('mime').value === 'image/jpeg' || attachment.get('mime').value === 'image/png'" 
+                                    #image 
+                                    formControlName="url" 
+                                    styleClass="img-fluid"></dh2-image-input>
+                <fa-icon    *ngIf="attachment.get('mime').value === 'application/pdf'" 
+                            [icon]="['fas', 'file-pdf']" 
+                            size="8x"></fa-icon>
             </div>
             <div class="attachment-over">
+
                 <div class="attachment-over-uncovered">
                     <h4 class="attachment-title">{{ familySelect?.name }}</h4>
                     <p class="attachment-sub">{{ attachment.get('title').value }}</p>
                     <p class="attachment-size">{{ attachment.get('size').value | sizeFormat }}</p>
+                    <a class="attachment-download" (click)="download()">
+                        <i class="material-icons">cloud_download</i>
+                    </a>
                     <a #openOver class="attachment-edit-open">
                         <i class="material-icons">mode_edit</i>
                     </a>
                 </div>
+
                 <div class="attachment-over-covered">
 
                     <a #closeOver class="attachment-edit-close"><i class="material-icons">clear</i></a>

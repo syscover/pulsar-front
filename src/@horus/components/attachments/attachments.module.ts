@@ -16,10 +16,17 @@ import { CropperDialogComponent } from './cropper-dialog.component';
 
 import { AttachmentsService } from './attachments.service';
 
+// font awesome icons
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 @NgModule({
     imports: [
         CommonModule,
         DragulaModule.forRoot(),
+        FontAwesomeModule,
         FormsModule,
         ImageInputModule,
         MatButtonModule,
@@ -46,8 +53,13 @@ import { AttachmentsService } from './attachments.service';
 export class AttachmentsModule
 { 
     constructor(
-        private translationLoader: FuseTranslationLoaderService
-    ) {
+        private translationLoader: FuseTranslationLoaderService,
+        private library: FaIconLibrary
+    ) 
+    {
         this.translationLoader.loadTranslations(english, spanish);
+
+        // Add an icon to the library for convenient access in other components
+        library.addIconPacks(fas, far, fab);
     }
 }

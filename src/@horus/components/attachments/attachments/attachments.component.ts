@@ -109,7 +109,7 @@ export class AttachmentsComponent implements OnInit, OnChanges
             object_id: '',
             object_type: '',
             family_id: '',
-            sort: ['', Validators.required ],
+            sort: '',
             alt: '',
             title: '',
             base_path: ['', Validators.required ],
