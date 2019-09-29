@@ -115,10 +115,6 @@
                                         </mat-select>
                                         <mat-error>{{ formErrors?.profile_id }}</mat-error>
                                     </mat-form-field>
-
-                                    <div class="offset-md-1 col-md-3 py-20">
-                                        <mat-checkbox formControlName="is_countdown">{{ 'FOREM.IS_COUNTDOWN' | translate }}</mat-checkbox>
-                                    </div>
                                     
                                     <input type="hidden"
                                            formControlName="profile_id"
@@ -311,6 +307,9 @@
                                 <div fxLayout="row">
                                     <div class="col-md-3 py-20">
                                         <mat-checkbox formControlName="featured">{{ 'APPS.FEATURED' | translate }}</mat-checkbox>
+                                    </div>
+                                    <div class="col-md-3 py-20">
+                                        <mat-checkbox formControlName="is_countdown">{{ 'FOREM.IS_COUNTDOWN' | translate }}</mat-checkbox>
                                     </div>
                                 </div>
 
@@ -589,7 +588,7 @@
                                             <ng-container matColumnDef="actions">
                                                 <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>
                                                 <mat-cell *matCellDef="let row">
-                                                    <ng-container *ngIf="row.inscription_id">
+                                                    <ng-container>
                                                         <button type="button" mat-icon-button [matMenuTriggerFor]="menuCourse">
                                                             <mat-icon>more_vert</mat-icon>
                                                         </button>

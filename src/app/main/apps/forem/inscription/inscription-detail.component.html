@@ -343,10 +343,10 @@
 
                                 <div fxLayout="row">
                                     <div class="col-md-2 py-20">
-                                        <mat-checkbox formControlName="has_other_course">{{ 'FOREM.HAS_OTHER_COURSE' | translate }}</mat-checkbox>
+                                        <mat-checkbox formControlName="has_other_course" (change)="handleHasOtherCourse()">{{ 'FOREM.HAS_OTHER_COURSE' | translate }}</mat-checkbox>
                                     </div>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                    <mat-form-field *ngIf="fg.get('has_other_course').value" [appearance]="horusConfig.fieldAppearance" class="col-md-5">
                                         <mat-label>{{ 'FOREM.OTHER_COURSE' | translate }}</mat-label>
                                         <input matInput formControlName="other_course" required>
                                         <mat-error>{{ formErrors?.other_course }}</mat-error>

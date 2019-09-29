@@ -15,7 +15,7 @@ export const locale = {
             'CONTACT_SCHEDULE': 'Horario de contacto',
             'CONTENTS': 'Contenidos',
             'CONTENTS_EXCERPT': 'Resumen de contenidos',
-            'CURSING': 'Cursando',
+            'CURSING': 'Solicitudes',
             'EMPLOYMENT_DATA': 'Datos de empleo',
             'EMPLOYMENT_OFFICE': 'Oficina de empleo',
             'EMPLOYMENT_SITUATION': 'Situación de empleo',

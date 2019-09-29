@@ -32,7 +32,8 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
 
     constructor(
         protected injector: Injector
-    ) {
+    ) 
+    {
         super(injector, graphQL);
     }
 
@@ -196,6 +197,26 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
         // this.localities = data.foremLocalities;
     }
 
+    afterPatchValueEdit()
+    {
+        this.handleHasOtherCourse();
+    }
+
+    handleHasOtherCourse()
+    {
+        console.log(this.fg.get('has_other_course').value);
+        
+        if (this.fg.get('has_other_course').value)
+        {
+            this.fg.get('other_course').setValidators(Validators.required);
+        }
+        else
+        {
+            this.fg.get('other_course').clearValidators();
+        }
+        this.fg.get('other_course').updateValueAndValidity();
+    }
+
     handleChangeHasAgent($event): void
     {
         if ($event.checked)
@@ -205,5 +226,6 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
         {
 
         }
+        console.log($event);
     }
 }
