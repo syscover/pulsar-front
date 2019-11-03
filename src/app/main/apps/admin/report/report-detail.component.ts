@@ -64,7 +64,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             frequency_id: ['', Validators.required],
             statement: '',
             sql: '',
-            wildcards: [[]]
+            wildcards: []
         });
     }
 
@@ -93,7 +93,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             key: 'pulsar-admin.report_data_sources',
             lang: this.baseLang.id,
             property: 'name'
-        }
+        };
 
         return {
             configFieldTypes,
@@ -184,5 +184,11 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         
         this.dataSourceWildcard.data = this.wildcards;
         this.fg.markAsDirty();
+    }
+
+    handleInputWildcardValue() 
+    {
+        this.fg.get('wildcards').markAsPristine();
+        this.fg.get('wildcards').markAsDirty();
     }
 }

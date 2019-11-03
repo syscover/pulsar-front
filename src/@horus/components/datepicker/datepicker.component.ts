@@ -1,4 +1,4 @@
-import { Component, Input, Optional, Self, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, Optional, Self, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormControlName, NgControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ErrorStateMatcher, MatFormFieldControl, MatInput } from '@angular/material';
@@ -12,7 +12,7 @@ import * as moment from 'moment';
             <mat-label>{{ label }}</mat-label>
             <input  autocomplete="off"
                     matInput 
-                    #input 
+                    #input
                     [formControl]="control" 
                     [required]="required" 
                     [matDatepicker]="picker" 
@@ -39,6 +39,7 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
     @Input() required = false;
     @Input() debug = false;
     @Input() error: string;
+    @Output() dateInput: EventEmitter<MatDatepickerInputEvent<any>> = new EventEmitter();
 
     @Input()
     get value(): moment.Moment 
@@ -119,6 +120,7 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit {
     {
         if (this.debug) console.log('DEBUG - hr-datepicker with name: ' + this._ngControl.name + ' change with value: ', event.value);
         this.value = moment(event.value, this.format);
+        this.dateInput.emit(event);
     }
 
     // initialise the value.

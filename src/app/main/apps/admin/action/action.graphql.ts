@@ -6,7 +6,8 @@ const fields = `
     name
 `;
 
-const relationsFields = ``;
+const relationsFields = `
+`;
 
 export const graphQL = {
     model: 'Syscover\\Admin\\Models\\Action',

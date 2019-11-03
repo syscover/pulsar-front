@@ -21,6 +21,7 @@ import { InscriptionExportDialogComponent } from './inscription/inscription-expo
 import { InscriptionListComponent } from './inscription/inscription-list.component';
 import { LocalityDetailComponent } from './locality/locality-detail.component';
 import { LocalityListComponent } from './locality/locality-list.component';
+import { MatriculateDetailComponent } from './matriculate/matriculate-detail.component';
 import { ProfileDetailComponent } from './profile/profile-detail.component';
 import { ProfileListComponent } from './profile/profile-list.component';
 import { ProvinceDetailComponent } from './province/province-detail.component';
@@ -52,6 +53,7 @@ import { TrainerListComponent } from './trainer/trainer-list.component';
         InscriptionListComponent,
         LocalityDetailComponent,
         LocalityListComponent,
+        MatriculateDetailComponent,
         ProfileDetailComponent,
         ProfileListComponent,
         ProvinceDetailComponent,

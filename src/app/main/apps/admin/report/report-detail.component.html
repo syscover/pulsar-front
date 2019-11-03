@@ -263,21 +263,30 @@
                                         <div fxLayout="row" *ngSwitchCase="'text'">
                                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                                 <mat-label>{{ wildcard.label }}</mat-label>
-                                                <input matInput [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}">
+                                                <input  matInput 
+                                                        [(ngModel)]="wildcard.value" 
+                                                        [ngModelOptions]="{standalone: true}" 
+                                                        (input)="handleInputWildcardValue()">
                                             </mat-form-field>
                                         </div>
                 
                                         <div fxLayout="row" *ngSwitchCase="'number'">
                                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                                 <mat-label>{{ wildcard.label }}</mat-label>
-                                                <input type="number" matInput [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}">
+                                                <input  type="number" 
+                                                        matInput 
+                                                        [(ngModel)]="wildcard.value" 
+                                                        [ngModelOptions]="{standalone: true}" 
+                                                        (input)="handleInputWildcardValue()">
                                             </mat-form-field>
                                         </div>
                 
                                         <div fxLayout="row" *ngSwitchCase="'select'">
                                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                                 <mat-label>{{ wildcard.label }}</mat-label>
-                                                <mat-select [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}">
+                                                <mat-select [(ngModel)]="wildcard.value" 
+                                                            [ngModelOptions]="{standalone: true}" 
+                                                            (selectionChange)="handleInputWildcardValue()">
                                                     <mat-option>{{ 'APPS.NONE.M' | translate }}</mat-option>
                                                     <mat-option *ngFor="let option of wildcard.option_values" 
                                                                 [value]="option.id">{{ option.name }}</mat-option>
@@ -288,7 +297,10 @@
                                         <div fxLayout="row" *ngSwitchCase="'select-multiple'">
                                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
                                                 <mat-label>{{ wildcard.label }}</mat-label>
-                                                <mat-select [(ngModel)]="wildcard.value" [ngModelOptions]="{standalone: true}" multiple>
+                                                <mat-select [(ngModel)]="wildcard.value" 
+                                                            [ngModelOptions]="{standalone: true}" 
+                                                            (selectionChange)="handleInputWildcardValue()" 
+                                                            multiple>
                                                     <mat-option *ngFor="let option of wildcard.option_values" 
                                                                 [value]="option.id">{{ option.name }}</mat-option>
                                                 </mat-select>
@@ -299,6 +311,7 @@
                                             <hr-datepicker  class="col-12 col-md-6"
                                                             label="{{ wildcard.label }}"
                                                             format="YYYY-MM-DD"
+                                                            (dateInput)="handleInputWildcardValue()"
                                                             [(ngModel)]="wildcard.value" 
                                                             [ngModelOptions]="{standalone: true}">
                                             </hr-datepicker>

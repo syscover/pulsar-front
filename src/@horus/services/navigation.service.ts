@@ -66,7 +66,7 @@ export class NavigationService
             }
 
             // check if has resource and has access permission
-            if (item.resource && _.find(permissions, {'resource_id': item.resource, 'action_id': 'access'}))
+            if (item.resource && _.find(permissions, {resource_id: item.resource, action_id: 'access'}))
             {
                 navigationResponse.push(item);
             }

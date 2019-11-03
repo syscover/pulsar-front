@@ -22,6 +22,7 @@ import { ProvinceDetailComponent } from './province/province-detail.component';
 import { ProvinceListComponent } from './province/province-list.component';
 import { TrainerDetailComponent } from './trainer/trainer-detail.component';
 import { TrainerListComponent } from './trainer/trainer-list.component';
+import { MatriculateDetailComponent } from './matriculate/matriculate-detail.component';
  
 
 const routes: Routes = [
@@ -53,6 +54,9 @@ const routes: Routes = [
             { path: 'group',                                                component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group' }},
             { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
             { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
+
+            // Courses
+            { path: 'group/show/:id/edit/:matriculate',                     component: MatriculateDetailComponent,              data: { action: 'edit', resource: 'forem-group' }},
 
             // Groups office
             { path: 'group-office',                                         component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group-office' }},
