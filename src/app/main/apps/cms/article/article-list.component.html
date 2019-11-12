@@ -133,6 +133,10 @@
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
                             </button>
+                            <button mat-menu-item [routerLink]="[baseUri + '/create', baseLang.id, row.id]">
+                                <mat-icon>file_copy</mat-icon>
+                                <span>{{ 'APPS.COPY' | translate }}</span>
+                            </button>
                         </mat-menu>
                     </mat-cell>
                 </ng-container>
