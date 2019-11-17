@@ -56,7 +56,7 @@ const routes: Routes = [
             { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
 
             // Courses
-            { path: 'group/show/:id/edit/:matriculate',                     component: MatriculateDetailComponent,              data: { action: 'edit', resource: 'forem-group' }},
+            { path: 'group/show/:group_id/edit/:id',                        component: MatriculateDetailComponent,              data: { action: 'edit', resource: 'forem-group' }},
 
             // Groups office
             { path: 'group-office',                                         component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group-office' }},

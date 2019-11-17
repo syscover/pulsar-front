@@ -67,10 +67,9 @@
 
                 <form   id="formDetail"
                         [formGroup]="fg"
-                        (ngSubmit)="postRecord(object)">
+                        (ngSubmit)="postRecord(object, ['/apps/forem/group/show/', groupId])">
 
                     <div class="container">
-                        <input type="hidden" formControlName="ix">
 
                         <div fxLayout="row">
                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
@@ -85,6 +84,28 @@
                                 <mat-label>{{ 'APPS.NAME' | translate }}</mat-label>
                                 <input matInput formControlName="name" required>
                                 <mat-error>{{ formErrors?.name }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
+                                <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
+                                <input matInput formControlName="surname" required>
+                                <mat-error>{{ formErrors?.surname }}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-5">
+                                <mat-label>{{ 'APPS.SURNAME' | translate }}</mat-label>
+                                <input matInput formControlName="surname2" required>
+                                <mat-error>{{ formErrors?.surname2 }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-2">
+                                <mat-label>{{ 'APPS.GENDER' | translate }}</mat-label>
+                                <input matInput formControlName="gender" required>
+                                <mat-error>{{ formErrors?.gender }}</mat-error>
                             </mat-form-field>
                         </div>
                     </div>

@@ -18,28 +18,28 @@ export class MatriculateDetailComponent extends CoreDetailComponent  implements 
     objectTranslation = 'FOREM.MATRICULATE';
     objectTranslationGender = 'M';
     graphQL = graphQL;
+    groupId: number;
 
     constructor(
         protected injector: Injector
     ) 
     {
         super(injector, graphQL);
+
+        // set group_id to be used in template
+        this.groupId = this.params['group_id'];
+        this.fg.get('group_id').setValue(this.groupId);
     }
 
     createForm(): void
     {
         this.fg = this.fb.group({
-            ix: '',
-            id: ['', [Validators.required, Validators.minLength(2)]],
-            name: ['', Validators.required]
+            id: [{value: '', disabled: true}, [Validators.required, Validators.minLength(2)]],
+            group_id: ['', Validators.required],
+            name: ['', Validators.required],
+            surname: ['', Validators.required],
+            surname2: ['', Validators.required],
+            gender: ['', Validators.required],
         });
-    }
-
-    getCustomArgumentsGetRecord(args, params)
-    {
-        console.log(params);
-        args.sql[0].value = params.matriculate;
-        
-        return args;
     }
 }

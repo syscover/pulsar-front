@@ -3,6 +3,9 @@ import gql from 'graphql-tag';
 const fields = `
     id
     name
+    surname
+    surname2
+    gender
 `;
 
 const relationsFields = `

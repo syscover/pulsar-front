@@ -593,13 +593,13 @@
                                                             <mat-icon>more_vert</mat-icon>
                                                         </button>
                                                         <mat-menu #menuCourse="matMenu">
-                                                            <button type="button" mat-menu-item (click)="unsubscribe(row)">
-                                                                <mat-icon>delete</mat-icon>
-                                                                <span>{{ 'FOREM.UNSUBSCRIBE_STUDENT' | translate }}</span>
-                                                            </button>
                                                             <button type="button" mat-menu-item [routerLink]="[baseUri + '/show', object.id, 'edit', row.id]">
                                                                 <mat-icon>mode_edit</mat-icon>
                                                                 <span>{{ 'FOREM.EDIT_MATRICULATE' | translate }}</span>
+                                                            </button>
+                                                            <button type="button" mat-menu-item (click)="unsubscribe(row)">
+                                                                <mat-icon>delete</mat-icon>
+                                                                <span>{{ 'FOREM.UNSUBSCRIBE_STUDENT' | translate }}</span>
                                                             </button>
                                                         </mat-menu>
                                                     </ng-container>
