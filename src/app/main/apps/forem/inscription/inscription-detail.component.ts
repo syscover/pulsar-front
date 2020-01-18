@@ -1,9 +1,12 @@
 import { Component, HostBinding, Injector, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
+import { switchMap, debounceTime } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
-import { AcademicLevel, AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProffesionalCategory, Province, UnemployedSituation } from '../forem.models';
+import { AcademicLevel, AddressType, EmploymentOffice, EmploymentSituation, FunctionalArea, Gender, Group, Locality, ProfessionalCategory, Province, UnemployedSituation } from '../forem.models';
 import { graphQL } from './inscription.graphql';
+import { graphQL as foremLocalityGraphQL } from '../locality/locality.graphql';
+import { empty } from 'rxjs/internal/observable/empty';
 
 @Component({
     selector: 'dh2-forem-inscription-detail',
@@ -23,10 +26,15 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     groups: Group[] = [];
     provinces: Province[] = [];
     localities: Locality[] = [];
+
+    localitiesAutocomplete: Locality[] = [];
+    isLoadingLocalities = false;
+    localityForm = new FormControl();
+
     employmentSituations: EmploymentSituation[] = [];
     unemployedSituations: UnemployedSituation[] = [];
     employmentOffices: EmploymentOffice[] = [];
-    professionalCategories: ProffesionalCategory[] = [];
+    professionalCategories: ProfessionalCategory[] = [];
     functionalAreas: FunctionalArea[] = [];
     academicLevels: AcademicLevel[] = [];
 
@@ -35,6 +43,59 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     ) 
     {
         super(injector, graphQL);
+    }
+
+    ngOnInit(): void
+    {
+        super.ngOnInit();
+
+        // autocomplete search locality
+        this.localityForm
+            .valueChanges
+            .pipe(
+                debounceTime(300),
+                switchMap(value => 
+                {
+                    if (value.length > 3) 
+                    {
+                        this.isLoadingLocalities = true;
+                        return this.http
+                            .apolloClient()
+                            .watchQuery({
+                                query: foremLocalityGraphQL.queryObjects,
+                                variables: {
+                                    sql: [{
+                                        command: 'where',
+                                        column: 'forem_locality.name',
+                                        operator: 'like',
+                                        value: `%${value}%`
+                                    }]
+                                }
+                            })
+                            .valueChanges;
+                    }
+                    return empty();
+                })
+            )
+            .subscribe(items => 
+            {
+                this.isLoadingLocalities = false;
+                this.localitiesAutocomplete = items.data['coreObjects'];
+            });
+    }
+    
+    onSelected($event)
+    {
+        console.log($event.option.value);
+        this.fg.get('locality_id').setValue($event.option.value.code);
+        this.fg.get('locality_id').markAsDirty();
+        this.fg.get('locality_id').markAsTouched();
+    
+    }
+
+    displayFn(locality: Locality) 
+    {
+        if (locality) return locality.name;
     }
 
     createForm(): void
@@ -200,12 +261,11 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     afterPatchValueEdit()
     {
         this.handleHasOtherCourse();
+        this.localityForm.setValue(this.object.locality);
     }
 
     handleHasOtherCourse()
     {
-        console.log(this.fg.get('has_other_course').value);
-        
         if (this.fg.get('has_other_course').value)
         {
             this.fg.get('other_course').setValidators(Validators.required);

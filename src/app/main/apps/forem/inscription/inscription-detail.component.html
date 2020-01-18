@@ -209,13 +209,37 @@
                                 </div>
 
                                 <div fxLayout="row">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                    <!-- <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
                                         <mat-select formControlName="locality_id">
                                             <mat-option *ngFor="let locality of localities" [value]="locality.id">{{ locality.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.locality_id }}</mat-error>
+                                    </mat-form-field> -->
+
+
+                                    
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                        <mat-label>{{ 'APPS.LOCALITY' | translate }}</mat-label>
+                                        <input type="hidden" formControlName="locality_id">
+                                        <input matInput [formControl]="localityForm" [matAutocomplete]="auto" autocomplete="nope">
+                                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelected($event)">
+                                            
+                                            <mat-option *ngIf="isLoadingLocalities">
+                                                <mat-spinner diameter="25"></mat-spinner>
+                                            </mat-option>
+                                            
+                                            <ng-container *ngIf="!isLoadingLocalities">
+                                                <mat-option *ngFor="let locality of localitiesAutocomplete" [value]="locality">
+                                                    <span>{{ locality.name }}</span>
+                                                    <small> | ID: {{ locality.code }}</small>
+                                                </mat-option>
+                                            </ng-container>
+                                        </mat-autocomplete>
+                                        <mat-error>{{ formErrors?.locality }}</mat-error>
                                     </mat-form-field>
+
+
                                 </div>
 
                                 <div class="col-md-2 py-20">

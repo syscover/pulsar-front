@@ -37,6 +37,11 @@ const fields = `
     province_id
     zip
     locality_id
+    locality {
+        id
+        code
+        name
+    }
 
     has_agent
     agent_name

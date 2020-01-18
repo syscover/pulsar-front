@@ -164,7 +164,7 @@ export class Modality
     inscription_type: number;
 }
 
-export class ProffesionalCategory
+export class ProfessionalCategory
 {
     id: number;
     name: string;

@@ -53,8 +53,8 @@ export class HttpInterceptorService implements HttpInterceptor
                 finalize(() =>
                 {
                     // intercept the responds error and displace it to the console
-                    if (environment.debug) console.log('DEBUG - Error status: Error Occurred in http interceptor');
-                    return throwError('Error Occurred in http interceptor');
+                    // if (environment.debug) console.log('DEBUG - Error status: Error Occurred in http interceptor');
+                    // return throwError('Error Occurred in http interceptor');
                 })
             );
     }
