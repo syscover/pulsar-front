@@ -21,6 +21,7 @@ const routes: Routes = [
             { path: 'article',                                          component: ArticleListComponent,                data: { action: 'list' }},
             { path: 'article/create',                                   component: ArticleDetailComponent,              data: { action: 'create' }},
             { path: 'article/create/:lang_id/:id',                      component: ArticleDetailComponent,              data: { action: 'create-lang' }},
+            { path: 'article/clone/:lang_id/:id',                       component: ArticleDetailComponent,              data: { action: 'clone' }},
             { path: 'article/show/:lang_id/:id',                        component: ArticleDetailComponent,              data: { action: 'edit' }},
 
             // Sections

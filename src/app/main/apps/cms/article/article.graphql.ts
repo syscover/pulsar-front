@@ -22,7 +22,6 @@ const fields = `
     date
     title
     slug
-    categories_id
     categories {
         ${cmsCategoryGraphQL.fields}
     }
@@ -114,6 +113,13 @@ export const graphQL = {
     mutationCreateObject: gql`
         mutation CmsCreateArticle ($payload:CmsArticleInput!) {
             cmsCreateArticle (payload:$payload) {
+                ${fields}
+            }
+        }`,
+
+    mutationCloneObject: gql`
+        mutation CmsCloneArticle ($payload:CmsArticleInput!) {
+            cmsCloneArticle (payload:$payload) {
                 ${fields}
             }
         }`,

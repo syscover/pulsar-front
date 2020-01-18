@@ -11,6 +11,7 @@ const fields = `
     wildcards
     statement
     sql
+    filter
 `;
 
 const relationsFields = `

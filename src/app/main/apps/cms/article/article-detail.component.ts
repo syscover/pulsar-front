@@ -11,9 +11,7 @@ import { AttachmentFamily } from '../../admin/admin.models';
 import { Section, Family, Article, Category, Status } from '../cms.models';
 import '@horus/functions/date-to-json.function';
 import * as _ from 'lodash';
-
 import { graphQL } from './article.graphql';
-
 
 @Chips()
 @Component({
@@ -90,6 +88,10 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
 
         // set family object, to change morphology of form
         this.family = _.find(this.families, {id: this.object.family_id});
+
+        // filter lang of attachments and categories
+        this.object.attachments = this.object.attachments.filter(item => item.lang_id === this.object.lang_id);
+        this.object.categories = this.object.categories.filter(item => item.lang_id === this.object.lang_id);
     }
 
     afterPatchValueEdit(): void
@@ -98,6 +100,9 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
 
         // set field_group_id value
         if (this.family.field_group_id) this.fg.controls['field_group_id'].setValue(this.family.field_group_id);
+
+        // set categories
+        this.fg.controls['categories_id'].setValue(_.map(this.object.categories, 'id'));
 
         // TODO establece author cuando tengamos los usuarios relacionados
         // set tags extracting name field
@@ -178,7 +183,8 @@ export class ArticleDetailComponent extends CoreDetailComponent implements Chips
         ];
 
         // set id of product if action is edit
-        if (this.params['id']) {
+        if (this.params['id']) 
+        {
             sqlArticle.push({
                 command: 'where',
                 column: 'cms_article.id',

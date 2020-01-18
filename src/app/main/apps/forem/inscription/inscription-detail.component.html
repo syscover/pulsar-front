@@ -196,7 +196,7 @@
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'FOREM.PROVINCE' | translate }}</mat-label>
                                         <mat-select formControlName="province_id">
-                                            <mat-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</mat-option>
+                                            <mat-option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.province_id }}</mat-error>
                                     </mat-form-field>

@@ -5,7 +5,9 @@ const fields = `
     name
     surname
     surname2
+    tin
     gender
+    birth_date
 `;
 
 const relationsFields = `

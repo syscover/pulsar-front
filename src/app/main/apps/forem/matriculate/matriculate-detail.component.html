@@ -102,10 +102,24 @@
                         </div>
 
                         <div fxLayout="row">
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-5">
+                                <mat-label>{{ 'APPS.TIN' | translate }}</mat-label>
+                                <input matInput formControlName="tin" required>
+                                <mat-error>{{ formErrors?.tin }}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row wrap">
                             <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-2">
                                 <mat-label>{{ 'APPS.GENDER' | translate }}</mat-label>
                                 <input matInput formControlName="gender" required>
                                 <mat-error>{{ formErrors?.gender }}</mat-error>
+                            </mat-form-field>
+                        
+                            <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 offset-md-1 col-md-2">
+                                <mat-label>{{ 'APPS.BIRTH_DATE' | translate }}</mat-label>
+                                <input matInput formControlName="birth_date" required>
+                                <mat-error>{{ formErrors?.birth_date }}</mat-error>
                             </mat-form-field>
                         </div>
                     </div>

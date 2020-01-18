@@ -63,7 +63,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             this.lang = <Lang>_.find(this.langs, ['id', this.params['lang_id']]); // get lang object
 
             // get baseLang record
-            if (this.dataRoute.action === 'create-lang') 
+            if (this.dataRoute.action === 'create-lang' || this.dataRoute.action === 'clone') 
             {
                 // create copy object for change readonly properties
                 const baseParams = _.clone(this.params); // clone object because params properties are read-only, you can use Object.assign({}, this.params)
@@ -86,7 +86,7 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
     // Function that can to be overwrite in child class
     setData(response?): void 
     {
-        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang') 
+        if (this.dataRoute.action === 'edit' || this.dataRoute.action === 'create-lang' || this.dataRoute.action === 'clone') 
         {
             this.object = response; // function to set custom data
 
@@ -171,14 +171,15 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
             });
     }
 
-    // get args, in any case that you need create a query with aditonal arguments
-    // for axample in FieldGroupDetailComponent, or specify field name in queries with joins
+    // get args, in any case that you need create a query with additional arguments
+    // for example in FieldGroupDetailComponent, or specify field name in queries with joins
     argumentsGetRecord(params: Params): any 
     {
         let args;
 
-        // set paramenters for objects that has lang_id and id
-        if (params['lang_id'] && params['id']) {
+        // set parameters for objects that has lang_id and id
+        if (params['lang_id'] && params['id']) 
+        {
             // check if object has table lang
             const table = this.graphQL.tableLang ? this.graphQL.tableLang : this.graphQL.table;
             args = {
@@ -329,6 +330,21 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
                 });
         }
 
+        if (this.dataRoute.action === 'clone') 
+        {
+            // call method that can to be overwrite by children
+            args = this.getCustomArgumentsClonePostRecord(args, object);
+
+            if (this.env.debug) console.log('DEBUG - args sending to clone object: ', args);
+
+            record$ = this.http
+                .apolloClient()
+                .mutate({
+                    mutation: this.graphQL.mutationCloneObject,
+                    variables: args
+                });
+        }
+
         if (this.dataRoute.action === 'create-lang')
         {
             // remove id to avoid conflict with duplicate id
@@ -457,6 +473,13 @@ export abstract class CoreDetailComponent extends CoreComponent implements OnIni
      * @param params Params
      */
     getCustomArgumentsCreatePostRecord(args: any, params: Params): object { return args; }
+
+    /**
+     * Method to be overwrite
+     * @param args  Object
+     * @param params Params
+     */
+    getCustomArgumentsClonePostRecord(args: any, params: Params): object { return args; }
 
     /**
      * Method to be overwrite

@@ -129,13 +129,13 @@
                                 <mat-icon>mode_edit</mat-icon>
                                 <span>{{ 'APPS.EDIT' | translate }}</span>
                             </button>
+                            <button mat-menu-item [routerLink]="[baseUri + '/clone', baseLang.id, row.id]">
+                                <mat-icon>file_copy</mat-icon>
+                                <span>{{ 'APPS.CLONE' | translate }}</span>
+                            </button>
                             <button mat-menu-item (click)="deleteRecord(row)">
                                 <mat-icon>delete</mat-icon>
                                 <span>{{ 'APPS.DELETE' | translate }}</span>
-                            </button>
-                            <button mat-menu-item [routerLink]="[baseUri + '/create', baseLang.id, row.id]">
-                                <mat-icon>file_copy</mat-icon>
-                                <span>{{ 'APPS.COPY' | translate }}</span>
                             </button>
                         </mat-menu>
                     </mat-cell>

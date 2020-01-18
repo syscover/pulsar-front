@@ -40,6 +40,8 @@ export class MatriculateDetailComponent extends CoreDetailComponent  implements 
             surname: ['', Validators.required],
             surname2: ['', Validators.required],
             gender: ['', Validators.required],
+            birth_date: ['', Validators.required],
+            tin: ['', Validators.required],
         });
     }
 }

@@ -64,6 +64,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             frequency_id: ['', Validators.required],
             statement: '',
             sql: '',
+            filter: '',
             wildcards: []
         });
     }

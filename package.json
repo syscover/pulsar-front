@@ -59,7 +59,6 @@
         "rxjs": "6.5.2",
         "web-animations-js": "2.3.2",
         "zone.js": "0.9.1",
-
         "@angular-material-extensions/password-strength": "4.0.1",
         "@auth0/angular-jwt": "3.0.0",
         "@ckeditor/ckeditor5-angular": "1.1.0",
@@ -115,7 +114,6 @@
         "tslint": "5.15.0",
         "typescript": "3.4.5",
         "webpack-bundle-analyzer": "3.3.2",
-        
         "@types/googlemaps": "3.37.4",
         "@typescript-eslint/eslint-plugin": "2.0.0",
         "@typescript-eslint/parser": "2.0.0",

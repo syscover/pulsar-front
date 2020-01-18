@@ -191,6 +191,21 @@
                                                     style="height: 400px">
                                     </td-code-editor>
                                 </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">filter_list</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'APPS.FILTER' | translate }}</div>
+                                </div>
+                                <!-- / HEADER -->
+                                <div fxLayout="row">
+                                    <td-code-editor theme="hc-black"
+                                                    language="php"
+                                                    class="col-12"
+                                                    formControlName="filter"
+                                                    style="height: 400px">
+                                    </td-code-editor>
+                                </div>
                                 
                             </div>
                         </mat-tab>
