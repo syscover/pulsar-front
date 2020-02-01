@@ -23,14 +23,12 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     objectTranslation = 'APPS.REPORT';
     objectTranslationGender = 'M';
 
-    wildcards: Wildcard[] = [];
     reportRelations: ReportRelation[] = [];
     frequencies: Frequency[] = [];
     extensions: Extension[] = [];
     emails: String[] = [];
     profiles: Profile[] = [];
     separatorKeysCodes = [ENTER, COMMA];
-
     fieldTypes: FieldType[] = [];
     dataTypes: DataType[] = [];
 
@@ -47,6 +45,11 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
     ) 
     {
         super(injector, graphQL);
+    }
+
+    get wildcards(): Wildcard[]
+    {
+        return this.fg.get('wildcards').value;
     }
 
     addTag: (formGroup: FormGroup, name: string, event: MatChipInputEvent) => void;
@@ -125,11 +128,10 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
         // admin profiles
         this.profiles = data.adminProfiles;
 
-        if (this.dataRoute.action ==='edit')
+        if (this.dataRoute.action ==='edit' && data.coreObject.wildcards)
         {
             // set mat-table with wildcard data
-            this.wildcards = data.coreObject.wildcards;
-            this.dataSourceWildcard.data = this.wildcards;
+            this.dataSourceWildcard.data = data.coreObject.wildcards;
         }
     }
 

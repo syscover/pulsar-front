@@ -3,7 +3,7 @@ import { Translatable } from '@horus/types';
 import { Lang } from '@horus/types';
 
 @Pipe({
-  name: 'actionTranslationObject'
+    name: 'actionTranslationObject'
 })
 export class ActionTranslationObjectPipe implements PipeTransform 
 {

@@ -43,8 +43,7 @@ export class CountryDetailComponent extends CoreDetailComponent
             zones: [[]],
             latitude: '',
             longitude: '',
-            zoom: '',
-
+            zoom: ''
         });
     }
 

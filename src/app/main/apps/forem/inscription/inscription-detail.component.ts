@@ -86,11 +86,9 @@ export class InscriptionDetailComponent extends CoreDetailComponent  implements 
     
     onSelected($event)
     {
-        console.log($event.option.value);
         this.fg.get('locality_id').setValue($event.option.value.code);
         this.fg.get('locality_id').markAsDirty();
         this.fg.get('locality_id').markAsTouched();
-    
     }
 
     displayFn(locality: Locality) 
