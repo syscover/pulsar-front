@@ -49,6 +49,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
 
     get wildcards(): Wildcard[]
     {
+        if (!Array.isArray(this.fg.get('wildcards').value)) this.fg.get('wildcards').setValue([]);
         return this.fg.get('wildcards').value;
     }
 
@@ -163,7 +164,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
             {
                 const wildcard = data.fg.value;
                 const index = this.wildcards.findIndex(item => item.name === wildcard.name);
-
+                
                 if (index !== -1)
                 {
                     // keep reference with form
@@ -172,7 +173,7 @@ export class ReportDetailComponent extends CoreDetailComponent implements ChipsD
                 else
                 {
                     // update mat-table data source
-                    this.wildcards.push(data.fg.value);
+                    this.wildcards.push(wildcard);
                 }
                 this.dataSourceWildcard.data = this.wildcards;
                 this.fg.markAsDirty();
