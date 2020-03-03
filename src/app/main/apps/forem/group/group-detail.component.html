@@ -144,7 +144,7 @@
                                     <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'FOREM.ACTION' | translate }}</mat-label>
                                         <mat-select formControlName="action_id" required (selectionChange)="handleChangeAction($event)">
-                                            <mat-option *ngFor="let action of actions" [value]="action.id">{{ action.name }} ({{ action.code }})</mat-option>
+                                            <mat-option *ngFor="let action of actions" [value]="action.id">({{ action.code }}) {{ action.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.action_id }}</mat-error>
                                     </mat-form-field>

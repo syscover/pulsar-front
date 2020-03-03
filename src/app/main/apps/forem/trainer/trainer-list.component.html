@@ -69,6 +69,24 @@
                     <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="forem_trainer.surname">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.SURNAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.surname }} {{ row.surname2 }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_trainer.tin">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.TIN' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.tin }}</mat-cell>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="forem_trainer.profile">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APPS.PROFILE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.profile.name }}</mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>

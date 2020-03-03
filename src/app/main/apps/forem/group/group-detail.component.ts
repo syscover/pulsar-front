@@ -282,7 +282,7 @@ export class GroupDetailComponent extends CoreDetailComponent  implements OnInit
         this.expedients = <Expedient[]>data.foremExpedients;
 
         // set actions
-        this.actions = <Action[]>data.foremActions;
+        this.actions =  _.sortBy(<Action[]>data.foremActions, ['code'], ['asc']);
 
         // set modalities
         this.modalities = <Modality[]>data.foremModalities;

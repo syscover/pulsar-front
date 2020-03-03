@@ -14,7 +14,7 @@ export class TrainerListComponent extends CoreListComponent
     objectTranslation = 'FOREM.TRAINER';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['forem_trainer.id', 'forem_trainer.name'];
-    displayedColumns = ['forem_trainer.id', 'forem_trainer.name', 'actions'];
+    displayedColumns = ['forem_trainer.id', 'forem_trainer.name', 'forem_trainer.surname', 'forem_trainer.tin', 'forem_trainer.profile', 'actions'];
 
     constructor(
         protected injector: Injector
