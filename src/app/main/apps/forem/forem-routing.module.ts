@@ -12,6 +12,7 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { GroupHistoryListComponent } from './group/group-history-list.component';
 import { InscriptionDetailComponent } from './inscription/inscription-detail.component';
 import { InscriptionListComponent } from './inscription/inscription-list.component';
 import { LocalityDetailComponent } from './locality/locality-detail.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
             { path: 'group',                                                component: GroupListComponent,                      data: { action: 'list', resource: 'forem-group' }},
             { path: 'group/create',                                         component: GroupDetailComponent,                    data: { action: 'create', resource: 'forem-group' }},
             { path: 'group/show/:id',                                       component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
+            
+            // History Groups
+            { path: 'history-group',                                        component: GroupHistoryListComponent,               data: { action: 'list', resource: 'forem-group' }},
+            { path: 'history-group/show/:id',                               component: GroupDetailComponent,                    data: { action: 'edit', resource: 'forem-group' }},
 
             // Courses
             { path: 'group/show/:group_id/edit/:id',                        component: MatriculateDetailComponent,              data: { action: 'edit', resource: 'forem-group' }},

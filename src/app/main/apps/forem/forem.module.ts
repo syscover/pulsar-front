@@ -16,6 +16,7 @@ import { ExpedientDetailComponent } from './expedient/expedient-detail.component
 import { ExpedientListComponent } from './expedient/expedient-list.component';
 import { GroupDetailComponent } from './group/group-detail.component';
 import { GroupListComponent } from './group/group-list.component';
+import { GroupHistoryListComponent } from './group/group-history-list.component';
 import { InscriptionDetailComponent } from './inscription/inscription-detail.component';
 import { InscriptionExportDialogComponent } from './inscription/inscription-export-dialog.component';
 import { InscriptionListComponent } from './inscription/inscription-list.component';
@@ -48,6 +49,7 @@ import { TrainerListComponent } from './trainer/trainer-list.component';
         ExpedientListComponent,
         GroupDetailComponent,
         GroupListComponent,
+        GroupHistoryListComponent,
         InscriptionDetailComponent,
         InscriptionExportDialogComponent,
         InscriptionListComponent,

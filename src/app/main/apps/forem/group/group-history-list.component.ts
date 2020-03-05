@@ -7,14 +7,14 @@ import { Type, Assistance } from './../forem.models';
 import * as moment from 'moment';
 
 @Component({
-    selector: 'dh2-forem-group-list',
-    templateUrl: './group-list.component.html',
+    selector: 'dh2-forem-group-history-list',
+    templateUrl: './group-history-list.component.html',
     animations : fuseAnimations,
     styleUrls: ['../../../../scss/improvements/core-list-component.scss']
 })
-export class GroupListComponent extends CoreListComponent
+export class GroupHistoryListComponent extends CoreListComponent
 {
-    objectTranslation = 'FOREM.GROUP';
+    objectTranslation = 'FOREM.HISTORY_GROUP';
     objectTranslationGender = 'M';
     columnsSearch: string[] = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.price_total', 'forem_group.publish', 'forem_group.featured'];
     displayedColumns = ['forem_group.id', 'forem_group.composite_code', 'forem_group.name', 'admin_profile.name', 'forem_group.type_id', 'forem_group.assistance_id', 'forem_group.starts_at', 'forem_group.ends_at', 'forem_group.publish', 'forem_group.featured', 'actions'];
@@ -28,11 +28,11 @@ export class GroupListComponent extends CoreListComponent
     {
         super(injector, graphQL);
 
-        this.filters = [{'command': 'where', 'column': 'forem_group.ends_at', 'operator': '>', 'value': moment().format('YYYY-MM-DD HH:mm:ss')}];
+        this.filters = [{'command': 'where', 'column': 'forem_group.ends_at', 'operator': '<', 'value': moment().format('YYYY-MM-DD HH:mm:ss')}];
 
         if (this.dataRoute.resource === 'forem-group-office')
         {
-            this.filters = [{'command': 'where', 'column': 'forem_group.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id }];
+            this.filters.push({'command': 'where', 'column': 'forem_group.profile_id', 'operator': '=', 'value': this._authenticationService.user().profile_id });
         }
     }
 

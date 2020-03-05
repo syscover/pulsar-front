@@ -36,6 +36,7 @@ export const locale = {
             'HAS_MARKETING_AUTHORIZATION': 'Has marketing auhtorization',
             'HAS_OTHER_COURSE': 'Has other course',
             'HAS_SSN_AUTHORIZATION': 'Has ssn authorization',
+            'HISTORY_GROUPS': 'History groups',
             'HOURS': 'Hours',
             'IMPORT_STUDYING': 'Import studying',
             'INSCRIBED': 'Inscribed',

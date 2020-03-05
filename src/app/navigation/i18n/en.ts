@@ -41,6 +41,7 @@ export const locale = {
             'FOREM': 'Forem',
             'GRAPES': 'Grapes',
             'GROUPS': 'Groups',
+            'HISTORY_GROUPS': 'History groups',
             'HOTEL': 'Hotel',
             'INNOVA_CONCRETE': 'Innova Concrete',
             'INSCRIPTIONS': 'Inscriptions',

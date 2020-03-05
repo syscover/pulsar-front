@@ -120,6 +120,15 @@ export const navigation: FuseNavigation[] = [
                         'url'       : '/apps/forem/group'
                     },
                     {
+                        'id'        : 'groups',
+                        'title'     : 'Groups',
+                        'translate' : 'NAV.HISTORY_GROUPS',
+                        'type'      : 'item',
+                        'resource'  : 'forem-group',
+                        'icon'      : 'supervised_user_circle',
+                        'url'       : '/apps/forem/history-group'
+                    },
+                    {
                         'id'        : 'groups-office',
                         'title'     : 'Groups',
                         'translate' : 'NAV.GROUPS',

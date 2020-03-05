@@ -36,6 +36,7 @@ export const locale = {
             'HAS_MARKETING_AUTHORIZATION': 'Tiene permiso para marketing',
             'HAS_OTHER_COURSE': 'Tiene otro curso',
             'HAS_SSN_AUTHORIZATION': 'Tiene permiso para Seguridad Social',
+            'HISTORY_GROUPS': 'Histórico de grupos',
             'HOURS': 'Horas',
             'IMPORT_STUDYING': 'Importar matriculados',
             'INSCRIBED': 'Inscritos',
