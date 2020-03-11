@@ -87,6 +87,12 @@
                     <mat-cell *matCellDef="let row">{{ row.profile.name }}</mat-cell>
                 </ng-container>
 
+                <!-- Column -->
+                <ng-container matColumnDef="forem_trainer.rating_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'FOREM.RATING' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ ratings | getCollectionObjectValue:'id':row.rating_id:'name' }}</mat-cell>
+                </ng-container>
+
                 <!-- ACTIONS -->
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>{{ 'APPS.ACTIONS' | translate }}</mat-header-cell>

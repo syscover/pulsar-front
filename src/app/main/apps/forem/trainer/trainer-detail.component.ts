@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { CoreDetailComponent } from '@horus/foundations/core-detail-component';
-import { Profile, Gender, Availability, Category, TeacherTraining } from '../forem.models';
+import { Profile, Gender, Availability, Category, TeacherTraining, Rating } from '../forem.models';
 import { graphQL } from './trainer.graphql';
 import { Country } from '../../admin/admin.models';
 
@@ -21,6 +21,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
     countries: Country[] = [];
     categories: Category[] = [];
     teacherTrainings: TeacherTraining[] = [];
+    ratings: Rating[] = [];
 
     constructor(
         protected injector: Injector
@@ -34,6 +35,7 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
         this.fg = this.fb.group({
             id: [{value: '', disabled: true}],
             profile_id: ['', Validators.required],
+            rating_id: '',
             name: ['', Validators.required],
             surname: '',
             surname2: '',
@@ -98,11 +100,16 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
             key: 'pulsar-forem.teacher_trainings'
         };
 
+        const configRatings = {
+            key: 'pulsar-forem.ratings'
+        };
+
         return {
             sqlAdminCountry,
             configGenders,
             configAvailabilities,
-            configTeacherTrainings
+            configTeacherTrainings,
+            configRatings
         };
     }
 
@@ -125,5 +132,8 @@ export class TrainerDetailComponent extends CoreDetailComponent  implements OnIn
 
         // set teacher trainings
         this.teacherTrainings = data.foremTeacherTrainings;
+
+        // set teacher ratings
+        this.ratings = data.foremRatings;
     }
 }

@@ -52,12 +52,23 @@ const fields = `
     address
     latitude
     longitude
+
     trainer_name_1
     trainer_hours_1
+    trainer_contract_1
+    trainer_starts_at_1
+    trainer_ends_at_1
     trainer_name_2
     trainer_hours_2
+    trainer_contract_2
+    trainer_starts_at_2
+    trainer_ends_at_2
     trainer_name_3
     trainer_hours_3
+    trainer_contract_3
+    trainer_starts_at_3
+    trainer_ends_at_3
+
     is_product
     product_id
     attachments {

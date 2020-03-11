@@ -434,40 +434,130 @@
                         <mat-tab label="{{ 'FOREM.TRAINERS' | translate | uppercase }}">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="mb-24 header-section">
+                                    <mat-icon class="m-0 mr-16">school</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'FOREM.TRAINER' | translate }} 1</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_name_1">
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                        <mat-label>{{ 'APPS.CONTRACT' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_contract_1">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-2">
                                         <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_hours_1">
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.STARTS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="trainer_starts_at_1"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [error]="formErrors.trainer_starts_at_1">
+                                    </hr-datepicker>
+
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.ENDS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="trainer_ends_at_1"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [error]="formErrors.trainer_ends_at_1">
+                                    </hr-datepicker>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">school</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'FOREM.TRAINER' | translate }} 2</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_name_2">
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                        <mat-label>{{ 'APPS.CONTRACT' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_contract_2">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-2">
                                         <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_hours_2">
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row wrap">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-5">
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.STARTS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="trainer_starts_at_2"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [error]="formErrors.trainer_starts_at_2">
+                                    </hr-datepicker>
+
+                                    <hr-datepicker class="col-md-3"
+                                                   label="{{ 'FOREM.ENDS_AT' | translate }}"
+                                                   format="YYYY-MM-DD"
+                                                   formControlName="trainer_ends_at_2"
+                                                   [appearance]="horusConfig.fieldAppearance"
+                                                   [error]="formErrors.trainer_ends_at_2">
+                                    </hr-datepicker>
+                                </div>
+
+                                <!-- HEADER -->
+                                <div fxLayout="row" fxLayoutAlign="start center" class="my-24 header-section">
+                                    <mat-icon class="m-0 mr-16">school</mat-icon>
+                                    <div class="h2 secondary-text">{{ 'FOREM.TRAINER' | translate }} 3</div>
+                                </div>
+                                <!-- / HEADER -->
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
                                         <mat-label>{{ 'FOREM.TRAINER_NAME' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_name_3">
                                     </mat-form-field>
 
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="offset-md-2 col-md-5">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-3">
+                                        <mat-label>{{ 'APPS.CONTRACT' | translate }}</mat-label>
+                                        <input matInput formControlName="trainer_contract_3">
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-md-2">
                                         <mat-label>{{ 'FOREM.TRAINER_HOURS' | translate }}</mat-label>
                                         <input matInput formControlName="trainer_hours_3">
                                     </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <hr-datepicker class="col-md-3"
+                                                label="{{ 'FOREM.STARTS_AT' | translate }}"
+                                                format="YYYY-MM-DD"
+                                                formControlName="trainer_starts_at_3"
+                                                [appearance]="horusConfig.fieldAppearance"
+                                                [error]="formErrors.trainer_starts_at_3">
+                                    </hr-datepicker>
+
+                                    <hr-datepicker class="col-md-3"
+                                                label="{{ 'FOREM.ENDS_AT' | translate }}"
+                                                format="YYYY-MM-DD"
+                                                formControlName="trainer_ends_at_3"
+                                                [appearance]="horusConfig.fieldAppearance"
+                                                [error]="formErrors.trainer_ends_at_3">
+                                    </hr-datepicker>
                                 </div>
 
                             </div>

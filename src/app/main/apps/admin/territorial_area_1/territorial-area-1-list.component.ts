@@ -27,7 +27,7 @@ export class TerritorialArea1ListComponent extends CoreListComponent
         super(injector, graphQL);
     }
 
-    // overwite method to get statuses
+    // overwrite method to get statuses
     getCustomArgumentsGetRecords(args: object): object
     {    
         args['sqlCountry'] = [{

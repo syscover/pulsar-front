@@ -8,6 +8,7 @@ const fields = `
     id
     profile_id
     academic_level_id
+    rating_id
     name
     surname
     surname2
@@ -55,6 +56,7 @@ const relationsFields = `
     }
     foremAvailabilities: coreConfig (config:$configAvailabilities)
     foremGenders: coreConfig (config:$configGenders)
+    foremRatings: coreConfig (config:$configRatings)
     foremTeacherTrainings: coreConfig (config:$configTeacherTrainings)
 `;
 
@@ -65,12 +67,15 @@ export const graphQL = {
     relationsFields,
 
     queryPaginationObject: gql`
-        query ForemGetTrainersPagination ($sql:[CoreSQLInput]) {
-            coreObjectsPagination: foremTrainersPagination (sql:$sql) {
+        query ForemGetTrainersPagination ($sql:[CoreSQLInput] $configRatings:CoreConfigInput) {
+            coreObjectsPagination: foremTrainersPagination (
+                sql:$sql
+            ) {
                 total
                 objects (sql:$sql)
                 filtered
             }
+            foremRatings: coreConfig (config:$configRatings)
         }`,
 
     queryRelationsObject: gql`
@@ -78,6 +83,7 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
             $configTeacherTrainings:CoreConfigInput
+            $configRatings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             ${relationsFields}
@@ -89,6 +95,7 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
             $configTeacherTrainings:CoreConfigInput
+            $configRatings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObjects: foremTrainers (sql:$sql) {
@@ -103,6 +110,7 @@ export const graphQL = {
             $configGenders:CoreConfigInput
             $configAvailabilities:CoreConfigInput
             $configTeacherTrainings:CoreConfigInput
+            $configRatings:CoreConfigInput
             $sqlAdminCountry:[CoreSQLInput]
         ) {
             coreObject: foremTrainer (sql:$sql) {

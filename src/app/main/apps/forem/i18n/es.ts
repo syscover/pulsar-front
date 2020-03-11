@@ -60,6 +60,7 @@ export const locale = {
             'PROFESSIONAL_CATEGORY': 'Categoría profesional',
             'PROFILE': 'Perfil',
             'PROVINCE': 'Provincia',
+            'RATING': 'Valoración',
             'REQUIREMENTS': 'Requerimientos',
             'SELECTION_DATE': 'Día de selección',
             'SCHEDULE': 'Horario',

@@ -184,6 +184,12 @@ export class Province
     name: string;
 }
 
+export class Rating 
+{
+    id: number;
+    name: string;
+}
+
 export class Step
 {
     id: number;

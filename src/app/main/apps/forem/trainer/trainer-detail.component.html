@@ -88,13 +88,21 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
-                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-6">
+                                <div fxLayout="row wrap" class="justify-content-between">
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
                                         <mat-label>{{ 'FOREM.PROFILE' | translate }}</mat-label>
                                         <mat-select formControlName="profile_id" required>
                                             <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
                                         </mat-select>
                                         <mat-error>{{ formErrors?.profile_id }}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field [appearance]="horusConfig.fieldAppearance" class="col-12 col-md-4">
+                                        <mat-label>{{ 'FOREM.RATING' | translate }}</mat-label>
+                                        <mat-select formControlName="rating_id">
+                                            <mat-option *ngFor="let rating of ratings" [value]="rating.id">{{ rating.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>{{ formErrors?.rating_id }}</mat-error>
                                     </mat-form-field>
                                 </div>
         

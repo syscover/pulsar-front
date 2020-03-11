@@ -22,6 +22,7 @@ export const locale = {
             'COMPLETED.F': 'Completed',
             'COMPLETED.M': 'Completed',
             'CONFIG': 'Config',
+            'CONTRACT': 'Contract',
             'COPY': 'Copy',
             'COUNTRY': 'Country',
             'CUSTOMER': 'Customer',
