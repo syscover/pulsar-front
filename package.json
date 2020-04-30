@@ -85,7 +85,7 @@
         "graphql": "14.4.2",
         "graphql-tag": "2.10.1",
         "graphql-tools": "4.0.5",
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "ng2-dragula": "2.1.1",
         "ngx-mat-select-search": "1.8.0",
         "popper.js": "1.15.0"
